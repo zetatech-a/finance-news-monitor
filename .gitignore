@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Env / secrets
+.env
+.env.*
+*.key
+
+# Logs / temp
+*.log
+.DS_Store
+
+# Reports (원하면 제외하지 마세요)
+# reports/
