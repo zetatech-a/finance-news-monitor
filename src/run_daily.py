@@ -22,12 +22,14 @@ QUERIES_PATH = ROOT_DIR / "queries.yml"
 
 
 def load_queries() -> dict[str, list[str]]:
-    data = yaml.safe_load(QUERIES_PATH.read_text(encoding="utf-8"))
+    if not QUERIES_PATH.exists():
+        raise FileNotFoundError(f"queries.yml not found at: {QUERIES_PATH}")
+    data = yaml.safe_load(QUERIES_PATH.read_text(encoding="utf-8")) or {}
     return data.get("sectors", {})
 
 
 def build_query_list(sector_queries: dict[str, list[str]]) -> list[str]:
-    seen = set()
+    seen: set[str] = set()
     queries: list[str] = []
     for keywords in sector_queries.values():
         for keyword in keywords:
@@ -38,6 +40,7 @@ def build_query_list(sector_queries: dict[str, list[str]]) -> list[str]:
 
 
 def compute_window(target_date: datetime, window_hours: float) -> tuple[datetime, datetime]:
+    # 기준 시간(07:30 KST)을 anchor로 잡고, window_hours만큼 과거로 수집
     end = target_date.replace(hour=7, minute=30, second=0, microsecond=0)
     start = end - timedelta(hours=window_hours)
     return start, end
@@ -66,11 +69,15 @@ def main() -> None:
     if args.use_deepsearch:
         logger.warning("DeepSearch is not configured in this MVP; skipping.")
 
+    # reports 폴더 없으면 생성
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+
     sector_queries = load_queries()
     query_list = build_query_list(sector_queries)
 
     config = load_config()
     raw_items = fetch_news(config.naver, query_list, start=start, end=end)
+
     articles = normalize(raw_items)
     articles = deduplicate(articles)
     tagged = tag_articles(articles, sector_queries)
@@ -78,13 +85,16 @@ def main() -> None:
     markdown_text = render_markdown(end, tagged, keyword_trends(tagged))
     paths = write_report(end, markdown_text, REPORT_DIR)
 
+    # index.html은 최근 리스트에서 제외하고, 날짜 파일명 기준으로 정렬 (YYYY-MM-DD.html)
     recent_reports = sorted(
-    [p for p in REPORT_DIR.glob("*.html") if p.name != "index.html"],
-    reverse=True)[:14]
+        [p for p in REPORT_DIR.glob("*.html") if p.name != "index.html"],
+        key=lambda p: p.name,
+        reverse=True,
+    )[:14]
     write_index(recent_reports, REPORT_DIR)
 
-
     logger.info("Report written: %s", paths["markdown"])
+    logger.info("Index written: %s", REPORT_DIR / "index.html")
 
 
 if __name__ == "__main__":
