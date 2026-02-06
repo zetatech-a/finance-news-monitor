@@ -1,0 +1,42 @@
+name: Resend Test Email
+
+on:
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send test email via Resend API
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          RESEND_TO: ${{ secrets.RESEND_TO }}
+        run: |
+          python - << 'PY'
+          import os, json, urllib.request
+
+          api_key = os.environ["RESEND_API_KEY"].strip()
+          mail_from = os.environ["RESEND_FROM"].strip()
+          mail_to = [x.strip() for x in os.environ["RESEND_TO"].split(",") if x.strip()]
+
+          data = {
+              "from": mail_from,
+              "to": mail_to,
+              "subject": "Resend 테스트 메일",
+              "text": "Resend API 테스트입니다. (GitHub Actions에서 발송)"
+          }
+
+          req = urllib.request.Request(
+              "https://api.resend.com/emails",
+              data=json.dumps(data).encode("utf-8"),
+              headers={
+                  "Authorization": f"Bearer {api_key}",
+                  "Content-Type": "application/json",
+              },
+              method="POST",
+          )
+
+          with urllib.request.urlopen(req) as resp:
+              print(resp.status, resp.read().decode("utf-8"))
+          PY
