@@ -1,0 +1,6 @@
+name: Daily Finance News Report (Weekdays)
+
+on:
+  schedule:
+    - cron: "30 22 * * 0-4"  # UTC Sun-Thu 22:30 = KST Mon-Fri 07:30
+  workflow_dispatch:
