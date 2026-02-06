@@ -85,7 +85,7 @@ def main() -> None:
 write_index(recent_reports, REPORT_DIR)
 
 
-    logger.info("Report written: %s", paths["markdown"])
+logger.info("Report written: %s", paths["markdown"])
 
 
 if __name__ == "__main__":
