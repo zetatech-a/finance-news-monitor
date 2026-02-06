@@ -78,8 +78,12 @@ def main() -> None:
     markdown_text = render_markdown(end, tagged, keyword_trends(tagged))
     paths = write_report(end, markdown_text, REPORT_DIR)
 
-    recent_reports = sorted(REPORT_DIR.glob("*.html"), reverse=True)[:14]
-    write_index(recent_reports, REPORT_DIR)
+    recent_reports = sorted(
+    [p for p in REPORT_DIR.glob("*.html") if p.name != "index.html"],
+    reverse=True
+)[:14]
+write_index(recent_reports, REPORT_DIR)
+
 
     logger.info("Report written: %s", paths["markdown"])
 
