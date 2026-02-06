@@ -80,12 +80,11 @@ def main() -> None:
 
     recent_reports = sorted(
     [p for p in REPORT_DIR.glob("*.html") if p.name != "index.html"],
-    reverse=True
-)[:14]
-write_index(recent_reports, REPORT_DIR)
+    reverse=True)[:14]
+    write_index(recent_reports, REPORT_DIR)
 
 
-logger.info("Report written: %s", paths["markdown"])
+    logger.info("Report written: %s", paths["markdown"])
 
 
 if __name__ == "__main__":
