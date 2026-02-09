@@ -50,18 +50,29 @@ def fetch_news(
         response = session.get(NAVER_NEWS_ENDPOINT, headers=headers, params=params, timeout=10)
         response.raise_for_status()
         payload = response.json()
+
         for entry in payload.get("items", []):
             pub_date = _parse_pub_date(entry.get("pubDate"))
             if pub_date is None:
                 continue
             if pub_date < start or pub_date >= end:
                 continue
+
+            # link: (대개) 네이버 뉴스 링크
+            # originallink: 언론사 원문 링크
+            naver_link = (entry.get("link") or "").strip()
+            originallink = (entry.get("originallink") or "").strip() or None
+
+            # 사용자가 클릭할 링크는 원문 우선(없으면 네이버 링크)
+            display_link = originallink or naver_link
+
             items.append(
                 {
                     "title": _clean_text(entry.get("title", "")),
                     "description": _clean_text(entry.get("description", "")),
-                    "link": entry.get("link") or entry.get("originallink"),
-                    "originallink": entry.get("originallink"),
+                    "link": display_link,
+                    "originallink": originallink,
+                    "naver_link": naver_link or None,
                     "pubDate": pub_date,
                     "query": query,
                 }
