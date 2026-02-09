@@ -15,6 +15,9 @@ from src.pipeline.normalize import normalize
 from src.pipeline.report import render_markdown, write_index, write_report
 from src.pipeline.tagger import keyword_trends, tag_articles
 
+# ✅ 추가: 금융 관련성(스코어링/모델) 필터
+from src.pipeline.relevance_filter import filter_relevance
+
 logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -81,7 +84,20 @@ def main() -> None:
 
     articles = normalize(raw_items)
     articles = deduplicate(articles)
+
+    # ✅ 기존 1차 룰 필터(스포츠/잡기사 등)
     articles = filter_articles(articles)
+
+    # ✅ 추가: 금융 관련성 필터(모델 있으면 모델, 없으면 스코어링 기준으로 통과)
+    model_path = ROOT_DIR / "models" / "relevance.joblib"
+    candidates_csv = REPORT_DIR / "_candidates" / f"{end.date().isoformat()}_candidates.csv"
+    articles = filter_relevance(
+        articles,
+        model_path=model_path,
+        out_candidates_csv=candidates_csv,
+    )
+
+    # ✅ 금융 관련성 통과 기사만 섹터 태깅
     tagged = tag_articles(articles, sector_queries)
 
     markdown_text = render_markdown(end, tagged, keyword_trends(tagged))
@@ -97,6 +113,7 @@ def main() -> None:
 
     logger.info("Report written: %s", paths["markdown"])
     logger.info("Index written: %s", REPORT_DIR / "index.html")
+    logger.info("Candidates saved: %s", candidates_csv)
 
 
 if __name__ == "__main__":
