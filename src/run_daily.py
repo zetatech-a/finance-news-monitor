@@ -10,6 +10,7 @@ import yaml
 from src.config import KST, load_config, now_kst
 from src.fetchers.naver import fetch_news
 from src.pipeline.dedup import deduplicate
+from src.pipeline.filtering import filter_articles
 from src.pipeline.normalize import normalize
 from src.pipeline.report import render_markdown, write_index, write_report
 from src.pipeline.tagger import keyword_trends, tag_articles
@@ -80,6 +81,7 @@ def main() -> None:
 
     articles = normalize(raw_items)
     articles = deduplicate(articles)
+    articles = filter_articles(articles)
     tagged = tag_articles(articles, sector_queries)
 
     markdown_text = render_markdown(end, tagged, keyword_trends(tagged))
