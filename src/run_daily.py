@@ -12,7 +12,7 @@ from src.fetchers.naver import fetch_news
 from src.pipeline.dedup import deduplicate
 from src.pipeline.filtering import filter_articles
 from src.pipeline.normalize import normalize
-from src.pipeline.report import render_markdown, write_index, write_report
+from src.pipeline.report import render_markdown, write_index, write_report, render_html
 from src.pipeline.tagger import keyword_trends, tag_articles
 
 # ✅ 금융 관련성(스코어링/모델) 필터
@@ -165,7 +165,9 @@ def main() -> None:
     logger.info("Extractive summaries applied: %s (cache_hits=%s)", summarized, cache_hits)
 
     markdown_text = render_markdown(end, tagged, keyword_trends(tagged))
-    paths = write_report(end, markdown_text, REPORT_DIR)
+    # ✅ 제품형 UI HTML 생성
+    html_page = render_html(end, tagged, keyword_trends(tagged))
+    paths = write_report(end, markdown_text, REPORT_DIR, html_override=html_page)
 
     # index.html은 최근 리스트에서 제외하고, 날짜 파일명 기준으로 정렬 (YYYY-MM-DD.html)
     recent_reports = sorted(
