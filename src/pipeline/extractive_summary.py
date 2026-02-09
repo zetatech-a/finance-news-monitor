@@ -7,10 +7,16 @@ STOPWORDS = {
     "있다", "했다", "한다고", "따라", "때문", "지난", "가장", "면서", "그리고"
 }
 
+_BREADCRUMB_HEAD = re.compile(r"^\s*(HOME|Home|홈)\s*(>\s*[^>]{1,20}){1,8}\s*", re.IGNORECASE)
+
 def split_sentences(text: str) -> list[str]:
     t = re.sub(r"\s+", " ", (text or "").strip())
     if not t:
         return []
+
+    # 빵크럼/경로가 맨 앞에 붙는 케이스 제거
+    t = _BREADCRUMB_HEAD.sub("", t).strip()
+
     # 아주 단순한 문장 분리(무료/가벼움)
     parts = re.split(r"(?<=[\.\?\!])\s+|(?<=다\.)\s+|(?<=요\.)\s+|(?<=니다\.)\s+", t)
     sents = [p.strip() for p in parts if len(p.strip()) >= 20]
