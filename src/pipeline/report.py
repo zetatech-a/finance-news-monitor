@@ -26,7 +26,15 @@ def render_markdown(
     header = f"# 금융권 일일 언론동향 ({report_date.strftime('%Y-%m-%d')})"
     lines = [header, ""]
 
-    top_items = sorted(tagged, key=lambda x: x.article.pub_date, reverse=True)[:10]
+    top_items = sorted(
+        [
+            item
+            for item in tagged
+            if "감독입법" not in item.sectors and "기타" not in item.sectors
+        ],
+        key=lambda x: x.article.pub_date,
+        reverse=True,
+    )[:10]
     lines.append("## 오늘의 Top 이슈 10")
     if top_items:
         lines.extend(_format_article(item) for item in top_items)
