@@ -13,6 +13,7 @@ import html
 
 _MD_SPECIAL = r"\\`*_{}[]()#+-.!"
 
+
 def md_escape(text: str) -> str:
     t = (text or "").strip()
     # 네이버 API가 주는 <b> 태그 제거(있을 수 있음)
@@ -26,6 +27,17 @@ def md_escape(text: str) -> str:
     t = t.replace("(", r"\(").replace(")", r"\)")
     return t
 
+
+def md_link(title: str, url: str) -> str:
+    """
+    링크 텍스트는 md_escape로 안전하게,
+    URL은 (<...>)로 감싸서 괄호/공백/쿼리스트링에도 안정적으로 렌더되게.
+    """
+    safe_title = md_escape(title)
+    safe_url = (url or "").strip()
+    return f"[{safe_title}](<{safe_url}>)"
+
+
 def _truncate(text: str, n: int = 170) -> str:
     t = (text or "").strip().replace("\n", " ").replace("\r", " ")
     if len(t) > n:
@@ -33,19 +45,24 @@ def _truncate(text: str, n: int = 170) -> str:
     return t
 
 
+def _best_link(item: TaggedArticle) -> str:
+    # 가능하면 네이버 링크 우선(요약/접근 안정성), 없으면 원문, 없으면 link
+    a = item.article
+    return (a.naver_link or a.originallink or a.link or "").strip()
+
+
 def _format_article(item: TaggedArticle) -> str:
     # ✅ 기사 1개 = 1줄(제목 — 요약)로 정리: HTML에서 훨씬 깔끔
-    title = md_escape(item.article.title)
-    link = item.article.link
+    link = _best_link(item)
     summary = md_escape(_truncate(item.article.description, 170))
-    return f"- [{title}]({link}) — {summary}"
+    return f"- {md_link(item.article.title or '', link)} — {summary}"
 
 
 def _format_top_issue(item: TaggedArticle) -> str:
-    title = (item.article.title or "").strip()
-    link = item.article.link
-    summary = _truncate(item.article.description, 180)
-    return f"- [{title}]({link}) — {summary}"
+    # ✅ Top 이슈도 반드시 escape 처리 (여기서 링크가 자주 깨졌음)
+    link = _best_link(item)
+    summary = md_escape(_truncate(item.article.description, 180))
+    return f"- {md_link(item.article.title or '', link)} — {summary}"
 
 
 def render_markdown(
@@ -360,4 +377,3 @@ def write_index(recent_reports: list[Path], output_dir: Path) -> Path:
 
     index_path.write_text(html_page, encoding="utf-8")
     return index_path
-
