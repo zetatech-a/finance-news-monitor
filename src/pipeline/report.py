@@ -81,13 +81,13 @@ def render_markdown(
             by_sector[sector].append(item)
 
     sector_order = [
+        "대부",
         "은행",
         "보험",
         "증권",
         "카드",
         "캐피탈",
         "저축은행",
-        "대부",
         "핀테크",
         "감독입법",
         "기타",
