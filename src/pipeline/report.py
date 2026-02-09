@@ -8,6 +8,23 @@ import markdown
 
 from src.pipeline.tagger import TaggedArticle
 
+import re
+import html
+
+_MD_SPECIAL = r"\\`*_{}[]()#+-.!"
+
+def md_escape(text: str) -> str:
+    t = (text or "").strip()
+    # 네이버 API가 주는 <b> 태그 제거(있을 수 있음)
+    t = re.sub(r"<[^>]+>", "", t)
+    t = html.unescape(t)
+
+    # 마크다운 링크 텍스트 깨짐 방지: [ ] ( ) 등 이스케이프
+    # 특히 [ ] 가 핵심
+    t = t.replace("\\", "\\\\")
+    t = t.replace("[", r"\[").replace("]", r"\]")
+    t = t.replace("(", r"\(").replace(")", r"\)")
+    return t
 
 def _truncate(text: str, n: int = 170) -> str:
     t = (text or "").strip().replace("\n", " ").replace("\r", " ")
@@ -343,22 +360,4 @@ def write_index(recent_reports: list[Path], output_dir: Path) -> Path:
 
     index_path.write_text(html_page, encoding="utf-8")
     return index_path
-
-import re
-import html
-
-_MD_SPECIAL = r"\\`*_{}[]()#+-.!"
-
-def md_escape(text: str) -> str:
-    t = (text or "").strip()
-    # 네이버 API가 주는 <b> 태그 제거(있을 수 있음)
-    t = re.sub(r"<[^>]+>", "", t)
-    t = html.unescape(t)
-
-    # 마크다운 링크 텍스트 깨짐 방지: [ ] ( ) 등 이스케이프
-    # 특히 [ ] 가 핵심
-    t = t.replace("\\", "\\\\")
-    t = t.replace("[", r"\[").replace("]", r"\]")
-    t = t.replace("(", r"\(").replace(")", r"\)")
-    return t
 
