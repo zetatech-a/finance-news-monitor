@@ -131,7 +131,9 @@ def main() -> None:
 
         # ✅ 캐시 hit면 크롤링 없이 바로 사용
         if fetch_url in summary_cache:
-            item.article.description = summary_cache[fetch_url]
+            cached = (summary_cache.get(fetch_url) or "").strip()
+            if cached:
+                item.article.description = cached
             summarized += 1
             cache_hits += 1
             if summarized >= MAX_SUMMARIZE:
@@ -139,11 +141,13 @@ def main() -> None:
             continue
 
         try:
-            html = fetch_html(fetch_url, timeout=10)
+            html = fetch_html(fetch_url, timeout=12)
             full = extract_main_text(fetch_url, html)
-            if full and len(full) >= 300:
+
+            # 본문 추출이 실패/차단/잡문이면 네이버 스니펫(기존 description) 유지
+            if full and len(full) >= 350:
                 s = summarize(full, max_sentences=3, max_chars=320)
-                if s:
+                if s and len(s) >= 40:
                     # report.py는 description을 출력하므로 여기서 더 나은 요약으로 덮어씀
                     item.article.description = s
                     summary_cache[fetch_url] = s  # ✅ 캐시에 저장
