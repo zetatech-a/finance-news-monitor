@@ -46,12 +46,15 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
-          git pull --rebase origin main
-
+          # 변경사항(리포트) 먼저 stage
           git add reports/
+
+          # 변경사항이 있으면 커밋 (없으면 그냥 넘어감)
           git commit -m "Daily report" || echo "No changes to commit"
 
-          git pull --rebase origin main
+          # 원격 최신 반영 (충돌 방지)
+          git pull --rebase origin main || true
 
+          # push (rebase로 커밋 해시가 바뀌었을 수 있으니 다시 push)
           git push origin HEAD:main
 
