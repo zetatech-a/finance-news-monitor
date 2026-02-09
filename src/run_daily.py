@@ -22,6 +22,9 @@ from src.pipeline.relevance_filter import filter_relevance
 from src.pipeline.fulltext_fetch import fetch_html, extract_main_text
 from src.pipeline.extractive_summary import summarize
 
+# ✅ 캐시(같은 URL 재요청 방지)
+from src.pipeline.summary_cache import load_cache, save_cache
+
 logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -107,11 +110,16 @@ def main() -> None:
     # ✅ 금융 관련성 통과 기사만 섹터 태깅
     tagged = tag_articles(articles, sector_queries)
 
+    # ✅ 요약 캐시 로드 (같은 URL 재요청 방지)
+    cache_path = REPORT_DIR / "_cache" / "summary_cache.json"
+    summary_cache = load_cache(cache_path)
+
     # ✅ (중요) 태깅 후, 리포트에 실릴 "일부 기사만" 본문 추출 + 추출요약
     # - 너무 많이 크롤링하면 차단/시간 초과 가능성이 있어 상한을 둠
     MAX_SUMMARIZE = 80  # 필요하면 60~120 사이로 조정
     summarized = 0
     seen_urls: set[str] = set()
+    cache_hits = 0
 
     # 최신 기사부터 처리(리포트에 들어갈 가능성이 높은 것 우선)
     for item in sorted(tagged, key=lambda x: x.article.pub_date, reverse=True):
@@ -121,6 +129,15 @@ def main() -> None:
             continue
         seen_urls.add(fetch_url)
 
+        # ✅ 캐시 hit면 크롤링 없이 바로 사용
+        if fetch_url in summary_cache:
+            item.article.description = summary_cache[fetch_url]
+            summarized += 1
+            cache_hits += 1
+            if summarized >= MAX_SUMMARIZE:
+                break
+            continue
+
         try:
             html = fetch_html(fetch_url, timeout=10)
             full = extract_main_text(fetch_url, html)
@@ -129,6 +146,7 @@ def main() -> None:
                 if s:
                     # report.py는 description을 출력하므로 여기서 더 나은 요약으로 덮어씀
                     item.article.description = s
+                    summary_cache[fetch_url] = s  # ✅ 캐시에 저장
                     summarized += 1
         except Exception:
             # 실패하면 기존 description(네이버 스니펫) 그대로 사용
@@ -137,7 +155,10 @@ def main() -> None:
         if summarized >= MAX_SUMMARIZE:
             break
 
-    logger.info("Extractive summaries generated: %s", summarized)
+    # ✅ 캐시 저장
+    save_cache(cache_path, summary_cache)
+    logger.info("Summary cache saved: %s (items=%d)", cache_path, len(summary_cache))
+    logger.info("Extractive summaries applied: %s (cache_hits=%s)", summarized, cache_hits)
 
     markdown_text = render_markdown(end, tagged, keyword_trends(tagged))
     paths = write_report(end, markdown_text, REPORT_DIR)
