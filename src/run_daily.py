@@ -15,8 +15,12 @@ from src.pipeline.normalize import normalize
 from src.pipeline.report import render_markdown, write_index, write_report
 from src.pipeline.tagger import keyword_trends, tag_articles
 
-# ✅ 추가: 금융 관련성(스코어링/모델) 필터
+# ✅ 금융 관련성(스코어링/모델) 필터
 from src.pipeline.relevance_filter import filter_relevance
+
+# ✅ (무료) 본문 추출 + 추출요약
+from src.pipeline.fulltext_fetch import fetch_html, extract_main_text
+from src.pipeline.extractive_summary import summarize
 
 logger = logging.getLogger(__name__)
 
@@ -88,17 +92,52 @@ def main() -> None:
     # ✅ 기존 1차 룰 필터(스포츠/잡기사 등)
     articles = filter_articles(articles)
 
-    # ✅ 추가: 금융 관련성 필터(모델 있으면 모델, 없으면 스코어링 기준으로 통과)
+    # ✅ 금융 관련성 필터(모델 있으면 모델, 없으면 스코어링 기준으로 통과)
+    # 초기에는 너무 적게 뽑히는 걸 방지하려고 임계치 완화 권장
     model_path = ROOT_DIR / "models" / "relevance.joblib"
     candidates_csv = REPORT_DIR / "_candidates" / f"{end.date().isoformat()}_candidates.csv"
     articles = filter_relevance(
         articles,
         model_path=model_path,
         out_candidates_csv=candidates_csv,
+        min_prob=0.52,
+        min_score=1,
     )
 
     # ✅ 금융 관련성 통과 기사만 섹터 태깅
     tagged = tag_articles(articles, sector_queries)
+
+    # ✅ (중요) 태깅 후, 리포트에 실릴 "일부 기사만" 본문 추출 + 추출요약
+    # - 너무 많이 크롤링하면 차단/시간 초과 가능성이 있어 상한을 둠
+    MAX_SUMMARIZE = 80  # 필요하면 60~120 사이로 조정
+    summarized = 0
+    seen_urls: set[str] = set()
+
+    # 최신 기사부터 처리(리포트에 들어갈 가능성이 높은 것 우선)
+    for item in sorted(tagged, key=lambda x: x.article.pub_date, reverse=True):
+        # 본문 추출용 URL: 네이버 링크가 있으면 우선, 아니면 원문
+        fetch_url = item.article.naver_link or item.article.originallink or item.article.link
+        if not fetch_url or fetch_url in seen_urls:
+            continue
+        seen_urls.add(fetch_url)
+
+        try:
+            html = fetch_html(fetch_url, timeout=10)
+            full = extract_main_text(fetch_url, html)
+            if full and len(full) >= 300:
+                s = summarize(full, max_sentences=3, max_chars=320)
+                if s:
+                    # report.py는 description을 출력하므로 여기서 더 나은 요약으로 덮어씀
+                    item.article.description = s
+                    summarized += 1
+        except Exception:
+            # 실패하면 기존 description(네이버 스니펫) 그대로 사용
+            pass
+
+        if summarized >= MAX_SUMMARIZE:
+            break
+
+    logger.info("Extractive summaries generated: %s", summarized)
 
     markdown_text = render_markdown(end, tagged, keyword_trends(tagged))
     paths = write_report(end, markdown_text, REPORT_DIR)
