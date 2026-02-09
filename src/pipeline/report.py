@@ -18,6 +18,15 @@ def _format_article(item: TaggedArticle) -> str:
     return f"- [{title}]({link})\n  - {summary}"
 
 
+def _format_top_issue(item: TaggedArticle) -> str:
+    title = item.article.title
+    link = item.article.link
+    summary = item.article.description.strip()
+    if len(summary) > 160:
+        summary = summary[:157].rstrip() + "..."
+    return f"- [{title}]({link}) — {summary}"
+
+
 def render_markdown(
     report_date: datetime,
     tagged: list[TaggedArticle],
@@ -37,7 +46,7 @@ def render_markdown(
     )[:10]
     lines.append("## 오늘의 Top 이슈 10")
     if top_items:
-        lines.extend(_format_article(item) for item in top_items)
+        lines.extend(_format_top_issue(item) for item in top_items)
     else:
         lines.append("- 해당 기간 기사 없음")
 
