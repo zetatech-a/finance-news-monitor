@@ -5,3 +5,5 @@ jinja2
 markdown
 scikit-learn
 joblib
+beautifulsoup4
+lxml
