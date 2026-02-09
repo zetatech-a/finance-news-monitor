@@ -134,11 +134,17 @@ def main() -> None:
             cached = (summary_cache.get(fetch_url) or "").strip()
             if cached:
                 item.article.description = cached
+                setattr(item.article, "summary_cached", True)  # ✅ 추가: UI에서 ⚡ 표시용
             summarized += 1
             cache_hits += 1
             if summarized >= MAX_SUMMARIZE:
                 break
             continue
+                    item.article.description = s
+                    summary_cache[fetch_url] = s
+                    setattr(item.article, "summary_cached", False)  # ✅ 추가(선택)
+                    summarized += 1
+
 
         try:
             html = fetch_html(fetch_url, timeout=12)
