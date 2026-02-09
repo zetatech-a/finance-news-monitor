@@ -375,6 +375,51 @@ mark{
 .kchip .n{ color:var(--muted); font-size:12px; }
 """
 
+.card-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.clip{
+  border:1px solid var(--border);
+  background:var(--paper);
+  color:var(--muted);
+  border-radius:12px;
+  padding:6px 8px;
+  cursor:pointer;
+  line-height:1;
+  font-size:14px;
+}
+.clip:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
+.clip.on{
+  color: var(--link_hover);
+  background: color-mix(in srgb, var(--link) 10%, var(--paper));
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+}
+
+.presetbar{
+  margin-top:10px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.preset{
+  display:inline-flex; align-items:center;
+  padding:7px 10px; border-radius:999px;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  color:var(--text);
+  font-size:12px;
+  cursor:pointer;
+}
+.preset.active{
+  background: color-mix(in srgb, var(--link) 14%, var(--paper));
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+}
+
+
 _UI_JS = r"""
 (function(){
   const root = document.documentElement;
