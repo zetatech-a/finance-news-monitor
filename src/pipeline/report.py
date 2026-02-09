@@ -420,40 +420,63 @@ mark{
 }
 
 
-_UI_JS = r"""
 (function(){
   const root = document.documentElement;
   const themeBtn = document.getElementById("themeBtn");
   const search = document.getElementById("searchInput");
   const topOnly = document.getElementById("topOnly");
+  const favOnly = document.getElementById("favOnly");
   const sortSel = document.getElementById("sortSel");
+  const presetBar = document.getElementById("presetBar");
+
   const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
   const cards = Array.from(document.querySelectorAll("[data-card]"));
   const groups = Array.from(document.querySelectorAll("[data-group]"));
 
+  const LS_THEME = "reportTheme";
+  const LS_FAVS = "reportFavs_v1";
+  const LS_PRESETS = "reportPreset_v1";
+
+  const PRESETS = [
+    {k:"PF", q:"PF"},
+    {k:"연체", q:"연체 연체율"},
+    {k:"금리", q:"금리 기준금리"},
+    {k:"가계대출", q:"가계대출 주담대"},
+    {k:"부동산", q:"부동산 분양 미분양"},
+    {k:"IPO", q:"IPO 상장"},
+    {k:"국민연금", q:"국민연금"},
+  ];
+
   function loadTheme(){
-    const saved = localStorage.getItem("reportTheme");
-    if(saved === "dark" || saved === "light"){
-      root.dataset.theme = saved;
-    }else{
-      root.dataset.theme = "light";
-    }
+    const saved = localStorage.getItem(LS_THEME);
+    root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light";
     themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크";
   }
   function toggleTheme(){
     const next = (root.dataset.theme === "dark") ? "light" : "dark";
     root.dataset.theme = next;
-    localStorage.setItem("reportTheme", next);
+    localStorage.setItem(LS_THEME, next);
     themeBtn.textContent = (next === "dark") ? "라이트" : "다크";
+  }
+
+  function getFavs(){
+    try{
+      const raw = localStorage.getItem(LS_FAVS);
+      const arr = raw ? JSON.parse(raw) : [];
+      return new Set(Array.isArray(arr) ? arr : []);
+    }catch(e){
+      return new Set();
+    }
+  }
+  function saveFavs(set){
+    localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set)));
   }
 
   function setActivePill(sector){
     pills.forEach(p => p.classList.toggle("active", p.dataset.sector === sector));
   }
 
-  function escapeRegExp(s){
-    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
+  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
   function escapeHtml(s){
     return (s || "")
       .replace(/&/g, "&amp;")
@@ -478,7 +501,6 @@ _UI_JS = r"""
     return out;
   }
 
-  // 카드 내 원본 텍스트를 저장해두고(하이라이트 복구용)
   function cacheOriginalText(){
     cards.forEach(card => {
       const titleEl = card.querySelector("[data-title]");
@@ -499,7 +521,6 @@ _UI_JS = r"""
       const ot = card.dataset.ot || titleEl.textContent || "";
       const os = card.dataset.os || sumEl.textContent || "";
 
-      // 보이는 카드만 하이라이트(성능)
       if(card.style.display === "none"){
         titleEl.textContent = ot;
         sumEl.textContent = os;
@@ -527,12 +548,10 @@ _UI_JS = r"""
         const tb = parseFloat(b.dataset.ts || "0");
         const ra = parseFloat(a.dataset.rel || "0");
         const rb = parseFloat(b.dataset.rel || "0");
-
         if(mode === "rel"){
           if(rb !== ra) return rb - ra;
           return tb - ta;
         }
-        // default newest
         return tb - ta;
       });
       items.forEach(it => grid.appendChild(it));
@@ -543,21 +562,25 @@ _UI_JS = r"""
     const q = (search.value || "").trim().toLowerCase();
     const active = (document.querySelector(".pill.active") || {}).dataset?.sector || "ALL";
     const onlyTop = topOnly.checked;
+    const onlyFav = favOnly.checked;
+    const favs = getFavs();
 
     cards.forEach(card => {
       const sector = (card.dataset.sector || "");
       const isTop = (card.dataset.top === "1");
       const hay = (card.dataset.hay || "").toLowerCase();
+      const url = (card.dataset.url || "");
+      const isFav = favs.has(url);
 
       let ok = true;
       if(active !== "ALL" && sector !== active) ok = false;
       if(onlyTop && !isTop) ok = false;
+      if(onlyFav && !isFav) ok = false;
       if(q && hay.indexOf(q) === -1) ok = false;
 
       card.style.display = ok ? "" : "none";
     });
 
-    // 그룹 헤더 숨김/표시
     groups.forEach(g => {
       const anyVisible = Array.from(g.querySelectorAll("[data-card]")).some(c => c.style.display !== "none");
       g.style.display = anyVisible ? "" : "none";
@@ -566,12 +589,53 @@ _UI_JS = r"""
     applyHighlight();
   }
 
+  function renderPresets(){
+    if(!presetBar) return;
+    presetBar.innerHTML = PRESETS.map(p => `<button class="preset" data-preset="${escapeHtml(p.q)}">${escapeHtml(p.k)}</button>`).join("");
+    const saved = localStorage.getItem(LS_PRESETS) || "";
+    if(saved) search.value = saved;
+  }
+
+  function bindPresets(){
+    if(!presetBar) return;
+    presetBar.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-preset]");
+      if(!btn) return;
+      const q = btn.getAttribute("data-preset") || "";
+      // 단일 선택 느낌: 클릭하면 그 키워드로 교체
+      search.value = q;
+      localStorage.setItem(LS_PRESETS, q);
+      // active 표시
+      Array.from(presetBar.querySelectorAll(".preset")).forEach(x => x.classList.toggle("active", x === btn));
+      applyFilter();
+    });
+  }
+
+  function initFavButtons(){
+    const favs = getFavs();
+    cards.forEach(card => {
+      const btn = card.querySelector("[data-clip]");
+      const url = card.dataset.url || "";
+      if(!btn || !url) return;
+      const on = favs.has(url);
+      btn.classList.toggle("on", on);
+      btn.textContent = on ? "★" : "☆";
+      btn.addEventListener("click", () => {
+        const set = getFavs();
+        const nowOn = set.has(url) ? (set.delete(url), false) : (set.add(url), true);
+        saveFavs(set);
+        btn.classList.toggle("on", nowOn);
+        btn.textContent = nowOn ? "★" : "☆";
+        if(favOnly.checked) applyFilter();
+      });
+    });
+  }
+
   pills.forEach(p => {
     p.addEventListener("click", () => {
       const sector = p.dataset.sector;
       setActivePill(sector);
       applyFilter();
-
       if(sector === "ALL"){
         window.scrollTo({top:0, behavior:"smooth"});
       }else{
@@ -581,18 +645,25 @@ _UI_JS = r"""
     });
   });
 
-  search.addEventListener("input", applyFilter);
+  search.addEventListener("input", () => {
+    localStorage.setItem(LS_PRESETS, search.value || "");
+    applyFilter();
+  });
   topOnly.addEventListener("change", applyFilter);
+  favOnly.addEventListener("change", applyFilter);
   sortSel.addEventListener("change", () => { applySort(); applyFilter(); });
   themeBtn.addEventListener("click", toggleTheme);
 
   loadTheme();
   setActivePill("ALL");
   cacheOriginalText();
+  renderPresets();
+  bindPresets();
   applySort();
+  initFavButtons();
   applyFilter();
 })();
-"""
+
 
 
 def render_html(
@@ -751,6 +822,7 @@ def render_html(
         <div class="nav">
           {''.join(pills)}
         </div>
+        <div class="presetbar" id="presetBar"></div>
       </div>
     </div>
 
