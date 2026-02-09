@@ -18,9 +18,9 @@ def _truncate(text: str, n: int = 170) -> str:
 
 def _format_article(item: TaggedArticle) -> str:
     # ✅ 기사 1개 = 1줄(제목 — 요약)로 정리: HTML에서 훨씬 깔끔
-    title = (item.article.title or "").strip()
+    title = md_escape(item.article.title)
     link = item.article.link
-    summary = _truncate(item.article.description, 170)
+    summary = md_escape(_truncate(item.article.description, 170))
     return f"- [{title}]({link}) — {summary}"
 
 
@@ -343,3 +343,22 @@ def write_index(recent_reports: list[Path], output_dir: Path) -> Path:
 
     index_path.write_text(html_page, encoding="utf-8")
     return index_path
+
+import re
+import html
+
+_MD_SPECIAL = r"\\`*_{}[]()#+-.!"
+
+def md_escape(text: str) -> str:
+    t = (text or "").strip()
+    # 네이버 API가 주는 <b> 태그 제거(있을 수 있음)
+    t = re.sub(r"<[^>]+>", "", t)
+    t = html.unescape(t)
+
+    # 마크다운 링크 텍스트 깨짐 방지: [ ] ( ) 등 이스케이프
+    # 특히 [ ] 가 핵심
+    t = t.replace("\\", "\\\\")
+    t = t.replace("[", r"\[").replace("]", r"\]")
+    t = t.replace("(", r"\(").replace(")", r"\)")
+    return t
+
