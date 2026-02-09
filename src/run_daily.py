@@ -96,7 +96,6 @@ def main() -> None:
     articles = filter_articles(articles)
 
     # ✅ 금융 관련성 필터(모델 있으면 모델, 없으면 스코어링 기준으로 통과)
-    # 초기에는 너무 적게 뽑히는 걸 방지하려고 임계치 완화 권장
     model_path = ROOT_DIR / "models" / "relevance.joblib"
     candidates_csv = REPORT_DIR / "_candidates" / f"{end.date().isoformat()}_candidates.csv"
     articles = filter_relevance(
@@ -115,7 +114,6 @@ def main() -> None:
     summary_cache = load_cache(cache_path)
 
     # ✅ (중요) 태깅 후, 리포트에 실릴 "일부 기사만" 본문 추출 + 추출요약
-    # - 너무 많이 크롤링하면 차단/시간 초과 가능성이 있어 상한을 둠
     MAX_SUMMARIZE = 80  # 필요하면 60~120 사이로 조정
     summarized = 0
     seen_urls: set[str] = set()
@@ -123,29 +121,23 @@ def main() -> None:
 
     # 최신 기사부터 처리(리포트에 들어갈 가능성이 높은 것 우선)
     for item in sorted(tagged, key=lambda x: x.article.pub_date, reverse=True):
-        # 본문 추출용 URL: 네이버 링크가 있으면 우선, 아니면 원문
         fetch_url = item.article.naver_link or item.article.originallink or item.article.link
         if not fetch_url or fetch_url in seen_urls:
             continue
         seen_urls.add(fetch_url)
 
         # ✅ 캐시 hit면 크롤링 없이 바로 사용
-        if fetch_url in summary_cache:
-            cached = (summary_cache.get(fetch_url) or "").strip()
-            if cached:
-                item.article.description = cached
-                setattr(item.article, "summary_cached", True)  # ✅ 추가: UI에서 ⚡ 표시용
+        cached = (summary_cache.get(fetch_url) or "").strip()
+        if cached:
+            item.article.description = cached
+            setattr(item.article, "summary_cached", True)  # ✅ UI에서 ⚡ 표시용
             summarized += 1
             cache_hits += 1
             if summarized >= MAX_SUMMARIZE:
                 break
             continue
-                    item.article.description = s
-                    summary_cache[fetch_url] = s
-                    setattr(item.article, "summary_cached", False)  # ✅ 추가(선택)
-                    summarized += 1
 
-
+        # ✅ 캐시에 없으면 본문 추출 → 추출요약 시도
         try:
             html = fetch_html(fetch_url, timeout=12)
             full = extract_main_text(fetch_url, html)
@@ -154,9 +146,9 @@ def main() -> None:
             if full and len(full) >= 350:
                 s = summarize(full, max_sentences=3, max_chars=320)
                 if s and len(s) >= 40:
-                    # report.py는 description을 출력하므로 여기서 더 나은 요약으로 덮어씀
                     item.article.description = s
                     summary_cache[fetch_url] = s  # ✅ 캐시에 저장
+                    setattr(item.article, "summary_cached", False)  # ✅ (선택) 신규 요약 표시
                     summarized += 1
         except Exception:
             # 실패하면 기존 description(네이버 스니펫) 그대로 사용
@@ -171,8 +163,11 @@ def main() -> None:
     logger.info("Extractive summaries applied: %s (cache_hits=%s)", summarized, cache_hits)
 
     markdown_text = render_markdown(end, tagged, keyword_trends(tagged))
+
     # ✅ 제품형 UI HTML 생성
     html_page = render_html(end, tagged, keyword_trends(tagged))
+
+    # ✅ html_override로 저장
     paths = write_report(end, markdown_text, REPORT_DIR, html_override=html_page)
 
     # index.html은 최근 리스트에서 제외하고, 날짜 파일명 기준으로 정렬 (YYYY-MM-DD.html)
