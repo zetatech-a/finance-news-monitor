@@ -745,8 +745,18 @@ def render_html(
         return (
             f"<article class='card' data-card "
             f"data-sector='{_h(sector)}' data-top={'1' if is_top else '0'} "
-            f"data-hay='{_h(hay)}' data-ts='{ts}' data-rel='{rel_val}'>"
-            f"  <h3 class='title'><a href='{_h(primary)}' target='_blank' rel='noopener noreferrer' data-title>{_h(title)}</a></h3>"
+            f"data-hay='{_h(hay)}' data-ts='{ts}' data-rel='{rel_val}' "
+            f"data-url='{_h(primary)}'>"  # ✅ 추가: 즐겨찾기 key
+
+            f"  <div class='card-head'>"  # ✅ 추가: 제목+클립 버튼 래퍼
+            f"    <h3 class='title'>"
+            f"      <a href='{_h(primary)}' target='_blank' rel='noopener noreferrer' data-title>"
+            f"        {_h(title)}"
+            f"      </a>"
+            f"    </h3>"
+            f"    <button class='clip' type='button' title='저장' data-clip>☆</button>"  # ✅ 추가
+            f"  </div>"
+
             f"  <div class='meta-row'>"
             f"    <span>{_h(pub)}</span>"
             f"    {f'<span>·</span><span>{_h(press)}</span>' if press else ''}"
@@ -756,6 +766,7 @@ def render_html(
             f"  <div class='actions'>{''.join(btns)}</div>"
             f"</article>"
         )
+
 
     top_cards = "\n".join(card_html(it, True) for it in top_items) if top_items else "<div class='note'>해당 기간 Top 이슈가 없습니다.</div>"
 
