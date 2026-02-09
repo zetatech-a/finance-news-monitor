@@ -743,7 +743,7 @@ def render_html(
               </select>
             </span>
 
-            <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
+            <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label> 저장만</label>
             <button id="themeBtn" class="btn">다크</button>
             <a class="btn" href="index.html">최근 리포트</a>
           </div>
