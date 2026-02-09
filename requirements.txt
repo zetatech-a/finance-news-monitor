@@ -3,3 +3,5 @@ python-dateutil
 pyyaml
 jinja2
 markdown
+scikit-learn
+joblib
