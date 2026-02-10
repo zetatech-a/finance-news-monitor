@@ -173,7 +173,7 @@ def render_markdown(
 # ✅ 제품형 UI용 CSS / JS
 # =========================
 
-_UI_CSS = """
+_UI_CSS = r"""
 :root{
   --bg:#f6f8fb; --paper:#ffffff; --text:#0f172a; --muted:#64748b; --border:#e5e7eb;
   --link:#2563eb; --link_hover:#1d4ed8;
@@ -314,6 +314,30 @@ h2{ margin:0; font-size:15px; }
   border-color: color-mix(in srgb, var(--link) 35%, var(--border));
 }
 
+/* ✅ 제목+클립 버튼 */
+.card-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.clip{
+  border:1px solid var(--border);
+  background:var(--paper);
+  color:var(--muted);
+  border-radius:12px;
+  padding:6px 8px;
+  cursor:pointer;
+  line-height:1;
+  font-size:14px;
+}
+.clip:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
+.clip.on{
+  color: var(--link_hover);
+  background: color-mix(in srgb, var(--link) 10%, var(--paper));
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+}
+
 .title{
   margin:0 0 6px; font-size:14px; font-weight:800; line-height:1.35;
 }
@@ -373,32 +397,8 @@ mark{
   font-size:12px;
 }
 .kchip .n{ color:var(--muted); font-size:12px; }
-"""
 
-.card-head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.clip{
-  border:1px solid var(--border);
-  background:var(--paper);
-  color:var(--muted);
-  border-radius:12px;
-  padding:6px 8px;
-  cursor:pointer;
-  line-height:1;
-  font-size:14px;
-}
-.clip:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
-.clip.on{
-  color: var(--link_hover);
-  background: color-mix(in srgb, var(--link) 10%, var(--paper));
-  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
-}
-
+/* ✅ 프리셋 바 */
 .presetbar{
   margin-top:10px;
   display:flex;
@@ -418,8 +418,9 @@ mark{
   background: color-mix(in srgb, var(--link) 14%, var(--paper));
   border-color: color-mix(in srgb, var(--link) 35%, var(--border));
 }
+"""
 
-
+_UI_JS = r"""
 (function(){
   const root = document.documentElement;
   const themeBtn = document.getElementById("themeBtn");
@@ -561,8 +562,8 @@ mark{
   function applyFilter(){
     const q = (search.value || "").trim().toLowerCase();
     const active = (document.querySelector(".pill.active") || {}).dataset?.sector || "ALL";
-    const onlyTop = topOnly.checked;
-    const onlyFav = favOnly.checked;
+    const onlyTop = topOnly ? topOnly.checked : false;
+    const onlyFav = favOnly ? favOnly.checked : false;
     const favs = getFavs();
 
     cards.forEach(card => {
@@ -602,10 +603,8 @@ mark{
       const btn = e.target.closest("[data-preset]");
       if(!btn) return;
       const q = btn.getAttribute("data-preset") || "";
-      // 단일 선택 느낌: 클릭하면 그 키워드로 교체
       search.value = q;
       localStorage.setItem(LS_PRESETS, q);
-      // active 표시
       Array.from(presetBar.querySelectorAll(".preset")).forEach(x => x.classList.toggle("active", x === btn));
       applyFilter();
     });
@@ -626,7 +625,7 @@ mark{
         saveFavs(set);
         btn.classList.toggle("on", nowOn);
         btn.textContent = nowOn ? "★" : "☆";
-        if(favOnly.checked) applyFilter();
+        if(favOnly && favOnly.checked) applyFilter();
       });
     });
   }
@@ -649,8 +648,8 @@ mark{
     localStorage.setItem(LS_PRESETS, search.value || "");
     applyFilter();
   });
-  topOnly.addEventListener("change", applyFilter);
-  favOnly.addEventListener("change", applyFilter);
+  if(topOnly) topOnly.addEventListener("change", applyFilter);
+  if(favOnly) favOnly.addEventListener("change", applyFilter);
   sortSel.addEventListener("change", () => { applySort(); applyFilter(); });
   themeBtn.addEventListener("click", toggleTheme);
 
@@ -663,7 +662,7 @@ mark{
   initFavButtons();
   applyFilter();
 })();
-
+"""
 
 
 def render_html(
@@ -722,10 +721,9 @@ def render_html(
 
         cached = bool(getattr(a, "summary_cached", False))
 
-        # 검색용 hay
         hay = " ".join([title, summary, sector, press]).strip()
 
-        btns = []
+        btns: list[str] = []
         if naver:
             btns.append(f"<a class='btn small primary' href='{_h(naver)}' target='_blank' rel='noopener noreferrer'>네이버</a>")
         if orig and orig != naver:
@@ -737,7 +735,6 @@ def render_html(
         if is_top:
             badges.append("<span class='badge'>TOP</span>")
         if rel_label is not None:
-            # 숫자까지 보여주고 싶으면 (예: 0.78) 추가
             badges.append(f"<span class='badge {rel_class}'>Rel {rel_label}</span>")
         if cached:
             badges.append("<span class='badge'>⚡ 캐시</span>")
@@ -746,17 +743,13 @@ def render_html(
             f"<article class='card' data-card "
             f"data-sector='{_h(sector)}' data-top={'1' if is_top else '0'} "
             f"data-hay='{_h(hay)}' data-ts='{ts}' data-rel='{rel_val}' "
-            f"data-url='{_h(primary)}'>"  # ✅ 추가: 즐겨찾기 key
-
-            f"  <div class='card-head'>"  # ✅ 추가: 제목+클립 버튼 래퍼
+            f"data-url='{_h(primary)}'>"
+            f"  <div class='card-head'>"
             f"    <h3 class='title'>"
-            f"      <a href='{_h(primary)}' target='_blank' rel='noopener noreferrer' data-title>"
-            f"        {_h(title)}"
-            f"      </a>"
+            f"      <a href='{_h(primary)}' target='_blank' rel='noopener noreferrer' data-title>{_h(title)}</a>"
             f"    </h3>"
-            f"    <button class='clip' type='button' title='저장' data-clip>☆</button>"  # ✅ 추가
+            f"    <button class='clip' type='button' title='저장' data-clip>☆</button>"
             f"  </div>"
-
             f"  <div class='meta-row'>"
             f"    <span>{_h(pub)}</span>"
             f"    {f'<span>·</span><span>{_h(press)}</span>' if press else ''}"
@@ -766,7 +759,6 @@ def render_html(
             f"  <div class='actions'>{''.join(btns)}</div>"
             f"</article>"
         )
-
 
     top_cards = "\n".join(card_html(it, True) for it in top_items) if top_items else "<div class='note'>해당 기간 Top 이슈가 없습니다.</div>"
 
@@ -825,7 +817,9 @@ def render_html(
               </select>
             </span>
 
-            <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label> 저장만</label>
+            <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
+            <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
+
             <button id="themeBtn" class="btn">다크</button>
             <a class="btn" href="index.html">최근 리포트</a>
           </div>
