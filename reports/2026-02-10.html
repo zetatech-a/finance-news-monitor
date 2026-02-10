@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>금융권 일일 언론동향 2026-02-10</title>
+  <style>
+:root{
+  --bg:#f6f8fb; --paper:#ffffff; --text:#0f172a; --muted:#64748b; --border:#e5e7eb;
+  --link:#2563eb; --link_hover:#1d4ed8;
+  --chip:#eef2ff; --chip_text:#3730a3;
+  --shadow:0 10px 30px rgba(17,24,39,0.08);
+  --shadow2:0 6px 18px rgba(17,24,39,0.08);
+  --ring: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+html[data-theme="dark"]{
+  --bg:#0b1220; --paper:#0f172a; --text:#e5e7eb; --muted:#94a3b8; --border:#22304a;
+  --link:#60a5fa; --link_hover:#93c5fd;
+  --chip:#111c33; --chip_text:#c7d2fe;
+  --shadow:0 12px 30px rgba(0,0,0,0.45);
+  --shadow2:0 10px 22px rgba(0,0,0,0.40);
+  --ring: 0 0 0 3px rgba(96,165,250,0.20);
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans KR",Arial,sans-serif;
+  line-height:1.55;
+}
+
+.wrap{ max-width:1120px; margin:0 auto; padding:18px 16px 60px; }
+
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  backdrop-filter: blur(10px);
+  padding: 10px 0 12px;
+}
+
+.header{
+  background:var(--paper); border:1px solid var(--border);
+  border-radius:16px; padding:16px 16px; box-shadow:var(--shadow);
+}
+
+.header-top{
+  display:flex; gap:14px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;
+}
+
+h1{ margin:0; font-size:20px; letter-spacing:-0.2px; }
+.meta{ color:var(--muted); font-size:13px; margin-top:6px; }
+
+.controls{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;
+}
+
+.input{
+  display:flex; align-items:center; gap:8px;
+  background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  border:1px solid var(--border); border-radius:12px;
+  padding:8px 10px; min-width:260px;
+}
+.input input{
+  border:none; outline:none; background:transparent; color:var(--text);
+  font-size:13px; width:260px;
+}
+.input:focus-within{ box-shadow:var(--ring); border-color: color-mix(in srgb, var(--link) 55%, var(--border)); }
+
+.btn, .select{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  border:1px solid var(--border); background:var(--paper); color:var(--text);
+  padding:8px 10px; border-radius:12px; font-size:13px; cursor:pointer;
+}
+.btn:hover, .select:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
+.btn.primary{ background: color-mix(in srgb, var(--link) 12%, var(--paper)); border-color: color-mix(in srgb, var(--link) 30%, var(--border)); }
+.btn.small{ padding:6px 8px; border-radius:10px; font-size:12px; }
+.select{ cursor:default; }
+.select select{
+  border:none; outline:none; background:transparent; color:var(--text);
+  font-size:13px;
+}
+
+.toggle{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--border); background:var(--paper);
+  padding:8px 10px; border-radius:12px; font-size:13px;
+}
+.toggle input{ transform: translateY(1px); }
+
+.nav{
+  margin-top:10px;
+  display:flex; gap:8px; flex-wrap:wrap;
+}
+.pill{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:7px 10px; border-radius:999px;
+  border:1px solid var(--border); background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  color:var(--muted); font-size:12px; cursor:pointer;
+}
+.pill strong{ color:var(--text); font-weight:700; }
+.pill.active{
+  background: color-mix(in srgb, var(--link) 14%, var(--paper));
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+  color:var(--text);
+}
+
+.main{
+  margin-top:14px;
+  background:var(--paper); border:1px solid var(--border);
+  border-radius:16px; padding:16px 16px; box-shadow:var(--shadow);
+}
+
+.section-head{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  margin: 6px 0 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.section-head:first-child{ border-top:none; padding-top:0; }
+h2{ margin:0; font-size:15px; }
+.count{ color:var(--muted); font-size:12px; margin-left:6px; }
+.note{ color:var(--muted); font-size:12px; }
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:10px;
+}
+
+.card{
+  grid-column: span 12;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 12px;
+  background: color-mix(in srgb, var(--paper) 96%, var(--bg));
+  box-shadow: var(--shadow2);
+  transition: transform .08s ease, border-color .08s ease;
+}
+@media (min-width: 860px){
+  .card{ grid-column: span 6; }
+}
+.card:hover{
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+}
+
+/* ✅ 제목+클립 버튼 */
+.card-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.clip{
+  border:1px solid var(--border);
+  background:var(--paper);
+  color:var(--muted);
+  border-radius:12px;
+  padding:6px 8px;
+  cursor:pointer;
+  line-height:1;
+  font-size:14px;
+}
+.clip:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
+.clip.on{
+  color: var(--link_hover);
+  background: color-mix(in srgb, var(--link) 10%, var(--paper));
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+}
+
+.title{
+  margin:0 0 6px; font-size:14px; font-weight:800; line-height:1.35;
+}
+.title a{ color:var(--text); text-decoration:none; }
+.title a:hover{ color:var(--link_hover); text-decoration:underline; }
+
+.meta-row{
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  color:var(--muted); font-size:12px; margin-bottom:8px;
+}
+.badge{
+  display:inline-flex; align-items:center;
+  padding:4px 8px; border-radius:999px;
+  border:1px solid var(--border);
+  background: var(--chip);
+  color: var(--chip_text);
+  font-size:11px;
+}
+.badge.r-high{ font-weight:700; }
+.badge.r-med{ opacity:0.95; }
+.badge.r-low{ opacity:0.85; }
+
+.summary{
+  margin:0;
+  color: color-mix(in srgb, var(--text) 82%, var(--muted));
+  font-size:13px;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.actions{
+  display:flex; gap:8px; flex-wrap:wrap;
+  margin-top:10px;
+}
+
+mark{
+  background: color-mix(in srgb, var(--link) 18%, transparent);
+  color: inherit;
+  border-radius: 6px;
+  padding: 0 3px;
+}
+
+.footer{
+  margin-top:12px; color:var(--muted); font-size:12px;
+  text-align:center;
+}
+
+.kchips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+.kchip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 10px; border-radius:999px;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  color:var(--text);
+  font-size:12px;
+}
+.kchip .n{ color:var(--muted); font-size:12px; }
+
+/* ✅ 프리셋 바 */
+.presetbar{
+  margin-top:10px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.preset{
+  display:inline-flex; align-items:center;
+  padding:7px 10px; border-radius:999px;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  color:var(--text);
+  font-size:12px;
+  cursor:pointer;
+}
+.preset.active{
+  background: color-mix(in srgb, var(--link) 14%, var(--paper));
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="header">
+        <div class="header-top">
+          <div>
+            <h1>금융권 일일 언론동향 <span style="color:var(--muted);">(2026-02-10)</span></h1>
+            <div class="meta">대부업권 중심 · 전 금융업권 주요 기사 요약</div>
+          </div>
+          <div class="controls">
+            <div class="input" title="제목/요약/섹터/언론사에서 검색">
+              <span style="color:var(--muted); font-size:12px;">🔎</span>
+              <input id="searchInput" type="text" placeholder="키워드로 검색 (예: 연체, PF, 국민연금)"/>
+            </div>
+
+            <span class="select" title="정렬">
+              <span style="color:var(--muted); font-size:12px;">정렬</span>
+              <select id="sortSel">
+                <option value="new" selected>최신순</option>
+                <option value="rel">관련도순</option>
+              </select>
+            </span>
+
+            <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
+            <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
+
+            <button id="themeBtn" class="btn">다크</button>
+            <a class="btn" href="index.html">최근 리포트</a>
+          </div>
+        </div>
+        <div class="nav">
+          <button class='pill active' data-sector-pill data-sector='ALL'><strong>전체</strong><span class='count'>263</span></button><button class='pill' data-sector-pill data-sector='대부'><strong>대부</strong><span class='count'>9</span></button><button class='pill' data-sector-pill data-sector='은행'><strong>은행</strong><span class='count'>15</span></button><button class='pill' data-sector-pill data-sector='보험'><strong>보험</strong><span class='count'>7</span></button><button class='pill' data-sector-pill data-sector='증권'><strong>증권</strong><span class='count'>4</span></button><button class='pill' data-sector-pill data-sector='카드'><strong>카드</strong><span class='count'>6</span></button><button class='pill' data-sector-pill data-sector='저축은행'><strong>저축은행</strong><span class='count'>1</span></button><button class='pill' data-sector-pill data-sector='감독입법'><strong>감독입법</strong><span class='count'>15</span></button><button class='pill' data-sector-pill data-sector='기타'><strong>기타</strong><span class='count'>214</span></button>
+        </div>
+        <div class="presetbar" id="presetBar"></div>
+      </div>
+    </div>
+
+    <div class="main">
+      <section data-group id="sec-TOP">
+        <div class="section-head">
+          <h2>오늘의 Top 이슈 10<span class="count">10</span></h2>
+          <div class="note">정책/시장 영향도가 큰 기사 우선</div>
+        </div>
+        <div class="grid">
+          <article class='card' data-card data-sector='대부' data-top=1 data-hay='채무조정자도 교통카드 쓸 길 열린다…성실 상환땐 결제카드도 허용 연합뉴스 금융위원회가 채무조정 중이라도 성실하게 상환하는 사람에게 카드 발급 기회를 제공해 경제적 재기를 돕는다는 취지에서 ‘재기지원 후불교통카드’와 ‘개인사업자 햇살론카드’를 출시한다고 9일 밝혔다. 개인사업자 햇살론카드는 신용 하위 50% 이하 개인사업자 중 현재 연체가 없고 연간 가처분소득이 600만원 이상이면 서민금융진흥원 보증을 통해 신용카드를 이용할 수 있도록 한 상품이다. 개인사업자 햇살론카드는 오는 20일부터 서금원에 보증 신청이 가능하며, 신용관리교육 이수 후 보증 약정을 체결하면 카드가 발급된다. 대부' data-ts='1770676020.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/009/0005634928?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/009/0005634928?sid=101' target='_blank' rel='noopener noreferrer' data-title>채무조정자도 교통카드 쓸 길 열린다…성실 상환땐 결제카드도 허용</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:27</span>        <span>·</span><span class='badge'>대부</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>연합뉴스 금융위원회가 채무조정 중이라도 성실하게 상환하는 사람에게 카드 발급 기회를 제공해 경제적 재기를 돕는다는 취지에서 ‘재기지원 후불교통카드’와 ‘개인사업자 햇살론카드’를 출시한다고 9일 밝혔다. 개인사업자 햇살론카드는 신용 하위 50% 이하 개인사업자 중 현재 연체가 없고 연간 가처분소득이 600만원 이상이면 서민금융진흥원 보증을 통해 신용카드를 이용할 수 있도록 한 상품이다. 개인사업자 햇살론카드는 오는 20일부터 서금원에 보증 신청이 가능하며, 신용관리교육 이수 후 보증 약정을 체결하면 카드가 발급된다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/009/0005634928?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mk.co.kr/article/11958223' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=1 data-hay='보험사기 &#x27;무관용 시대&#x27;…단속 강화 속 보험사 AI 차단망 가속 정부·당국 압박에 보험사 사전 예방 AI로 청구·심사 단계 사기 차단·심사 국내 보험업계가 보험사기 대응 환경 변화에 맞춰 인공지능(AI) 활용 사전 차단형 관리 체계 구축에 속도를 내고 있다. 언더라이팅 AI로 심사 자동화·계약 효율 강화 AI는 언더라이팅(보험 인수심사) 프로세스에서도 혁신을 주도하고 있다. 사진=챗GPT 이미지 생성 관련기사 보험상품 설계부터 사후관리까지...금감원, 보험사 검사 쇄신 금감원, 보험사기 조사 강화...&quot;실손·자동차보험사기 근절&quot; 금감원, 분쟁조정사례 75건 추가 공개...종류·담보별 세분화 Tags #보험사기 #보험사기차단 #금감 보험' data-ts='1770675600.0' data-rel='0.0' data-url='http://www.fins.co.kr/news/articleView.html?idxno=107554'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.fins.co.kr/news/articleView.html?idxno=107554' target='_blank' rel='noopener noreferrer' data-title>보험사기 &#x27;무관용 시대&#x27;…단속 강화 속 보험사 AI 차단망 가속</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:20</span>        <span>·</span><span class='badge'>보험</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>정부·당국 압박에 보험사 사전 예방 AI로 청구·심사 단계 사기 차단·심사 국내 보험업계가 보험사기 대응 환경 변화에 맞춰 인공지능(AI) 활용 사전 차단형 관리 체계 구축에 속도를 내고 있다. 언더라이팅 AI로 심사 자동화·계약 효율 강화 AI는 언더라이팅(보험 인수심사) 프로세스에서도 혁신을 주도하고 있다. 사진=챗GPT 이미지 생성 관련기사 보험상품 설계부터 사후관리까지...금감원, 보험사 검사 쇄신 금감원, 보험사기 조사 강화...&quot;실손·자동차보험사기 근절&quot; 금감원, 분쟁조정사례 75건 추가 공개...종류·담보별 세분화 Tags #보험사기 #보험사기차단 #금감</p>  <div class='actions'><a class='btn small primary' href='http://www.fins.co.kr/news/articleView.html?idxno=107554' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=1 data-hay='금융권, 설 연휴 맞아 소상공인·중소기업에 95조 원 푼다 또 주택연금은 연휴 전 미리 지급하고 대출만기일, 카드대금 결제일, 공과금 자동납부일 등은 설 연휴 이후인 19일로 자동 연기된다. 또 모든 금융사는 설 연휴 중 만기가 도래하는 예금에 대해 설 연휴 기간 동안의 이자분까지 포함해 이달 19일에 환급하며, 상품에 따라 고객 요청 시 13일에도 지급이 가능하다. 은행권, 연휴 기간 총 24개 이동·탄력점포 운영 연휴 기간 동안 긴급한 금융거래를 위한 이동·탄력점포도 운영한다. 대부' data-ts='1770675480.0' data-rel='0.0' data-url='http://www.economytalk.kr/news/articleView.html?idxno=417635'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.economytalk.kr/news/articleView.html?idxno=417635' target='_blank' rel='noopener noreferrer' data-title>금융권, 설 연휴 맞아 소상공인·중소기업에 95조 원 푼다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:18</span>        <span>·</span><span class='badge'>대부</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>또 주택연금은 연휴 전 미리 지급하고 대출만기일, 카드대금 결제일, 공과금 자동납부일 등은 설 연휴 이후인 19일로 자동 연기된다. 또 모든 금융사는 설 연휴 중 만기가 도래하는 예금에 대해 설 연휴 기간 동안의 이자분까지 포함해 이달 19일에 환급하며, 상품에 따라 고객 요청 시 13일에도 지급이 가능하다. 은행권, 연휴 기간 총 24개 이동·탄력점포 운영 연휴 기간 동안 긴급한 금융거래를 위한 이동·탄력점포도 운영한다.</p>  <div class='actions'><a class='btn small primary' href='http://www.economytalk.kr/news/articleView.html?idxno=417635' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=1 data-hay='무디스, 한국 은행 산업 전망 &#x27;안정적&#x27;으로 상향…GDP 성장률 반영 입력 2026-02-10 07:00:00 수정 2026-02-10 07:58:09 서울 시내의 한 건물에 시중은행 ATM기가 설치돼 있다. 이번 등급 전망 상향은 한국 은행 산업을 둘러싼 극단적인 공포감이 해소되었음을 의미하지만, 무디스는 대내외 경제 환경의 변동성이 여전한 만큼, 은행들이 기업 여신 비중 확대에 따른 리스크 관리에 집중하고 신중한 재무 전략을 유지해야 한다고 제언했다. 현정민 기자 mine04@segye.com 20260209518158 0501000000000 2026-02-10 7:58:10 2026-02-10 7:58:9 무디스, 한국 은행 산 은행' data-ts='1770674520.0' data-rel='0.0' data-url='http://www.segyebiz.com/newsView/20260209518158?OutUrl=naver'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.segyebiz.com/newsView/20260209518158?OutUrl=naver' target='_blank' rel='noopener noreferrer' data-title>무디스, 한국 은행 산업 전망 &#x27;안정적&#x27;으로 상향…GDP 성장률 반영</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:02</span>        <span>·</span><span class='badge'>은행</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>입력 2026-02-10 07:00:00 수정 2026-02-10 07:58:09 서울 시내의 한 건물에 시중은행 ATM기가 설치돼 있다. 이번 등급 전망 상향은 한국 은행 산업을 둘러싼 극단적인 공포감이 해소되었음을 의미하지만, 무디스는 대내외 경제 환경의 변동성이 여전한 만큼, 은행들이 기업 여신 비중 확대에 따른 리스크 관리에 집중하고 신중한 재무 전략을 유지해야 한다고 제언했다. 현정민 기자 mine04@segye.com 20260209518158 0501000000000 2026-02-10 7:58:10 2026-02-10 7:58:9 무디스, 한국 은행 산</p>  <div class='actions'><a class='btn small primary' href='http://www.segyebiz.com/newsView/20260209518158?OutUrl=naver' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=1 data-hay='불법 사채, 60대·일용직이 손댔다...평균금리 128% 서울경제신문이 9일 입수한 금융감독원의 ‘2024년 불법 사금융 실태 조사’에 따르면 금감원은 2024년 말 기준 불법 사금융 시장 규모와 이용자 수를 각각 11조 9000억 원, 95만 1000명으로 추산했다. 2024년의 경우 불법 사금융 이용자 수가 전년(85만 4000명) 대비 11.4%나 늘어났다. 금감원은 불법 사금융 시장의 평균 금리를 127.9%로 추산했다. 대부' data-ts='1770672600.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/011/0004588607?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/011/0004588607?sid=101' target='_blank' rel='noopener noreferrer' data-title>불법 사채, 60대·일용직이 손댔다...평균금리 128%</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:30</span>        <span>·</span><span class='badge'>대부</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>서울경제신문이 9일 입수한 금융감독원의 ‘2024년 불법 사금융 실태 조사’에 따르면 금감원은 2024년 말 기준 불법 사금융 시장 규모와 이용자 수를 각각 11조 9000억 원, 95만 1000명으로 추산했다. 2024년의 경우 불법 사금융 이용자 수가 전년(85만 4000명) 대비 11.4%나 늘어났다. 금감원은 불법 사금융 시장의 평균 금리를 127.9%로 추산했다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/011/0004588607?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.sedaily.com/article/20007044?ref=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=1 data-hay='&quot;월가 단독주택 투자 막아 주거난 풀려는 트럼프, 의회 저항 직면&quot; 현지 시간 9일 월스트리트저널 보도를 보면 최근 몇 주간 트럼프 행정부 당국자들은 공화당 의원들에게 주요 주거 법안에 단독주택 투자 금지를 포함하라고 압박했습니다. 이 행정명령을 이행하려면 입법이 필요한데, 상원과 하원의 공화당 의원들은 단독주택 투자 금지를 법안에 포함하는 데 반대하는 기류입니다. 의회가 단독주택 투자 금지를 입법화하는데 소극적인 이유 가운데 하나는 자체 법안을 신속하게 처리하고 싶기 때문으로 지적됩니다. 은행' data-ts='1770672540.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/052/0002312739?sid=104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/052/0002312739?sid=104' target='_blank' rel='noopener noreferrer' data-title>&quot;월가 단독주택 투자 막아 주거난 풀려는 트럼프, 의회 저항 직면&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:29</span>        <span>·</span><span class='badge'>은행</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>현지 시간 9일 월스트리트저널 보도를 보면 최근 몇 주간 트럼프 행정부 당국자들은 공화당 의원들에게 주요 주거 법안에 단독주택 투자 금지를 포함하라고 압박했습니다. 이 행정명령을 이행하려면 입법이 필요한데, 상원과 하원의 공화당 의원들은 단독주택 투자 금지를 법안에 포함하는 데 반대하는 기류입니다. 의회가 단독주택 투자 금지를 입법화하는데 소극적인 이유 가운데 하나는 자체 법안을 신속하게 처리하고 싶기 때문으로 지적됩니다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/052/0002312739?sid=104' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.ytn.co.kr/_ln/0104_202602100629258985' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=1 data-hay='금융지주 보험사 실적 ‘희비’…순익은 뒷걸음, CSM은 성장 KB손해보험의 CSM 잔액은 9조2850억원으로 전년 대비 5.3% 늘었고, 신한라이프도 7조5550억원으로 4.5% 증가했다. 반면 동양생명의 CSM은 2조4570억원으로 전년 대비 8% 감소했다. 서울을 찾는 2026-02-09 13:00:04 경상국립대-연세대 공동연구팀, 중증 결핵 진행 결정하는 숙주 면역 기전 규명 국내 연구진이 결핵 감염 후 숙주의 면역 반응이 중증 결핵으로 진행되는 과정을 결정짓는 핵심 면역 기전을 규 2026-02-10 13:29:46 장애인 평생학습도시 선정 평창지역, 장애인 학습권 보장 확대 탄력 장애인 평생학습도시로 선정돼 국비 지 보험' data-ts='1770670920.0' data-rel='0.0' data-url='https://www.kukinews.com/article/view/kuk202602090255'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.kukinews.com/article/view/kuk202602090255' target='_blank' rel='noopener noreferrer' data-title>금융지주 보험사 실적 ‘희비’…순익은 뒷걸음, CSM은 성장</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:02</span>        <span>·</span><span class='badge'>보험</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>KB손해보험의 CSM 잔액은 9조2850억원으로 전년 대비 5.3% 늘었고, 신한라이프도 7조5550억원으로 4.5% 증가했다. 반면 동양생명의 CSM은 2조4570억원으로 전년 대비 8% 감소했다. 서울을 찾는 2026-02-09 13:00:04 경상국립대-연세대 공동연구팀, 중증 결핵 진행 결정하는 숙주 면역 기전 규명 국내 연구진이 결핵 감염 후 숙주의 면역 반응이 중증 결핵으로 진행되는 과정을 결정짓는 핵심 면역 기전을 규 2026-02-10 13:29:46 장애인 평생학습도시 선정 평창지역, 장애인 학습권 보장 확대 탄력 장애인 평생학습도시로 선정돼 국비 지</p>  <div class='actions'><a class='btn small primary' href='https://www.kukinews.com/article/view/kuk202602090255' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='카드' data-top=1 data-hay='[DQN] 신한카드 1위·삼성카드 성장율 두각…하나카드 하위권 여전 [카드... 지난해 말 기준 삼성카드의 개인 신용판매액은 141조7838억원으로 전년 말 대비 9.0% 증가했다. 지난해 말 기준 삼성카드의 시장점유율은 19.5%로 전년 대비 0.9%p 성장했다. 한국금융신문의 를 받아보세요~ 뉴스레터 신청 Copyright c 한국금융신문 &amp; FNTIMES.com 강은영 기자 기사 더보기 페이스북 구글플러스 카카오스토리 다른 기사 기동호 우리금융캐피탈 대표, 투자 평가손익 확대로 순익 회복...생산적 금융 중심 성장 목표 [2025 금융사 실적] 저축은행중앙회 NPL자회사, 1분기 내 첫 매입 목표...연내 자산관리회사 전환 추진 [저축은행 카드' data-ts='1770670920.0' data-rel='0.0' data-url='http://www.fntimes.com/html/view.php?ud=2026013015551024829efc5ce4ae_18'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.fntimes.com/html/view.php?ud=2026013015551024829efc5ce4ae_18' target='_blank' rel='noopener noreferrer' data-title>[DQN] 신한카드 1위·삼성카드 성장율 두각…하나카드 하위권 여전 [카드...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:02</span>        <span>·</span><span class='badge'>카드</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>지난해 말 기준 삼성카드의 개인 신용판매액은 141조7838억원으로 전년 말 대비 9.0% 증가했다. 지난해 말 기준 삼성카드의 시장점유율은 19.5%로 전년 대비 0.9%p 성장했다. 한국금융신문의 를 받아보세요~ 뉴스레터 신청 Copyright c 한국금융신문 &amp; FNTIMES.com 강은영 기자 기사 더보기 페이스북 구글플러스 카카오스토리 다른 기사 기동호 우리금융캐피탈 대표, 투자 평가손익 확대로 순익 회복...생산적 금융 중심 성장 목표 [2025 금융사 실적] 저축은행중앙회 NPL자회사, 1분기 내 첫 매입 목표...연내 자산관리회사 전환 추진 [저축은행</p>  <div class='actions'><a class='btn small primary' href='http://www.fntimes.com/html/view.php?ud=2026013015551024829efc5ce4ae_18' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=1 data-hay='월가 단독주택 투자 막아 주거난 풀려는 트럼프, 의회 저항 직면 재판매 및 DB 금지] (워싱턴=연합뉴스) 김동현 특파원 = 도널드 트럼프 미국 대통령이 주거난을 해결하기 위해 월스트리트 기관투자자의 단독주택 매입을 막으려고 하지만 같은 공화당 소속 의원들의 저항에 직면하고 있다. 9일(현지시간) 월스트리트저널(WSJ) 보도에 따르면 최근 몇주 트럼프 행정부 당국자들은 공화당 의원들에게 의회에서 논의 중인 주요 주거 법안에 단독주택 투자 금지를 포함하라고 압박했다. 이 행정명령을 이행하려면 입법이 필요하지만, 상원과 하원의 공화당 의원들은 단독주택 투자 금지를 법안에 포함하는 데 반대하는 기류다. 은행' data-ts='1770670680.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/001/0015896044?sid=104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/001/0015896044?sid=104' target='_blank' rel='noopener noreferrer' data-title>월가 단독주택 투자 막아 주거난 풀려는 트럼프, 의회 저항 직면</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 05:58</span>        <span>·</span><span class='badge'>은행</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>재판매 및 DB 금지] (워싱턴=연합뉴스) 김동현 특파원 = 도널드 트럼프 미국 대통령이 주거난을 해결하기 위해 월스트리트 기관투자자의 단독주택 매입을 막으려고 하지만 같은 공화당 소속 의원들의 저항에 직면하고 있다. 9일(현지시간) 월스트리트저널(WSJ) 보도에 따르면 최근 몇주 트럼프 행정부 당국자들은 공화당 의원들에게 의회에서 논의 중인 주요 주거 법안에 단독주택 투자 금지를 포함하라고 압박했다. 이 행정명령을 이행하려면 입법이 필요하지만, 상원과 하원의 공화당 의원들은 단독주택 투자 금지를 법안에 포함하는 데 반대하는 기류다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/001/0015896044?sid=104' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.yna.co.kr/view/AKR20260210008700071?input=1195m' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=1 data-hay='의심받는 워시 긴축론…베센트 &quot;긴축 성급하게 안할 것&quot; 특히 긴축 시에는 장기 차입 비용이 늘어 주택담보대출 금리가 상승할 가능성이 높습니다. 오는 11월 중간선거를 앞두고 집값 낮추기에 나선 도널드 트럼프 대통령에게도 큰 부담이 될 수밖에 없습니다. 이 같은... 은행' data-ts='1770666120.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/374/0000491684?sid=104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/374/0000491684?sid=104' target='_blank' rel='noopener noreferrer' data-title>의심받는 워시 긴축론…베센트 &quot;긴축 성급하게 안할 것&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 04:42</span>        <span>·</span><span class='badge'>은행</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>특히 긴축 시에는 장기 차입 비용이 늘어 주택담보대출 금리가 상승할 가능성이 높습니다. 오는 11월 중간선거를 앞두고 집값 낮추기에 나선 도널드 트럼프 대통령에게도 큰 부담이 될 수밖에 없습니다. 이 같은...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/374/0000491684?sid=104' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.sbs.co.kr/article_hub/20000290658?division=NAVER' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+        </div>
+      </section>
+
+      <section data-group id='sec-대부'>  <div class='section-head'>    <h2>대부<span class='count'>9</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='대부' data-top=0 data-hay='채무조정자도 교통카드 쓸 길 열린다…성실 상환땐 결제카드도 허용 연합뉴스 금융위원회가 채무조정 중이라도 성실하게 상환하는 사람에게 카드 발급 기회를 제공해 경제적 재기를 돕는다는 취지에서 ‘재기지원 후불교통카드’와 ‘개인사업자 햇살론카드’를 출시한다고 9일 밝혔다. 개인사업자 햇살론카드는 신용 하위 50% 이하 개인사업자 중 현재 연체가 없고 연간 가처분소득이 600만원 이상이면 서민금융진흥원 보증을 통해 신용카드를 이용할 수 있도록 한 상품이다. 개인사업자 햇살론카드는 오는 20일부터 서금원에 보증 신청이 가능하며, 신용관리교육 이수 후 보증 약정을 체결하면 카드가 발급된다. 대부' data-ts='1770676020.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/009/0005634928?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/009/0005634928?sid=101' target='_blank' rel='noopener noreferrer' data-title>채무조정자도 교통카드 쓸 길 열린다…성실 상환땐 결제카드도 허용</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:27</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>연합뉴스 금융위원회가 채무조정 중이라도 성실하게 상환하는 사람에게 카드 발급 기회를 제공해 경제적 재기를 돕는다는 취지에서 ‘재기지원 후불교통카드’와 ‘개인사업자 햇살론카드’를 출시한다고 9일 밝혔다. 개인사업자 햇살론카드는 신용 하위 50% 이하 개인사업자 중 현재 연체가 없고 연간 가처분소득이 600만원 이상이면 서민금융진흥원 보증을 통해 신용카드를 이용할 수 있도록 한 상품이다. 개인사업자 햇살론카드는 오는 20일부터 서금원에 보증 신청이 가능하며, 신용관리교육 이수 후 보증 약정을 체결하면 카드가 발급된다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/009/0005634928?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mk.co.kr/article/11958223' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=0 data-hay='금융권, 설 연휴 맞아 소상공인·중소기업에 95조 원 푼다 또 주택연금은 연휴 전 미리 지급하고 대출만기일, 카드대금 결제일, 공과금 자동납부일 등은 설 연휴 이후인 19일로 자동 연기된다. 또 모든 금융사는 설 연휴 중 만기가 도래하는 예금에 대해 설 연휴 기간 동안의 이자분까지 포함해 이달 19일에 환급하며, 상품에 따라 고객 요청 시 13일에도 지급이 가능하다. 은행권, 연휴 기간 총 24개 이동·탄력점포 운영 연휴 기간 동안 긴급한 금융거래를 위한 이동·탄력점포도 운영한다. 대부' data-ts='1770675480.0' data-rel='0.0' data-url='http://www.economytalk.kr/news/articleView.html?idxno=417635'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.economytalk.kr/news/articleView.html?idxno=417635' target='_blank' rel='noopener noreferrer' data-title>금융권, 설 연휴 맞아 소상공인·중소기업에 95조 원 푼다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:18</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>또 주택연금은 연휴 전 미리 지급하고 대출만기일, 카드대금 결제일, 공과금 자동납부일 등은 설 연휴 이후인 19일로 자동 연기된다. 또 모든 금융사는 설 연휴 중 만기가 도래하는 예금에 대해 설 연휴 기간 동안의 이자분까지 포함해 이달 19일에 환급하며, 상품에 따라 고객 요청 시 13일에도 지급이 가능하다. 은행권, 연휴 기간 총 24개 이동·탄력점포 운영 연휴 기간 동안 긴급한 금융거래를 위한 이동·탄력점포도 운영한다.</p>  <div class='actions'><a class='btn small primary' href='http://www.economytalk.kr/news/articleView.html?idxno=417635' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=0 data-hay='불법 사채, 60대·일용직이 손댔다...평균금리 128% 서울경제신문이 9일 입수한 금융감독원의 ‘2024년 불법 사금융 실태 조사’에 따르면 금감원은 2024년 말 기준 불법 사금융 시장 규모와 이용자 수를 각각 11조 9000억 원, 95만 1000명으로 추산했다. 2024년의 경우 불법 사금융 이용자 수가 전년(85만 4000명) 대비 11.4%나 늘어났다. 금감원은 불법 사금융 시장의 평균 금리를 127.9%로 추산했다. 대부' data-ts='1770672600.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/011/0004588607?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/011/0004588607?sid=101' target='_blank' rel='noopener noreferrer' data-title>불법 사채, 60대·일용직이 손댔다...평균금리 128%</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:30</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>서울경제신문이 9일 입수한 금융감독원의 ‘2024년 불법 사금융 실태 조사’에 따르면 금감원은 2024년 말 기준 불법 사금융 시장 규모와 이용자 수를 각각 11조 9000억 원, 95만 1000명으로 추산했다. 2024년의 경우 불법 사금융 이용자 수가 전년(85만 4000명) 대비 11.4%나 늘어났다. 금감원은 불법 사금융 시장의 평균 금리를 127.9%로 추산했다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/011/0004588607?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.sedaily.com/article/20007044?ref=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=0 data-hay='연체 없으면 저신용자도 후불 교통카드 만들수 있다 햇살론 카드는 신용 하위 50% 이하인 개인사업자 가운데 현재 연체가 없고 연간 가처분소득이 600만 원 이상이라면 서민금융진흥원 보증으로 이용할 수 있다. 채무조정 중이더라도 6개월 이상 성실 상환한 이력이 있으면... 대부' data-ts='1770651060.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/020/0003696215?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/020/0003696215?sid=101' target='_blank' rel='noopener noreferrer' data-title>연체 없으면 저신용자도 후불 교통카드 만들수 있다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 00:31</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>햇살론 카드는 신용 하위 50% 이하인 개인사업자 가운데 현재 연체가 없고 연간 가처분소득이 600만 원 이상이라면 서민금융진흥원 보증으로 이용할 수 있다. 채무조정 중이더라도 6개월 이상 성실 상환한 이력이 있으면...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/020/0003696215?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.donga.com/news/Economy/article/all/20260209/133329851/2' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=0 data-hay='내달부터 저신용자도 ‘후불 교통카드’ 발급 가능 신용 하위 50% 이하이면서 연간 가처득소분이 600만원 이상인 개인사업자는 연체가 없으면 서민금융진흥원 보증을 받아 신용카드를 이용할 수 있다. 한도는 300만~500만원. 대부' data-ts='1770635220.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/032/0003426804?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/032/0003426804?sid=101' target='_blank' rel='noopener noreferrer' data-title>내달부터 저신용자도 ‘후불 교통카드’ 발급 가능</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 20:07</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>신용 하위 50% 이하이면서 연간 가처득소분이 600만원 이상인 개인사업자는 연체가 없으면 서민금융진흥원 보증을 받아 신용카드를 이용할 수 있다. 한도는 300만~500만원.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/032/0003426804?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.khan.co.kr/article/202602092007005' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=0 data-hay='연체만 없으면 저신용자도 후불교통·신용카드 사용 가능…금융위, 재기... 이 상품은 신용하위 50% 이하인 개인사업자가 현재 연체가 없고 연간 가처분소득이 600만원 이상이면 서민금융진흥원 보증으로 신용카드를 이용할 수 있다. 개인사업자는 일시적인 유동성 부족이 있더라도 영업을... 대부' data-ts='1770633240.0' data-rel='0.0' data-url='https://www.idaegu.co.kr/news/articleView.html?idxno=538428'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.idaegu.co.kr/news/articleView.html?idxno=538428' target='_blank' rel='noopener noreferrer' data-title>연체만 없으면 저신용자도 후불교통·신용카드 사용 가능…금융위, 재기...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 19:34</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>이 상품은 신용하위 50% 이하인 개인사업자가 현재 연체가 없고 연간 가처분소득이 600만원 이상이면 서민금융진흥원 보증으로 신용카드를 이용할 수 있다. 개인사업자는 일시적인 유동성 부족이 있더라도 영업을...</p>  <div class='actions'><a class='btn small primary' href='https://www.idaegu.co.kr/news/articleView.html?idxno=538428' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=0 data-hay='채무조정 중에도 쓸 수 있는 &#x27;재기 지원 카드&#x27; 나온다 개인사업자 햇살론 카드는 오는 20일부터 서민금융진흥원에 보증신청이 가능하며, 신용관리교육과 보증약정 체결 후 발급된다. 재기 지원 후불교통카드는 연체가 없는 경우 신용점수와 무관하게 체크카드에 후불교통... 대부' data-ts='1770629280.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/014/0005475866?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/014/0005475866?sid=101' target='_blank' rel='noopener noreferrer' data-title>채무조정 중에도 쓸 수 있는 &#x27;재기 지원 카드&#x27; 나온다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 18:28</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>개인사업자 햇살론 카드는 오는 20일부터 서민금융진흥원에 보증신청이 가능하며, 신용관리교육과 보증약정 체결 후 발급된다. 재기 지원 후불교통카드는 연체가 없는 경우 신용점수와 무관하게 체크카드에 후불교통...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/014/0005475866?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='http://www.fnnews.com/news/202602091827030328' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=0 data-hay='금융위원회, 연체·체납 없는 채무조정자, &#x27;후불교통카드&#x27; 사용 가능해... 이와 함께 개인사업자 햇살론 카드는 신용하위 50% 이하인 개인사업자가 현재 연체가 없고 연간 가처분소득이 600만 원 이상이면 서민금융진흥원 보증으로 신용카드를 이용할 수 있게 된다. 채무조정 중이라도 이를 6개월... 대부' data-ts='1770629160.0' data-rel='0.0' data-url='https://www.discoverynews.kr/news/articleView.html?idxno=1084833'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.discoverynews.kr/news/articleView.html?idxno=1084833' target='_blank' rel='noopener noreferrer' data-title>금융위원회, 연체·체납 없는 채무조정자, &#x27;후불교통카드&#x27; 사용 가능해...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 18:26</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>이와 함께 개인사업자 햇살론 카드는 신용하위 50% 이하인 개인사업자가 현재 연체가 없고 연간 가처분소득이 600만 원 이상이면 서민금융진흥원 보증으로 신용카드를 이용할 수 있게 된다. 채무조정 중이라도 이를 6개월...</p>  <div class='actions'><a class='btn small primary' href='https://www.discoverynews.kr/news/articleView.html?idxno=1084833' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=0 data-hay='&quot;저신용자도 빚 성실상환땐 카드 발급&quot; 개인사업자 햇살론카드는 신용 하위 50% 이하 개인사업자 중 현재 연체가 없고 연간 가처분소득이 600만원 이상이면 서민금융진흥원 보증을 통해 신용카드를 이용할 수 있도록 한 상품이다. 채무조정 중이더라도 6개월... 대부' data-ts='1770627780.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/009/0005634805?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/009/0005634805?sid=101' target='_blank' rel='noopener noreferrer' data-title>&quot;저신용자도 빚 성실상환땐 카드 발급&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 18:03</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>개인사업자 햇살론카드는 신용 하위 50% 이하 개인사업자 중 현재 연체가 없고 연간 가처분소득이 600만원 이상이면 서민금융진흥원 보증을 통해 신용카드를 이용할 수 있도록 한 상품이다. 채무조정 중이더라도 6개월...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/009/0005634805?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mk.co.kr/article/11958059' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div></section><section data-group id='sec-은행'>  <div class='section-head'>    <h2>은행<span class='count'>15</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='감독입법' data-top=0 data-hay='KB금융, 6조 클럽 턱밑 리딩금융 독주 체제…비은행 실적은 희비 비은행 계열사 순익 규모는 KB손해보험이 7782억원으로 가장 컸고, KB증권 6739억원, KB국민카드 3302억원, KB라이프생명 2440억원 순이었다. 보험 계열사도 KB손해보험은 7.3%, KB라이프생명은 9.4%의 순익이 감소했다. kumky@news2day.co.kr 이 기자의 다른 기사 보기 [관련기사] KB금융, 6조 클럽 턱밑 리딩금융 독주 체제...비은행 실적은 희비 [N2 특징주] KB금융, 역대 최대 실적에 주주환원까지...장중 신고가 경신 [N2 증시 풍향계] 증시 위축, 한화솔루션·KB금융·삼표시멘트 ‘강세’...케이엠제약·SG세계물산·웰킵스 감독입법' data-ts='1770675960.0' data-rel='0.0' data-url='https://www.news2day.co.kr/article/20260210500007'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.news2day.co.kr/article/20260210500007' target='_blank' rel='noopener noreferrer' data-title>KB금융, 6조 클럽 턱밑 리딩금융 독주 체제…비은행 실적은 희비</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:26</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>비은행 계열사 순익 규모는 KB손해보험이 7782억원으로 가장 컸고, KB증권 6739억원, KB국민카드 3302억원, KB라이프생명 2440억원 순이었다. 보험 계열사도 KB손해보험은 7.3%, KB라이프생명은 9.4%의 순익이 감소했다. kumky@news2day.co.kr 이 기자의 다른 기사 보기 [관련기사] KB금융, 6조 클럽 턱밑 리딩금융 독주 체제...비은행 실적은 희비 [N2 특징주] KB금융, 역대 최대 실적에 주주환원까지...장중 신고가 경신 [N2 증시 풍향계] 증시 위축, 한화솔루션·KB금융·삼표시멘트 ‘강세’...케이엠제약·SG세계물산·웰킵스</p>  <div class='actions'><a class='btn small primary' href='https://www.news2day.co.kr/article/20260210500007' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='무디스, 한국 은행 산업 전망 &#x27;안정적&#x27;으로 상향…GDP 성장률 반영 입력 2026-02-10 07:00:00 수정 2026-02-10 07:58:09 서울 시내의 한 건물에 시중은행 ATM기가 설치돼 있다. 이번 등급 전망 상향은 한국 은행 산업을 둘러싼 극단적인 공포감이 해소되었음을 의미하지만, 무디스는 대내외 경제 환경의 변동성이 여전한 만큼, 은행들이 기업 여신 비중 확대에 따른 리스크 관리에 집중하고 신중한 재무 전략을 유지해야 한다고 제언했다. 현정민 기자 mine04@segye.com 20260209518158 0501000000000 2026-02-10 7:58:10 2026-02-10 7:58:9 무디스, 한국 은행 산 은행' data-ts='1770674520.0' data-rel='0.0' data-url='http://www.segyebiz.com/newsView/20260209518158?OutUrl=naver'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.segyebiz.com/newsView/20260209518158?OutUrl=naver' target='_blank' rel='noopener noreferrer' data-title>무디스, 한국 은행 산업 전망 &#x27;안정적&#x27;으로 상향…GDP 성장률 반영</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:02</span>        <span>·</span><span class='badge'>은행</span>  </div>  <p class='summary' data-summary>입력 2026-02-10 07:00:00 수정 2026-02-10 07:58:09 서울 시내의 한 건물에 시중은행 ATM기가 설치돼 있다. 이번 등급 전망 상향은 한국 은행 산업을 둘러싼 극단적인 공포감이 해소되었음을 의미하지만, 무디스는 대내외 경제 환경의 변동성이 여전한 만큼, 은행들이 기업 여신 비중 확대에 따른 리스크 관리에 집중하고 신중한 재무 전략을 유지해야 한다고 제언했다. 현정민 기자 mine04@segye.com 20260209518158 0501000000000 2026-02-10 7:58:10 2026-02-10 7:58:9 무디스, 한국 은행 산</p>  <div class='actions'><a class='btn small primary' href='http://www.segyebiz.com/newsView/20260209518158?OutUrl=naver' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='신한·우리 웃고 KB·하나 울고…지주계열 저축은행 실적 &#x27;희비&#x27; 신한, 215억원 당기순익 기록...전년 대비 이익 규모 확대 우리금융, 지난해 실적 턴어라운드...수익 구조 개편 등 영향 KB·하나, 3년 연속 적자...PF 부실·충당금 등이 실적 발목 &quot;지난해 6월 규제 이후 대출 여력↓...당분간 흐름 지속될 듯&quot; 저축은행 앞으로 시민이 지나가고 있다. 반면, KB저축은행은 지난해 48억원의 순손실을 기록하며 3년 연속 적자를 이어갔다. 업계 관계자는 &quot;지난해 6월 부동산 규제 이후 대출 여력이 크게 줄었다&quot;며 &quot;대출 여력이 제한된 가운데 부동산 경기 회복도 지연되고 있어 당분간은 지난해 하반기와 비슷한 흐름이 이어질 것&quot;이 감독입법' data-ts='1770674400.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/119/0003057960?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/119/0003057960?sid=101' target='_blank' rel='noopener noreferrer' data-title>신한·우리 웃고 KB·하나 울고…지주계열 저축은행 실적 &#x27;희비&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:00</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>신한, 215억원 당기순익 기록...전년 대비 이익 규모 확대 우리금융, 지난해 실적 턴어라운드...수익 구조 개편 등 영향 KB·하나, 3년 연속 적자...PF 부실·충당금 등이 실적 발목 &quot;지난해 6월 규제 이후 대출 여력↓...당분간 흐름 지속될 듯&quot; 저축은행 앞으로 시민이 지나가고 있다. 반면, KB저축은행은 지난해 48억원의 순손실을 기록하며 3년 연속 적자를 이어갔다. 업계 관계자는 &quot;지난해 6월 부동산 규제 이후 대출 여력이 크게 줄었다&quot;며 &quot;대출 여력이 제한된 가운데 부동산 경기 회복도 지연되고 있어 당분간은 지난해 하반기와 비슷한 흐름이 이어질 것&quot;이</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/119/0003057960?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.dailian.co.kr/news/view/1608535/?sc=Naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='&quot;월가 단독주택 투자 막아 주거난 풀려는 트럼프, 의회 저항 직면&quot; 현지 시간 9일 월스트리트저널 보도를 보면 최근 몇 주간 트럼프 행정부 당국자들은 공화당 의원들에게 주요 주거 법안에 단독주택 투자 금지를 포함하라고 압박했습니다. 이 행정명령을 이행하려면 입법이 필요한데, 상원과 하원의 공화당 의원들은 단독주택 투자 금지를 법안에 포함하는 데 반대하는 기류입니다. 의회가 단독주택 투자 금지를 입법화하는데 소극적인 이유 가운데 하나는 자체 법안을 신속하게 처리하고 싶기 때문으로 지적됩니다. 은행' data-ts='1770672540.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/052/0002312739?sid=104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/052/0002312739?sid=104' target='_blank' rel='noopener noreferrer' data-title>&quot;월가 단독주택 투자 막아 주거난 풀려는 트럼프, 의회 저항 직면&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:29</span>        <span>·</span><span class='badge'>은행</span>  </div>  <p class='summary' data-summary>현지 시간 9일 월스트리트저널 보도를 보면 최근 몇 주간 트럼프 행정부 당국자들은 공화당 의원들에게 주요 주거 법안에 단독주택 투자 금지를 포함하라고 압박했습니다. 이 행정명령을 이행하려면 입법이 필요한데, 상원과 하원의 공화당 의원들은 단독주택 투자 금지를 법안에 포함하는 데 반대하는 기류입니다. 의회가 단독주택 투자 금지를 입법화하는데 소극적인 이유 가운데 하나는 자체 법안을 신속하게 처리하고 싶기 때문으로 지적됩니다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/052/0002312739?sid=104' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.ytn.co.kr/_ln/0104_202602100629258985' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='&#x27;여신 사업&#x27; 활로 노리는 인터넷은행…&#x27;개인사업자 대출&#x27; 경쟁 속도전 전문직 등 개인사업자 대출 라인업 확장...담보대출·보증서대출도 확대 가계·기업 대출 제약 돌파구...인뱅 중장기 전략 부상 c 뉴스1 윤주희 디자이너 (서울=뉴스1) 정지윤 기자 = 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 삼고 상품과 서비스를 강화하고 있다. 토스뱅크에 앞서 먼저 개인사업자 대출 상품을 출시했던 인터넷은행들도 기존 개인사업자 대출 상품을 개편하는 등 경쟁에 본격 나서는 추세다. 지난해 말 기준 카카오뱅크의 개인사업자 대출 잔액은 전년 대비 1조 2000억 원 늘어나 3조 원을 돌파했다. 감독입법' data-ts='1770670800.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/421/0008764070?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/421/0008764070?sid=101' target='_blank' rel='noopener noreferrer' data-title>&#x27;여신 사업&#x27; 활로 노리는 인터넷은행…&#x27;개인사업자 대출&#x27; 경쟁 속도전</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:00</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>전문직 등 개인사업자 대출 라인업 확장...담보대출·보증서대출도 확대 가계·기업 대출 제약 돌파구...인뱅 중장기 전략 부상 c 뉴스1 윤주희 디자이너 (서울=뉴스1) 정지윤 기자 = 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 삼고 상품과 서비스를 강화하고 있다. 토스뱅크에 앞서 먼저 개인사업자 대출 상품을 출시했던 인터넷은행들도 기존 개인사업자 대출 상품을 개편하는 등 경쟁에 본격 나서는 추세다. 지난해 말 기준 카카오뱅크의 개인사업자 대출 잔액은 전년 대비 1조 2000억 원 늘어나 3조 원을 돌파했다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/421/0008764070?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.news1.kr/finance/general-finance/6067492' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='월가 단독주택 투자 막아 주거난 풀려는 트럼프, 의회 저항 직면 재판매 및 DB 금지] (워싱턴=연합뉴스) 김동현 특파원 = 도널드 트럼프 미국 대통령이 주거난을 해결하기 위해 월스트리트 기관투자자의 단독주택 매입을 막으려고 하지만 같은 공화당 소속 의원들의 저항에 직면하고 있다. 9일(현지시간) 월스트리트저널(WSJ) 보도에 따르면 최근 몇주 트럼프 행정부 당국자들은 공화당 의원들에게 의회에서 논의 중인 주요 주거 법안에 단독주택 투자 금지를 포함하라고 압박했다. 이 행정명령을 이행하려면 입법이 필요하지만, 상원과 하원의 공화당 의원들은 단독주택 투자 금지를 법안에 포함하는 데 반대하는 기류다. 은행' data-ts='1770670680.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/001/0015896044?sid=104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/001/0015896044?sid=104' target='_blank' rel='noopener noreferrer' data-title>월가 단독주택 투자 막아 주거난 풀려는 트럼프, 의회 저항 직면</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 05:58</span>        <span>·</span><span class='badge'>은행</span>  </div>  <p class='summary' data-summary>재판매 및 DB 금지] (워싱턴=연합뉴스) 김동현 특파원 = 도널드 트럼프 미국 대통령이 주거난을 해결하기 위해 월스트리트 기관투자자의 단독주택 매입을 막으려고 하지만 같은 공화당 소속 의원들의 저항에 직면하고 있다. 9일(현지시간) 월스트리트저널(WSJ) 보도에 따르면 최근 몇주 트럼프 행정부 당국자들은 공화당 의원들에게 의회에서 논의 중인 주요 주거 법안에 단독주택 투자 금지를 포함하라고 압박했다. 이 행정명령을 이행하려면 입법이 필요하지만, 상원과 하원의 공화당 의원들은 단독주택 투자 금지를 법안에 포함하는 데 반대하는 기류다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/001/0015896044?sid=104' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.yna.co.kr/view/AKR20260210008700071?input=1195m' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='의심받는 워시 긴축론…베센트 &quot;긴축 성급하게 안할 것&quot; 특히 긴축 시에는 장기 차입 비용이 늘어 주택담보대출 금리가 상승할 가능성이 높습니다. 오는 11월 중간선거를 앞두고 집값 낮추기에 나선 도널드 트럼프 대통령에게도 큰 부담이 될 수밖에 없습니다. 이 같은... 은행' data-ts='1770666120.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/374/0000491684?sid=104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/374/0000491684?sid=104' target='_blank' rel='noopener noreferrer' data-title>의심받는 워시 긴축론…베센트 &quot;긴축 성급하게 안할 것&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 04:42</span>        <span>·</span><span class='badge'>은행</span>  </div>  <p class='summary' data-summary>특히 긴축 시에는 장기 차입 비용이 늘어 주택담보대출 금리가 상승할 가능성이 높습니다. 오는 11월 중간선거를 앞두고 집값 낮추기에 나선 도널드 트럼프 대통령에게도 큰 부담이 될 수밖에 없습니다. 이 같은...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/374/0000491684?sid=104' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.sbs.co.kr/article_hub/20000290658?division=NAVER' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='트럼프, 중간선거 앞두고 &#x27;293조 원 감세+AI&#x27; 경제 부양책 총동원 다코 수석 이코노미스트는 이로 인해 주택담보대출 금리가 6%를 웃도는 수준에 머물렀다고 설명했다. 유권자 정서는 선거일 수개월 전에 굳어지는 경향이 있어, 연중 인플레이션이 목표를 웃돌 가능성은 공화당의... 은행' data-ts='1770662160.0' data-rel='0.0' data-url='https://www.g-enews.com/view.php?ud=202602091711139120fbbec65dfb_1'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.g-enews.com/view.php?ud=202602091711139120fbbec65dfb_1' target='_blank' rel='noopener noreferrer' data-title>트럼프, 중간선거 앞두고 &#x27;293조 원 감세+AI&#x27; 경제 부양책 총동원</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 03:36</span>        <span>·</span><span class='badge'>은행</span>  </div>  <p class='summary' data-summary>다코 수석 이코노미스트는 이로 인해 주택담보대출 금리가 6%를 웃도는 수준에 머물렀다고 설명했다. 유권자 정서는 선거일 수개월 전에 굳어지는 경향이 있어, 연중 인플레이션이 목표를 웃돌 가능성은 공화당의...</p>  <div class='actions'><a class='btn small primary' href='https://www.g-enews.com/view.php?ud=202602091711139120fbbec65dfb_1' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='주담대 의존 카카오뱅크…정부 &#x27;가계빚 브레이크&#x27; 속 성장공식 바뀔까 정책자금·개인사업자 대출 공급에 적극 나서겠다&quot;며 &quot;여신 포트폴리오 다변화와 수수료·플랫폼 비즈니스 성장을 통해 NIM 하락과 가계대출 규제 속에서도 안정적인 수익 기반을 갖추는 게 올해 핵심 과제&quot;라고 말했다. 감독입법' data-ts='1770649260.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/629/0000471207?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/629/0000471207?sid=101' target='_blank' rel='noopener noreferrer' data-title>주담대 의존 카카오뱅크…정부 &#x27;가계빚 브레이크&#x27; 속 성장공식 바뀔까</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 00:01</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>정책자금·개인사업자 대출 공급에 적극 나서겠다&quot;며 &quot;여신 포트폴리오 다변화와 수수료·플랫폼 비즈니스 성장을 통해 NIM 하락과 가계대출 규제 속에서도 안정적인 수익 기반을 갖추는 게 올해 핵심 과제&quot;라고 말했다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/629/0000471207?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://news.tf.co.kr/read/economy/2291011.htm' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='베선트 &quot;신임 의장, Fed 양적 긴축 여부 결정에 1년 걸려&quot; 그러나 트럼프 대통령은 정부 부채 상환 금리 및 주택담보대출 금리를 낮추기 위해 Fed에 기준금리 인하를 요구해왔다. 전문가들은 Fed의 대차대조표 축소, 즉 양적 축소는 장기 금리를 올리는 방향으로 작용해 이... 은행' data-ts='1770642420.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/015/0005249079?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/015/0005249079?sid=101' target='_blank' rel='noopener noreferrer' data-title>베선트 &quot;신임 의장, Fed 양적 긴축 여부 결정에 1년 걸려&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 22:07</span>        <span>·</span><span class='badge'>은행</span>  </div>  <p class='summary' data-summary>그러나 트럼프 대통령은 정부 부채 상환 금리 및 주택담보대출 금리를 낮추기 위해 Fed에 기준금리 인하를 요구해왔다. 전문가들은 Fed의 대차대조표 축소, 즉 양적 축소는 장기 금리를 올리는 방향으로 작용해 이...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/015/0005249079?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.hankyung.com/article/202602094787i' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div></section><section data-group id='sec-보험'>  <div class='section-head'>    <h2>보험<span class='count'>7</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='보험' data-top=0 data-hay='보험사기 &#x27;무관용 시대&#x27;…단속 강화 속 보험사 AI 차단망 가속 정부·당국 압박에 보험사 사전 예방 AI로 청구·심사 단계 사기 차단·심사 국내 보험업계가 보험사기 대응 환경 변화에 맞춰 인공지능(AI) 활용 사전 차단형 관리 체계 구축에 속도를 내고 있다. 언더라이팅 AI로 심사 자동화·계약 효율 강화 AI는 언더라이팅(보험 인수심사) 프로세스에서도 혁신을 주도하고 있다. 사진=챗GPT 이미지 생성 관련기사 보험상품 설계부터 사후관리까지...금감원, 보험사 검사 쇄신 금감원, 보험사기 조사 강화...&quot;실손·자동차보험사기 근절&quot; 금감원, 분쟁조정사례 75건 추가 공개...종류·담보별 세분화 Tags #보험사기 #보험사기차단 #금감 보험' data-ts='1770675600.0' data-rel='0.0' data-url='http://www.fins.co.kr/news/articleView.html?idxno=107554'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.fins.co.kr/news/articleView.html?idxno=107554' target='_blank' rel='noopener noreferrer' data-title>보험사기 &#x27;무관용 시대&#x27;…단속 강화 속 보험사 AI 차단망 가속</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:20</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>정부·당국 압박에 보험사 사전 예방 AI로 청구·심사 단계 사기 차단·심사 국내 보험업계가 보험사기 대응 환경 변화에 맞춰 인공지능(AI) 활용 사전 차단형 관리 체계 구축에 속도를 내고 있다. 언더라이팅 AI로 심사 자동화·계약 효율 강화 AI는 언더라이팅(보험 인수심사) 프로세스에서도 혁신을 주도하고 있다. 사진=챗GPT 이미지 생성 관련기사 보험상품 설계부터 사후관리까지...금감원, 보험사 검사 쇄신 금감원, 보험사기 조사 강화...&quot;실손·자동차보험사기 근절&quot; 금감원, 분쟁조정사례 75건 추가 공개...종류·담보별 세분화 Tags #보험사기 #보험사기차단 #금감</p>  <div class='actions'><a class='btn small primary' href='http://www.fins.co.kr/news/articleView.html?idxno=107554' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=0 data-hay='금융지주 보험사 실적 ‘희비’…순익은 뒷걸음, CSM은 성장 KB손해보험의 CSM 잔액은 9조2850억원으로 전년 대비 5.3% 늘었고, 신한라이프도 7조5550억원으로 4.5% 증가했다. 반면 동양생명의 CSM은 2조4570억원으로 전년 대비 8% 감소했다. 서울을 찾는 2026-02-09 13:00:04 경상국립대-연세대 공동연구팀, 중증 결핵 진행 결정하는 숙주 면역 기전 규명 국내 연구진이 결핵 감염 후 숙주의 면역 반응이 중증 결핵으로 진행되는 과정을 결정짓는 핵심 면역 기전을 규 2026-02-10 13:29:46 장애인 평생학습도시 선정 평창지역, 장애인 학습권 보장 확대 탄력 장애인 평생학습도시로 선정돼 국비 지 보험' data-ts='1770670920.0' data-rel='0.0' data-url='https://www.kukinews.com/article/view/kuk202602090255'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.kukinews.com/article/view/kuk202602090255' target='_blank' rel='noopener noreferrer' data-title>금융지주 보험사 실적 ‘희비’…순익은 뒷걸음, CSM은 성장</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:02</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>KB손해보험의 CSM 잔액은 9조2850억원으로 전년 대비 5.3% 늘었고, 신한라이프도 7조5550억원으로 4.5% 증가했다. 반면 동양생명의 CSM은 2조4570억원으로 전년 대비 8% 감소했다. 서울을 찾는 2026-02-09 13:00:04 경상국립대-연세대 공동연구팀, 중증 결핵 진행 결정하는 숙주 면역 기전 규명 국내 연구진이 결핵 감염 후 숙주의 면역 반응이 중증 결핵으로 진행되는 과정을 결정짓는 핵심 면역 기전을 규 2026-02-10 13:29:46 장애인 평생학습도시 선정 평창지역, 장애인 학습권 보장 확대 탄력 장애인 평생학습도시로 선정돼 국비 지</p>  <div class='actions'><a class='btn small primary' href='https://www.kukinews.com/article/view/kuk202602090255' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=0 data-hay='&#x27;기적의 항암제&#x27;라더니…&quot;3.6억 초고가 신약, 치료효과는 40%&quot; 이들 단체가 국민건강보험공단 자료를 분석한 결과, 2020~2024년 공단이 협상한 신약 약품비는 연평균 13%씩 증가해 같은 기간 건강보험료 인상률의 8배에 달한 것으로 나타났다. 해외 연구에서도 고가 항암제의 효과가... 보험' data-ts='1770633060.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/025/0003502141?sid=102'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/025/0003502141?sid=102' target='_blank' rel='noopener noreferrer' data-title>&#x27;기적의 항암제&#x27;라더니…&quot;3.6억 초고가 신약, 치료효과는 40%&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 19:31</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>이들 단체가 국민건강보험공단 자료를 분석한 결과, 2020~2024년 공단이 협상한 신약 약품비는 연평균 13%씩 증가해 같은 기간 건강보험료 인상률의 8배에 달한 것으로 나타났다. 해외 연구에서도 고가 항암제의 효과가...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/025/0003502141?sid=102' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.joongang.co.kr/article/25403784' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=0 data-hay='&quot;효과 높지 않은 3억 신약에 건보 766억 썼다&quot; 시민단체의 비판 건보공단에 따르면 2020~2024년 국민건강보험공단이 협상한 신약 약품비는 연평균 13%씩 증가해 건강보험료 인상률의 8배에 달했다. 킴리아주 급여 적용에는 2022~2024년에 걸쳐 1,296억 원이 들었는데 이 가운데 약 766억 원이... 보험' data-ts='1770631260.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/469/0000913697?sid=102'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/469/0000913697?sid=102' target='_blank' rel='noopener noreferrer' data-title>&quot;효과 높지 않은 3억 신약에 건보 766억 썼다&quot; 시민단체의 비판</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 19:01</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>건보공단에 따르면 2020~2024년 국민건강보험공단이 협상한 신약 약품비는 연평균 13%씩 증가해 건강보험료 인상률의 8배에 달했다. 킴리아주 급여 적용에는 2022~2024년에 걸쳐 1,296억 원이 들었는데 이 가운데 약 766억 원이...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/469/0000913697?sid=102' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.hankookilbo.com/news/article/A2026020917360002781?did=NA' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=0 data-hay='&quot;건전성 규제에 투자확대 막혀&quot;…보험사도 울상 위험계수가 높아지면 요구자본도 커지는데, 보험사 건전성지표인 지급여력비율(K-ICS·킥스)에 부담이 된다. 킥스 비율은 가용자본을 요구자본으로 나눈값으로, 분모인 요구자본이 높아지면 킥스가 악화된다.... 보험' data-ts='1770630960.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/018/0006216170?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/018/0006216170?sid=101' target='_blank' rel='noopener noreferrer' data-title>&quot;건전성 규제에 투자확대 막혀&quot;…보험사도 울상</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 18:56</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>위험계수가 높아지면 요구자본도 커지는데, 보험사 건전성지표인 지급여력비율(K-ICS·킥스)에 부담이 된다. 킥스 비율은 가용자본을 요구자본으로 나눈값으로, 분모인 요구자본이 높아지면 킥스가 악화된다....</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/018/0006216170?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='http://www.edaily.co.kr/news/newspath.asp?newsid=05123366645348880' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=0 data-hay='초고가 신약, 치료 효과는 40%…시민·환자단체 “급여 신속등재 재검토... 이는 건강보험료 인상률의 약 8배에 달하는 수준이다. 반면 치료 효과에 대한 근거는 충분하지 않다는 평가가 이어졌다. 학계에 따르면 미국 식품의약국(FDA)의 가속 승인 항암제를 5년 이상 추적 관찰한 결과, 약 41... 보험' data-ts='1770629160.0' data-rel='0.0' data-url='https://mdtoday.co.kr/news/view/1065594841214082'>  <div class='card-head'>    <h3 class='title'>      <a href='https://mdtoday.co.kr/news/view/1065594841214082' target='_blank' rel='noopener noreferrer' data-title>초고가 신약, 치료 효과는 40%…시민·환자단체 “급여 신속등재 재검토...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 18:26</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>이는 건강보험료 인상률의 약 8배에 달하는 수준이다. 반면 치료 효과에 대한 근거는 충분하지 않다는 평가가 이어졌다. 학계에 따르면 미국 식품의약국(FDA)의 가속 승인 항암제를 5년 이상 추적 관찰한 결과, 약 41...</p>  <div class='actions'><a class='btn small primary' href='https://mdtoday.co.kr/news/view/1065594841214082' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=0 data-hay='1세대 → 4세대 실손 갈아타기, 1년새 반토막 보험료 인상에도 일부 가입자들은 기존 혜택과 보장을 고려해 전환을 망설이고 있다. 보험사들의 손해율 개선 계획이 흔들리는 가운데 금융당국과 보험업계는 오는 4월 5세대 실손보험 출시로 손해율 안정과... 보험' data-ts='1770628980.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/014/0005475846?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/014/0005475846?sid=101' target='_blank' rel='noopener noreferrer' data-title>1세대 → 4세대 실손 갈아타기, 1년새 반토막</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 18:23</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>보험료 인상에도 일부 가입자들은 기존 혜택과 보장을 고려해 전환을 망설이고 있다. 보험사들의 손해율 개선 계획이 흔들리는 가운데 금융당국과 보험업계는 오는 4월 5세대 실손보험 출시로 손해율 안정과...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/014/0005475846?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='http://www.fnnews.com/news/202602091822317872' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div></section><section data-group id='sec-증권'>  <div class='section-head'>    <h2>증권<span class='count'>4</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='증권' data-top=0 data-hay='이찬진 금감원장 “유령 코인 발생 구조적 문제 반드시 해결” 아울러 이 원장은 불공정거래 등 자본시장을 교란하는 행위를 엄단하겠다고 밝혔다. 그는 “기업금융(IB)과 정치 테마주 불공정거래 혐의 등을 신속히 조사하겠다”며 “주요 상장기업에 대한 회계심사·감리 주기를 기존... 증권' data-ts='1770637500.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/032/0003426834?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/032/0003426834?sid=101' target='_blank' rel='noopener noreferrer' data-title>이찬진 금감원장 “유령 코인 발생 구조적 문제 반드시 해결”</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 20:45</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>아울러 이 원장은 불공정거래 등 자본시장을 교란하는 행위를 엄단하겠다고 밝혔다. 그는 “기업금융(IB)과 정치 테마주 불공정거래 혐의 등을 신속히 조사하겠다”며 “주요 상장기업에 대한 회계심사·감리 주기를 기존...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/032/0003426834?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.khan.co.kr/article/202602092045005' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='금감원, 불공정거래 조사 강화…코스피 감리주기 10년으로 단축 이찬진 금융감독원장 ㅣ 연합뉴스 금융감독원은 올해 기업금융(IB) 부문 미공개정보 이용, 신규사업 가장, 정치테마 관련 불공정거래 조사와 단속을 강화한다고 9일 밝혔다. 금감원은 특히 인공지능(AI)·로봇 등 테마를... 증권' data-ts='1770633960.0' data-rel='0.0' data-url='http://www.biztribune.co.kr/news/articleView.html?idxno=348715'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.biztribune.co.kr/news/articleView.html?idxno=348715' target='_blank' rel='noopener noreferrer' data-title>금감원, 불공정거래 조사 강화…코스피 감리주기 10년으로 단축</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 19:46</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>이찬진 금융감독원장 ㅣ 연합뉴스 금융감독원은 올해 기업금융(IB) 부문 미공개정보 이용, 신규사업 가장, 정치테마 관련 불공정거래 조사와 단속을 강화한다고 9일 밝혔다. 금감원은 특히 인공지능(AI)·로봇 등 테마를...</p>  <div class='actions'><a class='btn small primary' href='http://www.biztribune.co.kr/news/articleView.html?idxno=348715' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='[앵커리포트] 가상자산 시세조종 &#x27;기획조사&#x27;…불공정거래 정조준 가상자산거래소 빗썸이 저지른 초유의 오지급 사태의 전말이었죠. 오지급된 가상자산 회수에 나선 빗썸, 이제 남은 건 130억 원 가량의 비트코인 125개 상당입니다. 이번 사고로 불안해진 게 있습니다. 바로 가상자산거래... 증권' data-ts='1770629100.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/422/0000832172?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/422/0000832172?sid=101' target='_blank' rel='noopener noreferrer' data-title>[앵커리포트] 가상자산 시세조종 &#x27;기획조사&#x27;…불공정거래 정조준</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 18:25</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>가상자산거래소 빗썸이 저지른 초유의 오지급 사태의 전말이었죠. 오지급된 가상자산 회수에 나선 빗썸, 이제 남은 건 130억 원 가량의 비트코인 125개 상당입니다. 이번 사고로 불안해진 게 있습니다. 바로 가상자산거래...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/422/0000832172?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='http://www.yonhapnewstv.co.kr/MYH20260209182439mHR' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='WSJ &quot;금·은 랠리 뒤엔 중국 &#x27;아줌마&#x27; 투자 열풍&quot; WSJ은 중국 가계가 부동산 침체, 주식시장 변동성, 낮은 예금금리 속에서 ‘가치 보존’ 대안으로 금에 몰리고 있다고 분석했다. 위챗·알리페이 등 앱으로 금 ETF 같은 상품을 손쉽게 살 수 있고, 상하이선물거래소 금... 증권' data-ts='1770628500.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/448/0000589517?sid=104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/448/0000589517?sid=104' target='_blank' rel='noopener noreferrer' data-title>WSJ &quot;금·은 랠리 뒤엔 중국 &#x27;아줌마&#x27; 투자 열풍&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 18:15</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>WSJ은 중국 가계가 부동산 침체, 주식시장 변동성, 낮은 예금금리 속에서 ‘가치 보존’ 대안으로 금에 몰리고 있다고 분석했다. 위챗·알리페이 등 앱으로 금 ETF 같은 상품을 손쉽게 살 수 있고, 상하이선물거래소 금...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/448/0000589517?sid=104' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://news.tvchosun.com/site/data/html_dir/2026/02/09/2026020990278.html' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div></section><section data-group id='sec-카드'>  <div class='section-head'>    <h2>카드<span class='count'>6</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='카드' data-top=0 data-hay='[DQN] 신한카드 1위·삼성카드 성장율 두각…하나카드 하위권 여전 [카드... 지난해 말 기준 삼성카드의 개인 신용판매액은 141조7838억원으로 전년 말 대비 9.0% 증가했다. 지난해 말 기준 삼성카드의 시장점유율은 19.5%로 전년 대비 0.9%p 성장했다. 한국금융신문의 를 받아보세요~ 뉴스레터 신청 Copyright c 한국금융신문 &amp; FNTIMES.com 강은영 기자 기사 더보기 페이스북 구글플러스 카카오스토리 다른 기사 기동호 우리금융캐피탈 대표, 투자 평가손익 확대로 순익 회복...생산적 금융 중심 성장 목표 [2025 금융사 실적] 저축은행중앙회 NPL자회사, 1분기 내 첫 매입 목표...연내 자산관리회사 전환 추진 [저축은행 카드' data-ts='1770670920.0' data-rel='0.0' data-url='http://www.fntimes.com/html/view.php?ud=2026013015551024829efc5ce4ae_18'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.fntimes.com/html/view.php?ud=2026013015551024829efc5ce4ae_18' target='_blank' rel='noopener noreferrer' data-title>[DQN] 신한카드 1위·삼성카드 성장율 두각…하나카드 하위권 여전 [카드...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:02</span>        <span>·</span><span class='badge'>카드</span>  </div>  <p class='summary' data-summary>지난해 말 기준 삼성카드의 개인 신용판매액은 141조7838억원으로 전년 말 대비 9.0% 증가했다. 지난해 말 기준 삼성카드의 시장점유율은 19.5%로 전년 대비 0.9%p 성장했다. 한국금융신문의 를 받아보세요~ 뉴스레터 신청 Copyright c 한국금융신문 &amp; FNTIMES.com 강은영 기자 기사 더보기 페이스북 구글플러스 카카오스토리 다른 기사 기동호 우리금융캐피탈 대표, 투자 평가손익 확대로 순익 회복...생산적 금융 중심 성장 목표 [2025 금융사 실적] 저축은행중앙회 NPL자회사, 1분기 내 첫 매입 목표...연내 자산관리회사 전환 추진 [저축은행</p>  <div class='actions'><a class='btn small primary' href='http://www.fntimes.com/html/view.php?ud=2026013015551024829efc5ce4ae_18' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='카드' data-top=0 data-hay='카카오페이, 설 맞아 영세 가맹점 결제 수수료 면제 2022년 1월 온라인 영세·중소 가맹점 대상 카드 결제 수수료를 인하했고 2023년에도 2월부터는 온라인 영세·중소 가맹점의 카카오페이머니 결제 수수료도 카드 수수료 수준에 맞춰 추가 인하했다. 카카오페이는 수수료... 카드' data-ts='1770641640.0' data-rel='0.0' data-url='http://www.bizwnews.com/news/articleView.html?idxno=124806'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.bizwnews.com/news/articleView.html?idxno=124806' target='_blank' rel='noopener noreferrer' data-title>카카오페이, 설 맞아 영세 가맹점 결제 수수료 면제</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 21:54</span>        <span>·</span><span class='badge'>카드</span>  </div>  <p class='summary' data-summary>2022년 1월 온라인 영세·중소 가맹점 대상 카드 결제 수수료를 인하했고 2023년에도 2월부터는 온라인 영세·중소 가맹점의 카카오페이머니 결제 수수료도 카드 수수료 수준에 맞춰 추가 인하했다. 카카오페이는 수수료...</p>  <div class='actions'><a class='btn small primary' href='http://www.bizwnews.com/news/articleView.html?idxno=124806' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='카드' data-top=0 data-hay='[4Q 카드사 실적리뷰] 삼성카드, 조달금리 부담 속 순익 방어…배당 매... 삼성카드가 고금리 여파로 금융·대손비용 부담이 이어졌지만, 취급고 성장 등으로 실적 하락을... 이중 카드론은 6조1738억원을 기록하며 같은 기간 7.4%의 증가율을 보였고, 현금서비스는 1조449억원으로 전년 대비 6.... 카드' data-ts='1770635760.0' data-rel='0.0' data-url='https://www.kfenews.co.kr/news/articleView.html?idxno=654220'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.kfenews.co.kr/news/articleView.html?idxno=654220' target='_blank' rel='noopener noreferrer' data-title>[4Q 카드사 실적리뷰] 삼성카드, 조달금리 부담 속 순익 방어…배당 매...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 20:16</span>        <span>·</span><span class='badge'>카드</span>  </div>  <p class='summary' data-summary>삼성카드가 고금리 여파로 금융·대손비용 부담이 이어졌지만, 취급고 성장 등으로 실적 하락을... 이중 카드론은 6조1738억원을 기록하며 같은 기간 7.4%의 증가율을 보였고, 현금서비스는 1조449억원으로 전년 대비 6....</p>  <div class='actions'><a class='btn small primary' href='https://www.kfenews.co.kr/news/articleView.html?idxno=654220' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='카드' data-top=0 data-hay='광주 동구, 삶의 질 3년 연속 상승…행복도 광주 최상위 또 연 매출 2억 원 이하 임차 소상공인을 대상으로 카드 수수료를 최대 30만 원까지 지원하는 등 골목상권 체감형 지원에도 나서고 있다. 이와 함께 AI 창업 실증밸리 조성, AI 헬스케어 기반 혁신기업 유치, AI 헬스케어... 카드' data-ts='1770635700.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/079/0004114147?sid=102'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/079/0004114147?sid=102' target='_blank' rel='noopener noreferrer' data-title>광주 동구, 삶의 질 3년 연속 상승…행복도 광주 최상위</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 20:15</span>        <span>·</span><span class='badge'>카드</span>  </div>  <p class='summary' data-summary>또 연 매출 2억 원 이하 임차 소상공인을 대상으로 카드 수수료를 최대 30만 원까지 지원하는 등 골목상권 체감형 지원에도 나서고 있다. 이와 함께 AI 창업 실증밸리 조성, AI 헬스케어 기반 혁신기업 유치, AI 헬스케어...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/079/0004114147?sid=102' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.nocutnews.co.kr/news/6469505?utm_source=naver&amp;utm_medium=article&amp;utm_campaign=20260209081414' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='카드' data-top=0 data-hay='동구, 광주 대표 인문도시 입증 ‘행복은 더하고 걱정은 덜고’ 이와 함께 지역화폐 ‘동구랑페이’ 확대 발행, 소상공인 카드 수수료 지원, 골목상권 활성화 정책 등 민생경제 안정에도 힘을 쏟고 있다. 동구 관계자는 “삶의 만족과 행복은 꾸준히 오르고, 걱정은 줄어드는 흐름이... 카드' data-ts='1770634800.0' data-rel='0.0' data-url='https://www.geconomy.co.kr/news/article.html?no=315545'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.geconomy.co.kr/news/article.html?no=315545' target='_blank' rel='noopener noreferrer' data-title>동구, 광주 대표 인문도시 입증 ‘행복은 더하고 걱정은 덜고’</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 20:00</span>        <span>·</span><span class='badge'>카드</span>  </div>  <p class='summary' data-summary>이와 함께 지역화폐 ‘동구랑페이’ 확대 발행, 소상공인 카드 수수료 지원, 골목상권 활성화 정책 등 민생경제 안정에도 힘을 쏟고 있다. 동구 관계자는 “삶의 만족과 행복은 꾸준히 오르고, 걱정은 줄어드는 흐름이...</p>  <div class='actions'><a class='btn small primary' href='https://www.geconomy.co.kr/news/article.html?no=315545' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='카드' data-top=0 data-hay='카카오페이, 설 연휴 일주일간 영세 가맹점 수수료 전액 면제 2022년 1월 온라인 영세·중소 가맹점 카드 결제 수수료를 인하했고 2023년 2월부터는 카카오페이머니 결제 수수료도 카드 수수료 수준에 맞춰 추가 인하했다. 카카오페이는 수수료 지원 외에도 소상공인 동반 성장을... 카드' data-ts='1770628320.0' data-rel='0.0' data-url='https://www.ngetnews.com/news/articleView.html?idxno=547723'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.ngetnews.com/news/articleView.html?idxno=547723' target='_blank' rel='noopener noreferrer' data-title>카카오페이, 설 연휴 일주일간 영세 가맹점 수수료 전액 면제</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-09 18:12</span>        <span>·</span><span class='badge'>카드</span>  </div>  <p class='summary' data-summary>2022년 1월 온라인 영세·중소 가맹점 카드 결제 수수료를 인하했고 2023년 2월부터는 카카오페이머니 결제 수수료도 카드 수수료 수준에 맞춰 추가 인하했다. 카카오페이는 수수료 지원 외에도 소상공인 동반 성장을...</p>  <div class='actions'><a class='btn small primary' href='https://www.ngetnews.com/news/articleView.html?idxno=547723' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div></section><section data-group id='sec-저축은행'>  <div class='section-head'>    <h2>저축은행<span class='count'>1</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='감독입법' data-top=0 data-hay='신한·우리 웃고 KB·하나 울고…지주계열 저축은행 실적 &#x27;희비&#x27; 신한, 215억원 당기순익 기록...전년 대비 이익 규모 확대 우리금융, 지난해 실적 턴어라운드...수익 구조 개편 등 영향 KB·하나, 3년 연속 적자...PF 부실·충당금 등이 실적 발목 &quot;지난해 6월 규제 이후 대출 여력↓...당분간 흐름 지속될 듯&quot; 저축은행 앞으로 시민이 지나가고 있다. 반면, KB저축은행은 지난해 48억원의 순손실을 기록하며 3년 연속 적자를 이어갔다. 업계 관계자는 &quot;지난해 6월 부동산 규제 이후 대출 여력이 크게 줄었다&quot;며 &quot;대출 여력이 제한된 가운데 부동산 경기 회복도 지연되고 있어 당분간은 지난해 하반기와 비슷한 흐름이 이어질 것&quot;이 감독입법' data-ts='1770674400.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/119/0003057960?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/119/0003057960?sid=101' target='_blank' rel='noopener noreferrer' data-title>신한·우리 웃고 KB·하나 울고…지주계열 저축은행 실적 &#x27;희비&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:00</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>신한, 215억원 당기순익 기록...전년 대비 이익 규모 확대 우리금융, 지난해 실적 턴어라운드...수익 구조 개편 등 영향 KB·하나, 3년 연속 적자...PF 부실·충당금 등이 실적 발목 &quot;지난해 6월 규제 이후 대출 여력↓...당분간 흐름 지속될 듯&quot; 저축은행 앞으로 시민이 지나가고 있다. 반면, KB저축은행은 지난해 48억원의 순손실을 기록하며 3년 연속 적자를 이어갔다. 업계 관계자는 &quot;지난해 6월 부동산 규제 이후 대출 여력이 크게 줄었다&quot;며 &quot;대출 여력이 제한된 가운데 부동산 경기 회복도 지연되고 있어 당분간은 지난해 하반기와 비슷한 흐름이 이어질 것&quot;이</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/119/0003057960?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.dailian.co.kr/news/view/1608535/?sc=Naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div></section><section data-group id='sec-감독입법'>  <div class='section-head'>    <h2>감독입법<span class='count'>15</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='감독입법' data-top=0 data-hay='KB금융, 6조 클럽 턱밑 리딩금융 독주 체제…비은행 실적은 희비 비은행 계열사 순익 규모는 KB손해보험이 7782억원으로 가장 컸고, KB증권 6739억원, KB국민카드 3302억원, KB라이프생명 2440억원 순이었다. 보험 계열사도 KB손해보험은 7.3%, KB라이프생명은 9.4%의 순익이 감소했다. kumky@news2day.co.kr 이 기자의 다른 기사 보기 [관련기사] KB금융, 6조 클럽 턱밑 리딩금융 독주 체제...비은행 실적은 희비 [N2 특징주] KB금융, 역대 최대 실적에 주주환원까지...장중 신고가 경신 [N2 증시 풍향계] 증시 위축, 한화솔루션·KB금융·삼표시멘트 ‘강세’...케이엠제약·SG세계물산·웰킵스 감독입법' data-ts='1770675960.0' data-rel='0.0' data-url='https://www.news2day.co.kr/article/20260210500007'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.news2day.co.kr/article/20260210500007' target='_blank' rel='noopener noreferrer' data-title>KB금융, 6조 클럽 턱밑 리딩금융 독주 체제…비은행 실적은 희비</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:26</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>비은행 계열사 순익 규모는 KB손해보험이 7782억원으로 가장 컸고, KB증권 6739억원, KB국민카드 3302억원, KB라이프생명 2440억원 순이었다. 보험 계열사도 KB손해보험은 7.3%, KB라이프생명은 9.4%의 순익이 감소했다. kumky@news2day.co.kr 이 기자의 다른 기사 보기 [관련기사] KB금융, 6조 클럽 턱밑 리딩금융 독주 체제...비은행 실적은 희비 [N2 특징주] KB금융, 역대 최대 실적에 주주환원까지...장중 신고가 경신 [N2 증시 풍향계] 증시 위축, 한화솔루션·KB금융·삼표시멘트 ‘강세’...케이엠제약·SG세계물산·웰킵스</p>  <div class='actions'><a class='btn small primary' href='https://www.news2day.co.kr/article/20260210500007' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='6·27대책 후 주식·채권 팔아 서울에 집 산 돈 2조원 넘었다 10일 연합뉴스가 국회 국토교통위원회 소속 김종양 의원(국민의힘)실을 통해 입수한 국토교통부의 서울 주택 매수 자금조달계획서 집계 자료에 따르면 6·27 대책이 시행된 직후인 작년 7월부터 12월까지 서울 주택 매수에 활용된 &#x27;주식·채권 매각 대금&#x27;은 2조948억원으로 집계됐다. 주식·채권을 팔아 충당한 서울 주택 매수 자금은 2021년 2조58억원에서 2022년 5천765억원으로 감소했다가 이후 2023년 1조592억원, 2024년 2조2천545억원, 작년 3조8천916억원으로 지난 3년 새 매년 2배 안팎으로 급증했다. 지난 7개월 동안 서울 주택 매수에 활용된 감독입법' data-ts='1770675840.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/001/0015896126?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/001/0015896126?sid=101' target='_blank' rel='noopener noreferrer' data-title>6·27대책 후 주식·채권 팔아 서울에 집 산 돈 2조원 넘었다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:24</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>10일 연합뉴스가 국회 국토교통위원회 소속 김종양 의원(국민의힘)실을 통해 입수한 국토교통부의 서울 주택 매수 자금조달계획서 집계 자료에 따르면 6·27 대책이 시행된 직후인 작년 7월부터 12월까지 서울 주택 매수에 활용된 &#x27;주식·채권 매각 대금&#x27;은 2조948억원으로 집계됐다. 주식·채권을 팔아 충당한 서울 주택 매수 자금은 2021년 2조58억원에서 2022년 5천765억원으로 감소했다가 이후 2023년 1조592억원, 2024년 2조2천545억원, 작년 3조8천916억원으로 지난 3년 새 매년 2배 안팎으로 급증했다. 지난 7개월 동안 서울 주택 매수에 활용된</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/001/0015896126?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.yna.co.kr/view/AKR20260208057600003?input=1195m' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='생산적 금융의 역설…빠르게 불어나는 은행 부실 4대 은행, 지난해 순익 14조 사상최대 요주의여신·고정이하여신 급증, 건전성 불안 “자칫 부실을 생산하는 금융으로 변질될 수도” 지난해 4분기 기준 4대 은행의 요주의여신은 7조9291억원으로 1년 전보다 11% 늘었다. 2021년과 비교하면 무려 49% 증가한 규모다.c데일리안 AI 삽화 이미지 [데일리안 = 원나래 기자] 4대 시중은행이 지난해 14조원에 육박하는 사상 최대 순이익을 기록했지만, 정작 부실 대출은 더 빠른 속도로 늘어나는 역설이 뚜렷해지고 있다. 지난해 4분기 기준 4대 은행의 요주의여신은 7조9291억원으로 1년 전보다 11% 늘었다. 감독입법' data-ts='1770674640.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/119/0003057967?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/119/0003057967?sid=101' target='_blank' rel='noopener noreferrer' data-title>생산적 금융의 역설…빠르게 불어나는 은행 부실</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:04</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>4대 은행, 지난해 순익 14조 사상최대 요주의여신·고정이하여신 급증, 건전성 불안 “자칫 부실을 생산하는 금융으로 변질될 수도” 지난해 4분기 기준 4대 은행의 요주의여신은 7조9291억원으로 1년 전보다 11% 늘었다. 2021년과 비교하면 무려 49% 증가한 규모다.c데일리안 AI 삽화 이미지 [데일리안 = 원나래 기자] 4대 시중은행이 지난해 14조원에 육박하는 사상 최대 순이익을 기록했지만, 정작 부실 대출은 더 빠른 속도로 늘어나는 역설이 뚜렷해지고 있다. 지난해 4분기 기준 4대 은행의 요주의여신은 7조9291억원으로 1년 전보다 11% 늘었다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/119/0003057967?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.dailian.co.kr/news/view/1608611/?sc=Naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='셋방 구하기 힘든 서울…보유세 인상 여파 우려도 9일 부동산 업계에 따르면 이날 기준 서울 도봉구 도봉동 2678가구 규모 &#x27;도봉한신&#x27; 단지는 현재 나와 있는 전세 및 월세 물건이 각각 4건뿐이다. 이런 흐름 속에서 서울 전·월세 물량은 감소세가 뚜렷하다. KB부동산에 따르면 지난달 기준 서울 전·월세 전환율은 4.25%로 1년 전(4.14%)과 비교하면 0.11%포인트(p) 상승했다. 감독입법' data-ts='1770674520.0' data-rel='0.0' data-url='https://www.etoday.co.kr/news/view/2554676'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.etoday.co.kr/news/view/2554676' target='_blank' rel='noopener noreferrer' data-title>셋방 구하기 힘든 서울…보유세 인상 여파 우려도</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:02</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>9일 부동산 업계에 따르면 이날 기준 서울 도봉구 도봉동 2678가구 규모 &#x27;도봉한신&#x27; 단지는 현재 나와 있는 전세 및 월세 물건이 각각 4건뿐이다. 이런 흐름 속에서 서울 전·월세 물량은 감소세가 뚜렷하다. KB부동산에 따르면 지난달 기준 서울 전·월세 전환율은 4.25%로 1년 전(4.14%)과 비교하면 0.11%포인트(p) 상승했다.</p>  <div class='actions'><a class='btn small primary' href='https://www.etoday.co.kr/news/view/2554676' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='신한·우리 웃고 KB·하나 울고…지주계열 저축은행 실적 &#x27;희비&#x27; 신한, 215억원 당기순익 기록...전년 대비 이익 규모 확대 우리금융, 지난해 실적 턴어라운드...수익 구조 개편 등 영향 KB·하나, 3년 연속 적자...PF 부실·충당금 등이 실적 발목 &quot;지난해 6월 규제 이후 대출 여력↓...당분간 흐름 지속될 듯&quot; 저축은행 앞으로 시민이 지나가고 있다. 반면, KB저축은행은 지난해 48억원의 순손실을 기록하며 3년 연속 적자를 이어갔다. 업계 관계자는 &quot;지난해 6월 부동산 규제 이후 대출 여력이 크게 줄었다&quot;며 &quot;대출 여력이 제한된 가운데 부동산 경기 회복도 지연되고 있어 당분간은 지난해 하반기와 비슷한 흐름이 이어질 것&quot;이 감독입법' data-ts='1770674400.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/119/0003057960?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/119/0003057960?sid=101' target='_blank' rel='noopener noreferrer' data-title>신한·우리 웃고 KB·하나 울고…지주계열 저축은행 실적 &#x27;희비&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:00</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>신한, 215억원 당기순익 기록...전년 대비 이익 규모 확대 우리금융, 지난해 실적 턴어라운드...수익 구조 개편 등 영향 KB·하나, 3년 연속 적자...PF 부실·충당금 등이 실적 발목 &quot;지난해 6월 규제 이후 대출 여력↓...당분간 흐름 지속될 듯&quot; 저축은행 앞으로 시민이 지나가고 있다. 반면, KB저축은행은 지난해 48억원의 순손실을 기록하며 3년 연속 적자를 이어갔다. 업계 관계자는 &quot;지난해 6월 부동산 규제 이후 대출 여력이 크게 줄었다&quot;며 &quot;대출 여력이 제한된 가운데 부동산 경기 회복도 지연되고 있어 당분간은 지난해 하반기와 비슷한 흐름이 이어질 것&quot;이</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/119/0003057960?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.dailian.co.kr/news/view/1608535/?sc=Naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='서울 강남 매물 늘었다지만, 실제 거래는 달랐다 다주택자 양도세 중과 유예 종료를 밝힌 뒤 주택을 처분하려는 다주택자들로 인해 강남 등 고가 지역의 매물이 늘었다는 점을 강조한 건데 공급이 늘면 결국 가격 안정으로 이어질 것이라는 기대입니다. 조사 기간은 대통령이 다주택자 양도세 중과 유예 종료를 처음 밝힌 1월 23일부터 2월 5일(14일), 그리고 그 직전 1월 9일부터 1월 22일(14일)이 대상입니다. 지난해 ‘10·15 대책’으로 대출 규제 등이 한층 강화되자 송파구, 강남구, 서초구 지역의 아파트 거래 건수는 감소하고, 강북구, 노원구, 도봉구 등 서울 중저가 지역의 거래 건수는 모두 증가세로 전환됐습니 감독입법' data-ts='1770673320.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/056/0012122162?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/056/0012122162?sid=101' target='_blank' rel='noopener noreferrer' data-title>서울 강남 매물 늘었다지만, 실제 거래는 달랐다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:42</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>다주택자 양도세 중과 유예 종료를 밝힌 뒤 주택을 처분하려는 다주택자들로 인해 강남 등 고가 지역의 매물이 늘었다는 점을 강조한 건데 공급이 늘면 결국 가격 안정으로 이어질 것이라는 기대입니다. 조사 기간은 대통령이 다주택자 양도세 중과 유예 종료를 처음 밝힌 1월 23일부터 2월 5일(14일), 그리고 그 직전 1월 9일부터 1월 22일(14일)이 대상입니다. 지난해 ‘10·15 대책’으로 대출 규제 등이 한층 강화되자 송파구, 강남구, 서초구 지역의 아파트 거래 건수는 감소하고, 강북구, 노원구, 도봉구 등 서울 중저가 지역의 거래 건수는 모두 증가세로 전환됐습니</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/056/0012122162?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://news.kbs.co.kr/news/pc/view/view.do?ncd=8481847&amp;ref=A' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='돈만 있으면 되는 줄 알았는데…&#x27;강남 로또&#x27; 당첨되려면 [돈앤톡] 4인 가족(20점)이 청약 통장 가입 기간 만점(17점·15년 이상)과 무주택 기간 만점(32점·15년 이상)을 충족해야 합니다. 집값에 따라 차등 적용되는데 15억원 이하의 경우 최대 6억원, 15억원 초과 25억원 이하는 최대 4억원, 25억원 초과는 최대 2억원입니다. 한편 분양업계에 따르면 올해 서울 강남권에서 분양하는 단지는 오는 2월 포스코이앤씨가 서초구 잠원동에서 분양하는 &#x27;오티에르 반포&#x27;가 있습니다. 감독입법' data-ts='1770672660.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/015/0005249096?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/015/0005249096?sid=101' target='_blank' rel='noopener noreferrer' data-title>돈만 있으면 되는 줄 알았는데…&#x27;강남 로또&#x27; 당첨되려면 [돈앤톡]</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:31</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>4인 가족(20점)이 청약 통장 가입 기간 만점(17점·15년 이상)과 무주택 기간 만점(32점·15년 이상)을 충족해야 합니다. 집값에 따라 차등 적용되는데 15억원 이하의 경우 최대 6억원, 15억원 초과 25억원 이하는 최대 4억원, 25억원 초과는 최대 2억원입니다. 한편 분양업계에 따르면 올해 서울 강남권에서 분양하는 단지는 오는 2월 포스코이앤씨가 서초구 잠원동에서 분양하는 &#x27;오티에르 반포&#x27;가 있습니다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/015/0005249096?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.hankyung.com/article/2026020934836' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='집 사모으며 세금도 안 내‥임대사업자 뭐기에 임대 사업자에게 각종 혜택을 주면 임대 물량이 늘고, 세입자도 보호할 수 있다는 이유였습니다. [임재만/세종대 부동산학과 교수] &quot;그래서 지금 남은 건 뭐냐면 비아파트는 건설임대, 매입 임대 다 가능하고, 아파트는 매입 임대는 안 되고 이런 상황이죠.&quot; 신규로 임대 사업자가 되거나, 기존 임대사업자가 임대 주택을 더 매수할 이유도 줄었습니다. 그 사람들은 계속 70% 공제 받은 장기보유 공제 다 받은 양도세 중과 미적용 대상 주택을 계속 보유하고...&quot; 2024년 기준으로 전체 임대사업자는 23만 8천여 명. 감독입법' data-ts='1770671160.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/214/0001479781?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/214/0001479781?sid=101' target='_blank' rel='noopener noreferrer' data-title>집 사모으며 세금도 안 내‥임대사업자 뭐기에</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:06</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>임대 사업자에게 각종 혜택을 주면 임대 물량이 늘고, 세입자도 보호할 수 있다는 이유였습니다. [임재만/세종대 부동산학과 교수] &quot;그래서 지금 남은 건 뭐냐면 비아파트는 건설임대, 매입 임대 다 가능하고, 아파트는 매입 임대는 안 되고 이런 상황이죠.&quot; 신규로 임대 사업자가 되거나, 기존 임대사업자가 임대 주택을 더 매수할 이유도 줄었습니다. 그 사람들은 계속 70% 공제 받은 장기보유 공제 다 받은 양도세 중과 미적용 대상 주택을 계속 보유하고...&quot; 2024년 기준으로 전체 임대사업자는 23만 8천여 명.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/214/0001479781?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://imnews.imbc.com/replay/2026/nwtoday/article/6799921_37012.html' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='강남 매물 늘었다는데…실제 거래는 얼마나? [서울 서초구 공인중개사/음성변조 : &quot;매도인 분들은 좀 집을 내놓으시는 분위기긴 해요.&quot;] [서울 강남구 공인중개사/음성변조 : &quot;큰 변화 없습니다. 이 매물이 실제 거래로까지 이어지는지 확인하기 위해 KBS는 서울 25개 구청이 접수한 토지거래허가 신청 건수를 전수 조사했습니다. [서울 서초구 공인중개사/음성변조 : &quot;다른 물건보다 조금 낮게는 내놓으시는데 그렇다고 매수인이 바로 살 수 있는 조건의 가격까지 떨어진 경우는 제가 볼 때는 아직까지는 아니에요.&quot;] 시간이 지나 매물이 더 쌓이면 가격이 떨어질 거라는 기대도 있습니다. 감독입법' data-ts='1770671100.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/056/0012122153?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/056/0012122153?sid=101' target='_blank' rel='noopener noreferrer' data-title>강남 매물 늘었다는데…실제 거래는 얼마나?</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:05</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>[서울 서초구 공인중개사/음성변조 : &quot;매도인 분들은 좀 집을 내놓으시는 분위기긴 해요.&quot;] [서울 강남구 공인중개사/음성변조 : &quot;큰 변화 없습니다. 이 매물이 실제 거래로까지 이어지는지 확인하기 위해 KBS는 서울 25개 구청이 접수한 토지거래허가 신청 건수를 전수 조사했습니다. [서울 서초구 공인중개사/음성변조 : &quot;다른 물건보다 조금 낮게는 내놓으시는데 그렇다고 매수인이 바로 살 수 있는 조건의 가격까지 떨어진 경우는 제가 볼 때는 아직까지는 아니에요.&quot;] 시간이 지나 매물이 더 쌓이면 가격이 떨어질 거라는 기대도 있습니다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/056/0012122153?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://news.kbs.co.kr/news/pc/view/view.do?ncd=8481831&amp;ref=A' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='&#x27;여신 사업&#x27; 활로 노리는 인터넷은행…&#x27;개인사업자 대출&#x27; 경쟁 속도전 전문직 등 개인사업자 대출 라인업 확장...담보대출·보증서대출도 확대 가계·기업 대출 제약 돌파구...인뱅 중장기 전략 부상 c 뉴스1 윤주희 디자이너 (서울=뉴스1) 정지윤 기자 = 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 삼고 상품과 서비스를 강화하고 있다. 토스뱅크에 앞서 먼저 개인사업자 대출 상품을 출시했던 인터넷은행들도 기존 개인사업자 대출 상품을 개편하는 등 경쟁에 본격 나서는 추세다. 지난해 말 기준 카카오뱅크의 개인사업자 대출 잔액은 전년 대비 1조 2000억 원 늘어나 3조 원을 돌파했다. 감독입법' data-ts='1770670800.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/421/0008764070?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/421/0008764070?sid=101' target='_blank' rel='noopener noreferrer' data-title>&#x27;여신 사업&#x27; 활로 노리는 인터넷은행…&#x27;개인사업자 대출&#x27; 경쟁 속도전</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 06:00</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>전문직 등 개인사업자 대출 라인업 확장...담보대출·보증서대출도 확대 가계·기업 대출 제약 돌파구...인뱅 중장기 전략 부상 c 뉴스1 윤주희 디자이너 (서울=뉴스1) 정지윤 기자 = 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 삼고 상품과 서비스를 강화하고 있다. 토스뱅크에 앞서 먼저 개인사업자 대출 상품을 출시했던 인터넷은행들도 기존 개인사업자 대출 상품을 개편하는 등 경쟁에 본격 나서는 추세다. 지난해 말 기준 카카오뱅크의 개인사업자 대출 잔액은 전년 대비 1조 2000억 원 늘어나 3조 원을 돌파했다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/421/0008764070?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.news1.kr/finance/general-finance/6067492' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div></section><section data-group id='sec-기타'>  <div class='section-head'>    <h2>기타<span class='count'>214</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='기타' data-top=0 data-hay='LTV·ELS 충당금 반영 &#x27;보수적&#x27;…은행별 적립비율 온도차 은행권의 생산적 금융 확대에 부담으로 작용할 수 있는 만큼 금융당국이 이를 감안해 조정에 나설 수밖에 없다는 시각이다. 금융감독원은 오는 12일 3차 제재심의위원회를 통해 과징금 규모를 확정할 것으로 알려졌다. 기타' data-ts='1770675960.0' data-rel='0.0' data-url='https://dealsite.co.kr/articles/156659'>  <div class='card-head'>    <h3 class='title'>      <a href='https://dealsite.co.kr/articles/156659' target='_blank' rel='noopener noreferrer' data-title>LTV·ELS 충당금 반영 &#x27;보수적&#x27;…은행별 적립비율 온도차</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:26</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>은행권의 생산적 금융 확대에 부담으로 작용할 수 있는 만큼 금융당국이 이를 감안해 조정에 나설 수밖에 없다는 시각이다. 금융감독원은 오는 12일 3차 제재심의위원회를 통해 과징금 규모를 확정할 것으로 알려졌다.</p>  <div class='actions'><a class='btn small primary' href='https://dealsite.co.kr/articles/156659' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='60조 사고 쳤는데 점유율 급등? 빗썸의 &#x27;아이러니&#x27;, 왜? 2026년 비트코인 말고 &#x27;이것&#x27; 봐라...1타강사의 소름 돋는 예언 English Japan Indonesia China Russia Breaking news Headline News Today Crypto &amp; Blockchain Money &amp; Stock English Special Crypto &amp; Blockchain 60조 사고 쳤는데 점유율 급등? 김진범 기자 기사입력 2026/02/10 [07:25] Crypto &amp; Blockchain 60조 사고 쳤는데 점유율 급등? 속보는 코인리더스 텔레그램으로 (클릭) t.me/coinreadersofficial 김진범 기타' data-ts='1770675960.0' data-rel='0.0' data-url='http://coinreaders.com/214735'>  <div class='card-head'>    <h3 class='title'>      <a href='http://coinreaders.com/214735' target='_blank' rel='noopener noreferrer' data-title>60조 사고 쳤는데 점유율 급등? 빗썸의 &#x27;아이러니&#x27;, 왜?</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:26</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>2026년 비트코인 말고 &#x27;이것&#x27; 봐라...1타강사의 소름 돋는 예언 English Japan Indonesia China Russia Breaking news Headline News Today Crypto &amp; Blockchain Money &amp; Stock English Special Crypto &amp; Blockchain 60조 사고 쳤는데 점유율 급등? 김진범 기자 기사입력 2026/02/10 [07:25] Crypto &amp; Blockchain 60조 사고 쳤는데 점유율 급등? 속보는 코인리더스 텔레그램으로 (클릭) t.me/coinreadersofficial 김진범</p>  <div class='actions'><a class='btn small primary' href='http://coinreaders.com/214735' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='고래보다 빠른 iM투자…대형사 제친 비결은 벤처캐피탈(VC) iM투자파트너스와 엑스퀘어드가 미래에셋·신한벤처투자 등 대형사들과 어깨를 나란히 하며... 우수 등급은 가점 외에도 향후 제재 심의 시 참작 자료로 활용될 수 있기 때문이다. 협회는 모태펀드 외 타... 기타' data-ts='1770675960.0' data-rel='0.0' data-url='https://dealsite.co.kr/articles/156082'>  <div class='card-head'>    <h3 class='title'>      <a href='https://dealsite.co.kr/articles/156082' target='_blank' rel='noopener noreferrer' data-title>고래보다 빠른 iM투자…대형사 제친 비결은</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:26</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>벤처캐피탈(VC) iM투자파트너스와 엑스퀘어드가 미래에셋·신한벤처투자 등 대형사들과 어깨를 나란히 하며... 우수 등급은 가점 외에도 향후 제재 심의 시 참작 자료로 활용될 수 있기 때문이다. 협회는 모태펀드 외 타...</p>  <div class='actions'><a class='btn small primary' href='https://dealsite.co.kr/articles/156082' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='&quot;불장엔 역시 이거지&quot;...연초 이후 수익률 50% 돌파한 ETF 올해 들어 국내 증시가 연일 고공행진하자 증권 관련 상장지수펀드(ETF)의 연초 이후 수익률이 50%를 훌쩍 넘었다. &#x27;HANARO 증권 고배당 TOP 플러스&#x27; ETF는 53.85%, &#x27;KODEX 증권&#x27; ETF는 52.94%를 기록했다. HANARO 증권 고배당 TOP플러스와 KODEX 증권은 각각 57억원, 208억원 순매수했다. 기타' data-ts='1770675900.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/215/0001241230?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/215/0001241230?sid=101' target='_blank' rel='noopener noreferrer' data-title>&quot;불장엔 역시 이거지&quot;...연초 이후 수익률 50% 돌파한 ETF</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:25</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>올해 들어 국내 증시가 연일 고공행진하자 증권 관련 상장지수펀드(ETF)의 연초 이후 수익률이 50%를 훌쩍 넘었다. &#x27;HANARO 증권 고배당 TOP 플러스&#x27; ETF는 53.85%, &#x27;KODEX 증권&#x27; ETF는 52.94%를 기록했다. HANARO 증권 고배당 TOP플러스와 KODEX 증권은 각각 57억원, 208억원 순매수했다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/215/0001241230?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='http://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202602100207&amp;t=NN' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='달러연금·GA 확대 전략 통했다…메트라이프·한화생명 실적 &#x27;점프&#x27; ◇ 상품·조직 전략 맞물려...나란히 GA채널 호실적 9일 GA업계에 따르면 메트라이프생명의 지난해 GA채널 매출(원수보험료 기준)은 약 374억6,000만원으로 집계됐다. GA업계 관계자는 “한화생명은 사실상 초대형 GA 여러 곳을 안정적으로 확보한 셈”이라며 “상품 경쟁력과 조직 확대 전략이 맞물리면서 GA채널 매출 구조가 한층 안정화됐다”고 말했다. ◇ GA채널 매출 성장세 지속 전망 GA채널 전반의 성장세도 이어지고 있다. 기타' data-ts='1770675600.0' data-rel='0.0' data-url='http://www.fins.co.kr/news/articleView.html?idxno=107552'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.fins.co.kr/news/articleView.html?idxno=107552' target='_blank' rel='noopener noreferrer' data-title>달러연금·GA 확대 전략 통했다…메트라이프·한화생명 실적 &#x27;점프&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:20</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>◇ 상품·조직 전략 맞물려...나란히 GA채널 호실적 9일 GA업계에 따르면 메트라이프생명의 지난해 GA채널 매출(원수보험료 기준)은 약 374억6,000만원으로 집계됐다. GA업계 관계자는 “한화생명은 사실상 초대형 GA 여러 곳을 안정적으로 확보한 셈”이라며 “상품 경쟁력과 조직 확대 전략이 맞물리면서 GA채널 매출 구조가 한층 안정화됐다”고 말했다. ◇ GA채널 매출 성장세 지속 전망 GA채널 전반의 성장세도 이어지고 있다.</p>  <div class='actions'><a class='btn small primary' href='http://www.fins.co.kr/news/articleView.html?idxno=107552' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='미국 뉴욕증시 상승 마감…기술주 반발매수에 나스닥 0.90%↑ 가장 최근 집계일인 2월 6일 기준 미국 증시 상위 50종목 보관금액 총액은 180조 1,338억원으로 이전 집계일 대비 7조 9,227억원 늘었다. 증가액 상위에는 엔비디아(1조 7,866억원↑), 테슬라(1조 2,328억원↑), 프로셰어즈 울트라프로 QQQ ETF(1조 1,347억원↑)처럼 변동성이 큰 성장·레버리지 성격의 종목이 전면에 섰다. 보관금액 상위 10종목만 놓고 봐도 테슬라(38조 580억원), 엔비디아(25조 1,539억원), 알파벳A(11조 1,126억원), 팔란티어(7조 4,053억원), 애플(6조 6,957억원), 인베스코QQQ(5조 7,457 기타' data-ts='1770675360.0' data-rel='0.0' data-url='https://www.topstarnews.net/news/articleView.html?idxno=15962720'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.topstarnews.net/news/articleView.html?idxno=15962720' target='_blank' rel='noopener noreferrer' data-title>미국 뉴욕증시 상승 마감…기술주 반발매수에 나스닥 0.90%↑</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:16</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>가장 최근 집계일인 2월 6일 기준 미국 증시 상위 50종목 보관금액 총액은 180조 1,338억원으로 이전 집계일 대비 7조 9,227억원 늘었다. 증가액 상위에는 엔비디아(1조 7,866억원↑), 테슬라(1조 2,328억원↑), 프로셰어즈 울트라프로 QQQ ETF(1조 1,347억원↑)처럼 변동성이 큰 성장·레버리지 성격의 종목이 전면에 섰다. 보관금액 상위 10종목만 놓고 봐도 테슬라(38조 580억원), 엔비디아(25조 1,539억원), 알파벳A(11조 1,126억원), 팔란티어(7조 4,053억원), 애플(6조 6,957억원), 인베스코QQQ(5조 7,457</p>  <div class='actions'><a class='btn small primary' href='https://www.topstarnews.net/news/articleView.html?idxno=15962720' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='[여의도 CEO 전광판] 윤병운 NH투자증권 사장 ‘1조’ 성적표 들고 ‘IM... JOB잡 금융·증권 과학/IT 생활·경제 스페셜기획 이야기쉼터 미네르바의 눈 시큐리티팩트 MICE 섹션 선택 섹션 선택 [여의도 CEO 전광판] 윤병운 NH투자증권 사장 ‘1조’ 성적표 들고 ‘IMA·AI’ 영토 확장 황수분 기자 입력 : 2026.02.10 07:12 ᅵ 수정 : 2026.02.10 09:03 1조입성, 숫자 아닌 구조...‘4·3·2·1’ 법칙이 증명 IMA·AI에 건 승부수...윤병운 연임의 ‘미래 카드’ 내부통제 구조, 소통은 실행,윤병운식 경영방식 국내 주요 증권사 CEO들의 임기가 오는 3월 대거 만료된다. 윤병운 NH투자증권 사장이 당기순 기타' data-ts='1770675240.0' data-rel='0.0' data-url='https://www.news2day.co.kr/article/20260210500003'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.news2day.co.kr/article/20260210500003' target='_blank' rel='noopener noreferrer' data-title>[여의도 CEO 전광판] 윤병운 NH투자증권 사장 ‘1조’ 성적표 들고 ‘IM...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:14</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>JOB잡 금융·증권 과학/IT 생활·경제 스페셜기획 이야기쉼터 미네르바의 눈 시큐리티팩트 MICE 섹션 선택 섹션 선택 [여의도 CEO 전광판] 윤병운 NH투자증권 사장 ‘1조’ 성적표 들고 ‘IMA·AI’ 영토 확장 황수분 기자 입력 : 2026.02.10 07:12 ᅵ 수정 : 2026.02.10 09:03 1조입성, 숫자 아닌 구조...‘4·3·2·1’ 법칙이 증명 IMA·AI에 건 승부수...윤병운 연임의 ‘미래 카드’ 내부통제 구조, 소통은 실행,윤병운식 경영방식 국내 주요 증권사 CEO들의 임기가 오는 3월 대거 만료된다. 윤병운 NH투자증권 사장이 당기순</p>  <div class='actions'><a class='btn small primary' href='https://www.news2day.co.kr/article/20260210500003' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='파마리서치 &#x27;어닝쇼크&#x27;…손지훈 대표, 에스테틱 흔들리자 &#x27;항암제&#x27; 카드 회계기준 변경 영향·시장 기대치 하회한 실적 ECM 필러 경쟁 심화 속 내수 성장 둔화 우려 차세대 나노 항암제로 R&amp;D 투자 및 해외 확장 추진 그래픽=박혜수 기자 손지훈 대표가 이끄는 파마리서치가 작년 4분기 &#x27;어닝쇼크&#x27;를 기록했다. 9일 파마리서치에 따르면 회사의 지난해 4분기 실적은 매출 1428억원(전년 동기 대비 +39%), 영업이익 518억원(전년 동기 대비 +54%)으로 집계됐다. 관련태그 #파마리서치 #어닝쇼크 #리쥬란 #항암제 #M&amp;A 뉴스웨이 이병현 기자 bottlee@newsway.co.kr 기자채널 다른기사 · 대웅제약, 지난해 순이익 전년比 기타' data-ts='1770675240.0' data-rel='0.0' data-url='https://www.newsway.co.kr/news/view?ud=2026020915150856637'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.newsway.co.kr/news/view?ud=2026020915150856637' target='_blank' rel='noopener noreferrer' data-title>파마리서치 &#x27;어닝쇼크&#x27;…손지훈 대표, 에스테틱 흔들리자 &#x27;항암제&#x27; 카드</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:14</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>회계기준 변경 영향·시장 기대치 하회한 실적 ECM 필러 경쟁 심화 속 내수 성장 둔화 우려 차세대 나노 항암제로 R&amp;D 투자 및 해외 확장 추진 그래픽=박혜수 기자 손지훈 대표가 이끄는 파마리서치가 작년 4분기 &#x27;어닝쇼크&#x27;를 기록했다. 9일 파마리서치에 따르면 회사의 지난해 4분기 실적은 매출 1428억원(전년 동기 대비 +39%), 영업이익 518억원(전년 동기 대비 +54%)으로 집계됐다. 관련태그 #파마리서치 #어닝쇼크 #리쥬란 #항암제 #M&amp;A 뉴스웨이 이병현 기자 bottlee@newsway.co.kr 기자채널 다른기사 · 대웅제약, 지난해 순이익 전년比</p>  <div class='actions'><a class='btn small primary' href='https://www.newsway.co.kr/news/view?ud=2026020915150856637' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='카나프테라퓨틱스, 새해 바이오 IPO 포문…몸값 논란은 변수 카나프테라퓨틱스는 2024년 9월 국내 제약사와 KNP-503에 대한 물질이전계약(MTA)을 체결했으며, 해당 기업은 KNP-503의 ADC 페이로드 기능을 평가하기 위한 공동연구를 진행 중이다. 회사는 KNP-503에 대해 올해 1차 기술이전(국내), 내년 임상 1상 진입을 목표로 하고 있다. 관련기사 오스코텍 창업자 김정근 고문 별세···&#x27;렉라자&#x27; 개발 이끈 바이오 1세대 2026.02.05 명인제약, 전문경영인 체제로···이행명 회장 물러난다 2026.02.03 서범석 루닛 대표 &quot;2500억 유증, 해외사업 위해 불가피한 결정&quot; 2026.02.02 앱클론, 오버 기타' data-ts='1770675120.0' data-rel='0.0' data-url='https://www.newsway.co.kr/news/view?ud=2026020916303509542'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.newsway.co.kr/news/view?ud=2026020916303509542' target='_blank' rel='noopener noreferrer' data-title>카나프테라퓨틱스, 새해 바이오 IPO 포문…몸값 논란은 변수</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:12</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>카나프테라퓨틱스는 2024년 9월 국내 제약사와 KNP-503에 대한 물질이전계약(MTA)을 체결했으며, 해당 기업은 KNP-503의 ADC 페이로드 기능을 평가하기 위한 공동연구를 진행 중이다. 회사는 KNP-503에 대해 올해 1차 기술이전(국내), 내년 임상 1상 진입을 목표로 하고 있다. 관련기사 오스코텍 창업자 김정근 고문 별세···&#x27;렉라자&#x27; 개발 이끈 바이오 1세대 2026.02.05 명인제약, 전문경영인 체제로···이행명 회장 물러난다 2026.02.03 서범석 루닛 대표 &quot;2500억 유증, 해외사업 위해 불가피한 결정&quot; 2026.02.02 앱클론, 오버</p>  <div class='actions'><a class='btn small primary' href='https://www.newsway.co.kr/news/view?ud=2026020916303509542' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='[김대호 박사의 오늘의 키워드] 다카이치 돈 잔치·국채금리 역풍·도마... - 총선 압승한 日다카이치 &quot;책임 있는 적극 재정 추진&quot; - 식료품 소비세율 감세 관련 공약, 논의 가속화 시사 - 자민당 압승에 시장서 &#x27;사나에노믹스&#x27; 기대와 우려 교차 - &quot;확장 재정정책으로 경기 본격 회복세 보일 것&quot; 기대 - 무분별한 확장 재정정책으로 부채 확대·물가 상승 우려도 - AI·반도체 등 &#x27;17대 전략 분야&#x27; 집중 투자 계획 - 日 증시 급등...다카이치 위기관리 투자·성장 투자 주목 - 다카이치 총리가 내건 &#x27;강한 경제&#x27;·官주도 성장 전략&#x27; - &quot;닛케이 지수 &#x27;6만 선 돌파&#x27;도 시야에 넣고 있다&quot; ◇ 국채금리 역풍 재정 확대에 따른 인플레이션 우려 기타' data-ts='1770675000.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/374/0000491705?sid=104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/374/0000491705?sid=104' target='_blank' rel='noopener noreferrer' data-title>[김대호 박사의 오늘의 키워드] 다카이치 돈 잔치·국채금리 역풍·도마...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 07:10</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>- 총선 압승한 日다카이치 &quot;책임 있는 적극 재정 추진&quot; - 식료품 소비세율 감세 관련 공약, 논의 가속화 시사 - 자민당 압승에 시장서 &#x27;사나에노믹스&#x27; 기대와 우려 교차 - &quot;확장 재정정책으로 경기 본격 회복세 보일 것&quot; 기대 - 무분별한 확장 재정정책으로 부채 확대·물가 상승 우려도 - AI·반도체 등 &#x27;17대 전략 분야&#x27; 집중 투자 계획 - 日 증시 급등...다카이치 위기관리 투자·성장 투자 주목 - 다카이치 총리가 내건 &#x27;강한 경제&#x27;·官주도 성장 전략&#x27; - &quot;닛케이 지수 &#x27;6만 선 돌파&#x27;도 시야에 넣고 있다&quot; ◇ 국채금리 역풍 재정 확대에 따른 인플레이션 우려</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/374/0000491705?sid=104' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.sbs.co.kr/article_hub/20000290668?division=NAVER' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div></section>
+
+      <section data-group id="sec-KW">
+        <div class="section-head">
+          <h2>키워드 트렌드</h2>
+          <div class="note">상위 20개</div>
+        </div>
+        <div class='kchips'><span class='kchip'>대출 규제 <span class='n'>15</span></span><span class='kchip'>서민금융진흥원 <span class='n'>8</span></span><span class='kchip'>가계대출 규제 <span class='n'>7</span></span><span class='kchip'>주택담보대출 금리 <span class='n'>6</span></span><span class='kchip'>보험료 인상 <span class='n'>4</span></span><span class='kchip'>카드 수수료 <span class='n'>4</span></span><span class='kchip'>불공정거래 <span class='n'>3</span></span><span class='kchip'>최고금리 인하 <span class='n'>1</span></span><span class='kchip'>저축은행 실적 <span class='n'>1</span></span><span class='kchip'>예대금리차 <span class='n'>1</span></span></div>
+      </section>
+
+      <div class="footer">
+        본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.
+      </div>
+    </div>
+  </div>
+
+  <script>
+(function(){
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeBtn");
+  const search = document.getElementById("searchInput");
+  const topOnly = document.getElementById("topOnly");
+  const favOnly = document.getElementById("favOnly");
+  const sortSel = document.getElementById("sortSel");
+  const presetBar = document.getElementById("presetBar");
+
+  const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
+  const cards = Array.from(document.querySelectorAll("[data-card]"));
+  const groups = Array.from(document.querySelectorAll("[data-group]"));
+
+  const LS_THEME = "reportTheme";
+  const LS_FAVS = "reportFavs_v1";
+  const LS_PRESETS = "reportPreset_v1";
+
+  const PRESETS = [
+    {k:"PF", q:"PF"},
+    {k:"연체", q:"연체 연체율"},
+    {k:"금리", q:"금리 기준금리"},
+    {k:"가계대출", q:"가계대출 주담대"},
+    {k:"부동산", q:"부동산 분양 미분양"},
+    {k:"IPO", q:"IPO 상장"},
+    {k:"국민연금", q:"국민연금"},
+  ];
+
+  function loadTheme(){
+    const saved = localStorage.getItem(LS_THEME);
+    root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light";
+    themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크";
+  }
+  function toggleTheme(){
+    const next = (root.dataset.theme === "dark") ? "light" : "dark";
+    root.dataset.theme = next;
+    localStorage.setItem(LS_THEME, next);
+    themeBtn.textContent = (next === "dark") ? "라이트" : "다크";
+  }
+
+  function getFavs(){
+    try{
+      const raw = localStorage.getItem(LS_FAVS);
+      const arr = raw ? JSON.parse(raw) : [];
+      return new Set(Array.isArray(arr) ? arr : []);
+    }catch(e){
+      return new Set();
+    }
+  }
+  function saveFavs(set){
+    localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set)));
+  }
+
+  function setActivePill(sector){
+    pills.forEach(p => p.classList.toggle("active", p.dataset.sector === sector));
+  }
+
+  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function escapeHtml(s){
+    return (s || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function buildHighlight(text, tokens){
+    if(!tokens.length) return escapeHtml(text);
+    const re = new RegExp(tokens.map(escapeRegExp).join("|"), "ig");
+    let out = "";
+    let last = 0;
+    for (const m of text.matchAll(re)) {
+      const idx = m.index ?? 0;
+      out += escapeHtml(text.slice(last, idx));
+      out += "<mark>" + escapeHtml(m[0]) + "</mark>";
+      last = idx + m[0].length;
+    }
+    out += escapeHtml(text.slice(last));
+    return out;
+  }
+
+  function cacheOriginalText(){
+    cards.forEach(card => {
+      const titleEl = card.querySelector("[data-title]");
+      const sumEl = card.querySelector("[data-summary]");
+      if(titleEl && !card.dataset.ot) card.dataset.ot = titleEl.textContent || "";
+      if(sumEl && !card.dataset.os) card.dataset.os = sumEl.textContent || "";
+    });
+  }
+
+  function applyHighlight(){
+    const q = (search.value || "").trim();
+    const tokens = q.split(/\s+/).map(t => t.trim()).filter(Boolean);
+    cards.forEach(card => {
+      const titleEl = card.querySelector("[data-title]");
+      const sumEl = card.querySelector("[data-summary]");
+      if(!titleEl || !sumEl) return;
+
+      const ot = card.dataset.ot || titleEl.textContent || "";
+      const os = card.dataset.os || sumEl.textContent || "";
+
+      if(card.style.display === "none"){
+        titleEl.textContent = ot;
+        sumEl.textContent = os;
+        return;
+      }
+
+      if(!tokens.length){
+        titleEl.textContent = ot;
+        sumEl.textContent = os;
+      }else{
+        titleEl.innerHTML = buildHighlight(ot, tokens);
+        sumEl.innerHTML = buildHighlight(os, tokens);
+      }
+    });
+  }
+
+  function applySort(){
+    const mode = (sortSel.value || "new");
+    groups.forEach(g => {
+      const grid = g.querySelector(".grid");
+      if(!grid) return;
+      const items = Array.from(grid.querySelectorAll("[data-card]"));
+      items.sort((a,b) => {
+        const ta = parseFloat(a.dataset.ts || "0");
+        const tb = parseFloat(b.dataset.ts || "0");
+        const ra = parseFloat(a.dataset.rel || "0");
+        const rb = parseFloat(b.dataset.rel || "0");
+        if(mode === "rel"){
+          if(rb !== ra) return rb - ra;
+          return tb - ta;
+        }
+        return tb - ta;
+      });
+      items.forEach(it => grid.appendChild(it));
+    });
+  }
+
+  function applyFilter(){
+    const q = (search.value || "").trim().toLowerCase();
+    const active = (document.querySelector(".pill.active") || {}).dataset?.sector || "ALL";
+    const onlyTop = topOnly ? topOnly.checked : false;
+    const onlyFav = favOnly ? favOnly.checked : false;
+    const favs = getFavs();
+
+    cards.forEach(card => {
+      const sector = (card.dataset.sector || "");
+      const isTop = (card.dataset.top === "1");
+      const hay = (card.dataset.hay || "").toLowerCase();
+      const url = (card.dataset.url || "");
+      const isFav = favs.has(url);
+
+      let ok = true;
+      if(active !== "ALL" && sector !== active) ok = false;
+      if(onlyTop && !isTop) ok = false;
+      if(onlyFav && !isFav) ok = false;
+      if(q && hay.indexOf(q) === -1) ok = false;
+
+      card.style.display = ok ? "" : "none";
+    });
+
+    groups.forEach(g => {
+      const anyVisible = Array.from(g.querySelectorAll("[data-card]")).some(c => c.style.display !== "none");
+      g.style.display = anyVisible ? "" : "none";
+    });
+
+    applyHighlight();
+  }
+
+  function renderPresets(){
+    if(!presetBar) return;
+    presetBar.innerHTML = PRESETS.map(p => `<button class="preset" data-preset="${escapeHtml(p.q)}">${escapeHtml(p.k)}</button>`).join("");
+    const saved = localStorage.getItem(LS_PRESETS) || "";
+    if(saved) search.value = saved;
+  }
+
+  function bindPresets(){
+    if(!presetBar) return;
+    presetBar.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-preset]");
+      if(!btn) return;
+      const q = btn.getAttribute("data-preset") || "";
+      search.value = q;
+      localStorage.setItem(LS_PRESETS, q);
+      Array.from(presetBar.querySelectorAll(".preset")).forEach(x => x.classList.toggle("active", x === btn));
+      applyFilter();
+    });
+  }
+
+  function initFavButtons(){
+    const favs = getFavs();
+    cards.forEach(card => {
+      const btn = card.querySelector("[data-clip]");
+      const url = card.dataset.url || "";
+      if(!btn || !url) return;
+      const on = favs.has(url);
+      btn.classList.toggle("on", on);
+      btn.textContent = on ? "★" : "☆";
+      btn.addEventListener("click", () => {
+        const set = getFavs();
+        const nowOn = set.has(url) ? (set.delete(url), false) : (set.add(url), true);
+        saveFavs(set);
+        btn.classList.toggle("on", nowOn);
+        btn.textContent = nowOn ? "★" : "☆";
+        if(favOnly && favOnly.checked) applyFilter();
+      });
+    });
+  }
+
+  pills.forEach(p => {
+    p.addEventListener("click", () => {
+      const sector = p.dataset.sector;
+      setActivePill(sector);
+      applyFilter();
+      if(sector === "ALL"){
+        window.scrollTo({top:0, behavior:"smooth"});
+      }else{
+        const sec = document.getElementById("sec-" + sector);
+        if(sec) sec.scrollIntoView({behavior:"smooth", block:"start"});
+      }
+    });
+  });
+
+  search.addEventListener("input", () => {
+    localStorage.setItem(LS_PRESETS, search.value || "");
+    applyFilter();
+  });
+  if(topOnly) topOnly.addEventListener("change", applyFilter);
+  if(favOnly) favOnly.addEventListener("change", applyFilter);
+  sortSel.addEventListener("change", () => { applySort(); applyFilter(); });
+  themeBtn.addEventListener("click", toggleTheme);
+
+  loadTheme();
+  setActivePill("ALL");
+  cacheOriginalText();
+  renderPresets();
+  bindPresets();
+  applySort();
+  initFavButtons();
+  applyFilter();
+})();
+</script>
+</body>
+</html>
