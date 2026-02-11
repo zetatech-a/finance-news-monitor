@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>금융권 일일 언론동향 2026-02-11</title>
+  <style>
+:root{
+  --bg:#f6f8fb; --paper:#ffffff; --text:#0f172a; --muted:#64748b; --border:#e5e7eb;
+  --link:#2563eb; --link_hover:#1d4ed8;
+  --chip:#eef2ff; --chip_text:#3730a3;
+  --shadow:0 10px 30px rgba(17,24,39,0.08);
+  --shadow2:0 6px 18px rgba(17,24,39,0.08);
+  --ring: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+html[data-theme="dark"]{
+  --bg:#0b1220; --paper:#0f172a; --text:#e5e7eb; --muted:#94a3b8; --border:#22304a;
+  --link:#60a5fa; --link_hover:#93c5fd;
+  --chip:#111c33; --chip_text:#c7d2fe;
+  --shadow:0 12px 30px rgba(0,0,0,0.45);
+  --shadow2:0 10px 22px rgba(0,0,0,0.40);
+  --ring: 0 0 0 3px rgba(96,165,250,0.20);
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans KR",Arial,sans-serif;
+  line-height:1.55;
+}
+
+.wrap{ max-width:1120px; margin:0 auto; padding:18px 16px 60px; }
+
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  backdrop-filter: blur(10px);
+  padding: 10px 0 12px;
+}
+
+.header{
+  background:var(--paper); border:1px solid var(--border);
+  border-radius:16px; padding:16px 16px; box-shadow:var(--shadow);
+}
+
+.header-top{
+  display:flex; gap:14px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;
+}
+
+h1{ margin:0; font-size:20px; letter-spacing:-0.2px; }
+.meta{ color:var(--muted); font-size:13px; margin-top:6px; }
+
+.controls{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;
+}
+
+.input{
+  display:flex; align-items:center; gap:8px;
+  background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  border:1px solid var(--border); border-radius:12px;
+  padding:8px 10px; min-width:260px;
+}
+.input input{
+  border:none; outline:none; background:transparent; color:var(--text);
+  font-size:13px; width:260px;
+}
+.input:focus-within{ box-shadow:var(--ring); border-color: color-mix(in srgb, var(--link) 55%, var(--border)); }
+
+.btn, .select{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  border:1px solid var(--border); background:var(--paper); color:var(--text);
+  padding:8px 10px; border-radius:12px; font-size:13px; cursor:pointer;
+}
+.btn:hover, .select:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
+.btn.primary{ background: color-mix(in srgb, var(--link) 12%, var(--paper)); border-color: color-mix(in srgb, var(--link) 30%, var(--border)); }
+.btn.small{ padding:6px 8px; border-radius:10px; font-size:12px; }
+.select{ cursor:default; }
+.select select{
+  border:none; outline:none; background:transparent; color:var(--text);
+  font-size:13px;
+}
+
+.toggle{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--border); background:var(--paper);
+  padding:8px 10px; border-radius:12px; font-size:13px;
+}
+.toggle input{ transform: translateY(1px); }
+
+.nav{
+  margin-top:10px;
+  display:flex; gap:8px; flex-wrap:wrap;
+}
+.pill{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:7px 10px; border-radius:999px;
+  border:1px solid var(--border); background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  color:var(--muted); font-size:12px; cursor:pointer;
+}
+.pill strong{ color:var(--text); font-weight:700; }
+.pill.active{
+  background: color-mix(in srgb, var(--link) 14%, var(--paper));
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+  color:var(--text);
+}
+
+.main{
+  margin-top:14px;
+  background:var(--paper); border:1px solid var(--border);
+  border-radius:16px; padding:16px 16px; box-shadow:var(--shadow);
+}
+
+.section-head{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  margin: 6px 0 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.section-head:first-child{ border-top:none; padding-top:0; }
+h2{ margin:0; font-size:15px; }
+.count{ color:var(--muted); font-size:12px; margin-left:6px; }
+.note{ color:var(--muted); font-size:12px; }
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:10px;
+}
+
+.card{
+  grid-column: span 12;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 12px;
+  background: color-mix(in srgb, var(--paper) 96%, var(--bg));
+  box-shadow: var(--shadow2);
+  transition: transform .08s ease, border-color .08s ease;
+}
+@media (min-width: 860px){
+  .card{ grid-column: span 6; }
+}
+.card:hover{
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+}
+
+/* ✅ 제목+클립 버튼 */
+.card-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.clip{
+  border:1px solid var(--border);
+  background:var(--paper);
+  color:var(--muted);
+  border-radius:12px;
+  padding:6px 8px;
+  cursor:pointer;
+  line-height:1;
+  font-size:14px;
+}
+.clip:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
+.clip.on{
+  color: var(--link_hover);
+  background: color-mix(in srgb, var(--link) 10%, var(--paper));
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+}
+
+.title{
+  margin:0 0 6px; font-size:14px; font-weight:800; line-height:1.35;
+}
+.title a{ color:var(--text); text-decoration:none; }
+.title a:hover{ color:var(--link_hover); text-decoration:underline; }
+
+.meta-row{
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  color:var(--muted); font-size:12px; margin-bottom:8px;
+}
+.badge{
+  display:inline-flex; align-items:center;
+  padding:4px 8px; border-radius:999px;
+  border:1px solid var(--border);
+  background: var(--chip);
+  color: var(--chip_text);
+  font-size:11px;
+}
+.badge.r-high{ font-weight:700; }
+.badge.r-med{ opacity:0.95; }
+.badge.r-low{ opacity:0.85; }
+
+.summary{
+  margin:0;
+  color: color-mix(in srgb, var(--text) 82%, var(--muted));
+  font-size:13px;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.actions{
+  display:flex; gap:8px; flex-wrap:wrap;
+  margin-top:10px;
+}
+
+mark{
+  background: color-mix(in srgb, var(--link) 18%, transparent);
+  color: inherit;
+  border-radius: 6px;
+  padding: 0 3px;
+}
+
+.footer{
+  margin-top:12px; color:var(--muted); font-size:12px;
+  text-align:center;
+}
+
+.kchips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+.kchip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 10px; border-radius:999px;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  color:var(--text);
+  font-size:12px;
+}
+.kchip .n{ color:var(--muted); font-size:12px; }
+
+/* ✅ 프리셋 바 */
+.presetbar{
+  margin-top:10px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.preset{
+  display:inline-flex; align-items:center;
+  padding:7px 10px; border-radius:999px;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  color:var(--text);
+  font-size:12px;
+  cursor:pointer;
+}
+.preset.active{
+  background: color-mix(in srgb, var(--link) 14%, var(--paper));
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="header">
+        <div class="header-top">
+          <div>
+            <h1>금융권 일일 언론동향 <span style="color:var(--muted);">(2026-02-11)</span></h1>
+            <div class="meta">대부업권 중심 · 전 금융업권 주요 기사 요약</div>
+          </div>
+          <div class="controls">
+            <div class="input" title="제목/요약/섹터/언론사에서 검색">
+              <span style="color:var(--muted); font-size:12px;">🔎</span>
+              <input id="searchInput" type="text" placeholder="키워드로 검색 (예: 연체, PF, 국민연금)"/>
+            </div>
+
+            <span class="select" title="정렬">
+              <span style="color:var(--muted); font-size:12px;">정렬</span>
+              <select id="sortSel">
+                <option value="new" selected>최신순</option>
+                <option value="rel">관련도순</option>
+              </select>
+            </span>
+
+            <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
+            <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
+
+            <button id="themeBtn" class="btn">다크</button>
+            <a class="btn" href="index.html">최근 리포트</a>
+          </div>
+        </div>
+        <div class="nav">
+          <button class='pill active' data-sector-pill data-sector='ALL'><strong>전체</strong><span class='count'>324</span></button><button class='pill' data-sector-pill data-sector='대부'><strong>대부</strong><span class='count'>2</span></button><button class='pill' data-sector-pill data-sector='은행'><strong>은행</strong><span class='count'>2</span></button><button class='pill' data-sector-pill data-sector='보험'><strong>보험</strong><span class='count'>4</span></button><button class='pill' data-sector-pill data-sector='증권'><strong>증권</strong><span class='count'>20</span></button><button class='pill' data-sector-pill data-sector='카드'><strong>카드</strong><span class='count'>1</span></button><button class='pill' data-sector-pill data-sector='저축은행'><strong>저축은행</strong><span class='count'>1</span></button><button class='pill' data-sector-pill data-sector='핀테크'><strong>핀테크</strong><span class='count'>2</span></button><button class='pill' data-sector-pill data-sector='감독입법'><strong>감독입법</strong><span class='count'>29</span></button><button class='pill' data-sector-pill data-sector='기타'><strong>기타</strong><span class='count'>265</span></button>
+        </div>
+        <div class="presetbar" id="presetBar"></div>
+      </div>
+    </div>
+
+    <div class="main">
+      <section data-group id="sec-TOP">
+        <div class="section-head">
+          <h2>오늘의 Top 이슈 10<span class="count">10</span></h2>
+          <div class="note">정책/시장 영향도가 큰 기사 우선</div>
+        </div>
+        <div class="grid">
+          <article class='card' data-card data-sector='대부' data-top=1 data-hay='의료비후불제 연계 신용불량자 지원 본격 시행 이번 사업은 신용 문제 등으로 의료비후불제를 이용하지 못했던 금융취약계층의 의료비 부담을 덜어주기 위해 서민금융진흥원과 협력해 &#x27;불법사금융 예방대출(최대 100만 원)&#x27; 이용자에게 발생하는 이자를 전액... 대부' data-ts='1770762480.0' data-rel='0.0' data-url='https://www.joongdo.co.kr/web/view.php?key=20260211010003904'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.joongdo.co.kr/web/view.php?key=20260211010003904' target='_blank' rel='noopener noreferrer' data-title>의료비후불제 연계 신용불량자 지원 본격 시행</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:28</span>        <span>·</span><span class='badge'>대부</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>이번 사업은 신용 문제 등으로 의료비후불제를 이용하지 못했던 금융취약계층의 의료비 부담을 덜어주기 위해 서민금융진흥원과 협력해 &#x27;불법사금융 예방대출(최대 100만 원)&#x27; 이용자에게 발생하는 이자를 전액...</p>  <div class='actions'><a class='btn small primary' href='https://www.joongdo.co.kr/web/view.php?key=20260211010003904' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=1 data-hay='KB손해보험, 손해율 악화에 보험손익 36% 급감…CSM 확보 &#x27;시급&#x27; JOB잡 금융·증권 과학/IT 생활·경제 스페셜기획 이야기쉼터 미네르바의 눈 시큐리티팩트 MICE 섹션 선택 섹션 선택 KB손해보험, 손해율 악화에 보험손익 36% 급감...CSM 확보 &#x27;시급&#x27; 김태규 기자 입력 : 2026.02.11 07:13 ᅵ 수정 : 2026.02.11 07:13 지난해 당기순이익 7782억원...전년 대비 7.3% 감소 장기·자동차 손해율 악화되며 보험손익 35.9% 급감 투자손익 전년 대비 198% 폭증하며 순익 하락 제한 언더라이팅 강화 나서며 보험손익 제고 기반 마련 [사진=KB손해보험] [뉴스투데이=김태규 기자] KB손해보험이 지난해 보험' data-ts='1770761640.0' data-rel='0.0' data-url='https://www.news2day.co.kr/article/20260210500335'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.news2day.co.kr/article/20260210500335' target='_blank' rel='noopener noreferrer' data-title>KB손해보험, 손해율 악화에 보험손익 36% 급감…CSM 확보 &#x27;시급&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:14</span>        <span>·</span><span class='badge'>보험</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>JOB잡 금융·증권 과학/IT 생활·경제 스페셜기획 이야기쉼터 미네르바의 눈 시큐리티팩트 MICE 섹션 선택 섹션 선택 KB손해보험, 손해율 악화에 보험손익 36% 급감...CSM 확보 &#x27;시급&#x27; 김태규 기자 입력 : 2026.02.11 07:13 ᅵ 수정 : 2026.02.11 07:13 지난해 당기순이익 7782억원...전년 대비 7.3% 감소 장기·자동차 손해율 악화되며 보험손익 35.9% 급감 투자손익 전년 대비 198% 폭증하며 순익 하락 제한 언더라이팅 강화 나서며 보험손익 제고 기반 마련 [사진=KB손해보험] [뉴스투데이=김태규 기자] KB손해보험이 지난해</p>  <div class='actions'><a class='btn small primary' href='https://www.news2day.co.kr/article/20260210500335' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='저축은행' data-top=1 data-hay='국내 체류 외국인 280만 시대…저축은행, 외국인 금융시장 공략 가속 전체 인구 대비 비중 5% 넘어서...카드결제 금액 19조2000억 달해 저축은행, 외국인 상품 잇따라 출시...중저신용자 영업 노하우 주목 &quot;외국인 대출 상품 꾸준히 수요...관련 데이터 축척해 사업 고도화&quot; &quot;중저신용자 신용관리·평가 경험이 강점...&#x27;새 먹거리&#x27; 기대도&quot; 국내 체류 외국인이 280만명에 육박하면서 저축은행업계가 외국인 고객 유치에 본격적으로 뛰어들고 있다.c데일리안 AI 삽화 이미지 [데일리안 = 박상우 기자] 국내 체류 외국인이 280만명을 넘어서면서 금융권의 시선도 빠르게 외국인 금융시장으로 옮겨가고 있다. 업계 관계자는 &quot;외국인 대출 상품은 저축은행' data-ts='1770761340.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/119/0003058483?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/119/0003058483?sid=101' target='_blank' rel='noopener noreferrer' data-title>국내 체류 외국인 280만 시대…저축은행, 외국인 금융시장 공략 가속</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:09</span>        <span>·</span><span class='badge'>저축은행</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>전체 인구 대비 비중 5% 넘어서...카드결제 금액 19조2000억 달해 저축은행, 외국인 상품 잇따라 출시...중저신용자 영업 노하우 주목 &quot;외국인 대출 상품 꾸준히 수요...관련 데이터 축척해 사업 고도화&quot; &quot;중저신용자 신용관리·평가 경험이 강점...&#x27;새 먹거리&#x27; 기대도&quot; 국내 체류 외국인이 280만명에 육박하면서 저축은행업계가 외국인 고객 유치에 본격적으로 뛰어들고 있다.c데일리안 AI 삽화 이미지 [데일리안 = 박상우 기자] 국내 체류 외국인이 280만명을 넘어서면서 금융권의 시선도 빠르게 외국인 금융시장으로 옮겨가고 있다. 업계 관계자는 &quot;외국인 대출 상품은</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/119/0003058483?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.dailian.co.kr/news/view/1609102/?sc=Naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='카드' data-top=1 data-hay='KB국민카드 1% 벽 깼다…지주계 카드사 연체율 ‘온도차’ 이에 대해 KB국민카드 관계자는 “카드업계 전반이 가맹점 수수료율 인하와 조달비용 부담, 리스크 관리 강화 등 구조적 도전에 직면한 상황에서 KB국민카드는 무리한 외형 경쟁보다 건전성 관리와 구조 전환을... 카드' data-ts='1770760920.0' data-rel='0.0' data-url='https://www.ceoscoredaily.com/page/view/2026021011532695077'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.ceoscoredaily.com/page/view/2026021011532695077' target='_blank' rel='noopener noreferrer' data-title>KB국민카드 1% 벽 깼다…지주계 카드사 연체율 ‘온도차’</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:02</span>        <span>·</span><span class='badge'>카드</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>이에 대해 KB국민카드 관계자는 “카드업계 전반이 가맹점 수수료율 인하와 조달비용 부담, 리스크 관리 강화 등 구조적 도전에 직면한 상황에서 KB국민카드는 무리한 외형 경쟁보다 건전성 관리와 구조 전환을...</p>  <div class='actions'><a class='btn small primary' href='https://www.ceoscoredaily.com/page/view/2026021011532695077' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=1 data-hay='&#x27;오너&#x27; 없으면 &#x27;금융사고&#x27; 없어지나?…빗썸發 지분제한 우려에 업계 &#x27;허... 민주당, 빗썸 사태 명분으로 &#x27;거래소 대주주 지분율 제한&#x27; 논의 공식화 업계 &quot;대주주 지분과 상관 없어...지배구조 분산돼도 일어날 수 있는 사고&quot; 10일 서울 강남구 빗썸라운지 삼성점 앞으로 시민들이 지나가고 있다. 업계 &quot;대주주 지분과 인과관계 없어...지배구조 분산돼도 일어날 수 있는 사고&quot; 가상자산 업계 신뢰도를 떨어뜨린 초유의 사고는 맞지만, 업계는 이번 일이 대주주 지분 제한의 명분으로 둔갑할 가능성을 우려한다. 한 가상자산 업계 관계자는 &quot;이번 빗썸 사태를 대주주 지분 제한의 명분으로 삼는 것은, 자동차 급발진으로 사고가 났는데 자동차 회사의 대주주를 바 증권' data-ts='1770760200.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/421/0008767373?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/421/0008767373?sid=101' target='_blank' rel='noopener noreferrer' data-title>&#x27;오너&#x27; 없으면 &#x27;금융사고&#x27; 없어지나?…빗썸發 지분제한 우려에 업계 &#x27;허...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:50</span>        <span>·</span><span class='badge'>증권</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>민주당, 빗썸 사태 명분으로 &#x27;거래소 대주주 지분율 제한&#x27; 논의 공식화 업계 &quot;대주주 지분과 상관 없어...지배구조 분산돼도 일어날 수 있는 사고&quot; 10일 서울 강남구 빗썸라운지 삼성점 앞으로 시민들이 지나가고 있다. 업계 &quot;대주주 지분과 인과관계 없어...지배구조 분산돼도 일어날 수 있는 사고&quot; 가상자산 업계 신뢰도를 떨어뜨린 초유의 사고는 맞지만, 업계는 이번 일이 대주주 지분 제한의 명분으로 둔갑할 가능성을 우려한다. 한 가상자산 업계 관계자는 &quot;이번 빗썸 사태를 대주주 지분 제한의 명분으로 삼는 것은, 자동차 급발진으로 사고가 났는데 자동차 회사의 대주주를 바</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/421/0008767373?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.news1.kr/finance/blockchain-fintech/6069027' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='핀테크' data-top=1 data-hay='부모님께 꼭 알려주세요!... 전문가가 알려주는 &#x27;설 연휴 보이스피싱&#x27; 예... 이런 상황에서는 즉시 전화를 끊고 112 등 공식 대표번호로 사실 확인을 해야 합니다. 이런 전화를 받았을 때는 아무리 급박한 상황이라 해도 먼저 통화를 끊고 학교나 학원, 지인에게 직접 확인해야 합니다. 신청하지 않은 카드 배송을 알리며 특정 번호로 전화를 유도 하는 경우, 안내받은 번호로 되돌려 전화하지 말고 &#x27;내 카드 한눈에&#x27; 등 공적 조회 서비스로 사실 여부를 먼저 확인해야 합니다. 핀테크' data-ts='1770759240.0' data-rel='0.0' data-url='https://www.insight.co.kr/news/542560'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.insight.co.kr/news/542560' target='_blank' rel='noopener noreferrer' data-title>부모님께 꼭 알려주세요!... 전문가가 알려주는 &#x27;설 연휴 보이스피싱&#x27; 예...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:34</span>        <span>·</span><span class='badge'>핀테크</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>이런 상황에서는 즉시 전화를 끊고 112 등 공식 대표번호로 사실 확인을 해야 합니다. 이런 전화를 받았을 때는 아무리 급박한 상황이라 해도 먼저 통화를 끊고 학교나 학원, 지인에게 직접 확인해야 합니다. 신청하지 않은 카드 배송을 알리며 특정 번호로 전화를 유도 하는 경우, 안내받은 번호로 되돌려 전화하지 말고 &#x27;내 카드 한눈에&#x27; 등 공적 조회 서비스로 사실 여부를 먼저 확인해야 합니다.</p>  <div class='actions'><a class='btn small primary' href='https://www.insight.co.kr/news/542560' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=1 data-hay='IPO 시장도 ‘피지컬 AI’ 열풍…NH證, 로봇 기업 뉴빌리티와 주관 계약... 피지컬 AI 기반 자율주행 로봇 서비스 기업 연간 4만 회 이상 서비스...실전 데이터 축적 “코스닥 상장 통해 기술 고도화·글로벌 확장” 뉴빌리티의 자율주행 로봇 뉴비가 배달을 하고 있다. 서울경제DB NH투자증권이 피지컬 인공지능(AI) 기반 자율주행 로봇 서비스 기업 뉴빌리티와 기업공개(IPO) 주관 계약을 체결했다고 11일 밝혔다. 뉴빌리티는 IPO를 통해 로봇 서비스 고도화와 글로벌 시장 확장를 가속화하는 한편 피지컬 AI 기반의 로봇 플랫폼 기업으로 도약한다는 목표다. 증권' data-ts='1770759060.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/011/0004589077?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/011/0004589077?sid=101' target='_blank' rel='noopener noreferrer' data-title>IPO 시장도 ‘피지컬 AI’ 열풍…NH證, 로봇 기업 뉴빌리티와 주관 계약...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:31</span>        <span>·</span><span class='badge'>증권</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>피지컬 AI 기반 자율주행 로봇 서비스 기업 연간 4만 회 이상 서비스...실전 데이터 축적 “코스닥 상장 통해 기술 고도화·글로벌 확장” 뉴빌리티의 자율주행 로봇 뉴비가 배달을 하고 있다. 서울경제DB NH투자증권이 피지컬 인공지능(AI) 기반 자율주행 로봇 서비스 기업 뉴빌리티와 기업공개(IPO) 주관 계약을 체결했다고 11일 밝혔다. 뉴빌리티는 IPO를 통해 로봇 서비스 고도화와 글로벌 시장 확장를 가속화하는 한편 피지컬 AI 기반의 로봇 플랫폼 기업으로 도약한다는 목표다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/011/0004589077?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://signal.sedaily.com/article/20007431?ref=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=1 data-hay='지주계열 보험사 건전성 개선됐지만…실적 &#x27;먹구름&#x27; KB손보와 함께 KB금융지주 계열사인 KB라이프도 실적이 감소했다. KB라이프의 지난해 당기순이익은 2440억원으로 9.4% 감소했다. &#x27;카카오매스·가나&#x27; 수출길 오른다 이처럼 롯데웰푸드가 카카오 설비에 집중하는 이유는 국내 1위 초콜릿 브랜드인 &#x27;가나&#x27;를 비롯해 크런키·ABC초콜릿 등 다수의 초콜릿 제품 포트폴리오를 강화하고 있어서다. 보험' data-ts='1770758760.0' data-rel='0.0' data-url='https://www.asiatime.co.kr/article/20260210500273'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.asiatime.co.kr/article/20260210500273' target='_blank' rel='noopener noreferrer' data-title>지주계열 보험사 건전성 개선됐지만…실적 &#x27;먹구름&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:26</span>        <span>·</span><span class='badge'>보험</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>KB손보와 함께 KB금융지주 계열사인 KB라이프도 실적이 감소했다. KB라이프의 지난해 당기순이익은 2440억원으로 9.4% 감소했다. &#x27;카카오매스·가나&#x27; 수출길 오른다 이처럼 롯데웰푸드가 카카오 설비에 집중하는 이유는 국내 1위 초콜릿 브랜드인 &#x27;가나&#x27;를 비롯해 크런키·ABC초콜릿 등 다수의 초콜릿 제품 포트폴리오를 강화하고 있어서다.</p>  <div class='actions'><a class='btn small primary' href='https://www.asiatime.co.kr/article/20260210500273' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=1 data-hay='“민사 이겨도 돈 받기 힘들어”…‘먹튀’ 제도 공백에 소상공인 한숨 행사 끝나자 잠적...카페·음식점 ‘먹튀’ 피해 확산 ‘노쇼’는 대책 마련...‘먹튀’는 사각지대 개인 차원 법적 대응 한계에 부담 ↑ 공간 대관 카페를 운영하는 채모씨는 최근 변호사를 만나 대가를 치르지 않고 사라지는 ‘먹튀’ 상담을 진행했다. 카페를 운영하다 먹튀 피해를 당한 정모씨는 “고의성이 입증되지 않아 ‘불송치’로 수사 결론이 났으나 민사소송을 진행해 승소했다”고 말했다. 소상공인연합회 관계자는 “개인 간 분쟁이라 소송을 통해 해결하는 게 원칙이지만 소상공인들이 생업을 내버려두고 법적 다툼만 벌일 수는 없는 일”이라며 “실태 파악부터 주기적으로 진행해 관리 증권' data-ts='1770758580.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/366/0001141860?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/366/0001141860?sid=101' target='_blank' rel='noopener noreferrer' data-title>“민사 이겨도 돈 받기 힘들어”…‘먹튀’ 제도 공백에 소상공인 한숨</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:23</span>        <span>·</span><span class='badge'>증권</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>행사 끝나자 잠적...카페·음식점 ‘먹튀’ 피해 확산 ‘노쇼’는 대책 마련...‘먹튀’는 사각지대 개인 차원 법적 대응 한계에 부담 ↑ 공간 대관 카페를 운영하는 채모씨는 최근 변호사를 만나 대가를 치르지 않고 사라지는 ‘먹튀’ 상담을 진행했다. 카페를 운영하다 먹튀 피해를 당한 정모씨는 “고의성이 입증되지 않아 ‘불송치’로 수사 결론이 났으나 민사소송을 진행해 승소했다”고 말했다. 소상공인연합회 관계자는 “개인 간 분쟁이라 소송을 통해 해결하는 게 원칙이지만 소상공인들이 생업을 내버려두고 법적 다툼만 벌일 수는 없는 일”이라며 “실태 파악부터 주기적으로 진행해 관리</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/366/0001141860?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.chosun.com/industry/business-venture/2026/02/11/QNF2G4HMCVDZFLLBPF5OBLWAXE/?utm_source=naver&amp;utm_medium=original&amp;utm_campaign=biz' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=1 data-hay='SK증권, 신용도 &#x27;하향&#x27;되나…오창석 1500억 대출의 덫[The SIGNAL] 금융투자검사2국은 자금 순환 거래 자체를 곧바로 위법이나 불공정거래로 단정할 수 없지만, 사실이라면 어떤 의도로 이뤄졌는지에 따라 감독 방향이 달라질 수 있다고 설명했다. 한편 SK증권은 이번 논란이 터지자... 증권' data-ts='1770757200.0' data-rel='0.0' data-url='http://www.hansbiz.co.kr/news/articleView.html?idxno=816210'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.hansbiz.co.kr/news/articleView.html?idxno=816210' target='_blank' rel='noopener noreferrer' data-title>SK증권, 신용도 &#x27;하향&#x27;되나…오창석 1500억 대출의 덫[The SIGNAL]</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:00</span>        <span>·</span><span class='badge'>증권</span><span class='badge'>TOP</span>  </div>  <p class='summary' data-summary>금융투자검사2국은 자금 순환 거래 자체를 곧바로 위법이나 불공정거래로 단정할 수 없지만, 사실이라면 어떤 의도로 이뤄졌는지에 따라 감독 방향이 달라질 수 있다고 설명했다. 한편 SK증권은 이번 논란이 터지자...</p>  <div class='actions'><a class='btn small primary' href='http://www.hansbiz.co.kr/news/articleView.html?idxno=816210' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+        </div>
+      </section>
+
+      <section data-group id='sec-대부'>  <div class='section-head'>    <h2>대부<span class='count'>2</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='대부' data-top=0 data-hay='의료비후불제 연계 신용불량자 지원 본격 시행 이번 사업은 신용 문제 등으로 의료비후불제를 이용하지 못했던 금융취약계층의 의료비 부담을 덜어주기 위해 서민금융진흥원과 협력해 &#x27;불법사금융 예방대출(최대 100만 원)&#x27; 이용자에게 발생하는 이자를 전액... 대부' data-ts='1770762480.0' data-rel='0.0' data-url='https://www.joongdo.co.kr/web/view.php?key=20260211010003904'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.joongdo.co.kr/web/view.php?key=20260211010003904' target='_blank' rel='noopener noreferrer' data-title>의료비후불제 연계 신용불량자 지원 본격 시행</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:28</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>이번 사업은 신용 문제 등으로 의료비후불제를 이용하지 못했던 금융취약계층의 의료비 부담을 덜어주기 위해 서민금융진흥원과 협력해 &#x27;불법사금융 예방대출(최대 100만 원)&#x27; 이용자에게 발생하는 이자를 전액...</p>  <div class='actions'><a class='btn small primary' href='https://www.joongdo.co.kr/web/view.php?key=20260211010003904' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=0 data-hay='[포커스] 저신용자 재기 돕는다...채무조정 중에도 &#x27;후불교통·신용카드... 앞서 금융위는 지난 9일 권대영 부위원장 주재로 서민금융진흥원, 여신금융협회, 카드사 CEO 등과 함께 준비 상황을 점검하고 출시 일정을 확정했다. 권 부위원장은 지원 과정에서 신용점수가 낮아 제외되는 사례가... 대부' data-ts='1770717600.0' data-rel='0.0' data-url='https://www.startuptoday.co.kr/news/articleView.html?idxno=584596'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.startuptoday.co.kr/news/articleView.html?idxno=584596' target='_blank' rel='noopener noreferrer' data-title>[포커스] 저신용자 재기 돕는다...채무조정 중에도 &#x27;후불교통·신용카드...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 19:00</span>        <span>·</span><span class='badge'>대부</span>  </div>  <p class='summary' data-summary>앞서 금융위는 지난 9일 권대영 부위원장 주재로 서민금융진흥원, 여신금융협회, 카드사 CEO 등과 함께 준비 상황을 점검하고 출시 일정을 확정했다. 권 부위원장은 지원 과정에서 신용점수가 낮아 제외되는 사례가...</p>  <div class='actions'><a class='btn small primary' href='https://www.startuptoday.co.kr/news/articleView.html?idxno=584596' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div></section><section data-group id='sec-은행'>  <div class='section-head'>    <h2>은행<span class='count'>2</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='감독입법' data-top=0 data-hay='인뱅, 가계대출 한계 넘는다…개인사업자 대출로 여신 전략 전환 가계 총량 규제 상시화 속 ‘사장님 대출’로 성장 동력 이동 담보·전문직 중심 재편...건전성 관리와 수익성 동시 겨냥 인뱅 3사, 개인사업자 금융 경쟁 본격화 가계대출 규제가 상시화되면서 외형 확장 여력이 줄어든 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 전면에 내세우고 있다. c데일리안 AI 삽화 이미지 [데일리안 = 손지연 기자] 가계대출 규제가 상시화되면서 외형 확장 여력이 줄어든 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 전면에 내세우고 있다. ▼ 관련기사 보기 가계대출 총량 규제의 역설...인뱅 정책 충돌 속 저신용자 밀려난다 ht 감독입법' data-ts='1770761280.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/119/0003058482?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/119/0003058482?sid=101' target='_blank' rel='noopener noreferrer' data-title>인뱅, 가계대출 한계 넘는다…개인사업자 대출로 여신 전략 전환</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:08</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>가계 총량 규제 상시화 속 ‘사장님 대출’로 성장 동력 이동 담보·전문직 중심 재편...건전성 관리와 수익성 동시 겨냥 인뱅 3사, 개인사업자 금융 경쟁 본격화 가계대출 규제가 상시화되면서 외형 확장 여력이 줄어든 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 전면에 내세우고 있다. c데일리안 AI 삽화 이미지 [데일리안 = 손지연 기자] 가계대출 규제가 상시화되면서 외형 확장 여력이 줄어든 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 전면에 내세우고 있다. ▼ 관련기사 보기 가계대출 총량 규제의 역설...인뱅 정책 충돌 속 저신용자 밀려난다 ht</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/119/0003058482?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.dailian.co.kr/news/view/1609149/?sc=Naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='李의 매입임대 규제론과 그 이면의 건설임대 : 한미 부동산 평행이론 실제로 미국에서 집값이 오르고, 주택담보대출 금리는 오히려 하락하던 1984~2013년에도 미국인들은 대체로 주택 소유를 피하고 오히려 임대를 선택했다(아서 콕스 노던 아이오와 대학 교수 논문). 결국 매입임대를... 은행' data-ts='1770716160.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/665/0000006789?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/665/0000006789?sid=101' target='_blank' rel='noopener noreferrer' data-title>李의 매입임대 규제론과 그 이면의 건설임대 : 한미 부동산 평행이론</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 18:36</span>        <span>·</span><span class='badge'>은행</span>  </div>  <p class='summary' data-summary>실제로 미국에서 집값이 오르고, 주택담보대출 금리는 오히려 하락하던 1984~2013년에도 미국인들은 대체로 주택 소유를 피하고 오히려 임대를 선택했다(아서 콕스 노던 아이오와 대학 교수 논문). 결국 매입임대를...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/665/0000006789?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.thescoop.co.kr/news/articleView.html?idxno=309160' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div></section><section data-group id='sec-보험'>  <div class='section-head'>    <h2>보험<span class='count'>4</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='보험' data-top=0 data-hay='KB손해보험, 손해율 악화에 보험손익 36% 급감…CSM 확보 &#x27;시급&#x27; JOB잡 금융·증권 과학/IT 생활·경제 스페셜기획 이야기쉼터 미네르바의 눈 시큐리티팩트 MICE 섹션 선택 섹션 선택 KB손해보험, 손해율 악화에 보험손익 36% 급감...CSM 확보 &#x27;시급&#x27; 김태규 기자 입력 : 2026.02.11 07:13 ᅵ 수정 : 2026.02.11 07:13 지난해 당기순이익 7782억원...전년 대비 7.3% 감소 장기·자동차 손해율 악화되며 보험손익 35.9% 급감 투자손익 전년 대비 198% 폭증하며 순익 하락 제한 언더라이팅 강화 나서며 보험손익 제고 기반 마련 [사진=KB손해보험] [뉴스투데이=김태규 기자] KB손해보험이 지난해 보험' data-ts='1770761640.0' data-rel='0.0' data-url='https://www.news2day.co.kr/article/20260210500335'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.news2day.co.kr/article/20260210500335' target='_blank' rel='noopener noreferrer' data-title>KB손해보험, 손해율 악화에 보험손익 36% 급감…CSM 확보 &#x27;시급&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:14</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>JOB잡 금융·증권 과학/IT 생활·경제 스페셜기획 이야기쉼터 미네르바의 눈 시큐리티팩트 MICE 섹션 선택 섹션 선택 KB손해보험, 손해율 악화에 보험손익 36% 급감...CSM 확보 &#x27;시급&#x27; 김태규 기자 입력 : 2026.02.11 07:13 ᅵ 수정 : 2026.02.11 07:13 지난해 당기순이익 7782억원...전년 대비 7.3% 감소 장기·자동차 손해율 악화되며 보험손익 35.9% 급감 투자손익 전년 대비 198% 폭증하며 순익 하락 제한 언더라이팅 강화 나서며 보험손익 제고 기반 마련 [사진=KB손해보험] [뉴스투데이=김태규 기자] KB손해보험이 지난해</p>  <div class='actions'><a class='btn small primary' href='https://www.news2day.co.kr/article/20260210500335' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=0 data-hay='지주계열 보험사 건전성 개선됐지만…실적 &#x27;먹구름&#x27; KB손보와 함께 KB금융지주 계열사인 KB라이프도 실적이 감소했다. KB라이프의 지난해 당기순이익은 2440억원으로 9.4% 감소했다. &#x27;카카오매스·가나&#x27; 수출길 오른다 이처럼 롯데웰푸드가 카카오 설비에 집중하는 이유는 국내 1위 초콜릿 브랜드인 &#x27;가나&#x27;를 비롯해 크런키·ABC초콜릿 등 다수의 초콜릿 제품 포트폴리오를 강화하고 있어서다. 보험' data-ts='1770758760.0' data-rel='0.0' data-url='https://www.asiatime.co.kr/article/20260210500273'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.asiatime.co.kr/article/20260210500273' target='_blank' rel='noopener noreferrer' data-title>지주계열 보험사 건전성 개선됐지만…실적 &#x27;먹구름&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:26</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>KB손보와 함께 KB금융지주 계열사인 KB라이프도 실적이 감소했다. KB라이프의 지난해 당기순이익은 2440억원으로 9.4% 감소했다. &#x27;카카오매스·가나&#x27; 수출길 오른다 이처럼 롯데웰푸드가 카카오 설비에 집중하는 이유는 국내 1위 초콜릿 브랜드인 &#x27;가나&#x27;를 비롯해 크런키·ABC초콜릿 등 다수의 초콜릿 제품 포트폴리오를 강화하고 있어서다.</p>  <div class='actions'><a class='btn small primary' href='https://www.asiatime.co.kr/article/20260210500273' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=0 data-hay='[기고] 더 이상 미룰 수 없는 사무장병원 특사경- 이충훈((사)대한노인회... 이러한 상황에서 보험료 인상이나 부과체계 개편이 대안으로 거론되지만, 국민 부담을 논하기에 앞서 반드시 해결해야 할 문제가 있다. 바로 사무장병원(약국)으로 인한 건강보험 재정 누수다. 이는 제도의 한계가 아니라... 보험' data-ts='1770721440.0' data-rel='0.0' data-url='https://www.knnews.co.kr/news/articleView.php?idxno=1481847'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.knnews.co.kr/news/articleView.php?idxno=1481847' target='_blank' rel='noopener noreferrer' data-title>[기고] 더 이상 미룰 수 없는 사무장병원 특사경- 이충훈((사)대한노인회...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 20:04</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>이러한 상황에서 보험료 인상이나 부과체계 개편이 대안으로 거론되지만, 국민 부담을 논하기에 앞서 반드시 해결해야 할 문제가 있다. 바로 사무장병원(약국)으로 인한 건강보험 재정 누수다. 이는 제도의 한계가 아니라...</p>  <div class='actions'><a class='btn small primary' href='https://www.knnews.co.kr/news/articleView.php?idxno=1481847' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='보험' data-top=0 data-hay='삼성금융의 저력…불장 업고 순익 6조 넘었다 금융권 관계자는 “삼성생명과 삼성화재 등 보험사 실적은 변동성이 크지 않기 때문에 안정적인 흐름을 보일 것”이라며 “증시 호황이 지속될 경우 삼성 금융 계열사들이 올해도 성장할 것으로 예상된다”고... 보험' data-ts='1770714660.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/011/0004588983?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/011/0004588983?sid=101' target='_blank' rel='noopener noreferrer' data-title>삼성금융의 저력…불장 업고 순익 6조 넘었다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 18:11</span>        <span>·</span><span class='badge'>보험</span>  </div>  <p class='summary' data-summary>금융권 관계자는 “삼성생명과 삼성화재 등 보험사 실적은 변동성이 크지 않기 때문에 안정적인 흐름을 보일 것”이라며 “증시 호황이 지속될 경우 삼성 금융 계열사들이 올해도 성장할 것으로 예상된다”고...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/011/0004588983?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.sedaily.com/article/20007554?ref=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div></section><section data-group id='sec-증권'>  <div class='section-head'>    <h2>증권<span class='count'>20</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='증권' data-top=0 data-hay='&#x27;오너&#x27; 없으면 &#x27;금융사고&#x27; 없어지나?…빗썸發 지분제한 우려에 업계 &#x27;허... 민주당, 빗썸 사태 명분으로 &#x27;거래소 대주주 지분율 제한&#x27; 논의 공식화 업계 &quot;대주주 지분과 상관 없어...지배구조 분산돼도 일어날 수 있는 사고&quot; 10일 서울 강남구 빗썸라운지 삼성점 앞으로 시민들이 지나가고 있다. 업계 &quot;대주주 지분과 인과관계 없어...지배구조 분산돼도 일어날 수 있는 사고&quot; 가상자산 업계 신뢰도를 떨어뜨린 초유의 사고는 맞지만, 업계는 이번 일이 대주주 지분 제한의 명분으로 둔갑할 가능성을 우려한다. 한 가상자산 업계 관계자는 &quot;이번 빗썸 사태를 대주주 지분 제한의 명분으로 삼는 것은, 자동차 급발진으로 사고가 났는데 자동차 회사의 대주주를 바 증권' data-ts='1770760200.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/421/0008767373?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/421/0008767373?sid=101' target='_blank' rel='noopener noreferrer' data-title>&#x27;오너&#x27; 없으면 &#x27;금융사고&#x27; 없어지나?…빗썸發 지분제한 우려에 업계 &#x27;허...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:50</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>민주당, 빗썸 사태 명분으로 &#x27;거래소 대주주 지분율 제한&#x27; 논의 공식화 업계 &quot;대주주 지분과 상관 없어...지배구조 분산돼도 일어날 수 있는 사고&quot; 10일 서울 강남구 빗썸라운지 삼성점 앞으로 시민들이 지나가고 있다. 업계 &quot;대주주 지분과 인과관계 없어...지배구조 분산돼도 일어날 수 있는 사고&quot; 가상자산 업계 신뢰도를 떨어뜨린 초유의 사고는 맞지만, 업계는 이번 일이 대주주 지분 제한의 명분으로 둔갑할 가능성을 우려한다. 한 가상자산 업계 관계자는 &quot;이번 빗썸 사태를 대주주 지분 제한의 명분으로 삼는 것은, 자동차 급발진으로 사고가 났는데 자동차 회사의 대주주를 바</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/421/0008767373?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.news1.kr/finance/blockchain-fintech/6069027' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='IPO 시장도 ‘피지컬 AI’ 열풍…NH證, 로봇 기업 뉴빌리티와 주관 계약... 피지컬 AI 기반 자율주행 로봇 서비스 기업 연간 4만 회 이상 서비스...실전 데이터 축적 “코스닥 상장 통해 기술 고도화·글로벌 확장” 뉴빌리티의 자율주행 로봇 뉴비가 배달을 하고 있다. 서울경제DB NH투자증권이 피지컬 인공지능(AI) 기반 자율주행 로봇 서비스 기업 뉴빌리티와 기업공개(IPO) 주관 계약을 체결했다고 11일 밝혔다. 뉴빌리티는 IPO를 통해 로봇 서비스 고도화와 글로벌 시장 확장를 가속화하는 한편 피지컬 AI 기반의 로봇 플랫폼 기업으로 도약한다는 목표다. 증권' data-ts='1770759060.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/011/0004589077?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/011/0004589077?sid=101' target='_blank' rel='noopener noreferrer' data-title>IPO 시장도 ‘피지컬 AI’ 열풍…NH證, 로봇 기업 뉴빌리티와 주관 계약...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:31</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>피지컬 AI 기반 자율주행 로봇 서비스 기업 연간 4만 회 이상 서비스...실전 데이터 축적 “코스닥 상장 통해 기술 고도화·글로벌 확장” 뉴빌리티의 자율주행 로봇 뉴비가 배달을 하고 있다. 서울경제DB NH투자증권이 피지컬 인공지능(AI) 기반 자율주행 로봇 서비스 기업 뉴빌리티와 기업공개(IPO) 주관 계약을 체결했다고 11일 밝혔다. 뉴빌리티는 IPO를 통해 로봇 서비스 고도화와 글로벌 시장 확장를 가속화하는 한편 피지컬 AI 기반의 로봇 플랫폼 기업으로 도약한다는 목표다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/011/0004589077?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://signal.sedaily.com/article/20007431?ref=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='“민사 이겨도 돈 받기 힘들어”…‘먹튀’ 제도 공백에 소상공인 한숨 행사 끝나자 잠적...카페·음식점 ‘먹튀’ 피해 확산 ‘노쇼’는 대책 마련...‘먹튀’는 사각지대 개인 차원 법적 대응 한계에 부담 ↑ 공간 대관 카페를 운영하는 채모씨는 최근 변호사를 만나 대가를 치르지 않고 사라지는 ‘먹튀’ 상담을 진행했다. 카페를 운영하다 먹튀 피해를 당한 정모씨는 “고의성이 입증되지 않아 ‘불송치’로 수사 결론이 났으나 민사소송을 진행해 승소했다”고 말했다. 소상공인연합회 관계자는 “개인 간 분쟁이라 소송을 통해 해결하는 게 원칙이지만 소상공인들이 생업을 내버려두고 법적 다툼만 벌일 수는 없는 일”이라며 “실태 파악부터 주기적으로 진행해 관리 증권' data-ts='1770758580.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/366/0001141860?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/366/0001141860?sid=101' target='_blank' rel='noopener noreferrer' data-title>“민사 이겨도 돈 받기 힘들어”…‘먹튀’ 제도 공백에 소상공인 한숨</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:23</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>행사 끝나자 잠적...카페·음식점 ‘먹튀’ 피해 확산 ‘노쇼’는 대책 마련...‘먹튀’는 사각지대 개인 차원 법적 대응 한계에 부담 ↑ 공간 대관 카페를 운영하는 채모씨는 최근 변호사를 만나 대가를 치르지 않고 사라지는 ‘먹튀’ 상담을 진행했다. 카페를 운영하다 먹튀 피해를 당한 정모씨는 “고의성이 입증되지 않아 ‘불송치’로 수사 결론이 났으나 민사소송을 진행해 승소했다”고 말했다. 소상공인연합회 관계자는 “개인 간 분쟁이라 소송을 통해 해결하는 게 원칙이지만 소상공인들이 생업을 내버려두고 법적 다툼만 벌일 수는 없는 일”이라며 “실태 파악부터 주기적으로 진행해 관리</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/366/0001141860?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.chosun.com/industry/business-venture/2026/02/11/QNF2G4HMCVDZFLLBPF5OBLWAXE/?utm_source=naver&amp;utm_medium=original&amp;utm_campaign=biz' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='SK증권, 신용도 &#x27;하향&#x27;되나…오창석 1500억 대출의 덫[The SIGNAL] 금융투자검사2국은 자금 순환 거래 자체를 곧바로 위법이나 불공정거래로 단정할 수 없지만, 사실이라면 어떤 의도로 이뤄졌는지에 따라 감독 방향이 달라질 수 있다고 설명했다. 한편 SK증권은 이번 논란이 터지자... 증권' data-ts='1770757200.0' data-rel='0.0' data-url='http://www.hansbiz.co.kr/news/articleView.html?idxno=816210'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.hansbiz.co.kr/news/articleView.html?idxno=816210' target='_blank' rel='noopener noreferrer' data-title>SK증권, 신용도 &#x27;하향&#x27;되나…오창석 1500억 대출의 덫[The SIGNAL]</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:00</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>금융투자검사2국은 자금 순환 거래 자체를 곧바로 위법이나 불공정거래로 단정할 수 없지만, 사실이라면 어떤 의도로 이뤄졌는지에 따라 감독 방향이 달라질 수 있다고 설명했다. 한편 SK증권은 이번 논란이 터지자...</p>  <div class='actions'><a class='btn small primary' href='http://www.hansbiz.co.kr/news/articleView.html?idxno=816210' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='미래에셋 “블록체인 노하우·오너 전방위 지원 강점…한국판 로빈후드... 금융위는 3월까지 디지털자산기본법 법안을 처리하고 하반기에는 외국환거래법 등 관련 법 개정도... 자본시장법 개정 가능성을 열어 놓은 것이다. 이 본부장은 “시장이 열릴 기대를 가지고 시장 선점을 위한 준비를... 증권' data-ts='1770756720.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/018/0006217018?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/018/0006217018?sid=101' target='_blank' rel='noopener noreferrer' data-title>미래에셋 “블록체인 노하우·오너 전방위 지원 강점…한국판 로빈후드...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 05:52</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>금융위는 3월까지 디지털자산기본법 법안을 처리하고 하반기에는 외국환거래법 등 관련 법 개정도... 자본시장법 개정 가능성을 열어 놓은 것이다. 이 본부장은 “시장이 열릴 기대를 가지고 시장 선점을 위한 준비를...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/018/0006217018?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='http://www.edaily.co.kr/news/newspath.asp?newsid=01889286645349536' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='코스닥 투자 어렵다면 ETF로 접근… 레버리지·인버스는 주의해야[김미... 정부는 코스닥을 단기 테마 시장이 아닌 혁신기업의 자금조달 플랫폼으로 기능하게 하겠다는 기조 아래, 상장·퇴출 체계 정비와 투자자 보호 강화를 추진하고 있다. 이는 단기 지수 부양보다는 시장 신뢰와 구성 종목의... 증권' data-ts='1770753900.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/081/0003616809?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/081/0003616809?sid=101' target='_blank' rel='noopener noreferrer' data-title>코스닥 투자 어렵다면 ETF로 접근… 레버리지·인버스는 주의해야[김미...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 05:05</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>정부는 코스닥을 단기 테마 시장이 아닌 혁신기업의 자금조달 플랫폼으로 기능하게 하겠다는 기조 아래, 상장·퇴출 체계 정비와 투자자 보호 강화를 추진하고 있다. 이는 단기 지수 부양보다는 시장 신뢰와 구성 종목의...</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/081/0003616809?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.seoul.co.kr/news/economy/finance/2026/02/11/20260211032001?wlog_tag3=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='이찬진 &quot;증권사 임직원 불공정거래, 철저한 자기반성 필요&quot; 건전성·리스크 관리에도 힘써달라며 &quot;건전성 관리에 실패하면 투자자 보호와 모험자본 활성화는 헛된 외침에 불과하다&quot;고 당부했다. 금감원 통계에 따르면 작년 9월 말 기준 증권업계의 부동산 PF 부실여신 잔액은... 증권' data-ts='1770734040.0' data-rel='0.0' data-url='https://www.m-i.kr/news/articleView.html?idxno=1336025'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.m-i.kr/news/articleView.html?idxno=1336025' target='_blank' rel='noopener noreferrer' data-title>이찬진 &quot;증권사 임직원 불공정거래, 철저한 자기반성 필요&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 23:34</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>건전성·리스크 관리에도 힘써달라며 &quot;건전성 관리에 실패하면 투자자 보호와 모험자본 활성화는 헛된 외침에 불과하다&quot;고 당부했다. 금감원 통계에 따르면 작년 9월 말 기준 증권업계의 부동산 PF 부실여신 잔액은...</p>  <div class='actions'><a class='btn small primary' href='https://www.m-i.kr/news/articleView.html?idxno=1336025' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='이찬진 금감원장 &quot;올해 중소형 증권사 책무구조도 시행...제도 안정적 정... 이 원장은 10일 서울 여의도 금융투자협회에서 열린 증권사 최고경영자(CEO) 간담회에서 &quot;자율과 책임에 기반한 내부통제 구축이 중요하다&quot;며 &quot;일부 임직원의 불공정거래와 끊이지 않는 금융사고는 명백한 내부통제 실패... 증권' data-ts='1770729480.0' data-rel='0.0' data-url='https://www.ngetnews.com/news/articleView.html?idxno=547839'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.ngetnews.com/news/articleView.html?idxno=547839' target='_blank' rel='noopener noreferrer' data-title>이찬진 금감원장 &quot;올해 중소형 증권사 책무구조도 시행...제도 안정적 정...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 22:18</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>이 원장은 10일 서울 여의도 금융투자협회에서 열린 증권사 최고경영자(CEO) 간담회에서 &quot;자율과 책임에 기반한 내부통제 구축이 중요하다&quot;며 &quot;일부 임직원의 불공정거래와 끊이지 않는 금융사고는 명백한 내부통제 실패...</p>  <div class='actions'><a class='btn small primary' href='https://www.ngetnews.com/news/articleView.html?idxno=547839' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='빗썸, 최근 3년간 3배 성장 뒤엔 1803억 규모 이벤트 있었다 이헌승 의원은 “빗썸이 외형 확장에 치중한 무책임한 경영을 지속하면서 시장 질서를 교란할 우려가 커지고 있다”면서 “투자자 보호와 가상시장 건전성 확보를 위해 2단계 입법 논의가 시급하다”고... 증권' data-ts='1770726960.0' data-rel='0.0' data-url='https://www.dailyt.co.kr/newsView/dlt202602100025'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.dailyt.co.kr/newsView/dlt202602100025' target='_blank' rel='noopener noreferrer' data-title>빗썸, 최근 3년간 3배 성장 뒤엔 1803억 규모 이벤트 있었다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 21:36</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>이헌승 의원은 “빗썸이 외형 확장에 치중한 무책임한 경영을 지속하면서 시장 질서를 교란할 우려가 커지고 있다”면서 “투자자 보호와 가상시장 건전성 확보를 위해 2단계 입법 논의가 시급하다”고...</p>  <div class='actions'><a class='btn small primary' href='https://www.dailyt.co.kr/newsView/dlt202602100025' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='증권' data-top=0 data-hay='‘1조 달러로는 어림없다’…스타트업 밸류, 3년 만에 3.5배 폭등 이 같은 평가 급등세는 IPO 시장의 재개 가능성과 가속화되는 AI, 국방, 핀테크 등 신산업 부문의 선도 기업 선점 경쟁이 맞물린 결과로 분석된다. 향후 이 수준의 밸류에이션이 얼마나 지속될지는 여전히... 증권' data-ts='1770726480.0' data-rel='0.0' data-url='https://www.tokenpost.kr/news/insights/330491'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tokenpost.kr/news/insights/330491' target='_blank' rel='noopener noreferrer' data-title>‘1조 달러로는 어림없다’…스타트업 밸류, 3년 만에 3.5배 폭등</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-10 21:28</span>        <span>·</span><span class='badge'>증권</span>  </div>  <p class='summary' data-summary>이 같은 평가 급등세는 IPO 시장의 재개 가능성과 가속화되는 AI, 국방, 핀테크 등 신산업 부문의 선도 기업 선점 경쟁이 맞물린 결과로 분석된다. 향후 이 수준의 밸류에이션이 얼마나 지속될지는 여전히...</p>  <div class='actions'><a class='btn small primary' href='https://www.tokenpost.kr/news/insights/330491' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div></section><section data-group id='sec-카드'>  <div class='section-head'>    <h2>카드<span class='count'>1</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='카드' data-top=0 data-hay='KB국민카드 1% 벽 깼다…지주계 카드사 연체율 ‘온도차’ 이에 대해 KB국민카드 관계자는 “카드업계 전반이 가맹점 수수료율 인하와 조달비용 부담, 리스크 관리 강화 등 구조적 도전에 직면한 상황에서 KB국민카드는 무리한 외형 경쟁보다 건전성 관리와 구조 전환을... 카드' data-ts='1770760920.0' data-rel='0.0' data-url='https://www.ceoscoredaily.com/page/view/2026021011532695077'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.ceoscoredaily.com/page/view/2026021011532695077' target='_blank' rel='noopener noreferrer' data-title>KB국민카드 1% 벽 깼다…지주계 카드사 연체율 ‘온도차’</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:02</span>        <span>·</span><span class='badge'>카드</span>  </div>  <p class='summary' data-summary>이에 대해 KB국민카드 관계자는 “카드업계 전반이 가맹점 수수료율 인하와 조달비용 부담, 리스크 관리 강화 등 구조적 도전에 직면한 상황에서 KB국민카드는 무리한 외형 경쟁보다 건전성 관리와 구조 전환을...</p>  <div class='actions'><a class='btn small primary' href='https://www.ceoscoredaily.com/page/view/2026021011532695077' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div></section><section data-group id='sec-저축은행'>  <div class='section-head'>    <h2>저축은행<span class='count'>1</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='저축은행' data-top=0 data-hay='국내 체류 외국인 280만 시대…저축은행, 외국인 금융시장 공략 가속 전체 인구 대비 비중 5% 넘어서...카드결제 금액 19조2000억 달해 저축은행, 외국인 상품 잇따라 출시...중저신용자 영업 노하우 주목 &quot;외국인 대출 상품 꾸준히 수요...관련 데이터 축척해 사업 고도화&quot; &quot;중저신용자 신용관리·평가 경험이 강점...&#x27;새 먹거리&#x27; 기대도&quot; 국내 체류 외국인이 280만명에 육박하면서 저축은행업계가 외국인 고객 유치에 본격적으로 뛰어들고 있다.c데일리안 AI 삽화 이미지 [데일리안 = 박상우 기자] 국내 체류 외국인이 280만명을 넘어서면서 금융권의 시선도 빠르게 외국인 금융시장으로 옮겨가고 있다. 업계 관계자는 &quot;외국인 대출 상품은 저축은행' data-ts='1770761340.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/119/0003058483?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/119/0003058483?sid=101' target='_blank' rel='noopener noreferrer' data-title>국내 체류 외국인 280만 시대…저축은행, 외국인 금융시장 공략 가속</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:09</span>        <span>·</span><span class='badge'>저축은행</span>  </div>  <p class='summary' data-summary>전체 인구 대비 비중 5% 넘어서...카드결제 금액 19조2000억 달해 저축은행, 외국인 상품 잇따라 출시...중저신용자 영업 노하우 주목 &quot;외국인 대출 상품 꾸준히 수요...관련 데이터 축척해 사업 고도화&quot; &quot;중저신용자 신용관리·평가 경험이 강점...&#x27;새 먹거리&#x27; 기대도&quot; 국내 체류 외국인이 280만명에 육박하면서 저축은행업계가 외국인 고객 유치에 본격적으로 뛰어들고 있다.c데일리안 AI 삽화 이미지 [데일리안 = 박상우 기자] 국내 체류 외국인이 280만명을 넘어서면서 금융권의 시선도 빠르게 외국인 금융시장으로 옮겨가고 있다. 업계 관계자는 &quot;외국인 대출 상품은</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/119/0003058483?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.dailian.co.kr/news/view/1609102/?sc=Naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div></section><section data-group id='sec-핀테크'>  <div class='section-head'>    <h2>핀테크<span class='count'>2</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='저축은행' data-top=0 data-hay='국내 체류 외국인 280만 시대…저축은행, 외국인 금융시장 공략 가속 전체 인구 대비 비중 5% 넘어서...카드결제 금액 19조2000억 달해 저축은행, 외국인 상품 잇따라 출시...중저신용자 영업 노하우 주목 &quot;외국인 대출 상품 꾸준히 수요...관련 데이터 축척해 사업 고도화&quot; &quot;중저신용자 신용관리·평가 경험이 강점...&#x27;새 먹거리&#x27; 기대도&quot; 국내 체류 외국인이 280만명에 육박하면서 저축은행업계가 외국인 고객 유치에 본격적으로 뛰어들고 있다.c데일리안 AI 삽화 이미지 [데일리안 = 박상우 기자] 국내 체류 외국인이 280만명을 넘어서면서 금융권의 시선도 빠르게 외국인 금융시장으로 옮겨가고 있다. 업계 관계자는 &quot;외국인 대출 상품은 저축은행' data-ts='1770761340.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/119/0003058483?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/119/0003058483?sid=101' target='_blank' rel='noopener noreferrer' data-title>국내 체류 외국인 280만 시대…저축은행, 외국인 금융시장 공략 가속</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:09</span>        <span>·</span><span class='badge'>저축은행</span>  </div>  <p class='summary' data-summary>전체 인구 대비 비중 5% 넘어서...카드결제 금액 19조2000억 달해 저축은행, 외국인 상품 잇따라 출시...중저신용자 영업 노하우 주목 &quot;외국인 대출 상품 꾸준히 수요...관련 데이터 축척해 사업 고도화&quot; &quot;중저신용자 신용관리·평가 경험이 강점...&#x27;새 먹거리&#x27; 기대도&quot; 국내 체류 외국인이 280만명에 육박하면서 저축은행업계가 외국인 고객 유치에 본격적으로 뛰어들고 있다.c데일리안 AI 삽화 이미지 [데일리안 = 박상우 기자] 국내 체류 외국인이 280만명을 넘어서면서 금융권의 시선도 빠르게 외국인 금융시장으로 옮겨가고 있다. 업계 관계자는 &quot;외국인 대출 상품은</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/119/0003058483?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.dailian.co.kr/news/view/1609102/?sc=Naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='핀테크' data-top=0 data-hay='부모님께 꼭 알려주세요!... 전문가가 알려주는 &#x27;설 연휴 보이스피싱&#x27; 예... 이런 상황에서는 즉시 전화를 끊고 112 등 공식 대표번호로 사실 확인을 해야 합니다. 이런 전화를 받았을 때는 아무리 급박한 상황이라 해도 먼저 통화를 끊고 학교나 학원, 지인에게 직접 확인해야 합니다. 신청하지 않은 카드 배송을 알리며 특정 번호로 전화를 유도 하는 경우, 안내받은 번호로 되돌려 전화하지 말고 &#x27;내 카드 한눈에&#x27; 등 공적 조회 서비스로 사실 여부를 먼저 확인해야 합니다. 핀테크' data-ts='1770759240.0' data-rel='0.0' data-url='https://www.insight.co.kr/news/542560'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.insight.co.kr/news/542560' target='_blank' rel='noopener noreferrer' data-title>부모님께 꼭 알려주세요!... 전문가가 알려주는 &#x27;설 연휴 보이스피싱&#x27; 예...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:34</span>        <span>·</span><span class='badge'>핀테크</span>  </div>  <p class='summary' data-summary>이런 상황에서는 즉시 전화를 끊고 112 등 공식 대표번호로 사실 확인을 해야 합니다. 이런 전화를 받았을 때는 아무리 급박한 상황이라 해도 먼저 통화를 끊고 학교나 학원, 지인에게 직접 확인해야 합니다. 신청하지 않은 카드 배송을 알리며 특정 번호로 전화를 유도 하는 경우, 안내받은 번호로 되돌려 전화하지 말고 &#x27;내 카드 한눈에&#x27; 등 공적 조회 서비스로 사실 여부를 먼저 확인해야 합니다.</p>  <div class='actions'><a class='btn small primary' href='https://www.insight.co.kr/news/542560' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div></section><section data-group id='sec-감독입법'>  <div class='section-head'>    <h2>감독입법<span class='count'>29</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='감독입법' data-top=0 data-hay='‘빚 내 집 사라’ 최경환 “제 말 들은 분들 지금 걱정없다” 당시 경제팀은 관련 규제를 풀고 금리를 낮췄다. 최 전 부총리는 이와 관련 “규제를 풀고 금리를 낮춰 하우스푸어 문제를 해결하려 했던 정책이 결과적으로는 주택 구매자들에게 도움이 됐다”고 주장했다. 최 전 부총리는 문재인 정부 때 26차례에 걸쳐 부동산 규제가 이뤄진 데 대해 “이념 과열적인 규제를 버리지 않고는 시장을 이길 수 없다”고 분석했다. 감독입법' data-ts='1770761880.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/005/0001831605?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/005/0001831605?sid=101' target='_blank' rel='noopener noreferrer' data-title>‘빚 내 집 사라’ 최경환 “제 말 들은 분들 지금 걱정없다”</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:18</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>당시 경제팀은 관련 규제를 풀고 금리를 낮췄다. 최 전 부총리는 이와 관련 “규제를 풀고 금리를 낮춰 하우스푸어 문제를 해결하려 했던 정책이 결과적으로는 주택 구매자들에게 도움이 됐다”고 주장했다. 최 전 부총리는 문재인 정부 때 26차례에 걸쳐 부동산 규제가 이뤄진 데 대해 “이념 과열적인 규제를 버리지 않고는 시장을 이길 수 없다”고 분석했다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/005/0001831605?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.kmib.co.kr/article/view.asp?arcid=0029380910&amp;code=61141511&amp;cp=nv' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='인뱅, 가계대출 한계 넘는다…개인사업자 대출로 여신 전략 전환 가계 총량 규제 상시화 속 ‘사장님 대출’로 성장 동력 이동 담보·전문직 중심 재편...건전성 관리와 수익성 동시 겨냥 인뱅 3사, 개인사업자 금융 경쟁 본격화 가계대출 규제가 상시화되면서 외형 확장 여력이 줄어든 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 전면에 내세우고 있다. c데일리안 AI 삽화 이미지 [데일리안 = 손지연 기자] 가계대출 규제가 상시화되면서 외형 확장 여력이 줄어든 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 전면에 내세우고 있다. ▼ 관련기사 보기 가계대출 총량 규제의 역설...인뱅 정책 충돌 속 저신용자 밀려난다 ht 감독입법' data-ts='1770761280.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/119/0003058482?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/119/0003058482?sid=101' target='_blank' rel='noopener noreferrer' data-title>인뱅, 가계대출 한계 넘는다…개인사업자 대출로 여신 전략 전환</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:08</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>가계 총량 규제 상시화 속 ‘사장님 대출’로 성장 동력 이동 담보·전문직 중심 재편...건전성 관리와 수익성 동시 겨냥 인뱅 3사, 개인사업자 금융 경쟁 본격화 가계대출 규제가 상시화되면서 외형 확장 여력이 줄어든 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 전면에 내세우고 있다. c데일리안 AI 삽화 이미지 [데일리안 = 손지연 기자] 가계대출 규제가 상시화되면서 외형 확장 여력이 줄어든 인터넷전문은행들이 개인사업자 대출을 새로운 성장 축으로 전면에 내세우고 있다. ▼ 관련기사 보기 가계대출 총량 규제의 역설...인뱅 정책 충돌 속 저신용자 밀려난다 ht</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/119/0003058482?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.dailian.co.kr/news/view/1609149/?sc=Naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='‘빚내서 집 사라’던 최경환 “내 말 듣길 잘했다며 고마워하더라” 최 전 부총리는 10일 매일신문 유튜브 방송 ‘이동재의 뉴스캐비닛’에 출연해 “2015년에 제 말 듣고 집 산 분들은 지금 그래도 집 걱정 없이 살고 있는 상황”이라며 이같이 말했다. 최 전 부총리는 지난 2014년 7월 “전세가격이 매매가격의 70% 수준인 현 상태에서 30%만 더 있으면 집을 살 수 있다”며 “신용보강이 이뤄지면 전세를 살고 있는 사람 상당수가 매매로 전환할 수 있다”고 말한 바 있다. 최 전 부총리는 당시를 돌이키며 “언론이 최경환이 ‘빚 내서 집 사라’ 그렇게 워딩을 냈는데, 제가 그런 말 한 적은 없지만 결과적으로 그때 제 말 듣고 집 산 분 감독입법' data-ts='1770761280.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/014/0005476736?sid=100'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/014/0005476736?sid=100' target='_blank' rel='noopener noreferrer' data-title>‘빚내서 집 사라’던 최경환 “내 말 듣길 잘했다며 고마워하더라”</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:08</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>최 전 부총리는 10일 매일신문 유튜브 방송 ‘이동재의 뉴스캐비닛’에 출연해 “2015년에 제 말 듣고 집 산 분들은 지금 그래도 집 걱정 없이 살고 있는 상황”이라며 이같이 말했다. 최 전 부총리는 지난 2014년 7월 “전세가격이 매매가격의 70% 수준인 현 상태에서 30%만 더 있으면 집을 살 수 있다”며 “신용보강이 이뤄지면 전세를 살고 있는 사람 상당수가 매매로 전환할 수 있다”고 말한 바 있다. 최 전 부총리는 당시를 돌이키며 “언론이 최경환이 ‘빚 내서 집 사라’ 그렇게 워딩을 냈는데, 제가 그런 말 한 적은 없지만 결과적으로 그때 제 말 듣고 집 산 분</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/014/0005476736?sid=100' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='http://www.fnnews.com/news/202602110657241894' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='[더벨][Policy Radar] 금감원, 빗썸 &#x27;비트코인 오지급&#x27; 검사 전환 금감원 검사 결과는 가상자산 2단계 입법 논의에도 직접 반영될 전망이다. ◇&#x27;유령 코인&#x27; 현실화…&#x27;장부 거래&#x27; 구조 정조준 10일 금융당국에 따르면 금감원은 빗썸에 검사 착수를 사전 통지하고 이날부터 본검사에... 감독입법' data-ts='1770760920.0' data-rel='0.0' data-url='https://www.thebell.co.kr/free/content/ArticleView.asp?key=202602101518507360108286'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.thebell.co.kr/free/content/ArticleView.asp?key=202602101518507360108286' target='_blank' rel='noopener noreferrer' data-title>[더벨][Policy Radar] 금감원, 빗썸 &#x27;비트코인 오지급&#x27; 검사 전환</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:02</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>금감원 검사 결과는 가상자산 2단계 입법 논의에도 직접 반영될 전망이다. ◇&#x27;유령 코인&#x27; 현실화…&#x27;장부 거래&#x27; 구조 정조준 10일 금융당국에 따르면 금감원은 빗썸에 검사 착수를 사전 통지하고 이날부터 본검사에...</p>  <div class='actions'><a class='btn small primary' href='https://www.thebell.co.kr/free/content/ArticleView.asp?key=202602101518507360108286' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='지난해 카드사 순이익 1조8천억원…전년보다 7.8% 감소 [조문경 기자 / sally3923@mk.co.kr] 화제의 뉴스 넥스트레이드, 출범 첫해 흑자전환...당기순이익 200억 넘겨 이 대통령 &quot;서울 등록임대 매물 나오면 집값 안정 효과&quot; 빗썸, 초유의 사고에 &#x27;돈 복사&#x27; 논란...시스템 허점 드러나 금융당국, 동전주 상폐 검토...&#x27;다사&#x27; 초점 맞춘다 보조금 없어도 선택...하이브리드 판매 비중 30% 돌파 오늘의 이슈픽 인기 영상 영상아이콘 토큰화 시대 열린다...에릭 트럼프 &quot;한국, 퍼스트 무버 될 수 있다&quot; 영상아이콘 기업계 카드사의 약진...은행계 &#x27;아픈 손가락&#x27; 영상아이콘 [집중취재] 14년 만에 풀리는 대형 감독입법' data-ts='1770759840.0' data-rel='0.0' data-url='http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005762927'>  <div class='card-head'>    <h3 class='title'>      <a href='http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005762927' target='_blank' rel='noopener noreferrer' data-title>지난해 카드사 순이익 1조8천억원…전년보다 7.8% 감소</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:44</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>[조문경 기자 / sally3923@mk.co.kr] 화제의 뉴스 넥스트레이드, 출범 첫해 흑자전환...당기순이익 200억 넘겨 이 대통령 &quot;서울 등록임대 매물 나오면 집값 안정 효과&quot; 빗썸, 초유의 사고에 &#x27;돈 복사&#x27; 논란...시스템 허점 드러나 금융당국, 동전주 상폐 검토...&#x27;다사&#x27; 초점 맞춘다 보조금 없어도 선택...하이브리드 판매 비중 30% 돌파 오늘의 이슈픽 인기 영상 영상아이콘 토큰화 시대 열린다...에릭 트럼프 &quot;한국, 퍼스트 무버 될 수 있다&quot; 영상아이콘 기업계 카드사의 약진...은행계 &#x27;아픈 손가락&#x27; 영상아이콘 [집중취재] 14년 만에 풀리는 대형</p>  <div class='actions'><a class='btn small primary' href='http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005762927' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='민간정비사업 용적률 인센티브 제외…집값·공급 균형 시험대 공공정비사업 1.3배 상향 국토위 통과 서울 신규 공급 80% 정비, 민간은 빠져 공공 중심 공급 실효성 두고 의견 갈려 “민간 적용 집값 상승” vs “공급 지연” [이데일리 김은경 최정희 기자] 공공 재개발·재건축의 용적률을 법정 상한의 1.3배까지 높이는 도시 및 주거환경정비법(도정법) 개정안이 여당 주도로 국회 상임위원회를 통과했다. 민간 재건축·재개발은 집값 자극 우려 등을 이유로 인센티브 대상에서 제외되면서 공공 중심 도심 공급 정책의 실효성과 파장을 둘러싼 논쟁이 본격화할 전망이다. 이처럼 공급 여건이 빠듯한 상황에서 공공 중심 공급 전략을 둘러싼 평가는 감독입법' data-ts='1770759060.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/018/0006217042?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/018/0006217042?sid=101' target='_blank' rel='noopener noreferrer' data-title>민간정비사업 용적률 인센티브 제외…집값·공급 균형 시험대</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:31</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>공공정비사업 1.3배 상향 국토위 통과 서울 신규 공급 80% 정비, 민간은 빠져 공공 중심 공급 실효성 두고 의견 갈려 “민간 적용 집값 상승” vs “공급 지연” [이데일리 김은경 최정희 기자] 공공 재개발·재건축의 용적률을 법정 상한의 1.3배까지 높이는 도시 및 주거환경정비법(도정법) 개정안이 여당 주도로 국회 상임위원회를 통과했다. 민간 재건축·재개발은 집값 자극 우려 등을 이유로 인센티브 대상에서 제외되면서 공공 중심 도심 공급 정책의 실효성과 파장을 둘러싼 논쟁이 본격화할 전망이다. 이처럼 공급 여건이 빠듯한 상황에서 공공 중심 공급 전략을 둘러싼 평가는</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/018/0006217042?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='http://www.edaily.co.kr/news/newspath.asp?newsid=02099206645349536' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='대형 카드사 순이익 8% &#x27;털썩&#x27;...현대카드만 웃었다 ▲ 자료이미지 지난해 삼성·신한·현대·KB국민카드 등 대형 카드사 4곳의 연간 순이익이 전년보다 8% 가까이 감소한 것으로 나타났습니다. 한국기업평가는 지난해 전업 카드사 7곳의 가맹점 수수료 수익 감소분이 약 2천600억 원에 달할 것으로 추산했습니다. 지난해 4개사의 합산 이자 비용은 3조 2천352억 원으로 전년보다 4.8% 늘어난 것으로 확인됐습니다. 감독입법' data-ts='1770758760.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/660/0000103140?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/660/0000103140?sid=101' target='_blank' rel='noopener noreferrer' data-title>대형 카드사 순이익 8% &#x27;털썩&#x27;...현대카드만 웃었다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:26</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>▲ 자료이미지 지난해 삼성·신한·현대·KB국민카드 등 대형 카드사 4곳의 연간 순이익이 전년보다 8% 가까이 감소한 것으로 나타났습니다. 한국기업평가는 지난해 전업 카드사 7곳의 가맹점 수수료 수익 감소분이 약 2천600억 원에 달할 것으로 추산했습니다. 지난해 4개사의 합산 이자 비용은 3조 2천352억 원으로 전년보다 4.8% 늘어난 것으로 확인됐습니다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/660/0000103140?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.ikbc.co.kr/article/view/kbc202602110002' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='“코스피 땡큐” 주식 팔아서 ‘똘똘한 한 채’…강남3구에 9000억 몰렸... 서울 주택 매수에 활용된 주식·채권 매각대금은 2022년 이후 꾸준히 증가하는 추세다. 자치구별로 보면 지난해 7월부터 올해 1월까지 강남구가 3784억 원으로 가장 많은 주식·채권 매각대금을 서울 주택 매수에 활용했다. 대출을 통한 주택 매입이 어려워진 상황에서 코스피 등 주식·채권 시장에서 수익을 실현한 자금이 서울 부동산으로 흘러갔다는 것이다. 감독입법' data-ts='1770757620.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/011/0004589074?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/011/0004589074?sid=101' target='_blank' rel='noopener noreferrer' data-title>“코스피 땡큐” 주식 팔아서 ‘똘똘한 한 채’…강남3구에 9000억 몰렸...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:07</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>서울 주택 매수에 활용된 주식·채권 매각대금은 2022년 이후 꾸준히 증가하는 추세다. 자치구별로 보면 지난해 7월부터 올해 1월까지 강남구가 3784억 원으로 가장 많은 주식·채권 매각대금을 서울 주택 매수에 활용했다. 대출을 통한 주택 매입이 어려워진 상황에서 코스피 등 주식·채권 시장에서 수익을 실현한 자금이 서울 부동산으로 흘러갔다는 것이다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/011/0004589074?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.sedaily.com/article/20007641?ref=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='다주택자 매물 &#x27;무주택자&#x27;에게‥시장 움직인다 [구윤철/부총리 - 이재명 대통령] 대신 정부는 다주택자들이 &#x27;세입자 낀 매도&#x27;를 할 수 있도록 실거주 의무를 최장 2년 유예하기로 했습니다. [김태은/공인중개사 (서울 송파구)] &quot;임대차 기간이 좀 넉넉하게 남은 물건들도 아무래도 자금 마련에 있어서 조금 원활하기 때문에 그런 매물들 중에 좀 급매물이 있다면 바로 연락 주셔라, 이런 문의들이 있었습니다.&quot; 다주택자들이 주택을 처분할 수 있게 퇴로를 열어 줬다는 반응도 나왔습니다. 실제 수요들의 움직임으로 연결될 것까지는 지켜볼 필요는 있을 것 같아요.&quot; 정부는 또 5월 9일까지 다주택자가 아파트 매도 계약을 하고 4 감독입법' data-ts='1770757440.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/214/0001480050?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/214/0001480050?sid=101' target='_blank' rel='noopener noreferrer' data-title>다주택자 매물 &#x27;무주택자&#x27;에게‥시장 움직인다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:04</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>[구윤철/부총리 - 이재명 대통령] 대신 정부는 다주택자들이 &#x27;세입자 낀 매도&#x27;를 할 수 있도록 실거주 의무를 최장 2년 유예하기로 했습니다. [김태은/공인중개사 (서울 송파구)] &quot;임대차 기간이 좀 넉넉하게 남은 물건들도 아무래도 자금 마련에 있어서 조금 원활하기 때문에 그런 매물들 중에 좀 급매물이 있다면 바로 연락 주셔라, 이런 문의들이 있었습니다.&quot; 다주택자들이 주택을 처분할 수 있게 퇴로를 열어 줬다는 반응도 나왔습니다. 실제 수요들의 움직임으로 연결될 것까지는 지켜볼 필요는 있을 것 같아요.&quot; 정부는 또 5월 9일까지 다주택자가 아파트 매도 계약을 하고 4</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/214/0001480050?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://imnews.imbc.com/replay/2026/nwtoday/article/6800233_37012.html' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독입법' data-top=0 data-hay='[기자의눈] 정부·민간 &#x27;두 고래&#x27; 싸움에 부동산 안정화 &#x27;새우&#x27;는 클 수... 인스타그램 오피니언 칼럼·기고 기자의 눈 정치일반 국회·정당 사회일반 사건·사고 법원·검찰 교육·행정 노동·복지·환경 보건·의약 경제일반 금융·증권 IT·과학 중기·벤처 아투시티 경기·인천 세종·충청 세계일반 아시아·호주 중동·아프리카 문화·스포츠 지면보기 First Edition 후원하기 제보24시 뉴스스탠드 네이버블로그 아투TV(유튜브) 페이스북 인스타그램 다국어뉴스 ENGLISH Tiếng Việt 패밀리사이트 마켓파워 아투TV 대학동문골프최강전 글로벌리더스클럽 [기자의눈] 정부·민간 ‘두 고래’ 싸움에 부동산 안정화 ‘새우’는 클 수 없다 URL 복사 http 감독입법' data-ts='1770757320.0' data-rel='0.0' data-url='https://www.asiatoday.co.kr/view.php?key=20260210010003462'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.asiatoday.co.kr/view.php?key=20260210010003462' target='_blank' rel='noopener noreferrer' data-title>[기자의눈] 정부·민간 &#x27;두 고래&#x27; 싸움에 부동산 안정화 &#x27;새우&#x27;는 클 수...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 06:02</span>        <span>·</span><span class='badge'>감독입법</span>  </div>  <p class='summary' data-summary>인스타그램 오피니언 칼럼·기고 기자의 눈 정치일반 국회·정당 사회일반 사건·사고 법원·검찰 교육·행정 노동·복지·환경 보건·의약 경제일반 금융·증권 IT·과학 중기·벤처 아투시티 경기·인천 세종·충청 세계일반 아시아·호주 중동·아프리카 문화·스포츠 지면보기 First Edition 후원하기 제보24시 뉴스스탠드 네이버블로그 아투TV(유튜브) 페이스북 인스타그램 다국어뉴스 ENGLISH Tiếng Việt 패밀리사이트 마켓파워 아투TV 대학동문골프최강전 글로벌리더스클럽 [기자의눈] 정부·민간 ‘두 고래’ 싸움에 부동산 안정화 ‘새우’는 클 수 없다 URL 복사 http</p>  <div class='actions'><a class='btn small primary' href='https://www.asiatoday.co.kr/view.php?key=20260210010003462' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div></section><section data-group id='sec-기타'>  <div class='section-head'>    <h2>기타<span class='count'>265</span></h2>    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='기타' data-top=0 data-hay='[브라질증시] 이보베스파, 변동 장세 끝에 하락...헤알 보합 [브라질증시] 이보베스파, 변동 장세 끝에 하락...헤알 보합 기사입력 : 2026년02월11일 07:28 최종수정 : 2026년02월11일 07:28 카카오톡 페이스북 ※ 본문 글자 크기 조정 더 작게 더 크게 ※ 번역할 언어 선택 -- 선택 -- [시드니=뉴스핌] 권지언 특파원 = 브라질 증시는 10일(현지시각) 변동장세 끝에 소폭 하락했다. 브라질 BM&amp;F 보베스파 증권거래소 플로어에서 시세 현황판을 가리키는 남성 [사진= 로이터 뉴스핌] kwonjiun@newspim.com [관련기사] [브라질증시] 뉴욕 증시 훈풍에 이보베스파 최고치...헤알 강세 [브라질 기타' data-ts='1770762480.0' data-rel='0.0' data-url='https://www.newspim.com/news/view/20260211000055'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.newspim.com/news/view/20260211000055' target='_blank' rel='noopener noreferrer' data-title>[브라질증시] 이보베스파, 변동 장세 끝에 하락...헤알 보합</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:28</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>[브라질증시] 이보베스파, 변동 장세 끝에 하락...헤알 보합 기사입력 : 2026년02월11일 07:28 최종수정 : 2026년02월11일 07:28 카카오톡 페이스북 ※ 본문 글자 크기 조정 더 작게 더 크게 ※ 번역할 언어 선택 -- 선택 -- [시드니=뉴스핌] 권지언 특파원 = 브라질 증시는 10일(현지시각) 변동장세 끝에 소폭 하락했다. 브라질 BM&amp;F 보베스파 증권거래소 플로어에서 시세 현황판을 가리키는 남성 [사진= 로이터 뉴스핌] kwonjiun@newspim.com [관련기사] [브라질증시] 뉴욕 증시 훈풍에 이보베스파 최고치...헤알 강세 [브라질</p>  <div class='actions'><a class='btn small primary' href='https://www.newspim.com/news/view/20260211000055' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='[마켓 프리뷰] 코스피 5300선 &#x27;턱걸이&#x27;…코스닥 약세 &#x27;숨고르기&#x27; - 코스피, 전장비 0.07% 상승...5301.69 장 마감 - 달러·원, 주간거래 1.2원 하락...1459.1원 마감 - 위험 선호 심리 회복...연휴 앞두고 거래대금은 감소 - 외인·기관 순매수로 지수 상승 지지...개인 연일 매도 - 엔비디아 2.4% 상승에 시총 4조6천억달러선 회복 - 장 초반 美발 훈풍에 상승...이후 차익실현 매물 출회 - 삼성전자·SK하이닉스 장중 하락 전환...지수 상단 제한 - 美 소매판매·CPI 공개 등 이벤트 앞두고 경계감도 - 지난주 낙폭 대부분 회복...&quot;전고점 돌파 동력 부재&quot; - 현대차, 휴머노이드 로봇 &#x27;아틀라스&#x27; 훈 기타' data-ts='1770762480.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/374/0000491970?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/374/0000491970?sid=101' target='_blank' rel='noopener noreferrer' data-title>[마켓 프리뷰] 코스피 5300선 &#x27;턱걸이&#x27;…코스닥 약세 &#x27;숨고르기&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:28</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>- 코스피, 전장비 0.07% 상승...5301.69 장 마감 - 달러·원, 주간거래 1.2원 하락...1459.1원 마감 - 위험 선호 심리 회복...연휴 앞두고 거래대금은 감소 - 외인·기관 순매수로 지수 상승 지지...개인 연일 매도 - 엔비디아 2.4% 상승에 시총 4조6천억달러선 회복 - 장 초반 美발 훈풍에 상승...이후 차익실현 매물 출회 - 삼성전자·SK하이닉스 장중 하락 전환...지수 상단 제한 - 美 소매판매·CPI 공개 등 이벤트 앞두고 경계감도 - 지난주 낙폭 대부분 회복...&quot;전고점 돌파 동력 부재&quot; - 현대차, 휴머노이드 로봇 &#x27;아틀라스&#x27; 훈</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/374/0000491970?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.sbs.co.kr/article_hub/20000290962?division=NAVER' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='[투데이 라인업] 조국, &#x27;합당 논의 중단&#x27; 최종 입장 발표 / 국회 정무위... 조국 조국혁신당 대표는 오늘 오전 8시 반에 긴급최고위원회를 연 뒤 오전 9시에 공식 입장을 밝히겠다고 예고했습니다. 조 대표가 어떤 입장을 내놓는지에 따라 합당 논의의 최종 향방이 가려질 것으로 보입니다. 김건희 여사에게 고가의 명품 가방을 선물한 혐의를 받는 김기현 국민의힘 의원 부부의 재판이 오늘 시작됩니다. 기타' data-ts='1770762240.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/057/0001934762?sid=102'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/057/0001934762?sid=102' target='_blank' rel='noopener noreferrer' data-title>[투데이 라인업] 조국, &#x27;합당 논의 중단&#x27; 최종 입장 발표 / 국회 정무위...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:24</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>조국 조국혁신당 대표는 오늘 오전 8시 반에 긴급최고위원회를 연 뒤 오전 9시에 공식 입장을 밝히겠다고 예고했습니다. 조 대표가 어떤 입장을 내놓는지에 따라 합당 논의의 최종 향방이 가려질 것으로 보입니다. 김건희 여사에게 고가의 명품 가방을 선물한 혐의를 받는 김기현 국민의힘 의원 부부의 재판이 오늘 시작됩니다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/057/0001934762?sid=102' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='http://www.mbn.co.kr/pages/news/newsView.php?news_seq_no=5175065' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='NHN페이코, 전국 CU편의점에서 포인트 충전·출금 서비스 개시 실질적 금융 편의성 확대 계좌 연동 없는 금융 거점 확보로 ‘잘파세대’ 등 이용자 저변 확대 기대 이번 서비스 출시로 이용자들은 전국 CU 매장에서 페이코 포인트 현금 입출금이 즉시 가능해졌다. 서비스 이용을 위해서는 페이코 앱 내 ‘편의점 충전’ 메뉴에서 바코드를 생성한 뒤 CU편의점 매장에서 해당 바코드를 제시하고 현금으로 충전 또는 출금을 진행하면 된다. 충전된 페이코 포인트는 온·오프라인 페이코 가맹점은 물론 페이코 포인트 카드 연동을 통해 전국 카드 가맹점에서 간편하게 사용할 수 있다. 기타' data-ts='1770762240.0' data-rel='0.0' data-url='http://www.worktoday.co.kr/news/articleView.html?idxno=81161'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.worktoday.co.kr/news/articleView.html?idxno=81161' target='_blank' rel='noopener noreferrer' data-title>NHN페이코, 전국 CU편의점에서 포인트 충전·출금 서비스 개시</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:24</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>실질적 금융 편의성 확대 계좌 연동 없는 금융 거점 확보로 ‘잘파세대’ 등 이용자 저변 확대 기대 이번 서비스 출시로 이용자들은 전국 CU 매장에서 페이코 포인트 현금 입출금이 즉시 가능해졌다. 서비스 이용을 위해서는 페이코 앱 내 ‘편의점 충전’ 메뉴에서 바코드를 생성한 뒤 CU편의점 매장에서 해당 바코드를 제시하고 현금으로 충전 또는 출금을 진행하면 된다. 충전된 페이코 포인트는 온·오프라인 페이코 가맹점은 물론 페이코 포인트 카드 연동을 통해 전국 카드 가맹점에서 간편하게 사용할 수 있다.</p>  <div class='actions'><a class='btn small primary' href='http://www.worktoday.co.kr/news/articleView.html?idxno=81161' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='소비 둔화에 뉴욕증시 혼조 마감···S&amp;P500 0.33%↓ 10일(미국 동부시간) 뉴욕증권거래소(NYSE)에서 다우존스30산업평균지수는 전장보다 52.27포인트(0.10%) 오른 50,188.14에 거래를 마쳤다. 스탠더드앤드푸어스(S&amp;P) 500지수는 전장보다 23.01포인트(0.33%) 밀린 6,941.81, 나스닥종합지수는 136.20포인트(0.59%) 떨어진 23,102.47에 장을 마쳤다. 통상 연말은 미국 소비 대목으로, 미국인들이 연말 분위기를 즐길 여력이 줄었다는 의미로 해석된다. 기타' data-ts='1770761880.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/032/0003427180?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/032/0003427180?sid=101' target='_blank' rel='noopener noreferrer' data-title>소비 둔화에 뉴욕증시 혼조 마감···S&amp;P500 0.33%↓</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:18</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>10일(미국 동부시간) 뉴욕증권거래소(NYSE)에서 다우존스30산업평균지수는 전장보다 52.27포인트(0.10%) 오른 50,188.14에 거래를 마쳤다. 스탠더드앤드푸어스(S&amp;P) 500지수는 전장보다 23.01포인트(0.33%) 밀린 6,941.81, 나스닥종합지수는 136.20포인트(0.59%) 떨어진 23,102.47에 장을 마쳤다. 통상 연말은 미국 소비 대목으로, 미국인들이 연말 분위기를 즐길 여력이 줄었다는 의미로 해석된다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/032/0003427180?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.khan.co.kr/article/202602110718001' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='뉴욕증시, 소비절벽 우려에 혼조세 마감⋯알파벳 1%대, 팔란티어 2%대 하... 다우지수 0.10% 상승, 연일 사상최고치-나스닥지수 0.59% 하락마감 지난해 12월 소매판매, 예상치 밑도는 보합세 10년물 국채금리 4.139%로 하락 미국 뉴욕증시는 10일(현지시간) 혼조세를 나타냈다. 10년 만기 미 국채 금리는 전장 대비 5.9bp(1bp=0.01%포인트) 내린 4.139%를 기록했고 통화 정책에 민감한 2년물 국채 금리는 3.1bp 하락한 3.452%를 가리켰다. #뉴욕증시 #소매판매 #고용보고서 #국채금리 조희제 기자 hjcho1070@naver.com 다른기사 보기 로또 1등 당첨지역, “로또 1210회, 11억 잭팟 주인공은?... 기타' data-ts='1770761760.0' data-rel='0.0' data-url='http://www.econonews.co.kr/news/articleView.html?idxno=427130'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.econonews.co.kr/news/articleView.html?idxno=427130' target='_blank' rel='noopener noreferrer' data-title>뉴욕증시, 소비절벽 우려에 혼조세 마감⋯알파벳 1%대, 팔란티어 2%대 하...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:16</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>다우지수 0.10% 상승, 연일 사상최고치-나스닥지수 0.59% 하락마감 지난해 12월 소매판매, 예상치 밑도는 보합세 10년물 국채금리 4.139%로 하락 미국 뉴욕증시는 10일(현지시간) 혼조세를 나타냈다. 10년 만기 미 국채 금리는 전장 대비 5.9bp(1bp=0.01%포인트) 내린 4.139%를 기록했고 통화 정책에 민감한 2년물 국채 금리는 3.1bp 하락한 3.452%를 가리켰다. #뉴욕증시 #소매판매 #고용보고서 #국채금리 조희제 기자 hjcho1070@naver.com 다른기사 보기 로또 1등 당첨지역, “로또 1210회, 11억 잭팟 주인공은?...</p>  <div class='actions'><a class='btn small primary' href='http://www.econonews.co.kr/news/articleView.html?idxno=427130' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='[여의도 CEO 전광판] 성과로 증명한 서정학…IBK투자증권, ‘2연임’ 예... 3월 임기를 앞둔 서정학 IBK투자증권 대표이사. [사진=IBK투자증권, 편집=뉴스투데이] [뉴스투데이=염보라 기자] 서정학 IBK투자증권 대표의 임기가 오는 3월 만료된다. boraa8996@news2day.co.kr 이 기자의 다른 기사 보기 [관련기사] [여의도 CEO 전광판] 성과로 증명한 서정학...IBK투자증권, ‘2연임’ 예외 만들까 [여의도 CEO 전광판] 윤병운 NH투자증권 사장 ‘1조’ 성적표 들고 ‘IMA·AI’ 영토 확장 [여의도 CEO 전광판] 교보증권, 사상 최대 실적...박봉권 &#x27;관리형 성장&#x27; 속 4연임 명분 - 띄어 쓰기를 포함하여 250 기타' data-ts='1770761760.0' data-rel='0.0' data-url='https://www.news2day.co.kr/article/20260211500006'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.news2day.co.kr/article/20260211500006' target='_blank' rel='noopener noreferrer' data-title>[여의도 CEO 전광판] 성과로 증명한 서정학…IBK투자증권, ‘2연임’ 예...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:16</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>3월 임기를 앞둔 서정학 IBK투자증권 대표이사. [사진=IBK투자증권, 편집=뉴스투데이] [뉴스투데이=염보라 기자] 서정학 IBK투자증권 대표의 임기가 오는 3월 만료된다. boraa8996@news2day.co.kr 이 기자의 다른 기사 보기 [관련기사] [여의도 CEO 전광판] 성과로 증명한 서정학...IBK투자증권, ‘2연임’ 예외 만들까 [여의도 CEO 전광판] 윤병운 NH투자증권 사장 ‘1조’ 성적표 들고 ‘IMA·AI’ 영토 확장 [여의도 CEO 전광판] 교보증권, 사상 최대 실적...박봉권 &#x27;관리형 성장&#x27; 속 4연임 명분 - 띄어 쓰기를 포함하여 250</p>  <div class='actions'><a class='btn small primary' href='https://www.news2day.co.kr/article/20260211500006' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='지갑 닫히자 증시도 주춤…다우 나홀로 사흘째 최고치[뉴욕마감] 지난 이틀 동안 증시가 급반등하면서 차익실현 심리가 고개를 든 가운데 이날 발표된 지난해 12월 소매판매가 예상밖으로 전달 수준을 유지하는 데 그치면서 시장이 숨고르기에 들어갔다는 평가다. 핵심 고용 지표인 1월 비농업 고용지표 발표를 하루 앞두고 경제성장세에 대한 재평가가 필요할 수 있다는 의견도 나온다. 소비 둔화세가 나타나면서 대형 유통업체 주가는 약세를 보였다. 기타' data-ts='1770761520.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/008/0005316909?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/008/0005316909?sid=101' target='_blank' rel='noopener noreferrer' data-title>지갑 닫히자 증시도 주춤…다우 나홀로 사흘째 최고치[뉴욕마감]</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:12</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>지난 이틀 동안 증시가 급반등하면서 차익실현 심리가 고개를 든 가운데 이날 발표된 지난해 12월 소매판매가 예상밖으로 전달 수준을 유지하는 데 그치면서 시장이 숨고르기에 들어갔다는 평가다. 핵심 고용 지표인 1월 비농업 고용지표 발표를 하루 앞두고 경제성장세에 대한 재평가가 필요할 수 있다는 의견도 나온다. 소비 둔화세가 나타나면서 대형 유통업체 주가는 약세를 보였다.</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/008/0005316909?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mt.co.kr/world/2026/02/11/2026021107102144448' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='[김대호 박사의 오늘의 키워드] 시진핑 국채 전쟁·다이아몬드 몰락·고... ■ 모닝벨 &#x27;김대호 박사의 오늘의 키워드&#x27; - 김대호 글로벌이코노믹연구소장·SBS Biz 전문위원·고려대 연구교수 ◇ 시진핑 국채 전쟁 미국과 중국 간의 국채 패권 전쟁 격화되는 모습입니다. - 中, 은행들에 &quot;美국채 보유 줄여라&quot;...국채 패권 전쟁 - 신규 매수 자제...익스포저 큰 기관엔 포지션 축소 지시 - 민간 및 상업은행 대상, 정부 보유한 美국채에는 미적용 - &quot;美재정 불안·변동성 확대에 대비한 리스크 관리 차원&quot; - &#x27;리스크 분산&#x27; 명분 내세웠지만 美국채 축소 추세 강화 - 트럼프발 그린란드 위협 등 지정학적 리스크, 불안 확대 - 급격한 변동성 노출 기타' data-ts='1770761460.0' data-rel='0.0' data-url='https://n.news.naver.com/mnews/article/374/0000491968?sid=104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/374/0000491968?sid=104' target='_blank' rel='noopener noreferrer' data-title>[김대호 박사의 오늘의 키워드] 시진핑 국채 전쟁·다이아몬드 몰락·고...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:11</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>■ 모닝벨 &#x27;김대호 박사의 오늘의 키워드&#x27; - 김대호 글로벌이코노믹연구소장·SBS Biz 전문위원·고려대 연구교수 ◇ 시진핑 국채 전쟁 미국과 중국 간의 국채 패권 전쟁 격화되는 모습입니다. - 中, 은행들에 &quot;美국채 보유 줄여라&quot;...국채 패권 전쟁 - 신규 매수 자제...익스포저 큰 기관엔 포지션 축소 지시 - 민간 및 상업은행 대상, 정부 보유한 美국채에는 미적용 - &quot;美재정 불안·변동성 확대에 대비한 리스크 관리 차원&quot; - &#x27;리스크 분산&#x27; 명분 내세웠지만 美국채 축소 추세 강화 - 트럼프발 그린란드 위협 등 지정학적 리스크, 불안 확대 - 급격한 변동성 노출</p>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/374/0000491968?sid=104' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.sbs.co.kr/article_hub/20000290954?division=NAVER' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='마이클 세일러 “비트코인 상승의 핵심 동력은 규제환경 개선” 페이스북 링크드인 텔레그램 글자크기 매우크게 마이클 세일러 “비트코인 상승의 핵심 동력은 규제환경 개선” 토큰포스트 속보 2026.02.11 (수) 07:08 마이크로스트래티지(MicroStrategy) 창업자 마이클 세일러는 2월 6일 2025년 4분기 실적 발표 중 “비트코인 상승의 핵심 촉진제는 규제기관의 지지”라고 밝혔다. 또 하나의 주요 성장 요인으로는 은행권의 비트코인 채택을 꼽았다. 주요 금융기관들이 비트코인 거래, 보관, 대출 서비스를 도입하면서 자산의 합법성과 안정성이 높아지고 활용도도 커질 것이라고 덧붙였다. 기타' data-ts='1770761400.0' data-rel='0.0' data-url='https://www.tokenpost.kr/news/breaking/330577'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tokenpost.kr/news/breaking/330577' target='_blank' rel='noopener noreferrer' data-title>마이클 세일러 “비트코인 상승의 핵심 동력은 규제환경 개선”</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>02-11 07:10</span>        <span>·</span><span class='badge'>기타</span>  </div>  <p class='summary' data-summary>페이스북 링크드인 텔레그램 글자크기 매우크게 마이클 세일러 “비트코인 상승의 핵심 동력은 규제환경 개선” 토큰포스트 속보 2026.02.11 (수) 07:08 마이크로스트래티지(MicroStrategy) 창업자 마이클 세일러는 2월 6일 2025년 4분기 실적 발표 중 “비트코인 상승의 핵심 촉진제는 규제기관의 지지”라고 밝혔다. 또 하나의 주요 성장 요인으로는 은행권의 비트코인 채택을 꼽았다. 주요 금융기관들이 비트코인 거래, 보관, 대출 서비스를 도입하면서 자산의 합법성과 안정성이 높아지고 활용도도 커질 것이라고 덧붙였다.</p>  <div class='actions'><a class='btn small primary' href='https://www.tokenpost.kr/news/breaking/330577' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div></section>
+
+      <section data-group id="sec-KW">
+        <div class="section-head">
+          <h2>키워드 트렌드</h2>
+          <div class="note">상위 20개</div>
+        </div>
+        <div class='kchips'><span class='kchip'>대출 규제 <span class='n'>27</span></span><span class='kchip'>불공정거래 <span class='n'>9</span></span><span class='kchip'>투자자 보호 <span class='n'>7</span></span><span class='kchip'>IPO 시장 <span class='n'>4</span></span><span class='kchip'>서민금융진흥원 <span class='n'>2</span></span><span class='kchip'>보험료 인상 <span class='n'>2</span></span><span class='kchip'>오픈뱅킹 <span class='n'>2</span></span><span class='kchip'>금융감독원 제재 <span class='n'>1</span></span><span class='kchip'>금감원 검사 <span class='n'>1</span></span><span class='kchip'>가계대출 규제 <span class='n'>1</span></span></div>
+      </section>
+
+      <div class="footer">
+        본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.
+      </div>
+    </div>
+  </div>
+
+  <script>
+(function(){
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeBtn");
+  const search = document.getElementById("searchInput");
+  const topOnly = document.getElementById("topOnly");
+  const favOnly = document.getElementById("favOnly");
+  const sortSel = document.getElementById("sortSel");
+  const presetBar = document.getElementById("presetBar");
+
+  const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
+  const cards = Array.from(document.querySelectorAll("[data-card]"));
+  const groups = Array.from(document.querySelectorAll("[data-group]"));
+
+  const LS_THEME = "reportTheme";
+  const LS_FAVS = "reportFavs_v1";
+  const LS_PRESETS = "reportPreset_v1";
+
+  const PRESETS = [
+    {k:"PF", q:"PF"},
+    {k:"연체", q:"연체 연체율"},
+    {k:"금리", q:"금리 기준금리"},
+    {k:"가계대출", q:"가계대출 주담대"},
+    {k:"부동산", q:"부동산 분양 미분양"},
+    {k:"IPO", q:"IPO 상장"},
+    {k:"국민연금", q:"국민연금"},
+  ];
+
+  function loadTheme(){
+    const saved = localStorage.getItem(LS_THEME);
+    root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light";
+    themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크";
+  }
+  function toggleTheme(){
+    const next = (root.dataset.theme === "dark") ? "light" : "dark";
+    root.dataset.theme = next;
+    localStorage.setItem(LS_THEME, next);
+    themeBtn.textContent = (next === "dark") ? "라이트" : "다크";
+  }
+
+  function getFavs(){
+    try{
+      const raw = localStorage.getItem(LS_FAVS);
+      const arr = raw ? JSON.parse(raw) : [];
+      return new Set(Array.isArray(arr) ? arr : []);
+    }catch(e){
+      return new Set();
+    }
+  }
+  function saveFavs(set){
+    localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set)));
+  }
+
+  function setActivePill(sector){
+    pills.forEach(p => p.classList.toggle("active", p.dataset.sector === sector));
+  }
+
+  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function escapeHtml(s){
+    return (s || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function buildHighlight(text, tokens){
+    if(!tokens.length) return escapeHtml(text);
+    const re = new RegExp(tokens.map(escapeRegExp).join("|"), "ig");
+    let out = "";
+    let last = 0;
+    for (const m of text.matchAll(re)) {
+      const idx = m.index ?? 0;
+      out += escapeHtml(text.slice(last, idx));
+      out += "<mark>" + escapeHtml(m[0]) + "</mark>";
+      last = idx + m[0].length;
+    }
+    out += escapeHtml(text.slice(last));
+    return out;
+  }
+
+  function cacheOriginalText(){
+    cards.forEach(card => {
+      const titleEl = card.querySelector("[data-title]");
+      const sumEl = card.querySelector("[data-summary]");
+      if(titleEl && !card.dataset.ot) card.dataset.ot = titleEl.textContent || "";
+      if(sumEl && !card.dataset.os) card.dataset.os = sumEl.textContent || "";
+    });
+  }
+
+  function applyHighlight(){
+    const q = (search.value || "").trim();
+    const tokens = q.split(/\s+/).map(t => t.trim()).filter(Boolean);
+    cards.forEach(card => {
+      const titleEl = card.querySelector("[data-title]");
+      const sumEl = card.querySelector("[data-summary]");
+      if(!titleEl || !sumEl) return;
+
+      const ot = card.dataset.ot || titleEl.textContent || "";
+      const os = card.dataset.os || sumEl.textContent || "";
+
+      if(card.style.display === "none"){
+        titleEl.textContent = ot;
+        sumEl.textContent = os;
+        return;
+      }
+
+      if(!tokens.length){
+        titleEl.textContent = ot;
+        sumEl.textContent = os;
+      }else{
+        titleEl.innerHTML = buildHighlight(ot, tokens);
+        sumEl.innerHTML = buildHighlight(os, tokens);
+      }
+    });
+  }
+
+  function applySort(){
+    const mode = (sortSel.value || "new");
+    groups.forEach(g => {
+      const grid = g.querySelector(".grid");
+      if(!grid) return;
+      const items = Array.from(grid.querySelectorAll("[data-card]"));
+      items.sort((a,b) => {
+        const ta = parseFloat(a.dataset.ts || "0");
+        const tb = parseFloat(b.dataset.ts || "0");
+        const ra = parseFloat(a.dataset.rel || "0");
+        const rb = parseFloat(b.dataset.rel || "0");
+        if(mode === "rel"){
+          if(rb !== ra) return rb - ra;
+          return tb - ta;
+        }
+        return tb - ta;
+      });
+      items.forEach(it => grid.appendChild(it));
+    });
+  }
+
+  function applyFilter(){
+    const q = (search.value || "").trim().toLowerCase();
+    const active = (document.querySelector(".pill.active") || {}).dataset?.sector || "ALL";
+    const onlyTop = topOnly ? topOnly.checked : false;
+    const onlyFav = favOnly ? favOnly.checked : false;
+    const favs = getFavs();
+
+    cards.forEach(card => {
+      const sector = (card.dataset.sector || "");
+      const isTop = (card.dataset.top === "1");
+      const hay = (card.dataset.hay || "").toLowerCase();
+      const url = (card.dataset.url || "");
+      const isFav = favs.has(url);
+
+      let ok = true;
+      if(active !== "ALL" && sector !== active) ok = false;
+      if(onlyTop && !isTop) ok = false;
+      if(onlyFav && !isFav) ok = false;
+      if(q && hay.indexOf(q) === -1) ok = false;
+
+      card.style.display = ok ? "" : "none";
+    });
+
+    groups.forEach(g => {
+      const anyVisible = Array.from(g.querySelectorAll("[data-card]")).some(c => c.style.display !== "none");
+      g.style.display = anyVisible ? "" : "none";
+    });
+
+    applyHighlight();
+  }
+
+  function renderPresets(){
+    if(!presetBar) return;
+    presetBar.innerHTML = PRESETS.map(p => `<button class="preset" data-preset="${escapeHtml(p.q)}">${escapeHtml(p.k)}</button>`).join("");
+    const saved = localStorage.getItem(LS_PRESETS) || "";
+    if(saved) search.value = saved;
+  }
+
+  function bindPresets(){
+    if(!presetBar) return;
+    presetBar.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-preset]");
+      if(!btn) return;
+      const q = btn.getAttribute("data-preset") || "";
+      search.value = q;
+      localStorage.setItem(LS_PRESETS, q);
+      Array.from(presetBar.querySelectorAll(".preset")).forEach(x => x.classList.toggle("active", x === btn));
+      applyFilter();
+    });
+  }
+
+  function initFavButtons(){
+    const favs = getFavs();
+    cards.forEach(card => {
+      const btn = card.querySelector("[data-clip]");
+      const url = card.dataset.url || "";
+      if(!btn || !url) return;
+      const on = favs.has(url);
+      btn.classList.toggle("on", on);
+      btn.textContent = on ? "★" : "☆";
+      btn.addEventListener("click", () => {
+        const set = getFavs();
+        const nowOn = set.has(url) ? (set.delete(url), false) : (set.add(url), true);
+        saveFavs(set);
+        btn.classList.toggle("on", nowOn);
+        btn.textContent = nowOn ? "★" : "☆";
+        if(favOnly && favOnly.checked) applyFilter();
+      });
+    });
+  }
+
+  pills.forEach(p => {
+    p.addEventListener("click", () => {
+      const sector = p.dataset.sector;
+      setActivePill(sector);
+      applyFilter();
+      if(sector === "ALL"){
+        window.scrollTo({top:0, behavior:"smooth"});
+      }else{
+        const sec = document.getElementById("sec-" + sector);
+        if(sec) sec.scrollIntoView({behavior:"smooth", block:"start"});
+      }
+    });
+  });
+
+  search.addEventListener("input", () => {
+    localStorage.setItem(LS_PRESETS, search.value || "");
+    applyFilter();
+  });
+  if(topOnly) topOnly.addEventListener("change", applyFilter);
+  if(favOnly) favOnly.addEventListener("change", applyFilter);
+  sortSel.addEventListener("change", () => { applySort(); applyFilter(); });
+  themeBtn.addEventListener("click", toggleTheme);
+
+  loadTheme();
+  setActivePill("ALL");
+  cacheOriginalText();
+  renderPresets();
+  bindPresets();
+  applySort();
+  initFavButtons();
+  applyFilter();
+})();
+</script>
+</body>
+</html>
