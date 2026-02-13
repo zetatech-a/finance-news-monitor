@@ -32,11 +32,19 @@ REPORT_DIR = ROOT_DIR / "reports"
 QUERIES_PATH = ROOT_DIR / "queries.yml"
 
 
-def load_queries() -> dict[str, list[str]]:
+def load_queries() -> tuple[dict[str, list[str]], dict[str, list[str]]]:
     if not QUERIES_PATH.exists():
         raise FileNotFoundError(f"queries.yml not found at: {QUERIES_PATH}")
     data = yaml.safe_load(QUERIES_PATH.read_text(encoding="utf-8")) or {}
-    return data.get("sectors", {})
+
+    # backward compatibility: legacy format can be plain sector mapping
+    if "sectors" in data or "topics" in data:
+        sectors = data.get("sectors", {}) or {}
+        topics = data.get("topics", {}) or {}
+    else:
+        sectors = data or {}
+        topics = {}
+    return sectors, topics
 
 
 def build_query_list(sector_queries: dict[str, list[str]]) -> list[str]:
@@ -83,7 +91,7 @@ def main() -> None:
     # reports 폴더 없으면 생성
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
-    sector_queries = load_queries()
+    sector_queries, topic_queries = load_queries()
     query_list = build_query_list(sector_queries)
 
     config = load_config()
@@ -107,7 +115,7 @@ def main() -> None:
     )
 
     # ✅ 금융 관련성 통과 기사만 섹터 태깅
-    tagged = tag_articles(articles, sector_queries)
+    tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
 
     # ✅ 요약 캐시 로드 (같은 URL 재요청 방지)
     cache_path = REPORT_DIR / "_cache" / "summary_cache.json"

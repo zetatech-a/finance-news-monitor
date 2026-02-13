@@ -121,7 +121,7 @@ def render_markdown(
     lines = [header, ""]
 
     top_items = sorted(
-        [it for it in tagged if "감독입법" not in it.sectors and "기타" not in it.sectors],
+        [it for it in tagged if "감독·제재" not in it.sectors and "입법·정책" not in it.sectors and "기타" not in it.sectors],
         key=lambda x: x.article.pub_date,
         reverse=True,
     )[:10]
@@ -143,8 +143,9 @@ def render_markdown(
             by_sector[sector].append(item)
 
     sector_order = [
-        "대부", "은행", "보험", "증권", "카드", "캐피탈",
-        "저축은행", "핀테크", "감독입법", "기타",
+        "대부", "은행", "저축은행", "상호금융", "여전", "보험",
+        "증권(브로커리지/리테일)", "자산운용·연기금", "IB·자본시장",
+        "핀테크·플랫폼", "디지털자산", "해외", "감독·제재", "입법·정책", "기타",
     ]
 
     for sector in sector_order:
@@ -431,130 +432,38 @@ _UI_JS = r"""
   const presetBar = document.getElementById("presetBar");
 
   const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
+  const topicPills = Array.from(document.querySelectorAll("[data-topic-pill]"));
   const cards = Array.from(document.querySelectorAll("[data-card]"));
   const groups = Array.from(document.querySelectorAll("[data-group]"));
+  const PAGE_SIZE = 20;
 
   const LS_THEME = "reportTheme";
   const LS_FAVS = "reportFavs_v1";
   const LS_PRESETS = "reportPreset_v1";
 
-  const PRESETS = [
-    {k:"PF", q:"PF"},
-    {k:"연체", q:"연체 연체율"},
-    {k:"금리", q:"금리 기준금리"},
-    {k:"가계대출", q:"가계대출 주담대"},
-    {k:"부동산", q:"부동산 분양 미분양"},
-    {k:"IPO", q:"IPO 상장"},
-    {k:"국민연금", q:"국민연금"},
-  ];
+  const PRESET_GROUPS = {
+    "Core(대부)": [
+      {k:"대부", q:"대부업"}, {k:"최고금리", q:"최고금리"}, {k:"불법사금융", q:"불법사금융 불법추심"}
+    ],
+    "Core(전금융)": [
+      {k:"PF", q:"PF 부동산PF"}, {k:"연체", q:"연체 연체율"}, {k:"금리", q:"금리 기준금리"}, {k:"가계부채", q:"가계부채 DSR LTV"}
+    ]
+  };
+  let activePresetGroup = "Core(대부)";
 
-  function loadTheme(){
-    const saved = localStorage.getItem(LS_THEME);
-    root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light";
-    themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크";
-  }
-  function toggleTheme(){
-    const next = (root.dataset.theme === "dark") ? "light" : "dark";
-    root.dataset.theme = next;
-    localStorage.setItem(LS_THEME, next);
-    themeBtn.textContent = (next === "dark") ? "라이트" : "다크";
-  }
-
-  function getFavs(){
-    try{
-      const raw = localStorage.getItem(LS_FAVS);
-      const arr = raw ? JSON.parse(raw) : [];
-      return new Set(Array.isArray(arr) ? arr : []);
-    }catch(e){
-      return new Set();
-    }
-  }
-  function saveFavs(set){
-    localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set)));
-  }
-
-  function setActivePill(sector){
-    pills.forEach(p => p.classList.toggle("active", p.dataset.sector === sector));
-  }
-
-  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-  function escapeHtml(s){
-    return (s || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-  function buildHighlight(text, tokens){
-    if(!tokens.length) return escapeHtml(text);
-    const re = new RegExp(tokens.map(escapeRegExp).join("|"), "ig");
-    let out = "";
-    let last = 0;
-    for (const m of text.matchAll(re)) {
-      const idx = m.index ?? 0;
-      out += escapeHtml(text.slice(last, idx));
-      out += "<mark>" + escapeHtml(m[0]) + "</mark>";
-      last = idx + m[0].length;
-    }
-    out += escapeHtml(text.slice(last));
-    return out;
-  }
-
-  function cacheOriginalText(){
-    cards.forEach(card => {
-      const titleEl = card.querySelector("[data-title]");
-      const sumEl = card.querySelector("[data-summary]");
-      if(titleEl && !card.dataset.ot) card.dataset.ot = titleEl.textContent || "";
-      if(sumEl && !card.dataset.os) card.dataset.os = sumEl.textContent || "";
-    });
-  }
-
-  function applyHighlight(){
-    const q = (search.value || "").trim();
-    const tokens = q.split(/\s+/).map(t => t.trim()).filter(Boolean);
-    cards.forEach(card => {
-      const titleEl = card.querySelector("[data-title]");
-      const sumEl = card.querySelector("[data-summary]");
-      if(!titleEl || !sumEl) return;
-
-      const ot = card.dataset.ot || titleEl.textContent || "";
-      const os = card.dataset.os || sumEl.textContent || "";
-
-      if(card.style.display === "none"){
-        titleEl.textContent = ot;
-        sumEl.textContent = os;
-        return;
-      }
-
-      if(!tokens.length){
-        titleEl.textContent = ot;
-        sumEl.textContent = os;
-      }else{
-        titleEl.innerHTML = buildHighlight(ot, tokens);
-        sumEl.innerHTML = buildHighlight(os, tokens);
-      }
-    });
-  }
+  function loadTheme(){ const saved = localStorage.getItem(LS_THEME); root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light"; themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크"; }
+  function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); themeBtn.textContent = (next === "dark") ? "라이트" : "다크"; }
+  function getFavs(){ try{ const raw = localStorage.getItem(LS_FAVS); const arr = raw ? JSON.parse(raw) : []; return new Set(Array.isArray(arr) ? arr : []);}catch(e){ return new Set(); }}
+  function saveFavs(set){ localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set))); }
+  function setActivePill(sector){ pills.forEach(p => p.classList.toggle("active", p.dataset.sector === sector)); }
+  function setActiveTopicPill(topic){ topicPills.forEach(p => p.classList.toggle("active", p.dataset.topic === topic)); }
 
   function applySort(){
     const mode = (sortSel.value || "new");
     groups.forEach(g => {
-      const grid = g.querySelector(".grid");
-      if(!grid) return;
+      const grid = g.querySelector(".grid"); if(!grid) return;
       const items = Array.from(grid.querySelectorAll("[data-card]"));
-      items.sort((a,b) => {
-        const ta = parseFloat(a.dataset.ts || "0");
-        const tb = parseFloat(b.dataset.ts || "0");
-        const ra = parseFloat(a.dataset.rel || "0");
-        const rb = parseFloat(b.dataset.rel || "0");
-        if(mode === "rel"){
-          if(rb !== ra) return rb - ra;
-          return tb - ta;
-        }
-        return tb - ta;
-      });
+      items.sort((a,b) => { const ta = parseFloat(a.dataset.ts || "0"); const tb = parseFloat(b.dataset.ts || "0"); const ra = parseFloat(a.dataset.rel || "0"); const rb = parseFloat(b.dataset.rel || "0"); if(mode === "rel"){ if(rb !== ra) return rb-ra; return tb-ta;} return tb-ta;});
       items.forEach(it => grid.appendChild(it));
     });
   }
@@ -562,104 +471,74 @@ _UI_JS = r"""
   function applyFilter(){
     const q = (search.value || "").trim().toLowerCase();
     const active = (document.querySelector(".pill.active") || {}).dataset?.sector || "ALL";
-    const onlyTop = topOnly ? topOnly.checked : false;
-    const onlyFav = favOnly ? favOnly.checked : false;
+    const activeTopic = (document.querySelector("[data-topic-pill].active") || {}).dataset?.topic || "ALL";
+    const onlyTop = topOnly && topOnly.checked;
+    const onlyFav = favOnly && favOnly.checked;
     const favs = getFavs();
 
     cards.forEach(card => {
-      const sector = (card.dataset.sector || "");
-      const isTop = (card.dataset.top === "1");
+      const sector = card.dataset.sector || "";
+      const topics = (card.dataset.topics || "").split("|").filter(Boolean);
+      const isTop = card.dataset.top === "1";
       const hay = (card.dataset.hay || "").toLowerCase();
-      const url = (card.dataset.url || "");
-      const isFav = favs.has(url);
-
+      const isFav = favs.has(card.dataset.url || "");
       let ok = true;
       if(active !== "ALL" && sector !== active) ok = false;
+      if(activeTopic !== "ALL" && !topics.includes(activeTopic)) ok = false;
       if(onlyTop && !isTop) ok = false;
       if(onlyFav && !isFav) ok = false;
-      if(q && hay.indexOf(q) === -1) ok = false;
-
+      if(q && !hay.includes(q)) ok = false;
+      card.dataset.match = ok ? "1" : "0";
       card.style.display = ok ? "" : "none";
     });
 
     groups.forEach(g => {
-      const anyVisible = Array.from(g.querySelectorAll("[data-card]")).some(c => c.style.display !== "none");
-      g.style.display = anyVisible ? "" : "none";
+      const matched = Array.from(g.querySelectorAll("[data-card]")).filter(c => c.dataset.match === "1");
+      matched.forEach((c,i)=> c.style.display = i < PAGE_SIZE ? "" : "none");
+      const btn = g.querySelector("[data-load-more]");
+      if(btn){ btn.dataset.offset = String(Math.min(PAGE_SIZE, matched.length)); btn.style.display = matched.length > PAGE_SIZE ? "" : "none"; }
+      g.style.display = matched.length ? "" : "none";
     });
-
-    applyHighlight();
   }
 
   function renderPresets(){
     if(!presetBar) return;
-    presetBar.innerHTML = PRESETS.map(p => `<button class="preset" data-preset="${escapeHtml(p.q)}">${escapeHtml(p.k)}</button>`).join("");
-    const saved = localStorage.getItem(LS_PRESETS) || "";
-    if(saved) search.value = saved;
-  }
-
-  function bindPresets(){
-    if(!presetBar) return;
-    presetBar.addEventListener("click", (e) => {
-      const btn = e.target.closest("[data-preset]");
-      if(!btn) return;
-      const q = btn.getAttribute("data-preset") || "";
-      search.value = q;
-      localStorage.setItem(LS_PRESETS, q);
-      Array.from(presetBar.querySelectorAll(".preset")).forEach(x => x.classList.toggle("active", x === btn));
-      applyFilter();
-    });
+    const options = Object.keys(PRESET_GROUPS).map(g => `<option value="${g}">${g}</option>`).join("");
+    const buttons = PRESET_GROUPS[activePresetGroup].map(p => `<button class="preset" data-preset="${p.q}">${p.k}</button>`).join("");
+    presetBar.innerHTML = `<span class="select"><span style="color:var(--muted); font-size:12px;">프리셋</span><select id="presetGroupSel">${options}</select></span>` + buttons;
+    const sel = document.getElementById("presetGroupSel"); if(sel) sel.value = activePresetGroup;
+    const saved = localStorage.getItem(LS_PRESETS) || ""; if(saved) search.value = saved;
   }
 
   function initFavButtons(){
     const favs = getFavs();
     cards.forEach(card => {
-      const btn = card.querySelector("[data-clip]");
-      const url = card.dataset.url || "";
-      if(!btn || !url) return;
-      const on = favs.has(url);
-      btn.classList.toggle("on", on);
-      btn.textContent = on ? "★" : "☆";
-      btn.addEventListener("click", () => {
-        const set = getFavs();
-        const nowOn = set.has(url) ? (set.delete(url), false) : (set.add(url), true);
-        saveFavs(set);
-        btn.classList.toggle("on", nowOn);
-        btn.textContent = nowOn ? "★" : "☆";
-        if(favOnly && favOnly.checked) applyFilter();
-      });
+      const btn = card.querySelector("[data-clip]"); const url = card.dataset.url || ""; if(!btn || !url) return;
+      const on = favs.has(url); btn.classList.toggle("on", on); btn.textContent = on ? "★" : "☆";
+      btn.addEventListener("click", () => { const set = getFavs(); const nowOn = set.has(url) ? (set.delete(url), false) : (set.add(url), true); saveFavs(set); btn.classList.toggle("on", nowOn); btn.textContent = nowOn ? "★" : "☆"; if(favOnly && favOnly.checked) applyFilter(); });
     });
   }
 
-  pills.forEach(p => {
-    p.addEventListener("click", () => {
-      const sector = p.dataset.sector;
-      setActivePill(sector);
-      applyFilter();
-      if(sector === "ALL"){
-        window.scrollTo({top:0, behavior:"smooth"});
-      }else{
-        const sec = document.getElementById("sec-" + sector);
-        if(sec) sec.scrollIntoView({behavior:"smooth", block:"start"});
-      }
-    });
-  });
-
-  search.addEventListener("input", () => {
-    localStorage.setItem(LS_PRESETS, search.value || "");
-    applyFilter();
-  });
-  if(topOnly) topOnly.addEventListener("change", applyFilter);
-  if(favOnly) favOnly.addEventListener("change", applyFilter);
-  sortSel.addEventListener("change", () => { applySort(); applyFilter(); });
-  themeBtn.addEventListener("click", toggleTheme);
+  function bindEvents(){
+    pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); }));
+    topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); }));
+    groups.forEach(g => { const btn = g.querySelector("[data-load-more]"); if(!btn) return; btn.addEventListener("click", ()=>{ const matched = Array.from(g.querySelectorAll("[data-card]")).filter(c=>c.dataset.match==="1"); const current=parseInt(btn.dataset.offset||"20",10); const next=current+PAGE_SIZE; matched.forEach((c,i)=> c.style.display = i < next ? "" : "none"); btn.dataset.offset=String(Math.min(next, matched.length)); btn.style.display = next < matched.length ? "" : "none"; }); });
+    search.addEventListener("input", ()=>{ localStorage.setItem(LS_PRESETS, search.value || ""); applyFilter(); });
+    if(topOnly) topOnly.addEventListener("change", applyFilter);
+    if(favOnly) favOnly.addEventListener("change", applyFilter);
+    sortSel.addEventListener("change", ()=>{ applySort(); applyFilter(); });
+    presetBar?.addEventListener("change", (e)=>{ const sel = e.target.closest("#presetGroupSel"); if(!sel) return; activePresetGroup = sel.value || "Core(대부)"; renderPresets(); });
+    presetBar?.addEventListener("click", (e)=>{ const btn = e.target.closest("[data-preset]"); if(!btn) return; const q = btn.getAttribute("data-preset") || ""; search.value = q; localStorage.setItem(LS_PRESETS, q); applyFilter(); });
+    themeBtn.addEventListener("click", toggleTheme);
+  }
 
   loadTheme();
   setActivePill("ALL");
-  cacheOriginalText();
+  setActiveTopicPill("ALL");
   renderPresets();
-  bindPresets();
   applySort();
   initFavButtons();
+  bindEvents();
   applyFilter();
 })();
 """
@@ -673,21 +552,24 @@ def render_html(
     date_str = report_date.strftime("%Y-%m-%d")
 
     top_items = sorted(
-        [it for it in tagged if "감독입법" not in it.sectors and "기타" not in it.sectors],
+        [it for it in tagged if "감독·제재" not in it.sectors and "입법·정책" not in it.sectors and "기타" not in it.sectors],
         key=lambda x: x.article.pub_date,
         reverse=True,
     )[:10]
 
     by_sector: dict[str, list[TaggedArticle]] = defaultdict(list)
     for item in tagged:
-        for sector in item.sectors:
-            by_sector[sector].append(item)
+        sector = item.sectors[0] if item.sectors else "기타"
+        by_sector[sector].append(item)
 
     sector_order = [
-        "대부", "은행", "보험", "증권", "카드", "캐피탈",
-        "저축은행", "핀테크", "감독입법", "기타",
+        "대부", "은행", "저축은행", "상호금융", "여전", "보험",
+        "증권(브로커리지/리테일)", "자산운용·연기금", "IB·자본시장",
+        "핀테크·플랫폼", "디지털자산", "해외", "감독·제재", "입법·정책", "기타",
     ]
     sector_counts = {s: len(by_sector.get(s, [])) for s in sector_order if s in by_sector}
+    if sum(sector_counts.values()) != len(tagged):
+        raise ValueError("Sector counts sanity check failed: sum(sector_counts) != total tagged")
 
     def pill_html(sector: str, count: int) -> str:
         return f"<button class='pill' data-sector-pill data-sector='{_h(sector)}'><strong>{_h(sector)}</strong><span class='count'>{count}</span></button>"
@@ -697,9 +579,19 @@ def render_html(
         if s in sector_counts:
             pills.append(pill_html(s, sector_counts[s]))
 
+    topic_counts: dict[str, int] = defaultdict(int)
+    for item in tagged:
+        for topic in (item.topics or []):
+            topic_counts[topic] += 1
+    topic_pills = ["<button class='pill active' data-topic-pill data-topic='ALL'><strong>전체 주제</strong></button>"]
+    for topic, count in sorted(topic_counts.items(), key=lambda kv: (-kv[1], kv[0])):
+        topic_pills.append(f"<button class='pill' data-topic-pill data-topic='{_h(topic)}'><strong>{_h(topic)}</strong><span class='count'>{count}</span></button>")
+
     def card_html(item: TaggedArticle, is_top: bool) -> str:
         a = item.article
         sector = item.sectors[0] if item.sectors else "기타"
+        topics = item.topics or []
+        topic_joined = "|".join(topics)
 
         title = a.title or ""
         summary = a.description or ""
@@ -720,8 +612,7 @@ def render_html(
             rel_label, rel_class = _relevance_label(rel)
 
         cached = bool(getattr(a, "summary_cached", False))
-
-        hay = " ".join([title, summary, sector, press]).strip()
+        hay = " ".join([title, summary, sector, press, " ".join(topics)]).strip()
 
         btns: list[str] = []
         if naver:
@@ -738,11 +629,12 @@ def render_html(
             badges.append(f"<span class='badge {rel_class}'>Rel {rel_label}</span>")
         if cached:
             badges.append("<span class='badge'>⚡ 캐시</span>")
+        topic_badges = "".join(f"<span class='badge'>{_h(t)}</span>" for t in topics) or "<span class='badge'>주제 없음</span>"
 
         return (
             f"<article class='card' data-card "
             f"data-sector='{_h(sector)}' data-top={'1' if is_top else '0'} "
-            f"data-hay='{_h(hay)}' data-ts='{ts}' data-rel='{rel_val}' "
+            f"data-hay='{_h(hay)}' data-topics='{_h(topic_joined)}' data-ts='{ts}' data-rel='{rel_val}' "
             f"data-url='{_h(primary)}'>"
             f"  <div class='card-head'>"
             f"    <h3 class='title'>"
@@ -755,6 +647,7 @@ def render_html(
             f"    {f'<span>·</span><span>{_h(press)}</span>' if press else ''}"
             f"    <span>·</span>{''.join(badges)}"
             f"  </div>"
+            f"  <div class='meta-row'>{topic_badges}</div>"
             f"  <p class='summary' data-summary>{_h(summary)}</p>"
             f"  <div class='actions'>{''.join(btns)}</div>"
             f"</article>"
@@ -764,7 +657,7 @@ def render_html(
 
     sector_sections: list[str] = []
     for s in sector_order:
-        items = sorted(by_sector.get(s, []), key=lambda x: x.article.pub_date, reverse=True)[:10]
+        items = sorted(by_sector.get(s, []), key=lambda x: x.article.pub_date, reverse=True)
         if not items:
             continue
         cards = "\n".join(card_html(it, False) for it in items)
@@ -772,9 +665,10 @@ def render_html(
             f"<section data-group id='sec-{_h(s)}'>"
             f"  <div class='section-head'>"
             f"    <h2>{_h(s)}<span class='count'>{len(by_sector.get(s, []))}</span></h2>"
-            f"    <div class='note'>상위 10개 · 섹터 클릭/검색/정렬 가능</div>"
+            f"    <div class='note'>섹터 클릭/검색/정렬 가능</div>"
             f"  </div>"
             f"  <div class='grid'>{cards}</div>"
+            f"  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div>"
             f"</section>"
         )
 
@@ -808,62 +702,30 @@ def render_html(
               <span style="color:var(--muted); font-size:12px;">🔎</span>
               <input id="searchInput" type="text" placeholder="키워드로 검색 (예: 연체, PF, 국민연금)"/>
             </div>
-
-            <span class="select" title="정렬">
-              <span style="color:var(--muted); font-size:12px;">정렬</span>
-              <select id="sortSel">
-                <option value="new" selected>최신순</option>
-                <option value="rel">관련도순</option>
-              </select>
-            </span>
-
+            <span class="select" title="정렬"><span style="color:var(--muted); font-size:12px;">정렬</span><select id="sortSel"><option value="new" selected>최신순</option><option value="rel">관련도순</option></select></span>
             <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
             <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
-
             <button id="themeBtn" class="btn">다크</button>
             <a class="btn" href="index.html">최근 리포트</a>
           </div>
         </div>
-        <div class="nav">
-          {''.join(pills)}
-        </div>
+        <div class="nav">{''.join(pills)}</div>
+        <div class="nav">{''.join(topic_pills)}</div>
         <div class="presetbar" id="presetBar"></div>
       </div>
     </div>
-
     <div class="main">
-      <section data-group id="sec-TOP">
-        <div class="section-head">
-          <h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2>
-          <div class="note">정책/시장 영향도가 큰 기사 우선</div>
-        </div>
-        <div class="grid">
-          {top_cards}
-        </div>
-      </section>
-
+      <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">정책/시장 영향도가 큰 기사 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
       {''.join(sector_sections)}
-
-      <section data-group id="sec-KW">
-        <div class="section-head">
-          <h2>키워드 트렌드</h2>
-          <div class="note">상위 20개</div>
-        </div>
-        {chips_html}
-      </section>
-
-      <div class="footer">
-        본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.
-      </div>
+      <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div>{chips_html}</section>
+      <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.</div>
     </div>
   </div>
-
   <script>{_UI_JS}</script>
 </body>
 </html>
 """
     return html_page
-
 
 # -----------------------------
 # write_report / write_index 유지
