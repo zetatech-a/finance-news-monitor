@@ -1,0 +1,625 @@
+--- a/src/run_daily.py
++++ b/src/run_daily.py
+@@ -32,22 +32,46 @@
+ QUERIES_PATH = ROOT_DIR / "queries.yml"
+ 
+ 
+-def load_queries() -> tuple[dict[str, list[str]], dict[str, list[str]]]:
++def load_queries() -> tuple[dict[str, list[str]], dict[str, list[str]], list[str]]:
++    """Load taxonomy queries.
++
++    queries.yml supports:
++      - legacy format: {sector: [keywords...]}
++      - new format: {sectors: {...}, topics: {...}, fetch_queries: [...]}
++
++    fetch_queries is used ONLY for collecting articles (high precision).
++    sectors/topics are used for tagging (high recall).
++    """
++
+     if not QUERIES_PATH.exists():
+         raise FileNotFoundError(f"queries.yml not found at: {QUERIES_PATH}")
++
+     data = yaml.safe_load(QUERIES_PATH.read_text(encoding="utf-8")) or {}
+ 
+     # backward compatibility: legacy format can be plain sector mapping
+-    if "sectors" in data or "topics" in data:
++    if any(k in data for k in ("sectors", "topics", "fetch_queries")):
+         sectors = data.get("sectors", {}) or {}
+         topics = data.get("topics", {}) or {}
++        raw_fetch = data.get("fetch_queries", []) or []
+     else:
+         sectors = data or {}
+         topics = {}
+-    return sectors, topics
++        raw_fetch = []
++
++    fetch_queries: list[str] = []
++    if isinstance(raw_fetch, list):
++        fetch_queries = [str(x).strip() for x in raw_fetch if str(x).strip()]
++    elif isinstance(raw_fetch, dict):
++        # allow grouped fetch queries: {group: [..]}
++        for v in raw_fetch.values():
++            if isinstance(v, list):
++                fetch_queries.extend([str(x).strip() for x in v if str(x).strip()])
++
++    return sectors, topics, fetch_queries
+ 
+ 
+ def build_query_list(sector_queries: dict[str, list[str]]) -> list[str]:
++    """Legacy behavior: build query list from ALL sector keywords."""
+     seen: set[str] = set()
+     queries: list[str] = []
+     for keywords in sector_queries.values():
+@@ -58,6 +82,24 @@
+     return queries
+ 
+ 
++def build_fetch_query_list(fetch_queries: list[str], sector_queries: dict[str, list[str]]) -> list[str]:
++    """Preferred behavior: use fetch_queries for collection.
++
++    If fetch_queries is empty, fallback to legacy sector-keyword query list.
++    """
++    if fetch_queries:
++        seen: set[str] = set()
++        out: list[str] = []
++        for q in fetch_queries:
++            q = (q or "").strip()
++            if not q or q in seen:
++                continue
++            seen.add(q)
++            out.append(q)
++        return out
++    return build_query_list(sector_queries)
++
++
+ def compute_window(target_date: datetime, window_hours: float) -> tuple[datetime, datetime]:
+     # 기준 시간(07:30 KST)을 anchor로 잡고, window_hours만큼 과거로 수집
+     end = target_date.replace(hour=7, minute=30, second=0, microsecond=0)
+@@ -91,8 +133,9 @@
+     # reports 폴더 없으면 생성
+     REPORT_DIR.mkdir(parents=True, exist_ok=True)
+ 
+-    sector_queries, topic_queries = load_queries()
+-    query_list = build_query_list(sector_queries)
++    sector_queries, topic_queries, fetch_queries = load_queries()
++    query_list = build_fetch_query_list(fetch_queries, sector_queries)
++    logger.info("Fetch queries: %d (sample=%s)", len(query_list), ", ".join(query_list[:6]))
+ 
+     config = load_config()
+     raw_items = fetch_news(config.naver, query_list, start=start, end=end)
+@@ -100,21 +143,24 @@
+     articles = normalize(raw_items)
+     articles = deduplicate(articles)
+ 
+-    # ✅ 기존 1차 룰 필터(스포츠/잡기사 등)
++    # ✅ 기존 1차 룰 필터(스포츠/엔터/잡기사 등)
+     articles = filter_articles(articles)
+ 
+     # ✅ 금융 관련성 필터(모델 있으면 모델, 없으면 스코어링 기준으로 통과)
++    # 모델이 없을 때는 min_score가 precision을 좌우하므로 보수적으로 설정
+     model_path = ROOT_DIR / "models" / "relevance.joblib"
+     candidates_csv = REPORT_DIR / "_candidates" / f"{end.date().isoformat()}_candidates.csv"
++    before = len(articles)
+     articles = filter_relevance(
+         articles,
+         model_path=model_path,
+         out_candidates_csv=candidates_csv,
+-        min_prob=0.52,
+-        min_score=1,
++        min_prob=0.60,
++        min_score=5,
+     )
++    logger.info("Relevance filtered: %d -> %d (dropped=%d)", before, len(articles), before - len(articles))
+ 
+-    # ✅ 금융 관련성 통과 기사만 섹터 태깅
++    # ✅ 금융 관련성 통과 기사만 섹터/토픽 태깅
+     tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
+ 
+     # ✅ 요약 캐시 로드 (같은 URL 재요청 방지)
+--- a/src/pipeline/filtering.py
++++ b/src/pipeline/filtering.py
+@@ -5,9 +5,146 @@
+ from src.pipeline.normalize import Article
+ 
+ 
+-SPORTS_KEYWORDS = ("프로배구", "득점", "승부", "경기", "선수")
+-POLITICS_KEYWORDS = ("총선", "자민당", "개헌", "내각")
+-FINANCE_KEYWORDS = ("금리", "대출", "연체", "부실", "금감원", "금융위", "은행", "증권", "보험", "카드")
++SPORTS_KEYWORDS = (
++    "프로배구",
++    "프로야구",
++    "득점",
++    "승부",
++    "경기",
++    "선수",
++    "감독",
++)
++
++POLITICS_KEYWORDS = (
++    "총선",
++    "자민당",
++    "개헌",
++    "내각",
++    "국회",
++    "대통령",
++    "장관",
++)
++
++# 정치 기사와의 구분/예외처리(정치+금융이면 keep)
++FINANCE_KEYWORDS = (
++    "금리",
++    "대출",
++    "연체",
++    "부실",
++    "금감원",
++    "금융위",
++    "은행",
++    "증권",
++    "보험",
++    "카드",
++    "회사채",
++    "pf",
++    "가계부채",
++)
++
++# 엔터/방송/연예성 기사 차단용(수집 단계에서 노이즈를 최대한 줄인다)
++ENTERTAINMENT_DOMAINS = (
++    "entertain.naver.com",
++    "m.entertain.naver.com",
++    "sports.naver.com",
++    "m.sports.naver.com",
++    "star.mt.co.kr",
++    "sportschosun.com",
++    "sports.donga.com",
++    "sportsseoul.com",
++    "osen.co.kr",
++    "xportsnews.com",
++    "dispatch.co.kr",
++    "newsen.com",
++    "stoo.com",
++    "isplus.com",
++)
++
++ENTERTAINMENT_KEYWORDS = (
++    # 방송/연예
++    "예능",
++    "연예",
++    "연예계",
++    "배우",
++    "가수",
++    "아이돌",
++    "드라마",
++    "영화",
++    "시청률",
++    "방송",
++    "tv",
++    "ost",
++    "화보",
++    "팬",
++    "콘서트",
++    "뮤지컬",
++    "유튜브",
++    "인스타",
++    "sns",
++    "틱톡",
++    # 가십/사생활
++    "열애",
++    "공개열애",
++    "결혼",
++    "이혼",
++    "임신",
++    "출산",
++    "근황",
++    "해명",
++    "캡처",
++    # 특정 프로그램 태그(예: '(이숙캠)')
++    "이숙캠",
++)
++
++# '대부'가 임대(공유재산) 맥락으로 쓰이는 비금융 노이즈를 차단
++PUBLIC_LEASE_KEYWORDS = (
++    "공유재산",
++    "대부계약",
++    "대부료",
++    "사용허가",
++    "점용",
++    "임대차",
++    "임대료",
++    "사용료",
++    "허가",
++)
++
++# 엔터/잡음 키워드가 있어도 살릴 만한 '강한' 금융 앵커
++FINANCE_STRONG_ANCHORS = (
++    "금융감독원",
++    "금감원",
++    "금융위원회",
++    "금융위",
++    "한국은행",
++    "한은",
++    "연준",
++    "fed",
++    "ecb",
++    "boj",
++    "은행",
++    "저축은행",
++    "카드사",
++    "캐피탈",
++    "증권사",
++    "보험사",
++    "대부업",
++    "대부업법",
++    "불법사금융",
++    "채권추심",
++    "npl",
++    "부실채권",
++    "회사채",
++    "abcp",
++    "ipo",
++    "pf",
++    "프로젝트파이낸싱",
++    "코스피",
++    "코스닥",
++    "환율",
++    "국채",
++    "가상자산",
++    "토큰증권",
++)
+ 
+ 
+ def _get_text_fields(article: Article | dict) -> str:
+@@ -35,27 +172,56 @@
+ 
+ def _get_urls(article: Article | dict) -> tuple[str, ...]:
+     if isinstance(article, Article):
+-        urls = (article.link, article.originallink or "")
++        urls = (article.link, article.originallink or "", article.naver_link or "")
+     else:
+-        urls = (article.get("link", ""), article.get("url", ""), article.get("originallink", ""))
++        urls = (
++            article.get("link", ""),
++            article.get("url", ""),
++            article.get("originallink", ""),
++            article.get("naver_link", ""),
++        )
+     return tuple(str(url) for url in urls if url)
+ 
+ 
+ def filter_articles(articles: Iterable[Article]) -> list[Article]:
++    """Lightweight rule-based pre-filter.
++
++    Goal: drop obvious non-finance noise early (sports/entertainment/pure politics),
++    so later relevance scoring/model can focus on real candidates.
++    """
++
+     filtered: list[Article] = []
+     for article in articles:
+         urls = _get_urls(article)
++        if any(dom in url for dom in ENTERTAINMENT_DOMAINS for url in urls):
++            continue
++
++        # sports naver explicit
+         if any("sports.naver.com" in url for url in urls):
+             continue
+ 
+         text = _get_text_fields(article)
++
++        # sports keyword
+         if any(keyword in text for keyword in SPORTS_KEYWORDS):
+             continue
+ 
++        # politics-only
+         has_politics = any(keyword in text for keyword in POLITICS_KEYWORDS)
+         has_finance = any(keyword in text for keyword in FINANCE_KEYWORDS)
+         if has_politics and not has_finance:
+             continue
+ 
++        # public lease '대부' noise (공유재산 대부계약 등)
++        has_public_lease = any(k in text for k in PUBLIC_LEASE_KEYWORDS)
++        has_finance_strong = any(k in text for k in FINANCE_STRONG_ANCHORS)
++        if has_public_lease and not has_finance_strong:
++            continue
++
++        # entertainment hints: drop unless strong finance anchors exist
++        if any(k in text for k in ENTERTAINMENT_KEYWORDS) and not has_finance_strong:
++            continue
++
+         filtered.append(article)
++
+     return filtered
+--- a/src/pipeline/relevance_score.py
++++ b/src/pipeline/relevance_score.py
+@@ -1,40 +1,230 @@
+ from __future__ import annotations
+ 
+-import re
+-from collections.abc import Iterable
++from dataclasses import dataclass
++
++
++# NOTE:
++# - This is a lightweight heuristic scoring function used when ML model is absent
++#   (or as a secondary signal). It is intentionally conservative: a single generic
++#   token like "금리" should not be enough to pass.
++# - The score is used by src/pipeline/relevance_filter.py.
++
++
++@dataclass(frozen=True)
++class _Weights:
++    hard: dict[str, int]
++    soft: dict[str, int]
++    neg: dict[str, int]
++
++
++_WEIGHTS = _Weights(
++    # Strong "finance anchors" (institutions/products/regulatory terms)
++    hard={
++        "금융감독원": 6,
++        "금감원": 6,
++        "금융위원회": 6,
++        "금융위": 6,
++        "한국은행": 5,
++        "한은": 5,
++        "연준": 5,
++        "fed": 5,
++        "ecb": 4,
++        "boj": 4,
++        # institutions / sectors
++        "은행": 3,
++        "저축은행": 4,
++        "카드사": 3,
++        "캐피탈": 3,
++        "증권사": 3,
++        "보험사": 3,
++        "상호금융": 4,
++        "새마을금고": 4,
++        "신협": 4,
++        # lending / debt collection
++        "대부업": 5,
++        "대부업법": 6,
++        "미등록대부": 6,
++        "불법사금융": 6,
++        "채권추심": 5,
++        "npl": 4,
++        "부실채권": 4,
++        "충당금": 4,
++        # markets
++        "pf": 4,
++        "부동산pf": 5,
++        "프로젝트파이낸싱": 5,
++        "회사채": 4,
++        "abcp": 4,
++        "cp": 3,
++        "스프레드": 3,
++        "유동성": 3,
++        "ipo": 4,
++        "공매도": 3,
++        "불공정거래": 3,
++        # macro
++        "환율": 3,
++        "국채": 3,
++        "국채금리": 4,
++        "기준금리": 3,
++        "예대금리차": 4,
++        "dsr": 4,
++        "ltv": 3,
++        "가계부채": 3,
++        # digital assets
++        "가상자산": 3,
++        "암호화폐": 3,
++        "토큰증권": 3,
++        "sto": 3,
++    },
++    # Softer finance signals (generic words)
++    soft={
++        "금리": 1,
++        "대출": 1,
++        "대환": 2,
++        "연체": 2,
++        "연체율": 2,
++        "부실": 2,
++        "수수료": 1,
++        "가맹점": 1,
++        "카드론": 2,
++        "보험료": 1,
++        "실손": 1,
++        "건전성": 2,
++        "실적": 1,
++        "순이익": 1,
++        "주가": 1,
++        "주식": 1,
++        "코스피": 2,
++        "코스닥": 2,
++        "채권": 2,
++        "달러": 1,
++        "원화": 1,
++        "금융": 1,
++    },
++    # Non-finance / entertainment / sports signals (negative)
++    neg={
++        # sports
++        "프로야구": 6,
++        "프로배구": 6,
++        "선수": 4,
++        "감독": 4,
++        "경기": 4,
++        "득점": 4,
++        "우승": 4,
++        # entertainment / gossip
++        "예능": 8,
++        "연예": 8,
++        "배우": 4,
++        "가수": 4,
++        "아이돌": 4,
++        "드라마": 6,
++        "영화": 6,
++        "시청률": 6,
++        "방송": 6,
++        "화보": 5,
++        "유튜브": 4,
++        "인스타": 4,
++        "sns": 3,
++        "열애": 6,
++        "결혼": 4,
++        "이혼": 6,
++        "임신": 4,
++        "출산": 4,
++        "근황": 4,
++        "캡처": 4,
++        "이숙캠": 10,
++        # other common noise
++        "맛집": 4,
++        "여행": 4,
++        "날씨": 4,
++        "운세": 4,
++    },
++)
+ 
+-FIN_POS = [
+-    "금리", "기준금리", "예대금리", "대출", "대환", "연체", "부실", "NPL", "부실채권",
+-    "채권추심", "추심", "최고금리", "가계부채", "DSR", "LTV", "규제", "제재", "검사",
+-    "금감원", "금융위", "금융위원회", "금융감독원", "수수료", "가맹점", "카드론",
+-    "보험료", "실손", "지급여력", "IFRS17", "공매도", "IPO", "상장", "불공정거래",
+-    "PF", "건전성", "충당금", "실적", "순이익"
+-]
+-
+-NON_FIN_NEG = [
+-    "프로야구", "프로배구", "선수", "감독", "경기", "득점", "우승", "개봉", "드라마",
+-    "연예", "맛집", "여행", "날씨", "운세", "사건사고"
+-]
+ 
+ def _text(article) -> str:
+-    # dict/객체 모두 대응
++    """Extract text fields from dict/object."""
+     if isinstance(article, dict):
+         title = (article.get("title") or "").strip()
+         summary = (article.get("summary") or article.get("description") or "").strip()
+     else:
+         title = (getattr(article, "title", "") or "").strip()
+-        summary = (getattr(article, "summary", "") or getattr(article, "description", "") or "").strip()
++        summary = (
++            (getattr(article, "summary", "") or "")
++            or (getattr(article, "description", "") or "")
++        ).strip()
+     return f"{title}\n{summary}".strip()
+ 
++
++def _urls(article) -> list[str]:
++    if isinstance(article, dict):
++        vals = [
++            article.get("url", ""),
++            article.get("link", ""),
++            article.get("originallink", ""),
++            article.get("naver_link", ""),
++        ]
++    else:
++        vals = [
++            getattr(article, "link", ""),
++            getattr(article, "originallink", "") or "",
++            getattr(article, "naver_link", "") or "",
++        ]
++    return [str(v).strip() for v in vals if v]
++
++
+ def relevance_score(article) -> int:
++    """Return a conservative finance relevance score.
++
++    Guidelines:
++    - Needs at least one "hard" finance anchor to exceed the keep threshold.
++    - Generic words (e.g., '금리') alone should not pass.
++    """
++
+     t = _text(article)
+     if not t:
+         return 0
+-    score = 0
+-    for w in FIN_POS:
+-        if w in t:
+-            score += 1
+-    for w in NON_FIN_NEG:
+-        if w in t:
+-            score -= 2
+-    return score
++
++    text = t.lower()
++
++    # Hard-block obvious entertainment/sports domains (defense in depth)
++    urls = " ".join(_urls(article)).lower()
++    if any(dom in urls for dom in ("entertain.naver.com", "sports.naver.com", "osen.co.kr", "sportschosun.com")):
++        return -50
++
++    hard_score = 0
++    soft_score = 0
++    neg_score = 0
++
++    # add hard anchors
++    for k, w in _WEIGHTS.hard.items():
++        if k.lower() in text:
++            hard_score += w
++
++    # add soft signals
++    for k, w in _WEIGHTS.soft.items():
++        if k.lower() in text:
++            soft_score += w
++
++    # special-case: '사채' is too ambiguous; count only with proper context
++    if "사채" in text and any(x in text for x in ("불법", "대부업", "최고금리", "추심", "미등록", "금감원", "금융위")):
++        soft_score += 2
++
++    # special-case: '대부' used as lease context (공유재산 대부계약, 지명 등)
++    # If '대부' appears but not '대부업', treat it as negative unless strong anchors exist.
++    if "대부" in text and "대부업" not in text and any(x in text for x in ("공유재산", "대부계약", "대부료", "대부리", "대부도", "태권도")):
++        neg_score += 10
++
++    # negatives
++    for k, w in _WEIGHTS.neg.items():
++        if k.lower() in text:
++            neg_score += w
++
++    score = hard_score + soft_score - neg_score
++
++    # Conservative gating: without any hard finance anchor, cap score.
++    # This prevents false positives like "고금리 사채" in entertainment articles.
++    if hard_score <= 0:
++        score = min(score, 2)
++
++    return int(score)
+--- a/queries.yml
++++ b/queries.yml
+@@ -1,3 +1,36 @@
++fetch_queries:
++  # 수집(검색)용 쿼리: 정밀한 "금융 앵커" 위주로 구성 (태깅 키워드와 분리)
++  # - 다의어/범용어(예: '대부', '미국', '글로벌') 단독 쿼리는 노이즈가 커서 지양
++  - "대부업 최고금리"
++  - "불법사금융 단속"
++  - "미등록대부"
++  - "채권추심 제재"
++  - "보이스피싱 피해"
++  - "연체율"
++  - "카드론 연체"
++  - "저축은행 연체율"
++  - "새마을금고 건전성"
++  - "신협 연체율"
++  - "은행 예대금리차"
++  - "가계부채 DSR"
++  - "한국은행 기준금리"
++  - "연준 금리"
++  - "환율 달러"
++  - "국채금리"
++  - "부동산 PF"
++  - "회사채 스프레드"
++  - "ABCP 유동성"
++  - "IPO 상장"
++  - "공매도"
++  - "불공정거래"
++  - "보험 킥스"
++  - "실손보험 보험료"
++  - "금감원 검사"
++  - "금감원 제재"
++  - "금융위 제도개선"
++  - "토큰증권 STO"
++  - "가상자산 거래소"
++
+ sectors:
+   대부:
+     - 대부업
