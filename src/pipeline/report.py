@@ -168,7 +168,8 @@ def render_markdown(
         "기타",
     ]
 
-    for sector in sector_order:
+    ordered_sectors = sector_order + [s for s in by_sector.keys() if s not in sector_order]
+    for sector in ordered_sectors:
         if sector not in by_sector:
             continue
         lines.append(f"### {sector}")
@@ -453,6 +454,7 @@ _UI_JS = r"""
   const topOnly = document.getElementById("topOnly");
   const favOnly = document.getElementById("favOnly");
   const sortSel = document.getElementById("sortSel");
+  const emptyState = document.getElementById("emptyState");
   const presetBar = document.getElementById("presetBar");
 
   const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
@@ -516,13 +518,19 @@ _UI_JS = r"""
       card.style.display = ok ? "" : "none";
     });
 
+    let totalMatched = 0;
     groups.forEach(g => {
       const matched = Array.from(g.querySelectorAll("[data-card]")).filter(c => c.dataset.match === "1");
+      totalMatched += matched.length;
       matched.forEach((c,i)=> c.style.display = i < PAGE_SIZE ? "" : "none");
       const btn = g.querySelector("[data-load-more]");
       if(btn){ btn.dataset.offset = String(Math.min(PAGE_SIZE, matched.length)); btn.style.display = matched.length > PAGE_SIZE ? "" : "none"; }
       g.style.display = matched.length ? "" : "none";
     });
+
+    if (emptyState) {
+      emptyState.style.display = totalMatched > 0 ? "none" : "";
+    }
   }
 
   function renderPresets(){
@@ -609,9 +617,8 @@ def render_html(
         "입법·정책",
         "기타",
     ]
-    sector_counts = {
-        s: len(by_sector.get(s, [])) for s in sector_order if s in by_sector
-    }
+    ordered_sectors = sector_order + [s for s in by_sector.keys() if s not in sector_order]
+    sector_counts = {s: len(by_sector.get(s, [])) for s in ordered_sectors}
     if sum(sector_counts.values()) != len(tagged):
         raise ValueError(
             "Sector counts sanity check failed: sum(sector_counts) != total tagged"
@@ -625,9 +632,8 @@ def render_html(
             len(tagged)
         )
     ]
-    for s in sector_order:
-        if s in sector_counts:
-            pills.append(pill_html(s, sector_counts[s]))
+    for s in ordered_sectors:
+        pills.append(pill_html(s, sector_counts[s]))
 
     topic_counts: dict[str, int] = defaultdict(int)
     for item in tagged:
@@ -723,7 +729,7 @@ def render_html(
     )
 
     sector_sections: list[str] = []
-    for s in sector_order:
+    for s in ordered_sectors:
         items = sorted(
             by_sector.get(s, []), key=lambda x: x.article.pub_date, reverse=True
         )
@@ -786,6 +792,7 @@ def render_html(
       </div>
     </div>
     <div class="main">
+      <div id="emptyState" class="note" style="display:none; margin-bottom:12px;">필터 조건에 맞는 기사가 없습니다. 검색어/필터를 조정해 보세요.</div>
       <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">정책/시장 영향도가 큰 기사 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
       {''.join(sector_sections)}
       <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div>{chips_html}</section>
