@@ -115,6 +115,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Daily finance news monitor")
     parser.add_argument("--date", type=str, help="YYYY-MM-DD (KST)")
     parser.add_argument("--window_hours", type=float, default=13.5)
+    parser.add_argument("--max_pages", type=int, default=5)
     parser.add_argument("--use_deepsearch", action="store_true")
     return parser.parse_args()
 
@@ -146,13 +147,24 @@ def main() -> None:
     )
 
     config = load_config()
-    raw_items = fetch_news(config.naver, query_list, start=start, end=end)
+    raw_items = fetch_news(
+        config.naver,
+        query_list,
+        start=start,
+        end=end,
+        max_pages=args.max_pages,
+    )
+    logger.info("Counts: raw_items=%d", len(raw_items))
 
     articles = normalize(raw_items)
+    logger.info("Counts: normalize=%d", len(articles))
+
     articles = deduplicate(articles)
+    logger.info("Counts: dedup=%d", len(articles))
 
     # ✅ 기존 1차 룰 필터(스포츠/엔터/잡기사 등)
     articles = filter_articles(articles)
+    logger.info("Counts: rule_filter=%d", len(articles))
 
     # ✅ 금융 관련성 필터(모델 있으면 모델, 없으면 스코어링 기준으로 통과)
     # 모델이 없을 때는 min_score가 precision을 좌우하므로 보수적으로 설정
@@ -165,8 +177,8 @@ def main() -> None:
         articles,
         model_path=model_path,
         out_candidates_csv=candidates_csv,
-        min_prob=0.60,
-        min_score=5,
+        min_prob=0.55,
+        min_score=2,
     )
     logger.info(
         "Relevance filtered: %d -> %d (dropped=%d)",
@@ -174,6 +186,7 @@ def main() -> None:
         len(articles),
         before - len(articles),
     )
+    logger.info("Counts: relevance_filter=%d", len(articles))
 
     # ✅ 금융 관련성 통과 기사만 섹터/토픽 태깅
     tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
@@ -239,11 +252,13 @@ def main() -> None:
 
     # 요약 반영 후 최종 본문(description) 기준으로 태깅 재계산
     tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
+    logger.info("Counts: final_tagged=%d", len(tagged))
 
-    markdown_text = render_markdown(end, tagged, keyword_trends(tagged))
+    trends = keyword_trends(tagged)
+    markdown_text = render_markdown(end, tagged, trends)
 
     # ✅ 제품형 UI HTML 생성
-    html_page = render_html(end, tagged, keyword_trends(tagged))
+    html_page = render_html(end, tagged, trends)
 
     # ✅ html_override로 저장
     paths = write_report(end, markdown_text, REPORT_DIR, html_override=html_page)
