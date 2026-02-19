@@ -82,7 +82,9 @@ def build_query_list(sector_queries: dict[str, list[str]]) -> list[str]:
     return queries
 
 
-def build_fetch_query_list(fetch_queries: list[str], sector_queries: dict[str, list[str]]) -> list[str]:
+def build_fetch_query_list(
+    fetch_queries: list[str], sector_queries: dict[str, list[str]]
+) -> list[str]:
     """Preferred behavior: use fetch_queries for collection.
 
     If fetch_queries is empty, fallback to legacy sector-keyword query list.
@@ -100,7 +102,9 @@ def build_fetch_query_list(fetch_queries: list[str], sector_queries: dict[str, l
     return build_query_list(sector_queries)
 
 
-def compute_window(target_date: datetime, window_hours: float) -> tuple[datetime, datetime]:
+def compute_window(
+    target_date: datetime, window_hours: float
+) -> tuple[datetime, datetime]:
     # 기준 시간(07:30 KST)을 anchor로 잡고, window_hours만큼 과거로 수집
     end = target_date.replace(hour=7, minute=30, second=0, microsecond=0)
     start = end - timedelta(hours=window_hours)
@@ -116,7 +120,9 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s"
+    )
     args = parse_args()
 
     if args.date:
@@ -135,7 +141,9 @@ def main() -> None:
 
     sector_queries, topic_queries, fetch_queries = load_queries()
     query_list = build_fetch_query_list(fetch_queries, sector_queries)
-    logger.info("Fetch queries: %d (sample=%s)", len(query_list), ", ".join(query_list[:6]))
+    logger.info(
+        "Fetch queries: %d (sample=%s)", len(query_list), ", ".join(query_list[:6])
+    )
 
     config = load_config()
     raw_items = fetch_news(config.naver, query_list, start=start, end=end)
@@ -149,7 +157,9 @@ def main() -> None:
     # ✅ 금융 관련성 필터(모델 있으면 모델, 없으면 스코어링 기준으로 통과)
     # 모델이 없을 때는 min_score가 precision을 좌우하므로 보수적으로 설정
     model_path = ROOT_DIR / "models" / "relevance.joblib"
-    candidates_csv = REPORT_DIR / "_candidates" / f"{end.date().isoformat()}_candidates.csv"
+    candidates_csv = (
+        REPORT_DIR / "_candidates" / f"{end.date().isoformat()}_candidates.csv"
+    )
     before = len(articles)
     articles = filter_relevance(
         articles,
@@ -158,7 +168,12 @@ def main() -> None:
         min_prob=0.60,
         min_score=5,
     )
-    logger.info("Relevance filtered: %d -> %d (dropped=%d)", before, len(articles), before - len(articles))
+    logger.info(
+        "Relevance filtered: %d -> %d (dropped=%d)",
+        before,
+        len(articles),
+        before - len(articles),
+    )
 
     # ✅ 금융 관련성 통과 기사만 섹터/토픽 태깅
     tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
@@ -175,7 +190,9 @@ def main() -> None:
 
     # 최신 기사부터 처리(리포트에 들어갈 가능성이 높은 것 우선)
     for item in sorted(tagged, key=lambda x: x.article.pub_date, reverse=True):
-        fetch_url = item.article.naver_link or item.article.originallink or item.article.link
+        fetch_url = (
+            item.article.naver_link or item.article.originallink or item.article.link
+        )
         if not fetch_url or fetch_url in seen_urls:
             continue
         seen_urls.add(fetch_url)
@@ -202,7 +219,9 @@ def main() -> None:
                 if s and len(s) >= 40:
                     item.article.description = s
                     summary_cache[fetch_url] = s  # ✅ 캐시에 저장
-                    setattr(item.article, "summary_cached", False)  # ✅ (선택) 신규 요약 표시
+                    setattr(
+                        item.article, "summary_cached", False
+                    )  # ✅ (선택) 신규 요약 표시
                     summarized += 1
         except Exception:
             # 실패하면 기존 description(네이버 스니펫) 그대로 사용
@@ -214,7 +233,12 @@ def main() -> None:
     # ✅ 캐시 저장
     save_cache(cache_path, summary_cache)
     logger.info("Summary cache saved: %s (items=%d)", cache_path, len(summary_cache))
-    logger.info("Extractive summaries applied: %s (cache_hits=%s)", summarized, cache_hits)
+    logger.info(
+        "Extractive summaries applied: %s (cache_hits=%s)", summarized, cache_hits
+    )
+
+    # 요약 반영 후 최종 본문(description) 기준으로 태깅 재계산
+    tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
 
     markdown_text = render_markdown(end, tagged, keyword_trends(tagged))
 
