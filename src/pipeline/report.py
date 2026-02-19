@@ -121,7 +121,13 @@ def render_markdown(
     lines = [header, ""]
 
     top_items = sorted(
-        [it for it in tagged if "감독·제재" not in it.sectors and "입법·정책" not in it.sectors and "기타" not in it.sectors],
+        [
+            it
+            for it in tagged
+            if "감독·제재" not in it.sectors
+            and "입법·정책" not in it.sectors
+            and "기타" not in it.sectors
+        ],
         key=lambda x: x.article.pub_date,
         reverse=True,
     )[:10]
@@ -130,7 +136,9 @@ def render_markdown(
     if top_items:
         for item in top_items:
             a = item.article
-            lines.append(f"- {md_link(a.title or '', _primary_link(a))} — {md_escape(_truncate(a.description, 180))}")
+            lines.append(
+                f"- {md_link(a.title or '', _primary_link(a))} — {md_escape(_truncate(a.description, 180))}"
+            )
     else:
         lines.append("- 해당 기간 기사 없음")
 
@@ -143,18 +151,34 @@ def render_markdown(
             by_sector[sector].append(item)
 
     sector_order = [
-        "대부", "은행", "저축은행", "상호금융", "여전", "보험",
-        "증권(브로커리지/리테일)", "자산운용·연기금", "IB·자본시장",
-        "핀테크·플랫폼", "디지털자산", "해외", "감독·제재", "입법·정책", "기타",
+        "대부",
+        "은행",
+        "저축은행",
+        "상호금융",
+        "여전",
+        "보험",
+        "증권(브로커리지/리테일)",
+        "자산운용·연기금",
+        "IB·자본시장",
+        "핀테크·플랫폼",
+        "디지털자산",
+        "거시·시장",
+        "감독·제재",
+        "입법·정책",
+        "기타",
     ]
 
     for sector in sector_order:
         if sector not in by_sector:
             continue
         lines.append(f"### {sector}")
-        for item in sorted(by_sector[sector], key=lambda x: x.article.pub_date, reverse=True)[:10]:
+        for item in sorted(
+            by_sector[sector], key=lambda x: x.article.pub_date, reverse=True
+        )[:10]:
             a = item.article
-            lines.append(f"- {md_link(a.title or '', _primary_link(a))} — {md_escape(_truncate(a.description, 170))}")
+            lines.append(
+                f"- {md_link(a.title or '', _primary_link(a))} — {md_escape(_truncate(a.description, 170))}"
+            )
         lines.append("")
 
     lines.append("## 키워드 트렌드")
@@ -552,7 +576,13 @@ def render_html(
     date_str = report_date.strftime("%Y-%m-%d")
 
     top_items = sorted(
-        [it for it in tagged if "감독·제재" not in it.sectors and "입법·정책" not in it.sectors and "기타" not in it.sectors],
+        [
+            it
+            for it in tagged
+            if "감독·제재" not in it.sectors
+            and "입법·정책" not in it.sectors
+            and "기타" not in it.sectors
+        ],
         key=lambda x: x.article.pub_date,
         reverse=True,
     )[:10]
@@ -563,29 +593,53 @@ def render_html(
         by_sector[sector].append(item)
 
     sector_order = [
-        "대부", "은행", "저축은행", "상호금융", "여전", "보험",
-        "증권(브로커리지/리테일)", "자산운용·연기금", "IB·자본시장",
-        "핀테크·플랫폼", "디지털자산", "해외", "감독·제재", "입법·정책", "기타",
+        "대부",
+        "은행",
+        "저축은행",
+        "상호금융",
+        "여전",
+        "보험",
+        "증권(브로커리지/리테일)",
+        "자산운용·연기금",
+        "IB·자본시장",
+        "핀테크·플랫폼",
+        "디지털자산",
+        "거시·시장",
+        "감독·제재",
+        "입법·정책",
+        "기타",
     ]
-    sector_counts = {s: len(by_sector.get(s, [])) for s in sector_order if s in by_sector}
+    sector_counts = {
+        s: len(by_sector.get(s, [])) for s in sector_order if s in by_sector
+    }
     if sum(sector_counts.values()) != len(tagged):
-        raise ValueError("Sector counts sanity check failed: sum(sector_counts) != total tagged")
+        raise ValueError(
+            "Sector counts sanity check failed: sum(sector_counts) != total tagged"
+        )
 
     def pill_html(sector: str, count: int) -> str:
         return f"<button class='pill' data-sector-pill data-sector='{_h(sector)}'><strong>{_h(sector)}</strong><span class='count'>{count}</span></button>"
 
-    pills = ["<button class='pill active' data-sector-pill data-sector='ALL'><strong>전체</strong><span class='count'>{}</span></button>".format(len(tagged))]
+    pills = [
+        "<button class='pill active' data-sector-pill data-sector='ALL'><strong>전체</strong><span class='count'>{}</span></button>".format(
+            len(tagged)
+        )
+    ]
     for s in sector_order:
         if s in sector_counts:
             pills.append(pill_html(s, sector_counts[s]))
 
     topic_counts: dict[str, int] = defaultdict(int)
     for item in tagged:
-        for topic in (item.topics or []):
+        for topic in item.topics or []:
             topic_counts[topic] += 1
-    topic_pills = ["<button class='pill active' data-topic-pill data-topic='ALL'><strong>전체 주제</strong></button>"]
+    topic_pills = [
+        "<button class='pill active' data-topic-pill data-topic='ALL'><strong>전체 주제</strong></button>"
+    ]
     for topic, count in sorted(topic_counts.items(), key=lambda kv: (-kv[1], kv[0])):
-        topic_pills.append(f"<button class='pill' data-topic-pill data-topic='{_h(topic)}'><strong>{_h(topic)}</strong><span class='count'>{count}</span></button>")
+        topic_pills.append(
+            f"<button class='pill' data-topic-pill data-topic='{_h(topic)}'><strong>{_h(topic)}</strong><span class='count'>{count}</span></button>"
+        )
 
     def card_html(item: TaggedArticle, is_top: bool) -> str:
         a = item.article
@@ -616,11 +670,17 @@ def render_html(
 
         btns: list[str] = []
         if naver:
-            btns.append(f"<a class='btn small primary' href='{_h(naver)}' target='_blank' rel='noopener noreferrer'>네이버</a>")
+            btns.append(
+                f"<a class='btn small primary' href='{_h(naver)}' target='_blank' rel='noopener noreferrer'>네이버</a>"
+            )
         if orig and orig != naver:
-            btns.append(f"<a class='btn small' href='{_h(orig)}' target='_blank' rel='noopener noreferrer'>원문</a>")
+            btns.append(
+                f"<a class='btn small' href='{_h(orig)}' target='_blank' rel='noopener noreferrer'>원문</a>"
+            )
         if not btns and primary:
-            btns.append(f"<a class='btn small primary' href='{_h(primary)}' target='_blank' rel='noopener noreferrer'>열기</a>")
+            btns.append(
+                f"<a class='btn small primary' href='{_h(primary)}' target='_blank' rel='noopener noreferrer'>열기</a>"
+            )
 
         badges = [f"<span class='badge'>{_h(sector)}</span>"]
         if is_top:
@@ -629,7 +689,10 @@ def render_html(
             badges.append(f"<span class='badge {rel_class}'>Rel {rel_label}</span>")
         if cached:
             badges.append("<span class='badge'>⚡ 캐시</span>")
-        topic_badges = "".join(f"<span class='badge'>{_h(t)}</span>" for t in topics) or "<span class='badge'>주제 없음</span>"
+        topic_badges = (
+            "".join(f"<span class='badge'>{_h(t)}</span>" for t in topics)
+            or "<span class='badge'>주제 없음</span>"
+        )
 
         return (
             f"<article class='card' data-card "
@@ -653,11 +716,17 @@ def render_html(
             f"</article>"
         )
 
-    top_cards = "\n".join(card_html(it, True) for it in top_items) if top_items else "<div class='note'>해당 기간 Top 이슈가 없습니다.</div>"
+    top_cards = (
+        "\n".join(card_html(it, True) for it in top_items)
+        if top_items
+        else "<div class='note'>해당 기간 Top 이슈가 없습니다.</div>"
+    )
 
     sector_sections: list[str] = []
     for s in sector_order:
-        items = sorted(by_sector.get(s, []), key=lambda x: x.article.pub_date, reverse=True)
+        items = sorted(
+            by_sector.get(s, []), key=lambda x: x.article.pub_date, reverse=True
+        )
         if not items:
             continue
         cards = "\n".join(card_html(it, False) for it in items)
@@ -675,7 +744,9 @@ def render_html(
     if keyword_trends:
         chips = []
         for kw, n in keyword_trends[:20]:
-            chips.append(f"<span class='kchip'>{_h(kw)} <span class='n'>{n}</span></span>")
+            chips.append(
+                f"<span class='kchip'>{_h(kw)} <span class='n'>{n}</span></span>"
+            )
         chips_html = "<div class='kchips'>" + "".join(chips) + "</div>"
     else:
         chips_html = "<div class='note'>키워드 데이터 없음</div>"
@@ -726,6 +797,7 @@ def render_html(
 </html>
 """
     return html_page
+
 
 # -----------------------------
 # write_report / write_index 유지

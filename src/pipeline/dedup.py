@@ -9,7 +9,12 @@ def deduplicate(articles: Iterable[Article]) -> list[Article]:
     seen: set[str] = set()
     unique: list[Article] = []
     for article in articles:
-        key = f"{article.title.lower()}|{article.link}".strip()
+        canonical_link = (
+            (article.naver_link or "").strip()
+            or (article.originallink or "").strip()
+            or (article.link or "").strip()
+        )
+        key = f"{(article.title or '').lower()}|{canonical_link}"
         if key in seen:
             continue
         seen.add(key)
