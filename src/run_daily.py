@@ -32,22 +32,46 @@ REPORT_DIR = ROOT_DIR / "reports"
 QUERIES_PATH = ROOT_DIR / "queries.yml"
 
 
-def load_queries() -> tuple[dict[str, list[str]], dict[str, list[str]]]:
+def load_queries() -> tuple[dict[str, list[str]], dict[str, list[str]], list[str]]:
+    """Load taxonomy queries.
+
+    queries.yml supports:
+      - legacy format: {sector: [keywords...]}
+      - new format: {sectors: {...}, topics: {...}, fetch_queries: [...]}
+
+    fetch_queries is used ONLY for collecting articles (high precision).
+    sectors/topics are used for tagging (high recall).
+    """
+
     if not QUERIES_PATH.exists():
         raise FileNotFoundError(f"queries.yml not found at: {QUERIES_PATH}")
+
     data = yaml.safe_load(QUERIES_PATH.read_text(encoding="utf-8")) or {}
 
     # backward compatibility: legacy format can be plain sector mapping
-    if "sectors" in data or "topics" in data:
+    if any(k in data for k in ("sectors", "topics", "fetch_queries")):
         sectors = data.get("sectors", {}) or {}
         topics = data.get("topics", {}) or {}
+        raw_fetch = data.get("fetch_queries", []) or []
     else:
         sectors = data or {}
         topics = {}
-    return sectors, topics
+        raw_fetch = []
+
+    fetch_queries: list[str] = []
+    if isinstance(raw_fetch, list):
+        fetch_queries = [str(x).strip() for x in raw_fetch if str(x).strip()]
+    elif isinstance(raw_fetch, dict):
+        # allow grouped fetch queries: {group: [..]}
+        for v in raw_fetch.values():
+            if isinstance(v, list):
+                fetch_queries.extend([str(x).strip() for x in v if str(x).strip()])
+
+    return sectors, topics, fetch_queries
 
 
 def build_query_list(sector_queries: dict[str, list[str]]) -> list[str]:
+    """Legacy behavior: build query list from ALL sector keywords."""
     seen: set[str] = set()
     queries: list[str] = []
     for keywords in sector_queries.values():
@@ -56,6 +80,24 @@ def build_query_list(sector_queries: dict[str, list[str]]) -> list[str]:
                 seen.add(keyword)
                 queries.append(keyword)
     return queries
+
+
+def build_fetch_query_list(fetch_queries: list[str], sector_queries: dict[str, list[str]]) -> list[str]:
+    """Preferred behavior: use fetch_queries for collection.
+
+    If fetch_queries is empty, fallback to legacy sector-keyword query list.
+    """
+    if fetch_queries:
+        seen: set[str] = set()
+        out: list[str] = []
+        for q in fetch_queries:
+            q = (q or "").strip()
+            if not q or q in seen:
+                continue
+            seen.add(q)
+            out.append(q)
+        return out
+    return build_query_list(sector_queries)
 
 
 def compute_window(target_date: datetime, window_hours: float) -> tuple[datetime, datetime]:
@@ -91,8 +133,9 @@ def main() -> None:
     # reports 폴더 없으면 생성
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
-    sector_queries, topic_queries = load_queries()
-    query_list = build_query_list(sector_queries)
+    sector_queries, topic_queries, fetch_queries = load_queries()
+    query_list = build_fetch_query_list(fetch_queries, sector_queries)
+    logger.info("Fetch queries: %d (sample=%s)", len(query_list), ", ".join(query_list[:6]))
 
     config = load_config()
     raw_items = fetch_news(config.naver, query_list, start=start, end=end)
@@ -100,21 +143,24 @@ def main() -> None:
     articles = normalize(raw_items)
     articles = deduplicate(articles)
 
-    # ✅ 기존 1차 룰 필터(스포츠/잡기사 등)
+    # ✅ 기존 1차 룰 필터(스포츠/엔터/잡기사 등)
     articles = filter_articles(articles)
 
     # ✅ 금융 관련성 필터(모델 있으면 모델, 없으면 스코어링 기준으로 통과)
+    # 모델이 없을 때는 min_score가 precision을 좌우하므로 보수적으로 설정
     model_path = ROOT_DIR / "models" / "relevance.joblib"
     candidates_csv = REPORT_DIR / "_candidates" / f"{end.date().isoformat()}_candidates.csv"
+    before = len(articles)
     articles = filter_relevance(
         articles,
         model_path=model_path,
         out_candidates_csv=candidates_csv,
-        min_prob=0.52,
-        min_score=1,
+        min_prob=0.60,
+        min_score=5,
     )
+    logger.info("Relevance filtered: %d -> %d (dropped=%d)", before, len(articles), before - len(articles))
 
-    # ✅ 금융 관련성 통과 기사만 섹터 태깅
+    # ✅ 금융 관련성 통과 기사만 섹터/토픽 태깅
     tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
 
     # ✅ 요약 캐시 로드 (같은 URL 재요청 방지)
