@@ -103,18 +103,51 @@ def build_fetch_query_list(
 
 
 def compute_window(
-    target_date: datetime, window_hours: float
+    target_date: datetime,
+    window_hours: float,
+    end_hhmm: str,
+    overlap_minutes: int,
+    is_auto_date: bool,
 ) -> tuple[datetime, datetime]:
-    # 기준 시간(07:30 KST)을 anchor로 잡고, window_hours만큼 과거로 수집
-    end = target_date.replace(hour=7, minute=30, second=0, microsecond=0)
-    start = end - timedelta(hours=window_hours)
+    hhmm = (end_hhmm or "").strip()
+    normalized = hhmm.replace(":", "")
+    if len(normalized) != 4 or not normalized.isdigit():
+        raise ValueError(f"Invalid --end_hhmm format: {end_hhmm}")
+
+    hour = int(normalized[:2])
+    minute = int(normalized[2:])
+    if not (0 <= hour <= 23 and 0 <= minute <= 59):
+        raise ValueError(f"Invalid --end_hhmm value: {end_hhmm}")
+
+    end = target_date.replace(hour=hour, minute=minute, second=0, microsecond=0)
+    if is_auto_date and end > now_kst():
+        end -= timedelta(days=1)
+
+    start = end - timedelta(hours=window_hours) - timedelta(minutes=overlap_minutes)
     return start, end
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Daily finance news monitor")
     parser.add_argument("--date", type=str, help="YYYY-MM-DD (KST)")
-    parser.add_argument("--window_hours", type=float, default=13.5)
+    parser.add_argument("--window_hours", type=float, default=24.0)
+    parser.add_argument(
+        "--end_hhmm",
+        type=str,
+        default="0730",
+        help='Collection end time in KST (e.g. "0900" or "09:00")',
+    )
+    parser.add_argument(
+        "--overlap_minutes",
+        type=int,
+        default=15,
+        help="Safety overlap minutes to extend start time backward",
+    )
+    parser.add_argument(
+        "--dry_run",
+        action="store_true",
+        help="Only print calculated collection window and exit",
+    )
     parser.add_argument("--max_pages", type=int, default=5)
     parser.add_argument("--use_deepsearch", action="store_true")
     return parser.parse_args()
@@ -128,11 +161,22 @@ def main() -> None:
 
     if args.date:
         target_date = datetime.strptime(args.date, "%Y-%m-%d").replace(tzinfo=KST)
+        is_auto_date = False
     else:
         target_date = now_kst()
+        is_auto_date = True
 
-    start, end = compute_window(target_date, args.window_hours)
-    logger.info("Collecting news from %s to %s", start, end)
+    start, end = compute_window(
+        target_date,
+        args.window_hours,
+        args.end_hhmm,
+        args.overlap_minutes,
+        is_auto_date,
+    )
+    logger.info("Collecting news from %s to %s (KST)", start, end)
+
+    if args.dry_run:
+        return
 
     if args.use_deepsearch:
         logger.warning("DeepSearch is not configured in this MVP; skipping.")
