@@ -6,7 +6,7 @@ concurrency:
 
 on:
   schedule:
-    - cron: "30 22 * * 0-4"  # UTC Sun-Thu 22:30 = KST Mon-Fri 07:30
+    - cron: "5 0 * * 1-5"  # UTC Mon-Fri 00:05 = KST Mon-Fri 09:05
   workflow_dispatch:
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
         env:
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
-        run: python -m src.run_daily
+        run: python -m src.run_daily --window_hours 24 --end_hhmm 0900 --overlap_minutes 15
 
       - name: Send email (optional)
         continue-on-error: true
@@ -57,4 +57,3 @@ jobs:
 
           # push (rebase로 커밋 해시가 바뀌었을 수 있으니 다시 push)
           git push origin HEAD:main
-

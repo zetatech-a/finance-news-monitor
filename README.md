@@ -28,8 +28,13 @@ python -m src.run_daily
 
 옵션:
 ```bash
-python -m src.run_daily --date 2024-01-01 --window_hours 13.5
+python -m src.run_daily --date 2024-01-01 --window_hours 24 --end_hhmm 0900 --overlap_minutes 15
 ```
+
+- `--window_hours` (기본: `24.0`)
+- `--end_hhmm` (기본: `0730`, 형식: `0900` 또는 `09:00`)
+- `--overlap_minutes` (기본: `15`)
+- `--dry_run` (윈도우 계산만 출력 후 종료)
 
 ## 리포트 위치
 - `reports/YYYY-MM-DD.md`
@@ -37,5 +42,6 @@ python -m src.run_daily --date 2024-01-01 --window_hours 13.5
 - `reports/index.html`
 
 ## 참고
-- 수집 구간은 기본적으로 전일 07:30 ~ 당일 07:30 (KST)입니다.
+- 운영 기준 수집 구간은 전일 09:00 ~ 당일 09:00 (KST)이며, 기본 오버랩 15분을 적용하면 실제 수집 시작은 전일 08:45입니다.
+- 기본값(`--end_hhmm 0730`)을 유지하면 하위호환으로 기존 07:30 마감 기준도 그대로 사용할 수 있습니다.
 - 원문 전문은 저장하지 않고 제목/요약/링크만 저장합니다.
