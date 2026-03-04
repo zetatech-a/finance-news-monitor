@@ -6,7 +6,7 @@ concurrency:
 
 on:
   schedule:
-    - cron: "5 0 * * 1-5"  # UTC Mon-Fri 00:05 = KST Mon-Fri 09:05
+    - cron: "30 22 * * 0-4"  # UTC Sun-Thu 22:30 = KST Mon-Fri 07:30
   workflow_dispatch:
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
         env:
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
-        run: python -m src.run_daily --window_hours 24 --end_hhmm 0900 --overlap_minutes 15
+        run: python -m src.run_daily --date "$(TZ='Asia/Seoul' date +%Y-%m-%d)" --window_hours 24 --end_hhmm 0830 --overlap_minutes 15
 
       - name: Send email (optional)
         continue-on-error: true
