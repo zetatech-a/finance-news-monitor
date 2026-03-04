@@ -2,12 +2,17 @@ name: Daily Finance News Report (Weekdays)
 
 concurrency:
   group: daily-finance-news
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 on:
   schedule:
-    - cron: "30 22 * * 0-4"  # UTC Sun-Thu 22:30 = KST Mon-Fri 07:30
+    - cron: "43 23 * * 0-4"  # UTC Sun-Thu 23:43 = KST Mon-Fri 08:43
   workflow_dispatch:
+    inputs:
+      send_email:
+        description: "Send email on manual run"
+        type: boolean
+        default: false
 
 jobs:
   run:
@@ -24,6 +29,12 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
+      - name: Diagnostics
+        run: |
+          echo "Event: $GITHUB_EVENT_NAME"
+          date -u
+          TZ=Asia/Seoul date
+
       - name: Run daily (naver)
         env:
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
@@ -31,6 +42,7 @@ jobs:
         run: python -m src.run_daily --date "$(TZ='Asia/Seoul' date +%Y-%m-%d)" --window_hours 24 --end_hhmm 0830 --overlap_minutes 15
 
       - name: Send email (optional)
+        if: ${{ github.event_name == 'schedule' || inputs.send_email == 'true' }}
         continue-on-error: true
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
