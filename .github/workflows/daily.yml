@@ -32,6 +32,7 @@ jobs:
       - name: Diagnostics
         run: |
           echo "Event: $GITHUB_EVENT_NAME"
+          echo "inputs.send_email=${{ inputs.send_email }}"
           date -u
           TZ=Asia/Seoul date
 
@@ -41,9 +42,40 @@ jobs:
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
         run: python -m src.run_daily --date "$(TZ='Asia/Seoul' date +%Y-%m-%d)" --window_hours 24 --end_hhmm 0830 --overlap_minutes 15
 
+      - name: Email precheck
+        id: email_precheck
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: |
+          want_send="${{ github.event_name == 'schedule' || inputs.send_email }}"
+
+          if [[ "$want_send" != "true" ]]; then
+            echo "Email disabled by input"
+            echo "should_send=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          missing=()
+          for name in SMTP_HOST SMTP_PORT SMTP_USER SMTP_PASS MAIL_FROM MAIL_TO; do
+            if [[ -z "${!name}" ]]; then
+              missing+=("$name")
+            fi
+          done
+
+          if (( ${#missing[@]} > 0 )); then
+            echo "Missing secrets: ${missing[*]}" >&2
+            exit 1
+          fi
+
+          echo "should_send=true" >> "$GITHUB_OUTPUT"
+
       - name: Send email (optional)
-        if: ${{ github.event_name == 'schedule' || inputs.send_email == 'true' }}
-        continue-on-error: true
+        if: ${{ steps.email_precheck.outputs.should_send == 'true' }}
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
