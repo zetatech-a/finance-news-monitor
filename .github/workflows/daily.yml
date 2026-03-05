@@ -6,7 +6,7 @@ concurrency:
 
 on:
   schedule:
-    - cron: "43 23 * * 0-4"  # UTC Sun-Thu 23:43 = KST Mon-Fri 08:43
+    - cron: "49 22 * * 0-4"  # UTC Sun-Thu 22:49 = KST Mon-Fri 07:49
   workflow_dispatch:
     inputs:
       send_email:
@@ -33,6 +33,17 @@ jobs:
         run: |
           echo "Event: $GITHUB_EVENT_NAME"
           echo "inputs.send_email=${{ inputs.send_email }}"
+          date -u
+          TZ=Asia/Seoul date
+
+      - name: Wait until 08:43:10 KST
+        run: |
+          NOW=$(TZ=Asia/Seoul date +%s)
+          TARGET=$(TZ=Asia/Seoul date -d "$(TZ=Asia/Seoul date +%F) 08:43:10" +%s)
+          if [ "$NOW" -lt "$TARGET" ]; then
+            echo "Sleeping $((TARGET-NOW))s"
+            sleep $((TARGET-NOW))
+          fi
           date -u
           TZ=Asia/Seoul date
 
