@@ -5,9 +5,9 @@
 - 결과는 파일로 누적 저장하고(필수), 이메일로 요약을 발송한다(2단계).
 
 ## 2. 실행 스케줄
-- 평일 08:43 KST 실행/발송 (GitHub Actions, 라운드 타임 혼잡 회피)
-- 수집 구간 운영 기준: 전일 08:30 ~ 당일 08:30 (KST)
-- 안전 오버랩 15분 적용 시 실제 수집 시작: 전일 08:15 (KST)
+- 매일 08:03 KST 실행, 08:05 전후 발송 (GitHub Actions)
+- 수집 구간 운영 기준: 전일 08:00 ~ 당일 08:00 (KST)
+- 안전 오버랩 15분 적용 시 실제 수집 시작: 전일 07:45 (KST)
 
 ## 3. 수집 범위
 - 국내 기사 중심
@@ -37,7 +37,7 @@
 - 옵션:
   - `--date YYYY-MM-DD` (기본: 오늘 날짜, KST 기준)
   - `--window_hours N` (기본: 24.0)
-  - `--end_hhmm HHMM` (기본: `0730`, 운영 권장: `0830`, 예: `0900`, `09:00`)
+  - `--end_hhmm HHMM` (기본: `0730`, 운영 권장: `0800`, 예: `0900`, `09:00`)
   - `--overlap_minutes N` (기본: 15)
   - `--dry_run` (API 호출/리포트 생성 없이 window 계산만 출력)
   - `--use_deepsearch` (기본: OFF)
@@ -51,7 +51,7 @@
 
 
 ## 9. GitHub Actions 운영 규칙
-- 스케줄: `43 23 * * 0-4` (UTC Sun~Thu) = KST 월~금 08:43
+- 스케줄: `3 23 * * *` (UTC daily) = KST 매일 08:03
 - 실행 시 기준 날짜는 `TZ=Asia/Seoul`로 계산한다.
-- 운영 실행 파라미터: `--date $(TZ=Asia/Seoul date +%Y-%m-%d) --window_hours 24 --end_hhmm 0830 --overlap_minutes 15`
+- 운영 실행 파라미터: `--date $(TZ=Asia/Seoul date +%Y-%m-%d) --window_hours 24 --end_hhmm 0800 --overlap_minutes 15`
 - 수동 실행(`workflow_dispatch`)은 기본 메일 미발송이며, 필요할 때만 `send_email=true`로 발송한다.
