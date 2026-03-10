@@ -1,4 +1,4 @@
-name: Daily Finance News Report (Weekdays)
+name: Daily Finance News Report (Daily)
 
 concurrency:
   group: daily-finance-news
@@ -6,7 +6,7 @@ concurrency:
 
 on:
   schedule:
-    - cron: "49 22 * * 0-4"  # UTC Sun-Thu 22:49 = KST Mon-Fri 07:49
+    - cron: "3 23 * * *"  # UTC daily 23:03 = KST daily 08:03
   workflow_dispatch:
     inputs:
       send_email:
@@ -36,22 +36,11 @@ jobs:
           date -u
           TZ=Asia/Seoul date
 
-      - name: Wait until 08:43:10 KST
-        run: |
-          NOW=$(TZ=Asia/Seoul date +%s)
-          TARGET=$(TZ=Asia/Seoul date -d "$(TZ=Asia/Seoul date +%F) 08:43:10" +%s)
-          if [ "$NOW" -lt "$TARGET" ]; then
-            echo "Sleeping $((TARGET-NOW))s"
-            sleep $((TARGET-NOW))
-          fi
-          date -u
-          TZ=Asia/Seoul date
-
       - name: Run daily (naver)
         env:
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
-        run: python -m src.run_daily --date "$(TZ='Asia/Seoul' date +%Y-%m-%d)" --window_hours 24 --end_hhmm 0830 --overlap_minutes 15
+        run: python -m src.run_daily --date "$(TZ='Asia/Seoul' date +%Y-%m-%d)" --window_hours 24 --end_hhmm 0800 --overlap_minutes 15
 
       - name: Email precheck
         id: email_precheck
