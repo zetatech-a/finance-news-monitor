@@ -54,21 +54,19 @@ def send_email(subject: str, body: str, attachments: list[Path]) -> None:
 
 
 def resolve_report_date_and_attachments(report_dir: Path) -> tuple[str, list[Path]]:
+    """
+    Return (report_date, attachments) for email.
+    Email attachments policy: HTML only.
+    """
     today = now_kst().date().isoformat()
-    md = report_dir / f"{today}.md"
-    html = report_dir / f"{today}.html"
+    html_today = report_dir / f"{today}.html"
 
-    if md.exists() or html.exists():
-        return today, [md, html]
+    # Prefer today's HTML report
+    if html_today.exists():
+        return today, [html_today]
 
+    # Otherwise, find the latest available HTML report date
     available_dates: set[str] = set()
-    for path in report_dir.glob("*.md"):
-        if len(path.stem) == 10:
-            try:
-                _ = date.fromisoformat(path.stem)
-                available_dates.add(path.stem)
-            except ValueError:
-                continue
     for path in report_dir.glob("*.html"):
         if len(path.stem) == 10:
             try:
@@ -78,22 +76,25 @@ def resolve_report_date_and_attachments(report_dir: Path) -> tuple[str, list[Pat
                 continue
 
     if not available_dates:
-        return today, [md, html]
+        # Nothing exists yet; return the expected path (send_email will skip if missing)
+        return today, [html_today]
 
     latest = max(available_dates)
-    return latest, [report_dir / f"{latest}.md", report_dir / f"{latest}.html"]
+    return latest, [report_dir / f"{latest}.html"]
 
 
 def main() -> None:
     report_dir = Path("reports")
     report_date, attachments = resolve_report_date_and_attachments(report_dir)
 
-    subject = f"[금융권 언론동향] {report_date}"
+    subject = f"[금융권 언론동향] {report_date} (KST)"
+
+    # Keep body short (spam-safe) and user-oriented. Avoid internal implementation details.
     body = (
-        f"금융권(대부업권 중심) 일일 언론동향 리포트입니다.\n\n"
-        f"- 날짜: {report_date}\n"
-        f"- 첨부: {attachments[0].name}, {attachments[1].name}\n"
-        f"- 저장: GitHub repo의 reports/ 폴더에 누적\n"
+        "금융권 일일 언론동향 리포트입니다. (대부업권 중심)\n"
+        f"- 기준일: {report_date} (KST)\n"
+        f"- 첨부: {report_date}.html (브라우저에서 열람)\n\n"
+        "※ 본 메일은 자동 발송됩니다.\n"
     )
 
     send_email(subject, body, attachments=attachments)
