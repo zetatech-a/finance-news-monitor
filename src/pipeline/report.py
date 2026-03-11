@@ -222,44 +222,34 @@ html[data-theme="dark"]{
 body{
   margin:0; background:var(--bg); color:var(--text);
   font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans KR",Arial,sans-serif;
-  line-height:1.55;
+  line-height:1.5;
 }
+body.no-scroll{ overflow:hidden; }
 
-.wrap{ max-width:1120px; margin:0 auto; padding:18px 16px 60px; }
+.wrap{ max-width:1600px; margin:0 auto; padding:12px 16px 42px; }
+.layout{ display:block; }
+.mobile-mini{ display:none; }
+.mobile-only{ display:none; }
 
-.topbar{
-  position:sticky; top:0; z-index:50;
-  background: color-mix(in srgb, var(--bg) 70%, transparent);
-  backdrop-filter: blur(10px);
-  padding: 10px 0 12px;
-}
-
-.header{
+.sidebar{ margin-bottom:14px; }
+.sheet-backdrop{ display:none; }
+.filter-shell{
   background:var(--paper); border:1px solid var(--border);
-  border-radius:16px; padding:16px 16px; box-shadow:var(--shadow);
+  border-radius:16px; padding:14px; box-shadow:var(--shadow);
 }
 
-.header-top{
-  display:flex; gap:14px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;
-}
+.header-top{ display:flex; gap:10px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; }
+h1{ margin:0; font-size:19px; letter-spacing:-0.2px; }
+.meta{ color:var(--muted); font-size:13px; margin-top:4px; }
 
-h1{ margin:0; font-size:20px; letter-spacing:-0.2px; }
-.meta{ color:var(--muted); font-size:13px; margin-top:6px; }
-
-.controls{
-  display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end;
-}
-
+.controls{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
 .input{
   display:flex; align-items:center; gap:8px;
   background: color-mix(in srgb, var(--paper) 92%, var(--bg));
   border:1px solid var(--border); border-radius:12px;
-  padding:8px 10px; min-width:260px;
+  padding:8px 10px; min-width:250px;
 }
-.input input{
-  border:none; outline:none; background:transparent; color:var(--text);
-  font-size:13px; width:260px;
-}
+.input input{ border:none; outline:none; background:transparent; color:var(--text); font-size:13px; width:100%; min-width:150px; }
 .input:focus-within{ box-shadow:var(--ring); border-color: color-mix(in srgb, var(--link) 55%, var(--border)); }
 
 .btn, .select{
@@ -269,12 +259,10 @@ h1{ margin:0; font-size:20px; letter-spacing:-0.2px; }
 }
 .btn:hover, .select:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
 .btn.primary{ background: color-mix(in srgb, var(--link) 12%, var(--paper)); border-color: color-mix(in srgb, var(--link) 30%, var(--border)); }
+.btn.active{ background: color-mix(in srgb, var(--link) 14%, var(--paper)); border-color: color-mix(in srgb, var(--link) 35%, var(--border)); color:var(--text); }
 .btn.small{ padding:6px 8px; border-radius:10px; font-size:12px; }
 .select{ cursor:default; }
-.select select{
-  border:none; outline:none; background:transparent; color:var(--text);
-  font-size:13px;
-}
+.select select{ border:none; outline:none; background:transparent; color:var(--text); font-size:13px; }
 
 .toggle{
   display:inline-flex; align-items:center; gap:8px;
@@ -283,10 +271,15 @@ h1{ margin:0; font-size:20px; letter-spacing:-0.2px; }
 }
 .toggle input{ transform: translateY(1px); }
 
-.nav{
-  margin-top:10px;
-  display:flex; gap:8px; flex-wrap:wrap;
+.nav, .presetbar{
+  margin-top:10px; display:flex; gap:8px;
+  flex-wrap:nowrap; overflow-x:auto; overflow-y:hidden;
+  padding-bottom:2px;
+  -webkit-overflow-scrolling:touch;
 }
+.nav::-webkit-scrollbar, .presetbar::-webkit-scrollbar{ height:6px; }
+.pill, .preset, .kchip{ white-space:nowrap; }
+
 .pill{
   display:inline-flex; align-items:center; gap:6px;
   padding:7px 10px; border-radius:999px;
@@ -300,155 +293,121 @@ h1{ margin:0; font-size:20px; letter-spacing:-0.2px; }
   color:var(--text);
 }
 
+.preset{
+  display:inline-flex; align-items:center; padding:7px 10px; border-radius:999px;
+  border:1px solid var(--border); background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  color:var(--text); font-size:12px; cursor:pointer;
+}
+.preset.active{ background: color-mix(in srgb, var(--link) 14%, var(--paper)); border-color: color-mix(in srgb, var(--link) 35%, var(--border)); }
+
 .main{
-  margin-top:14px;
   background:var(--paper); border:1px solid var(--border);
-  border-radius:16px; padding:16px 16px; box-shadow:var(--shadow);
+  border-radius:16px; padding:14px; box-shadow:var(--shadow);
 }
 
 .section-head{
   display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
-  margin: 6px 0 10px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
+  margin: 6px 0 10px; padding-top: 12px; border-top: 1px solid var(--border);
 }
 .section-head:first-child{ border-top:none; padding-top:0; }
 h2{ margin:0; font-size:15px; }
 .count{ color:var(--muted); font-size:12px; margin-left:6px; }
 .note{ color:var(--muted); font-size:12px; }
 
-.grid{
-  display:grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap:10px;
-}
-
+.grid{ display:grid; grid-template-columns:1fr; gap:8px; }
 .card{
-  grid-column: span 12;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px 12px;
-  background: color-mix(in srgb, var(--paper) 96%, var(--bg));
-  box-shadow: var(--shadow2);
-  transition: transform .08s ease, border-color .08s ease;
+  border:1px solid var(--border); border-radius:12px;
+  padding:10px; background: color-mix(in srgb, var(--paper) 96%, var(--bg));
+  box-shadow: var(--shadow2); transition: transform .08s ease, border-color .08s ease;
 }
-@media (min-width: 860px){
-  .card{ grid-column: span 6; }
-}
-.card:hover{
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
-}
-
-/* ✅ 제목+클립 버튼 */
-.card-head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-}
-.clip{
-  border:1px solid var(--border);
-  background:var(--paper);
-  color:var(--muted);
-  border-radius:12px;
-  padding:6px 8px;
-  cursor:pointer;
-  line-height:1;
-  font-size:14px;
-}
+.card:hover{ transform: translateY(-1px); border-color: color-mix(in srgb, var(--link) 35%, var(--border)); }
+.card-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+.clip{ border:1px solid var(--border); background:var(--paper); color:var(--muted); border-radius:12px; padding:6px 8px; cursor:pointer; line-height:1; font-size:14px; }
 .clip:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
-.clip.on{
-  color: var(--link_hover);
-  background: color-mix(in srgb, var(--link) 10%, var(--paper));
-  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
-}
+.clip.on{ color: var(--link_hover); background: color-mix(in srgb, var(--link) 10%, var(--paper)); border-color: color-mix(in srgb, var(--link) 35%, var(--border)); }
 
-.title{
-  margin:0 0 6px; font-size:14px; font-weight:800; line-height:1.35;
-}
+.title{ margin:0 0 4px; font-size:14px; font-weight:800; line-height:1.3; }
 .title a{ color:var(--text); text-decoration:none; }
 .title a:hover{ color:var(--link_hover); text-decoration:underline; }
-
-.meta-row{
-  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
-  color:var(--muted); font-size:12px; margin-bottom:8px;
-}
-.badge{
-  display:inline-flex; align-items:center;
-  padding:4px 8px; border-radius:999px;
-  border:1px solid var(--border);
-  background: var(--chip);
-  color: var(--chip_text);
-  font-size:11px;
-}
+.meta-row{ display:flex; flex-wrap:wrap; gap:6px; align-items:center; color:var(--muted); font-size:12px; margin-bottom:7px; }
+.badge{ display:inline-flex; align-items:center; padding:3px 8px; border-radius:999px; border:1px solid var(--border); background: var(--chip); color: var(--chip_text); font-size:11px; }
 .badge.r-high{ font-weight:700; }
 .badge.r-med{ opacity:0.95; }
 .badge.r-low{ opacity:0.85; }
 
 .summary{
-  margin:0;
-  color: color-mix(in srgb, var(--text) 82%, var(--muted));
-  font-size:13px;
-  display:-webkit-box;
-  -webkit-line-clamp:3;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
+  margin:0; color: color-mix(in srgb, var(--text) 82%, var(--muted)); font-size:12.5px;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
 }
-
-.actions{
-  display:flex; gap:8px; flex-wrap:wrap;
-  margin-top:10px;
-}
-
-mark{
-  background: color-mix(in srgb, var(--link) 18%, transparent);
-  color: inherit;
-  border-radius: 6px;
-  padding: 0 3px;
-}
-
-.footer{
-  margin-top:12px; color:var(--muted); font-size:12px;
-  text-align:center;
-}
-
+.actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:9px; }
+.load-more-wrap{ margin:8px 0 2px; }
+mark{ background: color-mix(in srgb, var(--link) 18%, transparent); color: inherit; border-radius: 6px; padding: 0 3px; }
+.footer{ margin-top:12px; color:var(--muted); font-size:12px; text-align:center; }
 .kchips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
-.kchip{
-  display:inline-flex; align-items:center; gap:6px;
-  padding:6px 10px; border-radius:999px;
-  border:1px solid var(--border);
-  background: color-mix(in srgb, var(--paper) 92%, var(--bg));
-  color:var(--text);
-  font-size:12px;
-}
+.kchip{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background: color-mix(in srgb, var(--paper) 92%, var(--bg)); color:var(--text); font-size:12px; }
 .kchip .n{ color:var(--muted); font-size:12px; }
 
-/* ✅ 프리셋 바 */
-.presetbar{
-  margin-top:10px;
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
+@media (min-width:768px){
+  .grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; }
 }
-.preset{
-  display:inline-flex; align-items:center;
-  padding:7px 10px; border-radius:999px;
-  border:1px solid var(--border);
-  background: color-mix(in srgb, var(--paper) 92%, var(--bg));
-  color:var(--text);
-  font-size:12px;
-  cursor:pointer;
+
+@media (min-width:1200px){
+  .wrap{ max-width:1720px; padding:14px 20px 52px; }
+  .layout{ display:grid; grid-template-columns:minmax(320px, 360px) minmax(0, 1fr); gap:16px; align-items:start; }
+  .sidebar{ margin-bottom:0; }
+  .filter-shell{ position:sticky; top:12px; max-height:calc(100vh - 24px); overflow:auto; }
+  .main{ padding:16px; }
+  .grid{ grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); }
 }
-.preset.active{
-  background: color-mix(in srgb, var(--link) 14%, var(--paper));
-  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+
+@media (max-width:1199px){
+  .header-top{ gap:8px; }
+  .input{ min-width:200px; }
+}
+
+@media (max-width:767px){
+  .wrap{ padding:74px 10px 24px; }
+  .mobile-mini{
+    display:block; position:fixed; top:0; left:0; right:0; z-index:95;
+    background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--border); padding:8px 10px;
+  }
+  .mobile-mini-head{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .mobile-mini h1{ font-size:14px; }
+  .mobile-mini .meta{ margin-top:1px; font-size:11px; }
+  .mobile-mini-actions{ display:flex; gap:6px; }
+  .mobile-mini .btn, .mobile-mini .toggle{ padding:6px 8px; font-size:12px; border-radius:10px; }
+
+  .sidebar{ position:fixed; inset:0; z-index:100; pointer-events:none; }
+  .sheet-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,0.35); opacity:0; transition:opacity .18s ease; }
+  .filter-shell{
+    position:absolute; left:0; right:0; bottom:0; margin:0;
+    border-radius:16px 16px 0 0; max-height:78vh; overflow:auto;
+    transform:translateY(105%); transition:transform .2s ease;
+  }
+  .sidebar.open{ pointer-events:auto; }
+  .sidebar.open .sheet-backdrop{ opacity:1; }
+  .sidebar.open .filter-shell{ transform:translateY(0); }
+  .mobile-only{ display:inline-flex; }
+
+  .header-top .meta{ display:none; }
+  .controls{ gap:6px; }
+  .controls .input{ min-width:100%; }
+  .controls .toggle, .controls .btn, .controls .select{ font-size:12px; padding:7px 8px; }
+
+  .main{ padding:10px; }
+  .section-head{ margin:4px 0 8px; padding-top:10px; }
+  .card{ padding:8px; border-radius:10px; }
+  .summary{ -webkit-line-clamp:2; font-size:12px; }
+  .meta-row{ margin-bottom:5px; gap:5px; }
+  .actions{ margin-top:7px; gap:6px; }
 }
 """
 
 _UI_JS = r"""
 (function(){
   const root = document.documentElement;
+  const body = document.body;
   const themeBtn = document.getElementById("themeBtn");
   const search = document.getElementById("searchInput");
   const topOnly = document.getElementById("topOnly");
@@ -456,6 +415,11 @@ _UI_JS = r"""
   const sortSel = document.getElementById("sortSel");
   const emptyState = document.getElementById("emptyState");
   const presetBar = document.getElementById("presetBar");
+  const sidebar = document.getElementById("filterSidebar");
+  const mobileFilterBtn = document.getElementById("mobileFilterBtn");
+  const mobileSearchBtn = document.getElementById("mobileSearchBtn");
+  const mobileTopBtn = document.getElementById("mobileTopBtn");
+  const mobileFilterCloseBtn = document.getElementById("mobileFilterCloseBtn");
 
   const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
   const topicPills = Array.from(document.querySelectorAll("[data-topic-pill]"));
@@ -477,15 +441,30 @@ _UI_JS = r"""
   };
   let activePresetGroup = "Core(대부)";
 
-  function loadTheme(){ const saved = localStorage.getItem(LS_THEME); root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light"; themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크"; }
-  function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); themeBtn.textContent = (next === "dark") ? "라이트" : "다크"; }
+  function loadTheme(){ const saved = localStorage.getItem(LS_THEME); root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light"; if(themeBtn) themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크"; }
+  function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); if(themeBtn) themeBtn.textContent = (next === "dark") ? "라이트" : "다크"; }
   function getFavs(){ try{ const raw = localStorage.getItem(LS_FAVS); const arr = raw ? JSON.parse(raw) : []; return new Set(Array.isArray(arr) ? arr : []);}catch(e){ return new Set(); }}
   function saveFavs(set){ localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set))); }
   function setActivePill(sector){ pills.forEach(p => p.classList.toggle("active", p.dataset.sector === sector)); }
   function setActiveTopicPill(topic){ topicPills.forEach(p => p.classList.toggle("active", p.dataset.topic === topic)); }
 
+  function openFilterSheet(focusSearch){
+    if(!sidebar || window.innerWidth >= 768) return;
+    sidebar.classList.add("open");
+    body.classList.add("no-scroll");
+    mobileFilterBtn?.setAttribute("aria-expanded", "true");
+    if(focusSearch) setTimeout(() => search?.focus(), 120);
+  }
+
+  function closeFilterSheet(){
+    if(!sidebar) return;
+    sidebar.classList.remove("open");
+    body.classList.remove("no-scroll");
+    mobileFilterBtn?.setAttribute("aria-expanded", "false");
+  }
+
   function applySort(){
-    const mode = (sortSel.value || "new");
+    const mode = (sortSel?.value || "new");
     groups.forEach(g => {
       const grid = g.querySelector(".grid"); if(!grid) return;
       const items = Array.from(grid.querySelectorAll("[data-card]"));
@@ -495,11 +474,11 @@ _UI_JS = r"""
   }
 
   function applyFilter(){
-    const q = (search.value || "").trim().toLowerCase();
-    const active = (document.querySelector(".pill.active") || {}).dataset?.sector || "ALL";
+    const q = (search?.value || "").trim().toLowerCase();
+    const active = (document.querySelector("[data-sector-pill].active") || {}).dataset?.sector || "ALL";
     const activeTopic = (document.querySelector("[data-topic-pill].active") || {}).dataset?.topic || "ALL";
-    const onlyTop = topOnly && topOnly.checked;
-    const onlyFav = favOnly && favOnly.checked;
+    const onlyTop = !!(topOnly && topOnly.checked);
+    const onlyFav = !!(favOnly && favOnly.checked);
     const favs = getFavs();
 
     cards.forEach(card => {
@@ -528,9 +507,7 @@ _UI_JS = r"""
       g.style.display = matched.length ? "" : "none";
     });
 
-    if (emptyState) {
-      emptyState.style.display = totalMatched > 0 ? "none" : "";
-    }
+    if (emptyState) emptyState.style.display = totalMatched > 0 ? "none" : "";
   }
 
   function renderPresets(){
@@ -539,7 +516,7 @@ _UI_JS = r"""
     const buttons = PRESET_GROUPS[activePresetGroup].map(p => `<button class="preset" data-preset="${p.q}">${p.k}</button>`).join("");
     presetBar.innerHTML = `<span class="select"><span style="color:var(--muted); font-size:12px;">프리셋</span><select id="presetGroupSel">${options}</select></span>` + buttons;
     const sel = document.getElementById("presetGroupSel"); if(sel) sel.value = activePresetGroup;
-    const saved = localStorage.getItem(LS_PRESETS) || ""; if(saved) search.value = saved;
+    const saved = localStorage.getItem(LS_PRESETS) || ""; if(search && saved) search.value = saved;
   }
 
   function initFavButtons(){
@@ -552,16 +529,25 @@ _UI_JS = r"""
   }
 
   function bindEvents(){
-    pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); }));
-    topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); }));
+    pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); if(window.innerWidth < 768) closeFilterSheet(); }));
+    topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); if(window.innerWidth < 768) closeFilterSheet(); }));
     groups.forEach(g => { const btn = g.querySelector("[data-load-more]"); if(!btn) return; btn.addEventListener("click", ()=>{ const matched = Array.from(g.querySelectorAll("[data-card]")).filter(c=>c.dataset.match==="1"); const current=parseInt(btn.dataset.offset||"20",10); const next=current+PAGE_SIZE; matched.forEach((c,i)=> c.style.display = i < next ? "" : "none"); btn.dataset.offset=String(Math.min(next, matched.length)); btn.style.display = next < matched.length ? "" : "none"; }); });
-    search.addEventListener("input", ()=>{ localStorage.setItem(LS_PRESETS, search.value || ""); applyFilter(); });
+    search?.addEventListener("input", ()=>{ localStorage.setItem(LS_PRESETS, search.value || ""); applyFilter(); });
     if(topOnly) topOnly.addEventListener("change", applyFilter);
     if(favOnly) favOnly.addEventListener("change", applyFilter);
-    sortSel.addEventListener("change", ()=>{ applySort(); applyFilter(); });
+    sortSel?.addEventListener("change", ()=>{ applySort(); applyFilter(); });
     presetBar?.addEventListener("change", (e)=>{ const sel = e.target.closest("#presetGroupSel"); if(!sel) return; activePresetGroup = sel.value || "Core(대부)"; renderPresets(); });
-    presetBar?.addEventListener("click", (e)=>{ const btn = e.target.closest("[data-preset]"); if(!btn) return; const q = btn.getAttribute("data-preset") || ""; search.value = q; localStorage.setItem(LS_PRESETS, q); applyFilter(); });
-    themeBtn.addEventListener("click", toggleTheme);
+    presetBar?.addEventListener("click", (e)=>{ const btn = e.target.closest("[data-preset]"); if(!btn || !search) return; const q = btn.getAttribute("data-preset") || ""; search.value = q; localStorage.setItem(LS_PRESETS, q); applyFilter(); if(window.innerWidth < 768) closeFilterSheet(); });
+    themeBtn?.addEventListener("click", toggleTheme);
+
+    mobileFilterBtn?.addEventListener("click", () => openFilterSheet(false));
+    mobileSearchBtn?.addEventListener("click", () => openFilterSheet(true));
+    mobileFilterCloseBtn?.addEventListener("click", closeFilterSheet);
+    sidebar?.addEventListener("click", (e)=>{ if(e.target.closest("[data-sheet-close]")) closeFilterSheet(); });
+    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeFilterSheet(); });
+    mobileTopBtn?.addEventListener("click", ()=>{ if(!topOnly) return; topOnly.checked = !topOnly.checked; mobileTopBtn.classList.toggle("active", topOnly.checked); applyFilter(); });
+    topOnly?.addEventListener("change", ()=> mobileTopBtn?.classList.toggle("active", topOnly.checked));
+    window.addEventListener("resize", ()=>{ if(window.innerWidth >= 768) closeFilterSheet(); });
   }
 
   loadTheme();
@@ -572,6 +558,7 @@ _UI_JS = r"""
   initFavButtons();
   bindEvents();
   applyFilter();
+  mobileTopBtn?.classList.toggle("active", !!topOnly?.checked);
 })();
 """
 
@@ -767,12 +754,30 @@ def render_html(
 </head>
 <body>
   <div class="wrap">
-    <div class="topbar">
-      <div class="header">
-        <div class="header-top">
-          <div>
-            <h1>금융권 일일 언론동향 <span style="color:var(--muted);">({date_str})</span></h1>
-            <div class="meta">대부업권 중심 · 전 금융업권 주요 기사 요약</div>
+    <div class="mobile-mini">
+      <div class="mobile-mini-head">
+        <div>
+          <h1>금융권 일일 언론동향</h1>
+          <div class="meta">{date_str}</div>
+        </div>
+        <div class="mobile-mini-actions">
+          <button id="mobileSearchBtn" class="btn" type="button" aria-label="검색/필터 열기" aria-controls="filterSidebar">🔎</button>
+          <button id="mobileFilterBtn" class="btn" type="button" aria-label="필터 열기" aria-controls="filterSidebar" aria-expanded="false">필터</button>
+          <button id="mobileTopBtn" class="btn" type="button" aria-label="Top만 토글">Top만</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout">
+      <aside class="sidebar" id="filterSidebar" aria-label="필터 패널">
+        <div class="sheet-backdrop" data-sheet-close></div>
+        <div class="filter-shell">
+          <div class="header-top">
+            <div>
+              <h1>금융권 일일 언론동향 <span style="color:var(--muted);">({date_str})</span></h1>
+              <div class="meta">대부업권 중심 · 전 금융업권 주요 기사 요약</div>
+            </div>
+            <button id="mobileFilterCloseBtn" class="btn small primary mobile-only" type="button" aria-label="필터 닫기" data-sheet-close>닫기</button>
           </div>
           <div class="controls">
             <div class="input" title="제목/요약/섹터/언론사에서 검색">
@@ -785,18 +790,19 @@ def render_html(
             <button id="themeBtn" class="btn">다크</button>
             <a class="btn" href="index.html">최근 리포트</a>
           </div>
+          <div class="nav">{''.join(pills)}</div>
+          <div class="nav">{''.join(topic_pills)}</div>
+          <div class="presetbar" id="presetBar"></div>
         </div>
-        <div class="nav">{''.join(pills)}</div>
-        <div class="nav">{''.join(topic_pills)}</div>
-        <div class="presetbar" id="presetBar"></div>
+      </aside>
+
+      <div class="main">
+        <div id="emptyState" class="note" style="display:none; margin-bottom:12px;">필터 조건에 맞는 기사가 없습니다. 검색어/필터를 조정해 보세요.</div>
+        <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">정책/시장 영향도가 큰 기사 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
+        {''.join(sector_sections)}
+        <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div>{chips_html}</section>
+        <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.</div>
       </div>
-    </div>
-    <div class="main">
-      <div id="emptyState" class="note" style="display:none; margin-bottom:12px;">필터 조건에 맞는 기사가 없습니다. 검색어/필터를 조정해 보세요.</div>
-      <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">정책/시장 영향도가 큰 기사 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
-      {''.join(sector_sections)}
-      <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div>{chips_html}</section>
-      <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.</div>
     </div>
   </div>
   <script>{_UI_JS}</script>
