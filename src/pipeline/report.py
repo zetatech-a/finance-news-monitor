@@ -379,7 +379,7 @@ mark{ background: color-mix(in srgb, var(--link) 18%, transparent); color: inher
   .mobile-mini .btn, .mobile-mini .toggle{ padding:6px 8px; font-size:12px; border-radius:10px; }
 
   .sidebar{ position:fixed; inset:0; z-index:100; pointer-events:none; }
-  .sheet-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,0.35); opacity:0; transition:opacity .18s ease; }
+  .sheet-backdrop{ display:block; position:absolute; inset:0; background:rgba(0,0,0,0.35); opacity:0; transition:opacity .18s ease; }
   .filter-shell{
     position:absolute; left:0; right:0; bottom:0; margin:0;
     border-radius:16px 16px 0 0; max-height:78vh; overflow:auto;
