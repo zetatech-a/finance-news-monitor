@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-import os
 import mimetypes
+import os
 import smtplib
 from datetime import date
 from email.message import EmailMessage
+from email.utils import formataddr
 from pathlib import Path
 
 from src.config import now_kst
@@ -22,12 +23,16 @@ def send_email(subject: str, body: str, attachments: list[Path]) -> None:
     port = int(_req("SMTP_PORT"))
     user = _req("SMTP_USER")
     password = _req("SMTP_PASS")
-    mail_from = _req("MAIL_FROM")
+
+    # Keep MAIL_FROM as a pure email address for maximum SMTP compatibility.
+    mail_from_email = _req("MAIL_FROM")
+    mail_from_name = os.environ.get("MAIL_FROM_NAME", "").strip() or "금융동향봇"
+
     mail_to = [x.strip() for x in _req("MAIL_TO").split(",") if x.strip()]
 
     msg = EmailMessage()
     msg["Subject"] = subject
-    msg["From"] = mail_from
+    msg["From"] = formataddr((mail_from_name, mail_from_email))
     msg["To"] = ", ".join(mail_to)
     msg.set_content(body)
 
