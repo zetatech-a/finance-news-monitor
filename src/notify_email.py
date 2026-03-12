@@ -96,7 +96,8 @@ def main() -> None:
 
     # Keep body short (spam-safe) and user-oriented. Avoid internal implementation details.
     body = (
-        "금융권 일일 언론동향 리포트입니다. (대부업권 중심)\n"
+        "금융권 일일 언론동향 리포트입니다.\n"
+        "대부 관련 이슈를 우선 반영했습니다.\n"
         f"- 기준일: {report_date} (KST)\n"
         f"- 첨부: {report_date}.html (브라우저에서 열람)\n\n"
         "※ 본 메일은 자동 발송됩니다.\n"

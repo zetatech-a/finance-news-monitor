@@ -112,6 +112,104 @@ def _relevance_label(v: float) -> tuple[str, str]:
     return ("Low", "r-low")
 
 
+def _top_rank_score(item: TaggedArticle) -> float:
+    sector = item.sectors[0] if item.sectors else ""
+    topics = set(item.topics or [])
+    title = (getattr(item.article, "title", None) or "").lower()
+    summary = (getattr(item.article, "description", None) or "").lower()
+    text = f"{title} {summary}"
+
+    score = 0.0
+
+    # 대부 우선
+    if sector == "대부":
+        score += 4.0
+    if "대부" in text or "사금융" in text:
+        score += 1.5
+
+    # 시장/정책/감독 영향
+    if sector in {"거시·시장", "입법·정책", "감독·제재"}:
+        score += 2.0
+    impact_keywords = (
+        "금리",
+        "기준금리",
+        "최고금리",
+        "불법사금융",
+        "불법추심",
+        "추심",
+        "pf",
+        "부동산pf",
+        "가계부채",
+        "연체",
+        "연체율",
+        "제재",
+        "감독",
+        "정책",
+    )
+    score += sum(0.45 for kw in impact_keywords if kw in text)
+
+    # topic 가중치
+    topic_weights = {
+        "최고금리": 2.0,
+        "불법사금융": 2.0,
+        "채권추심": 1.8,
+        "금리": 1.5,
+        "PF": 1.4,
+        "연체": 1.3,
+        "가계부채": 1.3,
+        "정책": 1.2,
+        "감독": 1.2,
+    }
+    score += sum(w for topic, w in topic_weights.items() if topic in topics)
+
+    relevance = _relevance_value(item.article)
+    if isinstance(relevance, float):
+        score += relevance * 2.5
+
+    # 최신성 보조
+    score += _ts_dt(getattr(item.article, "pub_date", None)) / 1_000_000_000_000
+    return score
+
+
+def _select_top_items(tagged: list[TaggedArticle], limit: int = 10) -> list[TaggedArticle]:
+    excluded_sectors = {"기타"}
+    pool = [it for it in tagged if (it.sectors[0] if it.sectors else "기타") not in excluded_sectors]
+    ranked = sorted(pool, key=lambda it: (_top_rank_score(it), _ts_dt(getattr(it.article, "pub_date", None))), reverse=True)
+
+    selected: list[TaggedArticle] = []
+    seen_titles: set[str] = set()
+    sector_counts: dict[str, int] = defaultdict(int)
+    sector_limit = max(3, (limit // 2) + 1)
+
+    def norm_title(x: str) -> str:
+        return re.sub(r"\s+", " ", (x or "").strip().lower())
+
+    for item in ranked:
+        if len(selected) >= limit:
+            break
+        sector = item.sectors[0] if item.sectors else "기타"
+        title_key = norm_title(getattr(item.article, "title", None) or "")
+        if not title_key or title_key in seen_titles:
+            continue
+        if sector_counts[sector] >= sector_limit:
+            continue
+        selected.append(item)
+        seen_titles.add(title_key)
+        sector_counts[sector] += 1
+
+    if len(selected) < limit:
+        for item in ranked:
+            if len(selected) >= limit:
+                break
+            title_key = norm_title(getattr(item.article, "title", None) or "")
+            if not title_key or title_key in seen_titles:
+                continue
+            selected.append(item)
+            seen_titles.add(title_key)
+
+    return selected
+
+
 def render_markdown(
     report_date: datetime,
     tagged: list[TaggedArticle],
@@ -120,17 +218,7 @@ def render_markdown(
     header = f"# 금융권 일일 언론동향 ({report_date.strftime('%Y-%m-%d')})"
     lines = [header, ""]
 
-    top_items = sorted(
-        [
-            it
-            for it in tagged
-            if "감독·제재" not in it.sectors
-            and "입법·정책" not in it.sectors
-            and "기타" not in it.sectors
-        ],
-        key=lambda x: x.article.pub_date,
-        reverse=True,
-    )[:10]
+    top_items = _select_top_items(tagged, limit=10)
 
     lines.append("## 오늘의 Top 이슈 10")
     if top_items:
@@ -429,17 +517,32 @@ _UI_JS = r"""
 
   const LS_THEME = "reportTheme";
   const LS_FAVS = "reportFavs_v1";
-  const LS_PRESETS = "reportPreset_v1";
+  const LS_PRESETS = "reportPresetState_v1";
 
   const PRESET_GROUPS = {
-    "Core(대부)": [
-      {k:"대부", q:"대부업"}, {k:"최고금리", q:"최고금리"}, {k:"불법사금융", q:"불법사금융 불법추심"}
+    "전체": [
+      {k:"전체 보기", state:{sector:"ALL", topic:"ALL", sort:"new", topOnly:false, query:""}}
     ],
-    "Core(전금융)": [
-      {k:"PF", q:"PF 부동산PF"}, {k:"연체", q:"연체 연체율"}, {k:"금리", q:"금리 기준금리"}, {k:"가계부채", q:"가계부채 DSR LTV"}
+    "대부 우선": [
+      {k:"대부 기사", state:{sector:"대부", topic:"ALL", sort:"rel", topOnly:false, query:""}},
+      {k:"최고금리", state:{sector:"ALL", topic:"최고금리", sort:"rel", topOnly:true, query:"최고금리"}},
+      {k:"불법사금융", state:{sector:"ALL", topic:"불법사금융", sort:"rel", topOnly:true, query:"불법사금융 불법추심"}},
+      {k:"채권추심", state:{sector:"ALL", topic:"채권추심", sort:"rel", topOnly:true, query:"추심"}}
+    ],
+    "시장/정책": [
+      {k:"금리", state:{sector:"ALL", topic:"금리", sort:"rel", topOnly:true, query:"금리 기준금리"}},
+      {k:"PF", state:{sector:"ALL", topic:"PF", sort:"rel", topOnly:true, query:"PF 부동산PF"}},
+      {k:"연체", state:{sector:"ALL", topic:"연체", sort:"rel", topOnly:true, query:"연체 연체율"}},
+      {k:"가계부채", state:{sector:"ALL", topic:"가계부채", sort:"rel", topOnly:true, query:"가계부채 DSR LTV"}}
+    ],
+    "업권별": [
+      {k:"대부", state:{sector:"대부", topic:"ALL", sort:"new", topOnly:false, query:""}},
+      {k:"은행", state:{sector:"은행", topic:"ALL", sort:"new", topOnly:false, query:""}},
+      {k:"저축은행", state:{sector:"저축은행", topic:"ALL", sort:"new", topOnly:false, query:""}},
+      {k:"보험", state:{sector:"보험", topic:"ALL", sort:"new", topOnly:false, query:""}}
     ]
   };
-  let activePresetGroup = "Core(대부)";
+  let activePresetGroup = "대부 우선";
 
   function loadTheme(){ const saved = localStorage.getItem(LS_THEME); root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light"; if(themeBtn) themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크"; }
   function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); if(themeBtn) themeBtn.textContent = (next === "dark") ? "라이트" : "다크"; }
@@ -447,6 +550,30 @@ _UI_JS = r"""
   function saveFavs(set){ localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set))); }
   function setActivePill(sector){ pills.forEach(p => p.classList.toggle("active", p.dataset.sector === sector)); }
   function setActiveTopicPill(topic){ topicPills.forEach(p => p.classList.toggle("active", p.dataset.topic === topic)); }
+  function presetState(){
+    return {
+      sector: (document.querySelector("[data-sector-pill].active") || {}).dataset?.sector || "ALL",
+      topic: (document.querySelector("[data-topic-pill].active") || {}).dataset?.topic || "ALL",
+      sort: (sortSel?.value || "new"),
+      topOnly: !!(topOnly && topOnly.checked),
+      query: (search?.value || "")
+    };
+  }
+
+  function applyPresetState(state){
+    const next = state || {};
+    const sector = next.sector || "ALL";
+    const topic = next.topic || "ALL";
+    setActivePill(sector);
+    setActiveTopicPill(topic);
+    if(sortSel) sortSel.value = next.sort || "new";
+    if(topOnly) topOnly.checked = !!next.topOnly;
+    if(search) search.value = next.query || "";
+    applySort();
+    applyFilter();
+    mobileTopBtn?.classList.toggle("active", !!topOnly?.checked);
+  }
+
 
   function openFilterSheet(focusSearch){
     if(!sidebar || window.innerWidth >= 768) return;
@@ -475,6 +602,7 @@ _UI_JS = r"""
 
   function applyFilter(){
     const q = (search?.value || "").trim().toLowerCase();
+    const qTokens = q ? q.split(/\s+/).filter(Boolean) : [];
     const active = (document.querySelector("[data-sector-pill].active") || {}).dataset?.sector || "ALL";
     const activeTopic = (document.querySelector("[data-topic-pill].active") || {}).dataset?.topic || "ALL";
     const onlyTop = !!(topOnly && topOnly.checked);
@@ -492,7 +620,7 @@ _UI_JS = r"""
       if(activeTopic !== "ALL" && !topics.includes(activeTopic)) ok = false;
       if(onlyTop && !isTop) ok = false;
       if(onlyFav && !isFav) ok = false;
-      if(q && !hay.includes(q)) ok = false;
+      if(qTokens.length && !qTokens.some(tok => hay.includes(tok))) ok = false;
       card.dataset.match = ok ? "1" : "0";
       card.style.display = ok ? "" : "none";
     });
@@ -513,10 +641,9 @@ _UI_JS = r"""
   function renderPresets(){
     if(!presetBar) return;
     const options = Object.keys(PRESET_GROUPS).map(g => `<option value="${g}">${g}</option>`).join("");
-    const buttons = PRESET_GROUPS[activePresetGroup].map(p => `<button class="preset" data-preset="${p.q}">${p.k}</button>`).join("");
-    presetBar.innerHTML = `<span class="select"><span style="color:var(--muted); font-size:12px;">프리셋</span><select id="presetGroupSel">${options}</select></span>` + buttons;
+    const buttons = PRESET_GROUPS[activePresetGroup].map((p, idx) => `<button class="preset" data-preset-idx="${idx}">${p.k}</button>`).join("");
+    presetBar.innerHTML = `<span class="select"><span style="color:var(--muted); font-size:12px;">빠른 보기</span><select id="presetGroupSel">${options}</select></span>` + buttons;
     const sel = document.getElementById("presetGroupSel"); if(sel) sel.value = activePresetGroup;
-    const saved = localStorage.getItem(LS_PRESETS) || ""; if(search && saved) search.value = saved;
   }
 
   function initFavButtons(){
@@ -532,12 +659,12 @@ _UI_JS = r"""
     pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); if(window.innerWidth < 768) closeFilterSheet(); }));
     topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); if(window.innerWidth < 768) closeFilterSheet(); }));
     groups.forEach(g => { const btn = g.querySelector("[data-load-more]"); if(!btn) return; btn.addEventListener("click", ()=>{ const matched = Array.from(g.querySelectorAll("[data-card]")).filter(c=>c.dataset.match==="1"); const current=parseInt(btn.dataset.offset||"20",10); const next=current+PAGE_SIZE; matched.forEach((c,i)=> c.style.display = i < next ? "" : "none"); btn.dataset.offset=String(Math.min(next, matched.length)); btn.style.display = next < matched.length ? "" : "none"; }); });
-    search?.addEventListener("input", ()=>{ localStorage.setItem(LS_PRESETS, search.value || ""); applyFilter(); });
+    search?.addEventListener("input", ()=>{ const st = presetState(); localStorage.setItem(LS_PRESETS, JSON.stringify(st)); applyFilter(); });
     if(topOnly) topOnly.addEventListener("change", applyFilter);
     if(favOnly) favOnly.addEventListener("change", applyFilter);
     sortSel?.addEventListener("change", ()=>{ applySort(); applyFilter(); });
-    presetBar?.addEventListener("change", (e)=>{ const sel = e.target.closest("#presetGroupSel"); if(!sel) return; activePresetGroup = sel.value || "Core(대부)"; renderPresets(); });
-    presetBar?.addEventListener("click", (e)=>{ const btn = e.target.closest("[data-preset]"); if(!btn || !search) return; const q = btn.getAttribute("data-preset") || ""; search.value = q; localStorage.setItem(LS_PRESETS, q); applyFilter(); if(window.innerWidth < 768) closeFilterSheet(); });
+    presetBar?.addEventListener("change", (e)=>{ const sel = e.target.closest("#presetGroupSel"); if(!sel) return; activePresetGroup = sel.value || "대부 우선"; renderPresets(); });
+    presetBar?.addEventListener("click", (e)=>{ const btn = e.target.closest("[data-preset-idx]"); if(!btn) return; const idx = parseInt(btn.getAttribute("data-preset-idx") || "-1", 10); const preset = PRESET_GROUPS[activePresetGroup]?.[idx]; if(!preset) return; applyPresetState(preset.state); localStorage.setItem(LS_PRESETS, JSON.stringify(presetState())); if(window.innerWidth < 768) closeFilterSheet(); });
     themeBtn?.addEventListener("click", toggleTheme);
 
     mobileFilterBtn?.addEventListener("click", () => openFilterSheet(false));
@@ -554,7 +681,12 @@ _UI_JS = r"""
   setActivePill("ALL");
   setActiveTopicPill("ALL");
   renderPresets();
-  applySort();
+  const savedPresetState = localStorage.getItem(LS_PRESETS);
+  if(savedPresetState){
+    try{ applyPresetState(JSON.parse(savedPresetState)); }catch(e){ applySort(); }
+  }else{
+    applyPresetState(PRESET_GROUPS[activePresetGroup][0].state);
+  }
   initFavButtons();
   bindEvents();
   applyFilter();
@@ -570,17 +702,7 @@ def render_html(
 ) -> str:
     date_str = report_date.strftime("%Y-%m-%d")
 
-    top_items = sorted(
-        [
-            it
-            for it in tagged
-            if "감독·제재" not in it.sectors
-            and "입법·정책" not in it.sectors
-            and "기타" not in it.sectors
-        ],
-        key=lambda x: x.article.pub_date,
-        reverse=True,
-    )[:10]
+    top_items = _select_top_items(tagged, limit=10)
 
     by_sector: dict[str, list[TaggedArticle]] = defaultdict(list)
     for item in tagged:
@@ -775,7 +897,7 @@ def render_html(
           <div class="header-top">
             <div>
               <h1>금융권 일일 언론동향 <span style="color:var(--muted);">({date_str})</span></h1>
-              <div class="meta">대부업권 중심 · 전 금융업권 주요 기사 요약</div>
+              <div class="meta">대부업권 우선 · 전 금융업권 주요 기사 요약</div>
             </div>
             <button id="mobileFilterCloseBtn" class="btn small primary mobile-only" type="button" aria-label="필터 닫기" data-sheet-close>닫기</button>
           </div>
@@ -788,7 +910,7 @@ def render_html(
             <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
             <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
             <button id="themeBtn" class="btn">다크</button>
-            <a class="btn" href="index.html">최근 리포트</a>
+            <a class="btn" href="index.html">리포트 모아보기</a>
           </div>
           <div class="nav">{''.join(pills)}</div>
           <div class="nav">{''.join(topic_pills)}</div>
@@ -798,7 +920,7 @@ def render_html(
 
       <div class="main">
         <div id="emptyState" class="note" style="display:none; margin-bottom:12px;">필터 조건에 맞는 기사가 없습니다. 검색어/필터를 조정해 보세요.</div>
-        <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">정책/시장 영향도가 큰 기사 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
+        <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">전 금융권 주요 기사 중 대부·시장 영향도가 큰 이슈 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
         {''.join(sector_sections)}
         <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div>{chips_html}</section>
         <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.</div>
@@ -974,12 +1096,12 @@ def write_report(
         "      <div class='header-top'>\n"
         f"        <div>\n"
         f"          <h1>금융권 일일 언론동향 <span style='color:var(--muted)'>({date_str})</span></h1>\n"
-        "          <div class='meta'>대부업권 중심 · 전 금융업권 주요 기사 요약</div>\n"
+        "          <div class='meta'>대부업권 우선 · 전 금융업권 주요 기사 요약</div>\n"
         "        </div>\n"
         "        <div class='pills'>\n"
         "          <div class='pill'>생성: 자동</div>\n"
         "          <div class='pill'>출처: Naver News Search API</div>\n"
-        "          <div class='pill'><a href='index.html'>최근 리포트</a></div>\n"
+        "          <div class='pill'><a href='index.html'>리포트 모아보기</a></div>\n"
         "        </div>\n"
         "      </div>\n"
         "      <div class='notice'>Tip: 기사 제목을 클릭하면 원문으로 이동합니다. (요약은 170자 내외로 자동 축약)</div>\n"
@@ -1018,7 +1140,7 @@ def write_index(recent_reports: list[Path], output_dir: Path) -> Path:
         "<head>\n"
         "  <meta charset='utf-8'/>\n"
         "  <meta name='viewport' content='width=device-width, initial-scale=1'/>\n"
-        "  <title>최근 리포트</title>\n"
+        "  <title>리포트 모아보기</title>\n"
         f"  <style>{_LIGHT_CSS}</style>\n"
         "</head>\n"
         "<body>\n"
