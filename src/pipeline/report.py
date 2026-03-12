@@ -109,13 +109,10 @@ def _relevance_value(article: Any) -> float | None:
 
 def _relevance_label(v: float) -> tuple[str, str]:
     # (label, css_class)
-    if v >= 8:
+    score_like = (v * 10.0) if 0.0 <= v <= 1.0 else v
+    if score_like >= 8:
         return ("High", "r-high")
-    if v >= 4:
-        return ("Med", "r-med")
-    if v >= 0.75:
-        return ("High", "r-high")
-    if v >= 0.60:
+    if score_like >= 4:
         return ("Med", "r-med")
     return ("Low", "r-low")
 

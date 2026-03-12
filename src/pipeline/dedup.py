@@ -6,7 +6,13 @@ from typing import Iterable
 from src.pipeline.normalize import Article
 
 _TRAILING_MEDIA_SUFFIX_RE = re.compile(
-    r"(?:\s*[-|·:]\s*(?:[가-힣A-Za-z0-9]+\s*){1,4})$"
+    r"(?:\s*(?:-|\||·|:)\s*(?:"
+    r"연합뉴스|뉴시스|뉴스1|머니투데이|이데일리|매일경제|한국경제|서울경제|조선비즈|아시아경제|"
+    r"파이낸셜뉴스|헤럴드경제|중앙일보|조선일보|동아일보|한겨레|경향신문|국민일보|"
+    r"세계일보|문화일보|전자신문|디지털타임스|SBS|KBS|MBC|YTN|JTBC|TV조선|채널A|"
+    r"(?:[가-힣A-Za-z0-9]+(?:뉴스|일보|신문|경제|방송|TV))"
+    r")\s*)$",
+    re.IGNORECASE,
 )
 _DECOR_SUFFIX_RE = re.compile(r"\s*(?:\.{3,}|…+|\[종합\]|\(종합\)|\[속보\]|\(속보\))\s*$")
 
