@@ -7,6 +7,7 @@ from typing import Any
 from src.ml.relevance_model import load_model, predict_proba
 from src.pipeline.relevance_score import relevance_score
 
+
 def _get(article: Any, key: str) -> str:
     if isinstance(article, dict):
         return (article.get(key) or "").strip()
@@ -16,6 +17,25 @@ def _text(article: Any) -> str:
     title = _get(article, "title")
     summary = _get(article, "summary") or _get(article, "description")
     return f"{title}\n{summary}".strip()
+
+def _set_article_meta(article: Any, *, score: int, prob: float | None) -> None:
+    label = "high" if score >= 8 else "med" if score >= 4 else "low"
+    if isinstance(article, dict):
+        article["relevance_score"] = score
+        article["score"] = score
+        article["relevance_prob"] = prob
+        article["prob"] = prob
+        article["relevance_label"] = label
+        article["relevance_bucket"] = label
+        return
+
+    setattr(article, "relevance_score", score)
+    setattr(article, "score", score)
+    setattr(article, "relevance_prob", prob)
+    setattr(article, "prob", prob)
+    setattr(article, "relevance_label", label)
+    setattr(article, "relevance_bucket", label)
+
 
 def filter_relevance(
     articles: list[Any],
@@ -39,6 +59,8 @@ def filter_relevance(
         p = probs[i] if probs is not None else None
         s = scores[i]
         keep = (p is not None and p >= min_prob) or (p is None and s >= min_score) or (p is not None and s >= min_score)
+
+        _set_article_meta(a, score=s, prob=p)
 
         if keep:
             kept.append(a)

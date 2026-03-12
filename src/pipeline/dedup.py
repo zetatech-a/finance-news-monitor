@@ -1,22 +1,101 @@
 from __future__ import annotations
 
+import re
 from typing import Iterable
 
 from src.pipeline.normalize import Article
 
+_TRAILING_MEDIA_SUFFIX_RE = re.compile(
+    r"(?:\s*[-|·:]\s*(?:[가-힣A-Za-z0-9]+\s*){1,4})$"
+)
+_DECOR_SUFFIX_RE = re.compile(r"\s*(?:\.{3,}|…+|\[종합\]|\(종합\)|\[속보\]|\(속보\))\s*$")
+
+
+def normalize_title(title: str) -> str:
+    t = (title or "").lower().strip()
+    if not t:
+        return ""
+
+    t = re.sub(r"[\"'“”‘’`´]", "", t)
+    t = re.sub(r"[\[\]{}<>]", " ", t)
+    t = re.sub(r"[()（）]", " ", t)
+    t = re.sub(r"[!?~^_=+]+", " ", t)
+
+    # 말미 장식성 접미/언론사 꼬리표 제거 (과제 최소 범위)
+    t = _DECOR_SUFFIX_RE.sub("", t).strip()
+    t = re.sub(r"^(?:속보|종합)\s+", "", t)
+    t = re.sub(r"\s+(?:속보|종합)$", "", t)
+
+    # 짧은 말미 토큰(언론사명/데스크 표기) 제거
+    # e.g., "... - 연합뉴스", "... | 조선비즈"
+    reduced = _TRAILING_MEDIA_SUFFIX_RE.sub("", t).strip()
+    if reduced:
+        t = reduced
+
+    t = re.sub(r"[.,;:·/\\|-]+", " ", t)
+    t = re.sub(r"\s+", " ", t).strip()
+    return t
+
+
+def _canonical_link(article: Article) -> str:
+    return (
+        (article.naver_link or "").strip()
+        or (article.originallink or "").strip()
+        or (article.link or "").strip()
+    )
+
+
+def _prefer_new_article(current: Article, candidate: Article) -> bool:
+    # True면 candidate를 대표기사로 채택
+    current_ts = getattr(current, "pub_date", None)
+    cand_ts = getattr(candidate, "pub_date", None)
+    if cand_ts and current_ts and cand_ts != current_ts:
+        return cand_ts > current_ts
+
+    current_desc_len = len((current.description or "").strip())
+    cand_desc_len = len((candidate.description or "").strip())
+    if cand_desc_len != current_desc_len:
+        return cand_desc_len > current_desc_len
+
+    current_link = _canonical_link(current)
+    cand_link = _canonical_link(candidate)
+    if bool(cand_link) != bool(current_link):
+        return bool(cand_link)
+
+    return False
+
 
 def deduplicate(articles: Iterable[Article]) -> list[Article]:
-    seen: set[str] = set()
-    unique: list[Article] = []
+    seen_exact: set[str] = set()
+    clusters: dict[str, list[Article]] = {}
+
     for article in articles:
-        canonical_link = (
-            (article.naver_link or "").strip()
-            or (article.originallink or "").strip()
-            or (article.link or "").strip()
-        )
-        key = f"{(article.title or '').lower()}|{canonical_link}"
-        if key in seen:
+        canonical_link = _canonical_link(article)
+        exact_key = f"{(article.title or '').lower()}|{canonical_link}"
+        if exact_key in seen_exact:
             continue
-        seen.add(key)
-        unique.append(article)
+        seen_exact.add(exact_key)
+
+        norm_title = normalize_title(article.title or "")
+        article.normalized_title = norm_title
+        cluster_key = norm_title or f"title:{(article.title or '').lower().strip()}"
+        article.cluster_key = cluster_key
+        clusters.setdefault(cluster_key, []).append(article)
+
+    unique: list[Article] = []
+    for idx, (cluster_key, items) in enumerate(clusters.items(), start=1):
+        rep = items[0]
+        for cand in items[1:]:
+            if _prefer_new_article(rep, cand):
+                rep = cand
+
+        cluster_id = f"c{idx}"
+        cluster_size = len(items)
+        rep.cluster_key = cluster_key
+        rep.cluster_id = cluster_id
+        rep.cluster_size = cluster_size
+        if not rep.normalized_title:
+            rep.normalized_title = normalize_title(rep.title or "")
+        unique.append(rep)
+
     return unique
