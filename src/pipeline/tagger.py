@@ -20,6 +20,135 @@ class TaggedArticle:
 RISKY_SHORT_KEYWORDS = {"대부", "여전"}
 _KOR_WORD_CHAR_CLASS = "가-힣A-Za-z0-9"
 
+TITLE_STRONG_SCORE = 6
+TITLE_WEAK_SCORE = 3
+TITLE_GENERIC_SCORE = 1
+BODY_STRONG_SCORE = 3
+BODY_WEAK_SCORE = 1
+BODY_GENERIC_SCORE = 1
+TITLE_NEGATIVE_PENALTY = 6
+BODY_NEGATIVE_PENALTY = 3
+PRIMARY_SECTOR_THRESHOLD = 4
+
+GENERIC_SECTOR_TOKENS = {
+    "은행",
+    "인터넷은행",
+    "은행권",
+    "펀드",
+    "거래소",
+    "대출",
+}
+
+TEXT_ALIASES: tuple[tuple[str, str], ...] = (
+    ("investment bank", "투자은행"),
+    ("investment banking", "투자은행"),
+    ("인터넷 전문은행", "인터넷은행"),
+    ("가상화폐", "암호화폐"),
+    ("코인거래소", "가상자산 거래소"),
+)
+
+SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
+    "은행": {
+        "strong": ["시중은행", "예대금리차", "예금은행", "은행채"],
+        "weak": ["은행", "은행권", "인터넷은행"],
+        "negative": ["투자은행", "ipo", "회사채", "ecm", "dcm"],
+    },
+    "IB·자본시장": {
+        "strong": ["투자은행", "ipo", "ecm", "dcm", "회사채", "abcp"],
+        "weak": ["cp", "m&a"],
+        "negative": ["시중은행", "예대금리차", "인터넷은행"],
+    },
+    "자산운용·연기금": {
+        "strong": ["자산운용", "운용사", "국민연금", "연기금"],
+        "weak": ["etf", "펀드"],
+        "negative": [],
+    },
+    "디지털자산": {
+        "strong": ["가상자산", "암호화폐", "토큰증권", "sto"],
+        "weak": ["거래소"],
+        "negative": ["한국거래소", "유가증권시장", "코스닥"],
+    },
+    "핀테크·플랫폼": {
+        "strong": ["핀테크", "마이데이터", "간편결제", "금융플랫폼"],
+        "weak": ["대출비교", "대출모집", "pg", "대출"],
+        "negative": [],
+    },
+}
+
+
+def _normalize_text(text: str) -> str:
+    normalized = text
+    for src, dst in TEXT_ALIASES:
+        normalized = normalized.replace(src, dst)
+    return normalized
+
+
+def _unique_keep_order(items: list[str]) -> list[str]:
+    return list(dict.fromkeys(items))
+
+
+def _build_sector_rules(sector: str, keywords: list[str]) -> dict[str, list[str]]:
+    override = SECTOR_RULE_OVERRIDES.get(sector, {})
+    base_strong = [kw for kw in keywords if kw not in GENERIC_SECTOR_TOKENS]
+    strong = _unique_keep_order(base_strong + override.get("strong", []))
+    weak = _unique_keep_order([kw for kw in keywords if kw not in strong] + override.get("weak", []))
+    negative = _unique_keep_order(override.get("negative", []))
+    return {
+        "strong": strong,
+        "weak": weak,
+        "generic": [kw for kw in weak if kw in GENERIC_SECTOR_TOKENS],
+        "negative": negative,
+    }
+
+
+def _score_sector(title_text: str, desc_text: str, rules: dict[str, list[str]]) -> tuple[int, int, list[str]]:
+    title_strong_hits = _collect_hits(rules["strong"], title_text)
+    desc_strong_hits = _collect_hits(rules["strong"], desc_text)
+    title_weak_hits = _collect_hits(rules["weak"], title_text)
+    desc_weak_hits = _collect_hits(rules["weak"], desc_text)
+    title_generic_hits = _collect_hits(rules["generic"], title_text)
+    desc_generic_hits = _collect_hits(rules["generic"], desc_text)
+    title_negative_hits = _collect_hits(rules["negative"], title_text)
+    desc_negative_hits = _collect_hits(rules["negative"], desc_text)
+
+    title_score = (
+        len(title_strong_hits) * TITLE_STRONG_SCORE
+        + len(
+            [
+                kw
+                for kw in title_weak_hits
+                if kw not in title_strong_hits and kw not in title_generic_hits
+            ]
+        )
+        * TITLE_WEAK_SCORE
+        + len(title_generic_hits) * TITLE_GENERIC_SCORE
+        - len(title_negative_hits) * TITLE_NEGATIVE_PENALTY
+    )
+    body_score = (
+        len([kw for kw in desc_strong_hits if kw not in title_strong_hits]) * BODY_STRONG_SCORE
+        + len(
+            [
+                kw
+                for kw in desc_weak_hits
+                if kw not in title_weak_hits and kw not in desc_generic_hits
+            ]
+        )
+        * BODY_WEAK_SCORE
+        + len([kw for kw in desc_generic_hits if kw not in title_generic_hits]) * BODY_GENERIC_SCORE
+        - len(desc_negative_hits) * BODY_NEGATIVE_PENALTY
+    )
+    score = title_score + body_score
+
+    positive_hits = _unique_keep_order(
+        [
+            *title_strong_hits,
+            *title_weak_hits,
+            *desc_strong_hits,
+            *desc_weak_hits,
+        ]
+    )
+    return score, title_score, positive_hits
+
 
 def _keyword_in_text(keyword: str, text: str) -> bool:
     kw = (keyword or "").lower().strip()
@@ -37,6 +166,13 @@ def _keyword_in_text(keyword: str, text: str) -> bool:
         return re.search(rf"\b{re.escape(kw)}\b", text) is not None
 
     if kw in RISKY_SHORT_KEYWORDS:
+        pattern = rf"(?<![{_KOR_WORD_CHAR_CLASS}]){re.escape(kw)}(?![{_KOR_WORD_CHAR_CLASS}])"
+        return re.search(pattern, text) is not None
+
+    if kw == "은행":
+        return re.search(r"(?<![가-힣a-z0-9])은행(?![가-힣a-z0-9])", text) is not None
+
+    if kw in {"거래소", "펀드", "대출"}:
         pattern = rf"(?<![{_KOR_WORD_CHAR_CLASS}]){re.escape(kw)}(?![{_KOR_WORD_CHAR_CLASS}])"
         return re.search(pattern, text) is not None
 
@@ -60,8 +196,8 @@ def tag_articles(
 
     tagged: list[TaggedArticle] = []
     for article in articles:
-        title_text = (article.title or "").lower()
-        desc_text = (article.description or "").lower()
+        title_text = _normalize_text((article.title or "").lower())
+        desc_text = _normalize_text((article.description or "").lower())
         query_text = (getattr(article, "query", "") or "").lower()
         full_text = f"{title_text} {desc_text} {query_text}"
 
@@ -69,23 +205,21 @@ def tag_articles(
         # Sector: best 1 (제목/요약 기반)
         # -----------------------
         best_sector = "기타"
-        best_score = 0
+        best_score = float("-inf")
+        best_title_score = float("-inf")
         best_hits: list[str] = []
         for sector, keywords in sector_queries.items():
-            title_hits = _collect_hits(keywords, title_text)
-            desc_hits = _collect_hits(keywords, desc_text)
+            rules = _build_sector_rules(sector, keywords)
+            score, title_score, hits = _score_sector(title_text, desc_text, rules)
 
-            # 섹터는 '제목/요약' 기반으로만 판정 (query는 수집용 문자열이라 편향을 줄 수 있음)
-            score = (len(title_hits) * 2) + len(desc_hits)
-            if score > best_score:
+            # 제목 강신호를 우선하고, 이후 총점으로 tie-break.
+            if (title_score, score) > (best_title_score, best_score):
                 best_score = score
+                best_title_score = title_score
                 best_sector = sector
-                best_hits = [
-                    *title_hits,
-                    *[kw for kw in desc_hits if kw not in title_hits],
-                ]
+                best_hits = hits
 
-        sectors = [best_sector] if best_score > 0 else ["기타"]
+        sectors = [best_sector] if best_score >= PRIMARY_SECTOR_THRESHOLD else ["기타"]
 
         # -----------------------
         # Topics: multi
