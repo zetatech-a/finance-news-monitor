@@ -6,7 +6,7 @@ concurrency:
 
 on:
   schedule:
-    - cron: "3 23 * * *"  # UTC daily 23:03 = KST daily 08:03
+    - cron: "33 23 * * *"  # UTC daily 23:33 = KST daily 08:33
   workflow_dispatch:
     inputs:
       send_email:
@@ -36,11 +36,18 @@ jobs:
           date -u
           TZ=Asia/Seoul date
 
-      - name: Run daily (naver)
+      - name: Run daily 1st pass (baseline window)
         env:
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
-        run: python -m src.run_daily --date "$(TZ='Asia/Seoul' date +%Y-%m-%d)" --window_hours 24 --end_hhmm 0800 --overlap_minutes 15
+        run: python -m src.run_daily --date "$(TZ='Asia/Seoul' date +%Y-%m-%d)" --window_hours 24 --end_hhmm 0820 --overlap_minutes 15
+
+      - name: Run daily 2nd pass (catch-up before send)
+        continue-on-error: true
+        env:
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+        run: python -m src.run_daily --date "$(TZ='Asia/Seoul' date +%Y-%m-%d)" --window_hours 24 --end_hhmm 0830 --overlap_minutes 15
 
       - name: Email precheck
         id: email_precheck
