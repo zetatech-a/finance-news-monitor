@@ -580,6 +580,7 @@ _UI_JS = r"""
   const cards = Array.from(document.querySelectorAll("[data-card]"));
   const groups = Array.from(document.querySelectorAll("[data-group]"));
   const PAGE_SIZE = 20;
+  const SEARCH_DEBOUNCE_MS = 150;
 
   const LS_THEME = "reportTheme";
   const LS_FAVS = "reportFavs_v1";
@@ -609,17 +610,59 @@ _UI_JS = r"""
     ]
   };
   let activePresetGroup = "대부 우선";
+  let activeSector = "ALL";
+  let activeTopic = "ALL";
+
+  const groupMetaMap = new Map();
+  const groupMetas = groups.map(groupEl => {
+    const meta = {
+      el: groupEl,
+      grid: groupEl.querySelector(".grid"),
+      loadMoreBtn: groupEl.querySelector("[data-load-more]"),
+      cards: [],
+      orderedCards: [],
+      visibleLimit: PAGE_SIZE,
+      lastOrder: []
+    };
+    groupMetaMap.set(groupEl, meta);
+    return meta;
+  });
+
+  const cardMetas = cards.map((cardEl, idx) => {
+    const groupMeta = groupMetaMap.get(cardEl.closest("[data-group]"));
+    const meta = {
+      id: idx,
+      el: cardEl,
+      group: groupMeta,
+      hay: (cardEl.dataset.hay || "").toLowerCase(),
+      sector: cardEl.dataset.sector || "",
+      topics: (cardEl.dataset.topics || "").split("|").filter(Boolean),
+      ts: parseFloat(cardEl.dataset.ts || "0"),
+      rel: parseFloat(cardEl.dataset.rel || "0"),
+      isTop: cardEl.dataset.top === "1",
+      url: cardEl.dataset.url || "",
+      isMatch: cardEl.dataset.match === "1",
+      isShown: cardEl.style.display !== "none"
+    };
+    if(groupMeta) groupMeta.cards.push(meta);
+    return meta;
+  });
+  groupMetas.forEach(g => { g.orderedCards = g.cards.slice(); g.lastOrder = g.cards.slice(); });
+
+  let renderRafId = 0;
+  let pendingRender = { recomputeMatch: true, recomputeSort: true, resetPagination: true };
 
   function loadTheme(){ const saved = localStorage.getItem(LS_THEME); root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light"; if(themeBtn) themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크"; }
   function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); if(themeBtn) themeBtn.textContent = (next === "dark") ? "라이트" : "다크"; }
   function getFavs(){ try{ const raw = localStorage.getItem(LS_FAVS); const arr = raw ? JSON.parse(raw) : []; return new Set(Array.isArray(arr) ? arr : []);}catch(e){ return new Set(); }}
   function saveFavs(set){ localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set))); }
-  function setActivePill(sector){ pills.forEach(p => p.classList.toggle("active", p.dataset.sector === sector)); }
-  function setActiveTopicPill(topic){ topicPills.forEach(p => p.classList.toggle("active", p.dataset.topic === topic)); }
+  function setActivePill(sector){ activeSector = sector; pills.forEach(p => p.classList.toggle("active", p.dataset.sector === sector)); }
+  function setActiveTopicPill(topic){ activeTopic = topic; topicPills.forEach(p => p.classList.toggle("active", p.dataset.topic === topic)); }
+  function debounce(fn, waitMs){ let timer = 0; return (...args) => { clearTimeout(timer); timer = window.setTimeout(() => fn(...args), waitMs); }; }
   function presetState(){
     return {
-      sector: (document.querySelector("[data-sector-pill].active") || {}).dataset?.sector || "ALL",
-      topic: (document.querySelector("[data-topic-pill].active") || {}).dataset?.topic || "ALL",
+      sector: activeSector,
+      topic: activeTopic,
       sort: (sortSel?.value || "new"),
       topOnly: !!(topOnly && topOnly.checked),
       query: (search?.value || "")
@@ -656,52 +699,108 @@ _UI_JS = r"""
     mobileFilterBtn?.setAttribute("aria-expanded", "false");
   }
 
-  function applySort(){
-    const mode = (sortSel?.value || "new");
-    groups.forEach(g => {
-      const grid = g.querySelector(".grid"); if(!grid) return;
-      const items = Array.from(grid.querySelectorAll("[data-card]"));
-      items.sort((a,b) => { const ta = parseFloat(a.dataset.ts || "0"); const tb = parseFloat(b.dataset.ts || "0"); const ra = parseFloat(a.dataset.rel || "0"); const rb = parseFloat(b.dataset.rel || "0"); if(mode === "rel"){ if(rb !== ra) return rb-ra; return tb-ta;} return tb-ta;});
-      items.forEach(it => grid.appendChild(it));
+  function sortCards(mode, cardsToSort){
+    return cardsToSort.slice().sort((a,b) => {
+      if(mode === "rel"){
+        if(b.rel !== a.rel) return b.rel - a.rel;
+        return b.ts - a.ts;
+      }
+      return b.ts - a.ts;
     });
   }
 
-  function applyFilter(){
+  function computeFilterState(){
     const q = (search?.value || "").trim().toLowerCase();
     const qTokens = q ? q.split(/\s+/).filter(Boolean) : [];
-    const active = (document.querySelector("[data-sector-pill].active") || {}).dataset?.sector || "ALL";
-    const activeTopic = (document.querySelector("[data-topic-pill].active") || {}).dataset?.topic || "ALL";
     const onlyTop = !!(topOnly && topOnly.checked);
     const onlyFav = !!(favOnly && favOnly.checked);
     const favs = getFavs();
-
-    cards.forEach(card => {
-      const sector = card.dataset.sector || "";
-      const topics = (card.dataset.topics || "").split("|").filter(Boolean);
-      const isTop = card.dataset.top === "1";
-      const hay = (card.dataset.hay || "").toLowerCase();
-      const isFav = favs.has(card.dataset.url || "");
-      let ok = true;
-      if(active !== "ALL" && sector !== active) ok = false;
-      if(activeTopic !== "ALL" && !topics.includes(activeTopic)) ok = false;
-      if(onlyTop && !isTop) ok = false;
-      if(onlyFav && !isFav) ok = false;
-      if(qTokens.length && !qTokens.some(tok => hay.includes(tok))) ok = false;
-      card.dataset.match = ok ? "1" : "0";
-      card.style.display = ok ? "" : "none";
-    });
-
     let totalMatched = 0;
-    groups.forEach(g => {
-      const matched = Array.from(g.querySelectorAll("[data-card]")).filter(c => c.dataset.match === "1");
-      totalMatched += matched.length;
-      matched.forEach((c,i)=> c.style.display = i < PAGE_SIZE ? "" : "none");
-      const btn = g.querySelector("[data-load-more]");
-      if(btn){ btn.dataset.offset = String(Math.min(PAGE_SIZE, matched.length)); btn.style.display = matched.length > PAGE_SIZE ? "" : "none"; }
-      g.style.display = matched.length ? "" : "none";
+
+    cardMetas.forEach(meta => {
+      const isFav = favs.has(meta.url);
+      let ok = true;
+      if(activeSector !== "ALL" && meta.sector !== activeSector) ok = false;
+      if(activeTopic !== "ALL" && !meta.topics.includes(activeTopic)) ok = false;
+      if(onlyTop && !meta.isTop) ok = false;
+      if(onlyFav && !isFav) ok = false;
+      if(qTokens.length && !qTokens.some(tok => meta.hay.includes(tok))) ok = false;
+      meta.isMatch = ok;
+      if(ok) totalMatched += 1;
+    });
+    return totalMatched;
+  }
+
+  function applyDomState(totalMatched){
+    groupMetas.forEach(g => {
+      const matchedOrdered = g.orderedCards.filter(meta => meta.isMatch);
+      const matchedCount = matchedOrdered.length;
+      if(g.visibleLimit < PAGE_SIZE) g.visibleLimit = PAGE_SIZE;
+      const visibleLimit = Math.min(g.visibleLimit, matchedCount);
+
+      let shownMatched = 0;
+      g.orderedCards.forEach(meta => {
+        const shouldShow = meta.isMatch && shownMatched < visibleLimit;
+        if(meta.isMatch) shownMatched += 1;
+        if((meta.el.dataset.match === "1") !== meta.isMatch) meta.el.dataset.match = meta.isMatch ? "1" : "0";
+        if(meta.isShown !== shouldShow){
+          meta.el.style.display = shouldShow ? "" : "none";
+          meta.isShown = shouldShow;
+        }
+      });
+
+      if(g.loadMoreBtn){
+        const nextOffset = Math.min(visibleLimit, matchedCount);
+        if(g.loadMoreBtn.dataset.offset !== String(nextOffset)) g.loadMoreBtn.dataset.offset = String(nextOffset);
+        const showLoadMore = visibleLimit < matchedCount;
+        if((g.loadMoreBtn.style.display !== "none") !== showLoadMore) g.loadMoreBtn.style.display = showLoadMore ? "" : "none";
+      }
+      const showGroup = matchedCount > 0;
+      if((g.el.style.display !== "none") !== showGroup) g.el.style.display = showGroup ? "" : "none";
+    });
+    if (emptyState) emptyState.style.display = totalMatched > 0 ? "none" : "";
+  }
+
+  function runRender(){
+    renderRafId = 0;
+    const task = pendingRender;
+    pendingRender = { recomputeMatch: false, recomputeSort: false, resetPagination: false };
+    const mode = (sortSel?.value || "new");
+
+    groupMetas.forEach(g => {
+      if(task.recomputeSort){
+        const nextOrder = sortCards(mode, g.cards);
+        const sameOrder = nextOrder.length === g.lastOrder.length && nextOrder.every((meta, idx) => meta === g.lastOrder[idx]);
+        g.orderedCards = nextOrder;
+        if(!sameOrder && g.grid){
+          nextOrder.forEach(meta => g.grid.appendChild(meta.el));
+          g.lastOrder = nextOrder.slice();
+        }
+      }
+      if(task.resetPagination) g.visibleLimit = PAGE_SIZE;
     });
 
-    if (emptyState) emptyState.style.display = totalMatched > 0 ? "none" : "";
+    let totalMatched = cardMetas.reduce((acc, meta) => acc + (meta.isMatch ? 1 : 0), 0);
+    if(task.recomputeMatch) totalMatched = computeFilterState();
+    applyDomState(totalMatched);
+  }
+
+  function scheduleRender(nextTask){
+    pendingRender = {
+      recomputeMatch: pendingRender.recomputeMatch || !!nextTask?.recomputeMatch,
+      recomputeSort: pendingRender.recomputeSort || !!nextTask?.recomputeSort,
+      resetPagination: pendingRender.resetPagination || !!nextTask?.resetPagination,
+    };
+    if(renderRafId) return;
+    renderRafId = window.requestAnimationFrame(runRender);
+  }
+
+  function applySort(){
+    scheduleRender({ recomputeSort: true, resetPagination: true });
+  }
+
+  function applyFilter(){
+    scheduleRender({ recomputeMatch: true, resetPagination: true });
   }
 
   function renderPresets(){
@@ -724,8 +823,9 @@ _UI_JS = r"""
   function bindEvents(){
     pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); if(window.innerWidth < 768) closeFilterSheet(); }));
     topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); if(window.innerWidth < 768) closeFilterSheet(); }));
-    groups.forEach(g => { const btn = g.querySelector("[data-load-more]"); if(!btn) return; btn.addEventListener("click", ()=>{ const matched = Array.from(g.querySelectorAll("[data-card]")).filter(c=>c.dataset.match==="1"); const current=parseInt(btn.dataset.offset||"20",10); const next=current+PAGE_SIZE; matched.forEach((c,i)=> c.style.display = i < next ? "" : "none"); btn.dataset.offset=String(Math.min(next, matched.length)); btn.style.display = next < matched.length ? "" : "none"; }); });
-    search?.addEventListener("input", ()=>{ const st = presetState(); localStorage.setItem(LS_PRESETS, JSON.stringify(st)); applyFilter(); });
+    groupMetas.forEach(g => { const btn = g.loadMoreBtn; if(!btn) return; btn.addEventListener("click", ()=>{ g.visibleLimit += PAGE_SIZE; scheduleRender({ resetPagination: false }); }); });
+    const debouncedSearch = debounce(()=>{ const st = presetState(); localStorage.setItem(LS_PRESETS, JSON.stringify(st)); applyFilter(); }, SEARCH_DEBOUNCE_MS);
+    search?.addEventListener("input", debouncedSearch);
     if(topOnly) topOnly.addEventListener("change", applyFilter);
     if(favOnly) favOnly.addEventListener("change", applyFilter);
     sortSel?.addEventListener("change", ()=>{ applySort(); applyFilter(); });
