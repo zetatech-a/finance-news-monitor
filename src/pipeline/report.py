@@ -971,7 +971,7 @@ def render_html(
             <button id="mobileFilterCloseBtn" class="btn small primary mobile-only" type="button" aria-label="필터 닫기" data-sheet-close>닫기</button>
           </div>
           <div class="controls">
-            <div class="input" title="제목/요약/섹터/언론사에서 검색">
+            <div class="input" title="제목/요약/업권/주제에서 검색">
               <span style="color:var(--muted); font-size:12px;">🔎</span>
               <input id="searchInput" type="text" placeholder="키워드로 검색 (예: 연체, PF, 국민연금)"/>
             </div>
@@ -979,7 +979,6 @@ def render_html(
             <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
             <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
             <button id="themeBtn" class="btn">다크</button>
-            <a class="btn" href="index.html">리포트 모아보기</a>
           </div>
           <div class="nav">{''.join(pills)}</div>
           <div class="nav">{''.join(topic_pills)}</div>
@@ -1170,7 +1169,6 @@ def write_report(
         "        <div class='pills'>\n"
         "          <div class='pill'>생성: 자동</div>\n"
         "          <div class='pill'>출처: Naver News Search API</div>\n"
-        "          <div class='pill'><a href='index.html'>리포트 모아보기</a></div>\n"
         "        </div>\n"
         "      </div>\n"
         "      <div class='notice'>Tip: 기사 제목을 클릭하면 원문으로 이동합니다. (요약은 170자 내외로 자동 축약)</div>\n"
