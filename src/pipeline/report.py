@@ -125,6 +125,15 @@ def _relevance_label_for_article(article: Any, rel: float) -> tuple[str, str]:
     return _relevance_label(rel * 10.0 if 0.0 <= rel <= 1.0 else rel)
 
 
+def _relevance_sort_value_for_article(article: Any, rel: float) -> float:
+    score_v = _field(article, "relevance_score")
+    if not isinstance(score_v, (int, float)):
+        score_v = _field(article, "score")
+    if isinstance(score_v, (int, float)):
+        return float(score_v)
+    return rel * 10.0 if 0.0 <= rel <= 1.0 else rel
+
+
 def _top_rank_score(item: TaggedArticle) -> float:
     sector = item.sectors[0] if item.sectors else ""
     topics = set(item.topics or [])
@@ -831,7 +840,7 @@ def render_html(
         rel_class = ""
         rel_val = 0.0
         if isinstance(rel, float):
-            rel_val = rel
+            rel_val = _relevance_sort_value_for_article(a, rel)
             rel_label, rel_class = _relevance_label_for_article(a, rel)
 
         cached = bool(getattr(a, "summary_cached", False))
