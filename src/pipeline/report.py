@@ -134,15 +134,22 @@ def _top_rank_score(item: TaggedArticle) -> float:
 
     score = 0.0
 
-    # 대부 우선
-    if sector == "대부":
-        score += 4.0
+    # 업권 중요도
+    sector_weights = {
+        "대부": 3.0,
+        "감독·제재": 1.6,
+        "입법·정책": 1.5,
+        "저축은행": 1.2,
+        "은행": 1.1,
+        "거시·시장": 0.9,
+    }
+    score += sector_weights.get(sector, 1.0)
     if "대부" in text or "사금융" in text:
-        score += 1.5
+        score += 1.2
 
     # 시장/정책/감독 영향
-    if sector in {"거시·시장", "입법·정책", "감독·제재"}:
-        score += 2.0
+    if sector in {"입법·정책", "감독·제재"}:
+        score += 1.8
     impact_keywords = (
         "금리",
         "기준금리",
@@ -175,6 +182,15 @@ def _top_rank_score(item: TaggedArticle) -> float:
     }
     score += sum(w for topic, w in topic_weights.items() if topic in topics)
 
+    if "해외·글로벌" in topics and len(topics) == 1:
+        score -= 1.2
+    if sector == "거시·시장" and not topics.intersection({"금리", "PF", "연체", "가계부채"}):
+        score -= 0.8
+
+    cluster_size = _field(item.article, "cluster_size")
+    if isinstance(cluster_size, int) and cluster_size > 1:
+        score += min(cluster_size - 1, 4) * 0.35
+
     relevance = _relevance_value(item.article)
     if isinstance(relevance, float):
         rel_norm = min(relevance / 10.0, 1.0) if relevance > 1.0 else relevance
@@ -188,12 +204,19 @@ def _top_rank_score(item: TaggedArticle) -> float:
 def _select_top_items(tagged: list[TaggedArticle], limit: int = 10) -> list[TaggedArticle]:
     excluded_sectors = {"기타"}
     pool = [it for it in tagged if (it.sectors[0] if it.sectors else "기타") not in excluded_sectors]
-    ranked = sorted(pool, key=lambda it: (_top_rank_score(it), _ts_dt(getattr(it.article, "pub_date", None))), reverse=True)
+    ranked = sorted(
+        pool,
+        key=lambda it: (_top_rank_score(it), _ts_dt(getattr(it.article, "pub_date", None))),
+        reverse=True,
+    )
 
     selected: list[TaggedArticle] = []
+    seen_clusters: set[str] = set()
     seen_titles: set[str] = set()
     sector_counts: dict[str, int] = defaultdict(int)
+    topic_counts: dict[str, int] = defaultdict(int)
     sector_limit = max(3, (limit // 2) + 1)
+    topic_limit = max(2, (limit // 3) + 1)
 
     def norm_title(x: str) -> str:
         return re.sub(r"\s+", " ", (x or "").strip().lower())
@@ -202,24 +225,39 @@ def _select_top_items(tagged: list[TaggedArticle], limit: int = 10) -> list[Tagg
         if len(selected) >= limit:
             break
         sector = item.sectors[0] if item.sectors else "기타"
+        cluster_id = str(_field(item.article, "cluster_id") or "").strip()
         title_key = norm_title(getattr(item.article, "title", None) or "")
         if not title_key or title_key in seen_titles:
             continue
+        if cluster_id and cluster_id in seen_clusters:
+            continue
         if sector_counts[sector] >= sector_limit:
+            continue
+        top_topic = (item.topics or [""])[0]
+        if top_topic and topic_counts[top_topic] >= topic_limit:
             continue
         selected.append(item)
         seen_titles.add(title_key)
+        if cluster_id:
+            seen_clusters.add(cluster_id)
         sector_counts[sector] += 1
+        if top_topic:
+            topic_counts[top_topic] += 1
 
     if len(selected) < limit:
         for item in ranked:
             if len(selected) >= limit:
                 break
+            cluster_id = str(_field(item.article, "cluster_id") or "").strip()
             title_key = norm_title(getattr(item.article, "title", None) or "")
             if not title_key or title_key in seen_titles:
                 continue
+            if cluster_id and cluster_id in seen_clusters:
+                continue
             selected.append(item)
             seen_titles.add(title_key)
+            if cluster_id:
+                seen_clusters.add(cluster_id)
 
     return selected
 

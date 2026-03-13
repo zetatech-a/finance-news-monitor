@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from collections import Counter
 from dataclasses import dataclass
+from typing import Any
 
 from src.pipeline.normalize import Article
 
@@ -29,6 +30,15 @@ BODY_GENERIC_SCORE = 1
 TITLE_NEGATIVE_PENALTY = 6
 BODY_NEGATIVE_PENALTY = 3
 PRIMARY_SECTOR_THRESHOLD = 4
+
+TOPIC_TITLE_STRONG_SCORE = 4
+TOPIC_TITLE_WEAK_SCORE = 2
+TOPIC_BODY_STRONG_SCORE = 2
+TOPIC_BODY_WEAK_SCORE = 1
+TOPIC_QUERY_AUX_SCORE = 0.15
+TOPIC_TITLE_NEGATIVE_PENALTY = 4
+TOPIC_BODY_NEGATIVE_PENALTY = 2
+DEFAULT_TOPIC_THRESHOLD = 3.0
 
 GENERIC_SECTOR_TOKENS = {
     "은행",
@@ -72,6 +82,27 @@ SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
         "strong": ["핀테크", "마이데이터", "간편결제", "금융플랫폼"],
         "weak": ["대출비교", "대출모집", "pg", "대출"],
         "negative": [],
+    },
+}
+
+TOPIC_RULE_OVERRIDES: dict[str, dict[str, Any]] = {
+    "해외·글로벌": {
+        "strong": ["연준", "fomc", "ecb", "boj"],
+        "weak": ["미국", "유럽", "중국", "달러", "환율", "뉴욕", "월가", "국채"],
+        "negative": ["국내", "금융위", "금감원", "저축은행", "대부업"],
+        "threshold": 5.0,
+    },
+    "금리·수수료·최고금리": {
+        "strong": ["최고금리", "기준금리"],
+        "weak": ["금리", "수수료"],
+        "negative": [],
+        "threshold": 4.0,
+    },
+    "규제·가계부채": {
+        "strong": ["가계부채", "대출규제", "총부채"],
+        "weak": ["dsr", "ltv"],
+        "negative": [],
+        "threshold": 4.0,
     },
 }
 
@@ -150,6 +181,65 @@ def _score_sector(title_text: str, desc_text: str, rules: dict[str, list[str]]) 
     return score, title_score, positive_hits
 
 
+def _build_topic_rules(topic: str, keywords: list[str]) -> dict[str, Any]:
+    override = TOPIC_RULE_OVERRIDES.get(topic, {})
+    strong = _unique_keep_order(override.get("strong", []))
+    weak = _unique_keep_order([kw for kw in keywords if kw not in strong] + override.get("weak", []))
+    negative = _unique_keep_order(override.get("negative", []))
+    threshold = float(override.get("threshold", DEFAULT_TOPIC_THRESHOLD))
+    return {
+        "strong": strong or keywords,
+        "weak": weak,
+        "negative": negative,
+        "threshold": threshold,
+    }
+
+
+def _score_topic(
+    title_text: str,
+    body_text: str,
+    query_text: str,
+    rules: dict[str, Any],
+) -> tuple[float, list[str]]:
+    title_strong_hits = _collect_hits(rules["strong"], title_text)
+    body_strong_hits = _collect_hits(rules["strong"], body_text)
+    title_weak_hits = _collect_hits(rules["weak"], title_text)
+    body_weak_hits = _collect_hits(rules["weak"], body_text)
+    title_negative_hits = _collect_hits(rules["negative"], title_text)
+    body_negative_hits = _collect_hits(rules["negative"], body_text)
+
+    content_hits = {
+        *title_strong_hits,
+        *body_strong_hits,
+        *title_weak_hits,
+        *body_weak_hits,
+    }
+    query_hits = [
+        kw
+        for kw in _collect_hits([*rules["strong"], *rules["weak"]], query_text)
+        if kw not in content_hits
+    ]
+
+    score = (
+        len(title_strong_hits) * TOPIC_TITLE_STRONG_SCORE
+        + len([kw for kw in body_strong_hits if kw not in title_strong_hits]) * TOPIC_BODY_STRONG_SCORE
+        + len([kw for kw in title_weak_hits if kw not in title_strong_hits]) * TOPIC_TITLE_WEAK_SCORE
+        + len(
+            [
+                kw
+                for kw in body_weak_hits
+                if kw not in title_weak_hits and kw not in body_strong_hits and kw not in title_strong_hits
+            ]
+        )
+        * TOPIC_BODY_WEAK_SCORE
+        + len(query_hits) * TOPIC_QUERY_AUX_SCORE
+        - len(title_negative_hits) * TOPIC_TITLE_NEGATIVE_PENALTY
+        - len(body_negative_hits) * TOPIC_BODY_NEGATIVE_PENALTY
+    )
+    hits = _unique_keep_order([*title_strong_hits, *title_weak_hits, *body_strong_hits, *body_weak_hits])
+    return score, hits
+
+
 def _keyword_in_text(keyword: str, text: str) -> bool:
     kw = (keyword or "").lower().strip()
     if not kw:
@@ -199,7 +289,14 @@ def tag_articles(
         title_text = _normalize_text((article.title or "").lower())
         desc_text = _normalize_text((article.description or "").lower())
         query_text = (getattr(article, "query", "") or "").lower()
-        full_text = f"{title_text} {desc_text} {query_text}"
+        body_sources = [
+            desc_text,
+            _normalize_text((getattr(article, "summary", "") or "").lower()),
+            _normalize_text((getattr(article, "full_text", "") or "").lower()),
+            _normalize_text((getattr(article, "main_text", "") or "").lower()),
+            _normalize_text((getattr(article, "content", "") or "").lower()),
+        ]
+        body_text = " ".join(x for x in body_sources if x).strip()
 
         # -----------------------
         # Sector: best 1 (제목/요약 기반)
@@ -227,8 +324,9 @@ def tag_articles(
         topics: list[str] = []
         topic_hits_all: list[str] = []
         for topic, keywords in topic_queries.items():
-            hits = _collect_hits(keywords, full_text)
-            if hits:
+            rules = _build_topic_rules(topic, keywords)
+            score, hits = _score_topic(title_text, body_text, query_text, rules)
+            if score >= rules["threshold"] and hits:
                 topics.append(topic)
                 topic_hits_all.extend(hits)
 
