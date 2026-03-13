@@ -109,12 +109,20 @@ def _relevance_value(article: Any) -> float | None:
 
 def _relevance_label(v: float) -> tuple[str, str]:
     # (label, css_class)
-    score_like = (v * 10.0) if 0.0 <= v <= 1.0 else v
-    if score_like >= 8:
+    if v >= 8:
         return ("High", "r-high")
-    if score_like >= 4:
+    if v >= 4:
         return ("Med", "r-med")
     return ("Low", "r-low")
+
+
+def _relevance_label_for_article(article: Any, rel: float) -> tuple[str, str]:
+    score_v = _field(article, "relevance_score")
+    if not isinstance(score_v, (int, float)):
+        score_v = _field(article, "score")
+    if isinstance(score_v, (int, float)):
+        return _relevance_label(float(score_v))
+    return _relevance_label(rel * 10.0 if 0.0 <= rel <= 1.0 else rel)
 
 
 def _top_rank_score(item: TaggedArticle) -> float:
@@ -786,7 +794,7 @@ def render_html(
         rel_val = 0.0
         if isinstance(rel, float):
             rel_val = rel
-            rel_label, rel_class = _relevance_label(rel)
+            rel_label, rel_class = _relevance_label_for_article(a, rel)
 
         cached = bool(getattr(a, "summary_cached", False))
         hay = " ".join([title, summary, sector, press, " ".join(topics)]).strip()
