@@ -86,18 +86,22 @@ def _primary_link(article: Any) -> str:
     return _link_naver(article) or _link_original(article) or _link_fallback(article)
 
 
+def _field(article: Any, key: str) -> Any:
+    if isinstance(article, dict):
+        return article.get(key)
+    return getattr(article, key, None)
+
+
 def _relevance_value(article: Any) -> float | None:
     """
-    프로젝트마다 필드명이 다를 수 있어, 존재하면 최대한 끌어오도록.
-    - relevance_prob / prob / relevance
-    - relevance_score / score
+    관련도 값은 score 우선, 없으면 확률값 fallback.
     """
-    for k in ("relevance_prob", "prob", "relevance"):
-        v = getattr(article, k, None)
+    for k in ("relevance_score", "score"):
+        v = _field(article, k)
         if isinstance(v, (int, float)):
             return float(v)
-    for k in ("relevance_score", "score"):
-        v = getattr(article, k, None)
+    for k in ("relevance_prob", "prob", "relevance"):
+        v = _field(article, k)
         if isinstance(v, (int, float)):
             return float(v)
     return None
@@ -105,11 +109,20 @@ def _relevance_value(article: Any) -> float | None:
 
 def _relevance_label(v: float) -> tuple[str, str]:
     # (label, css_class)
-    if v >= 0.75:
+    if v >= 8:
         return ("High", "r-high")
-    if v >= 0.60:
+    if v >= 4:
         return ("Med", "r-med")
     return ("Low", "r-low")
+
+
+def _relevance_label_for_article(article: Any, rel: float) -> tuple[str, str]:
+    score_v = _field(article, "relevance_score")
+    if not isinstance(score_v, (int, float)):
+        score_v = _field(article, "score")
+    if isinstance(score_v, (int, float)):
+        return _relevance_label(float(score_v))
+    return _relevance_label(rel * 10.0 if 0.0 <= rel <= 1.0 else rel)
 
 
 def _top_rank_score(item: TaggedArticle) -> float:
@@ -164,7 +177,8 @@ def _top_rank_score(item: TaggedArticle) -> float:
 
     relevance = _relevance_value(item.article)
     if isinstance(relevance, float):
-        score += relevance * 2.5
+        rel_norm = min(relevance / 10.0, 1.0) if relevance > 1.0 else relevance
+        score += rel_norm * 2.5
 
     # 최신성 보조
     score += _ts_dt(getattr(item.article, "pub_date", None)) / 1_000_000_000_000
@@ -773,12 +787,14 @@ def render_html(
         primary = _primary_link(a)
 
         rel = _relevance_value(a)
+        cluster_id = _field(a, "cluster_id")
+        cluster_size = _field(a, "cluster_size")
         rel_label = None
         rel_class = ""
         rel_val = 0.0
         if isinstance(rel, float):
             rel_val = rel
-            rel_label, rel_class = _relevance_label(rel)
+            rel_label, rel_class = _relevance_label_for_article(a, rel)
 
         cached = bool(getattr(a, "summary_cached", False))
         hay = " ".join([title, summary, sector, press, " ".join(topics)]).strip()
@@ -813,6 +829,7 @@ def render_html(
             f"<article class='card' data-card "
             f"data-sector='{_h(sector)}' data-top={'1' if is_top else '0'} "
             f"data-hay='{_h(hay)}' data-topics='{_h(topic_joined)}' data-ts='{ts}' data-rel='{rel_val}' "
+            f"data-cluster='{_h(str(cluster_id or ''))}' data-cluster-size='{int(cluster_size or 1)}' "
             f"data-url='{_h(primary)}'>"
             f"  <div class='card-head'>"
             f"    <h3 class='title'>"

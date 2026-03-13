@@ -13,6 +13,13 @@ class Article:
     naver_link: str | None  # 본문 추출용(있으면 우선)
     pub_date: datetime
     query: str
+    relevance_score: int | None = None
+    relevance_prob: float | None = None
+    relevance_label: str | None = None
+    normalized_title: str | None = None
+    cluster_key: str | None = None
+    cluster_id: str | None = None
+    cluster_size: int | None = None
 
 
 def normalize(raw_items: list[dict]) -> list[Article]:
