@@ -656,8 +656,16 @@ _UI_JS = r"""
   function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); if(themeBtn) themeBtn.textContent = (next === "dark") ? "라이트" : "다크"; }
   function getFavs(){ try{ const raw = localStorage.getItem(LS_FAVS); const arr = raw ? JSON.parse(raw) : []; return new Set(Array.isArray(arr) ? arr : []);}catch(e){ return new Set(); }}
   function saveFavs(set){ localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set))); }
-  function setActivePill(sector){ activeSector = sector; pills.forEach(p => p.classList.toggle("active", p.dataset.sector === sector)); }
-  function setActiveTopicPill(topic){ activeTopic = topic; topicPills.forEach(p => p.classList.toggle("active", p.dataset.topic === topic)); }
+  function setActivePill(sector){
+    const resolvedSector = pills.some(p => p.dataset.sector === sector) ? sector : "ALL";
+    activeSector = resolvedSector;
+    pills.forEach(p => p.classList.toggle("active", p.dataset.sector === resolvedSector));
+  }
+  function setActiveTopicPill(topic){
+    const resolvedTopic = topicPills.some(p => p.dataset.topic === topic) ? topic : "ALL";
+    activeTopic = resolvedTopic;
+    topicPills.forEach(p => p.classList.toggle("active", p.dataset.topic === resolvedTopic));
+  }
   function debounce(fn, waitMs){ let timer = 0; return (...args) => { clearTimeout(timer); timer = window.setTimeout(() => fn(...args), waitMs); }; }
   function presetState(){
     return {
