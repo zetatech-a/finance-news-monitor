@@ -191,9 +191,14 @@ def _top_rank_score(item: TaggedArticle) -> float:
     }
     score += sum(w for topic, w in topic_weights.items() if topic in topics)
 
+    def _topic_matches_any(topic_values: set[str], needles: tuple[str, ...]) -> bool:
+        return any(any(needle in topic for needle in needles) for topic in topic_values)
+
+    macro_relevance_needles = ("금리", "PF", "연체", "가계부채")
+
     if "해외·글로벌" in topics and len(topics) == 1:
         score -= 1.2
-    if sector == "거시·시장" and not topics.intersection({"금리", "PF", "연체", "가계부채"}):
+    if sector == "거시·시장" and not _topic_matches_any(topics, macro_relevance_needles):
         score -= 0.8
 
     cluster_size = _field(item.article, "cluster_size")
