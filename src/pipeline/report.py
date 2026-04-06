@@ -425,14 +425,34 @@ h1{ margin:0; font-size:19px; letter-spacing:-0.2px; }
 }
 .toggle input{ transform: translateY(1px); }
 
-.nav, .presetbar{
+.nav{
   margin-top:10px; display:flex; gap:8px;
   flex-wrap:nowrap; overflow-x:auto; overflow-y:hidden;
   padding-bottom:2px;
   -webkit-overflow-scrolling:touch;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted) 45%, transparent) transparent;
 }
-.nav::-webkit-scrollbar, .presetbar::-webkit-scrollbar{ height:6px; }
-.pill, .preset, .kchip{ white-space:nowrap; }
+.nav::-webkit-scrollbar{ height:6px; }
+.nav::-webkit-scrollbar-thumb{
+  border-radius:999px;
+  background: color-mix(in srgb, var(--muted) 45%, transparent);
+}
+.nav-wrap{ position:relative; }
+.nav-wrap .nav-hint{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:20px; height:20px; border-radius:999px;
+  display:none; align-items:center; justify-content:center;
+  color:var(--muted); font-size:12px; font-weight:700;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  pointer-events:none;
+}
+.nav-wrap .nav-hint.left{ left:0; }
+.nav-wrap .nav-hint.right{ right:0; }
+.nav-wrap.can-scroll-left .nav-hint.left,
+.nav-wrap.can-scroll-right .nav-hint.right{ display:inline-flex; }
+.pill, .kchip{ white-space:nowrap; }
 
 .pill{
   display:inline-flex; align-items:center; gap:6px;
@@ -446,13 +466,6 @@ h1{ margin:0; font-size:19px; letter-spacing:-0.2px; }
   border-color: color-mix(in srgb, var(--link) 35%, var(--border));
   color:var(--text);
 }
-
-.preset{
-  display:inline-flex; align-items:center; padding:7px 10px; border-radius:999px;
-  border:1px solid var(--border); background: color-mix(in srgb, var(--paper) 92%, var(--bg));
-  color:var(--text); font-size:12px; cursor:pointer;
-}
-.preset.active{ background: color-mix(in srgb, var(--link) 14%, var(--paper)); border-color: color-mix(in srgb, var(--link) 35%, var(--border)); }
 
 .main{
   background:var(--paper); border:1px solid var(--border);
@@ -568,12 +581,12 @@ _UI_JS = r"""
   const favOnly = document.getElementById("favOnly");
   const sortSel = document.getElementById("sortSel");
   const emptyState = document.getElementById("emptyState");
-  const presetBar = document.getElementById("presetBar");
   const sidebar = document.getElementById("filterSidebar");
   const mobileFilterBtn = document.getElementById("mobileFilterBtn");
   const mobileSearchBtn = document.getElementById("mobileSearchBtn");
   const mobileTopBtn = document.getElementById("mobileTopBtn");
   const mobileFilterCloseBtn = document.getElementById("mobileFilterCloseBtn");
+  const navElements = Array.from(document.querySelectorAll(".nav-wrap[data-scroll-hint] .nav"));
 
   const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
   const topicPills = Array.from(document.querySelectorAll("[data-topic-pill]"));
@@ -584,32 +597,6 @@ _UI_JS = r"""
 
   const LS_THEME = "reportTheme";
   const LS_FAVS = "reportFavs_v1";
-  const LS_PRESETS = "reportPresetState_v1";
-
-  const PRESET_GROUPS = {
-    "전체": [
-      {k:"전체 보기", state:{sector:"ALL", topic:"ALL", sort:"new", topOnly:false, query:""}}
-    ],
-    "대부 우선": [
-      {k:"대부 기사", state:{sector:"대부", topic:"ALL", sort:"rel", topOnly:false, query:""}},
-      {k:"최고금리", state:{sector:"ALL", topic:"최고금리", sort:"rel", topOnly:true, query:"최고금리"}},
-      {k:"불법사금융", state:{sector:"ALL", topic:"불법사금융", sort:"rel", topOnly:true, query:"불법사금융 불법추심"}},
-      {k:"채권추심", state:{sector:"ALL", topic:"채권추심", sort:"rel", topOnly:true, query:"추심"}}
-    ],
-    "시장/정책": [
-      {k:"금리", state:{sector:"ALL", topic:"금리", sort:"rel", topOnly:true, query:"금리 기준금리"}},
-      {k:"PF", state:{sector:"ALL", topic:"PF", sort:"rel", topOnly:true, query:"PF 부동산PF"}},
-      {k:"연체", state:{sector:"ALL", topic:"연체", sort:"rel", topOnly:true, query:"연체 연체율"}},
-      {k:"가계부채", state:{sector:"ALL", topic:"가계부채", sort:"rel", topOnly:true, query:"가계부채 DSR LTV"}}
-    ],
-    "업권별": [
-      {k:"대부", state:{sector:"대부", topic:"ALL", sort:"new", topOnly:false, query:""}},
-      {k:"은행", state:{sector:"은행", topic:"ALL", sort:"new", topOnly:false, query:""}},
-      {k:"저축은행", state:{sector:"저축은행", topic:"ALL", sort:"new", topOnly:false, query:""}},
-      {k:"보험", state:{sector:"보험", topic:"ALL", sort:"new", topOnly:false, query:""}}
-    ]
-  };
-  let activePresetGroup = "대부 우선";
   let activeSector = "ALL";
   let activeTopic = "ALL";
 
@@ -667,44 +654,32 @@ _UI_JS = r"""
     topicPills.forEach(p => p.classList.toggle("active", p.dataset.topic === resolvedTopic));
   }
   function debounce(fn, waitMs){ let timer = 0; return (...args) => { clearTimeout(timer); timer = window.setTimeout(() => fn(...args), waitMs); }; }
-  function presetState(){
-    return {
-      sector: activeSector,
-      topic: activeTopic,
-      sort: (sortSel?.value || "new"),
-      topOnly: !!(topOnly && topOnly.checked),
-      query: (search?.value || "")
-    };
+  function setFilterSheetOpen(nextOpen, options){
+    const focusSearch = !!options?.focusSearch;
+    const isMobile = window.innerWidth < 768;
+    const open = !!nextOpen && isMobile;
+    if(sidebar){
+      sidebar.classList.toggle("open", open);
+      sidebar.setAttribute("aria-hidden", open ? "false" : "true");
+    }
+    body.classList.toggle("no-scroll", open);
+    if(mobileFilterBtn){
+      mobileFilterBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      mobileFilterBtn.setAttribute("aria-label", open ? "필터 닫기" : "필터 열기");
+      mobileFilterBtn.textContent = open ? "닫기" : "필터";
+    }
+    if(open && focusSearch) setTimeout(() => search?.focus(), 120);
   }
 
-  function applyPresetState(state){
-    const next = state || {};
-    const sector = next.sector || "ALL";
-    const topic = next.topic || "ALL";
-    setActivePill(sector);
-    setActiveTopicPill(topic);
-    if(sortSel) sortSel.value = next.sort || "new";
-    if(topOnly) topOnly.checked = !!next.topOnly;
-    if(search) search.value = next.query || "";
-    applySort();
-    applyFilter();
-    mobileTopBtn?.classList.toggle("active", !!topOnly?.checked);
-  }
-
-
-  function openFilterSheet(focusSearch){
-    if(!sidebar || window.innerWidth >= 768) return;
-    sidebar.classList.add("open");
-    body.classList.add("no-scroll");
-    mobileFilterBtn?.setAttribute("aria-expanded", "true");
-    if(focusSearch) setTimeout(() => search?.focus(), 120);
-  }
-
-  function closeFilterSheet(){
-    if(!sidebar) return;
-    sidebar.classList.remove("open");
-    body.classList.remove("no-scroll");
-    mobileFilterBtn?.setAttribute("aria-expanded", "false");
+  function updateNavScrollHints(){
+    navElements.forEach(nav => {
+      const wrap = nav.closest(".nav-wrap");
+      if(!wrap) return;
+      const maxLeft = Math.max(0, nav.scrollWidth - nav.clientWidth);
+      const canScroll = maxLeft > 2;
+      wrap.classList.toggle("can-scroll-left", canScroll && nav.scrollLeft > 2);
+      wrap.classList.toggle("can-scroll-right", canScroll && nav.scrollLeft < maxLeft - 2);
+    });
   }
 
   function sortCards(mode, cardsToSort){
@@ -811,14 +786,6 @@ _UI_JS = r"""
     scheduleRender({ recomputeMatch: true, resetPagination: true });
   }
 
-  function renderPresets(){
-    if(!presetBar) return;
-    const options = Object.keys(PRESET_GROUPS).map(g => `<option value="${g}">${g}</option>`).join("");
-    const buttons = PRESET_GROUPS[activePresetGroup].map((p, idx) => `<button class="preset" data-preset-idx="${idx}">${p.k}</button>`).join("");
-    presetBar.innerHTML = `<span class="select"><span style="color:var(--muted); font-size:12px;">빠른 보기</span><select id="presetGroupSel">${options}</select></span>` + buttons;
-    const sel = document.getElementById("presetGroupSel"); if(sel) sel.value = activePresetGroup;
-  }
-
   function initFavButtons(){
     const favs = getFavs();
     cards.forEach(card => {
@@ -829,41 +796,36 @@ _UI_JS = r"""
   }
 
   function bindEvents(){
-    pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); if(window.innerWidth < 768) closeFilterSheet(); }));
-    topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); if(window.innerWidth < 768) closeFilterSheet(); }));
+    pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); if(window.innerWidth < 768) setFilterSheetOpen(false); }));
+    topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); if(window.innerWidth < 768) setFilterSheetOpen(false); }));
     groupMetas.forEach(g => { const btn = g.loadMoreBtn; if(!btn) return; btn.addEventListener("click", ()=>{ g.visibleLimit += PAGE_SIZE; scheduleRender({ resetPagination: false }); }); });
-    const debouncedSearch = debounce(()=>{ const st = presetState(); localStorage.setItem(LS_PRESETS, JSON.stringify(st)); applyFilter(); }, SEARCH_DEBOUNCE_MS);
+    const debouncedSearch = debounce(()=>{ applyFilter(); }, SEARCH_DEBOUNCE_MS);
     search?.addEventListener("input", debouncedSearch);
     if(topOnly) topOnly.addEventListener("change", applyFilter);
     if(favOnly) favOnly.addEventListener("change", applyFilter);
     sortSel?.addEventListener("change", ()=>{ applySort(); applyFilter(); });
-    presetBar?.addEventListener("change", (e)=>{ const sel = e.target.closest("#presetGroupSel"); if(!sel) return; activePresetGroup = sel.value || "대부 우선"; renderPresets(); });
-    presetBar?.addEventListener("click", (e)=>{ const btn = e.target.closest("[data-preset-idx]"); if(!btn) return; const idx = parseInt(btn.getAttribute("data-preset-idx") || "-1", 10); const preset = PRESET_GROUPS[activePresetGroup]?.[idx]; if(!preset) return; applyPresetState(preset.state); localStorage.setItem(LS_PRESETS, JSON.stringify(presetState())); if(window.innerWidth < 768) closeFilterSheet(); });
     themeBtn?.addEventListener("click", toggleTheme);
 
-    mobileFilterBtn?.addEventListener("click", () => openFilterSheet(false));
-    mobileSearchBtn?.addEventListener("click", () => openFilterSheet(true));
-    mobileFilterCloseBtn?.addEventListener("click", closeFilterSheet);
-    sidebar?.addEventListener("click", (e)=>{ if(e.target.closest("[data-sheet-close]")) closeFilterSheet(); });
-    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeFilterSheet(); });
+    mobileFilterBtn?.addEventListener("click", () => setFilterSheetOpen(!sidebar?.classList.contains("open")));
+    mobileSearchBtn?.addEventListener("click", () => setFilterSheetOpen(true, { focusSearch: true }));
+    mobileFilterCloseBtn?.addEventListener("click", () => setFilterSheetOpen(false));
+    sidebar?.addEventListener("click", (e)=>{ if(e.target.closest("[data-sheet-close]")) setFilterSheetOpen(false); });
+    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") setFilterSheetOpen(false); });
     mobileTopBtn?.addEventListener("click", ()=>{ if(!topOnly) return; topOnly.checked = !topOnly.checked; mobileTopBtn.classList.toggle("active", topOnly.checked); applyFilter(); });
     topOnly?.addEventListener("change", ()=> mobileTopBtn?.classList.toggle("active", topOnly.checked));
-    window.addEventListener("resize", ()=>{ if(window.innerWidth >= 768) closeFilterSheet(); });
+    navElements.forEach(nav => nav.addEventListener("scroll", updateNavScrollHints, { passive: true }));
+    window.addEventListener("resize", ()=>{ setFilterSheetOpen(false); updateNavScrollHints(); });
   }
 
   loadTheme();
   setActivePill("ALL");
   setActiveTopicPill("ALL");
-  renderPresets();
-  const savedPresetState = localStorage.getItem(LS_PRESETS);
-  if(savedPresetState){
-    try{ applyPresetState(JSON.parse(savedPresetState)); }catch(e){ applySort(); }
-  }else{
-    applyPresetState(PRESET_GROUPS[activePresetGroup][0].state);
-  }
+  applySort();
   initFavButtons();
   bindEvents();
   applyFilter();
+  setFilterSheetOpen(false);
+  updateNavScrollHints();
   mobileTopBtn?.classList.toggle("active", !!topOnly?.checked);
 })();
 """
@@ -916,7 +878,10 @@ def render_html(
         )
     ]
     for s in ordered_sectors:
-        pills.append(pill_html(s, sector_counts[s]))
+        count = sector_counts[s]
+        if count <= 0:
+            continue
+        pills.append(pill_html(s, count))
 
     topic_counts: dict[str, int] = defaultdict(int)
     for item in tagged:
@@ -1088,9 +1053,8 @@ def render_html(
             <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
             <button id="themeBtn" class="btn">다크</button>
           </div>
-          <div class="nav">{''.join(pills)}</div>
-          <div class="nav">{''.join(topic_pills)}</div>
-          <div class="presetbar" id="presetBar"></div>
+          <div class="nav-wrap" data-scroll-hint><div class="nav">{''.join(pills)}</div><span class="nav-hint left">‹</span><span class="nav-hint right">›</span></div>
+          <div class="nav-wrap" data-scroll-hint><div class="nav">{''.join(topic_pills)}</div><span class="nav-hint left">‹</span><span class="nav-hint right">›</span></div>
         </div>
       </aside>
 
