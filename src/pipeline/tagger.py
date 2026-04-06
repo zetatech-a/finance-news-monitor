@@ -267,33 +267,35 @@ def _apply_sector_adjustments(
     sector_scores: dict[str, int],
 ) -> dict[str, float]:
     adjusted: dict[str, float] = {k: float(v) for k, v in sector_scores.items()}
+    configured = set(adjusted)
     combined = f"{title_text} {desc_text}".strip()
     has_schedule = _is_schedule_article(combined)
     has_action = _has_supervisory_action(combined)
     has_policy = _has_policy_signal(combined)
     has_bank = _has_bank_identity(combined)
 
-    if has_bank:
-        adjusted["은행"] = adjusted.get("은행", 0.0) + 5.0
-        if "거시·시장" in adjusted:
+    if has_bank and "은행" in configured:
+        adjusted["은행"] += 5.0
+        if "거시·시장" in configured:
             adjusted["거시·시장"] -= 3.0
 
     if has_schedule:
         for sector in ("감독·제재", "입법·정책", "거시·시장"):
-            if sector in adjusted:
+            if sector in configured:
                 adjusted[sector] -= 1.2
-        if not has_action and "감독·제재" in adjusted:
+        if not has_action and "감독·제재" in configured:
             adjusted["감독·제재"] -= 2.0
 
     if has_policy:
-        adjusted["입법·정책"] = adjusted.get("입법·정책", 0.0) + 4.0
-        if "거시·시장" in adjusted:
+        if "입법·정책" in configured:
+            adjusted["입법·정책"] += 4.0
+        if "거시·시장" in configured:
             adjusted["거시·시장"] -= 2.0
-        if not has_action and "감독·제재" in adjusted:
+        if not has_action and "감독·제재" in configured:
             adjusted["감독·제재"] -= 1.8
 
-    if not has_action and ("금융위" in combined or "금감원" in combined or "한국은행" in combined):
-        adjusted["감독·제재"] = adjusted.get("감독·제재", 0.0) - 1.5
+    if not has_action and "감독·제재" in configured and ("금융위" in combined or "금감원" in combined or "한국은행" in combined):
+        adjusted["감독·제재"] -= 1.5
 
     return adjusted
 
@@ -304,25 +306,27 @@ def _apply_title_biases(
     title_scores: dict[str, int],
 ) -> dict[str, float]:
     adjusted = {k: float(v) for k, v in title_scores.items()}
+    configured = set(adjusted)
     combined = f"{title_text} {desc_text}".strip()
     has_schedule = _is_schedule_article(combined)
     has_action = _has_supervisory_action(combined)
     has_policy = _has_policy_signal(combined)
     has_bank = _has_bank_identity(combined)
 
-    if has_bank:
-        adjusted["은행"] = adjusted.get("은행", 0.0) + 7.0
+    if has_bank and "은행" in configured:
+        adjusted["은행"] += 7.0
     if has_schedule:
         for sector in ("감독·제재", "입법·정책", "거시·시장"):
-            if sector in adjusted:
+            if sector in configured:
                 adjusted[sector] -= 1.0
-        if not has_action and "감독·제재" in adjusted:
+        if not has_action and "감독·제재" in configured:
             adjusted["감독·제재"] -= 2.0
     if has_policy:
-        adjusted["입법·정책"] = adjusted.get("입법·정책", 0.0) + 3.0
-        if "거시·시장" in adjusted:
+        if "입법·정책" in configured:
+            adjusted["입법·정책"] += 3.0
+        if "거시·시장" in configured:
             adjusted["거시·시장"] -= 1.0
-        if not has_action and "감독·제재" in adjusted:
+        if not has_action and "감독·제재" in configured:
             adjusted["감독·제재"] -= 1.0
     return adjusted
 
