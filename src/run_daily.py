@@ -20,7 +20,7 @@ from src.pipeline.relevance_filter import filter_relevance
 
 # ✅ (무료) 본문 추출 + 추출요약
 from src.pipeline.fulltext_fetch import fetch_html, extract_main_text
-from src.pipeline.extractive_summary import summarize
+from src.pipeline.extractive_summary import summarize_with_fallback
 
 # ✅ 캐시(같은 URL 재요청 방지)
 from src.pipeline.summary_cache import load_cache, save_cache
@@ -270,16 +270,19 @@ def main() -> None:
             html = fetch_html(fetch_url, timeout=12)
             full = extract_main_text(fetch_url, html)
 
-            # 본문 추출이 실패/차단/잡문이면 네이버 스니펫(기존 description) 유지
-            if full and len(full) >= 350:
-                s = summarize(full, max_sentences=3, max_chars=320)
-                if s and len(s) >= 40:
-                    item.article.description = s
-                    summary_cache[fetch_url] = s  # ✅ 캐시에 저장
-                    setattr(
-                        item.article, "summary_cached", False
-                    )  # ✅ (선택) 신규 요약 표시
-                    summarized += 1
+            s = summarize_with_fallback(
+                full or "",
+                title=item.article.title,
+                description=item.article.description,
+                max_chars=220,
+            )
+            if s and len(s) >= 24:
+                item.article.description = s
+                summary_cache[fetch_url] = s  # ✅ 캐시에 저장
+                setattr(
+                    item.article, "summary_cached", False
+                )  # ✅ (선택) 신규 요약 표시
+                summarized += 1
         except Exception:
             # 실패하면 기존 description(네이버 스니펫) 그대로 사용
             pass
