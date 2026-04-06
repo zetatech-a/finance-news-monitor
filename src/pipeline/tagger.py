@@ -88,6 +88,9 @@ SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
             "카카오뱅크",
             "케이뱅크",
             "토스뱅크",
+            "은행권 대출",
+            "은행권 수익",
+            "은행권 예대금리차",
         ],
         "weak": ["은행", "인터넷은행", "시중은행", "국책은행"],
         "negative": ["투자은행", "저축은행", "상호저축은행", "ipo", "회사채", "ecm", "dcm"],
@@ -110,6 +113,34 @@ SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
     "핀테크·플랫폼": {
         "strong": ["핀테크", "마이데이터", "간편결제", "금융플랫폼"],
         "weak": ["대출비교", "대출모집", "pg", "대출"],
+        "negative": [],
+    },
+    "거시·시장": {
+        "strong": ["증시", "코스피", "코스닥", "채권", "외화채", "유가", "환율", "금리"],
+        "weak": [],
+        "negative": [],
+    },
+    "감독·제재": {
+        "strong": ["검사", "제재", "징계", "제재심", "위반", "적발", "조사", "시정명령", "과징금", "행정처분"],
+        "weak": ["금융위", "금감원", "한국은행"],
+        "negative": [],
+        "demote_to_weak": ["금융위", "금감원", "한국은행"],
+    },
+    "입법·정책": {
+        "strong": [
+            "시행령",
+            "시행규칙",
+            "입법예고",
+            "제도 개편",
+            "규제 완화",
+            "규제 강화",
+            "정책 발표",
+            "방안 발표",
+            "개정안",
+            "가이드라인",
+            "대책",
+        ],
+        "weak": ["금융위", "금감원", "한국은행"],
         "negative": [],
     },
 }
@@ -149,9 +180,10 @@ def _unique_keep_order(items: list[str]) -> list[str]:
 
 def _build_sector_rules(sector: str, keywords: list[str]) -> dict[str, list[str]]:
     override = SECTOR_RULE_OVERRIDES.get(sector, {})
-    base_strong = [kw for kw in keywords if kw not in GENERIC_SECTOR_TOKENS]
+    demote_to_weak = set(override.get("demote_to_weak", []))
+    base_strong = [kw for kw in keywords if kw not in GENERIC_SECTOR_TOKENS and kw not in demote_to_weak]
     strong = _unique_keep_order(base_strong + override.get("strong", []))
-    weak = _unique_keep_order([kw for kw in keywords if kw not in strong] + override.get("weak", []))
+    weak = _unique_keep_order([kw for kw in keywords if kw not in strong] + list(demote_to_weak) + override.get("weak", []))
     negative = _unique_keep_order(override.get("negative", []))
     return {
         "strong": strong,
@@ -159,6 +191,140 @@ def _build_sector_rules(sector: str, keywords: list[str]) -> dict[str, list[str]
         "generic": [kw for kw in weak if kw in GENERIC_SECTOR_TOKENS],
         "negative": negative,
     }
+
+
+def _is_schedule_article(text: str) -> bool:
+    schedule_patterns = (
+        "다음주",
+        "이번주",
+        "주간",
+        "일정",
+        "브리핑",
+        "회의 일정",
+        "주요일정",
+    )
+    return any(p in text for p in schedule_patterns)
+
+
+def _has_supervisory_action(text: str) -> bool:
+    strong_signals = (
+        "검사",
+        "징계",
+        "제재",
+        "제재심",
+        "위반",
+        "적발",
+        "조사",
+        "시정명령",
+        "행정처분",
+        "과징금",
+    )
+    return any(s in text for s in strong_signals)
+
+
+def _has_policy_signal(text: str) -> bool:
+    policy_signals = (
+        "시행령",
+        "시행규칙",
+        "입법예고",
+        "제도 개편",
+        "정책 발표",
+        "방안 발표",
+        "개정",
+        "가이드라인",
+        "대책",
+        "규제 완화",
+        "규제 강화",
+        "체계 개편",
+    )
+    return any(s in text for s in policy_signals)
+
+
+def _has_bank_identity(text: str) -> bool:
+    bank_signals = (
+        "우리은행",
+        "신한은행",
+        "국민은행",
+        "하나은행",
+        "기업은행",
+        "농협은행",
+        "카카오뱅크",
+        "케이뱅크",
+        "토스뱅크",
+        "은행권",
+        "시중은행",
+        "인터넷은행",
+        "국책은행",
+    )
+    if any(s in text for s in bank_signals):
+        return "투자은행" not in text and "저축은행" not in text and "상호저축은행" not in text
+    return False
+
+
+def _apply_sector_adjustments(
+    title_text: str,
+    desc_text: str,
+    sector_scores: dict[str, int],
+) -> dict[str, float]:
+    adjusted: dict[str, float] = {k: float(v) for k, v in sector_scores.items()}
+    combined = f"{title_text} {desc_text}".strip()
+    has_schedule = _is_schedule_article(combined)
+    has_action = _has_supervisory_action(combined)
+    has_policy = _has_policy_signal(combined)
+    has_bank = _has_bank_identity(combined)
+
+    if has_bank:
+        adjusted["은행"] = adjusted.get("은행", 0.0) + 5.0
+        if "거시·시장" in adjusted:
+            adjusted["거시·시장"] -= 3.0
+
+    if has_schedule:
+        for sector in ("감독·제재", "입법·정책", "거시·시장"):
+            if sector in adjusted:
+                adjusted[sector] -= 1.2
+        if not has_action and "감독·제재" in adjusted:
+            adjusted["감독·제재"] -= 2.0
+
+    if has_policy:
+        adjusted["입법·정책"] = adjusted.get("입법·정책", 0.0) + 4.0
+        if "거시·시장" in adjusted:
+            adjusted["거시·시장"] -= 2.0
+        if not has_action and "감독·제재" in adjusted:
+            adjusted["감독·제재"] -= 1.8
+
+    if not has_action and ("금융위" in combined or "금감원" in combined or "한국은행" in combined):
+        adjusted["감독·제재"] = adjusted.get("감독·제재", 0.0) - 1.5
+
+    return adjusted
+
+
+def _apply_title_biases(
+    title_text: str,
+    desc_text: str,
+    title_scores: dict[str, int],
+) -> dict[str, float]:
+    adjusted = {k: float(v) for k, v in title_scores.items()}
+    combined = f"{title_text} {desc_text}".strip()
+    has_schedule = _is_schedule_article(combined)
+    has_action = _has_supervisory_action(combined)
+    has_policy = _has_policy_signal(combined)
+    has_bank = _has_bank_identity(combined)
+
+    if has_bank:
+        adjusted["은행"] = adjusted.get("은행", 0.0) + 7.0
+    if has_schedule:
+        for sector in ("감독·제재", "입법·정책", "거시·시장"):
+            if sector in adjusted:
+                adjusted[sector] -= 1.0
+        if not has_action and "감독·제재" in adjusted:
+            adjusted["감독·제재"] -= 2.0
+    if has_policy:
+        adjusted["입법·정책"] = adjusted.get("입법·정책", 0.0) + 3.0
+        if "거시·시장" in adjusted:
+            adjusted["거시·시장"] -= 1.0
+        if not has_action and "감독·제재" in adjusted:
+            adjusted["감독·제재"] -= 1.0
+    return adjusted
 
 
 def _score_sector(title_text: str, desc_text: str, rules: dict[str, list[str]]) -> tuple[int, int, list[str]]:
@@ -334,16 +500,25 @@ def tag_articles(
         best_score = float("-inf")
         best_title_score = float("-inf")
         best_hits: list[str] = []
+        sector_scores: dict[str, int] = {}
+        sector_title_scores: dict[str, int] = {}
+        sector_hits: dict[str, list[str]] = {}
         for sector, keywords in sector_queries.items():
             rules = _build_sector_rules(sector, keywords)
             score, title_score, hits = _score_sector(title_text, desc_text, rules)
+            sector_scores[sector] = score
+            sector_title_scores[sector] = title_score
+            sector_hits[sector] = hits
 
-            # 제목 강신호를 우선하고, 이후 총점으로 tie-break.
+        adjusted_scores = _apply_sector_adjustments(title_text, desc_text, sector_scores)
+        adjusted_title_scores = _apply_title_biases(title_text, desc_text, sector_title_scores)
+        for sector, score in adjusted_scores.items():
+            title_score = adjusted_title_scores.get(sector, 0.0)
             if (title_score, score) > (best_title_score, best_score):
                 best_score = score
                 best_title_score = title_score
                 best_sector = sector
-                best_hits = hits
+                best_hits = sector_hits.get(sector, [])
 
         sectors = [best_sector] if best_score >= PRIMARY_SECTOR_THRESHOLD else ["기타"]
 
