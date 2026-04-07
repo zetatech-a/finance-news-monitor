@@ -301,6 +301,32 @@ def _has_bank_quote_source_signal(text: str) -> bool:
     return any(p in text for p in quote_patterns)
 
 
+def _has_explicit_bank_brand(text: str) -> bool:
+    explicit_bank_brands = (
+        "우리은행",
+        "신한은행",
+        "국민은행",
+        "하나은행",
+        "ibk기업은행",
+        "기업은행",
+        "nh농협은행",
+        "농협은행",
+        "sc제일은행",
+        "씨티은행",
+        "산업은행",
+        "수출입은행",
+        "부산은행",
+        "경남은행",
+        "광주은행",
+        "전북은행",
+        "대구은행",
+        "카카오뱅크",
+        "케이뱅크",
+        "토스뱅크",
+    )
+    return any(b in text for b in explicit_bank_brands)
+
+
 def _apply_sector_adjustments(
     title_text: str,
     desc_text: str,
@@ -316,7 +342,8 @@ def _apply_sector_adjustments(
     has_bank_desc = _has_bank_identity(desc_text)
     has_market_title = _has_market_title_signal(title_text)
     has_bank_quote_source = _has_bank_quote_source_signal(combined)
-    has_bank_subject_title = has_bank_title and not (has_market_title and _has_bank_quote_source_signal(title_text))
+    has_explicit_bank_title = _has_explicit_bank_brand(title_text)
+    has_bank_subject_title = has_bank_title and (has_explicit_bank_title or not (has_market_title and _has_bank_quote_source_signal(title_text)))
 
     if "은행" in configured:
         if has_bank_subject_title:
@@ -366,7 +393,8 @@ def _apply_title_biases(
     has_bank_desc = _has_bank_identity(desc_text)
     has_market_title = _has_market_title_signal(title_text)
     has_bank_quote_source = _has_bank_quote_source_signal(combined)
-    has_bank_subject_title = has_bank_title and not (has_market_title and _has_bank_quote_source_signal(title_text))
+    has_explicit_bank_title = _has_explicit_bank_brand(title_text)
+    has_bank_subject_title = has_bank_title and (has_explicit_bank_title or not (has_market_title and _has_bank_quote_source_signal(title_text)))
 
     if "은행" in configured:
         if has_bank_subject_title:
