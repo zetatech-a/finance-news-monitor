@@ -383,7 +383,6 @@ body.no-scroll{ overflow:hidden; }
 .wrap{ max-width:1600px; margin:0 auto; padding:12px 16px 42px; }
 .layout{ display:block; }
 .mobile-mini{ display:none; }
-.mobile-only{ display:none; }
 
 .sidebar{ margin-bottom:14px; }
 .sheet-backdrop{ display:none; }
@@ -555,7 +554,6 @@ mark{ background: color-mix(in srgb, var(--link) 18%, transparent); color: inher
   .sidebar.open{ pointer-events:auto; }
   .sidebar.open .sheet-backdrop{ opacity:1; }
   .sidebar.open .filter-shell{ transform:translateY(0); }
-  .mobile-only{ display:inline-flex; }
 
   .header-top .meta{ display:none; }
   .controls{ gap:6px; }
@@ -585,7 +583,6 @@ _UI_JS = r"""
   const mobileFilterBtn = document.getElementById("mobileFilterBtn");
   const mobileSearchBtn = document.getElementById("mobileSearchBtn");
   const mobileTopBtn = document.getElementById("mobileTopBtn");
-  const mobileFilterCloseBtn = document.getElementById("mobileFilterCloseBtn");
   const navElements = Array.from(document.querySelectorAll(".nav-wrap[data-scroll-hint] .nav"));
 
   const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
@@ -666,7 +663,7 @@ _UI_JS = r"""
     if(mobileFilterBtn){
       mobileFilterBtn.setAttribute("aria-expanded", open ? "true" : "false");
       mobileFilterBtn.setAttribute("aria-label", open ? "필터 닫기" : "필터 열기");
-      mobileFilterBtn.textContent = open ? "닫기" : "필터";
+      mobileFilterBtn.textContent = "필터";
     }
     if(open && focusSearch) setTimeout(() => search?.focus(), 120);
   }
@@ -808,7 +805,6 @@ _UI_JS = r"""
 
     mobileFilterBtn?.addEventListener("click", () => setFilterSheetOpen(!sidebar?.classList.contains("open")));
     mobileSearchBtn?.addEventListener("click", () => setFilterSheetOpen(true, { focusSearch: true }));
-    mobileFilterCloseBtn?.addEventListener("click", () => setFilterSheetOpen(false));
     sidebar?.addEventListener("click", (e)=>{ if(e.target.closest("[data-sheet-close]")) setFilterSheetOpen(false); });
     document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") setFilterSheetOpen(false); });
     mobileTopBtn?.addEventListener("click", ()=>{ if(!topOnly) return; topOnly.checked = !topOnly.checked; mobileTopBtn.classList.toggle("active", topOnly.checked); applyFilter(); });
@@ -1041,7 +1037,6 @@ def render_html(
               <h1>금융권 일일 언론동향 <span style="color:var(--muted);">({date_str})</span></h1>
               <div class="meta">대부업권 우선 · 전 금융업권 주요 기사 요약</div>
             </div>
-            <button id="mobileFilterCloseBtn" class="btn small primary mobile-only" type="button" aria-label="필터 닫기" data-sheet-close>닫기</button>
           </div>
           <div class="controls">
             <div class="input" title="제목/요약/업권/주제에서 검색">
