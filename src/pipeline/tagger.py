@@ -261,6 +261,46 @@ def _has_bank_identity(text: str) -> bool:
     return False
 
 
+def _has_market_title_signal(title_text: str) -> bool:
+    market_patterns = (
+        "마감시황",
+        "코스피",
+        "코스닥",
+        "장 마감",
+        "장중",
+        "지수",
+        "환율",
+        "원달러",
+        "외환",
+        "달러 강세",
+        "달러 약세",
+        "채권",
+        "국채",
+        "금리 동결",
+        "금리 인상",
+        "금리 인하",
+        "유가",
+        "국제유가",
+        "뉴욕증시",
+        "나스닥",
+        "s&p",
+    )
+    return any(p in title_text for p in market_patterns)
+
+
+def _has_bank_quote_source_signal(text: str) -> bool:
+    quote_patterns = (
+        "딜링룸",
+        "연구원",
+        "관계자",
+        "증권가",
+        "시장 참가자",
+        "트레이더",
+        "외환 딜러",
+    )
+    return any(p in text for p in quote_patterns)
+
+
 def _apply_sector_adjustments(
     title_text: str,
     desc_text: str,
@@ -272,12 +312,23 @@ def _apply_sector_adjustments(
     has_schedule = _is_schedule_article(combined)
     has_action = _has_supervisory_action(combined)
     has_policy = _has_policy_signal(combined)
-    has_bank = _has_bank_identity(combined)
+    has_bank_title = _has_bank_identity(title_text)
+    has_bank_desc = _has_bank_identity(desc_text)
+    has_market_title = _has_market_title_signal(title_text)
+    has_bank_quote_source = _has_bank_quote_source_signal(combined)
+    has_bank_subject_title = has_bank_title and not (has_market_title and _has_bank_quote_source_signal(title_text))
 
-    if has_bank and "은행" in configured:
-        adjusted["은행"] += 5.0
-        if "거시·시장" in configured:
-            adjusted["거시·시장"] -= 3.0
+    if "은행" in configured:
+        if has_bank_subject_title:
+            adjusted["은행"] += 5.0
+        elif has_bank_desc:
+            adjusted["은행"] += 1.5
+        if has_bank_quote_source:
+            adjusted["은행"] -= 2.5
+    if has_market_title and "거시·시장" in configured:
+        adjusted["거시·시장"] += 5.0
+        if "은행" in configured and (has_bank_quote_source or has_bank_desc) and not has_bank_subject_title:
+            adjusted["은행"] -= 4.0
 
     if has_schedule:
         for sector in ("감독·제재", "입법·정책", "거시·시장"):
@@ -311,10 +362,23 @@ def _apply_title_biases(
     has_schedule = _is_schedule_article(combined)
     has_action = _has_supervisory_action(combined)
     has_policy = _has_policy_signal(combined)
-    has_bank = _has_bank_identity(combined)
+    has_bank_title = _has_bank_identity(title_text)
+    has_bank_desc = _has_bank_identity(desc_text)
+    has_market_title = _has_market_title_signal(title_text)
+    has_bank_quote_source = _has_bank_quote_source_signal(combined)
+    has_bank_subject_title = has_bank_title and not (has_market_title and _has_bank_quote_source_signal(title_text))
 
-    if has_bank and "은행" in configured:
-        adjusted["은행"] += 7.0
+    if "은행" in configured:
+        if has_bank_subject_title:
+            adjusted["은행"] += 7.0
+        elif has_bank_desc:
+            adjusted["은행"] += 1.0
+        if has_bank_quote_source:
+            adjusted["은행"] -= 2.0
+    if has_market_title and "거시·시장" in configured:
+        adjusted["거시·시장"] += 6.0
+        if "은행" in configured and (has_bank_quote_source or has_bank_desc) and not has_bank_subject_title:
+            adjusted["은행"] -= 3.0
     if has_schedule:
         for sector in ("감독·제재", "입법·정책", "거시·시장"):
             if sector in configured:
