@@ -134,6 +134,38 @@ def _relevance_sort_value_for_article(article: Any, rel: float) -> float:
     return rel * 10.0 if 0.0 <= rel <= 1.0 else rel
 
 
+def _is_schedule_notice_article(text: str) -> bool:
+    schedule_notice_patterns = (
+        "다음주",
+        "이번주",
+        "주요 일정",
+        "브리핑 일정",
+        "일정",
+        "행사 안내",
+        "개최 안내",
+        "세미나 개최",
+        "포럼 개최",
+    )
+    return any(p in text for p in schedule_notice_patterns)
+
+
+def _has_material_policy_action(text: str) -> bool:
+    material_patterns = (
+        "입법예고",
+        "시행령",
+        "시행규칙",
+        "제도 개편",
+        "규제 완화",
+        "규제 강화",
+        "제재",
+        "과징금",
+        "행정처분",
+        "검사 결과",
+        "대책 발표",
+    )
+    return any(p in text for p in material_patterns)
+
+
 def _top_rank_score(item: TaggedArticle) -> float:
     sector = item.sectors[0] if item.sectors else ""
     topics = set(item.topics or [])
@@ -176,6 +208,11 @@ def _top_rank_score(item: TaggedArticle) -> float:
         "정책",
     )
     score += sum(0.45 for kw in impact_keywords if kw in text)
+
+    if _is_schedule_notice_article(text):
+        score -= 1.1
+        if not _has_material_policy_action(text):
+            score -= 0.8
 
     # topic 가중치
     topic_weights = {
