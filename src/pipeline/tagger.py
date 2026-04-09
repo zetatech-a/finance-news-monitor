@@ -38,7 +38,10 @@ TOPIC_BODY_WEAK_SCORE = 1
 TOPIC_QUERY_AUX_SCORE = 0.15
 TOPIC_TITLE_NEGATIVE_PENALTY = 4
 TOPIC_BODY_NEGATIVE_PENALTY = 2
-DEFAULT_TOPIC_THRESHOLD = 3.0
+TOPIC_TITLE_CONTEXT_SCORE = 1.2
+TOPIC_BODY_CONTEXT_SCORE = 0.6
+TOPIC_SECTOR_AUX_SCORE = 0.8
+DEFAULT_TOPIC_THRESHOLD = 2.8
 
 GENERIC_SECTOR_TOKENS = {
     "은행",
@@ -153,17 +156,67 @@ TOPIC_RULE_OVERRIDES: dict[str, dict[str, Any]] = {
         "threshold": 5.0,
     },
     "금리·수수료·최고금리": {
-        "strong": ["최고금리", "기준금리"],
+        "strong": ["최고금리", "기준금리", "금리 산정", "가산금리", "중도상환수수료"],
         "weak": ["금리", "수수료"],
         "negative": [],
-        "threshold": 4.0,
+        "threshold": 3.0,
     },
     "규제·가계부채": {
         "strong": ["가계부채", "대출규제", "총부채"],
-        "weak": ["dsr", "ltv"],
+        "weak": ["dsr", "ltv", "총부채원리금상환비율", "주택담보인정비율"],
         "negative": [],
-        "threshold": 4.0,
+        "threshold": 3.6,
     },
+}
+
+TOPIC_CONTEXT_TOKENS: dict[str, dict[str, tuple[str, ...]]] = {
+    "금리·수수료·최고금리": {
+        "title": ("금리 산정", "가산금리", "우대금리", "최고금리", "중도상환수수료", "보증료", "기준금리"),
+        "body": ("금리 체계", "금리 개편", "수수료율", "산정 방식"),
+    },
+    "연체·부실": {
+        "title": ("연체율", "연체", "부실", "고정이하여신", "부실채권", "npl"),
+        "body": ("건전성", "충당금", "상각", "고정이하"),
+    },
+    "부동산·PF": {
+        "title": ("부동산 pf", "pf", "프로젝트파이낸싱", "브릿지론", "재구조화"),
+        "body": ("미분양", "토지담보", "pf 사업장"),
+    },
+    "규제·가계부채": {
+        "title": ("가계부채", "대출규제", "dsr", "ltv", "총부채"),
+        "body": ("총부채원리금상환비율", "주택담보인정비율", "스트레스 dsr", "규제 완화", "규제 강화"),
+    },
+    "불법사금융·불법추심·보이스피싱": {
+        "title": ("불법사금융", "불법추심", "보이스피싱", "미등록대부", "피해 확산"),
+        "body": ("피해구제", "대포통장", "스미싱", "불법 대출광고"),
+    },
+    "서민금융·대환·채무조정": {
+        "title": ("서민금융", "대환", "채무조정", "햇살론", "신복위"),
+        "body": ("개인회생", "워크아웃", "출연금", "정책서민금융"),
+    },
+    "자금시장·유동성": {
+        "title": ("자금시장", "유동성", "cp", "abcp", "회사채"),
+        "body": ("단기자금", "스프레드", "유동성 지원"),
+    },
+    "자산운용·연기금": {
+        "title": ("자산운용", "운용사", "연기금", "국민연금"),
+        "body": ("etf", "펀드"),
+    },
+    "디지털자산": {
+        "title": ("가상자산", "디지털자산", "암호화폐", "토큰증권", "sto"),
+        "body": ("거래소", "코인"),
+    },
+}
+
+TOPIC_SECTOR_AFFINITY: dict[str, tuple[str, ...]] = {
+    "연체·부실": ("대부", "은행", "저축은행", "상호금융", "여전"),
+    "부동산·PF": ("저축은행", "IB·자본시장", "여전", "은행"),
+    "규제·가계부채": ("은행", "입법·정책", "감독·제재"),
+    "불법사금융·불법추심·보이스피싱": ("대부", "감독·제재", "입법·정책"),
+    "서민금융·대환·채무조정": ("대부", "은행", "입법·정책", "감독·제재"),
+    "자금시장·유동성": ("IB·자본시장", "거시·시장"),
+    "자산운용·연기금": ("자산운용·연기금",),
+    "디지털자산": ("디지털자산",),
 }
 
 
@@ -490,6 +543,8 @@ def _score_topic(
     title_text: str,
     body_text: str,
     query_text: str,
+    sector: str,
+    topic: str,
     rules: dict[str, Any],
 ) -> tuple[float, list[str]]:
     title_strong_hits = _collect_hits(rules["strong"], title_text)
@@ -511,6 +566,11 @@ def _score_topic(
         if kw not in content_hits
     ]
 
+    context = TOPIC_CONTEXT_TOKENS.get(topic, {})
+    title_context_hits = _collect_hits(list(context.get("title", ())), title_text)
+    body_context_hits = _collect_hits(list(context.get("body", ())), body_text)
+    has_sector_affinity = sector in TOPIC_SECTOR_AFFINITY.get(topic, ())
+
     score = (
         len(title_strong_hits) * TOPIC_TITLE_STRONG_SCORE
         + len([kw for kw in body_strong_hits if kw not in title_strong_hits]) * TOPIC_BODY_STRONG_SCORE
@@ -523,11 +583,18 @@ def _score_topic(
             ]
         )
         * TOPIC_BODY_WEAK_SCORE
+        + len([kw for kw in title_context_hits if kw not in title_strong_hits and kw not in title_weak_hits])
+        * TOPIC_TITLE_CONTEXT_SCORE
+        + len([kw for kw in body_context_hits if kw not in body_strong_hits and kw not in body_weak_hits])
+        * TOPIC_BODY_CONTEXT_SCORE
+        + (TOPIC_SECTOR_AUX_SCORE if has_sector_affinity and (title_strong_hits or title_weak_hits or title_context_hits) else 0.0)
         + len(query_hits) * TOPIC_QUERY_AUX_SCORE
         - len(title_negative_hits) * TOPIC_TITLE_NEGATIVE_PENALTY
         - len(body_negative_hits) * TOPIC_BODY_NEGATIVE_PENALTY
     )
-    hits = _unique_keep_order([*title_strong_hits, *title_weak_hits, *body_strong_hits, *body_weak_hits])
+    hits = _unique_keep_order(
+        [*title_strong_hits, *title_weak_hits, *body_strong_hits, *body_weak_hits, *title_context_hits, *body_context_hits]
+    )
     return score, hits
 
 
@@ -625,7 +692,7 @@ def tag_articles(
         topic_hits_all: list[str] = []
         for topic, keywords in topic_queries.items():
             rules = _build_topic_rules(topic, keywords)
-            score, hits = _score_topic(title_text, body_text, query_text, rules)
+            score, hits = _score_topic(title_text, body_text, query_text, best_sector, topic, rules)
             if score >= rules["threshold"] and hits:
                 topics.append(topic)
                 topic_hits_all.extend(hits)
