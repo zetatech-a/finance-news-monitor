@@ -33,7 +33,10 @@ _WS_RE = re.compile(r"\s+")
 _PAREN_RE = re.compile(r"\([^)]*\)|\[[^\]]*\]")
 _REPORTER_RE = re.compile(r"[가-힣]{2,4}\s*기자")
 _PHOTO_RE = re.compile(r"사진\s*=")
+_BYLINE_PREFIX_RE = re.compile(r"^[가-힣A-Za-z]{2,12}\s*=\s*(연합뉴스|뉴스1|뉴시스)\s*")
 _ENG_CHAR_RE = re.compile(r"[A-Za-z]")
+_EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+_URL_RE = re.compile(r"https?://|www\.")
 _NUMERIC_SIGNAL_RE = re.compile(
     r"\d+(?:\.\d+)?\s*(?:%|bp|원|만원|억원|조원|달러|엔|유로|명|건|배|p|개월|년|일)|"
     r"(?:금리|환율|연체율|발행|시행일|만기|기준금리|코스피|코스닥)"
@@ -56,6 +59,48 @@ _JUNK_PATTERNS = [
         r"copyright",
         r"주요\s*일정",
         r"행사\s*안내",
+        r"관련\s*기사",
+        r"추천\s*기사",
+        r"기사\s*원문",
+        r"show\s*more",
+        r"url\s*복사",
+        r"카카오톡|페이스북|트위터|\bX\b",
+        r"로그인|회원가입",
+        r"무료\s*공개|유료|구독\s*신청|구독하고",
+        r"기사를?\s*더\s*보",
+        r"이\s*기사를",
+        r"후\s*무료공개",
+    ]
+]
+_LINE_JUNK_PATTERNS = [
+    re.compile(p, re.IGNORECASE)
+    for p in [
+        r"^\s*(show\s*more|read\s*more|more)\s*$",
+        r"^\s*(url\s*복사|링크\s*복사|기사\s*보기|전체\s*보기)\s*$",
+        r"^\s*(카카오톡|페이스북|트위터|공유|공유하기)\s*$",
+        r"^\s*(관련\s*기사|추천\s*기사|많이\s*본\s*기사)\s*$",
+        r"^\s*(로그인|회원가입|구독|구독하기|유료|무료공개)\s*$",
+        r"^\s*(사진|이미지)\s*설명[:：]",
+        r"(무단전재|재배포\s*금지|저작권자|copyright)",
+        r"^\s*[가-힣]{2,5}\s*기자\s*$",
+        r"^\s*[가-힣A-Za-z]{2,12}\s*=\s*(연합뉴스|뉴스1|뉴시스)\s*$",
+        r"^\s*서울=연합뉴스",
+        r"^\s*입력\s*\d{4}[-./]\d{1,2}[-./]\d{1,2}",
+    ]
+]
+_INLINE_STRIP_PATTERNS = [
+    re.compile(p, re.IGNORECASE)
+    for p in [
+        r"\bshow\s*more\b",
+        r"\burl\s*복사\b",
+        r"\b카카오톡\b",
+        r"\b페이스북\b",
+        r"\b트위터\b",
+        r"\b관련\s*기사\b",
+        r"\b추천\s*기사\b",
+        r"\b기사\s*원문\b",
+        r"\b이\s*기사를[^.]{0,20}$",
+        r"\b후\s*무료공개\b",
     ]
 ]
 _TYPE_KEYWORDS = {
@@ -74,12 +119,58 @@ _TYPE_BOOST = {
 }
 
 
+def _is_low_info_line(line: str) -> bool:
+    s = (line or "").strip()
+    if not s:
+        return True
+    if _EMAIL_RE.search(s):
+        return True
+    if re.fullmatch(r"[\W_]+", s):
+        return True
+    if len(s) < 6 and not re.search(r"\d|[가-힣A-Za-z]", s):
+        return True
+    if len(s) <= 12 and not re.search(r"[가-힣]{2,}|\d{2,}", s):
+        return True
+    if _URL_RE.search(s) and len(s) < 50:
+        return True
+    if sum(1 for _ in _ENG_CHAR_RE.finditer(s)) / max(len(s), 1) > 0.75 and len(s) < 40:
+        return True
+    if re.fullmatch(r"[\d\s:./-]{5,}", s):
+        return True
+    return any(p.search(s) for p in _LINE_JUNK_PATTERNS)
+
+
+def _clean_source_text(text: str) -> str:
+    t = (text or "").replace("\r", "\n")
+    t = _BREADCRUMB_HEAD.sub("", t)
+    lines = [ln.strip() for ln in re.split(r"\n+", t)]
+    cleaned_lines: list[str] = []
+    seen: set[str] = set()
+    for ln in lines:
+        if not ln or _is_low_info_line(ln):
+            continue
+        trimmed = ln
+        for p in _INLINE_STRIP_PATTERNS:
+            trimmed = p.sub(" ", trimmed)
+        trimmed = _WS_RE.sub(" ", trimmed).strip(" -|·•\t")
+        if not trimmed or _is_low_info_line(trimmed):
+            continue
+        norm_key = trimmed.lower()
+        if norm_key in seen:
+            continue
+        seen.add(norm_key)
+        cleaned_lines.append(trimmed)
+
+    compact = " ".join(cleaned_lines)
+    compact = _WS_RE.sub(" ", compact).strip()
+    return compact
+
+
 def split_sentences(text: str) -> list[str]:
-    t = _WS_RE.sub(" ", (text or "").strip())
+    t = _clean_source_text(text)
     if not t:
         return []
 
-    t = _BREADCRUMB_HEAD.sub("", t).strip()
     parts = re.split(r"(?<=[\.!?])\s+", t)
     return [p.strip() for p in parts if len(p.strip()) >= 16]
 
@@ -103,9 +194,22 @@ def _looks_like_junk(sent: str) -> bool:
     s = (sent or "").strip()
     if len(s) < 16:
         return True
-    if sum(1 for _ in _ENG_CHAR_RE.finditer(s)) / max(len(s), 1) > 0.45:
+    eng_ratio = sum(1 for _ in _ENG_CHAR_RE.finditer(s)) / max(len(s), 1)
+    if eng_ratio > 0.45:
+        return True
+    if eng_ratio > 0.35 and len(s) < 36:
+        return True
+    if _EMAIL_RE.search(s):
+        return True
+    if _URL_RE.search(s):
         return True
     if re.fullmatch(r"[\d\W_]+", s):
+        return True
+    if re.search(r"(사진|이미지)\s*(설명|캡션|제공|출처)", s):
+        return True
+    if re.search(r"(메뉴|버튼|공유|복사|클릭)", s) and len(s) < 60:
+        return True
+    if re.search(r"\d{1,2}:\d{2}", s) and len(re.findall(r"\d{1,2}:\d{2}", s)) >= 2:
         return True
     if re.search(r"(\d{1,2}:\d{2}|오전|오후)", s) and re.search(r"(일정|행사|개최|세미나)", s):
         return True
@@ -114,6 +218,7 @@ def _looks_like_junk(sent: str) -> bool:
 
 def clean_sentence(sent: str, hard_limit: int = 150) -> str:
     s = _PAREN_RE.sub(" ", sent or "")
+    s = _BYLINE_PREFIX_RE.sub("", s)
     s = _REPORTER_RE.sub(" ", s)
     s = _PHOTO_RE.sub(" ", s)
     s = re.sub(r"\s*[-–—]\s*", " ", s)
