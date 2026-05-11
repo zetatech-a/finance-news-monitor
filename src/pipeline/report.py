@@ -92,6 +92,37 @@ def _field(article: Any, key: str) -> Any:
     return getattr(article, key, None)
 
 
+def _numeric_field(article: Any, *keys: str) -> float | None:
+    for key in keys:
+        v = _field(article, key)
+        if v in (None, ""):
+            continue
+        if isinstance(v, (int, float)):
+            return float(v)
+        try:
+            return float(str(v).strip())
+        except (TypeError, ValueError):
+            continue
+    return None
+
+
+def _is_high_confidence_misc(article: Any) -> bool:
+    prob = _numeric_field(article, "relevance_prob", "prob")
+    if prob is not None:
+        return prob >= 0.80
+    score = _numeric_field(article, "relevance_score", "score")
+    return score is not None and score >= 6
+
+
+def _primary_sector(item: TaggedArticle) -> str:
+    return item.sectors[0] if item.sectors else "기타"
+
+
+def _is_visible_in_main_report(item: TaggedArticle) -> bool:
+    sector = _primary_sector(item)
+    return sector != "기타" or _is_high_confidence_misc(item.article)
+
+
 def _relevance_value(article: Any) -> float | None:
     """
     관련도 값은 score 우선, 없으면 확률값 fallback.
@@ -253,8 +284,7 @@ def _top_rank_score(item: TaggedArticle) -> float:
 
 
 def _select_top_items(tagged: list[TaggedArticle], limit: int = 10) -> list[TaggedArticle]:
-    excluded_sectors = {"기타"}
-    pool = [it for it in tagged if (it.sectors[0] if it.sectors else "기타") not in excluded_sectors]
+    pool = [it for it in tagged if _is_visible_in_main_report(it)]
     ranked = sorted(
         pool,
         key=lambda it: (_top_rank_score(it), _ts_dt(getattr(it.article, "pub_date", None))),
@@ -275,7 +305,7 @@ def _select_top_items(tagged: list[TaggedArticle], limit: int = 10) -> list[Tagg
     for item in ranked:
         if len(selected) >= limit:
             break
-        sector = item.sectors[0] if item.sectors else "기타"
+        sector = _primary_sector(item)
         cluster_id = str(_field(item.article, "cluster_id") or "").strip()
         title_key = norm_title(getattr(item.article, "title", None) or "")
         if not title_key or title_key in seen_titles:
@@ -874,9 +904,21 @@ def render_html(
     top_items = _select_top_items(tagged, limit=10)
 
     by_sector: dict[str, list[TaggedArticle]] = defaultdict(list)
+    misc_review_items: list[TaggedArticle] = []
     for item in tagged:
-        sector = item.sectors[0] if item.sectors else "기타"
+        if not _is_visible_in_main_report(item):
+            continue
+        sector = _primary_sector(item)
+        if sector == "기타":
+            misc_review_items.append(item)
+            continue
         by_sector[sector].append(item)
+
+    misc_review_items = sorted(
+        misc_review_items, key=lambda x: x.article.pub_date, reverse=True
+    )[:10]
+    if misc_review_items:
+        by_sector["기타"] = misc_review_items
 
     sector_order = [
         "대부",
@@ -893,15 +935,9 @@ def render_html(
         "거시·시장",
         "감독·제재",
         "입법·정책",
-        "기타",
     ]
     ordered_sectors = sector_order + [s for s in by_sector.keys() if s not in sector_order]
     sector_counts = {s: len(by_sector.get(s, [])) for s in ordered_sectors}
-    if sum(sector_counts.values()) != len(tagged):
-        raise ValueError(
-            "Sector counts sanity check failed: sum(sector_counts) != total tagged"
-        )
-
     def pill_html(sector: str, count: int) -> str:
         return f"<button class='pill' data-sector-pill data-sector='{_h(sector)}'><strong>{_h(sector)}</strong><span class='count'>{count}</span></button>"
 
@@ -1020,11 +1056,12 @@ def render_html(
         if not items:
             continue
         cards = "\n".join(card_html(it, False) for it in items)
+        section_note = "고신뢰 기타 기사만 최대 10건 표시" if s == "기타" else "섹터 클릭/검색/정렬 가능"
         sector_sections.append(
             f"<section data-group id='sec-{_h(s)}'>"
             f"  <div class='section-head'>"
-            f"    <h2>{_h(s)}<span class='count'>{len(by_sector.get(s, []))}</span></h2>"
-            f"    <div class='note'>섹터 클릭/검색/정렬 가능</div>"
+            f"    <h2>{_h(s)}<span class='count'>{len(items)}</span></h2>"
+            f"    <div class='note'>{_h(section_note)}</div>"
             f"  </div>"
             f"  <div class='grid'>{cards}</div>"
             f"  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div>"
