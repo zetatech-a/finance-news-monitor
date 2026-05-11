@@ -222,7 +222,7 @@ def main() -> None:
         model_path=model_path,
         out_candidates_csv=candidates_csv,
         min_prob=0.55,
-        min_score=2,
+        min_score=4,
     )
     logger.info(
         "Relevance filtered: %d -> %d (dropped=%d)",
