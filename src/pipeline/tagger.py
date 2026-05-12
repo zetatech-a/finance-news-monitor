@@ -259,24 +259,37 @@ def _is_schedule_article(text: str) -> bool:
     return any(p in text for p in schedule_patterns)
 
 
+def _has_regulator_anchor(text: str) -> bool:
+    regulator_anchors = ("금융위", "금융위원회", "금감원", "금융감독원")
+    return any(s in text for s in regulator_anchors)
+
+
 def _has_supervisory_action(text: str) -> bool:
     strong_signals = (
+        "검사 착수",
+        "현장점검",
+        "개선명령",
+        "시정명령",
+        "행정처분",
+        "불완전판매",
+        "중징계",
+        "경징계",
+        "제재심",
+        "과징금",
         "검사",
         "징계",
         "제재",
-        "제재심",
         "위반",
         "적발",
         "조사",
-        "시정명령",
-        "행정처분",
-        "과징금",
     )
     return any(s in text for s in strong_signals)
 
 
 def _has_policy_signal(text: str) -> bool:
     policy_signals = (
+        "제도개선",
+        "제도 개선",
         "시행령",
         "시행규칙",
         "입법예고",
@@ -289,6 +302,11 @@ def _has_policy_signal(text: str) -> bool:
         "규제 완화",
         "규제 강화",
         "체계 개편",
+        "법안",
+        "규정",
+        "정책",
+        "발표",
+        "추진",
     )
     return any(s in text for s in policy_signals)
 
@@ -314,31 +332,93 @@ def _has_bank_identity(text: str) -> bool:
     return False
 
 
-def _has_market_title_signal(title_text: str) -> bool:
+def _has_market_context(text: str) -> bool:
     market_patterns = (
-        "마감시황",
+        "외환시장",
+        "금융시장",
+        "채권시장",
+        "국채금리",
+        "국고채",
+        "원달러 환율",
+        "원/달러",
         "코스피",
         "코스닥",
+        "증시",
+        "한국은행",
+        "한은",
+        "기준금리",
+        "연준",
+        "fomc",
+        "시장금리",
+        "환율 전망",
+        "채권금리",
+        "스프레드",
+        "마감시황",
         "장 마감",
-        "장중",
-        "지수",
-        "환율",
-        "원달러",
-        "외환",
-        "달러 강세",
-        "달러 약세",
-        "채권",
-        "국채",
-        "금리 동결",
-        "금리 인상",
-        "금리 인하",
-        "유가",
-        "국제유가",
         "뉴욕증시",
         "나스닥",
         "s&p",
     )
-    return any(p in title_text for p in market_patterns)
+    return any(p in text for p in market_patterns)
+
+
+def _has_market_title_signal(title_text: str) -> bool:
+    return _has_market_context(title_text)
+
+
+def _has_generic_macro_term(text: str) -> bool:
+    generic_terms = ("환율", "금리", "유가", "달러", "원자재")
+    return any(p in text for p in generic_terms)
+
+
+def _has_corporate_earnings_context(text: str) -> bool:
+    corporate_terms = (
+        "영업이익",
+        "매출",
+        "순이익",
+        "실적",
+        "원가",
+        "원재료",
+        "수출",
+        "수주",
+        "항공",
+        "조선",
+        "식품",
+        "바이오",
+        "게임",
+        "자동차",
+        "반도체",
+        "해운",
+        "철강",
+    )
+    return any(p in text for p in corporate_terms)
+
+
+def _has_financial_company_context(text: str) -> bool:
+    financial_terms = (
+        "은행",
+        "뱅크",
+        "저축은행",
+        "보험",
+        "보험사",
+        "카드",
+        "카드사",
+        "카드론",
+        "캐피탈",
+        "여전",
+        "증권",
+        "증권사",
+        "자산운용",
+        "운용사",
+        "대부업",
+        "상호금융",
+        "새마을금고",
+        "신협",
+        "금융권",
+        "금융회사",
+        "핀테크",
+    )
+    return any(p in text for p in financial_terms)
 
 
 def _has_bank_quote_source_signal(text: str) -> bool:
@@ -390,7 +470,12 @@ def _apply_sector_adjustments(
     combined = f"{title_text} {desc_text}".strip()
     has_schedule = _is_schedule_article(combined)
     has_action = _has_supervisory_action(combined)
+    has_regulator = _has_regulator_anchor(combined)
     has_policy = _has_policy_signal(combined)
+    has_market_context = _has_market_context(combined)
+    has_generic_macro = _has_generic_macro_term(combined)
+    has_corporate_context = _has_corporate_earnings_context(combined)
+    has_financial_context = _has_financial_company_context(combined)
     has_bank_title = _has_bank_identity(title_text)
     has_bank_desc = _has_bank_identity(desc_text)
     has_market_title = _has_market_title_signal(title_text)
@@ -409,6 +494,13 @@ def _apply_sector_adjustments(
         adjusted["거시·시장"] += 5.0
         if "은행" in configured and (has_bank_quote_source or has_bank_desc) and not has_bank_subject_title:
             adjusted["은행"] -= 4.0
+    if "거시·시장" in configured and has_generic_macro and not has_market_context:
+        if has_corporate_context and not has_financial_context:
+            adjusted["거시·시장"] -= 10.0
+        elif has_financial_context:
+            adjusted["거시·시장"] -= 8.0
+        else:
+            adjusted["거시·시장"] -= 5.0
 
     if has_schedule:
         for sector in ("감독·제재", "입법·정책", "거시·시장"):
@@ -422,11 +514,16 @@ def _apply_sector_adjustments(
             adjusted["입법·정책"] += 4.0
         if "거시·시장" in configured:
             adjusted["거시·시장"] -= 2.0
-        if not has_action and "감독·제재" in configured:
-            adjusted["감독·제재"] -= 1.8
+        if "감독·제재" in configured:
+            adjusted["감독·제재"] -= 3.0 if not has_action else 1.0
 
-    if not has_action and "감독·제재" in configured and ("금융위" in combined or "금감원" in combined or "한국은행" in combined):
-        adjusted["감독·제재"] -= 1.5
+    if "감독·제재" in configured:
+        if has_regulator and has_action and not has_policy:
+            adjusted["감독·제재"] += 8.0
+        elif has_regulator and not has_action:
+            adjusted["감독·제재"] -= 4.0
+        elif not has_regulator:
+            adjusted["감독·제재"] -= 10.0
 
     return adjusted
 
@@ -441,7 +538,12 @@ def _apply_title_biases(
     combined = f"{title_text} {desc_text}".strip()
     has_schedule = _is_schedule_article(combined)
     has_action = _has_supervisory_action(combined)
+    has_regulator = _has_regulator_anchor(combined)
     has_policy = _has_policy_signal(combined)
+    has_market_context = _has_market_context(combined)
+    has_generic_macro = _has_generic_macro_term(combined)
+    has_corporate_context = _has_corporate_earnings_context(combined)
+    has_financial_context = _has_financial_company_context(combined)
     has_bank_title = _has_bank_identity(title_text)
     has_bank_desc = _has_bank_identity(desc_text)
     has_market_title = _has_market_title_signal(title_text)
@@ -460,6 +562,13 @@ def _apply_title_biases(
         adjusted["거시·시장"] += 6.0
         if "은행" in configured and (has_bank_quote_source or has_bank_desc) and not has_bank_subject_title:
             adjusted["은행"] -= 3.0
+    if "거시·시장" in configured and has_generic_macro and not has_market_context:
+        if has_corporate_context and not has_financial_context:
+            adjusted["거시·시장"] -= 12.0
+        elif has_financial_context:
+            adjusted["거시·시장"] -= 9.0
+        else:
+            adjusted["거시·시장"] -= 7.0
     if has_schedule:
         for sector in ("감독·제재", "입법·정책", "거시·시장"):
             if sector in configured:
@@ -471,8 +580,15 @@ def _apply_title_biases(
             adjusted["입법·정책"] += 3.0
         if "거시·시장" in configured:
             adjusted["거시·시장"] -= 1.0
-        if not has_action and "감독·제재" in configured:
-            adjusted["감독·제재"] -= 1.0
+        if "감독·제재" in configured:
+            adjusted["감독·제재"] -= 3.0 if not has_action else 1.0
+    if "감독·제재" in configured:
+        if has_regulator and has_action and not has_policy:
+            adjusted["감독·제재"] += 12.0
+        elif has_regulator and not has_action:
+            adjusted["감독·제재"] -= 5.0
+        elif not has_regulator:
+            adjusted["감독·제재"] -= 12.0
     return adjusted
 
 

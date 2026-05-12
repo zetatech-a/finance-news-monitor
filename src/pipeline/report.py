@@ -257,10 +257,13 @@ def _top_rank_score(item: TaggedArticle) -> float:
         "정책": 1.2,
         "감독": 1.2,
     }
-    score += sum(w for topic, w in topic_weights.items() if topic in topics)
 
     def _topic_matches_any(topic_values: set[str], needles: tuple[str, ...]) -> bool:
         return any(any(needle in topic for needle in needles) for topic in topic_values)
+
+    score += sum(
+        w for needle, w in topic_weights.items() if _topic_matches_any(topics, (needle,))
+    )
 
     macro_relevance_needles = ("금리", "PF", "연체", "가계부채")
 
