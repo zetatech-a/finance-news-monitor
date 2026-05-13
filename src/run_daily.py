@@ -138,6 +138,19 @@ def _article_pub_timestamp(article: object) -> float:
     return 0.0
 
 
+def choose_relevance_model_policy(
+    *,
+    operating_model_path: Path,
+    candidate_model_path: Path,
+    disable_candidate_model: bool = False,
+) -> tuple[Path, str]:
+    if operating_model_path.exists():
+        return operating_model_path, "authoritative"
+    if not disable_candidate_model and candidate_model_path.exists():
+        return candidate_model_path, "candidate_hybrid"
+    return operating_model_path, "rule_only"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Daily finance news monitor")
     parser.add_argument("--date", type=str, help="YYYY-MM-DD (KST)")
@@ -161,6 +174,23 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--max_pages", type=int, default=5)
     parser.add_argument("--use_deepsearch", action="store_true")
+    parser.add_argument(
+        "--disable_candidate_model",
+        action="store_true",
+        help="Ignore models/relevance_candidate.joblib when no operating relevance model exists",
+    )
+    parser.add_argument(
+        "--candidate_keep_prob",
+        type=float,
+        default=0.65,
+        help="Candidate hybrid keep threshold",
+    )
+    parser.add_argument(
+        "--candidate_drop_prob",
+        type=float,
+        default=0.35,
+        help="Candidate hybrid drop threshold",
+    )
     return parser.parse_args()
 
 
@@ -221,11 +251,20 @@ def main() -> None:
     articles = filter_articles(articles)
     logger.info("Counts: rule_filter=%d", len(articles))
 
-    # ✅ 금융 관련성 필터(모델 있으면 모델, 없으면 스코어링 기준으로 통과)
-    # 모델이 없을 때는 min_score가 precision을 좌우하므로 보수적으로 설정
-    model_path = ROOT_DIR / "models" / "relevance.joblib"
+    # ✅ 금융 관련성 필터
+    # operating model은 authoritative, candidate model은 guardrail hybrid, 없으면 rule_only
+    operating_model_path = ROOT_DIR / "models" / "relevance.joblib"
+    candidate_model_path = ROOT_DIR / "models" / "relevance_candidate.joblib"
+    model_path, model_policy = choose_relevance_model_policy(
+        operating_model_path=operating_model_path,
+        candidate_model_path=candidate_model_path,
+        disable_candidate_model=args.disable_candidate_model,
+    )
     candidates_csv = (
         REPORT_DIR / "_candidates" / f"{end.date().isoformat()}_candidates.csv"
+    )
+    relevance_metrics_path = (
+        REPORT_DIR / "_metrics" / f"{end.date().isoformat()}_relevance_filter_metrics.json"
     )
     before = len(articles)
     articles = filter_relevance(
@@ -234,12 +273,19 @@ def main() -> None:
         out_candidates_csv=candidates_csv,
         min_prob=0.55,
         min_score=4,
+        model_policy=model_policy,
+        candidate_keep_prob=args.candidate_keep_prob,
+        candidate_drop_prob=args.candidate_drop_prob,
+        metrics_path=relevance_metrics_path,
+        metrics_date=end.date().isoformat(),
     )
     logger.info(
-        "Relevance filtered: %d -> %d (dropped=%d)",
+        "Relevance filtered: %d -> %d (dropped=%d, policy=%s, model_path=%s)",
         before,
         len(articles),
         before - len(articles),
+        model_policy,
+        model_path,
     )
     logger.info("Counts: relevance_filter=%d", len(articles))
 

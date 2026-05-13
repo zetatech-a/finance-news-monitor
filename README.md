@@ -35,6 +35,9 @@ python -m src.run_daily --date 2024-01-01 --window_hours 24 --end_hhmm 0800 --ov
 - `--end_hhmm` (기본: `0730`, 형식: `0800` 또는 `08:00`)
 - `--overlap_minutes` (기본: `15`)
 - `--dry_run` (윈도우 계산만 출력 후 종료)
+- `--disable_candidate_model` (운영 모델이 없을 때 후보 모델을 무시하고 룰만 사용)
+- `--candidate_keep_prob` (기본: `0.65`, 후보 모델 hybrid keep 임계값)
+- `--candidate_drop_prob` (기본: `0.35`, 후보 모델 hybrid drop 임계값)
 
 ## 리포트 위치
 - `reports/YYYY-MM-DD.md`
@@ -67,7 +70,9 @@ python scripts/train_relevance_candidate_model.py \
   --force
 ```
 
-후보 모델은 반드시 `models/relevance_candidate.joblib`로 저장합니다. 이후 별도 승격 단계 전까지 운영 모델인 `models/relevance.joblib`로 복사하거나 직접 덮어쓰지 않습니다.
+후보 모델은 반드시 `models/relevance_candidate.joblib`로 저장합니다. 일일 실행은 운영 모델 `models/relevance.joblib`가 있으면 기존 authoritative 정책을 사용하고, 운영 모델이 없고 후보 모델이 있으면 자동으로 `candidate_hybrid` 정책을 사용합니다. 후보 hybrid 정책은 명백한 negative 신호를 drop하고 강한 룰 기반 금융 anchor는 보존하며, 확신 구간 밖의 gray-zone은 룰 점수로 fallback합니다. 후보 모델을 운영 모델로 복사하거나 직접 덮어쓰지 않습니다.
+
+필터링 관측성은 `reports/_candidates/YYYY-MM-DD_candidates.csv`와 `reports/_metrics/YYYY-MM-DD_relevance_filter_metrics.json`에 기록됩니다. 후보 모델이 없거나 읽기/예측에 실패해도 일일 실행은 `rule_only` fallback으로 계속 진행합니다.
 
 수동 샘플이 필요할 때만 Phase 4A 유틸리티를 사용합니다.
 
