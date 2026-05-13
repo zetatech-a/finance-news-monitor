@@ -41,6 +41,28 @@ python -m src.run_daily --date 2024-01-01 --window_hours 24 --end_hhmm 0800 --ov
 - `reports/YYYY-MM-DD.html`
 - `reports/index.html`
 
+## 관련성 라벨링 데이터 준비
+후보 CSV(`reports/_candidates/*.csv`)를 사람이 검수할 라벨링 샘플로 변환합니다. 기존 출력 파일은 `--force` 없이는 덮어쓰지 않습니다.
+
+```bash
+python scripts/make_relevance_labeling_sample.py \
+  --candidates-dir reports/_candidates \
+  --output data/labeling/relevance_labeling_sample.csv \
+  --max-samples 700 \
+  --seed 42
+```
+
+허용 라벨 값은 `1`(관련), `0`(무관), `review`(검토 필요)입니다. 학습 전 검증은 다음처럼 실행합니다.
+
+```bash
+python scripts/validate_relevance_labels.py \
+  --input data/labeling/relevance_labeling_sample.csv \
+  --allow-blank \
+  --metrics-output reports/_metrics/relevance_label_validation.json
+```
+
+권장 최소 라벨 수는 관련 300건, 무관 300건, 검토 100건입니다. `--strict-min-counts`를 추가하면 권장 최소치 미달도 실패로 처리합니다.
+
 ## 참고
 - 운영 기준(프로덕션 스케줄)은 전일 08:00 ~ 당일 08:00 (KST) 수집, 매일 08:05 전후(KST) 발송입니다.
 - 운영 실행 파라미터는 `--window_hours 24 --end_hhmm 0800 --overlap_minutes 15`이며, 오버랩 15분을 적용하면 실제 수집 시작은 전일 07:45(KST)입니다.
