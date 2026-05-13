@@ -41,8 +41,35 @@ python -m src.run_daily --date 2024-01-01 --window_hours 24 --end_hhmm 0800 --ov
 - `reports/YYYY-MM-DD.html`
 - `reports/index.html`
 
-## 관련성 라벨링 데이터 준비
-후보 CSV(`reports/_candidates/*.csv`)를 사람이 검수할 라벨링 샘플로 변환합니다. 기존 출력 파일은 `--force` 없이는 덮어쓰지 않습니다.
+## 관련성 라벨링/후보 모델 준비
+Phase 4A의 수동 라벨링 샘플/검증 스크립트는 선택적인 진단·감사용 도구입니다. 기본 워크플로는 사람이 라벨을 편집하지 않는 자동 pseudo-label 기반입니다.
+
+후보 CSV(`reports/_candidates/*.csv`)에서 보수적인 자동 pseudo-label을 생성합니다. `review` 행은 애매한 사례로 표시되며 학습에서 제외됩니다.
+
+```bash
+python scripts/generate_relevance_pseudo_labels.py \
+  --candidates-dir reports/_candidates \
+  --output data/auto_labels/relevance_pseudo_labels.csv \
+  --max-rows 5000 \
+  --seed 42 \
+  --force
+```
+
+자동 pseudo-label의 `1`/`0` 행만 사용해 후보 관련성 모델을 학습하고, 평가 지표와 불일치 리포트를 생성합니다.
+
+```bash
+python scripts/train_relevance_candidate_model.py \
+  --input data/auto_labels/relevance_pseudo_labels.csv \
+  --model-output models/relevance_candidate.joblib \
+  --metrics-output reports/_metrics/relevance_candidate_eval.json \
+  --report-output reports/_metrics/relevance_candidate_eval.txt \
+  --disagreements-output reports/_metrics/relevance_disagreements.csv \
+  --force
+```
+
+후보 모델은 반드시 `models/relevance_candidate.joblib`로 저장합니다. 이후 별도 승격 단계 전까지 운영 모델인 `models/relevance.joblib`로 복사하거나 직접 덮어쓰지 않습니다.
+
+수동 샘플이 필요할 때만 Phase 4A 유틸리티를 사용합니다.
 
 ```bash
 python scripts/make_relevance_labeling_sample.py \
@@ -50,18 +77,12 @@ python scripts/make_relevance_labeling_sample.py \
   --output data/labeling/relevance_labeling_sample.csv \
   --max-samples 700 \
   --seed 42
-```
 
-허용 라벨 값은 `1`(관련), `0`(무관), `review`(검토 필요)입니다. 학습 전 검증은 다음처럼 실행합니다.
-
-```bash
 python scripts/validate_relevance_labels.py \
   --input data/labeling/relevance_labeling_sample.csv \
   --allow-blank \
   --metrics-output reports/_metrics/relevance_label_validation.json
 ```
-
-권장 최소 라벨 수는 관련 300건, 무관 300건, 검토 100건입니다. `--strict-min-counts`를 추가하면 권장 최소치 미달도 실패로 처리합니다.
 
 ## 참고
 - 운영 기준(프로덕션 스케줄)은 전일 08:00 ~ 당일 08:00 (KST) 수집, 매일 08:05 전후(KST) 발송입니다.
