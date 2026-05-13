@@ -14,6 +14,7 @@ from src.pipeline.filtering import filter_articles
 from src.pipeline.normalize import normalize
 from src.pipeline.report import render_markdown, write_index, write_report, render_html
 from src.pipeline.tagger import keyword_trends, tag_articles
+from src.pipeline.issue_cluster import cluster_tagged_articles
 
 # ✅ 금융 관련성(스코어링/모델) 필터
 from src.pipeline.relevance_filter import filter_relevance
@@ -127,6 +128,16 @@ def compute_window(
     return start, end
 
 
+def _article_pub_timestamp(article: object) -> float:
+    pub_date = getattr(article, "pub_date", None)
+    if isinstance(pub_date, datetime):
+        try:
+            return float(pub_date.timestamp())
+        except Exception:
+            return 0.0
+    return 0.0
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Daily finance news monitor")
     parser.add_argument("--date", type=str, help="YYYY-MM-DD (KST)")
@@ -235,6 +246,19 @@ def main() -> None:
     # ✅ 금융 관련성 통과 기사만 섹터/토픽 태깅
     tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
 
+    # ✅ Phase 3: 같은 이슈 반복 기사는 대표 기사만 요약/렌더링
+    before_cluster = len(tagged)
+    tagged = cluster_tagged_articles(tagged)
+    cluster_sizes = [int(getattr(item.article, "cluster_size", 1) or 1) for item in tagged]
+    max_cluster_size = max(cluster_sizes, default=0)
+    logger.info(
+        "Issue clustering: %d -> %d representatives grouped=%d max_cluster_size=%d",
+        before_cluster,
+        len(tagged),
+        before_cluster - len(tagged),
+        max_cluster_size,
+    )
+
     # ✅ 요약 캐시 로드 (같은 URL 재요청 방지)
     cache_path = REPORT_DIR / "_cache" / "summary_cache.json"
     summary_cache = load_cache(cache_path)
@@ -246,7 +270,9 @@ def main() -> None:
     cache_hits = 0
 
     # 최신 기사부터 처리(리포트에 들어갈 가능성이 높은 것 우선)
-    for item in sorted(tagged, key=lambda x: x.article.pub_date, reverse=True):
+    for item in sorted(
+        tagged, key=lambda x: _article_pub_timestamp(x.article), reverse=True
+    ):
         fetch_url = (
             item.article.naver_link or item.article.originallink or item.article.link
         )
@@ -297,9 +323,10 @@ def main() -> None:
         "Extractive summaries applied: %s (cache_hits=%s)", summarized, cache_hits
     )
 
-    # 요약 반영 후 최종 본문(description) 기준으로 태깅 재계산
-    tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
-    logger.info("Counts: final_tagged=%d", len(tagged))
+    # 요약 반영 후 최종 본문(description) 기준으로 대표 기사만 태깅 재계산
+    representative_articles = [item.article for item in tagged]
+    tagged = tag_articles(representative_articles, sector_queries, topic_queries=topic_queries)
+    logger.info("Counts: final_tagged_representatives=%d", len(tagged))
 
     trends = keyword_trends(tagged)
     markdown_text = render_markdown(end, tagged, trends)

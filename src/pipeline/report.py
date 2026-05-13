@@ -398,7 +398,9 @@ def render_markdown(
             continue
         lines.append(f"### {sector}")
         for item in sorted(
-            by_sector[sector], key=lambda x: x.article.pub_date, reverse=True
+            by_sector[sector],
+            key=lambda x: _ts_dt(getattr(x.article, "pub_date", None)),
+            reverse=True,
         )[:10]:
             a = item.article
             lines.append(
@@ -575,6 +577,10 @@ h2{ margin:0; font-size:15px; }
   margin:0; color: color-mix(in srgb, var(--text) 82%, var(--muted)); font-size:12.5px;
   display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
 }
+.related{ margin:8px 0 0; padding-left:16px; color:var(--muted); font-size:12px; }
+.related li{ margin:2px 0; }
+.related a{ color:var(--muted); text-decoration:none; }
+.related a:hover{ color:var(--link_hover); text-decoration:underline; }
 .actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:9px; }
 .load-more-wrap{ margin:8px 0 2px; }
 mark{ background: color-mix(in srgb, var(--link) 18%, transparent); color: inherit; border-radius: 6px; padding: 0 3px; }
@@ -918,7 +924,9 @@ def render_html(
         by_sector[sector].append(item)
 
     misc_review_items = sorted(
-        misc_review_items, key=lambda x: x.article.pub_date, reverse=True
+        misc_review_items,
+        key=lambda x: _ts_dt(getattr(x.article, "pub_date", None)),
+        reverse=True,
     )[:10]
     if misc_review_items:
         by_sector["기타"] = misc_review_items
@@ -986,6 +994,13 @@ def render_html(
         rel = _relevance_value(a)
         cluster_id = _field(a, "cluster_id")
         cluster_size = _field(a, "cluster_size")
+        try:
+            cluster_size_int = int(cluster_size or 1)
+        except (TypeError, ValueError):
+            cluster_size_int = 1
+        related_articles = _field(a, "related_articles") or []
+        if not isinstance(related_articles, list):
+            related_articles = []
         rel_label = None
         rel_class = ""
         rel_val = 0.0
@@ -1017,16 +1032,36 @@ def render_html(
             badges.append(f"<span class='badge {rel_class}'>Rel {rel_label}</span>")
         if cached:
             badges.append("<span class='badge'>⚡ 캐시</span>")
+        if cluster_size_int > 1:
+            badges.append(f"<span class='badge'>관련 기사 {cluster_size_int}건</span>")
         topic_badges = (
             "".join(f"<span class='badge'>{_h(t)}</span>" for t in topics)
             or "<span class='badge'>주제 없음</span>"
         )
+        related_html = ""
+        if cluster_size_int > 1 and related_articles:
+            related_items = []
+            for related in related_articles[:3]:
+                if not isinstance(related, dict):
+                    continue
+                related_title = str(related.get("title") or "").strip()
+                if not related_title:
+                    continue
+                related_link = str(related.get("link") or "").strip()
+                if related_link:
+                    related_items.append(
+                        f"<li><a href='{_h(related_link)}' target='_blank' rel='noopener noreferrer'>{_h(_truncate(related_title, 70))}</a></li>"
+                    )
+                else:
+                    related_items.append(f"<li>{_h(_truncate(related_title, 70))}</li>")
+            if related_items:
+                related_html = "<ul class='related' aria-label='관련 기사'>" + "".join(related_items) + "</ul>"
 
         return (
             f"<article class='card' data-card "
             f"data-sector='{_h(sector)}' data-top={'1' if is_top else '0'} "
             f"data-hay='{_h(hay)}' data-topics='{_h(topic_joined)}' data-ts='{ts}' data-rel='{rel_val}' "
-            f"data-cluster='{_h(str(cluster_id or ''))}' data-cluster-size='{int(cluster_size or 1)}' "
+            f"data-cluster='{_h(str(cluster_id or ''))}' data-cluster-size='{cluster_size_int}' "
             f"data-url='{_h(primary)}'>"
             f"  <div class='card-head'>"
             f"    <h3 class='title'>"
@@ -1041,6 +1076,7 @@ def render_html(
             f"  </div>"
             f"  <div class='meta-row'>{topic_badges}</div>"
             f"  <p class='summary' data-summary>{_h(summary)}</p>"
+            f"  {related_html}"
             f"  <div class='actions'>{''.join(btns)}</div>"
             f"</article>"
         )
@@ -1054,7 +1090,9 @@ def render_html(
     sector_sections: list[str] = []
     for s in ordered_sectors:
         items = sorted(
-            by_sector.get(s, []), key=lambda x: x.article.pub_date, reverse=True
+            by_sector.get(s, []),
+            key=lambda x: _ts_dt(getattr(x.article, "pub_date", None)),
+            reverse=True,
         )
         if not items:
             continue

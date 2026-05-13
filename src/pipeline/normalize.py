@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 
 
@@ -20,6 +20,10 @@ class Article:
     cluster_key: str | None = None
     cluster_id: str | None = None
     cluster_size: int | None = None
+    cluster_rank: int | None = None
+    cluster_is_representative: bool | None = None
+    related_count: int | None = None
+    related_articles: list[dict[str, str]] = field(default_factory=list)
 
 
 def normalize(raw_items: list[dict]) -> list[Article]:
