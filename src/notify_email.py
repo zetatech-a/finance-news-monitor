@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import logging
 import mimetypes
 import os
 import smtplib
+import time
 from datetime import date
 from email.message import EmailMessage
 from email.utils import formataddr
@@ -10,12 +12,124 @@ from pathlib import Path
 
 from src.config import now_kst
 
+DEFAULT_SMTP_TIMEOUT_SECONDS = 30.0
+DEFAULT_MAIL_RETRY_ATTEMPTS = 3
+DEFAULT_MAIL_RETRY_BACKOFF_SECONDS = 10.0
+MAX_SMTP_TIMEOUT_SECONDS = 120.0
+MAX_MAIL_RETRY_ATTEMPTS = 5
+MAX_MAIL_RETRY_BACKOFF_SECONDS = 120.0
+
+logger = logging.getLogger(__name__)
+
 
 def _req(name: str) -> str:
     v = os.environ.get(name, "").strip()
     if not v:
         raise RuntimeError(f"Missing environment variable: {name}")
     return v
+
+
+def _env_int(
+    name: str, default: int, minimum: int = 1, maximum: int | None = None
+) -> int:
+    raw = os.environ.get(name, "").strip()
+    if not raw:
+        return default
+    try:
+        value = int(raw)
+    except ValueError:
+        logger.warning("Invalid %s value; using default %s", name, default)
+        return default
+    if value < minimum:
+        logger.warning("Invalid %s value below %s; using default %s", name, minimum, default)
+        return default
+    if maximum is not None and value > maximum:
+        logger.warning("Invalid %s value above %s; using default %s", name, maximum, default)
+        return default
+    return value
+
+
+def _env_float(
+    name: str, default: float, minimum: float = 0.0, maximum: float | None = None
+) -> float:
+    raw = os.environ.get(name, "").strip()
+    if not raw:
+        return default
+    try:
+        value = float(raw)
+    except ValueError:
+        logger.warning("Invalid %s value; using default %s", name, default)
+        return default
+    if value < minimum:
+        logger.warning("Invalid %s value below %s; using default %s", name, minimum, default)
+        return default
+    if maximum is not None and value > maximum:
+        logger.warning("Invalid %s value above %s; using default %s", name, maximum, default)
+        return default
+    return value
+
+
+def _backoff_seconds(initial_backoff: float, attempt: int) -> float:
+    return min(initial_backoff * (2 ** (attempt - 1)), MAX_MAIL_RETRY_BACKOFF_SECONDS)
+
+
+def _send_message_once(
+    *,
+    host: str,
+    port: int,
+    user: str,
+    password: str,
+    message: EmailMessage,
+    timeout: float,
+) -> None:
+    # STARTTLS (587)
+    with smtplib.SMTP(host, port, timeout=timeout) as server:
+        server.ehlo()
+        server.starttls()
+        server.login(user, password)
+        server.send_message(message)
+
+
+def _send_message_with_retry(
+    *,
+    host: str,
+    port: int,
+    user: str,
+    password: str,
+    message: EmailMessage,
+    timeout: float,
+    attempts: int,
+    backoff: float,
+) -> None:
+    last_error: BaseException | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            _send_message_once(
+                host=host,
+                port=port,
+                user=user,
+                password=password,
+                message=message,
+                timeout=timeout,
+            )
+            return
+        except (smtplib.SMTPException, TimeoutError, OSError) as exc:
+            last_error = exc
+            if attempt >= attempts:
+                break
+            wait = _backoff_seconds(backoff, attempt)
+            logger.warning(
+                "Email send retry %s/%s after %s; waiting %.1fs",
+                attempt,
+                attempts,
+                exc.__class__.__name__,
+                wait,
+            )
+            time.sleep(wait)
+
+    error_name = last_error.__class__.__name__ if last_error else "unknown error"
+    logger.error("Email send failed after %s attempts: %s", attempts, error_name)
+    raise RuntimeError(f"Email send failed after {attempts} attempts: {error_name}") from last_error
 
 
 def send_email(subject: str, body: str, attachments: list[Path]) -> None:
@@ -29,6 +143,23 @@ def send_email(subject: str, body: str, attachments: list[Path]) -> None:
     mail_from_name = os.environ.get("MAIL_FROM_NAME", "").strip() or "금융동향봇"
 
     mail_to = [x.strip() for x in _req("MAIL_TO").split(",") if x.strip()]
+
+    timeout = _env_float(
+        "SMTP_TIMEOUT_SECONDS",
+        DEFAULT_SMTP_TIMEOUT_SECONDS,
+        minimum=0.1,
+        maximum=MAX_SMTP_TIMEOUT_SECONDS,
+    )
+    attempts = _env_int(
+        "MAIL_RETRY_ATTEMPTS",
+        DEFAULT_MAIL_RETRY_ATTEMPTS,
+        maximum=MAX_MAIL_RETRY_ATTEMPTS,
+    )
+    backoff = _env_float(
+        "MAIL_RETRY_BACKOFF_SECONDS",
+        DEFAULT_MAIL_RETRY_BACKOFF_SECONDS,
+        maximum=MAX_MAIL_RETRY_BACKOFF_SECONDS,
+    )
 
     msg = EmailMessage()
     msg["Subject"] = subject
@@ -50,12 +181,16 @@ def send_email(subject: str, body: str, attachments: list[Path]) -> None:
             filename=path.name,
         )
 
-    # STARTTLS (587)
-    with smtplib.SMTP(host, port) as server:
-        server.ehlo()
-        server.starttls()
-        server.login(user, password)
-        server.send_message(msg)
+    _send_message_with_retry(
+        host=host,
+        port=port,
+        user=user,
+        password=password,
+        message=msg,
+        timeout=timeout,
+        attempts=attempts,
+        backoff=backoff,
+    )
 
 
 def resolve_report_date_and_attachments(report_dir: Path) -> tuple[str, list[Path]]:

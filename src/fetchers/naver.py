@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import logging
+import os
+import time
 from datetime import datetime
 from html import unescape
 from typing import Iterable
@@ -11,6 +13,13 @@ from dateutil import parser as date_parser
 from src.config import NaverConfig
 
 NAVER_NEWS_ENDPOINT = "https://openapi.naver.com/v1/search/news.json"
+DEFAULT_NAVER_HTTP_TIMEOUT_SECONDS = 10.0
+DEFAULT_NAVER_RETRY_ATTEMPTS = 3
+DEFAULT_NAVER_RETRY_BACKOFF_SECONDS = 1.0
+MAX_NAVER_HTTP_TIMEOUT_SECONDS = 60.0
+MAX_NAVER_RETRY_ATTEMPTS = 5
+MAX_NAVER_RETRY_BACKOFF_SECONDS = 30.0
+RETRYABLE_HTTP_STATUSES = {429, 500, 502, 503, 504}
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +36,109 @@ def _clean_text(text: str) -> str:
     return unescape(text).replace("<b>", "").replace("</b>", "").strip()
 
 
+def _env_int(
+    name: str, default: int, minimum: int = 1, maximum: int | None = None
+) -> int:
+    raw = os.environ.get(name, "").strip()
+    if not raw:
+        return default
+    try:
+        value = int(raw)
+    except ValueError:
+        logger.warning("Invalid %s value; using default %s", name, default)
+        return default
+    if value < minimum:
+        logger.warning("Invalid %s value below %s; using default %s", name, minimum, default)
+        return default
+    if maximum is not None and value > maximum:
+        logger.warning("Invalid %s value above %s; using default %s", name, maximum, default)
+        return default
+    return value
+
+
+def _env_float(
+    name: str, default: float, minimum: float = 0.0, maximum: float | None = None
+) -> float:
+    raw = os.environ.get(name, "").strip()
+    if not raw:
+        return default
+    try:
+        value = float(raw)
+    except ValueError:
+        logger.warning("Invalid %s value; using default %s", name, default)
+        return default
+    if value < minimum:
+        logger.warning("Invalid %s value below %s; using default %s", name, minimum, default)
+        return default
+    if maximum is not None and value > maximum:
+        logger.warning("Invalid %s value above %s; using default %s", name, maximum, default)
+        return default
+    return value
+
+
+def _is_retryable_status(status_code: int) -> bool:
+    return status_code in RETRYABLE_HTTP_STATUSES
+
+
+def _backoff_seconds(initial_backoff: float, attempt: int) -> float:
+    return min(initial_backoff * (2 ** (attempt - 1)), MAX_NAVER_RETRY_BACKOFF_SECONDS)
+
+
+def _request_with_retry(
+    session: requests.Session,
+    *,
+    url: str,
+    headers: dict[str, str],
+    params: dict[str, object],
+    timeout: float,
+    attempts: int,
+    backoff: float,
+) -> requests.Response:
+    last_error: BaseException | None = None
+    for attempt in range(1, attempts + 1):
+        try:
+            response = session.get(url, headers=headers, params=params, timeout=timeout)
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as exc:
+            last_error = exc
+            if attempt >= attempts:
+                break
+            wait = _backoff_seconds(backoff, attempt)
+            logger.warning(
+                "Naver request retry %s/%s after %s; waiting %.1fs",
+                attempt,
+                attempts,
+                exc.__class__.__name__,
+                wait,
+            )
+            time.sleep(wait)
+            continue
+
+        if not _is_retryable_status(response.status_code):
+            response.raise_for_status()
+            return response
+
+        if attempt >= attempts:
+            try:
+                response.raise_for_status()
+            except requests.HTTPError as exc:
+                raise RuntimeError(
+                    f"Naver request failed after {attempts} attempts with HTTP {response.status_code}"
+                ) from exc
+            return response
+
+        wait = _backoff_seconds(backoff, attempt)
+        logger.warning(
+            "Naver request retry %s/%s after HTTP %s; waiting %.1fs",
+            attempt,
+            attempts,
+            response.status_code,
+            wait,
+        )
+        time.sleep(wait)
+
+    raise RuntimeError(f"Naver request failed after {attempts} attempts: {last_error.__class__.__name__}") from last_error
+
+
 def fetch_news(
     config: NaverConfig,
     queries: Iterable[str],
@@ -35,6 +147,28 @@ def fetch_news(
     display: int = 100,
     max_pages: int = 5,
 ) -> list[dict]:
+    if not config.client_id:
+        raise RuntimeError("Missing required Naver configuration: NAVER_CLIENT_ID")
+    if not config.client_secret:
+        raise RuntimeError("Missing required Naver configuration: NAVER_CLIENT_SECRET")
+
+    timeout = _env_float(
+        "NAVER_HTTP_TIMEOUT_SECONDS",
+        DEFAULT_NAVER_HTTP_TIMEOUT_SECONDS,
+        minimum=0.1,
+        maximum=MAX_NAVER_HTTP_TIMEOUT_SECONDS,
+    )
+    attempts = _env_int(
+        "NAVER_RETRY_ATTEMPTS",
+        DEFAULT_NAVER_RETRY_ATTEMPTS,
+        maximum=MAX_NAVER_RETRY_ATTEMPTS,
+    )
+    backoff = _env_float(
+        "NAVER_RETRY_BACKOFF_SECONDS",
+        DEFAULT_NAVER_RETRY_BACKOFF_SECONDS,
+        maximum=MAX_NAVER_RETRY_BACKOFF_SECONDS,
+    )
+
     headers = {
         "X-Naver-Client-Id": config.client_id,
         "X-Naver-Client-Secret": config.client_secret,
@@ -52,10 +186,15 @@ def fetch_news(
                 "start": start_idx,
                 "sort": "date",
             }
-            response = session.get(
-                NAVER_NEWS_ENDPOINT, headers=headers, params=params, timeout=10
+            response = _request_with_retry(
+                session,
+                url=NAVER_NEWS_ENDPOINT,
+                headers=headers,
+                params=params,
+                timeout=timeout,
+                attempts=attempts,
+                backoff=backoff,
             )
-            response.raise_for_status()
             payload = response.json()
             entries = payload.get("items", [])
             if not entries:
