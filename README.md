@@ -90,8 +90,9 @@ python scripts/validate_relevance_labels.py \
 ```
 
 ## 참고
-- 운영 기준(프로덕션 스케줄)은 전일 08:00 ~ 당일 08:00 (KST) 수집, 매일 08:05 전후(KST) 발송입니다.
-- 운영 실행 파라미터는 `--window_hours 24 --end_hhmm 0800 --overlap_minutes 15`이며, 오버랩 15분을 적용하면 실제 수집 시작은 전일 07:45(KST)입니다.
-- 수동 실행(`workflow_dispatch`)의 기본값은 메일 미발송이며, 필요할 때만 `send_email=true`로 발송합니다.
+- 운영 기준(프로덕션 스케줄)은 전일 08:55 ~ 당일 08:55 (KST) 수집, 매일 09:00 전후(KST) 발송을 목표로 합니다.
+- 운영 실행 파라미터는 `--window_hours 24 --end_hhmm 0855 --overlap_minutes 15`이며, 오버랩 15분을 적용하면 실제 수집 시작은 전일 08:40(KST)입니다.
+- GitHub Actions 스케줄은 08:41/08:49/08:57/09:07/09:17(KST)에 다중 트리거됩니다. 이른 실행은 최대 20분 동안 08:55(KST)까지 대기하고, `reports/_sent/YYYY-MM-DD_email_sent.json` sent-marker로 중복 발송을 방지합니다.
+- 수동 실행(`workflow_dispatch`)의 기본값은 메일 미발송이며, 필요할 때만 `send_email=true`로 발송합니다. 이미 sent-marker가 있으면 `force_send=true`를 지정해야 수동 재발송합니다.
 - 기본값(`--end_hhmm 0730`)은 로컬/하위호환 용도로 유지되어 기존 07:30 마감 기준 실행도 가능합니다.
 - 원문 전문은 저장하지 않고 제목/요약/링크만 저장합니다.

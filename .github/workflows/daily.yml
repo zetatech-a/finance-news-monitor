@@ -1,22 +1,36 @@
 name: Daily Finance News Report (Daily)
 
 concurrency:
-  group: daily-finance-news
-  cancel-in-progress: true
+  group: daily-finance-report-${{ github.ref }}
+  cancel-in-progress: false
 
 on:
   schedule:
-    - cron: "33 23 * * *"  # UTC daily 23:33 = KST daily 08:33
+    - cron: "41 23 * * *"  # UTC 23:41 = KST 08:41
+    - cron: "49 23 * * *"  # UTC 23:49 = KST 08:49
+    - cron: "57 23 * * *"  # UTC 23:57 = KST 08:57
+    - cron: "7 0 * * *"    # UTC 00:07 = KST 09:07
+    - cron: "17 0 * * *"   # UTC 00:17 = KST 09:17
   workflow_dispatch:
     inputs:
       send_email:
         description: "Send email on manual run"
         type: boolean
         default: false
+      force_send:
+        description: "Allow manual email re-send when today's sent marker exists"
+        type: boolean
+        default: false
+      wait_until_target:
+        description: "Wait until about 08:55 KST on manual run"
+        type: boolean
+        default: false
 
 jobs:
   run:
     runs-on: ubuntu-latest
+    env:
+      COLLECTION_END_HHMM: "0855"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,24 +47,73 @@ jobs:
         run: |
           echo "Event: $GITHUB_EVENT_NAME"
           echo "inputs.send_email=${{ inputs.send_email }}"
+          echo "inputs.force_send=${{ inputs.force_send }}"
+          echo "inputs.wait_until_target=${{ inputs.wait_until_target }}"
+          echo "workflow_run_id=$GITHUB_RUN_ID"
+          echo "workflow_attempt=$GITHUB_RUN_ATTEMPT"
+          echo "github_sha=$GITHUB_SHA"
           date -u
           TZ=Asia/Seoul date
 
-      - name: Run daily 1st pass (baseline window)
-        env:
-          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
-          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
-        run: python -m src.run_daily --date "$(TZ='Asia/Seoul' date +%Y-%m-%d)" --window_hours 24 --end_hhmm 0820 --overlap_minutes 15
+      - name: Pull latest reports and sent markers
+        run: git pull --rebase origin main
 
-      - name: Run daily 2nd pass (catch-up before send)
-        continue-on-error: true
+      - name: Phase 5 marker precheck
+        id: phase5_precheck
+        run: |
+          python scripts/phase5_delivery.py precheck \
+            --event-name "$GITHUB_EVENT_NAME" \
+            --send-email "${{ inputs.send_email }}" \
+            --force-send "${{ inputs.force_send }}" \
+            --collection-end-hhmm "$COLLECTION_END_HHMM"
+
+      - name: Wait until target send window
+        if: ${{ steps.phase5_precheck.outputs.should_run == 'true' }}
+        run: |
+          python scripts/phase5_delivery.py wait \
+            --event-name "$GITHUB_EVENT_NAME" \
+            --wait-until-target "${{ inputs.wait_until_target }}" \
+            --target-hhmm "$COLLECTION_END_HHMM" \
+            --max-wait-seconds 1200
+
+      - name: Re-pull latest reports and sent markers after wait
+        if: ${{ steps.phase5_precheck.outputs.should_run == 'true' }}
+        run: git pull --rebase origin main
+
+      - name: Phase 5 marker recheck
+        id: phase5_recheck
+        if: ${{ steps.phase5_precheck.outputs.should_run == 'true' }}
+        run: |
+          python scripts/phase5_delivery.py precheck \
+            --event-name "$GITHUB_EVENT_NAME" \
+            --send-email "${{ inputs.send_email }}" \
+            --force-send "${{ inputs.force_send }}" \
+            --collection-end-hhmm "$COLLECTION_END_HHMM"
+
+      - name: Log skip reason
+        if: ${{ steps.phase5_precheck.outputs.should_run != 'true' || steps.phase5_recheck.outputs.should_run != 'true' }}
+        run: |
+          echo "Phase 5 skip before wait: ${{ steps.phase5_precheck.outputs.skip_reason }}"
+          echo "Phase 5 skip after wait: ${{ steps.phase5_recheck.outputs.skip_reason }}"
+          echo "marker_path=${{ steps.phase5_precheck.outputs.marker_path }}"
+
+      - name: Run daily report
+        if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
         env:
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
-        run: python -m src.run_daily --date "$(TZ='Asia/Seoul' date +%Y-%m-%d)" --window_hours 24 --end_hhmm 0830 --overlap_minutes 15
+        run: |
+          echo "report_generation_started_kst=$(TZ='Asia/Seoul' date --iso-8601=seconds)"
+          echo "collection_end_hhmm=$COLLECTION_END_HHMM"
+          python -m src.run_daily \
+            --date "${{ steps.phase5_recheck.outputs.report_date }}" \
+            --window_hours 24 \
+            --end_hhmm "$COLLECTION_END_HHMM" \
+            --overlap_minutes 15
 
       - name: Email precheck
         id: email_precheck
+        if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
@@ -59,10 +122,8 @@ jobs:
           MAIL_FROM: ${{ secrets.MAIL_FROM }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
         run: |
-          want_send="${{ github.event_name == 'schedule' || inputs.send_email }}"
-
-          if [[ "$want_send" != "true" ]]; then
-            echo "Email disabled by input"
+          if [[ "${{ steps.phase5_recheck.outputs.should_send }}" != "true" ]]; then
+            echo "Email disabled by input or sent marker"
             echo "should_send=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -81,7 +142,7 @@ jobs:
 
           echo "should_send=true" >> "$GITHUB_OUTPUT"
 
-      - name: Send email (optional)
+      - name: Send email
         if: ${{ steps.email_precheck.outputs.should_send == 'true' }}
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
@@ -90,21 +151,25 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           MAIL_FROM: ${{ secrets.MAIL_FROM }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
-        run: python -m src.notify_email
+        run: |
+          python -m src.notify_email
+          echo "email_sent_at_kst=$(TZ='Asia/Seoul' date --iso-8601=seconds)"
 
-      - name: Commit reports
+      - name: Write sent marker
+        if: ${{ steps.email_precheck.outputs.should_send == 'true' }}
+        run: |
+          python scripts/phase5_delivery.py mark-sent \
+            --report-date "${{ steps.phase5_recheck.outputs.report_date }}" \
+            --event-name "$GITHUB_EVENT_NAME" \
+            --collection-end-hhmm "$COLLECTION_END_HHMM"
+
+      - name: Commit reports and sent marker
+        if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
-          # 변경사항(리포트) 먼저 stage
           git add reports/
-
-          # 변경사항이 있으면 커밋 (없으면 그냥 넘어감)
           git commit -m "Daily report" || echo "No changes to commit"
-
-          # 원격 최신 반영 (충돌 방지)
           git pull --rebase origin main || true
-
-          # push (rebase로 커밋 해시가 바뀌었을 수 있으니 다시 push)
           git push origin HEAD:main
