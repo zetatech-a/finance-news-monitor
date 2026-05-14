@@ -70,6 +70,21 @@ python scripts/train_relevance_candidate_model.py \
   --force
 ```
 
+일일 GitHub Actions 실행은 `run_daily` 전에 과거 후보 CSV만 사용해 후보 모델을 best-effort로 자동 갱신합니다. 현재 리포트 날짜의 `reports/_candidates/YYYY-MM-DD_candidates.csv`는 학습 입력에서 제외되며, 상태/평가/불일치 파일은 `reports/_metrics` 아래 날짜별 파일로 기록됩니다. 학습 데이터가 부족하거나 갱신에 실패해도 일일 리포트/메일 생성은 계속 진행하고, 기존 유효 후보 모델 또는 `rule_only` fallback을 사용합니다.
+
+```bash
+python scripts/refresh_relevance_candidate_model.py \
+  --candidates-dir reports/_candidates \
+  --model-output models/relevance_candidate.joblib \
+  --metrics-output reports/_metrics/2026-05-13_relevance_candidate_eval.json \
+  --report-output reports/_metrics/2026-05-13_relevance_candidate_eval.txt \
+  --disagreements-output reports/_metrics/2026-05-13_relevance_disagreements.csv \
+  --status-output reports/_metrics/2026-05-13_candidate_model_refresh.json \
+  --report-date 2026-05-13 \
+  --force \
+  --best-effort
+```
+
 후보 모델은 반드시 `models/relevance_candidate.joblib`로 저장합니다. 일일 실행은 운영 모델 `models/relevance.joblib`가 있으면 기존 authoritative 정책을 사용하고, 운영 모델이 없고 후보 모델이 있으면 자동으로 `candidate_hybrid` 정책을 사용합니다. 후보 hybrid 정책은 명백한 negative 신호를 drop하고 강한 룰 기반 금융 anchor는 보존하며, 확신 구간 밖의 gray-zone은 룰 점수로 fallback합니다. 후보 모델을 운영 모델로 복사하거나 직접 덮어쓰지 않습니다.
 
 필터링 관측성은 `reports/_candidates/YYYY-MM-DD_candidates.csv`와 `reports/_metrics/YYYY-MM-DD_relevance_filter_metrics.json`에 기록됩니다. 후보 모델이 없거나 읽기/예측에 실패해도 일일 실행은 `rule_only` fallback으로 계속 진행합니다.

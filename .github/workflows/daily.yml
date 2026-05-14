@@ -97,6 +97,21 @@ jobs:
           echo "Phase 5 skip after wait: ${{ steps.phase5_recheck.outputs.skip_reason }}"
           echo "marker_path=${{ steps.phase5_precheck.outputs.marker_path }}"
 
+      - name: Refresh candidate relevance model
+        if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
+        run: |
+          report_date="${{ steps.phase5_recheck.outputs.report_date }}"
+          python scripts/refresh_relevance_candidate_model.py \
+            --report-date "$report_date" \
+            --candidates-dir reports/_candidates \
+            --model-output models/relevance_candidate.joblib \
+            --metrics-output "reports/_metrics/${report_date}_relevance_candidate_eval.json" \
+            --report-output "reports/_metrics/${report_date}_relevance_candidate_eval.txt" \
+            --disagreements-output "reports/_metrics/${report_date}_relevance_disagreements.csv" \
+            --status-output "reports/_metrics/${report_date}_candidate_model_refresh.json" \
+            --force \
+            --best-effort
+
       - name: Run daily report
         if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
         env:
