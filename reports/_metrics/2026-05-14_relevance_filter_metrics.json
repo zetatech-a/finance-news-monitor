@@ -1,0 +1,27 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_hybrid_gray_rule_drop": 0,
+  "candidate_hybrid_gray_rule_keep": 0,
+  "candidate_hybrid_model_drop": 0,
+  "candidate_hybrid_model_keep": 0,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_strong_rule_keep": 0,
+  "candidate_keep_prob": 0.65,
+  "date": "2026-05-14",
+  "decision_reason_counts": {
+    "rule_drop_negative_signal": 4,
+    "rule_drop_no_financial_anchor": 119,
+    "rule_drop_score_lt_threshold": 65,
+    "rule_keep_score_ge_threshold": 840
+  },
+  "dropped_count": 188,
+  "input_count": 1028,
+  "kept_count": 840,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance.joblib",
+  "model_policy": "rule_only",
+  "model_prob_available_count": 0,
+  "model_prob_missing_count": 1028,
+  "model_used": false
+}
