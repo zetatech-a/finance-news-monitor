@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import re
 from collections import Counter
 from dataclasses import dataclass
 from typing import Any
 
 from src.pipeline.normalize import Article
+from src.pipeline.text_matcher import contains_term, has_any_term, normalize_text
 
 
 @dataclass
@@ -19,7 +19,6 @@ class TaggedArticle:
 # NOTE: 일부 짧은 키워드는 다른 단어의 접두/부분문자열로 자주 등장해 오탐을 유발함.
 # 예) '리스' -> '리스크' (해외/시장 기사에 빈번)
 RISKY_SHORT_KEYWORDS = {"대부", "여전"}
-_KOR_WORD_CHAR_CLASS = "가-힣A-Za-z0-9"
 
 TITLE_STRONG_SCORE = 6
 TITLE_WEAK_SCORE = 3
@@ -98,6 +97,23 @@ SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
         "weak": ["은행", "인터넷은행", "시중은행", "국책은행"],
         "negative": ["투자은행", "저축은행", "상호저축은행", "ipo", "회사채", "ecm", "dcm"],
     },
+    "보험": {
+        "strong": [
+            "보험사",
+            "보험업계",
+            "손해보험",
+            "생명보험",
+            "손보사",
+            "생보사",
+            "실손보험",
+            "자동차보험",
+            "킥스",
+            "K-ICS",
+        ],
+        "weak": ["보험"],
+        "negative": ["건강보험", "고용보험", "산재보험", "재보험", "보험료"],
+        "demote_to_weak": ["보험"],
+    },
     "IB·자본시장": {
         "strong": ["투자은행", "ipo", "ecm", "dcm", "회사채", "abcp"],
         "weak": ["cp", "m&a"],
@@ -112,6 +128,12 @@ SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
         "strong": ["가상자산", "암호화폐", "토큰증권", "sto"],
         "weak": ["거래소"],
         "negative": ["한국거래소", "유가증권시장", "코스닥"],
+    },
+    "여전": {
+        "strong": ["여신협회", "여신금융협회", "여신전문금융협회", "카드수수료"],
+        "weak": ["여전"],
+        "negative": [],
+        "demote_to_weak": ["여전"],
     },
     "핀테크·플랫폼": {
         "strong": ["핀테크", "마이데이터", "간편결제", "금융플랫폼"],
@@ -221,7 +243,7 @@ TOPIC_SECTOR_AFFINITY: dict[str, tuple[str, ...]] = {
 
 
 def _normalize_text(text: str) -> str:
-    normalized = text
+    normalized = normalize_text(text)
     for src, dst in TEXT_ALIASES:
         normalized = normalized.replace(src, dst)
     return normalized
@@ -256,12 +278,12 @@ def _is_schedule_article(text: str) -> bool:
         "회의 일정",
         "주요일정",
     )
-    return any(p in text for p in schedule_patterns)
+    return has_any_term(text, schedule_patterns)
 
 
 def _has_regulator_anchor(text: str) -> bool:
     regulator_anchors = ("금융위", "금융위원회", "금감원", "금융감독원")
-    return any(s in text for s in regulator_anchors)
+    return has_any_term(text, regulator_anchors)
 
 
 def _has_supervisory_action(text: str) -> bool:
@@ -283,7 +305,7 @@ def _has_supervisory_action(text: str) -> bool:
         "적발",
         "조사",
     )
-    return any(s in text for s in strong_signals)
+    return has_any_term(text, strong_signals)
 
 
 def _has_policy_signal(text: str) -> bool:
@@ -308,7 +330,7 @@ def _has_policy_signal(text: str) -> bool:
         "발표",
         "추진",
     )
-    return any(s in text for s in policy_signals)
+    return has_any_term(text, policy_signals)
 
 
 def _has_bank_identity(text: str) -> bool:
@@ -327,7 +349,7 @@ def _has_bank_identity(text: str) -> bool:
         "인터넷은행",
         "국책은행",
     )
-    if any(s in text for s in bank_signals):
+    if has_any_term(text, bank_signals):
         return "투자은행" not in text and "저축은행" not in text and "상호저축은행" not in text
     return False
 
@@ -359,7 +381,7 @@ def _has_market_context(text: str) -> bool:
         "나스닥",
         "s&p",
     )
-    return any(p in text for p in market_patterns)
+    return has_any_term(text, market_patterns)
 
 
 def _has_market_title_signal(title_text: str) -> bool:
@@ -368,7 +390,7 @@ def _has_market_title_signal(title_text: str) -> bool:
 
 def _has_generic_macro_term(text: str) -> bool:
     generic_terms = ("환율", "금리", "유가", "달러", "원자재")
-    return any(p in text for p in generic_terms)
+    return has_any_term(text, generic_terms)
 
 
 def _has_corporate_earnings_context(text: str) -> bool:
@@ -391,7 +413,7 @@ def _has_corporate_earnings_context(text: str) -> bool:
         "해운",
         "철강",
     )
-    return any(p in text for p in corporate_terms)
+    return has_any_term(text, corporate_terms)
 
 
 def _has_financial_company_context(text: str) -> bool:
@@ -418,7 +440,7 @@ def _has_financial_company_context(text: str) -> bool:
         "금융회사",
         "핀테크",
     )
-    return any(p in text for p in financial_terms)
+    return has_any_term(text, financial_terms)
 
 
 def _has_bank_quote_source_signal(text: str) -> bool:
@@ -431,7 +453,7 @@ def _has_bank_quote_source_signal(text: str) -> bool:
         "트레이더",
         "외환 딜러",
     )
-    return any(p in text for p in quote_patterns)
+    return has_any_term(text, quote_patterns)
 
 
 def _has_explicit_bank_brand(text: str) -> bool:
@@ -457,7 +479,7 @@ def _has_explicit_bank_brand(text: str) -> bool:
         "케이뱅크",
         "토스뱅크",
     )
-    return any(b in text for b in explicit_bank_brands)
+    return has_any_term(text, explicit_bank_brands)
 
 
 def _apply_sector_adjustments(
@@ -715,40 +737,18 @@ def _score_topic(
 
 
 def _keyword_in_text(keyword: str, text: str) -> bool:
-    kw = (keyword or "").lower().strip()
+    kw = (keyword or "").strip()
     if not kw:
         return False
-
-    # '리스'는 '리스크'에서 매우 자주 등장해 여전(리스/할부)로 오분류를 유발.
-    # - 자동차리스/리스료 등은 그대로 잡되, '리스크'는 제외.
-    if kw == "리스":
-        return re.search(r"리스(?!크)", text) is not None
-
-    # 영문/숫자 짧은 토큰(PF/CP/IPO/ABCP/FOMC 등)은 단어 경계로 매칭.
-    # - 예: cp 가 cpi 에서 잡히는 문제 방지
-    if re.fullmatch(r"[a-z0-9]+", kw) and len(kw) <= 4:
-        return re.search(rf"\b{re.escape(kw)}\b", text) is not None
-
-    if kw in RISKY_SHORT_KEYWORDS:
-        pattern = rf"(?<![{_KOR_WORD_CHAR_CLASS}]){re.escape(kw)}(?![{_KOR_WORD_CHAR_CLASS}])"
-        return re.search(pattern, text) is not None
-
-    if kw == "은행":
-        return re.search(r"(?<![가-힣a-z0-9])은행(?![가-힣a-z0-9])", text) is not None
-
-    if kw in {"거래소", "펀드", "대출"}:
-        pattern = rf"(?<![{_KOR_WORD_CHAR_CLASS}]){re.escape(kw)}(?![{_KOR_WORD_CHAR_CLASS}])"
-        return re.search(pattern, text) is not None
-
-    return kw in text
+    if kw.lower() == "리스":
+        return contains_term(text, kw, exclude_terms=["리스크"], mode="phrase")
+    if kw in RISKY_SHORT_KEYWORDS or kw.lower() in {"은행", "거래소", "펀드", "대출", "보험"}:
+        return contains_term(text, kw, mode="token")
+    return contains_term(text, kw)
 
 
 def _collect_hits(keywords: list[str], text: str) -> list[str]:
-    hits = []
-    for kw in keywords:
-        if _keyword_in_text(kw, text):
-            hits.append(kw)
-    return hits
+    return [kw for kw in keywords if _keyword_in_text(kw, text)]
 
 
 def tag_articles(

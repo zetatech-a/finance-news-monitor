@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from src.pipeline.text_matcher import contains_term, find_terms, has_any_term, normalize_text
+
 
 # NOTE:
 # - This is a lightweight heuristic scoring function used when ML model is absent
@@ -185,7 +187,7 @@ def relevance_score(article) -> int:
     if not t:
         return 0
 
-    text = t.lower()
+    text = normalize_text(t)
 
     # Hard-block obvious entertainment/sports domains (defense in depth)
     urls = " ".join(_urls(article)).lower()
@@ -198,26 +200,26 @@ def relevance_score(article) -> int:
 
     # add hard anchors
     for k, w in _WEIGHTS.hard.items():
-        if k.lower() in text:
+        if contains_term(text, k):
             hard_score += w
 
     # add soft signals
     for k, w in _WEIGHTS.soft.items():
-        if k.lower() in text:
+        if contains_term(text, k):
             soft_score += w
 
     # special-case: '사채' is too ambiguous; count only with proper context
-    if "사채" in text and any(x in text for x in ("불법", "대부업", "최고금리", "추심", "미등록", "금감원", "금융위")):
+    if contains_term(text, "사채") and has_any_term(text, ("불법", "대부업", "최고금리", "추심", "미등록", "금감원", "금융위")):
         soft_score += 2
 
     # special-case: '대부' used as lease context (공유재산 대부계약, 지명 등)
     # If '대부' appears but not '대부업', treat it as negative unless strong anchors exist.
-    if "대부" in text and "대부업" not in text and any(x in text for x in ("공유재산", "대부계약", "대부료", "대부리", "대부도", "태권도")):
+    if contains_term(text, "대부") and not contains_term(text, "대부업") and has_any_term(text, ("공유재산", "대부계약", "대부료", "대부리", "대부도", "태권도")):
         neg_score += 10
 
     # negatives
     for k, w in _WEIGHTS.neg.items():
-        if k.lower() in text:
+        if contains_term(text, k):
             neg_score += w
 
     score = hard_score + soft_score - neg_score
@@ -228,3 +230,13 @@ def relevance_score(article) -> int:
         score = min(score, 2)
 
     return int(score)
+
+
+def matched_terms(article) -> dict[str, list[str]]:
+    """Return safe matched relevance terms for observability/debugging."""
+    text = normalize_text(_text(article))
+    return {
+        "hard": find_terms(text, _WEIGHTS.hard),
+        "soft": find_terms(text, _WEIGHTS.soft),
+        "negative": find_terms(text, _WEIGHTS.neg),
+    }
