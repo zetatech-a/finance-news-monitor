@@ -9,6 +9,9 @@ import sys
 from pathlib import Path
 from typing import Iterable
 
+from src.pipeline.relevance_score import matched_terms as safe_relevance_matches
+from src.pipeline.text_matcher import has_any_term
+
 SOURCE_COLUMNS = [
     "date", "title", "summary", "url", "query", "score", "prob", "keep", "decision",
     "decision_reason", "relevance_score", "relevance_prob", "matched_hard", "matched_soft",
@@ -28,7 +31,7 @@ FINANCIAL_CONTEXT_TERMS = (
     "은행", "저축은행", "보험", "카드", "카드사", "카드론", "금융", "금융위", "금감원", "증권",
     "여신", "캐피탈", "대부", "사금융", "채권추심", "PF", "부실채권", "가계대출",
 )
-REGULATORY_ACTION_TERMS = ("검사", "제재", "과징금", "시정명령", "행정처분", "제도", "정책", "규제", "감독", "발표", "조치")
+REGULATORY_ACTION_TERMS = ("검사", "제재", "과징금", "시정명령", "행정처분", "제도개선", "제도 개선", "제도", "정책", "규제", "감독", "발표", "조치")
 
 
 def normalize_title(title: str) -> str:
@@ -54,8 +57,7 @@ def discover_input_files(candidates_dir: Path, explicit_inputs: list[Path] | Non
 
 
 def _has_any(text: str, terms: Iterable[str]) -> bool:
-    lowered = text.lower()
-    return any(term.lower() in lowered for term in terms)
+    return has_any_term(text, terms)
 
 
 def _num(row: dict[str, str], *keys: str) -> float | None:
@@ -78,7 +80,7 @@ def _strong_domain_keep(text: str) -> str | None:
     pairs: tuple[tuple[tuple[str, ...], tuple[str, ...], str], ...] = (
         (("저축은행",), ("연체율", "PF", "부실채권"), "strong_keep_savings_bank_risk"),
         (("은행",), ("가계대출", "예대금리차", "연체"), "strong_keep_bank_consumer_credit"),
-        (("보험",), ("킥스", "K-ICS", "실손", "보험료"), "strong_keep_insurance_risk"),
+        (("보험사", "보험업계", "손해보험", "생명보험", "손보사", "생보사", "실손보험", "자동차보험", "킥스", "K-ICS"), ("킥스", "K-ICS", "실손", "건전성", "비율"), "strong_keep_insurance_risk"),
         (("카드론", "카드사"), ("연체", "수수료"), "strong_keep_card_credit"),
         (("금감원", "금융위"), REGULATORY_ACTION_TERMS, "strong_keep_regulatory_action"),
         (("대부업", "불법사금융", "채권추심", "최고금리"), ("" ,), "strong_keep_lending_consumer_protection"),
@@ -106,15 +108,16 @@ def assign_pseudo_label(row: dict[str, str]) -> dict[str, str]:
     decision = (row.get("decision") or "").strip().lower()
     reason = (row.get("decision_reason") or "").strip()
     score = _num(row, "relevance_score", "score")
-    matched_hard = row.get("matched_hard", "")
-    matched_negative = row.get("matched_negative", "")
+    safe_matches = safe_relevance_matches({"title": title, "summary": summary})
+    matched_hard = ";".join(safe_matches["hard"])
+    matched_negative = ";".join(safe_matches["negative"])
 
     keep_reason = _strong_domain_keep(text)
     drop_reason: str | None = None
-    if _is_nonempty(matched_negative) or reason == "rule_drop_negative_signal":
-        drop_reason = "drop_negative_signal"
-    elif _has_any(text, NON_FINANCE_TERMS):
+    if _has_any(text, NON_FINANCE_TERMS):
         drop_reason = "drop_obvious_non_finance"
+    elif _is_nonempty(matched_negative) or reason == "rule_drop_negative_signal":
+        drop_reason = "drop_negative_signal"
     elif reason == "rule_drop_no_financial_anchor":
         drop_reason = "drop_no_financial_anchor"
     elif _is_corporate_macro_noise(text):

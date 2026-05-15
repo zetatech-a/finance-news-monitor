@@ -3,16 +3,24 @@ from __future__ import annotations
 from typing import Iterable
 
 from src.pipeline.normalize import Article
+from src.pipeline.text_matcher import has_any_term, normalize_text
 
 
 SPORTS_KEYWORDS = (
     "프로배구",
     "프로야구",
+    "프로축구",
+    "축구 경기",
+    "경기 결과",
+    "감독 경질",
     "득점",
     "승부",
-    "경기",
     "선수",
-    "감독",
+    "구단",
+    "k리그",
+    "mlb",
+    "epl",
+    "월드컵",
 )
 
 POLITICS_KEYWORDS = (
@@ -167,7 +175,7 @@ def _get_text_fields(article: Article | dict) -> str:
             article.get("url", ""),
             article.get("originallink", ""),
         )
-    return " ".join(str(value) for value in values if value).lower()
+    return normalize_text(" ".join(str(value) for value in values if value))
 
 
 def _get_urls(article: Article | dict) -> tuple[str, ...]:
@@ -203,23 +211,23 @@ def filter_articles(articles: Iterable[Article]) -> list[Article]:
         text = _get_text_fields(article)
 
         # sports keyword
-        if any(keyword in text for keyword in SPORTS_KEYWORDS):
+        if has_any_term(text, SPORTS_KEYWORDS):
             continue
 
         # politics-only
-        has_politics = any(keyword in text for keyword in POLITICS_KEYWORDS)
-        has_finance = any(keyword in text for keyword in FINANCE_KEYWORDS)
+        has_politics = has_any_term(text, POLITICS_KEYWORDS)
+        has_finance = has_any_term(text, FINANCE_KEYWORDS)
         if has_politics and not has_finance:
             continue
 
         # public lease '대부' noise (공유재산 대부계약 등)
-        has_public_lease = any(k in text for k in PUBLIC_LEASE_KEYWORDS)
-        has_finance_strong = any(k in text for k in FINANCE_STRONG_ANCHORS)
+        has_public_lease = has_any_term(text, PUBLIC_LEASE_KEYWORDS)
+        has_finance_strong = has_any_term(text, FINANCE_STRONG_ANCHORS)
         if has_public_lease and not has_finance_strong:
             continue
 
         # entertainment hints: drop unless strong finance anchors exist
-        if any(k in text for k in ENTERTAINMENT_KEYWORDS) and not has_finance_strong:
+        if has_any_term(text, ENTERTAINMENT_KEYWORDS) and not has_finance_strong:
             continue
 
         filtered.append(article)

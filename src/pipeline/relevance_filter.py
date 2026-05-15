@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any, Literal
 
 from src.ml.relevance_model import load_model, predict_proba
-from src.pipeline.relevance_score import _WEIGHTS, relevance_score
+from src.pipeline.relevance_score import matched_terms as score_matched_terms, relevance_score
 
 logger = logging.getLogger(__name__)
 
@@ -28,15 +28,11 @@ def _text(article: Any) -> str:
 
 
 def _matched_terms(article: Any) -> dict[str, str]:
-    text = _text(article).lower()
-
-    def find_terms(keywords: dict[str, int]) -> str:
-        return ";".join(k for k in keywords if k.lower() in text)
-
+    matched = score_matched_terms(article)
     return {
-        "matched_hard": find_terms(_WEIGHTS.hard),
-        "matched_soft": find_terms(_WEIGHTS.soft),
-        "matched_negative": find_terms(_WEIGHTS.neg),
+        "matched_hard": ";".join(matched["hard"]),
+        "matched_soft": ";".join(matched["soft"]),
+        "matched_negative": ";".join(matched["negative"]),
     }
 
 

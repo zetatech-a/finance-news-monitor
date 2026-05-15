@@ -125,17 +125,20 @@ def test_scheduled_production_command_uses_end_hhmm_0855():
     assert "--end_hhmm 0820" not in workflow
 
 
-def test_no_classification_filtering_or_model_code_changed():
+def test_no_delivery_retry_schedule_or_model_artifact_changed():
     changed = subprocess.check_output(["git", "diff", "--name-only"], text=True).splitlines()
 
     forbidden_prefixes = (
-        "src/pipeline/filtering.py",
-        "src/pipeline/relevance_filter.py",
-        "src/pipeline/relevance_score.py",
+        ".github/workflows/daily.yml",
         "src/ml/",
         "models/relevance.joblib",
     )
+    forbidden_paths = {
+        "src/delivery/email_sender.py",
+        "src/clients/naver.py",
+    }
     assert not any(path == prefix or path.startswith(prefix) for path in changed for prefix in forbidden_prefixes)
+    assert not any(path in forbidden_paths for path in changed)
 
 
 def test_mark_sent_cli_writes_marker_only_when_invoked(tmp_path, monkeypatch):
