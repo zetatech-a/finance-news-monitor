@@ -48,10 +48,10 @@ def test_candidate_hybrid_strong_rule_anchor_keeps_even_with_low_prob(monkeypatc
     )
 
     assert kept == articles
-    assert articles[0]["decision_reason"] == "candidate_hybrid_keep_strong_rule_anchor"
+    assert articles[0]["decision_reason"] == "candidate_hybrid_keep_strong_domain_rule_anchor"
 
 
-def test_candidate_hybrid_high_prob_keeps_ambiguous_article(monkeypatch, tmp_path):
+def test_candidate_hybrid_high_prob_needs_domain_evidence(monkeypatch, tmp_path):
     _use_model(monkeypatch, [0.80])
     monkeypatch.setattr(rf, "relevance_score", lambda article: 1)
     articles = [_article("모호한 경제 기사")]
@@ -63,8 +63,8 @@ def test_candidate_hybrid_high_prob_keeps_ambiguous_article(monkeypatch, tmp_pat
         candidate_keep_prob=0.65,
     )
 
-    assert kept == articles
-    assert articles[0]["decision_reason"] == "candidate_hybrid_model_keep_prob_ge_threshold"
+    assert kept == []
+    assert articles[0]["decision_reason"] == "candidate_hybrid_drop_model_keep_without_domain_anchor"
 
 
 def test_candidate_hybrid_low_prob_drops_ambiguous_article(monkeypatch, tmp_path):
@@ -83,11 +83,11 @@ def test_candidate_hybrid_low_prob_drops_ambiguous_article(monkeypatch, tmp_path
     assert articles[0]["decision_reason"] == "candidate_hybrid_model_drop_prob_le_threshold"
 
 
-def test_candidate_hybrid_gray_zone_falls_back_to_rule_keep_and_drop(monkeypatch, tmp_path):
+def test_candidate_hybrid_gray_zone_requires_domain_anchor_and_higher_score(monkeypatch, tmp_path):
     _use_model(monkeypatch, [0.50, 0.50])
-    scores = iter([4, 3])
+    scores = iter([6, 3])
     monkeypatch.setattr(rf, "relevance_score", lambda article: next(scores))
-    articles = [_article("은행 대출"), _article("은행 소식")]
+    articles = [_article("저축은행 연체율 상승"), _article("은행 소식")]
 
     kept = rf.filter_relevance(
         articles,
@@ -98,8 +98,8 @@ def test_candidate_hybrid_gray_zone_falls_back_to_rule_keep_and_drop(monkeypatch
     )
 
     assert kept == [articles[0]]
-    assert articles[0]["decision_reason"] == "candidate_hybrid_gray_keep_rule_score_ge_threshold"
-    assert articles[1]["decision_reason"] == "candidate_hybrid_gray_drop_rule_score_lt_threshold"
+    assert articles[0]["decision_reason"] == "candidate_hybrid_gray_keep_domain_score_ge_threshold"
+    assert articles[1]["decision_reason"] == "candidate_hybrid_gray_drop_score_lt_threshold"
 
 
 def test_authoritative_model_still_drops_low_prob_even_with_high_rule_score(monkeypatch, tmp_path):
@@ -146,7 +146,7 @@ def test_invalid_candidate_model_falls_back_to_rules(monkeypatch, tmp_path):
     )
     scores = iter([4, 3])
     monkeypatch.setattr(rf, "relevance_score", lambda article: next(scores))
-    articles = [_article("은행 프로야구"), _article("은행 대출")]
+    articles = [_article("저축은행 대출"), _article("은행 대출")]
 
     kept = rf.filter_relevance(
         articles,
@@ -154,11 +154,11 @@ def test_invalid_candidate_model_falls_back_to_rules(monkeypatch, tmp_path):
         model_policy="candidate_hybrid",
     )
 
-    assert kept == [articles[0]]
+    assert kept == []
     assert articles[0]["prob"] is None
     assert articles[0]["model_used"] is False
-    assert articles[0]["decision_reason"] == "rule_keep_score_ge_threshold"
-    assert articles[1]["decision_reason"] == "rule_drop_score_lt_threshold"
+    assert articles[0]["decision_reason"] == "candidate_hybrid_no_model_drop_score_lt_threshold"
+    assert articles[1]["decision_reason"] == "candidate_hybrid_no_model_drop_score_lt_threshold"
 
 
 def test_candidate_csv_contains_phase4c_observability_columns(monkeypatch, tmp_path):
@@ -183,11 +183,12 @@ def test_candidate_csv_contains_phase4c_observability_columns(monkeypatch, tmp_p
 
 def test_relevance_filter_metrics_json_is_written(monkeypatch, tmp_path):
     _use_model(monkeypatch, [0.80, 0.20])
-    monkeypatch.setattr(rf, "relevance_score", lambda article: 2)
+    scores = iter([5, 2])
+    monkeypatch.setattr(rf, "relevance_score", lambda article: next(scores))
     metrics_path = tmp_path / "reports" / "_metrics" / "2026-05-13_relevance_filter_metrics.json"
 
     kept = rf.filter_relevance(
-        [_article("후보 keep"), _article("후보 drop")],
+        [_article("저축은행 연체율 상승"), _article("후보 drop")],
         tmp_path / "models" / "relevance_candidate.joblib",
         model_policy="candidate_hybrid",
         metrics_path=metrics_path,
