@@ -104,12 +104,13 @@ def test_refresh_excludes_current_report_date_candidate_csv(tmp_path):
         "--report-date", "2026-05-13",
         "--min-positive", "2",
         "--min-negative", "2",
+        "--min-candidate-files", "1",
         "--force",
     ])
 
     assert code == 0
     status = json.loads(status_path.read_text(encoding="utf-8"))
-    assert str(candidates_dir / "2026-05-13_candidates.csv") in status["excluded_candidate_files"]
+    assert any(item["path"] == str(candidates_dir / "2026-05-13_candidates.csv") for item in status["excluded_candidate_files"])
     assert str(candidates_dir / "2026-05-13_candidates.csv") not in status["input_candidate_files"]
     metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
     assert str(candidates_dir / "2026-05-13_candidates.csv") not in metrics["input_files"]
@@ -143,6 +144,7 @@ def test_best_effort_returns_zero_and_writes_skipped_status_when_training_data_i
         "--status-output", str(status_path),
         "--min-positive", "2",
         "--min-negative", "2",
+        "--min-candidate-files", "1",
         "--force",
         "--best-effort",
     ])
@@ -167,6 +169,7 @@ def test_strict_mode_returns_nonzero_when_training_data_insufficient(tmp_path):
         "--status-output", str(status_path),
         "--min-positive", "2",
         "--min-negative", "2",
+        "--min-candidate-files", "1",
         "--force",
     ])
 
