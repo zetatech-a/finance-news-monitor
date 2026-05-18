@@ -191,6 +191,24 @@ def parse_args() -> argparse.Namespace:
         default=0.35,
         help="Candidate hybrid drop threshold",
     )
+    parser.add_argument(
+        "--candidate_gray_keep_min_score",
+        type=int,
+        default=6,
+        help="Candidate hybrid gray-zone rule score threshold for domain-anchored keeps",
+    )
+    parser.add_argument(
+        "--candidate_strong_rule_keep_score",
+        type=int,
+        default=8,
+        help="Candidate hybrid strong domain-rule keep score threshold",
+    )
+    parser.add_argument(
+        "--candidate_no_model_keep_min_score",
+        type=int,
+        default=5,
+        help="Candidate hybrid no-probability rule score threshold for domain-anchored keeps",
+    )
     return parser.parse_args()
 
 
@@ -276,6 +294,9 @@ def main() -> None:
         model_policy=model_policy,
         candidate_keep_prob=args.candidate_keep_prob,
         candidate_drop_prob=args.candidate_drop_prob,
+        strong_rule_keep_score=args.candidate_strong_rule_keep_score,
+        gray_keep_min_score=args.candidate_gray_keep_min_score,
+        no_model_keep_min_score=args.candidate_no_model_keep_min_score,
         metrics_path=relevance_metrics_path,
         metrics_date=end.date().isoformat(),
     )
