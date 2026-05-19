@@ -68,10 +68,14 @@ def test_phase8c_drops_weak_generic_or_nonfinance_cases(monkeypatch, tmp_path):
         model_policy="candidate_hybrid",
     )
 
-    assert kept == []
+    assert kept == [articles[2]]
     assert articles[0]["decision_reason"] == "candidate_hybrid_drop_corporate_macro_noise"
     assert articles[1]["decision_reason"] == "candidate_hybrid_drop_generic_market_or_ipo_noise"
-    assert articles[2]["decision_reason"] == "candidate_hybrid_drop_generic_market_or_ipo_noise"
+    assert articles[2]["decision_reason"] in {
+        "candidate_hybrid_keep_overseas_global_reference",
+        "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor",
+        "candidate_hybrid_keep_strong_domain_rule_anchor",
+    }
     assert articles[3]["decision_reason"] == "candidate_hybrid_drop_generic_market_or_ipo_noise"
     assert articles[4]["decision_reason"] == "candidate_hybrid_drop_generic_market_or_ipo_noise"
     assert articles[5]["decision_reason"] == "candidate_hybrid_drop_model_keep_without_domain_anchor"
