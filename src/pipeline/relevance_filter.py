@@ -17,6 +17,8 @@ ModelPolicy = Literal["authoritative", "candidate_hybrid", "rule_only"]
 
 
 DOMAIN_SPECIFIC_ANCHORS: tuple[str, ...] = (
+    # existing domain anchors
+
     "대부업",
     "불법사금융",
     "미등록대부",
@@ -67,6 +69,74 @@ DOMAIN_SPECIFIC_ANCHORS: tuple[str, ...] = (
     "제도개선",
     "불완전판매",
     "보이스피싱",
+    # digital assets
+    "가상자산",
+    "암호화폐",
+    "코인거래소",
+    "가상자산거래소",
+    "디지털자산",
+    "디지털자산거래소",
+    "업비트",
+    "빗썸",
+    "두나무",
+    "코빗",
+    "고팍스",
+    "fiu",
+    "금융정보분석원",
+    "스테이블코인",
+    "원화 스테이블코인",
+    "토큰증권",
+    "sto",
+    # securities liquidity/regulation
+    "증권사 유동성",
+    "유동성비율",
+    "신조정유동성비율",
+    "조정유동성비율",
+    "신 ncr",
+    "ncr",
+    "순자본비율",
+    "금융투자업규정",
+    "레고랜드 사태",
+    "abcp",
+    "cp시장",
+    "증권사 abcp",
+    "금융위 증권사",
+    "금감원 증권사",
+    # credit-finance funding
+    "여전채",
+    "카드채",
+    "캐피탈채",
+    "여전사 조달",
+    "카드사 조달",
+    "캐피탈사 조달",
+    "여전채 금리",
+    "카드채 금리",
+    "캐피탈채 금리",
+    # policy finance
+    "정책금융",
+    "산업은행",
+    "산은",
+    "기업은행",
+    "기은",
+    "국민성장펀드",
+    "성장펀드",
+    "생산적 금융",
+    "첨단전략산업기금",
+    "정책금융기관",
+    "보증기관",
+    "신용보증기금",
+    "기술보증기금",
+    # overseas/global Korean-market impact anchors
+    "원달러",
+    "원/달러",
+    "외환시장",
+    "국내 채권시장",
+    "국고채",
+    "한국은행",
+    "한은",
+    "은행권 대출금리",
+    "국내 금융시장",
+    "국내 증시",
 )
 
 GENERIC_RELEVANCE_ANCHORS: tuple[str, ...] = (
@@ -82,8 +152,6 @@ GENERIC_RELEVANCE_ANCHORS: tuple[str, ...] = (
     "pce",
     "국채",
     "증시",
-    "코스피",
-    "코스닥",
     "ipo",
     "상장",
     "공매도",
@@ -125,8 +193,6 @@ _MARKET_OR_IPO_CONTEXT_TERMS: tuple[str, ...] = (
     "상장",
     "증시",
     "뉴욕증시",
-    "코스피",
-    "코스닥",
     "거래소",
     "연준",
     "fomc",
@@ -167,11 +233,96 @@ def has_domain_anchor(article_or_text: Any, matched_hard: str | None = None) -> 
 
 def has_only_generic_anchors(article_or_text: Any, matched_hard: str | None = None) -> bool:
     text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
-    if has_domain_anchor(text, matched_hard):
+    if has_domain_anchor(text, matched_hard) or has_overseas_korean_market_impact(text) or has_overseas_global_reference_context(text):
         return False
     matched = _split_matched_terms(matched_hard)
     generic = {normalize_text(term) for term in GENERIC_RELEVANCE_ANCHORS}
     return bool((matched & generic) or find_terms(text, GENERIC_RELEVANCE_ANCHORS))
+
+
+
+_OVERSEAS_IMPACT_TRIGGER_TERMS: tuple[str, ...] = (
+    "미 국채금리",
+    "미국채 금리",
+    "글로벌 채권금리",
+    "글로벌 금리",
+    "달러 강세",
+    "fomc",
+    "연준",
+)
+
+_KOREAN_MARKET_IMPACT_TERMS: tuple[str, ...] = (
+    "원달러",
+    "원/달러",
+    "외환시장",
+    "국내 채권시장",
+    "국고채",
+    "한국은행",
+    "한은",
+    "은행권 대출금리",
+    "국내 금융시장",
+    "국내 증시",
+)
+
+
+def has_overseas_korean_market_impact(article_or_text: Any) -> bool:
+    text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
+    return has_any_term(text, _OVERSEAS_IMPACT_TRIGGER_TERMS) and has_any_term(text, _KOREAN_MARKET_IMPACT_TERMS)
+
+
+
+_OVERSEAS_GLOBAL_MACRO_TERMS: tuple[str, ...] = (
+    "cpi",
+    "pce",
+    "fomc",
+    "연준",
+    "미 국채금리",
+    "미국채 금리",
+    "달러",
+    "국제유가",
+    "글로벌 채권시장",
+    "글로벌 채권금리",
+    "글로벌 신용위험",
+    "은행주",
+    "신용스프레드",
+)
+
+_OVERSEAS_MARKET_REFERENCE_TERMS: tuple[str, ...] = (
+    "뉴욕증시",
+    "나스닥",
+    "다우",
+    "s&p",
+    "미 증시",
+    "월가",
+    "글로벌",
+    "미국",
+)
+
+_LOW_VALUE_OVERSEAS_NOISE_TERMS: tuple[str, ...] = (
+    "ai 기술주",
+    "기술주 랠리",
+    "테슬라",
+    "엔비디아",
+    "상승 마감",
+    "유망 종목",
+    "실적 호조",
+)
+
+
+def has_overseas_global_reference_context(article_or_text: Any) -> bool:
+    text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
+    return has_any_term(text, _OVERSEAS_GLOBAL_MACRO_TERMS) and has_any_term(text, _OVERSEAS_MARKET_REFERENCE_TERMS)
+
+
+def is_low_value_overseas_market_noise(article_or_text: Any) -> bool:
+    text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
+    if has_overseas_korean_market_impact(text):
+        return False
+    if has_any_term(text, _LOW_VALUE_OVERSEAS_NOISE_TERMS) and not has_any_term(text, _OVERSEAS_GLOBAL_MACRO_TERMS):
+        return True
+    if has_any_term(text, ("뉴욕증시", "나스닥")) and has_any_term(text, ("상승 마감", "하락 마감", "혼조")) and not has_any_term(text, _OVERSEAS_GLOBAL_MACRO_TERMS):
+        return True
+    return False
 
 
 def has_regulator_policy_enforcement_context(article_or_text: Any) -> bool:
@@ -181,14 +332,14 @@ def has_regulator_policy_enforcement_context(article_or_text: Any) -> bool:
 
 def is_corporate_macro_noise(article_or_text: Any, matched_hard: str | None = None) -> bool:
     text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
-    if has_domain_anchor(text, matched_hard):
+    if has_domain_anchor(text, matched_hard) or has_overseas_korean_market_impact(text) or has_overseas_global_reference_context(text):
         return False
     return has_any_term(text, _CORPORATE_MACRO_TERMS) and has_any_term(text, _CORPORATE_CONTEXT_TERMS)
 
 
 def is_generic_market_or_ipo_noise(article_or_text: Any, matched_hard: str | None = None) -> bool:
     text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
-    if has_domain_anchor(text, matched_hard) or has_regulator_policy_enforcement_context(text):
+    if has_domain_anchor(text, matched_hard) or has_regulator_policy_enforcement_context(text) or has_overseas_korean_market_impact(text) or (has_overseas_global_reference_context(text) and not is_low_value_overseas_market_noise(text)):
         return False
     return has_only_generic_anchors(text, matched_hard) and has_any_term(text, _MARKET_OR_IPO_CONTEXT_TERMS)
 
@@ -257,21 +408,34 @@ def _decide_relevance(
 
     if model_policy == "candidate_hybrid":
         domain_anchor = has_domain_anchor(article_text, matched_hard)
+        overseas_impact = has_overseas_korean_market_impact(article_text)
+        overseas_reference = has_overseas_global_reference_context(article_text)
+        low_value_overseas_noise = is_low_value_overseas_market_noise(article_text)
         generic_only = has_only_generic_anchors(article_text, matched_hard)
         corporate_noise = is_corporate_macro_noise(article_text, matched_hard)
         market_noise = is_generic_market_or_ipo_noise(article_text, matched_hard)
 
         if matched_negative:
             return False, "candidate_hybrid_drop_negative_signal"
+        if low_value_overseas_noise:
+            return False, "candidate_hybrid_drop_low_value_overseas_market_noise"
+        if overseas_impact:
+            return True, "candidate_hybrid_keep_overseas_korean_market_impact"
+        if overseas_reference and not domain_anchor:
+            return True, "candidate_hybrid_keep_overseas_global_reference"
         if corporate_noise:
             return False, "candidate_hybrid_drop_corporate_macro_noise"
         if market_noise:
             return False, "candidate_hybrid_drop_generic_market_or_ipo_noise"
-        if score >= strong_rule_keep_score and matched_hard and domain_anchor:
+        if score >= strong_rule_keep_score and matched_hard and (domain_anchor or overseas_impact or overseas_reference):
+            if overseas_impact:
+                return True, "candidate_hybrid_keep_overseas_korean_market_impact"
+            if overseas_reference and not domain_anchor:
+                return True, "candidate_hybrid_keep_overseas_global_reference"
             return True, "candidate_hybrid_keep_strong_domain_rule_anchor"
 
         if prob is not None and prob >= candidate_keep_prob:
-            if domain_anchor or (
+            if domain_anchor or overseas_impact or overseas_reference or (
                 score >= model_keep_min_score and not generic_only
             ) or has_regulator_policy_enforcement_context(article_text):
                 return True, "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor"
@@ -281,16 +445,24 @@ def _decide_relevance(
         if prob is not None:
             if score < gray_keep_min_score:
                 return False, "candidate_hybrid_gray_drop_score_lt_threshold"
-            if not domain_anchor:
+            if not (domain_anchor or overseas_impact or overseas_reference):
                 if generic_only:
                     return False, "candidate_hybrid_gray_drop_generic_anchor_only"
                 return False, "candidate_hybrid_gray_drop_no_domain_anchor"
+            if overseas_impact and not domain_anchor:
+                return True, "candidate_hybrid_keep_overseas_korean_market_impact"
+            if overseas_reference and not domain_anchor:
+                return True, "candidate_hybrid_keep_overseas_global_reference"
             return True, "candidate_hybrid_gray_keep_domain_score_ge_threshold"
 
         if score < no_model_keep_min_score:
             return False, "candidate_hybrid_no_model_drop_score_lt_threshold"
-        if not domain_anchor:
+        if not (domain_anchor or overseas_impact or overseas_reference):
             return False, "candidate_hybrid_no_model_drop_no_domain_anchor"
+        if overseas_impact:
+            return True, "candidate_hybrid_keep_overseas_korean_market_impact"
+        if overseas_reference and not domain_anchor:
+            return True, "candidate_hybrid_keep_overseas_global_reference"
         return True, "candidate_hybrid_no_model_keep_domain_score_ge_threshold"
 
     if prob is not None:
@@ -419,11 +591,20 @@ def _write_metrics(
         "candidate_hybrid_keep_strong_domain_rule_anchor": decision_reason_counts[
             "candidate_hybrid_keep_strong_domain_rule_anchor"
         ],
+        "candidate_hybrid_keep_overseas_korean_market_impact": decision_reason_counts[
+            "candidate_hybrid_keep_overseas_korean_market_impact"
+        ],
+        "candidate_hybrid_keep_overseas_global_reference": decision_reason_counts[
+            "candidate_hybrid_keep_overseas_global_reference"
+        ],
         "candidate_hybrid_drop_corporate_macro_noise": decision_reason_counts[
             "candidate_hybrid_drop_corporate_macro_noise"
         ],
         "candidate_hybrid_drop_generic_market_or_ipo_noise": decision_reason_counts[
             "candidate_hybrid_drop_generic_market_or_ipo_noise"
+        ],
+        "candidate_hybrid_drop_low_value_overseas_market_noise": decision_reason_counts[
+            "candidate_hybrid_drop_low_value_overseas_market_noise"
         ],
         "candidate_hybrid_no_model_keep_domain": decision_reason_counts[
             "candidate_hybrid_no_model_keep_domain_score_ge_threshold"

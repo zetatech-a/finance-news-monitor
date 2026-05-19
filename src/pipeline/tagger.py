@@ -187,8 +187,8 @@ SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
 
 TOPIC_RULE_OVERRIDES: dict[str, dict[str, Any]] = {
     "해외·글로벌": {
-        "strong": ["연준", "fomc", "ecb", "boj"],
-        "weak": ["미국", "유럽", "중국", "달러", "환율", "뉴욕", "월가", "국채"],
+        "strong": ["연준", "fomc", "ecb", "boj", "cpi", "pce", "뉴욕증시", "나스닥"],
+        "weak": ["미국", "유럽", "중국", "달러", "환율", "뉴욕", "월가", "국채", "글로벌"],
         "negative": ["국내", "금융위", "금감원", "저축은행", "대부업"],
         "threshold": 5.0,
     },
