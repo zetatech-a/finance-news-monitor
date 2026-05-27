@@ -61,9 +61,17 @@ TEXT_ALIASES: tuple[tuple[str, str], ...] = (
 
 SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
     "대부": {
-        "strong": ["대부업", "대부업체", "대부업법", "불법사금융", "미등록대부", "불법 대출광고"],
+        "strong": [
+            "대부업", "대부업권", "대부업계", "대부업체", "대부업자", "대부중개", "대부중개업", "대부업법",
+            "등록대부업체", "미등록대부", "불법대부", "불법사금융", "불법사채", "사채업자", "고리대금", "고리대금업",
+            "상품권 사채", "내구제대출", "내구제 대출", "불법추심", "채권추심", "대부채권", "새도약기금", "장기연체채권",
+            "추심중단", "불법 대출광고",
+        ],
         "weak": ["채권추심", "최고금리", "대부"],
-        "negative": ["공유재산 대부", "대부계약", "대부료", "도서 대부", "무상대부"],
+        "negative": [
+            "공유재산 대부", "공유재산 대부계약", "지자체 공유재산 대부", "국유재산 대부료", "대부계약", "대부료",
+            "토지 대부", "농지 대부", "공공시설 대부", "도서 대부", "무상대부", "대부도",
+        ],
         "demote_to_weak": ["최고금리", "채권추심"],
     },
     "은행": {
@@ -521,6 +529,39 @@ def _has_explicit_bank_brand(text: str) -> bool:
     return has_any_term(text, explicit_bank_brands)
 
 
+def _has_non_financial_loan_lease_context(text: str) -> bool:
+    return has_any_term(
+        text,
+        (
+            "공유재산 대부",
+            "공유재산 대부계약",
+            "지자체 공유재산 대부",
+            "국유재산 대부료",
+            "토지 대부",
+            "농지 대부",
+            "공공시설 대부",
+            "대부계약",
+            "무상대부",
+            "대부도",
+        ),
+    )
+
+
+def _has_explicit_loan_business_anchor(text: str) -> bool:
+    if has_any_term(
+        text,
+        (
+            "대부업", "대부업권", "대부업계", "대부업체", "대부업자", "대부중개", "대부중개업", "대부업법",
+            "등록대부업체", "미등록대부", "불법대부", "불법사금융", "불법사채", "사채업자", "고리대금", "고리대금업",
+            "상품권 사채", "내구제대출", "내구제 대출", "불법추심", "채권추심", "대부채권",
+        ),
+    ):
+        return True
+    has_benefit_debt_anchor = has_any_term(text, ("새도약기금", "장기연체채권", "추심중단"))
+    has_loan_business_context = has_any_term(text, ("대부업계", "대부업권", "대부업체", "대부업", "캠코"))
+    return has_benefit_debt_anchor and has_loan_business_context
+
+
 def _apply_sector_adjustments(
     title_text: str,
     desc_text: str,
@@ -543,6 +584,8 @@ def _apply_sector_adjustments(
     has_bank_quote_source = _has_bank_quote_source_signal(combined)
     has_explicit_bank_title = _has_explicit_bank_brand(title_text)
     has_bank_subject_title = has_bank_title and (has_explicit_bank_title or not (has_market_title and _has_bank_quote_source_signal(title_text)))
+    has_loan_business_anchor = _has_explicit_loan_business_anchor(combined)
+    has_non_financial_lease = _has_non_financial_loan_lease_context(combined)
 
     if "은행" in configured:
         if has_bank_subject_title:
@@ -588,6 +631,12 @@ def _apply_sector_adjustments(
         elif not has_regulator:
             adjusted["감독·제재"] -= 10.0
 
+    if "대부" in configured and has_loan_business_anchor and not has_non_financial_lease:
+        adjusted["대부"] += 14.0
+        for sector in ("입법·정책", "감독·제재", "은행", "거시·시장"):
+            if sector in configured:
+                adjusted[sector] -= 4.0
+
     return adjusted
 
 
@@ -613,6 +662,8 @@ def _apply_title_biases(
     has_bank_quote_source = _has_bank_quote_source_signal(combined)
     has_explicit_bank_title = _has_explicit_bank_brand(title_text)
     has_bank_subject_title = has_bank_title and (has_explicit_bank_title or not (has_market_title and _has_bank_quote_source_signal(title_text)))
+    has_loan_business_anchor = _has_explicit_loan_business_anchor(combined)
+    has_non_financial_lease = _has_non_financial_loan_lease_context(combined)
 
     if "은행" in configured:
         if has_bank_subject_title:
@@ -654,6 +705,11 @@ def _apply_title_biases(
             adjusted["감독·제재"] -= 5.0
         elif not has_regulator:
             adjusted["감독·제재"] -= 12.0
+    if "대부" in configured and has_loan_business_anchor and not has_non_financial_lease:
+        adjusted["대부"] += 16.0
+        for sector in ("입법·정책", "감독·제재", "은행", "거시·시장"):
+            if sector in configured:
+                adjusted[sector] -= 4.0
     return adjusted
 
 

@@ -84,7 +84,7 @@ def test_insurance_requires_sector_evidence_and_avoids_social_insurance():
 
 def test_supervision_and_policy_require_action_context():
     assert _primary("금융위 금융권 제도개선 방안 발표") == "입법·정책"
-    assert _primary("금융위 대부업 제도개선 방안 발표") == "입법·정책"
+    assert _primary("금융위 대부업 제도개선 방안 발표") == "대부"
     assert _primary("금감원 은행권 대출 검사 착수") == "감독·제재"
     assert _primary("금융위 불공정거래 과징금 의결") == "감독·제재"
     assert _primary("금융위 보험업 감독규정 개정안 의결") == "입법·정책"
