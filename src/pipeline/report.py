@@ -123,6 +123,48 @@ def _is_visible_in_main_report(item: TaggedArticle) -> bool:
     return sector != "기타" or _is_high_confidence_misc(item.article)
 
 
+def _build_visible_sector_buckets(
+    items: list[TaggedArticle],
+) -> tuple[dict[str, list[TaggedArticle]], list[str]]:
+    by_sector: dict[str, list[TaggedArticle]] = defaultdict(list)
+    misc_review_items: list[TaggedArticle] = []
+    for item in items:
+        if not _is_visible_in_main_report(item):
+            continue
+        sector = _primary_sector(item)
+        if sector == "기타":
+            misc_review_items.append(item)
+            continue
+        by_sector[sector].append(item)
+
+    misc_review_items = sorted(
+        misc_review_items,
+        key=lambda x: _ts_dt(getattr(x.article, "pub_date", None)),
+        reverse=True,
+    )[:10]
+    if misc_review_items:
+        by_sector["기타"] = misc_review_items
+
+    sector_order = [
+        "대부",
+        "은행",
+        "저축은행",
+        "상호금융",
+        "여전",
+        "보험",
+        "증권(브로커리지/리테일)",
+        "자산운용·연기금",
+        "IB·자본시장",
+        "핀테크·플랫폼",
+        "디지털자산",
+        "거시·시장",
+        "감독·제재",
+        "입법·정책",
+    ]
+    ordered_sectors = sector_order + [s for s in by_sector.keys() if s not in sector_order]
+    return by_sector, ordered_sectors
+
+
 def _relevance_value(article: Any) -> float | None:
     """
     관련도 값은 score 우선, 없으면 확률값 fallback.
@@ -647,6 +689,7 @@ mark{ background: color-mix(in srgb, var(--link) 18%, transparent); color: inher
 
 _UI_JS = r"""
 (function(){
+  const NO_TOPIC_TOKEN = "__NO_TOPIC__";
   const root = document.documentElement;
   const body = document.body;
   const themeBtn = document.getElementById("themeBtn");
@@ -696,7 +739,11 @@ _UI_JS = r"""
       group: groupMeta,
       hay: (cardEl.dataset.hay || "").toLowerCase(),
       sector: cardEl.dataset.sector || "",
-      topics: (cardEl.dataset.topics || "").split("|").filter(Boolean),
+      topics: (() => {
+        const values = (cardEl.dataset.topics || "").split("|").filter(Boolean);
+        if(values.length === 0) values.push(NO_TOPIC_TOKEN);
+        return values;
+      })(),
       ts: parseFloat(cardEl.dataset.ts || "0"),
       rel: parseFloat(cardEl.dataset.rel || "0"),
       isTop: cardEl.dataset.top === "1",
@@ -912,49 +959,15 @@ def render_html(
 
     top_items = _select_top_items(tagged, limit=10)
 
-    by_sector: dict[str, list[TaggedArticle]] = defaultdict(list)
-    misc_review_items: list[TaggedArticle] = []
-    for item in tagged:
-        if not _is_visible_in_main_report(item):
-            continue
-        sector = _primary_sector(item)
-        if sector == "기타":
-            misc_review_items.append(item)
-            continue
-        by_sector[sector].append(item)
-
-    misc_review_items = sorted(
-        misc_review_items,
-        key=lambda x: _ts_dt(getattr(x.article, "pub_date", None)),
-        reverse=True,
-    )[:10]
-    if misc_review_items:
-        by_sector["기타"] = misc_review_items
-
-    sector_order = [
-        "대부",
-        "은행",
-        "저축은행",
-        "상호금융",
-        "여전",
-        "보험",
-        "증권(브로커리지/리테일)",
-        "자산운용·연기금",
-        "IB·자본시장",
-        "핀테크·플랫폼",
-        "디지털자산",
-        "거시·시장",
-        "감독·제재",
-        "입법·정책",
-    ]
-    ordered_sectors = sector_order + [s for s in by_sector.keys() if s not in sector_order]
+    by_sector, ordered_sectors = _build_visible_sector_buckets(tagged)
+    visible_items = [item for s in ordered_sectors for item in by_sector.get(s, [])]
     sector_counts = {s: len(by_sector.get(s, [])) for s in ordered_sectors}
     def pill_html(sector: str, count: int) -> str:
         return f"<button class='pill' data-sector-pill data-sector='{_h(sector)}'><strong>{_h(sector)}</strong><span class='count'>{count}</span></button>"
 
     pills = [
         "<button class='pill active' data-sector-pill data-sector='ALL'><strong>전체</strong><span class='count'>{}</span></button>".format(
-            len(tagged)
+            len(visible_items)
         )
     ]
     for s in ordered_sectors:
@@ -964,8 +977,12 @@ def render_html(
         pills.append(pill_html(s, count))
 
     topic_counts: dict[str, int] = defaultdict(int)
-    for item in tagged:
-        for topic in item.topics or []:
+    no_topic_count = 0
+    for item in visible_items:
+        topics = item.topics or []
+        if not topics:
+            no_topic_count += 1
+        for topic in topics:
             topic_counts[topic] += 1
     topic_pills = [
         "<button class='pill active' data-topic-pill data-topic='ALL'><strong>전체 주제</strong></button>"
@@ -973,6 +990,10 @@ def render_html(
     for topic, count in sorted(topic_counts.items(), key=lambda kv: (-kv[1], kv[0])):
         topic_pills.append(
             f"<button class='pill' data-topic-pill data-topic='{_h(topic)}'><strong>{_h(topic)}</strong><span class='count'>{count}</span></button>"
+        )
+    if no_topic_count > 0:
+        topic_pills.append(
+            f"<button class='pill' data-topic-pill data-topic='__NO_TOPIC__'><strong>주제 없음</strong><span class='count'>{no_topic_count}</span></button>"
         )
 
     def card_html(item: TaggedArticle, is_top: bool) -> str:
