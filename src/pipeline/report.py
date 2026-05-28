@@ -240,90 +240,60 @@ def _has_material_policy_action(text: str) -> bool:
 
 
 def _top_rank_score(item: TaggedArticle) -> float:
-    sector = item.sectors[0] if item.sectors else ""
+    sector = _primary_sector(item)
     topics = set(item.topics or [])
     title = (getattr(item.article, "title", None) or "").lower()
     summary = (getattr(item.article, "description", None) or "").lower()
     text = f"{title} {summary}"
 
+    def _has_any(needles: tuple[str, ...]) -> bool:
+        return any(n in text for n in needles)
+
     score = 0.0
-
-    # 업권 중요도
-    sector_weights = {
-        "대부": 3.0,
-        "감독·제재": 1.6,
-        "입법·정책": 1.5,
-        "저축은행": 1.2,
-        "은행": 1.1,
-        "거시·시장": 0.9,
-    }
-    score += sector_weights.get(sector, 1.0)
-    if "대부" in text or "사금융" in text:
-        score += 1.2
-
-    # 시장/정책/감독 영향
-    if sector in {"입법·정책", "감독·제재"}:
-        score += 1.8
-    impact_keywords = (
-        "금리",
-        "기준금리",
-        "최고금리",
-        "불법사금융",
-        "불법추심",
-        "추심",
-        "pf",
-        "부동산pf",
-        "가계부채",
-        "연체",
-        "연체율",
-        "제재",
-        "감독",
-        "정책",
-    )
-    score += sum(0.45 for kw in impact_keywords if kw in text)
-
-    if _is_schedule_notice_article(text):
-        score -= 1.1
-        if not _has_material_policy_action(text):
-            score -= 0.8
-
-    # topic 가중치
-    topic_weights = {
-        "최고금리": 2.0,
-        "불법사금융": 2.0,
-        "채권추심": 1.8,
-        "금리": 1.5,
-        "PF": 1.4,
-        "연체": 1.3,
-        "가계부채": 1.3,
-        "정책": 1.2,
-        "감독": 1.2,
-    }
-
-    def _topic_matches_any(topic_values: set[str], needles: tuple[str, ...]) -> bool:
-        return any(any(needle in topic for needle in needles) for topic in topic_values)
-
-    score += sum(
-        w for needle, w in topic_weights.items() if _topic_matches_any(topics, (needle,))
-    )
-
-    macro_relevance_needles = ("금리", "PF", "연체", "가계부채")
-
-    if "해외·글로벌" in topics and len(topics) == 1:
-        score -= 1.2
-    if sector == "거시·시장" and not _topic_matches_any(topics, macro_relevance_needles):
-        score -= 0.8
-
-    cluster_size = _field(item.article, "cluster_size")
-    if isinstance(cluster_size, int) and cluster_size > 1:
-        score += min(cluster_size - 1, 4) * 0.35
-
     relevance = _relevance_value(item.article)
     if isinstance(relevance, float):
-        rel_norm = min(relevance / 10.0, 1.0) if relevance > 1.0 else relevance
-        score += rel_norm * 2.5
+        score += relevance if relevance > 1.0 else relevance * 7.5
+    cluster_size = _field(item.article, "cluster_size")
+    if isinstance(cluster_size, int):
+        score += min(max(cluster_size, 1), 5) * 0.28
 
-    # 최신성 보조
+    sector_weights = {
+        "대부": 2.1,
+        "저축은행": 1.6,
+        "상호금융": 1.5,
+        "여전": 1.5,
+        "보험": 1.3,
+        "감독·제재": 1.8,
+        "입법·정책": 1.8,
+        "IB·자본시장": 1.25,
+    }
+    score += sector_weights.get(sector, 0.0)
+
+    anchor_weights = {
+        ("불법사금융", "불법추심", "보이스피싱", "고리대금", "새도약기금"): 2.0,
+        ("연체", "부실", "pf", "부동산pf", "건전성", "자본규제"): 1.5,
+        ("자금시장", "유동성", "여전채", "카드채", "캐피탈채", "abcp"): 1.4,
+        ("금감원", "금융위", "검사", "제재", "과징금", "입법예고", "제도개선"): 1.3,
+        ("k-ics", "킥스", "지급여력", "실손", "불완전판매"): 1.2,
+        ("fiu", "sto", "스테이블코인", "가상자산거래소"): 1.5,
+        ("fomc", "cpi", "pce", "기준금리", "국채금리", "달러", "외환"): 0.9,
+    }
+    score += sum(weight for keys, weight in anchor_weights.items() if _has_any(keys))
+    topic_text = " ".join(topics).lower()
+    score += sum(weight * 0.7 for keys, weight in anchor_weights.items() if any(k in topic_text for k in keys))
+
+    if _has_any(("비트코인 신고가", "암호화폐 랠리", "코인 시세", "뉴욕증시 상승 마감", "나스닥 상승 마감")):
+        score -= 1.2
+    if _has_any(("피자데이", "이벤트", "행사 개최", "브랜드 캠페인")):
+        score -= 1.3
+    if _has_any(("금융권 소식", "금융 레이더", "업계 소식", "종합")):
+        score -= 1.1
+
+    if _is_schedule_notice_article(text):
+        score -= 0.8
+        if not _has_material_policy_action(text):
+            score -= 0.6
+
     score += _ts_dt(getattr(item.article, "pub_date", None)) / 1_000_000_000_000
     return score
 
@@ -332,7 +302,11 @@ def _select_top_items(tagged: list[TaggedArticle], limit: int = 10) -> list[Tagg
     pool = [it for it in tagged if _is_visible_in_main_report(it)]
     ranked = sorted(
         pool,
-        key=lambda it: (_top_rank_score(it), _ts_dt(getattr(it.article, "pub_date", None))),
+        key=lambda it: (
+            _top_rank_score(it),
+            _ts_dt(getattr(it.article, "pub_date", None)),
+            (_field(it.article, "title") or ""),
+        ),
         reverse=True,
     )
 
@@ -341,11 +315,22 @@ def _select_top_items(tagged: list[TaggedArticle], limit: int = 10) -> list[Tagg
     seen_titles: set[str] = set()
     sector_counts: dict[str, int] = defaultdict(int)
     topic_counts: dict[str, int] = defaultdict(int)
-    sector_limit = max(3, (limit // 2) + 1)
-    topic_limit = max(2, (limit // 3) + 1)
+    cap_by_sector = {"거시·시장": 2, "디지털자산": 2, "기타": 1}
+    sector_limit = 3
 
     def norm_title(x: str) -> str:
         return re.sub(r"\s+", " ", (x or "").strip().lower())
+
+    def is_global_topic(item: TaggedArticle) -> bool:
+        return "해외·글로벌" in set(item.topics or [])
+
+    def is_generic_market_move(item: TaggedArticle) -> bool:
+        text = f"{(_field(item.article, 'title') or '').lower()} {(_field(item.article, 'description') or '').lower()}"
+        needles = ("비트코인 신고가", "암호화폐 랠리", "코인 시세", "뉴욕증시 상승 마감", "나스닥 상승 마감", "피자데이", "행사 개최")
+        return any(n in text for n in needles)
+
+    global_count = 0
+    generic_move_count = 0
 
     for item in ranked:
         if len(selected) >= limit:
@@ -357,21 +342,57 @@ def _select_top_items(tagged: list[TaggedArticle], limit: int = 10) -> list[Tagg
             continue
         if cluster_id and cluster_id in seen_clusters:
             continue
-        if sector_counts[sector] >= sector_limit:
+        if sector_counts[sector] >= cap_by_sector.get(sector, sector_limit):
             continue
-        top_topic = (item.topics or [""])[0]
-        if top_topic and topic_counts[top_topic] >= topic_limit:
+        if is_global_topic(item) and global_count >= 2:
+            continue
+        if is_generic_market_move(item) and generic_move_count >= 2:
             continue
         selected.append(item)
         seen_titles.add(title_key)
         if cluster_id:
             seen_clusters.add(cluster_id)
         sector_counts[sector] += 1
+        top_topic = (item.topics or [""])[0]
         if top_topic:
             topic_counts[top_topic] += 1
+        if is_global_topic(item):
+            global_count += 1
+        if is_generic_market_move(item):
+            generic_move_count += 1
 
     if len(selected) < limit:
+        def _has_remaining_non_capped_candidate() -> bool:
+            for cand in ranked:
+                cluster_id = str(_field(cand.article, "cluster_id") or "").strip()
+                title_key = norm_title(getattr(cand.article, "title", None) or "")
+                if not title_key or title_key in seen_titles:
+                    continue
+                if cluster_id and cluster_id in seen_clusters:
+                    continue
+                if _primary_sector(cand) not in {"거시·시장", "디지털자산"}:
+                    return True
+            return False
+
         for item in ranked:
+            if len(selected) >= limit:
+                break
+            sector = _primary_sector(item)
+            cluster_id = str(_field(item.article, "cluster_id") or "").strip()
+            title_key = norm_title(getattr(item.article, "title", None) or "")
+            if not title_key or title_key in seen_titles:
+                continue
+            if cluster_id and cluster_id in seen_clusters:
+                continue
+            if sector in {"거시·시장", "디지털자산"} and _has_remaining_non_capped_candidate():
+                continue
+            selected.append(item)
+            seen_titles.add(title_key)
+            if cluster_id:
+                seen_clusters.add(cluster_id)
+
+    if len(selected) < limit:
+        for item in pool:
             if len(selected) >= limit:
                 break
             cluster_id = str(_field(item.article, "cluster_id") or "").strip()
@@ -957,10 +978,9 @@ def render_html(
 ) -> str:
     date_str = report_date.strftime("%Y-%m-%d")
 
-    top_items = _select_top_items(tagged, limit=10)
-
     by_sector, ordered_sectors = _build_visible_sector_buckets(tagged)
     visible_items = [item for s in ordered_sectors for item in by_sector.get(s, [])]
+    top_items = _select_top_items(visible_items, limit=10)
     sector_counts = {s: len(by_sector.get(s, [])) for s in ordered_sectors}
     def pill_html(sector: str, count: int) -> str:
         return f"<button class='pill' data-sector-pill data-sector='{_h(sector)}'><strong>{_h(sector)}</strong><span class='count'>{count}</span></button>"
