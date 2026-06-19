@@ -1,0 +1,633 @@
+{
+  "evaluation_skip_reason": "",
+  "evaluation_skipped": false,
+  "excluded_input_files": [
+    {
+      "date": "2026-02-09",
+      "path": "reports/_candidates/2026-02-09_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-10",
+      "path": "reports/_candidates/2026-02-10_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-11",
+      "path": "reports/_candidates/2026-02-11_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-12",
+      "path": "reports/_candidates/2026-02-12_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-13",
+      "path": "reports/_candidates/2026-02-13_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-16",
+      "path": "reports/_candidates/2026-02-16_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-17",
+      "path": "reports/_candidates/2026-02-17_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-18",
+      "path": "reports/_candidates/2026-02-18_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-19",
+      "path": "reports/_candidates/2026-02-19_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-20",
+      "path": "reports/_candidates/2026-02-20_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-23",
+      "path": "reports/_candidates/2026-02-23_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-24",
+      "path": "reports/_candidates/2026-02-24_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-25",
+      "path": "reports/_candidates/2026-02-25_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-26",
+      "path": "reports/_candidates/2026-02-26_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-02-27",
+      "path": "reports/_candidates/2026-02-27_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-02",
+      "path": "reports/_candidates/2026-03-02_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-03",
+      "path": "reports/_candidates/2026-03-03_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-04",
+      "path": "reports/_candidates/2026-03-04_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-05",
+      "path": "reports/_candidates/2026-03-05_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-06",
+      "path": "reports/_candidates/2026-03-06_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-09",
+      "path": "reports/_candidates/2026-03-09_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-10",
+      "path": "reports/_candidates/2026-03-10_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-11",
+      "path": "reports/_candidates/2026-03-11_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-12",
+      "path": "reports/_candidates/2026-03-12_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-13",
+      "path": "reports/_candidates/2026-03-13_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-14",
+      "path": "reports/_candidates/2026-03-14_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-15",
+      "path": "reports/_candidates/2026-03-15_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-16",
+      "path": "reports/_candidates/2026-03-16_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-17",
+      "path": "reports/_candidates/2026-03-17_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-18",
+      "path": "reports/_candidates/2026-03-18_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-19",
+      "path": "reports/_candidates/2026-03-19_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-20",
+      "path": "reports/_candidates/2026-03-20_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-21",
+      "path": "reports/_candidates/2026-03-21_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-22",
+      "path": "reports/_candidates/2026-03-22_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-23",
+      "path": "reports/_candidates/2026-03-23_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-24",
+      "path": "reports/_candidates/2026-03-24_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-25",
+      "path": "reports/_candidates/2026-03-25_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-26",
+      "path": "reports/_candidates/2026-03-26_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-27",
+      "path": "reports/_candidates/2026-03-27_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-28",
+      "path": "reports/_candidates/2026-03-28_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-29",
+      "path": "reports/_candidates/2026-03-29_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-30",
+      "path": "reports/_candidates/2026-03-30_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-03-31",
+      "path": "reports/_candidates/2026-03-31_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-01",
+      "path": "reports/_candidates/2026-04-01_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-02",
+      "path": "reports/_candidates/2026-04-02_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-03",
+      "path": "reports/_candidates/2026-04-03_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-04",
+      "path": "reports/_candidates/2026-04-04_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-05",
+      "path": "reports/_candidates/2026-04-05_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-06",
+      "path": "reports/_candidates/2026-04-06_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-07",
+      "path": "reports/_candidates/2026-04-07_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-08",
+      "path": "reports/_candidates/2026-04-08_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-09",
+      "path": "reports/_candidates/2026-04-09_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-10",
+      "path": "reports/_candidates/2026-04-10_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-11",
+      "path": "reports/_candidates/2026-04-11_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-12",
+      "path": "reports/_candidates/2026-04-12_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-13",
+      "path": "reports/_candidates/2026-04-13_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-14",
+      "path": "reports/_candidates/2026-04-14_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-15",
+      "path": "reports/_candidates/2026-04-15_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-16",
+      "path": "reports/_candidates/2026-04-16_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-17",
+      "path": "reports/_candidates/2026-04-17_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-18",
+      "path": "reports/_candidates/2026-04-18_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-19",
+      "path": "reports/_candidates/2026-04-19_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-20",
+      "path": "reports/_candidates/2026-04-20_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-21",
+      "path": "reports/_candidates/2026-04-21_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-22",
+      "path": "reports/_candidates/2026-04-22_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-23",
+      "path": "reports/_candidates/2026-04-23_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-24",
+      "path": "reports/_candidates/2026-04-24_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-25",
+      "path": "reports/_candidates/2026-04-25_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-26",
+      "path": "reports/_candidates/2026-04-26_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-27",
+      "path": "reports/_candidates/2026-04-27_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-28",
+      "path": "reports/_candidates/2026-04-28_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-29",
+      "path": "reports/_candidates/2026-04-29_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-04-30",
+      "path": "reports/_candidates/2026-04-30_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-01",
+      "path": "reports/_candidates/2026-05-01_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-02",
+      "path": "reports/_candidates/2026-05-02_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-03",
+      "path": "reports/_candidates/2026-05-03_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-04",
+      "path": "reports/_candidates/2026-05-04_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-05",
+      "path": "reports/_candidates/2026-05-05_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-06",
+      "path": "reports/_candidates/2026-05-06_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-07",
+      "path": "reports/_candidates/2026-05-07_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-08",
+      "path": "reports/_candidates/2026-05-08_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-09",
+      "path": "reports/_candidates/2026-05-09_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-10",
+      "path": "reports/_candidates/2026-05-10_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-11",
+      "path": "reports/_candidates/2026-05-11_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-12",
+      "path": "reports/_candidates/2026-05-12_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-13",
+      "path": "reports/_candidates/2026-05-13_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-14",
+      "path": "reports/_candidates/2026-05-14_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-15",
+      "path": "reports/_candidates/2026-05-15_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-16",
+      "path": "reports/_candidates/2026-05-16_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-17",
+      "path": "reports/_candidates/2026-05-17_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-18",
+      "path": "reports/_candidates/2026-05-18_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-19",
+      "path": "reports/_candidates/2026-05-19_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-20",
+      "path": "reports/_candidates/2026-05-20_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-21",
+      "path": "reports/_candidates/2026-05-21_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-22",
+      "path": "reports/_candidates/2026-05-22_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-23",
+      "path": "reports/_candidates/2026-05-23_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-24",
+      "path": "reports/_candidates/2026-05-24_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-25",
+      "path": "reports/_candidates/2026-05-25_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-26",
+      "path": "reports/_candidates/2026-05-26_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-27",
+      "path": "reports/_candidates/2026-05-27_candidates.csv",
+      "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-05-28",
+      "path": "reports/_candidates/2026-05-28_candidates.csv",
+      "reason": "outside_lookback_window"
+    }
+  ],
+  "ignored_rows": {
+    "blank_or_invalid": 0,
+    "review": 1588
+  },
+  "input_files": [
+    "reports/_candidates/2026-06-18_candidates.csv",
+    "reports/_candidates/2026-06-17_candidates.csv",
+    "reports/_candidates/2026-06-16_candidates.csv",
+    "reports/_candidates/2026-06-15_candidates.csv",
+    "reports/_candidates/2026-06-14_candidates.csv",
+    "reports/_candidates/2026-06-13_candidates.csv",
+    "reports/_candidates/2026-06-12_candidates.csv",
+    "reports/_candidates/2026-06-11_candidates.csv",
+    "reports/_candidates/2026-06-10_candidates.csv",
+    "reports/_candidates/2026-06-09_candidates.csv",
+    "reports/_candidates/2026-06-08_candidates.csv",
+    "reports/_candidates/2026-06-07_candidates.csv",
+    "reports/_candidates/2026-06-06_candidates.csv",
+    "reports/_candidates/2026-06-05_candidates.csv",
+    "reports/_candidates/2026-06-04_candidates.csv",
+    "reports/_candidates/2026-06-03_candidates.csv",
+    "reports/_candidates/2026-06-02_candidates.csv",
+    "reports/_candidates/2026-06-01_candidates.csv",
+    "reports/_candidates/2026-05-31_candidates.csv",
+    "reports/_candidates/2026-05-30_candidates.csv",
+    "reports/_candidates/2026-05-29_candidates.csv"
+  ],
+  "label_counts": {
+    "negative": 485,
+    "positive": 2927,
+    "review": 1588
+  },
+  "metrics": {
+    "accuracy": 0.7631887456037515,
+    "f1": 0.8421875,
+    "false_negative": 193,
+    "false_positive": 9,
+    "precision": 0.9835766423357665,
+    "recall": 0.7363387978142076,
+    "threshold": 0.65,
+    "true_negative": 112,
+    "true_positive": 539
+  },
+  "model_output": "models/relevance_candidate.joblib",
+  "split": {
+    "seed": 42,
+    "stratified": true,
+    "test_rows": 853,
+    "test_size": 0.25,
+    "train_rows": 2559
+  },
+  "threshold_metrics": [
+    {
+      "accuracy": 0.9073856975381008,
+      "f1": 0.9468728984532616,
+      "false_negative": 28,
+      "false_positive": 51,
+      "precision": 0.9324503311258279,
+      "recall": 0.9617486338797814,
+      "threshold": 0.5,
+      "true_negative": 70,
+      "true_positive": 704
+    },
+    {
+      "accuracy": 0.9003516998827668,
+      "f1": 0.9414197105444521,
+      "false_negative": 49,
+      "false_positive": 36,
+      "precision": 0.9499304589707928,
+      "recall": 0.9330601092896175,
+      "threshold": 0.55,
+      "true_negative": 85,
+      "true_positive": 683
+    },
+    {
+      "accuracy": 0.861664712778429,
+      "f1": 0.9146164978292329,
+      "false_negative": 100,
+      "false_positive": 18,
+      "precision": 0.9723076923076923,
+      "recall": 0.8633879781420765,
+      "threshold": 0.6,
+      "true_negative": 103,
+      "true_positive": 632
+    },
+    {
+      "accuracy": 0.7631887456037515,
+      "f1": 0.8421875,
+      "false_negative": 193,
+      "false_positive": 9,
+      "precision": 0.9835766423357665,
+      "recall": 0.7363387978142076,
+      "threshold": 0.65,
+      "true_negative": 112,
+      "true_positive": 539
+    },
+    {
+      "accuracy": 0.6248534583821805,
+      "f1": 0.7212543554006969,
+      "false_negative": 318,
+      "false_positive": 2,
+      "precision": 0.9951923076923077,
+      "recall": 0.5655737704918032,
+      "threshold": 0.7,
+      "true_negative": 119,
+      "true_positive": 414
+    },
+    {
+      "accuracy": 0.4806565064478312,
+      "f1": 0.5669599217986314,
+      "false_negative": 442,
+      "false_positive": 1,
+      "precision": 0.9965635738831615,
+      "recall": 0.39617486338797814,
+      "threshold": 0.75,
+      "true_negative": 120,
+      "true_positive": 290
+    }
+  ],
+  "total_rows": 5000,
+  "used_rows": 3412,
+  "warnings": []
+}
