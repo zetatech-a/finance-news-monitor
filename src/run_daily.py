@@ -15,6 +15,7 @@ from src.pipeline.normalize import normalize
 from src.pipeline.report import render_markdown, write_index, write_report, render_html
 from src.pipeline.tagger import keyword_trends, tag_articles
 from src.pipeline.issue_cluster import cluster_tagged_articles
+from src.pipeline.quality import build_quality_metrics, write_quality_metrics
 
 # ✅ 금융 관련성(스코어링/모델) 필터
 from src.pipeline.relevance_filter import filter_relevance
@@ -257,17 +258,21 @@ def main() -> None:
         end=end,
         max_pages=args.max_pages,
     )
-    logger.info("Counts: raw_items=%d", len(raw_items))
+    raw_items_count = len(raw_items)
+    logger.info("Counts: raw_items=%d", raw_items_count)
 
     articles = normalize(raw_items)
-    logger.info("Counts: normalize=%d", len(articles))
+    normalized_articles_count = len(articles)
+    logger.info("Counts: normalize=%d", normalized_articles_count)
 
     articles = deduplicate(articles)
-    logger.info("Counts: dedup=%d", len(articles))
+    deduped_articles_count = len(articles)
+    logger.info("Counts: dedup=%d", deduped_articles_count)
 
     # ✅ 기존 1차 룰 필터(스포츠/엔터/잡기사 등)
     articles = filter_articles(articles)
-    logger.info("Counts: rule_filter=%d", len(articles))
+    rule_filtered_articles_count = len(articles)
+    logger.info("Counts: rule_filter=%d", rule_filtered_articles_count)
 
     # ✅ 금융 관련성 필터
     # operating model은 authoritative, candidate model은 guardrail hybrid, 없으면 rule_only
@@ -308,13 +313,16 @@ def main() -> None:
         model_policy,
         model_path,
     )
-    logger.info("Counts: relevance_filter=%d", len(articles))
+    relevance_filtered_articles_count = len(articles)
+    logger.info("Counts: relevance_filter=%d", relevance_filtered_articles_count)
 
     # ✅ 금융 관련성 통과 기사만 섹터/토픽 태깅
     tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
+    tagged_before_cluster_items = list(tagged)
 
     # ✅ Phase 3: 같은 이슈 반복 기사는 대표 기사만 요약/렌더링
-    before_cluster = len(tagged)
+    tagged_before_cluster_count = len(tagged)
+    before_cluster = tagged_before_cluster_count
     tagged = cluster_tagged_articles(tagged)
     cluster_sizes = [int(getattr(item.article, "cluster_size", 1) or 1) for item in tagged]
     max_cluster_size = max(cluster_sizes, default=0)
@@ -393,7 +401,42 @@ def main() -> None:
     # 요약 반영 후 최종 본문(description) 기준으로 대표 기사만 태깅 재계산
     representative_articles = [item.article for item in tagged]
     tagged = tag_articles(representative_articles, sector_queries, topic_queries=topic_queries)
-    logger.info("Counts: final_tagged_representatives=%d", len(tagged))
+    final_tagged_representatives_count = len(tagged)
+    displayed_articles_count = final_tagged_representatives_count
+    logger.info(
+        "Counts: final_tagged_representatives=%d",
+        final_tagged_representatives_count,
+    )
+
+    quality_metrics_path = (
+        REPORT_DIR / "_metrics" / f"{end.date().isoformat()}_quality_metrics.json"
+    )
+    try:
+        quality_metrics = build_quality_metrics(
+            report_date=end.date().isoformat(),
+            generated_at=now_kst(),
+            counts={
+                "raw_items": raw_items_count,
+                "normalized_articles": normalized_articles_count,
+                "deduped_articles": deduped_articles_count,
+                "rule_filtered_articles": rule_filtered_articles_count,
+                "relevance_filtered_articles": relevance_filtered_articles_count,
+                "tagged_before_cluster": tagged_before_cluster_count,
+                "final_tagged_representatives": final_tagged_representatives_count,
+                "displayed_articles": displayed_articles_count,
+            },
+            tagged_before_cluster=tagged_before_cluster_items,
+            tagged_final=tagged,
+            top_items=[],
+        )
+        write_quality_metrics(quality_metrics, quality_metrics_path)
+        logger.info("Quality metrics saved: %s", quality_metrics_path)
+    except Exception as exc:
+        logger.warning(
+            "Failed to write quality metrics to %s: %s",
+            quality_metrics_path,
+            exc,
+        )
 
     trends = keyword_trends(tagged)
     markdown_text = render_markdown(end, tagged, trends)
