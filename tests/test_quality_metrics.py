@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 from src.pipeline.normalize import Article
 from src.pipeline.quality import build_quality_metrics, write_quality_metrics
+from src.pipeline.report import render_html, top_report_items, visible_report_items
 from src.pipeline.tagger import TaggedArticle
 
 
@@ -211,3 +212,113 @@ def test_write_quality_metrics_writes_utf8_json_without_ascii_escaping(tmp_path)
     assert b"\\uc5b8" not in raw
     payload = json.loads(raw.decode("utf-8"))
     assert payload["publishers"]["publisher_counts"][publisher] == 1
+
+
+def test_report_helpers_populate_quality_top10_and_visible_count():
+    visible_bank = _tagged(
+        1,
+        title="visible bank",
+        sectors=["은행"],
+        topics=["정책"],
+        score=8,
+        minutes=3,
+    )
+    visible_misc = _tagged(
+        2,
+        title="visible high confidence misc",
+        sectors=[],
+        topics=[],
+        prob=0.85,
+        minutes=2,
+    )
+    hidden_misc = _tagged(
+        3,
+        title="hidden low confidence misc",
+        sectors=[],
+        topics=["잡음"],
+        prob=0.2,
+        minutes=1,
+    )
+    tagged = [hidden_misc, visible_misc, visible_bank]
+
+    visible_items = visible_report_items(tagged)
+    top_items = top_report_items(tagged, limit=10)
+
+    metrics = build_quality_metrics(
+        report_date="2026-05-27",
+        generated_at=datetime(2026, 5, 27, 1, 2, 3),
+        counts={
+            "final_tagged_representatives": len(tagged),
+            "displayed_articles": len(visible_items),
+        },
+        tagged_before_cluster=tagged,
+        tagged_final=tagged,
+        top_items=top_items,
+    )
+
+    assert [item.article.title for item in visible_items] == [
+        "visible bank",
+        "visible high confidence misc",
+    ]
+    assert metrics["counts"]["final_tagged_representatives"] == 3
+    assert metrics["counts"]["displayed_articles"] == 2
+    assert metrics["top10"]["count"] == 2
+    assert "hidden low confidence misc" not in [
+        item["title"] for item in metrics["top10"]["items"]
+    ]
+
+
+def test_report_helpers_empty_inputs_and_schema_stay_stable():
+    metrics = build_quality_metrics(
+        report_date="2026-05-27",
+        generated_at=None,
+        counts={"displayed_articles": len(visible_report_items([]))},
+        tagged_before_cluster=[],
+        tagged_final=[],
+        top_items=top_report_items([]),
+    )
+
+    assert visible_report_items([]) == []
+    assert top_report_items([]) == []
+    assert set(metrics.keys()) == {
+        "date",
+        "generated_at",
+        "counts",
+        "taxonomy",
+        "clusters",
+        "top10",
+        "publishers",
+    }
+    assert set(metrics["top10"].keys()) == {
+        "count",
+        "sector_counts",
+        "topic_counts",
+        "no_topic_count",
+        "items",
+    }
+
+
+def test_report_helpers_are_deterministic_and_match_html_visibility():
+    tagged = [
+        _tagged(1, title="low misc hidden", sectors=[], prob=0.1, minutes=1),
+        _tagged(2, title="bank visible older", sectors=["은행"], score=7, minutes=2),
+        _tagged(3, title="bank visible newer", sectors=["은행"], score=9, minutes=3),
+        _tagged(4, title="misc visible", sectors=[], prob=0.9, minutes=4),
+    ]
+
+    first_visible = visible_report_items(tagged)
+    second_visible = visible_report_items(tagged)
+    first_top = top_report_items(tagged, limit=3)
+    second_top = top_report_items(tagged, limit=3)
+    html = render_html(datetime(2026, 5, 27), tagged, [])
+
+    assert [item.article.title for item in first_visible] == [
+        item.article.title for item in second_visible
+    ]
+    assert [item.article.title for item in first_top] == [
+        item.article.title for item in second_top
+    ]
+    assert html.count("<article class='card' data-card") == len(first_visible) + len(
+        first_top
+    )
+    assert "low misc hidden" not in html

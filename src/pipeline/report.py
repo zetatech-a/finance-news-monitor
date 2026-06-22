@@ -409,6 +409,19 @@ def _select_top_items(tagged: list[TaggedArticle], limit: int = 10) -> list[Tagg
     return selected
 
 
+def visible_report_items(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
+    """Return the same article set that the HTML report renders in sector sections."""
+    by_sector, ordered_sectors = _build_visible_sector_buckets(tagged)
+    return [item for sector in ordered_sectors for item in by_sector.get(sector, [])]
+
+
+def top_report_items(
+    tagged: list[TaggedArticle], limit: int = 10
+) -> list[TaggedArticle]:
+    """Return the same Top issue items selected for the HTML report."""
+    return _select_top_items(visible_report_items(tagged), limit=limit)
+
+
 def render_markdown(
     report_date: datetime,
     tagged: list[TaggedArticle],
