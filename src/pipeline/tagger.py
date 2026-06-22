@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from collections import Counter
 from dataclasses import dataclass
 from typing import Any
@@ -57,6 +58,14 @@ TEXT_ALIASES: tuple[tuple[str, str], ...] = (
     ("인터넷 전문은행", "인터넷은행"),
     ("가상화폐", "암호화폐"),
     ("코인거래소", "가상자산 거래소"),
+    ("美국채", "미국채"),
+    ("美 증시", "미국 증시"),
+    ("美 연준", "미국 연준"),
+    ("美", "미국"),
+    ("인뱅", "인터넷은행"),
+    ("마통", "마이너스통장"),
+    ("빚투", "대출투자"),
+    ("보이싱피싱", "보이스피싱"),
 )
 
 SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
@@ -195,16 +204,68 @@ SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
 
 TOPIC_RULE_OVERRIDES: dict[str, dict[str, Any]] = {
     "해외·글로벌": {
-        "strong": ["연준", "fomc", "ecb", "boj", "cpi", "pce", "뉴욕증시", "나스닥"],
-        "weak": ["미국", "유럽", "중국", "달러", "환율", "뉴욕", "월가", "국채", "글로벌"],
-        "negative": ["국내", "금융위", "금감원", "저축은행", "대부업"],
-        "threshold": 5.0,
+        "strong": [
+            "연준", "fomc", "ecb", "boj", "cpi", "pce", "뉴욕증시", "나스닥", "다우", "s&p",
+            "월가", "미 국채", "미국 국채", "미국채", "미 국채금리", "미국채 금리", "미국 기준금리",
+            "미 증시", "미국 증시", "글로벌 채권금리", "글로벌 금융시장",
+        ],
+        "weak": ["미국", "유럽", "중국", "일본", "영국", "달러", "달러화", "환율", "국채", "국제유가", "글로벌", "해외", "월가"],
+        "negative": ["금융위", "금감원", "저축은행", "대부업"],
+        "threshold": 3.2,
+    },
+    "증시·시장시황": {
+        "strong": ["뉴욕증시", "코스피", "코스닥", "마감시황", "장 마감", "상승 마감", "하락 마감"],
+        "weak": ["증시", "나스닥", "다우", "s&p500", "혼조"],
+        "negative": [],
+        "threshold": 2.8,
+    },
+    "환율·외환": {
+        "strong": ["원달러", "원/달러", "외환시장", "강달러"],
+        "weak": ["환율", "달러", "달러화", "원화"],
+        "negative": [],
+        "threshold": 2.8,
+    },
+    "물가·경기지표": {
+        "strong": ["cpi", "pce", "소비자물가", "개인소비지출", "인플레이션"],
+        "weak": ["경기침체", "경기둔화"],
+        "negative": [],
+        "threshold": 2.8,
     },
     "금리·수수료·최고금리": {
         "strong": ["최고금리", "기준금리", "금리 산정", "가산금리", "중도상환수수료", "카드수수료", "가맹점 수수료"],
         "weak": ["금리", "수수료"],
         "negative": [],
         "threshold": 2.0,
+    },
+    "상품·영업·예금금리": {
+        "strong": ["예금금리", "수신금리", "대출금리", "마이너스통장", "예대금리차", "특판", "우대금리"],
+        "weak": ["신용대출", "주담대", "금융상품"],
+        "negative": [],
+        "threshold": 2.8,
+    },
+    "기업금융·익스포저": {
+        "strong": ["기업대출", "금융권 익스포저", "익스포저", "워크아웃", "구조조정", "크레딧"],
+        "weak": ["회생", "여신", "충당금", "대손"],
+        "negative": [],
+        "threshold": 2.8,
+    },
+    "업계동정·사회공헌": {
+        "strong": ["금융 브리핑", "금융권 소식", "오늘의 은행", "사회공헌", "업무협약"],
+        "weak": ["mou", "캠페인", "공모전", "행사", "기부", "후원"],
+        "negative": [],
+        "threshold": 2.8,
+    },
+    "일정·브리핑": {
+        "strong": ["주요일정", "회의 일정"],
+        "weak": ["다음주", "이번주", "일정", "브리핑"],
+        "negative": [],
+        "threshold": 2.8,
+    },
+    "칼럼·오피니언": {
+        "strong": ["칼럼", "사설", "기고", "기자수첩", "시론", "전문가 진단"],
+        "weak": ["데스크"],
+        "negative": [],
+        "threshold": 2.8,
     },
     "규제·가계부채": {
         "strong": ["가계부채", "대출규제", "총부채"],
@@ -245,9 +306,33 @@ TOPIC_RULE_OVERRIDES: dict[str, dict[str, Any]] = {
 }
 
 TOPIC_CONTEXT_TOKENS: dict[str, dict[str, tuple[str, ...]]] = {
+    "해외·글로벌": {
+        "title": ("연준", "fomc", "ecb", "boj", "뉴욕증시", "나스닥", "다우", "월가", "미 증시", "미국 증시", "미국채", "미 국채", "글로벌 금융시장"),
+        "body": ("미국 기준금리", "글로벌 채권금리", "미 국채금리", "달러화", "국제유가"),
+    },
+    "증시·시장시황": {
+        "title": ("코스피", "코스닥", "뉴욕증시", "나스닥", "다우", "마감시황", "장 마감", "혼조"),
+        "body": ("상승 마감", "하락 마감", "증시 변동성"),
+    },
+    "환율·외환": {
+        "title": ("원달러", "원/달러", "외환시장", "강달러", "달러화", "원화"),
+        "body": ("달러 강세", "환율 변동성", "외환시장 불안"),
+    },
+    "물가·경기지표": {
+        "title": ("cpi", "pce", "소비자물가", "개인소비지출", "인플레이션", "경기둔화"),
+        "body": ("물가 지표", "경기 지표", "경기침체"),
+    },
     "금리·수수료·최고금리": {
         "title": ("금리 산정", "가산금리", "우대금리", "최고금리", "중도상환수수료", "보증료", "기준금리"),
         "body": ("금리 체계", "금리 개편", "수수료율", "산정 방식"),
+    },
+    "상품·영업·예금금리": {
+        "title": ("예금금리", "수신금리", "대출금리", "마이너스통장", "예대금리차", "특판", "우대금리"),
+        "body": ("금융상품", "영업점", "금리 혜택"),
+    },
+    "기업금융·익스포저": {
+        "title": ("기업대출", "금융권 익스포저", "익스포저", "워크아웃", "구조조정", "크레딧"),
+        "body": ("여신 관리", "대손충당금", "기업여신"),
     },
     "연체·부실": {
         "title": ("연체율", "연체", "부실", "고정이하여신", "부실채권", "npl", "장기연체채권", "건전성 악화", "부실 우려"),
@@ -304,6 +389,12 @@ TOPIC_CONTEXT_TOKENS: dict[str, dict[str, tuple[str, ...]]] = {
 }
 
 TOPIC_SECTOR_AFFINITY: dict[str, tuple[str, ...]] = {
+    "해외·글로벌": ("거시·시장", "IB·자본시장"),
+    "증시·시장시황": ("거시·시장", "IB·자본시장"),
+    "환율·외환": ("거시·시장", "IB·자본시장"),
+    "물가·경기지표": ("거시·시장",),
+    "상품·영업·예금금리": ("은행", "저축은행", "여전", "상호금융"),
+    "기업금융·익스포저": ("은행", "IB·자본시장", "저축은행", "여전"),
     "연체·부실": ("대부", "은행", "저축은행", "상호금융", "여전"),
     "부동산·PF": ("저축은행", "IB·자본시장", "여전", "은행"),
     "규제·가계부채": ("은행", "입법·정책", "감독·제재"),
@@ -320,10 +411,18 @@ TOPIC_SECTOR_AFFINITY: dict[str, tuple[str, ...]] = {
 }
 
 
+def _apply_text_alias(text: str, src: str, dst: str) -> str:
+    source = normalize_text(src)
+    target = normalize_text(dst)
+    if source == "美":
+        return re.sub(r"美(?=\s*(증시|연준|국채|금리|달러|경제|시장|cpi|pce|fomc))", target, text)
+    return text.replace(source, target)
+
+
 def _normalize_text(text: str) -> str:
     normalized = normalize_text(text)
     for src, dst in TEXT_ALIASES:
-        normalized = normalized.replace(src, dst)
+        normalized = _apply_text_alias(normalized, src, dst)
     return normalized
 
 
@@ -918,6 +1017,72 @@ def _collect_hits(keywords: list[str], text: str) -> list[str]:
     return [kw for kw in keywords if _keyword_in_text(kw, text)]
 
 
+def _apply_topic_fallbacks(
+    *,
+    title_text: str,
+    body_text: str,
+    query_text: str,
+    sector: str,
+    topics: list[str],
+) -> list[str]:
+    fallback_topics = list(topics)
+    combined_text = " ".join(text for text in (title_text, body_text, query_text) if text).strip()
+
+    def append_topic(topic: str) -> None:
+        if topic not in fallback_topics:
+            fallback_topics.append(topic)
+
+    if sector == "거시·시장":
+        if has_any_term(
+            combined_text,
+            (
+                "연준", "fomc", "ecb", "boj", "cpi", "pce", "미국", "뉴욕증시", "나스닥", "다우",
+                "s&p", "s&p500", "월가", "미 증시", "미국 증시", "미 국채", "미국 국채", "미국채", "글로벌 금융시장",
+            ),
+        ):
+            append_topic("해외·글로벌")
+        if has_any_term(
+            combined_text,
+            ("원달러", "원/달러", "환율", "외환시장", "달러", "달러화", "강달러", "원화"),
+        ):
+            append_topic("환율·외환")
+        if has_any_term(
+            combined_text,
+            (
+                "코스피", "코스닥", "증시", "뉴욕증시", "나스닥", "다우", "s&p", "s&p500",
+                "마감시황", "장 마감", "상승 마감", "하락 마감", "혼조",
+            ),
+        ):
+            append_topic("증시·시장시황")
+
+    if sector in ("은행", "저축은행", "여전", "상호금융") and has_any_term(
+        combined_text,
+        (
+            "예금금리", "수신금리", "대출금리", "마이너스통장", "신용대출", "주담대", "예대금리차",
+            "특판", "우대금리",
+        ),
+    ):
+        append_topic("상품·영업·예금금리")
+
+    if sector in ("은행", "IB·자본시장", "저축은행", "여전") and has_any_term(
+        combined_text,
+        ("기업대출", "금융권 익스포저", "익스포저", "회생", "워크아웃", "구조조정", "여신", "크레딧", "대손"),
+    ):
+        append_topic("기업금융·익스포저")
+
+    if has_any_term(combined_text, ("다음주", "이번주", "주요일정", "회의 일정")):
+        append_topic("일정·브리핑")
+    if has_any_term(
+        combined_text,
+        ("금융 브리핑", "오늘의 은행", "금융권 소식", "사회공헌", "업무협약", "mou", "캠페인", "공모전", "행사", "기부", "후원"),
+    ):
+        append_topic("업계동정·사회공헌")
+    if has_any_term(combined_text, ("칼럼", "사설", "기고", "기자수첩", "시론", "전문가 진단")):
+        append_topic("칼럼·오피니언")
+
+    return fallback_topics
+
+
 def tag_articles(
     articles: list[Article],
     sector_queries: dict[str, list[str]],
@@ -929,7 +1094,7 @@ def tag_articles(
     for article in articles:
         title_text = _normalize_text((article.title or "").lower())
         desc_text = _normalize_text((article.description or "").lower())
-        query_text = (getattr(article, "query", "") or "").lower()
+        query_text = _normalize_text((getattr(article, "query", "") or "").lower())
         body_sources = [
             desc_text,
             _normalize_text((getattr(article, "summary", "") or "").lower()),
@@ -979,6 +1144,18 @@ def tag_articles(
             if score >= rules["threshold"] and hits:
                 topics.append(topic)
                 topic_hits_all.extend(hits)
+        if topic_queries:
+            topics = [
+                topic
+                for topic in _apply_topic_fallbacks(
+                    title_text=title_text,
+                    body_text=body_text,
+                    query_text=query_text,
+                    sector=sectors[0],
+                    topics=topics,
+                )
+                if topic in topic_queries
+            ]
 
         matched_keywords = list(dict.fromkeys([*best_hits, *topic_hits_all]))
 
