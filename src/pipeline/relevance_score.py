@@ -57,6 +57,11 @@ _WEIGHTS = _Weights(
         "최고금리": 4,
         "미등록대부": 6,
         "불법사금융": 8,
+        "불법사채": 6,
+        "불법대부": 6,
+        "불법추심": 6,
+        "대출광고": 4,
+        "대부광고": 4,
         "채권추심": 5,
         "npl": 4,
         "부실채권": 4,
@@ -86,7 +91,7 @@ _WEIGHTS = _Weights(
         "행정처분": 3,
         "제도개선": 3,
         "불완전판매": 4,
-        "보이스피싱": 4,
+        "보이스피싱": 6,
         # macro
         "환율": 3,
         "국채": 3,
@@ -213,6 +218,59 @@ _WEIGHTS = _Weights(
     },
 )
 
+_STRONG_FINANCE_ANCHORS: tuple[str, ...] = (
+    "불법사금융", "불법사채", "불법대부", "미등록대부", "대부업", "대부업체",
+    "채권추심", "불법추심", "보이스피싱", "스미싱", "대포통장",
+    "불법 대출광고", "대출광고", "대부광고", "금융위", "금융위원회", "금감원", "금융감독원",
+    "금융당국", "저축은행", "은행권", "시중은행", "인터넷은행", "카드론",
+    "현금서비스", "여전채", "보험사", "증권사", "상호금융", "신협", "새마을금고",
+    "연체율", "부실채권", "가계대출", "주담대", "기업대출", "부동산 pf", "부동산pf",
+    "pf", "익스포저", "워크아웃",
+)
+
+_FINANCE_RISK_OR_REGULATORY_SIGNALS: tuple[str, ...] = (
+    "피해", "협박", "단속", "점검", "검사", "착수", "경고", "경고등", "상승",
+    "연체", "연체율", "부실", "부실채권", "불법", "미등록", "추심", "광고",
+    "대출광고", "금리", "예금금리", "재진입", "당국", "제재", "과징금", "행정처분",
+    "악용", "조직", "확산", "리스크", "위험", "관리", "워크아웃", "익스포저",
+)
+
+_CAPPED_NOISE_TERMS: tuple[str, ...] = (
+    "sns",
+    "유튜브",
+    "맛집",
+    "인플루언서",
+    "행사",
+    "이벤트",
+    "루머",
+    "먹방",
+    "여행",
+    "축제",
+)
+
+_STRONG_CONTEXT_NEGATIVE_CAP = 1
+
+
+def _has_strong_finance_anchor(text: str) -> bool:
+    return has_any_term(text, _STRONG_FINANCE_ANCHORS)
+
+
+def _has_finance_risk_or_regulatory_signal(text: str) -> bool:
+    return has_any_term(text, _FINANCE_RISK_OR_REGULATORY_SIGNALS)
+
+
+def _cap_negative_for_strong_finance_context(text: str, neg_score: int) -> int:
+    matched_negative = find_terms(text, _WEIGHTS.neg)
+    if (
+        neg_score > _STRONG_CONTEXT_NEGATIVE_CAP
+        and matched_negative
+        and set(matched_negative).issubset(set(_CAPPED_NOISE_TERMS))
+        and _has_strong_finance_anchor(text)
+        and _has_finance_risk_or_regulatory_signal(text)
+    ):
+        return _STRONG_CONTEXT_NEGATIVE_CAP
+    return neg_score
+
 
 def _text(article) -> str:
     """Extract text fields from dict/object."""
@@ -291,6 +349,7 @@ def relevance_score(article) -> int:
     for k, w in _WEIGHTS.neg.items():
         if contains_term(text, k):
             neg_score += w
+    neg_score = _cap_negative_for_strong_finance_context(text, neg_score)
 
     score = hard_score + soft_score - neg_score
 
