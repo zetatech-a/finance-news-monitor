@@ -12,7 +12,14 @@ from src.fetchers.naver import fetch_news
 from src.pipeline.dedup import deduplicate
 from src.pipeline.filtering import filter_articles
 from src.pipeline.normalize import normalize
-from src.pipeline.report import render_markdown, write_index, write_report, render_html
+from src.pipeline.report import (
+    render_markdown,
+    top_report_items,
+    visible_report_items,
+    write_index,
+    write_report,
+    render_html,
+)
 from src.pipeline.tagger import keyword_trends, tag_articles
 from src.pipeline.issue_cluster import cluster_tagged_articles
 from src.pipeline.quality import build_quality_metrics, write_quality_metrics
@@ -402,7 +409,9 @@ def main() -> None:
     representative_articles = [item.article for item in tagged]
     tagged = tag_articles(representative_articles, sector_queries, topic_queries=topic_queries)
     final_tagged_representatives_count = len(tagged)
-    displayed_articles_count = final_tagged_representatives_count
+    visible_items = visible_report_items(tagged)
+    top_items = top_report_items(tagged, limit=10)
+    displayed_articles_count = len(visible_items)
     logger.info(
         "Counts: final_tagged_representatives=%d",
         final_tagged_representatives_count,
@@ -427,7 +436,7 @@ def main() -> None:
             },
             tagged_before_cluster=tagged_before_cluster_items,
             tagged_final=tagged,
-            top_items=[],
+            top_items=top_items,
         )
         write_quality_metrics(quality_metrics, quality_metrics_path)
         logger.info("Quality metrics saved: %s", quality_metrics_path)
