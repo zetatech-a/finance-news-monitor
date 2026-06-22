@@ -10,7 +10,7 @@ from src.pipeline.normalize import Article
 from src.pipeline.tagger import tag_articles
 
 
-def _tag_one(title: str, description: str = ""):
+def _tag_one(title: str, description: str = "", query: str = "topic-fallback-test"):
     cfg = yaml.safe_load(Path("queries.yml").read_text(encoding="utf-8"))
     article = Article(
         title=title,
@@ -19,7 +19,7 @@ def _tag_one(title: str, description: str = ""):
         originallink=None,
         naver_link=None,
         pub_date=datetime(2026, 6, 22, 9, 0),
-        query="topic-fallback-test",
+        query=query,
     )
     return tag_articles([article], cfg["sectors"], cfg["topics"])[0]
 
@@ -55,3 +55,37 @@ def test_us_market_shorthand_gets_overseas_and_market_topics():
     tagged = _tag_one("미 증시 상승 마감")
 
     assert {"해외·글로벌", "증시·시장시황"}.issubset(set(tagged.topics))
+
+
+def test_query_text_does_not_trigger_fallback_topics():
+    tagged = _tag_one("무관한 기사 제목", query="금융 브리핑 다음주 일정")
+
+    assert "업계동정·사회공헌" not in tagged.topics
+    assert "일정·브리핑" not in tagged.topics
+
+
+@pytest.mark.parametrize("title", ["국내 CPI 발표에 시장 관심", "한국 소비자물가 발표"])
+def test_domestic_macro_terms_do_not_trigger_overseas_global(title: str):
+    tagged = _tag_one(title)
+
+    assert "해외·글로벌" not in tagged.topics
+
+
+@pytest.mark.parametrize("title", ["지역 축제 행사 개최", "청소년 캠페인 행사 진행"])
+def test_broad_social_activity_requires_financial_anchor(title: str):
+    tagged = _tag_one(title)
+
+    assert "업계동정·사회공헌" not in tagged.topics
+
+
+@pytest.mark.parametrize("title", ["美 PCE 발표", "美 증시 상승"])
+def test_bounded_us_alias_keeps_market_shorthand_positives(title: str):
+    tagged = _tag_one(title)
+
+    assert "해외·글로벌" in tagged.topics
+
+
+def test_bounded_us_alias_ignores_non_market_usage():
+    tagged = _tag_one("美術 전시 행사 개최")
+
+    assert "해외·글로벌" not in tagged.topics

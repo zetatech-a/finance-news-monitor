@@ -205,7 +205,7 @@ SECTOR_RULE_OVERRIDES: dict[str, dict[str, list[str]]] = {
 TOPIC_RULE_OVERRIDES: dict[str, dict[str, Any]] = {
     "해외·글로벌": {
         "strong": [
-            "연준", "fomc", "ecb", "boj", "cpi", "pce", "뉴욕증시", "나스닥", "다우", "s&p",
+            "연준", "fomc", "ecb", "boj", "뉴욕증시", "나스닥", "다우", "s&p",
             "월가", "미 국채", "미국 국채", "미국채", "미 국채금리", "미국채 금리", "미국 기준금리",
             "미 증시", "미국 증시", "글로벌 채권금리", "글로벌 금융시장",
         ],
@@ -250,8 +250,9 @@ TOPIC_RULE_OVERRIDES: dict[str, dict[str, Any]] = {
         "threshold": 2.8,
     },
     "업계동정·사회공헌": {
-        "strong": ["금융 브리핑", "금융권 소식", "오늘의 은행", "사회공헌", "업무협약"],
-        "weak": ["mou", "캠페인", "공모전", "행사", "기부", "후원"],
+        "strong": ["금융 브리핑", "금융권 소식", "오늘의 은행", "사회공헌"],
+        "weak": [],
+        "ignore": ["업무협약", "MOU", "mou", "캠페인", "공모전", "행사", "기부", "후원"],
         "negative": [],
         "threshold": 2.8,
     },
@@ -919,7 +920,10 @@ def _score_sector(title_text: str, desc_text: str, rules: dict[str, list[str]]) 
 def _build_topic_rules(topic: str, keywords: list[str]) -> dict[str, Any]:
     override = TOPIC_RULE_OVERRIDES.get(topic, {})
     strong = _unique_keep_order(override.get("strong", []))
+    ignored = set(override.get("ignore", []))
     weak = _unique_keep_order([kw for kw in keywords if kw not in strong] + override.get("weak", []))
+    if ignored:
+        weak = [kw for kw in weak if kw not in ignored]
     negative = _unique_keep_order(override.get("negative", []))
     threshold = float(override.get("threshold", DEFAULT_TOPIC_THRESHOLD))
     return {
@@ -1026,28 +1030,55 @@ def _apply_topic_fallbacks(
     topics: list[str],
 ) -> list[str]:
     fallback_topics = list(topics)
-    combined_text = " ".join(text for text in (title_text, body_text, query_text) if text).strip()
+    content_text = " ".join(text for text in (title_text, body_text) if text).strip()
 
     def append_topic(topic: str) -> None:
         if topic not in fallback_topics:
             fallback_topics.append(topic)
 
-    if sector == "거시·시장":
-        if has_any_term(
-            combined_text,
+    def has_overseas_anchor() -> bool:
+        return has_any_term(
+            content_text,
             (
-                "연준", "fomc", "ecb", "boj", "cpi", "pce", "미국", "뉴욕증시", "나스닥", "다우",
-                "s&p", "s&p500", "월가", "미 증시", "미국 증시", "미 국채", "미국 국채", "미국채", "글로벌 금융시장",
+                "미국", "미 증시", "미국 증시", "美", "연준", "fomc", "ecb", "boj", "뉴욕증시",
+                "나스닥", "다우", "s&p", "s&p500", "월가", "미 국채", "미국 국채", "미국채",
+                "미국 기준금리", "글로벌 금융시장", "글로벌 채권금리",
             ),
+        )
+
+    def has_domestic_anchor() -> bool:
+        return has_any_term(
+            content_text,
+            (
+                "국내", "한국", "한은", "한국은행", "통계청", "국내증시", "코스피", "코스닥",
+                "원화", "원달러", "원/달러",
+            ),
+        )
+
+    def has_financial_activity_anchor() -> bool:
+        return has_any_term(
+            content_text,
+            (
+                "은행", "은행권", "금융권", "금융회사", "저축은행", "보험", "보험사", "카드",
+                "카드사", "캐피탈", "증권", "증권사", "신협", "새마을금고", "상호금융",
+                "농협은행", "신한은행", "국민은행", "우리은행", "하나은행", "기업은행",
+                "카카오뱅크", "케이뱅크", "토스뱅크",
+            ),
+        )
+
+    if sector == "거시·시장":
+        if has_overseas_anchor() and not (
+            has_domestic_anchor()
+            and not has_any_term(content_text, ("미국", "美", "연준", "fomc", "ecb", "boj", "뉴욕증시", "나스닥", "다우", "s&p", "월가"))
         ):
             append_topic("해외·글로벌")
         if has_any_term(
-            combined_text,
+            content_text,
             ("원달러", "원/달러", "환율", "외환시장", "달러", "달러화", "강달러", "원화"),
         ):
             append_topic("환율·외환")
         if has_any_term(
-            combined_text,
+            content_text,
             (
                 "코스피", "코스닥", "증시", "뉴욕증시", "나스닥", "다우", "s&p", "s&p500",
                 "마감시황", "장 마감", "상승 마감", "하락 마감", "혼조",
@@ -1056,7 +1087,7 @@ def _apply_topic_fallbacks(
             append_topic("증시·시장시황")
 
     if sector in ("은행", "저축은행", "여전", "상호금융") and has_any_term(
-        combined_text,
+        content_text,
         (
             "예금금리", "수신금리", "대출금리", "마이너스통장", "신용대출", "주담대", "예대금리차",
             "특판", "우대금리",
@@ -1065,19 +1096,19 @@ def _apply_topic_fallbacks(
         append_topic("상품·영업·예금금리")
 
     if sector in ("은행", "IB·자본시장", "저축은행", "여전") and has_any_term(
-        combined_text,
+        content_text,
         ("기업대출", "금융권 익스포저", "익스포저", "회생", "워크아웃", "구조조정", "여신", "크레딧", "대손"),
     ):
         append_topic("기업금융·익스포저")
 
-    if has_any_term(combined_text, ("다음주", "이번주", "주요일정", "회의 일정")):
+    if has_any_term(content_text, ("다음주", "이번주", "주요일정", "회의 일정")):
         append_topic("일정·브리핑")
-    if has_any_term(
-        combined_text,
-        ("금융 브리핑", "오늘의 은행", "금융권 소식", "사회공헌", "업무협약", "mou", "캠페인", "공모전", "행사", "기부", "후원"),
+    if has_any_term(content_text, ("금융 브리핑", "오늘의 은행", "금융권 소식", "사회공헌")) or (
+        has_financial_activity_anchor()
+        and has_any_term(content_text, ("업무협약", "mou", "캠페인", "공모전", "행사", "기부", "후원"))
     ):
         append_topic("업계동정·사회공헌")
-    if has_any_term(combined_text, ("칼럼", "사설", "기고", "기자수첩", "시론", "전문가 진단")):
+    if has_any_term(content_text, ("칼럼", "사설", "기고", "기자수첩", "시론", "전문가 진단")):
         append_topic("칼럼·오피니언")
 
     return fallback_topics
