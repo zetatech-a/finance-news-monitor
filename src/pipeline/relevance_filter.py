@@ -202,6 +202,98 @@ _MARKET_OR_IPO_CONTEXT_TERMS: tuple[str, ...] = (
     "공매도",
     "시장",
 )
+_STRONG_FINANCE_ANCHORS: tuple[str, ...] = (
+    "불법사금융",
+    "불법사채",
+    "불법대부",
+    "미등록대부",
+    "대부업",
+    "대부업체",
+    "채권추심",
+    "불법추심",
+    "보이스피싱",
+    "스미싱",
+    "대포통장",
+    "불법 대출광고",
+    "대출광고",
+    "대부광고",
+    "금융위",
+    "금융위원회",
+    "금감원",
+    "금융감독원",
+    "금융당국",
+    "저축은행",
+    "은행권",
+    "시중은행",
+    "인터넷은행",
+    "카드론",
+    "현금서비스",
+    "여전채",
+    "보험사",
+    "증권사",
+    "상호금융",
+    "신협",
+    "새마을금고",
+    "연체율",
+    "부실채권",
+    "가계대출",
+    "주담대",
+    "기업대출",
+    "부동산 pf",
+    "부동산pf",
+    "pf",
+    "익스포저",
+    "워크아웃",
+)
+
+_CAPPED_NOISE_TERMS: tuple[str, ...] = (
+    "sns",
+    "유튜브",
+    "맛집",
+    "인플루언서",
+    "행사",
+    "이벤트",
+    "루머",
+    "먹방",
+    "여행",
+    "축제",
+)
+
+_FINANCE_RISK_OR_REGULATORY_SIGNALS: tuple[str, ...] = (
+    "피해",
+    "협박",
+    "단속",
+    "점검",
+    "검사",
+    "착수",
+    "경고",
+    "경고등",
+    "상승",
+    "연체",
+    "연체율",
+    "부실",
+    "불법",
+    "미등록",
+    "추심",
+    "광고",
+    "대출광고",
+    "금리",
+    "예금금리",
+    "재진입",
+    "당국",
+    "제재",
+    "과징금",
+    "행정처분",
+    "악용",
+    "조직",
+    "확산",
+    "리스크",
+    "위험",
+    "관리",
+    "워크아웃",
+    "익스포저",
+)
+
 _REGULATOR_POLICY_ENFORCEMENT_TERMS: tuple[str, ...] = (
     "금감원",
     "금융감독원",
@@ -325,6 +417,27 @@ def is_low_value_overseas_market_noise(article_or_text: Any) -> bool:
     return False
 
 
+def _has_strong_finance_anchor(article_or_text: Any) -> bool:
+    text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
+    return has_any_term(text, _STRONG_FINANCE_ANCHORS)
+
+
+def _has_finance_risk_or_regulatory_signal(article_or_text: Any) -> bool:
+    text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
+    return has_any_term(text, _FINANCE_RISK_OR_REGULATORY_SIGNALS)
+
+
+def _has_strong_finance_context(article_or_text: Any) -> bool:
+    text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
+    return _has_strong_finance_anchor(text) and _has_finance_risk_or_regulatory_signal(text)
+
+
+def _has_only_capped_noise(matched_negative: str) -> bool:
+    negative_terms = _split_matched_terms(matched_negative)
+    capped_terms = {normalize_text(term) for term in _CAPPED_NOISE_TERMS}
+    return bool(negative_terms) and negative_terms.issubset(capped_terms)
+
+
 def has_regulator_policy_enforcement_context(article_or_text: Any) -> bool:
     text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
     return has_any_term(text, _REGULATOR_POLICY_ENFORCEMENT_TERMS)
@@ -371,10 +484,11 @@ def _rule_decide_relevance(
     min_score: int,
     matched_hard: str = "",
     matched_negative: str = "",
+    article_text: str = "",
 ) -> tuple[bool, str]:
     if score >= min_score:
         return True, "rule_keep_score_ge_threshold"
-    if matched_negative:
+    if matched_negative and not (score >= min_score and _has_strong_finance_context(article_text)):
         return False, "rule_drop_negative_signal"
     if not matched_hard:
         return False, "rule_drop_no_financial_anchor"
@@ -404,6 +518,7 @@ def _decide_relevance(
             min_score=min_score,
             matched_hard=matched_hard,
             matched_negative=matched_negative,
+            article_text=article_text,
         )
 
     if model_policy == "candidate_hybrid":
@@ -415,6 +530,13 @@ def _decide_relevance(
         corporate_noise = is_corporate_macro_noise(article_text, matched_hard)
         market_noise = is_generic_market_or_ipo_noise(article_text, matched_hard)
 
+        if (
+            matched_negative
+            and score >= no_model_keep_min_score
+            and _has_only_capped_noise(matched_negative)
+            and _has_strong_finance_context(article_text)
+        ):
+            return True, "candidate_hybrid_keep_strong_finance_anchor_neg_cap"
         if matched_negative:
             return False, "candidate_hybrid_drop_negative_signal"
         if low_value_overseas_noise:
@@ -475,6 +597,7 @@ def _decide_relevance(
         min_score=min_score,
         matched_hard=matched_hard,
         matched_negative=matched_negative,
+        article_text=article_text,
     )
 
 
