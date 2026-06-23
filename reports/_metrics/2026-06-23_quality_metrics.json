@@ -1,0 +1,267 @@
+{
+  "clusters": {
+    "cluster_count": 398,
+    "cluster_size_max": 86,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 2,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 86,
+        "relevance_prob": 0.7897091032098471,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "반도체 성과급의 역습…금리·세금 올리는 방아쇠",
+        "url": "https://www.straightnews.co.kr/news/articleView.html?idxno=305315"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 892,
+    "displayed_articles": 228,
+    "final_tagged_representatives": 398,
+    "normalized_articles": 1164,
+    "raw_items": 1164,
+    "relevance_filtered_articles": 604,
+    "rule_filtered_articles": 879,
+    "tagged_before_cluster": 604
+  },
+  "date": "2026-06-23",
+  "generated_at": "2026-06-23T10:41:10.684008+09:00",
+  "publishers": {
+    "missing_publisher_count": 398,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 160,
+    "no_topic_ratio": 0.402,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6218043306220529,
+        "relevance_score": 11,
+        "sector": "거시·시장",
+        "title": "서울 아파트 월세 600만·매매 90억 속출… 한은 주택전망 '폭등' 이유",
+        "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3067324"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6432353530932062,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[초점]\"국세청 도메인까지 위조\" 이것 알면 해킹메일 피한다",
+        "url": "https://www.taxtimes.co.kr/news/article.html?no=275638"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.616529499235604,
+        "relevance_score": 6,
+        "sector": "감독·제재",
+        "title": "\"위임장 써줬죠?\" 전화로 시작된 피싱…전재산 날릴 뻔한 노부부",
+        "url": "https://n.news.naver.com/mnews/article/008/0005375591?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7073569173877673,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "티빙 개인정보 유출 1,953만명...2차 피해 우려 [앵커리포트]",
+        "url": "https://n.news.naver.com/mnews/article/052/0002369855?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6339716769270153,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "삼전닉스 성과급·주가 상승 ‘더블효과’에…집값·임금 상승 기대도 ...",
+        "url": "https://n.news.naver.com/mnews/article/009/0005697379?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6932608077642216,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "강서구, 지방세 웹툰 연재 시작…“어려운 세금 쉽게 알려드려요”",
+        "url": "https://n.news.naver.com/mnews/article/021/0002799544?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6807570362786521,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "'휴대폰 안면인증 개통' 7월 시행 촉각…실효성 논란 속 혼란 불가피",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=360859"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7061031828964952,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "[아주경제 코이너스 브리핑] 비트코인 소폭 반등에도 6만3000달러대 주춤...",
+        "url": "https://www.ajunews.com/view/20260623074302347"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6489356230095383,
+        "relevance_score": 6,
+        "sector": "거시·시장",
+        "title": "소비자심리 두 달 연속 개선···집값 기대는 3개월째 상승",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=695831"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6140103333484282,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "“주민센터 직원입니다” 전화에…평생 모은 15억 잃을 뻔 한 80대 부부",
+        "url": "https://n.news.naver.com/mnews/article/025/0003532387?sid=102"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 15,
+      "거시·시장": 32,
+      "기타": 177,
+      "대부": 9,
+      "디지털자산": 34,
+      "보험": 9,
+      "상호금융": 19,
+      "여전": 25,
+      "은행": 41,
+      "입법·정책": 19,
+      "자산운용·연기금": 6,
+      "저축은행": 7,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 15,
+      "감독·제재": 22,
+      "건전성·자본규제": 10,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 31,
+      "기업금융·익스포저": 3,
+      "디지털자산": 37,
+      "물가·경기지표": 1,
+      "부동산·PF": 7,
+      "불법사금융·불법추심·보이스피싱": 59,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 7,
+      "서민금융·대환·채무조정": 7,
+      "소비자보호·민원·불완전판매": 4,
+      "업계동정·사회공헌": 6,
+      "연체·부실": 32,
+      "자금시장·유동성": 10,
+      "정책·제도개선": 3,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 22,
+      "환율·외환": 9
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8509359530301397,
+        "relevance_score": 35,
+        "sector": "상호금융",
+        "title": "은행·저축은행에 돈 몰릴 때…예금 빠져나가는 새마을금고·신협",
+        "url": "https://n.news.naver.com/mnews/article/015/0005301460?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7541846687902642,
+        "relevance_score": 32,
+        "sector": "대부",
+        "title": "금감원, 지자체 대부업 관리 고삐…\"약탈적 금융행위 점검 강화\"",
+        "url": "http://www.newsfc.co.kr/news/articleView.html?idxno=79434"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.7211678300698224,
+        "relevance_score": 33,
+        "sector": "입법·정책",
+        "title": "[Invest]여당서만 100여 명 지원...금융·공정거래 한 손에 쥔 정무위 '인...",
+        "url": "https://www.investchosun.com/site/data/html_dir/2026/06/22/2026062280192.html"
+      },
+      {
+        "cluster_size": 24,
+        "relevance_prob": 0.7862161606396391,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "[새 판 짜는 거래소④] 전인태 교수 “코인 매매 플랫폼 넘어 금융 인프...",
+        "url": "https://www.news2day.co.kr/article/20260623500003"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6959046189025385,
+        "relevance_score": 27,
+        "sector": "대부",
+        "title": "금감원, 지자체 대부업 감독 강화…불법추심·최고금리 위반 집중 점검",
+        "url": "https://n.news.naver.com/mnews/article/119/0003103441?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7202041483638113,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "불법추심·최고금리 위반…금감원, 대부업 '약탈적 금융' 일제 검사",
+        "url": "https://n.news.naver.com/mnews/article/421/0009016560?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7955680673082258,
+        "relevance_score": 23,
+        "sector": "저축은행",
+        "title": "금감원 '숨은 부채' 중점 점검…저축은행·카드 부실 걱정ㆍ금융지주 충...",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=360873"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.771464904925873,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "이찬진 \"KB금융 숏리스트 전 지배구조 개선안 발표 예정\"",
+        "url": "https://dealsite.co.kr/articles/163995"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8268521406517416,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "토스뱅크-솔라나 재단, 차세대 송금 인프라 구축 ‘맞손’",
+        "url": "https://www.viva100.com/article/20260622500481"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7629921401573426,
+        "relevance_score": 21,
+        "sector": "은행",
+        "title": "[미·이란 종전] 은행권 '리스크 오프' 전환되나…외화 유동성 확보·글...",
+        "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=722974"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "대부": 3,
+      "디지털자산": 1,
+      "상호금융": 1,
+      "은행": 2,
+      "입법·정책": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 3,
+      "디지털자산": 2,
+      "부동산·PF": 3,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "연체·부실": 1,
+      "자금시장·유동성": 1,
+      "환율·외환": 1
+    }
+  }
+}
