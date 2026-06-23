@@ -55,3 +55,47 @@ def test_classifies_deposit_rate_product():
 
 def test_classifies_simple_market_close_as_price_quote():
     assert classify_content_type(_item("뉴욕증시, 연준 경계감에 혼조 마감", sector="거시·시장", topics=["해외·글로벌"])) == "price_quote"
+
+
+def test_schedule_word_does_not_override_illegal_lending_enforcement():
+    assert classify_content_type(_item("다음주 불법 대출광고 특별단속", sector="대부")) in {"regulatory", "risk"}
+
+
+def test_schedule_word_does_not_override_regulatory_field_inspection():
+    assert classify_content_type(_item("이번주 저축은행 현장점검 착수", sector="감독·제재")) == "regulatory"
+
+
+def test_profile_term_does_not_match_inside_personal_business_owner():
+    assert classify_content_type(_item("개인사업자 대출금리 인하")) in {"product", "hard_news"}
+    assert classify_content_type(_item("개인사업자 금융지원 확대")) != "profile"
+
+
+def test_profile_terms_still_classify_personnel_articles():
+    assert classify_content_type(_item("금융지주 임원 인사 발표")) == "profile"
+    assert classify_content_type(_item("은행장 선임")) == "profile"
+    assert classify_content_type(_item("대표이사 취임")) == "profile"
+
+
+def test_financial_crisis_does_not_match_regulator_shorthand():
+    assert classify_content_type(_item("금융위기 우려에 시장 변동성 확대")) != "regulatory"
+    assert classify_content_type(_item("금융위기 이후 은행권 건전성 점검")) != "regulatory"
+
+
+def test_regulator_shorthand_still_classifies_regulatory_action():
+    assert classify_content_type(_item("금융위, 저축은행 검사 착수", sector="감독·제재")) == "regulatory"
+    assert classify_content_type(_item("금융위원회 저축은행 현장점검 확대")) == "regulatory"
+
+
+def test_body_only_briefing_does_not_override_material_policy_article():
+    result = classify_content_type(
+        _item(
+            "금융위 청년 적금 지원방안 발표",
+            sector="입법·정책",
+            description="금융위 관계자는 브리핑에서 세부 내용을 설명했다",
+        )
+    )
+    assert result != "briefing"
+
+
+def test_briefing_title_formats_still_classify_as_briefing():
+    assert classify_content_type(_item("오늘의 은행 주요 소식")) == "briefing"
