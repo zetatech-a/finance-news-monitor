@@ -8,6 +8,7 @@ from typing import Any
 import markdown
 
 from src.pipeline.tagger import TaggedArticle
+from src.pipeline.content_type import classify_content_type
 
 import re
 import html as ihtml
@@ -288,6 +289,33 @@ def _top_rank_score(item: TaggedArticle) -> float:
         score -= 1.3
     if _has_any(("금융권 소식", "금융 레이더", "업계 소식", "종합")):
         score -= 1.1
+
+    content_type_weights = {
+        "regulatory": 1.5,
+        "risk": 1.3,
+        "hard_news": 0.6,
+        "market": 0.2,
+        "product": -0.2,
+        "price_quote": -0.8,
+        "schedule": -2.5,
+        "opinion": -2.3,
+        "profile": -2.0,
+        "event": -1.8,
+        "pr": -1.7,
+        "local_social": -1.6,
+        "briefing": -1.4,
+    }
+    content_type = classify_content_type(item)
+    score += content_type_weights.get(content_type, 0.0)
+
+    low_value_topic_penalties = {
+        "일정·브리핑": -1.5,
+        "업계동정·사회공헌": -1.2,
+        "칼럼·오피니언": -1.8,
+    }
+    score += sum(weight for topic, weight in low_value_topic_penalties.items() if topic in topics)
+    if content_type == "price_quote" and "증시·시장시황" in topics:
+        score -= 0.4
 
     if _is_schedule_notice_article(text):
         score -= 0.8
