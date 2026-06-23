@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from typing import Any, Literal
 
 ContentType = Literal[
@@ -52,8 +53,25 @@ def _text(item: Any) -> str:
     return " ".join(str(p) for p in parts if p).lower()
 
 
+def _title_text(item: Any) -> str:
+    article = _article(item)
+    return str(_field(article, "title") or "").lower()
+
+
 def _has_any(text: str, terms: tuple[str, ...]) -> bool:
     return any(term.lower() in text for term in terms)
+
+
+def _has_regulator(text: str) -> bool:
+    if _has_any(text, ("금융위원회", "금융감독원", "금감원", "금융당국", "fiu")):
+        return True
+    return re.search(r"금융위(?!기|험)", text) is not None
+
+
+def _has_profile_signal(text: str) -> bool:
+    if _has_any(text, ("인터뷰", "프로필", "선임", "취임", "ceo", "대표이사", "임원")):
+        return True
+    return re.search(r"(?<!개)인사(?!업|자|신용|대출)", text) is not None
 
 
 REGULATORS = ("금융위", "금융위원회", "금융감독원", "금감원", "금융당국", "fiu")
@@ -61,7 +79,7 @@ REGULATORY_ACTIONS = (
     "검사", "제재", "과징금", "징계", "행정처분", "현장점검", "시정명령", "단속", "고발", "적발", "착수", "불완전판매"
 )
 RISK_TERMS = (
-    "불법사금융", "불법추심", "채권추심", "보이스피싱", "스미싱", "대포통장", "연체율", "연체", "부실채권", "부실",
+    "불법사금융", "불법대부", "불법 대출광고", "대출광고", "불법추심", "채권추심", "보이스피싱", "스미싱", "대포통장", "연체율", "연체", "부실채권", "부실",
     "pf", "유동성", "익스포저", "워크아웃", "건전성", "충당금", "자본확충", "고리대금", "사기", "피해 확산"
 )
 POLICY_TERMS = ("정책", "규제", "대책", "제도", "입법예고", "시행령", "가계대출", "최고금리")
@@ -82,18 +100,20 @@ FINANCE_ANCHORS = ("은행", "저축은행", "금융", "보험", "카드", "캐�
 def classify_content_type(item: Any) -> ContentType:
     """Classify a tagged finance-news item for Top 10 ranking adjustments."""
     text = _text(item)
+    title = _title_text(item)
     topics = " ".join(_list_field(item, "topics"))
 
     # Format labels that are explicit in the title should win over weaker anchors.
-    if _has_any(text, SCHEDULE_TERMS):
-        return "schedule"
     if _has_any(text, OPINION_TERMS):
         return "opinion"
-    if _has_any(text, PROFILE_TERMS) and not _has_any(text, REGULATORY_ACTIONS + RISK_TERMS):
+
+    strong_regulatory = (_has_regulator(text) or "감독·제재" in text) and _has_any(text, REGULATORY_ACTIONS)
+    strong_risk = _has_any(text, RISK_TERMS)
+    if _has_any(title, SCHEDULE_TERMS) and not (strong_regulatory or strong_risk):
+        return "schedule"
+    if _has_profile_signal(text) and not _has_any(text, REGULATORY_ACTIONS + RISK_TERMS):
         return "profile"
 
-    strong_regulatory = _has_any(text, REGULATORS) and _has_any(text, REGULATORY_ACTIONS)
-    strong_risk = _has_any(text, RISK_TERMS)
     if strong_regulatory:
         return "regulatory"
     if strong_risk:
@@ -101,7 +121,7 @@ def classify_content_type(item: Any) -> ContentType:
 
     if _has_any(text, LOCAL_SOCIAL_TERMS):
         return "local_social"
-    if _has_any(text, BRIEFING_TERMS):
+    if _has_any(title, BRIEFING_TERMS):
         return "briefing"
     if _has_any(text, EVENT_TERMS):
         return "event"
