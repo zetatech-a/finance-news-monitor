@@ -22,11 +22,68 @@ _ALIASES: tuple[tuple[str, str], ...] = (
     ("미국채", "미 국채"),
 )
 
-_STOPWORDS = {"기자","단독","속보","종합","오늘","내일","올해","작년","사진","영상","전망","발표","관련","대상"}
-_GENERIC_TOKENS = {"금리","환율","연체","실적","금융권","은행권","시장","증시","대출","영업이익","순이익","증가","감소","상승","하락","확대","부담","최대","역대"}
+_STOPWORDS = {
+    "기자", "단독", "속보", "종합", "오늘", "내일", "올해", "작년", "사진", "영상", "전망", "발표", "관련", "대상",
+}
+_GENERIC_TOKENS = {
+    "금융위", "금융위원회", "금감원", "금융감독원", "금융당국", "은행", "은행권", "금융권", "금리", "대출", "환율", "증시",
+    "시장", "금융시장", "경제", "정책", "발표", "검사", "제재", "일정", "브리핑", "사회공헌", "캠페인", "행사", "연체",
+    "실적", "영업이익", "순이익", "증가", "감소", "상승", "하락", "확대", "부담", "최대", "역대", "마감", "착수", "경고등",
+}
 
-_ENTITY_PATTERNS = ("카카오뱅크","케이뱅크","토스뱅크","국민은행","신한은행","우리은행","하나은행","농협은행","기업은행","산업은행","수출입은행","금융감독원","금융위원회","한국은행","국민연금","예금보험공사","신용보증기금","기술보증기금")
-_ENTITY_SUFFIXES = ("은행","증권","보험","카드","캐피탈","저축은행","자산운용","거래소")
+_DISTINCTIVE_TERM_ALIASES: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("savings_bank", ("저축은행",)),
+    ("mg_community_credit", ("새마을금고",)),
+    ("credit_union", ("신협", "신협중앙회")),
+    ("card_loan", ("카드론",)),
+    ("illegal_collection", ("불법추심", "불법 추심")),
+    ("illegal_private_lending", ("불법사금융", "불법 사금융", "불법대부", "불법 대부")),
+    ("voice_phishing", ("보이스피싱",)),
+    ("loan_ad", ("대출광고", "대출 광고", "대부광고", "대부 광고")),
+    ("delinquency_rate", ("연체율",)),
+    ("bad_loan", ("부실채권", "부실 채권")),
+    ("real_estate_pf", ("부동산 pf", "부동산pf")),
+    ("pf", ("pf",)),
+    ("exposure", ("익스포저",)),
+    ("workout", ("워크아웃",)),
+    ("deposit_rate", ("예금금리", "예금 금리", "수신금리", "수신 금리")),
+    ("loan_deposit_spread", ("예대금리차", "예대 금리차")),
+    ("minus_account", ("마이너스통장", "마이너스 통장")),
+    ("household_loan", ("가계대출", "가계 대출")),
+    ("mortgage", ("주담대", "주택담보대출", "주택담보 대출")),
+    ("dsr", ("dsr",)),
+    ("ltv", ("ltv",)),
+    ("mis_selling", ("불완전판매", "불완전 판매")),
+    ("field_inspection", ("현장점검", "현장 점검", "현장검사", "현장 검사", "검사")),
+    ("administrative_action", ("행정처분", "행정 처분")),
+    ("penalty_surcharge", ("과징금",)),
+    ("liquidity", ("유동성",)),
+    ("credit_finance_bond", ("여전채",)),
+    ("corporate_bond", ("회사채",)),
+    ("treasury_yield", ("국채금리", "국채 금리")),
+    ("usdkrw", ("원달러", "원 달러", "원/달러")),
+    ("pce", ("pce",)),
+    ("cpi", ("cpi",)),
+    ("fomc", ("fomc",)),
+    ("fed", ("연준",)),
+    ("sns", ("sns",)),
+    ("threat", ("협박",)),
+    ("crackdown", ("단속", "특별단속")),
+    ("four_percent", ("4%", "4 %", "4퍼센트", "4프로")),
+    ("insurance", ("보험사", "보험")),
+    ("kospi", ("코스피",)),
+)
+
+_LOW_VALUE_TERMS = (
+    "다음주", "이번주", "일정", "주요일정", "금융 브리핑", "오늘의 은행", "금융권 소식", "단신", "사회공헌",
+    "캠페인", "행사", "기부", "후원", "mou", "업무협약", "칼럼", "사설", "기고", "기자수첩", "시론",
+)
+
+_ENTITY_PATTERNS = (
+    "카카오뱅크", "케이뱅크", "토스뱅크", "국민은행", "신한은행", "우리은행", "하나은행", "농협은행", "기업은행",
+    "산업은행", "수출입은행", "금융감독원", "금융위원회", "한국은행", "국민연금", "예금보험공사", "신용보증기금", "기술보증기금",
+)
+_ENTITY_SUFFIXES = ("은행", "증권", "보험", "카드", "캐피탈", "저축은행", "자산운용", "거래소")
 
 _CROSS_SECTOR_SAFE_PREFIXES = ("finance:securities_liquidity", "finance:loan_relief")
 
@@ -102,7 +159,7 @@ def _macro_market_fingerprint(text: str) -> str | None:
         return "macro:fomc"
     if _contains_any(text, ("cpi", "pce", "물가지표", "인플레이션", "소비자물가", "개인소비지출")):
         return "macro:inflation_data"
-    if _contains_any(text, ("미 국채금리", "미국 10년물", "미 10년물", "글로벌 채권금리", "국채금리 급등")) or ("미 국채" in text and "금리" in text):
+    if _contains_any(text, ("미 국채금리", "미국채 금리", "미국 10년물", "미 10년물", "글로벌 채권금리", "국채금리 급등", "국채 금리 급등")) or ("미 국채" in text and "금리" in text):
         return "macro:ust_yield"
     if _contains_any(text, ("원 달러", "원/달러", "달러 강세", "외환시장", "환율 급등", "원화 약세")):
         return "macro:fx_usdkrw"
@@ -163,9 +220,63 @@ def _finance_policy_fingerprint(text: str) -> str | None:
     return None
 
 
+
+def _important_issue_terms(text: str) -> set[str]:
+    normalized = _normalize_issue_text(text)
+    terms: set[str] = set()
+    for canonical, aliases in _DISTINCTIVE_TERM_ALIASES:
+        if any(alias.lower() in normalized for alias in aliases):
+            terms.add(canonical)
+    for token in _tokenize_title(normalized):
+        if token not in _GENERIC_TOKENS and len(token) >= 3:
+            terms.add(token)
+    return terms
+
+
+def _extract_issue_terms(item: TaggedArticle) -> set[str]:
+    text = f"{_article_title(item)} {_article_field(item.article, 'description') or ''}"
+    return _important_issue_terms(text)
+
+
+def _is_low_value_format(text: str) -> bool:
+    normalized = _normalize_issue_text(text)
+    return _contains_any(normalized, _LOW_VALUE_TERMS)
+
+
+def _low_value_named_terms(text: str) -> set[str]:
+    normalized = _normalize_issue_text(text)
+    low_value_generic_terms = {"sns", "threat", "crackdown"}
+    return _extract_entities(normalized) | {
+        term for term in _important_issue_terms(normalized) if term not in low_value_generic_terms
+    }
+
+
+def _issue_similarity(a: TaggedArticle, b: TaggedArticle) -> float:
+    terms_a = _extract_issue_terms(a)
+    terms_b = _extract_issue_terms(b)
+    term_score = _jaccard(terms_a, terms_b)
+    title_score = _title_similarity(_article_title(a), _article_title(b))
+    return max(term_score, title_score * 0.75)
+
+
+def _rule_issue_fingerprint(item: TaggedArticle) -> str | None:
+    terms = _extract_issue_terms(item)
+    if {"savings_bank", "field_inspection"}.issubset(terms):
+        return "rule:savings_bank_inspection"
+    if {"illegal_collection", "sns"}.issubset(terms) or {"illegal_collection", "threat"}.issubset(terms):
+        return "rule:illegal_collection_sns_threat"
+    if {"savings_bank", "deposit_rate"}.issubset(terms) and "four_percent" in terms:
+        return "rule:savings_bank_deposit_rate_4pct"
+    if ({"illegal_private_lending", "loan_ad"} & terms) and "crackdown" in terms:
+        if "loan_ad" in terms or "sns" in terms:
+            return "rule:illegal_loan_ad_crackdown"
+    if {"card_loan", "delinquency_rate"}.issubset(terms):
+        return "rule:card_loan_delinquency_rate"
+    return None
+
 def _issue_fingerprint(item: TaggedArticle) -> str | None:
     text = _normalize_issue_text(f"{_article_title(item)} {_article_field(item.article, 'description') or ''}")
-    return _digital_asset_fingerprint(text) or _macro_market_fingerprint(text) or _finance_policy_fingerprint(text)
+    return _rule_issue_fingerprint(item) or _digital_asset_fingerprint(text) or _macro_market_fingerprint(text) or _finance_policy_fingerprint(text)
 
 
 def _title_similarity(a: str, b: str) -> float:
@@ -197,6 +308,14 @@ def _should_cluster(a: TaggedArticle, b: TaggedArticle) -> bool:
     if norm_a == norm_b:
         return True
 
+    low_a = _is_low_value_format(norm_a)
+    low_b = _is_low_value_format(norm_b)
+    if low_a or low_b:
+        if not (low_a and low_b):
+            return False
+        named_overlap = _low_value_named_terms(norm_a) & _low_value_named_terms(norm_b)
+        return _title_similarity(title_a, title_b) >= 0.88 or (bool(named_overlap) and _title_similarity(title_a, title_b) >= 0.72)
+
     fp_a = _issue_fingerprint(a)
     fp_b = _issue_fingerprint(b)
     same_sector = _primary_sector(a) == _primary_sector(b)
@@ -204,6 +323,8 @@ def _should_cluster(a: TaggedArticle, b: TaggedArticle) -> bool:
         if same_sector:
             return True
         return fp_a.startswith(_CROSS_SECTOR_SAFE_PREFIXES)
+    if fp_a and fp_b and fp_a.split(":", 1)[0] == fp_b.split(":", 1)[0]:
+        return False
 
     sim = _title_similarity(title_a, title_b)
     if not same_sector:
@@ -220,15 +341,27 @@ def _should_cluster(a: TaggedArticle, b: TaggedArticle) -> bool:
 
     shared_entities = entities_a & entities_b
     shared_numbers = numbers_a & numbers_b
-    token_jaccard = _jaccard(tokens_a - _GENERIC_TOKENS, tokens_b - _GENERIC_TOKENS)
+    issue_terms_a = _extract_issue_terms(a)
+    issue_terms_b = _extract_issue_terms(b)
+    shared_issue_terms = issue_terms_a & issue_terms_b
+    token_jaccard = _jaccard((tokens_a | issue_terms_a) - _GENERIC_TOKENS, (tokens_b | issue_terms_b) - _GENERIC_TOKENS)
 
-    if sim >= 0.78 and _meaningful_overlap(tokens_a, tokens_b):
+    if not shared_issue_terms and not shared_entities and not shared_numbers:
+        return False
+    if shared_issue_terms and sim >= 0.72 and _meaningful_overlap(tokens_a | issue_terms_a, tokens_b | issue_terms_b):
         return True
-    if token_jaccard >= 0.55 and (shared_entities or shared_numbers):
+    if len(shared_issue_terms) >= 2 and _issue_similarity(a, b) >= 0.42:
         return True
-    if shared_entities and shared_numbers:
+    if token_jaccard >= 0.55 and (shared_entities or shared_numbers or shared_issue_terms):
+        return True
+    if shared_entities and shared_numbers and shared_issue_terms:
         return True
     return False
+
+
+
+def _can_cluster(a: TaggedArticle, b: TaggedArticle) -> bool:
+    return _should_cluster(a, b)
 
 
 def _relevance_value(item: TaggedArticle) -> float:
