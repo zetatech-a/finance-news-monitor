@@ -1,0 +1,277 @@
+{
+  "clusters": {
+    "cluster_count": 328,
+    "cluster_size_max": 62,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 62,
+        "relevance_prob": 0.8266867502179185,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "[고환율 뉴노멀 시대] ①1500원 웃도는 환율",
+        "url": "http://www.metroseoul.co.kr/article/20260623500089"
+      },
+      {
+        "cluster_size": 50,
+        "relevance_prob": 0.7593424049814911,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "증권사 업고 토큰증권 시대 반격 노리는 중소 코인 거래소",
+        "url": "https://n.news.naver.com/mnews/article/366/0001173595?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 885,
+    "displayed_articles": 200,
+    "final_tagged_representatives": 328,
+    "normalized_articles": 1174,
+    "raw_items": 1174,
+    "relevance_filtered_articles": 598,
+    "rule_filtered_articles": 865,
+    "tagged_before_cluster": 598
+  },
+  "date": "2026-06-24",
+  "generated_at": "2026-06-24T10:37:17.555825+09:00",
+  "publishers": {
+    "missing_publisher_count": 328,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 142,
+    "no_topic_ratio": 0.4329,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7296033183942681,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "보험개발원장 인선 본격화⋯보험권 기관장 ‘민간 바람’ 이어질까",
+        "url": "https://www.etoday.co.kr/news/view/2596358"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7034318715912652,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "비트코인, 9400만원…투자심리 '극단적 공포' 지속",
+        "url": "https://n.news.naver.com/mnews/article/003/0014023969?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6133797244829355,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "자영업자 절반 이상 \"지난해보다 어려워\"···연체액도 다시 증가",
+        "url": "https://www.todaykorea.co.kr/news/articleView.html?idxno=402994"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7294961048811754,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 미국 빅테크주 약세에…비트코인 6만2400달...",
+        "url": "https://www.ajunews.com/view/20260624082018170"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6592801539496516,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "대기업 규제대상 계열사 내부거래 16%…신규 편입 한국콜마·오리온 '집...",
+        "url": "https://www.businessplus.kr/news/articleView.html?idxno=113236"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5989139707616141,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "보험개발원 명운 가를 골든타임…'무사안일주의' 깨울 새 수장은 누구",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1713657"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6639745520319139,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "돈 더 써라, 자신감 넘쳤던 국무회의, “자칫하면 정권 날아간다”는 경...",
+        "url": "https://slownews.kr/162057"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.670267013790402,
+        "relevance_score": 4,
+        "sector": "입법·정책",
+        "title": "공급부족·부채차단 ‘딜레마’…하반기 입주단지 잔금 막히나",
+        "url": "https://n.news.naver.com/mnews/article/119/0003104022?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7986415251307765,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[Invest]KB 출신 협회장 러시, 양종희 회장 연임엔 약일까 독일까",
+        "url": "https://www.investchosun.com/site/data/html_dir/2026/06/23/2026062380151.html"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6522033747610122,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "[더벨]'넥슨 오너가 VC' NXVP, 정책 출자 3연속 고배",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202606221503128560109536"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 5,
+      "감독·제재": 4,
+      "거시·시장": 22,
+      "기타": 129,
+      "대부": 5,
+      "디지털자산": 48,
+      "보험": 11,
+      "상호금융": 10,
+      "여전": 10,
+      "은행": 40,
+      "입법·정책": 21,
+      "자산운용·연기금": 8,
+      "저축은행": 9,
+      "증권(브로커리지/리테일)": 5,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 24,
+      "감독·제재": 7,
+      "건전성·자본규제": 9,
+      "규제·가계부채": 8,
+      "금리·수수료·최고금리": 18,
+      "기업금융·익스포저": 7,
+      "디지털자산": 46,
+      "부동산·PF": 9,
+      "불법사금융·불법추심·보이스피싱": 25,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 11,
+      "서민금융·대환·채무조정": 5,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 25,
+      "자금시장·유동성": 12,
+      "정책·제도개선": 4,
+      "증시·시장시황": 11,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 16,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8059489153155529,
+        "relevance_score": 37,
+        "sector": "디지털자산",
+        "title": "하반기 결론 VASP 갱신, 기로 선 빗썸…FIU 오지급 검사 결과가 변수",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=343070"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7977593741661154,
+        "relevance_score": 34,
+        "sector": "감독·제재",
+        "title": "\"영업정지 처분 부당\"…빗썸-FIU 법정 공방 8월 첫 변론",
+        "url": "https://n.news.naver.com/mnews/article/003/0014021773?sid=101"
+      },
+      {
+        "cluster_size": 50,
+        "relevance_prob": 0.7593424049814911,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "증권사 업고 토큰증권 시대 반격 노리는 중소 코인 거래소",
+        "url": "https://n.news.naver.com/mnews/article/366/0001173595?sid=101"
+      },
+      {
+        "cluster_size": 11,
+        "relevance_prob": 0.8347525075108796,
+        "relevance_score": 27,
+        "sector": "여전",
+        "title": "[금감원 카드론 점검] [현대카드] 잔액 증가 속 연체율 상승…건전성 관...",
+        "url": "https://news.dealsitetv.com/articles/172058"
+      },
+      {
+        "cluster_size": 13,
+        "relevance_prob": 0.8651384907872791,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "안도걸 의원 \"스테이블코인, 미래 금융 인프라 핵심…하반기 입법 추진...",
+        "url": "https://www.asiatoday.co.kr/kn/view.php?key=20260623010008143"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8409545126423994,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "금융위·금감원, 상호금융 감독권 이전 두고 ‘온도차’",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1304873&inflow=N"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7790685744567586,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "금융위, 대부업·상호금융 내부통제 강화한다더니 2년째 ‘방치’",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1304906&inflow=N"
+      },
+      {
+        "cluster_size": 62,
+        "relevance_prob": 0.8266867502179185,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "[고환율 뉴노멀 시대] ①1500원 웃도는 환율",
+        "url": "http://www.metroseoul.co.kr/article/20260623500089"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7638542535913306,
+        "relevance_score": 22,
+        "sector": "상호금융",
+        "title": "예금 빼서 주식시장으로…상호금융 자금 이탈 조짐",
+        "url": "https://www.junggi.co.kr/news/articleView.html?idxno=36876"
+      },
+      {
+        "cluster_size": 7,
+        "relevance_prob": 0.650550082264619,
+        "relevance_score": 20,
+        "sector": "대부",
+        "title": "[더벨][Policy Radar] 금감원, 연 9조 보험사기 잡는 범정부 AI 플랫폼 가...",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202606221627528440101532"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 1,
+      "대부": 2,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "여전": 1,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "건전성·자본규제": 2,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 4,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "연체·부실": 1,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
