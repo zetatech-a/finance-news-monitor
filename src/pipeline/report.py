@@ -9,6 +9,7 @@ import markdown
 
 from src.pipeline.tagger import TaggedArticle
 from src.pipeline.content_type import classify_content_type
+from src.pipeline.source_quality import source_quality_rank_adjustment
 
 import re
 import html as ihtml
@@ -307,6 +308,7 @@ def _top_rank_score(item: TaggedArticle) -> float:
     }
     content_type = classify_content_type(item)
     score += content_type_weights.get(content_type, 0.0)
+    score += source_quality_rank_adjustment(item)
 
     low_value_topic_penalties = {
         "일정·브리핑": -1.5,
