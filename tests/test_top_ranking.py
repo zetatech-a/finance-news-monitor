@@ -7,20 +7,32 @@ from src.pipeline.report import _select_top_items, top_report_items, visible_rep
 from src.pipeline.tagger import TaggedArticle
 
 
-def _mk(idx: int, title: str, *, sector: str = "은행", topics: list[str] | None = None, score: float = 8.0, cluster_id: str | None = None) -> TaggedArticle:
+def _mk(
+    idx: int,
+    title: str,
+    *,
+    sector: str = "은행",
+    topics: list[str] | None = None,
+    score: float = 8.0,
+    cluster_id: str | None = None,
+    publisher: str | None = None,
+) -> TaggedArticle:
+    article = Article(
+        title=title,
+        description=title,
+        link=f"https://example.com/{idx}",
+        originallink=None,
+        naver_link=None,
+        pub_date=datetime(2026, 6, 22, 12, 0) - timedelta(minutes=idx),
+        query="test",
+        relevance_score=score,
+        cluster_id=cluster_id,
+        cluster_size=2 if cluster_id else 1,
+    )
+    if publisher is not None:
+        setattr(article, "press", publisher)
     return TaggedArticle(
-        article=Article(
-            title=title,
-            description=title,
-            link=f"https://example.com/{idx}",
-            originallink=None,
-            naver_link=None,
-            pub_date=datetime(2026, 6, 22, 12, 0) - timedelta(minutes=idx),
-            query="test",
-            relevance_score=score,
-            cluster_id=cluster_id,
-            cluster_size=2 if cluster_id else 1,
-        ),
+        article=article,
         sectors=[sector],
         topics=topics or [],
         matched_keywords=[],
@@ -64,6 +76,27 @@ def test_top_selection_is_deterministic_with_content_type_adjustments():
     ]
     assert _titles(top_report_items(items, limit=3)) == _titles(top_report_items(list(reversed(items)), limit=3))
 
+
+def test_unknown_regulatory_risk_ranks_above_stock_promo_with_similar_score():
+    regulatory = _mk(
+        1, "불법사금융 피해 확산 금감원 제재 착수", sector="감독·제재", topics=["불법사금융"], score=8.0
+    )
+    regulatory.article.link = "https://news.naver.com/main/read.naver?oid=1"
+    promo = _mk(
+        2, "특징주 은행주 급등 투자자 관심", sector="은행", topics=["증시·시장시황"], score=8.0, publisher="증권속보"
+    )
+
+    assert _titles(top_report_items([promo, regulatory], limit=2))[0] == regulatory.article.title
+
+
+def test_major_finance_hard_news_ranks_above_unknown_low_information():
+    hard_news = _mk(
+        1, "저축은행 건전성 점검 강화", sector="저축은행", topics=["건전성"], score=8.0, publisher="매일경제"
+    )
+    low_info = _mk(2, "오늘의 금융 브리핑 모음", sector="저축은행", topics=["일정·브리핑"], score=8.0)
+    low_info.article.link = "https://news.naver.com/main/read.naver?oid=2"
+
+    assert _titles(top_report_items([low_info, hard_news], limit=2))[0] == hard_news.article.title
 
 def test_cluster_title_dedupe_is_preserved():
     items = [
