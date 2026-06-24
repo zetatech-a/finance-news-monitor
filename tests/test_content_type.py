@@ -131,7 +131,7 @@ def test_schedule_title_variants_still_classify_as_schedule():
         "주요 일정",
         "금융권 일정",
         "증시 일정",
-        "시장 일정",
+        "시장 주요 일정",
         "이번 주 일정",
         "주간 일정",
         "월간 일정",
@@ -213,3 +213,53 @@ def test_strong_regulatory_loan_ad_article_still_classifies():
         )
         in {"regulatory", "risk"}
     )
+
+
+def test_schedule_title_does_not_suppress_material_body_enforcement_signal():
+    result = classify_content_type(
+        {
+            "article": {
+                "title": "금융위원회 주간 일정",
+                "summary": "금감원은 불법 대출광고 단속에 착수하고 제재 방안을 발표한다.",
+                "body": "금감원은 불법 대출광고 단속에 착수하고 제재 방안을 발표한다.",
+            }
+        }
+    )
+    assert result in {"regulatory", "risk"}
+
+
+def test_weekly_briefing_titles_are_not_schedule_without_schedule_noun():
+    assert classify_content_type(_item("주간 금융 브리핑")) == "briefing"
+    assert classify_content_type(_item("주간 시장 브리핑")) == "briefing"
+    assert classify_content_type(_item("다음 주 금융위 브리핑 일정")) == "schedule"
+
+
+def test_market_schedule_term_requires_calendar_context():
+    assert classify_content_type(_item("STO 시장 일정 규모 전망")) != "schedule"
+    assert classify_content_type(_item("금융시장 일정 수준 회복")) != "schedule"
+    assert classify_content_type(_item("이번 주 시장 일정")) == "schedule"
+
+
+def test_loan_ad_regulator_only_context_is_not_risk_or_regulatory():
+    result = classify_content_type(
+        _item(
+            "은행, 주택담보대출 광고 캠페인 공개",
+            description="금감원 가이드라인에 맞춰 광고 문구를 개선했다.",
+        )
+    )
+    assert result not in {"regulatory", "risk"}
+
+
+def test_loan_ad_true_risk_contexts_remain_risk_signals():
+    assert (
+        classify_content_type(
+            _item(
+                "금감원, 불법 대출 광고 단속 강화",
+                sector="대부",
+                description="무등록 대부업체에 대한 제재를 예고했다.",
+            )
+        )
+        in {"regulatory", "risk"}
+    )
+    assert classify_content_type(_item("경찰, 대출 광고 사기 수사 착수", sector="대부")) in {"regulatory", "risk"}
+    assert classify_content_type(_item("대출 광고 피해 확산", sector="대부")) == "risk"
