@@ -263,3 +263,58 @@ def test_loan_ad_true_risk_contexts_remain_risk_signals():
     )
     assert classify_content_type(_item("경찰, 대출 광고 사기 수사 착수", sector="대부")) in {"regulatory", "risk"}
     assert classify_content_type(_item("대출 광고 피해 확산", sector="대부")) == "risk"
+
+
+def test_loan_ad_regulator_shorthand_does_not_match_financial_crisis():
+    result = classify_content_type(
+        _item(
+            "은행, 대출 광고 문구 개선",
+            description="금융위기 이후 광고 검사 절차를 정비했다.",
+        )
+    )
+    assert result not in {"regulatory", "risk"}
+
+
+def test_schedule_agenda_item_with_enforcement_words_remains_schedule():
+    result = classify_content_type(
+        {
+            "article": {
+                "title": "금융위원회 주간 일정",
+                "summary": "제재 개선안 회의, 소비자보호 점검 설명회, 금융시장 동향 보고 일정 포함",
+                "body": "제재 개선안 회의, 소비자보호 점검 설명회, 금융시장 동향 보고 일정 포함",
+            }
+        }
+    )
+    assert result == "schedule"
+
+
+def test_schedule_title_with_generic_risk_agenda_remains_schedule():
+    result = classify_content_type(
+        {
+            "article": {
+                "title": "금융위원회 주간 일정",
+                "summary": "저축은행 연체율 점검 회의와 PF 시장 동향 보고 일정 포함",
+                "body": "저축은행 연체율 점검 회의와 PF 시장 동향 보고 일정 포함",
+            }
+        }
+    )
+    assert result == "schedule"
+
+
+def test_schedule_title_with_material_body_loan_ad_enforcement_still_not_schedule():
+    result = classify_content_type(
+        {
+            "article": {
+                "title": "금융위원회 주간 일정",
+                "summary": "금감원은 불법 대출광고 단속에 착수하고 제재 방안을 발표한다.",
+                "body": "금감원은 불법 대출광고 단속에 착수하고 제재 방안을 발표한다.",
+            }
+        }
+    )
+    assert result in {"regulatory", "risk"}
+
+
+def test_loan_ad_true_actor_enforcement_contexts_still_classify():
+    assert classify_content_type(_item("금융위, 불법 대출 광고 단속 강화")) in {"regulatory", "risk"}
+    assert classify_content_type(_item("금감원, 불법 대출 광고 단속 강화")) in {"regulatory", "risk"}
+    assert classify_content_type(_item("경찰, 대출 광고 사기 수사 착수", sector="대부")) in {"regulatory", "risk"}

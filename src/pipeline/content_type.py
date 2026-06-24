@@ -92,6 +92,18 @@ def _title_text(item: Any) -> str:
     return str(_field(article, "title") or "").lower()
 
 
+def _body_text(item: Any) -> str:
+    article = _article(item)
+    return _join_text(
+        [
+            _field(article, "description"),
+            _field(article, "summary"),
+            _field(article, "body"),
+            _field(article, "content"),
+        ]
+    )
+
+
 def _has_any(text: str, terms: tuple[str, ...]) -> bool:
     return any(term.lower() in text for term in terms)
 
@@ -121,14 +133,13 @@ LOAN_AD_ENFORCEMENT_ACTIONS = (
     "제재", "단속", "수사", "조사", "검사", "고발", "적발", "시정명령", "행정처분", "처벌", "기소", "착수",
     "enforcement",
 )
-LOAN_AD_REGULATORS = ("금감원", "금융감독원", "금융위", "금융위원회", "금융당국", "경찰", "검찰")
+LAW_ENFORCEMENT_ACTORS = ("경찰", "검찰")
 RISK_TERMS = (
     "불법사금융", "불법대부", "불법추심", "채권추심", "보이스피싱", "스미싱", "대포통장", "연체율", "연체", "부실채권", "부실",
     "pf", "유동성", "익스포저", "워크아웃", "건전성", "충당금", "자본확충", "고리대금", "사기", "피해 확산"
 )
-CONCRETE_RISK_TERMS = (
+HARD_ILLEGAL_RISK_TERMS = (
     "불법사금융", "불법대부", "불법추심", "채권추심", "보이스피싱", "스미싱", "대포통장", "사기", "피해 확산",
-    "제재", "단속", "수사", "고발", "적발", "행정처분", "시정명령",
 )
 POLICY_TERMS = ("정책", "규제", "대책", "제도", "입법예고", "시행령", "가계대출", "최고금리")
 MARKET_TOPICS = ("해외·글로벌", "환율·외환", "자금시장·유동성", "물가·경기지표", "금리·수수료·최고금리", "거시·시장")
@@ -150,12 +161,16 @@ PRICE_QUOTE_TERMS = ("장 마감", "마감시황", "상승 마감", "하락 마�
 FINANCE_ANCHORS = ("은행", "저축은행", "금융", "보험", "카드", "캐피탈", "대부", "금감원", "금융위", "가계대출", "pf")
 
 
+def _has_loan_ad_actor(text: str) -> bool:
+    return _has_regulator(text) or _has_any(text, LAW_ENFORCEMENT_ACTORS)
+
+
 def _has_loan_ad_risk_signal(article_text: str) -> bool:
     if not _has_any(article_text, LOAN_AD_TERMS):
         return False
     if _has_any(article_text, LOAN_AD_ILLEGAL_CONTEXT):
         return True
-    return _has_any(article_text, LOAN_AD_REGULATORS) and _has_any(article_text, LOAN_AD_ENFORCEMENT_ACTIONS)
+    return _has_loan_ad_actor(article_text) and _has_any(article_text, LOAN_AD_ENFORCEMENT_ACTIONS)
 
 
 def _has_risk_signal(article_text: str) -> bool:
@@ -165,11 +180,15 @@ def _has_risk_signal(article_text: str) -> bool:
 
 
 def _has_material_enforcement_signal(article_text: str) -> bool:
-    return (
-        (_has_regulator(article_text) and _has_any(article_text, REGULATORY_ACTIONS))
-        or _has_any(article_text, CONCRETE_RISK_TERMS)
-        or _has_loan_ad_risk_signal(article_text)
-    )
+    if _has_loan_ad_risk_signal(article_text):
+        return True
+    if _has_any(article_text, HARD_ILLEGAL_RISK_TERMS):
+        return True
+    if _has_regulator(article_text) and _has_any(article_text, REGULATORY_ACTIONS):
+        return True
+    if _has_any(article_text, LAW_ENFORCEMENT_ACTORS) and _has_any(article_text, LOAN_AD_ENFORCEMENT_ACTIONS):
+        return True
+    return False
 
 
 def _is_explicit_schedule_title(title: str) -> bool:
@@ -179,6 +198,7 @@ def _is_explicit_schedule_title(title: str) -> bool:
 def classify_content_type(item: Any) -> ContentType:
     """Classify a tagged finance-news item for Top 10 ranking adjustments."""
     article_text = _article_text(item)
+    body_text = _body_text(item)
     metadata_text = _metadata_text(item)
     text = _join_text([article_text, metadata_text])
     title = _title_text(item)
@@ -192,7 +212,7 @@ def classify_content_type(item: Any) -> ContentType:
     strong_risk = _has_risk_signal(article_text)
     title_strong_regulatory = _has_regulator(title) and _has_any(title, REGULATORY_ACTIONS)
     title_strong_risk = _has_risk_signal(title)
-    if _is_explicit_schedule_title(title) and not (title_strong_regulatory or title_strong_risk) and not _has_material_enforcement_signal(article_text):
+    if _is_explicit_schedule_title(title) and not (title_strong_regulatory or title_strong_risk) and not _has_material_enforcement_signal(body_text):
         return "schedule"
     if _has_profile_signal(text) and not (_has_any(article_text, REGULATORY_ACTIONS) or strong_risk):
         return "profile"
