@@ -1,0 +1,257 @@
+{
+  "clusters": {
+    "cluster_count": 285,
+    "cluster_size_max": 48,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 792,
+    "displayed_articles": 207,
+    "final_tagged_representatives": 285,
+    "normalized_articles": 957,
+    "raw_items": 957,
+    "relevance_filtered_articles": 537,
+    "rule_filtered_articles": 784,
+    "tagged_before_cluster": 537
+  },
+  "date": "2026-06-26",
+  "generated_at": "2026-06-26T10:59:23.827137+09:00",
+  "publishers": {
+    "missing_publisher_count": 285,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 108,
+    "no_topic_ratio": 0.3789,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6037521833992939,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "하나은행 스미싱 탐지 서비스 도입",
+        "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3067679"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6551238554848186,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "고객 이탈 멈춘 롯데카드, 해킹 리스크 해소했나",
+        "url": "https://www.topdaily.kr/articles/110704"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6418176623017136,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "하나銀-KISA, 금융사기 공동 방어선 구축…실시간 확인 서비스 도입",
+        "url": "https://www.ajunews.com/view/20260626083156737"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.6350501962856853,
+        "relevance_score": 11,
+        "sector": "은행",
+        "title": "하나은행, '하나원큐'서 즉각 연동되는 '실시간 스미싱 확인 서비스' 개...",
+        "url": "https://daily.hankooki.com/news/articleView.html?idxno=1380095"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6453613545487095,
+        "relevance_score": 12,
+        "sector": "저축은행",
+        "title": "[중앙그룹發 후폭풍] KB캐피탈 'EOD 결단'에 모아저축은행 손실 걱정 털...",
+        "url": "https://www.topdaily.kr/articles/110701"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7308071300875616,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 미국 소비물가 상승에…비트코인 5만9700달...",
+        "url": "https://www.ajunews.com/view/20260626082110720"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7433106225551878,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코인업계 채용 80% 급감, 규제 인력만 생존",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=846375"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7319261630106391,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "지옥 같은 뱅크런의 결말... 자금 바닥난 Aave, 크라켄에 헐값 매각 대충...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=463209"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.729203867537212,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "내 돈 다 날아가나...미국 최대 거래소 코인베이스 블록체인 전격 마비...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=463206"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7100508443958391,
+        "relevance_score": 13,
+        "sector": "저축은행",
+        "title": "대출 부실 직격탄 맞은 저축은행…금융지주 계열사도 신용등급 '줄하락...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014029326?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 13,
+      "거시·시장": 20,
+      "기타": 80,
+      "대부": 8,
+      "디지털자산": 52,
+      "보험": 9,
+      "상호금융": 4,
+      "여전": 18,
+      "은행": 50,
+      "입법·정책": 14,
+      "자산운용·연기금": 6,
+      "저축은행": 8,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 33,
+      "감독·제재": 9,
+      "건전성·자본규제": 9,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 20,
+      "기업금융·익스포저": 9,
+      "디지털자산": 69,
+      "물가·경기지표": 2,
+      "부동산·PF": 7,
+      "불법사금융·불법추심·보이스피싱": 9,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 25,
+      "서민금융·대환·채무조정": 5,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 6,
+      "연체·부실": 7,
+      "자금시장·유동성": 4,
+      "정책·제도개선": 2,
+      "증시·시장시황": 7,
+      "칼럼·오피니언": 3,
+      "해외·글로벌": 15,
+      "환율·외환": 11
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.7774033449610142,
+        "relevance_score": 37,
+        "sector": "감독·제재",
+        "title": "'FIU 제재 불복' 빗썸·코인원, 첫 변론기일 확정…법정 공방 본격화",
+        "url": "https://n.news.naver.com/mnews/article/421/0009023861?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8191405811899616,
+        "relevance_score": 42,
+        "sector": "디지털자산",
+        "title": "스테이블코인법 속도낸다…한성숙 “조속히 협의 마무리”",
+        "url": "https://n.news.naver.com/mnews/article/018/0006314430?sid=101"
+      },
+      {
+        "cluster_size": 15,
+        "relevance_prob": 0.8099258199993798,
+        "relevance_score": 30,
+        "sector": "감독·제재",
+        "title": "감사원,금융위·금감원 감사 착수...'레버리지 ETF' 등 금융투자자 보호...",
+        "url": "http://www.seouleconews.com/news/articleView.html?idxno=92039"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8789985327462655,
+        "relevance_score": 28,
+        "sector": "감독·제재",
+        "title": "금감원·한은, 은행권 외환 검사 마무리…투기·교란 위반 시 중징계 예...",
+        "url": "http://www.segyebiz.com/newsView/20260625516967?OutUrl=naver"
+      },
+      {
+        "cluster_size": 13,
+        "relevance_prob": 0.7041967061913204,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "금감원 \"대부업자가 청구한 주차비·출장비, 모두 이자\"",
+        "url": "http://www.newsfc.co.kr/news/articleView.html?idxno=79514"
+      },
+      {
+        "cluster_size": 48,
+        "relevance_prob": 0.7965809404167655,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "FIU \"신고 가상자산사업자 28곳 외엔 모두 불법\"…투자자 주의 당부",
+        "url": "https://www.m-i.kr/news/articleView.html?idxno=1384827"
+      },
+      {
+        "cluster_size": 45,
+        "relevance_prob": 0.9149228303638832,
+        "relevance_score": 27,
+        "sector": "거시·시장",
+        "title": "[금융家] 미국 환율 ④ㅣ 원·달러 1540원 돌파…고환율 장기화 우려",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=584366"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6381581652917729,
+        "relevance_score": 24,
+        "sector": "상호금융",
+        "title": "(단독)금융위, 신협·수협에도 가계대출 증가율 0% 권고",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1305193&inflow=N"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8401339585442452,
+        "relevance_score": 25,
+        "sector": "은행",
+        "title": "신한·케이뱅크 해외송금 실험…불 붙은 은행권 ‘스테이블코인’ 선점...",
+        "url": "https://www.ceoscoredaily.com/page/view/2026062515475953172"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8482643697183561,
+        "relevance_score": 20,
+        "sector": "은행",
+        "title": "기준금리 인상 앞둔 은행권, 부실채권 건전성 관리 시험대",
+        "url": "https://daily.hankooki.com/news/articleView.html?idxno=1379925"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "은행": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 3,
+      "디지털자산": 4,
+      "연체·부실": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
