@@ -1,0 +1,255 @@
+{
+  "clusters": {
+    "cluster_count": 77,
+    "cluster_size_max": 10,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 2,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 128,
+    "displayed_articles": 46,
+    "final_tagged_representatives": 77,
+    "normalized_articles": 157,
+    "raw_items": 157,
+    "relevance_filtered_articles": 99,
+    "rule_filtered_articles": 128,
+    "tagged_before_cluster": 99
+  },
+  "date": "2026-06-28",
+  "generated_at": "2026-06-28T10:53:48.669879+09:00",
+  "publishers": {
+    "missing_publisher_count": 77,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 27,
+    "no_topic_ratio": 0.3506,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7515231416752505,
+        "relevance_score": 13,
+        "sector": "여전",
+        "title": "금융당국, 이번 주 카드사 소집…대출 규제 '풍선효과' 차단",
+        "url": "https://n.news.naver.com/mnews/article/277/0005782232?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5785059469577459,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "‘삼전닉스’ 50배로 먹는다…도박판된 해외 레버리지 선물",
+        "url": "https://n.news.naver.com/mnews/article/029/0003033931?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.571632936272624,
+        "relevance_score": 8,
+        "sector": "대부",
+        "title": "[ESG 돋보기-카카오] 규제 강화로 리딩방 75% 급감, 투자 비중은 하락",
+        "url": "https://www.fetv.co.kr/news/articleView.html?idxno=305176"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5285029200382981,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "비대면으로 대출 받는데…AI로 얼굴·신분증 위조범죄 급증",
+        "url": "https://n.news.naver.com/mnews/article/421/0009027330?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.637609610611076,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "\"동전주 신세만 겨우 면했다\" 줄줄이 '상폐' 위기...막막한 코인주",
+        "url": "https://n.news.naver.com/mnews/article/008/0005378008?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7218971036164087,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "아르키움·캔톤 [이주의 상장코인]",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092164606"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7927734460359049,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "'집값 불쏘시개 될라' 사내대출 당국 촉각…직접규제는 신중",
+        "url": "https://n.news.naver.com/mnews/article/001/0016162857?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6216278034894808,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "사업자대출 '부동산 편법' 철퇴…개인 5000만원·법인 3억부터 사후점검",
+        "url": "https://n.news.naver.com/mnews/article/421/0009027274?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7390752810262384,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "\"올해도 대세는 해외\"…카드고릴라, 여름휴가 계획 설문조사 발표",
+        "url": "http://www.bizwnews.com/news/articleView.html?idxno=139440"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6603108990604393,
+        "relevance_score": 1,
+        "sector": "자산운용·연기금",
+        "title": "국민연금, 국내주식 비중 꼭 크게 줄여야 하나? 닮은꼴 日과 비교해보니...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002662403?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 7,
+      "기타": 33,
+      "대부": 3,
+      "디지털자산": 7,
+      "보험": 3,
+      "여전": 3,
+      "은행": 11,
+      "입법·정책": 4,
+      "자산운용·연기금": 2,
+      "저축은행": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 14,
+      "감독·제재": 3,
+      "건전성·자본규제": 4,
+      "금리·수수료·최고금리": 5,
+      "기업금융·익스포저": 3,
+      "디지털자산": 6,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 5,
+      "상품·영업·예금금리": 9,
+      "서민금융·대환·채무조정": 3,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 1,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 1,
+      "증시·시장시황": 5,
+      "칼럼·오피니언": 3,
+      "해외·글로벌": 4,
+      "환율·외환": 1
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.805022200726284,
+        "relevance_score": 25,
+        "sector": "기타",
+        "title": "하반기 환율 하락 전망 속 ‘외국인 매도’·‘美 금리’ 변수",
+        "url": "https://n.news.naver.com/mnews/article/662/0000098382?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.770535815080407,
+        "relevance_score": 19,
+        "sector": "디지털자산",
+        "title": "[STO 시대]⑤'KB 브랜드의 힘'…회사채·PF·신탁 '우량자산' 토큰화 역량",
+        "url": "https://n.news.naver.com/mnews/article/421/0009027283?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7166793370729329,
+        "relevance_score": 15,
+        "sector": "감독·제재",
+        "title": "롯데카드 제재 다음 달 윤곽…영업정지 유지 여부에 업계 촉각",
+        "url": "https://www.kukinews.com/article/view/kuk202606260130"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.8149482827313305,
+        "relevance_score": 16,
+        "sector": "거시·시장",
+        "title": "주식 내다파는 外人에 환율 안정 '무소용'…외환위기 수준 치솟은 원·달...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014032112?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7012367358964848,
+        "relevance_score": 13,
+        "sector": "보험",
+        "title": "보험부채 계산할 사람이 부족하다…‘계리사 모시기’ 승자는 삼성화재...",
+        "url": "https://www.ceoscoredaily.com/page/view/2026061820453141810"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5954202424074336,
+        "relevance_score": 21,
+        "sector": "디지털자산",
+        "title": "개인 중심 디지털자산 시장…이용자 저변 확대 '과제'",
+        "url": "https://daily.hankooki.com/news/articleView.html?idxno=1380294"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.684335085349457,
+        "relevance_score": 13,
+        "sector": "저축은행",
+        "title": "[중앙그룹 사태] 저축은행 10곳 익스포저 …\"기업대출 위축 우려\"",
+        "url": "https://news.dealsitetv.com/articles/172322"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.610544518027569,
+        "relevance_score": 19,
+        "sector": "은행",
+        "title": "'빚투'에 고삐 풀린 마통…은행권 상반기부터 '대출 셧다운'",
+        "url": "https://n.news.naver.com/mnews/article/421/0009027266?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7515231416752505,
+        "relevance_score": 13,
+        "sector": "여전",
+        "title": "금융당국, 이번 주 카드사 소집…대출 규제 '풍선효과' 차단",
+        "url": "https://n.news.naver.com/mnews/article/277/0005782232?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7551927356162272,
+        "relevance_score": 15,
+        "sector": "여전",
+        "title": "'조달비용 폭탄'이 부른 포용금융의 역설…카드론 고신용자 금리 15% 육...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014031487?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 1,
+      "기타": 1,
+      "디지털자산": 2,
+      "보험": 1,
+      "여전": 2,
+      "은행": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 1,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 2,
+      "기업금융·익스포저": 1,
+      "디지털자산": 2,
+      "부동산·PF": 1,
+      "상품·영업·예금금리": 1,
+      "자금시장·유동성": 1,
+      "해외·글로벌": 2,
+      "환율·외환": 1
+    }
+  }
+}
