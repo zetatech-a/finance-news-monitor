@@ -1,0 +1,259 @@
+{
+  "clusters": {
+    "cluster_count": 195,
+    "cluster_size_max": 36,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 414,
+    "displayed_articles": 134,
+    "final_tagged_representatives": 195,
+    "normalized_articles": 532,
+    "raw_items": 532,
+    "relevance_filtered_articles": 314,
+    "rule_filtered_articles": 408,
+    "tagged_before_cluster": 314
+  },
+  "date": "2026-06-29",
+  "generated_at": "2026-06-29T10:58:50.099234+09:00",
+  "publishers": {
+    "missing_publisher_count": 195,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 66,
+    "no_topic_ratio": 0.3385,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7967355187287839,
+        "relevance_score": 13,
+        "sector": "저축은행",
+        "title": "[저축은행 돋보기] [모아저축은행] 삼전 출신 CEO의 저력…불황에도 배...",
+        "url": "https://www.topdaily.kr/articles/110726"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7516159743366191,
+        "relevance_score": 4,
+        "sector": "자산운용·연기금",
+        "title": "기관도 개미도 다 던졌다…이더리움 ETF 투자자, 일주일 만에 3700억 손절",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=463773"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6610314435786723,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "피노라글로벌, 디지털 통합금융 플랫폼 'FINORA' 공식 출범",
+        "url": "https://n.news.naver.com/mnews/article/277/0005782475?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5529207436934465,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "변동금리 대출자에 유리한 'KOFR' 확대…CD금리 의존 줄인다",
+        "url": "https://www.raonnews.com/news/article.html?no=59140"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7610154235573039,
+        "relevance_score": 27,
+        "sector": "기타",
+        "title": "CD금리 줄인다…은행 변동금리채권 KOFR 비중, 2031년까지 50%로 확대",
+        "url": "https://n.news.naver.com/mnews/article/016/0002662678?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7178582865546634,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "삼성카드, 선두 굳히려 외형 키운 PLCC···비용이 갉아먹다",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=696710"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6586438908573182,
+        "relevance_score": 9,
+        "sector": "입법·정책",
+        "title": "금융지주 지배구조 개편 임박…5대 은행장 인사도 영향권",
+        "url": "https://n.news.naver.com/mnews/article/018/0006317593?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7076563732841565,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "거래소 입금 흔적 없는데…1100만 달러 규모 이더리움 이동, 단순 보안 ...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=463752"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6921101312207776,
+        "relevance_score": 8,
+        "sector": "디지털자산",
+        "title": "[상폐 위기의 그림자, 사례로 본 시장 불안①] - 비덴트",
+        "url": "https://www.ilyoseoul.co.kr/news/articleView.html?idxno=519086"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.730684300841797,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 비트코인 5만8000달러선 거래…투자심리 위...",
+        "url": "https://www.ajunews.com/view/20260629075046965"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 5,
+      "거시·시장": 27,
+      "기타": 68,
+      "대부": 13,
+      "디지털자산": 22,
+      "보험": 4,
+      "여전": 13,
+      "은행": 20,
+      "입법·정책": 12,
+      "자산운용·연기금": 1,
+      "저축은행": 5,
+      "증권(브로커리지/리테일)": 2,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 19,
+      "감독·제재": 5,
+      "건전성·자본규제": 3,
+      "금리·수수료·최고금리": 6,
+      "기업금융·익스포저": 3,
+      "디지털자산": 20,
+      "부동산·PF": 5,
+      "불법사금융·불법추심·보이스피싱": 11,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 20,
+      "서민금융·대환·채무조정": 12,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 3,
+      "연체·부실": 9,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 4,
+      "증시·시장시황": 23,
+      "칼럼·오피니언": 3,
+      "해외·글로벌": 12,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 7,
+        "relevance_prob": 0.6663911806842021,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "상록수 등 연체채권 1조원 새도약기금에 매각…부실채권 감독도 강화",
+        "url": "https://n.news.naver.com/mnews/article/003/0014032468?sid=101"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.6333148903272237,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "유동화회사 채권 1조원 새도약기금 매각…11만명 추심 굴레 탈출",
+        "url": "https://n.news.naver.com/mnews/article/374/0000518643?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6837959064520583,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "금감원, GA 부당승환·불법사금융 정조준…업무범위 제한·제재 강화",
+        "url": "https://n.news.naver.com/mnews/article/421/0009027664?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5690939800680712,
+        "relevance_score": 17,
+        "sector": "입법·정책",
+        "title": "[5세대 실손 첫발] [현대해상] 1위 실손보험사, 제도개선 최대 수혜",
+        "url": "https://news.dealsitetv.com/articles/172247"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7961846428915532,
+        "relevance_score": 20,
+        "sector": "입법·정책",
+        "title": "“대출 우대금리 받으려면 통장에 돈 묶어라”…금감원, 은행 관행 손본...",
+        "url": "https://n.news.naver.com/mnews/article/138/0002232348?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8283039997069048,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "금주 한국은행 및 금융당국(금융위·금감원) 주요일정",
+        "url": "https://n.news.naver.com/mnews/article/123/0002385532?sid=101"
+      },
+      {
+        "cluster_size": 22,
+        "relevance_prob": 0.8901665190117425,
+        "relevance_score": 21,
+        "sector": "기타",
+        "title": "금융권 해외부동산 투자 부실 우려 2조⋯“리스크 관리 집중”",
+        "url": "https://www.etoday.co.kr/news/view/2597975"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8301818065577748,
+        "relevance_score": 21,
+        "sector": "입법·정책",
+        "title": "금감원, 국내 금융사 해외 부동산 투자 2개 분기 연속 증가…전분기比 ...",
+        "url": "http://www.thebigdata.co.kr/view.php?ud=202606290632563632c808fa9903_23"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.779093504626481,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "신창재 교보생명 회장, 스테이블코인 보험업무 PoC 완료… 디지털 자산...",
+        "url": "http://www.fntimes.com/html/view.php?ud=202606261557077045ed56b8e1f8_18"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6342459056112476,
+        "relevance_score": 22,
+        "sector": "은행",
+        "title": "신용대출 5년 2개월만에 최대 증가…빚투 열풍에 금융 불안 우려",
+        "url": "https://n.news.naver.com/mnews/article/020/0003729950?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 3,
+      "디지털자산": 1,
+      "은행": 1,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 1,
+      "건전성·자본규제": 1,
+      "디지털자산": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 2,
+      "서민금융·대환·채무조정": 2,
+      "연체·부실": 2,
+      "일정·브리핑": 1,
+      "정책·제도개선": 2,
+      "해외·글로벌": 1
+    }
+  }
+}
