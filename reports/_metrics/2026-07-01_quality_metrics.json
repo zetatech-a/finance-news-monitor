@@ -1,0 +1,256 @@
+{
+  "clusters": {
+    "cluster_count": 382,
+    "cluster_size_max": 43,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 991,
+    "displayed_articles": 220,
+    "final_tagged_representatives": 382,
+    "normalized_articles": 1414,
+    "raw_items": 1414,
+    "relevance_filtered_articles": 723,
+    "rule_filtered_articles": 979,
+    "tagged_before_cluster": 723
+  },
+  "date": "2026-07-01",
+  "generated_at": "2026-07-01T11:04:43.814131+09:00",
+  "publishers": {
+    "missing_publisher_count": 382,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 150,
+    "no_topic_ratio": 0.3927,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.542604756627709,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "[초점] 반복된 우리은행 대출 비리…또 드러난 내부통제 허점",
+        "url": "http://www.rightknow.co.kr/news/articleView.html?idxno=34358"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.623665139476661,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "람다256 노딧, 기관용 온체인 서비스 ‘데이터셰어’ 베타 출시",
+        "url": "https://n.news.naver.com/mnews/article/018/0006319583?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7791588990378202,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "금감원 출신 재취업 재개…전원 탈락 충격 두 달 만에 '숨통'",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4422725"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6958688031819453,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "비트코인, 9000만원선 재이탈…2분기 낙폭 15% 육박",
+        "url": "https://n.news.naver.com/mnews/article/003/0014038684?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6753374219169067,
+        "relevance_score": 3,
+        "sector": "기타",
+        "title": "국장서 '97조' 쓸어담은 개미…그 많은 돈 어디서 나왔나 보니",
+        "url": "https://n.news.naver.com/mnews/article/215/0001257160?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6904627019783927,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "검색 한 번에 연결된 해외 범죄 조직…구글은 왜 막지 못했나",
+        "url": "https://magazine.hankyung.com/job-joy/article/202606307773d"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6883842261285193,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 비트코인 다시 5만8000달러선…美증시·스...",
+        "url": "https://www.ajunews.com/view/20260701075809793"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6130252222118043,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "[애큐온 M&A] 한화생명, 종합금융 체제 구축 '성큼'",
+        "url": "https://www.topdaily.kr/articles/110774"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7528060564085851,
+        "relevance_score": 3,
+        "sector": "기타",
+        "title": "개미 100조 어디서 나왔나…삼성증권 \"소득증가·자산재배분 영향\"",
+        "url": "https://theopiniontimes.news/%ea%b0%9c%ec%9d%b8-%ec%88%9c%eb%a7%a4%ec%88%98-97%ec%a1%b0/"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7052332104078263,
+        "relevance_score": 11,
+        "sector": "기타",
+        "title": "美증시 2분기 화려한 성적표…6년 만에 상승률 최대[뉴스새벽배송]",
+        "url": "https://n.news.naver.com/mnews/article/018/0006319525?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 5,
+      "감독·제재": 11,
+      "거시·시장": 34,
+      "기타": 172,
+      "대부": 6,
+      "디지털자산": 51,
+      "보험": 8,
+      "상호금융": 2,
+      "여전": 21,
+      "은행": 28,
+      "입법·정책": 26,
+      "자산운용·연기금": 2,
+      "저축은행": 12,
+      "증권(브로커리지/리테일)": 4
+    },
+    "topic_counts": {
+      "가계대출·부채": 34,
+      "감독·제재": 9,
+      "건전성·자본규제": 5,
+      "규제·가계부채": 15,
+      "금리·수수료·최고금리": 18,
+      "기업금융·익스포저": 3,
+      "디지털자산": 57,
+      "부동산·PF": 13,
+      "불법사금융·불법추심·보이스피싱": 51,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 17,
+      "서민금융·대환·채무조정": 12,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 22,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 2,
+      "정책·제도개선": 2,
+      "증시·시장시황": 15,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 19,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.7427926094795131,
+        "relevance_score": 40,
+        "sector": "입법·정책",
+        "title": "동탄·기흥·구리 대출 조인다…7월 1일부터 LTV 40%로 강화(종합)",
+        "url": "https://n.news.naver.com/mnews/article/421/0009032543?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8193090652644169,
+        "relevance_score": 32,
+        "sector": "입법·정책",
+        "title": "[Invest]'생산적·포용 금융' 이중 압박에…은행 '건전성 규제' 추가 완...",
+        "url": "https://www.investchosun.com/site/data/html_dir/2026/06/30/2026063080132.html"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7818574337678117,
+        "relevance_score": 33,
+        "sector": "감독·제재",
+        "title": "동탄·기흥·구리 내일부터 LTV 40%···당국 \"현장점검 등 적극 대응\"",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=632329"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7185464935946873,
+        "relevance_score": 32,
+        "sector": "감독·제재",
+        "title": "동탄·기흥·구리 대출규제 강화…금융당국 \"미준수 금융사 현장점검\"",
+        "url": "https://n.news.naver.com/mnews/article/119/0003106457?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7374336131777444,
+        "relevance_score": 34,
+        "sector": "은행",
+        "title": "‘동탄·기흥·구리’ 대출 문턱 확 높아진다…LTV ‘70%→40%’ 즉시 적...",
+        "url": "https://n.news.naver.com/mnews/article/123/0002385673?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.6871785515526582,
+        "relevance_score": 29,
+        "sector": "감독·제재",
+        "title": "규제지역 LTV 70→40%…금융당국 \"가계대출 관리 미흡 금융사 현장점검...",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4422641"
+      },
+      {
+        "cluster_size": 43,
+        "relevance_prob": 0.8166964761339034,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "빗썸-키움증권 지분 협의…끝까지 갈지는 '미지수'",
+        "url": "https://n.news.naver.com/mnews/article/119/0003106385?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.828004204094486,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "금감원·서울시, 7월 한 달간 보이스피싱 피해 예방 공동 캠페인 실시",
+        "url": "https://n.news.naver.com/mnews/article/055/0001368450?sid=101"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.7595324979543163,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "미신고 'VASP 경고'에 가상자산 거래소도 '차단 숙제'",
+        "url": "https://www.fetv.co.kr/news/articleView.html?idxno=305444"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6439449612591914,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "정부 장기연체채권 정리, 민간 NPL 시장까지 흡수하나?",
+        "url": "https://www.cnbnews.com/news/articleView.html?idxno=1006388"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 3,
+      "대부": 1,
+      "디지털자산": 2,
+      "은행": 1,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 5,
+      "감독·제재": 3,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 5,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 1
+    }
+  }
+}
