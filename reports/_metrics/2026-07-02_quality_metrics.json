@@ -1,0 +1,255 @@
+{
+  "clusters": {
+    "cluster_count": 349,
+    "cluster_size_max": 44,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 893,
+    "displayed_articles": 235,
+    "final_tagged_representatives": 349,
+    "normalized_articles": 1206,
+    "raw_items": 1206,
+    "relevance_filtered_articles": 626,
+    "rule_filtered_articles": 874,
+    "tagged_before_cluster": 626
+  },
+  "date": "2026-07-02",
+  "generated_at": "2026-07-02T10:44:06.908145+09:00",
+  "publishers": {
+    "missing_publisher_count": 349,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 127,
+    "no_topic_ratio": 0.3639,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7397143080920129,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[위클리오늘] 사기당한 피해자가 덫 놓았다…경찰과 공조해 투자사기 일...",
+        "url": "http://www.weeklytoday.com/news/articleView.html?idxno=783037"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7801786243476433,
+        "relevance_score": 24,
+        "sector": "여전",
+        "title": "여신협회 2인자 전무 자리 이번에도 금감원 출신?…새바람 불까",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4422972"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.3960621035021927,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "카카오뱅크, 마스턴캐피탈 인수···기대보다 자본 부담 먼저 보여",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=697444"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6846086541101173,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "금융지주 계열사 지각변동…비은행 '맏형' 자리 바뀐다",
+        "url": "https://n.news.naver.com/mnews/article/648/0000048553?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6555410484927988,
+        "relevance_score": 4,
+        "sector": "여전",
+        "title": "[카드업계 거버넌스 분석] ③롯데카드, 대주주 신용공여비율 24%...정상호...",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=847482"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7147925529943983,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "中 자본 맞는 위메이드...위믹스 운명은",
+        "url": "https://dealsite.co.kr/articles/164602"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7649812704448702,
+        "relevance_score": 16,
+        "sector": "저축은행",
+        "title": "'책임경영 예외 없다'...저축은행, 책무구조도 본격 도입",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=680409"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5750908869396981,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "'내수침체 직격탄' 빚으로 버티는 자영업자…대출 1095조 '사상 최대'",
+        "url": "https://n.news.naver.com/mnews/article/421/0009036135?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6802614777295444,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "[법인카드 공략] [신한] 전담조직·그룹 시너지 통했다…5월 이용액 1위",
+        "url": "https://news.dealsitetv.com/articles/172492"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.3953854916071464,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "마스턴캐피탈 택한 카카오뱅크…캐피탈 전략에 쏠린 이목",
+        "url": "https://news.dealsitetv.com/articles/172638"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 8,
+      "거시·시장": 38,
+      "기타": 124,
+      "대부": 3,
+      "디지털자산": 56,
+      "보험": 15,
+      "상호금융": 3,
+      "여전": 19,
+      "은행": 47,
+      "입법·정책": 18,
+      "자산운용·연기금": 2,
+      "저축은행": 12,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 25,
+      "감독·제재": 10,
+      "건전성·자본규제": 7,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 19,
+      "기업금융·익스포저": 8,
+      "디지털자산": 70,
+      "물가·경기지표": 1,
+      "부동산·PF": 10,
+      "불법사금융·불법추심·보이스피싱": 27,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 9,
+      "서민금융·대환·채무조정": 15,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 11,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 2,
+      "증시·시장시황": 24,
+      "칼럼·오피니언": 11,
+      "해외·글로벌": 30,
+      "환율·외환": 16
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 22,
+        "relevance_prob": 0.7252878354967895,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "공유오피스 대부업 사무실로 금지…금융위, '대부업법 시행령' 개정안 ...",
+        "url": "https://n.news.naver.com/mnews/article/018/0006319838?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8439893524316949,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "금감원, 은행 20개사 준법감시인 소집…\"자금세탁방지 역량 강화\"",
+        "url": "https://n.news.naver.com/mnews/article/421/0009035093?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8354674550676372,
+        "relevance_score": 29,
+        "sector": "핀테크·플랫폼",
+        "title": "원화 스테이블코인 주도권 잡아라…은행·핀테크 경쟁 본격화",
+        "url": "https://www.goodkyung.com/news/articleView.html?idxno=288735"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8488286888260937,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "\"보이스피싱 당하면 은행 앱으로 서류 제출\"…금감원, 금융권 업무 절차...",
+        "url": "https://www.pointe.co.kr/news/articleView.html?idxno=81235"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.859211147656233,
+        "relevance_score": 22,
+        "sector": "감독·제재",
+        "title": "\"자유적금·법인카드까지 악용\"…금감원, 신종 자금세탁 차단 나선다",
+        "url": "https://n.news.naver.com/mnews/article/003/0014040667?sid=101"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.7450994426783251,
+        "relevance_score": 26,
+        "sector": "디지털자산",
+        "title": "거래소 선점 끝…금융권 디지털자산 경쟁 '서비스'로",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=361410"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8005311987275606,
+        "relevance_score": 21,
+        "sector": "감독·제재",
+        "title": "“계좌 범죄 연루됐다” 금감원 사칭에 속아…70대 노인, 골드바로 14억...",
+        "url": "https://n.news.naver.com/mnews/article/082/0001387860?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.861446807543997,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "[금융 HOT 뉴스] 금감원, 보이스피싱 피해구제 프로세스 개선",
+        "url": "http://www.bizwnews.com/news/articleView.html?idxno=139750"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6650151500859871,
+        "relevance_score": 22,
+        "sector": "저축은행",
+        "title": "웰컴저축은행, 번 돈 97% 충당금에 녹았다",
+        "url": "https://sateconomy.co.kr/news/view/1065587414984257"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8384839074734131,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "금감원 \"보이스피싱 피해구제 신청 서류 비대면 제출 가능\"",
+        "url": "http://www.efnews.co.kr/news/articleView.html?idxno=130660"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 3,
+      "대부": 1,
+      "디지털자산": 1,
+      "입법·정책": 3,
+      "저축은행": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "디지털자산": 2,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "연체·부실": 1,
+      "정책·제도개선": 1
+    }
+  }
+}
