@@ -1,0 +1,274 @@
+{
+  "clusters": {
+    "cluster_count": 327,
+    "cluster_size_max": 62,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 62,
+        "relevance_prob": 0.9066098498085402,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "[질문에 답하다] 원·달러 환율 32거래일째 1500원대 ‘꽁꽁’… 역대 최...",
+        "url": "https://n.news.naver.com/mnews/article/029/0003035025?sid=101"
+      },
+      {
+        "cluster_size": 61,
+        "relevance_prob": 0.7832026100024307,
+        "relevance_score": 46,
+        "sector": "디지털자산",
+        "title": "금감원, 가상자산 업계 내부통제 고삐…\"AI로 불공정거래 감시 강화\"",
+        "url": "https://n.news.naver.com/mnews/article/014/0005542988?sid=105"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 813,
+    "displayed_articles": 213,
+    "final_tagged_representatives": 327,
+    "normalized_articles": 1091,
+    "raw_items": 1091,
+    "relevance_filtered_articles": 617,
+    "rule_filtered_articles": 788,
+    "tagged_before_cluster": 617
+  },
+  "date": "2026-07-03",
+  "generated_at": "2026-07-03T10:24:09.751711+09:00",
+  "publishers": {
+    "missing_publisher_count": 327,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 129,
+    "no_topic_ratio": 0.3945,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6287224326367735,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "협회장 인선마다 등장하는 'KB'…은행연합회 하마평에도 윤종규 회장 '솔...",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=206650"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7138881719743038,
+        "relevance_score": 8,
+        "sector": "입법·정책",
+        "title": "트럼프는 총기 우편판매 풀어주고, 아들은 수혜 기업서 돈 벌고",
+        "url": "https://n.news.naver.com/mnews/article/018/0006321510?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6302330894631079,
+        "relevance_score": 7,
+        "sector": "디지털자산",
+        "title": "美 고용 둔화에 안도…비트코인 6.1만달러 회복 [코인 모닝콜]",
+        "url": "https://n.news.naver.com/mnews/article/018/0006321506?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7617702068909264,
+        "relevance_score": 17,
+        "sector": "저축은행",
+        "title": "SBI저축은행, ‘미래성장실’ 신설…교보 3세 신중현 상무 전면 배치",
+        "url": "http://www.globalepic.co.kr/view.php?ud=202607030825207377cc35ccc5c_29"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.633052005088348,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "루피아 추락이 던진 경고…韓도 가볍게 볼 때 아니다",
+        "url": "https://www.ajunews.com/view/20260702073718694"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7864441578638159,
+        "relevance_score": 16,
+        "sector": "기타",
+        "title": "“선물 아니다, 요즘 세상에 압력 넣는다고 기업들 옮겨오는 데가 어디...",
+        "url": "https://slownews.kr/162625"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6088648147078268,
+        "relevance_score": 12,
+        "sector": "입법·정책",
+        "title": "부산, 금융위와 벤처투자 해법 찾는다…지역 스타트업 성장 기반 점검",
+        "url": "https://www.mhns.co.kr/news/articleView.html?idxno=752171"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7028619089516842,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "'포화' 신용카드 돌파구 PLCC…카드사 전략 '양'에서 '질'로 전환",
+        "url": "https://www.socialvalue.kr/news/view/1065590775636811"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7277131836606282,
+        "relevance_score": 6,
+        "sector": "저축은행",
+        "title": "저축은행 CEO 브랜드평판 2026년 7월 빅데이터 분석... 1위 SBI저축은행 ...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=465189"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6777505055657495,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[법인카드 공략] [KB국민] 전통 강자 '굳건'…\"계열사 협업 시너지\"",
+        "url": "https://news.dealsitetv.com/articles/172573"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 11,
+      "거시·시장": 27,
+      "기타": 124,
+      "대부": 4,
+      "디지털자산": 59,
+      "보험": 12,
+      "상호금융": 14,
+      "여전": 16,
+      "은행": 31,
+      "입법·정책": 16,
+      "저축은행": 9,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 16,
+      "감독·제재": 7,
+      "건전성·자본규제": 14,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 28,
+      "기업금융·익스포저": 9,
+      "디지털자산": 63,
+      "부동산·PF": 9,
+      "불법사금융·불법추심·보이스피싱": 25,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 5,
+      "서민금융·대환·채무조정": 5,
+      "소비자보호·민원·불완전판매": 7,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 8,
+      "자금시장·유동성": 8,
+      "정책·제도개선": 6,
+      "증시·시장시황": 10,
+      "칼럼·오피니언": 11,
+      "해외·글로벌": 17,
+      "환율·외환": 9
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 61,
+        "relevance_prob": 0.7832026100024307,
+        "relevance_score": 46,
+        "sector": "디지털자산",
+        "title": "금감원, 가상자산 업계 내부통제 고삐…\"AI로 불공정거래 감시 강화\"",
+        "url": "https://n.news.naver.com/mnews/article/014/0005542988?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8325193077754097,
+        "relevance_score": 46,
+        "sector": "감독·제재",
+        "title": "금감원 \"AI로 불공정거래 근절\"… 가상자산 규제 '고삐'",
+        "url": "https://n.news.naver.com/mnews/article/014/0005543082?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7862961921613454,
+        "relevance_score": 43,
+        "sector": "디지털자산",
+        "title": "[현장] 금감원장 이찬진 \"가상자산업이 제도권 산업으로 도약하려면 내...",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=441448"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7612865260235567,
+        "relevance_score": 26,
+        "sector": "입법·정책",
+        "title": "새 수장 맞는 중소형 증권사들…호황 속 생존 무게",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1305957&inflow=N"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7998990862468734,
+        "relevance_score": 22,
+        "sector": "감독·제재",
+        "title": "가상자산 거래소 CEO 소집한 이찬진 “내부통제 강화로 시장 신뢰 높여...",
+        "url": "https://n.news.naver.com/mnews/article/009/0005701929?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7352547255596131,
+        "relevance_score": 22,
+        "sector": "감독·제재",
+        "title": "금감원, JTBC 회사채 판매 과정 조사…증권사 투자자 보호 의무 점검",
+        "url": "https://www.tokenpost.kr/news/economy/374524"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7755775877584583,
+        "relevance_score": 20,
+        "sector": "저축은행",
+        "title": "SBI저축은행, NICE신용평가 'A' 등급 유지... \"5년 연속 획득\"",
+        "url": "http://www.thefirstmedia.net/news/articleView.html?idxno=202881"
+      },
+      {
+        "cluster_size": 62,
+        "relevance_prob": 0.9066098498085402,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "[질문에 답하다] 원·달러 환율 32거래일째 1500원대 ‘꽁꽁’… 역대 최...",
+        "url": "https://n.news.naver.com/mnews/article/029/0003035025?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5950265340639589,
+        "relevance_score": 17,
+        "sector": "대부",
+        "title": "장기연체채권 소각 외통수 걸린 롯데카드... 정성호 대표, '경영 정상화...",
+        "url": "https://www.meconomynews.com/news/articleView.html?idxno=132399"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.773440998124032,
+        "relevance_score": 18,
+        "sector": "은행",
+        "title": "인뱅은 ‘대면 심사’ 허용, 보이스피싱 구제는 ‘모바일’로…금융당...",
+        "url": "https://www.viva100.com/article/20260702500765"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "은행": 1,
+      "입법·정책": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 5,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 1,
+      "자금시장·유동성": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
