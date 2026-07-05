@@ -1,0 +1,249 @@
+{
+  "clusters": {
+    "cluster_count": 58,
+    "cluster_size_max": 12,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 119,
+    "displayed_articles": 48,
+    "final_tagged_representatives": 58,
+    "normalized_articles": 142,
+    "raw_items": 142,
+    "relevance_filtered_articles": 82,
+    "rule_filtered_articles": 118,
+    "tagged_before_cluster": 82
+  },
+  "date": "2026-07-05",
+  "generated_at": "2026-07-05T10:25:09.441823+09:00",
+  "publishers": {
+    "missing_publisher_count": 58,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 19,
+    "no_topic_ratio": 0.3276,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.602602115987175,
+        "relevance_score": 9,
+        "sector": "상호금융",
+        "title": "“이번엔 진짜 가나” 지방 이전說 불안한 수협, 노총 통해 적극 대응",
+        "url": "https://n.news.naver.com/mnews/article/366/0001176809?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7741912666116764,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "피해보상 문자·AI 악용 사칭까지…정보보호의 날 보안습관 점검",
+        "url": "https://n.news.naver.com/mnews/article/421/0009040896?sid=105"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.653210207568816,
+        "relevance_score": 9,
+        "sector": "저축은행",
+        "title": "저축은행 '4%대 정기예금' 상품만 150개, 청년미래적금으로 확인된 종잣...",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=441505"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7242856967992384,
+        "relevance_score": 8,
+        "sector": "입법·정책",
+        "title": "4대 금융지주, 올 상반기 또 역대급 실적 전망",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092165117"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.658848131273797,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "7월4일 모닝뉴스 헤드라인",
+        "url": "https://www.radiokorea.com/news/article.php?uid=498616"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6636432772873809,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "[자정 뉴스브리핑] 부탄 왕국 관련 지갑, 바이낸스로 700 BTC 입금 外",
+        "url": "https://www.tokenpost.kr/news/briefing/375053"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6532345895636362,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "코인원, '워터밤 속초' 메인 타이틀 스폰서 참여…고객 이벤트 실시",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=712226"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6519057368485228,
+        "relevance_score": 13,
+        "sector": "자산운용·연기금",
+        "title": "아울자산운용, 금감원 6.3억 과태료에 정식재판 청구…\"끝까지 다퉈보겠...",
+        "url": "https://www.sjsori.com/news/articleView.html?idxno=87317"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6616851998547226,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "\"비트코인 버리고 리플로 전액 이동\"... 거대 고래의 위험한 도박 시작...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=465554"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7577506449726833,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "서산경찰서성연파출소, 어르신대상 '찾아가는 범죄예방교실' 운영",
+        "url": "http://www.chungnamilbo.co.kr/news/articleView.html?idxno=897107"
+      }
+    ],
+    "sector_counts": {
+      "거시·시장": 11,
+      "기타": 11,
+      "대부": 1,
+      "디지털자산": 19,
+      "상호금융": 2,
+      "여전": 6,
+      "은행": 4,
+      "입법·정책": 2,
+      "자산운용·연기금": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 2,
+      "건전성·자본규제": 2,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 7,
+      "디지털자산": 17,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "서민금융·대환·채무조정": 4,
+      "소비자보호·민원·불완전판매": 1,
+      "연체·부실": 2,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 1,
+      "증시·시장시황": 5,
+      "해외·글로벌": 5,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.9054829225944202,
+        "relevance_score": 27,
+        "sector": "거시·시장",
+        "title": "한은 7월 금리 인상 예고 속 연준은 '동결'…한미 금리차에 환율 촉각",
+        "url": "http://www.newsian.co.kr/news/articleView.html?idxno=91789"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.612491426390389,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "금융위 '약탈금융 고리 끊기' 속도…대부업 배드뱅크도 새도약기금 합류",
+        "url": "https://n.news.naver.com/mnews/article/003/0014046661?sid=101"
+      },
+      {
+        "cluster_size": 12,
+        "relevance_prob": 0.7376633356137429,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "새주 외환시장 24시간 체제 시작·IMF 성장률 전망 발표된다",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=586596"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.49942747812237964,
+        "relevance_score": 20,
+        "sector": "은행",
+        "title": "AI 도입 속도 내는 금융권…진화하는 금융사기 막는다",
+        "url": "https://www.ntoday.co.kr/news/articleView.html?idxno=127995"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8249378299772756,
+        "relevance_score": 17,
+        "sector": "여전",
+        "title": "카드사 건전성 지표 회복됐지만…가계부채·금리 상승 부담 ‘여전’",
+        "url": "https://www.ceoscoredaily.com/page/view/2026070215291091108"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7783925481827169,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "[토큰분석] IBM 지역 지형도에 ‘한국’은 없었다… 토큰화 경제에서 우...",
+        "url": "https://www.tokenpost.kr/news/insights/375022"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7931649800483376,
+        "relevance_score": 18,
+        "sector": "디지털자산",
+        "title": "법인·스테이블코인·내부통제…제도권 문턱 앞에 선 거래소 [가상자산...",
+        "url": "https://www.etoday.co.kr/news/view/2598927"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7902071844292836,
+        "relevance_score": 15,
+        "sector": "입법·정책",
+        "title": "법인시장 개방 앞두고… '1거래소 2은행' 수면 위로",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092165104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8059860657577805,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "KB증권, 소비자보호의 날 맞아 보이스피싱 예방 교육 콘텐츠 배포",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=310065"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6519057368485228,
+        "relevance_score": 13,
+        "sector": "자산운용·연기금",
+        "title": "아울자산운용, 금감원 6.3억 과태료에 정식재판 청구…\"끝까지 다퉈보겠...",
+        "url": "https://www.sjsori.com/news/articleView.html?idxno=87317"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "거시·시장": 2,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "여전": 1,
+      "은행": 1,
+      "입법·정책": 1,
+      "자산운용·연기금": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 3,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 1,
+      "소비자보호·민원·불완전판매": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 2
+    }
+  }
+}
