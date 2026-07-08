@@ -1,0 +1,258 @@
+{
+  "clusters": {
+    "cluster_count": 336,
+    "cluster_size_max": 35,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 860,
+    "displayed_articles": 215,
+    "final_tagged_representatives": 336,
+    "normalized_articles": 1119,
+    "raw_items": 1119,
+    "relevance_filtered_articles": 650,
+    "rule_filtered_articles": 849,
+    "tagged_before_cluster": 650
+  },
+  "date": "2026-07-08",
+  "generated_at": "2026-07-08T10:16:46.691860+09:00",
+  "publishers": {
+    "missing_publisher_count": 336,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 156,
+    "no_topic_ratio": 0.4643,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.688345182770457,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "비트코인, 스트래티지 매각에도 9500만원대…투자심리는 '공포'",
+        "url": "https://n.news.naver.com/mnews/article/003/0014052614?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7523087382007938,
+        "relevance_score": 15,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "조인철 의원, 증권사 '깜깜이 고금리' 막는 자본시장법 발의",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092165358"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6587987429533746,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[뱅크Shoot] KB·하나·농협·IBK·케이·토스 '데이 이슈'",
+        "url": "http://www.finomy.com/news/articleView.html?idxno=256994"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.70336526318627,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "거래소로 쏟아지는 ETH 물량 폭탄… 기관들이 언제까지 버텨줄 수 있나",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=466424"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.758226927489273,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "위믹스, 북미 시장 입성..크라켄에 상장",
+        "url": "https://kpenews.com/View.aspx?No=4140755"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5177462357300896,
+        "relevance_score": 11,
+        "sector": "기타",
+        "title": "[현장] 임종룡號 우리금융, 디노랩부터 IPO까지…스타트업 ‘원스톱 성...",
+        "url": "https://www.fntimes.com/html/view.php?ud=2026070713292997225e6e69892f_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6174824331500801,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "차기 은행연합회장 하마평 윤곽…윤종규·윤종원·박종복 3파전",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=712540"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5771780425594168,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "\"연체되면 뺏던 은행, 이젠 미리 이자 깎아준다\"…포용금융 장부 '전환...",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=361758"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5323286073721617,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[KB금융 차기 회장 인선] 외부 후보 넓힌다더니…회장 후보군은 여전히...",
+        "url": "https://dealsite.co.kr/articles/164831"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.721225243687371,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "번번이 늦어진 지배구조 개선안…금융위·금감원 미묘한 긴장감",
+        "url": "https://dealsite.co.kr/articles/164863"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 4,
+      "감독·제재": 6,
+      "거시·시장": 20,
+      "기타": 131,
+      "대부": 4,
+      "디지털자산": 52,
+      "보험": 6,
+      "상호금융": 15,
+      "여전": 13,
+      "은행": 38,
+      "입법·정책": 28,
+      "자산운용·연기금": 6,
+      "저축은행": 7,
+      "증권(브로커리지/리테일)": 4,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 15,
+      "감독·제재": 7,
+      "건전성·자본규제": 6,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 17,
+      "기업금융·익스포저": 6,
+      "디지털자산": 52,
+      "부동산·PF": 9,
+      "불법사금융·불법추심·보이스피싱": 30,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 14,
+      "서민금융·대환·채무조정": 11,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 10,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 7,
+      "정책·제도개선": 4,
+      "증시·시장시황": 7,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 11,
+      "환율·외환": 9
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7929407997664906,
+        "relevance_score": 33,
+        "sector": "여전",
+        "title": "[단독]은퇴세대도 ‘빚투’… 카드론 8092억 증가",
+        "url": "https://n.news.naver.com/mnews/article/021/0002802928?sid=101"
+      },
+      {
+        "cluster_size": 17,
+        "relevance_prob": 0.8767193096444018,
+        "relevance_score": 30,
+        "sector": "거시·시장",
+        "title": "일본 호네부토(骨太) 발표..국내 채권시장 또 흔드나",
+        "url": "https://www.etoday.co.kr/news/view/2601034"
+      },
+      {
+        "cluster_size": 22,
+        "relevance_prob": 0.7288581299542296,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "금감원 \"빚투·단일종목 쏠림 경고\"…증권사 레버리지 판매·마케팅 점...",
+        "url": "http://www.metroseoul.co.kr/article/20260707500187"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6924191546999652,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "은행-2금융권 손잡고 중저신용자 대출 늘린다",
+        "url": "https://n.news.naver.com/mnews/article/018/0006324423?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.774736489512819,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "금감원 퇴직자 재취업 문턱 높아져…로펌행 늘고 가상자산은 0건",
+        "url": "http://www.fins.co.kr/news/articleView.html?idxno=109050"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.721225243687371,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "번번이 늦어진 지배구조 개선안…금융위·금감원 미묘한 긴장감",
+        "url": "https://dealsite.co.kr/articles/164863"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6183609777471474,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "우리금융 사고 '빈발' 임종룡 회장 리더십 '의문'",
+        "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=243864"
+      },
+      {
+        "cluster_size": 22,
+        "relevance_prob": 0.8094019293529491,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "'빅테크+가상자산' 결합에 멈춘 시계…두나무·네이버 연내 합병 '안갯...",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026070711423470524"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8215571089235505,
+        "relevance_score": 23,
+        "sector": "상호금융",
+        "title": "[BS모닝] 고영철 신협 회장, 사법 리스크 털었다…경영혁신 속도·내부통...",
+        "url": "http://www.segyebiz.com/newsView/20260707522115?OutUrl=naver"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7271010312791182,
+        "relevance_score": 21,
+        "sector": "저축은행",
+        "title": "금감원, 홈플러스 임차점포 대출 전수점검…은행·보험·저축은행까지 ...",
+        "url": "https://n.news.naver.com/mnews/article/421/0009046082?sid=101"
+      }
+    ],
+    "no_topic_count": 5,
+    "sector_counts": {
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "여전": 1,
+      "입법·정책": 3,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 2,
+      "사고·사기·횡령": 1,
+      "서민금융·대환·채무조정": 1,
+      "자금시장·유동성": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
