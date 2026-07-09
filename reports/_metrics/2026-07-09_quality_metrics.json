@@ -1,0 +1,261 @@
+{
+  "clusters": {
+    "cluster_count": 287,
+    "cluster_size_max": 47,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 887,
+    "displayed_articles": 207,
+    "final_tagged_representatives": 287,
+    "normalized_articles": 1067,
+    "raw_items": 1067,
+    "relevance_filtered_articles": 551,
+    "rule_filtered_articles": 879,
+    "tagged_before_cluster": 551
+  },
+  "date": "2026-07-09",
+  "generated_at": "2026-07-09T10:22:12.637905+09:00",
+  "publishers": {
+    "missing_publisher_count": 287,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 117,
+    "no_topic_ratio": 0.4077,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7302578506275447,
+        "relevance_score": 12,
+        "sector": "여전",
+        "title": "여신금융협회, 금융감독당국 초청 신기술금융회사 대표이사 간담회 개최",
+        "url": "https://www.joongangenews.com/news/articleView.html?idxno=531631"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6493873357416726,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "이동철 여신금융협회장 \"신기술금융 투자 확대 지원 강화\"",
+        "url": "https://www.ajunews.com/view/20260709084407034"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6649060208473396,
+        "relevance_score": 10,
+        "sector": "입법·정책",
+        "title": "'월급 150만원'이 독 됐다...빚쟁이 돼 전역하는 장병들, 대출잔액 242억...",
+        "url": "https://n.news.naver.com/mnews/article/014/0005545768?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6909048641212129,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "비트코인, 9300만원선…중동 리스크에 '극단적 공포' 재진입",
+        "url": "https://n.news.naver.com/mnews/article/003/0014055338?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6595879273308701,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "KB이어 신한은행도 대출 조인다…모기지보험 중단",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4424082"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.664856520420976,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 트럼프 \"이란 강력 공격\" 경고에 비트코인...",
+        "url": "https://www.ajunews.com/view/20260709082926998"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8190240581162049,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "마트서 1억6000만원 비닐봉지 들고 횡설수설…외국인 피싱책 검거",
+        "url": "https://n.news.naver.com/mnews/article/003/0014055298?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.688228593411091,
+        "relevance_score": 19,
+        "sector": "기타",
+        "title": "산은에 드리운 정책금융 확대 그림자···부실 빠르게 불어",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=698586"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5937768940042224,
+        "relevance_score": 1,
+        "sector": "기타",
+        "title": "원·달러 NDF 7.4원 상승..트럼프 이란 종전 MOU 끝 선언",
+        "url": "https://www.etoday.co.kr/news/view/2601811"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6163441457094202,
+        "relevance_score": 11,
+        "sector": "입법·정책",
+        "title": "은행 대출 문턱은 높아지는데, 왜 집값은 쉽게 흔들리지 않을까",
+        "url": "https://n.news.naver.com/mnews/article/015/0005307944?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 13,
+      "거시·시장": 19,
+      "기타": 90,
+      "대부": 6,
+      "디지털자산": 60,
+      "보험": 9,
+      "상호금융": 6,
+      "여전": 10,
+      "은행": 38,
+      "입법·정책": 18,
+      "자산운용·연기금": 3,
+      "저축은행": 6,
+      "증권(브로커리지/리테일)": 5,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 11,
+      "감독·제재": 8,
+      "건전성·자본규제": 7,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 21,
+      "기업금융·익스포저": 8,
+      "디지털자산": 59,
+      "부동산·PF": 5,
+      "불법사금융·불법추심·보이스피싱": 21,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 10,
+      "서민금융·대환·채무조정": 2,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 7,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 13,
+      "정책·제도개선": 2,
+      "증시·시장시황": 7,
+      "칼럼·오피니언": 1,
+      "해외·글로벌": 23,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8503309000554188,
+        "relevance_score": 48,
+        "sector": "기타",
+        "title": "유동수 “스테이블코인법 빨리 할 것…금융위, 정부안 내야”",
+        "url": "https://n.news.naver.com/mnews/article/018/0006325670?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7467110812386072,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "두나무-네이버파이낸셜 합병, 왜 계속 연기되나",
+        "url": "https://www.newstopkorea.com/news/articleView.html?idxno=46107"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8229586578183062,
+        "relevance_score": 26,
+        "sector": "저축은행",
+        "title": "저축은행 연체율 반등하는데···금융당국 '규제 완화' 부실 이연 우려",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=698495"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.7124509116830369,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "합동대응단 출범 1년…주가조작 10여건 적발, 불공정거래 근절 속도",
+        "url": "https://www.news2day.co.kr/article/20260708500058"
+      },
+      {
+        "cluster_size": 37,
+        "relevance_prob": 0.8047522204452329,
+        "relevance_score": 27,
+        "sector": "거시·시장",
+        "title": "구윤철 \"증시 변동성 리스크 면밀히 점검…환율도 24시간 모니터링\"",
+        "url": "https://n.news.naver.com/mnews/article/469/0000941046?sid=101"
+      },
+      {
+        "cluster_size": 18,
+        "relevance_prob": 0.648614322162896,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "주가조작근절 합동대응단 출범 1주년, 무엇이 바뀌었나?",
+        "url": "https://www.sisaon.co.kr/news/articleView.html?idxno=202524"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7417132231731288,
+        "relevance_score": 20,
+        "sector": "대부",
+        "title": "민생부터 북항까지… 부산시, 실행력 높일 4개 TF 가동",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=139398"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8477984473578771,
+        "relevance_score": 26,
+        "sector": "디지털자산",
+        "title": "[밥 대신 주식] \"비트코인 안 삽니다\"…국장으로 향한 개미들",
+        "url": "https://n.news.naver.com/mnews/article/119/0003109520?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.65481062538267,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "주가조작 합동대응단 출범 1년…당국, 통신조회·원금몰수 확대 추진",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4423902"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.692670510417401,
+        "relevance_score": 17,
+        "sector": "IB·자본시장",
+        "title": "[DCM] 키움증권, 회사채 2000억 발행…호실적에도 당국 검사는 변수",
+        "url": "https://www.fntimes.com/html/view.php?ud=2026070821243228141825007d_18"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 2,
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "입법·정책": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "기업금융·익스포저": 1,
+      "디지털자산": 2,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "연체·부실": 1,
+      "자금시장·유동성": 1,
+      "증시·시장시황": 1
+    }
+  }
+}
