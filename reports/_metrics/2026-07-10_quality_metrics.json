@@ -1,0 +1,281 @@
+{
+  "clusters": {
+    "cluster_count": 368,
+    "cluster_size_max": 139,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 3,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 139,
+        "relevance_prob": 0.7727542552944838,
+        "relevance_score": 33,
+        "sector": "디지털자산",
+        "title": "미래에셋그룹, 가상자산거래소 코빗 기업결합심사 완료…디지털 금융 진...",
+        "url": "https://www.newsinside.kr/news/articleView.html?idxno=4826002"
+      },
+      {
+        "cluster_size": 139,
+        "relevance_prob": 0.8521455639784578,
+        "relevance_score": 25,
+        "sector": "거시·시장",
+        "title": "신현송 한은 총재 \"원화 강세 여지 충분…외국인 매도세도 하반기엔 완...",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=744745"
+      },
+      {
+        "cluster_size": 64,
+        "relevance_prob": 0.8415591043783611,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "미래에셋, 가상자산거래소 '코빗' 품었다…공정위, 기업결합 승인",
+        "url": "https://n.news.naver.com/mnews/article/008/0005383730?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1277,
+    "displayed_articles": 256,
+    "final_tagged_representatives": 368,
+    "normalized_articles": 1818,
+    "raw_items": 1818,
+    "relevance_filtered_articles": 916,
+    "rule_filtered_articles": 1229,
+    "tagged_before_cluster": 916
+  },
+  "date": "2026-07-10",
+  "generated_at": "2026-07-10T10:25:20.093429+09:00",
+  "publishers": {
+    "missing_publisher_count": 368,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 125,
+    "no_topic_ratio": 0.3397,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7391201482932998,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "간편송금도 주민증 진위 확인 ‘더 안전하게’",
+        "url": "https://www.naeil.com/news/read/594856?ref=naver"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7285264529132475,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "비트코인, 9400만원선…시총 다시 삼성전자 앞질러",
+        "url": "https://n.news.naver.com/mnews/article/003/0014058168?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.742685399102607,
+        "relevance_score": 9,
+        "sector": "입법·정책",
+        "title": "[금융가 이모저모] 주가조작 전쟁 최전선 합동대응단에 '피자 파티'",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4424299"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7935749528521686,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "봉지 안에 1억 넘는 돈다발…'횡설수설' 여성 정체",
+        "url": "https://n.news.naver.com/mnews/article/055/0001371335?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6533701282380807,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "고환율에 생산적 금융 드라이브까지…은행권 RWA 1300조 시대",
+        "url": "https://dealsite.co.kr/articles/165012"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6533339972539173,
+        "relevance_score": 12,
+        "sector": "여전",
+        "title": "중국계 상장사 선미, 국내 스마트포스 시장 정조준",
+        "url": "https://www.g-enews.com/view.php?ud=2026071007413276052bd56fbc3c_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6276567334259235,
+        "relevance_score": 22,
+        "sector": "은행",
+        "title": "지역 금융공백 메운다...우체국 창구·인뱅 앱 '공동대출' 본격화",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=682898"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8080877335847788,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "통신 3사, 보안 투자 확대…AI 위협 적극 대응",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=682740"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6851618148389168,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "7월 10일 출근길 팟캐스트 1억1260만달러 숏 청산에 비트코인 강세, 미 ...",
+        "url": "https://www.tokenpost.kr/news/insights/376394"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7534189816482396,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "미결제 약정 3개월 만에 최저… XRP 시장에 드리운 '거래 절벽'의 공포",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=467197"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 4,
+      "거시·시장": 33,
+      "기타": 122,
+      "대부": 10,
+      "디지털자산": 43,
+      "보험": 8,
+      "상호금융": 8,
+      "여전": 18,
+      "은행": 84,
+      "입법·정책": 20,
+      "자산운용·연기금": 3,
+      "저축은행": 9,
+      "증권(브로커리지/리테일)": 3,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 106,
+      "감독·제재": 3,
+      "건전성·자본규제": 9,
+      "규제·가계부채": 7,
+      "금리·수수료·최고금리": 23,
+      "기업금융·익스포저": 1,
+      "디지털자산": 55,
+      "부동산·PF": 10,
+      "불법사금융·불법추심·보이스피싱": 16,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 49,
+      "서민금융·대환·채무조정": 5,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 6,
+      "연체·부실": 9,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 4,
+      "정책·제도개선": 9,
+      "증시·시장시황": 12,
+      "칼럼·오피니언": 4,
+      "해외·글로벌": 9,
+      "환율·외환": 6
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9022917779842512,
+        "relevance_score": 47,
+        "sector": "거시·시장",
+        "title": "스테이블코인법 시동…한은 “은행 중심 발행으로 가야”",
+        "url": "https://n.news.naver.com/mnews/article/018/0006325916?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.7404527629739871,
+        "relevance_score": 39,
+        "sector": "대부",
+        "title": "저축은행 부실, '대부업 틀'로 못 턴다… 김상훈, 자산관리회사 설립법...",
+        "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=61378"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8187892580999496,
+        "relevance_score": 42,
+        "sector": "입법·정책",
+        "title": "'대기업 사내대출' 첫 가이드라인 꺼낸 금융위…\"삼성전자처럼 하라\"",
+        "url": "https://n.news.naver.com/mnews/article/421/0009051457?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.890298995066265,
+        "relevance_score": 42,
+        "sector": "디지털자산",
+        "title": "신현송 “원화 스테이블코인 제도 조속히 도입해야”",
+        "url": "https://n.news.naver.com/mnews/article/018/0006326054?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7265132596409888,
+        "relevance_score": 27,
+        "sector": "대부",
+        "title": "금감원, 불법추심 게시물 AI로 잡는다…감시 대상 확대",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=344692"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8149033106579846,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "저축은행 부실채권 정리 '자산관리회사' 설립 추진…PF 정리 속도 낼까",
+        "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=846640"
+      },
+      {
+        "cluster_size": 139,
+        "relevance_prob": 0.7727542552944838,
+        "relevance_score": 33,
+        "sector": "디지털자산",
+        "title": "미래에셋그룹, 가상자산거래소 코빗 기업결합심사 완료…디지털 금융 진...",
+        "url": "https://www.newsinside.kr/news/articleView.html?idxno=4826002"
+      },
+      {
+        "cluster_size": 139,
+        "relevance_prob": 0.8521455639784578,
+        "relevance_score": 25,
+        "sector": "거시·시장",
+        "title": "신현송 한은 총재 \"원화 강세 여지 충분…외국인 매도세도 하반기엔 완...",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=744745"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.807014422784602,
+        "relevance_score": 25,
+        "sector": "입법·정책",
+        "title": "신현송, 원화 스테이블코인 입법 촉구…“예금토큰과 공존”",
+        "url": "https://sateconomy.co.kr/news/view/1065583898942429"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.6980618184416162,
+        "relevance_score": 25,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "금융위, 중기특화 증권사 7곳 지정…모험자본 공급 인센티브 강화",
+        "url": "https://www.etoday.co.kr/news/view/2602262"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "거시·시장": 2,
+      "대부": 3,
+      "디지털자산": 2,
+      "입법·정책": 2,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 5,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "연체·부실": 2,
+      "정책·제도개선": 1,
+      "환율·외환": 2
+    }
+  }
+}
