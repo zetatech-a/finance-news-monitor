@@ -1,0 +1,273 @@
+{
+  "clusters": {
+    "cluster_count": 220,
+    "cluster_size_max": 61,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 61,
+        "relevance_prob": 0.7564226902628227,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "지난달 국고채 초장기물 금리 급등…회사채 스프레드도 확대",
+        "url": "https://n.news.naver.com/mnews/article/055/0001371413?sid=101"
+      },
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.781810482358042,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "KB금융-농식품부, 전국 15개 시·군 고령층 대상 보이스피싱 예방 교육 ...",
+        "url": "https://www.newsinside.kr/news/articleView.html?idxno=4829672"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 567,
+    "displayed_articles": 155,
+    "final_tagged_representatives": 220,
+    "normalized_articles": 762,
+    "raw_items": 762,
+    "relevance_filtered_articles": 405,
+    "rule_filtered_articles": 551,
+    "tagged_before_cluster": 405
+  },
+  "date": "2026-07-11",
+  "generated_at": "2026-07-11T10:12:04.829025+09:00",
+  "publishers": {
+    "missing_publisher_count": 220,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 85,
+    "no_topic_ratio": 0.3864,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6624475631103436,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "연말도 아닌데 '3억 한도' 꺼낸 KB…4대銀 문턱 더 높아지나",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=207276"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6647176852175014,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[통신리뷰] SKT, 소프트뱅크와 'AI 창출 사회적 가치' 측정(7월2주차)",
+        "url": "https://www.theguru.co.kr/news/article.html?no=104273"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7538698708506725,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[인터뷰] \"태국 동포사회 힘을 하나로\"...윤두섭 태국한인총연합회장",
+        "url": "https://www.dongponews.net/news/articleView.html?idxno=59229"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6953897582875006,
+        "relevance_score": 4,
+        "sector": "여전",
+        "title": "연말 임기 만료 앞둔 카드사 CEO…하반기 성과에 시선",
+        "url": "https://n.news.naver.com/mnews/article/119/0003110324?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8125330231447685,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "'실버 빚투' 확산에 올해 60세 이상 카드론 잔액 8000억 '껑충'",
+        "url": "https://www.asiatime.co.kr/article/20260707500417"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.692199580845727,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "30년 고정금리, 왜 한국에선 안 통하나",
+        "url": "https://news.mtn.co.kr/news-detail/2026071014424653701"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.5192409745171321,
+        "relevance_score": 16,
+        "sector": "은행",
+        "title": "은행 이어 보험까지 빗장…하반기 ‘대출 빙하기’ 시작",
+        "url": "https://n.news.naver.com/mnews/article/353/0000056016?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6955666861255689,
+        "relevance_score": 16,
+        "sector": "저축은행",
+        "title": "종합금융그룹을 향한 재일동포 최윤 회장의 도전과 야망",
+        "url": "https://www.dongponews.net/news/articleView.html?idxno=59227"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.7635299013143232,
+        "relevance_score": 11,
+        "sector": "상호금융",
+        "title": "농협상호금융, AI 돌봄로봇 '효돌' 활용…농촌 고령층 금융 접근성 높인...",
+        "url": "https://www.fntimes.com/html/view.php?ud=202607102212257227dd55077bc2_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6692945920661356,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "리플(xrp), 레버리지 빠진 XRP 시장…엇갈린 신호",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=588355"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 5,
+      "거시·시장": 17,
+      "기타": 75,
+      "대부": 2,
+      "디지털자산": 31,
+      "보험": 5,
+      "상호금융": 8,
+      "여전": 7,
+      "은행": 44,
+      "입법·정책": 12,
+      "자산운용·연기금": 2,
+      "저축은행": 7,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 31,
+      "감독·제재": 1,
+      "건전성·자본규제": 5,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 13,
+      "기업금융·익스포저": 5,
+      "디지털자산": 39,
+      "부동산·PF": 3,
+      "불법사금융·불법추심·보이스피싱": 14,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 17,
+      "서민금융·대환·채무조정": 7,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 7,
+      "연체·부실": 5,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 8,
+      "정책·제도개선": 3,
+      "증시·시장시황": 3,
+      "칼럼·오피니언": 1,
+      "해외·글로벌": 11,
+      "환율·외환": 11
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.893971929510561,
+        "relevance_score": 36,
+        "sector": "거시·시장",
+        "title": "신현송 한은 총재 “스테이블코인 빨리 도입해야…은행 중심 발행”",
+        "url": "https://www.sentv.co.kr/article/view/sentv202607100128"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8233838115439152,
+        "relevance_score": 32,
+        "sector": "은행",
+        "title": "은행권 DSR '울타리 밖' 사내대출...가계부채 사각지대 변수로",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=361949"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8491985372230921,
+        "relevance_score": 31,
+        "sector": "입법·정책",
+        "title": "6월 주담대 4.5조↑…금융위, 관리 강화",
+        "url": "https://n.news.naver.com/mnews/article/016/0002668639?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8632569765569538,
+        "relevance_score": 26,
+        "sector": "입법·정책",
+        "title": "단일종목 레버리지 ETF 문턱 높이나...금융당국, 제도 개선 착수",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=683140"
+      },
+      {
+        "cluster_size": 18,
+        "relevance_prob": 0.8885800157458437,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "증권사·코인거래소 합종연횡 속…빗썸만 '지배구조·규제 리스크'에 발...",
+        "url": "https://n.news.naver.com/mnews/article/629/0000515023?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7452653387297861,
+        "relevance_score": 29,
+        "sector": "은행",
+        "title": "카카오뱅크, 몽골 M Bank 투자 추진…AI 금융 협력 확대",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=207221"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8636216077980874,
+        "relevance_score": 24,
+        "sector": "여전",
+        "title": "고금리 속 금융권 양극화…은행·증권 '맑음' 저축銀·캐피탈 '흐림'",
+        "url": "https://n.news.naver.com/mnews/article/003/0014059600?sid=101"
+      },
+      {
+        "cluster_size": 61,
+        "relevance_prob": 0.7564226902628227,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "지난달 국고채 초장기물 금리 급등…회사채 스프레드도 확대",
+        "url": "https://n.news.naver.com/mnews/article/055/0001371413?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7939007081297811,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "금융당국, 가계대출은 조이고 지역·디지털 금융은 넓힌다",
+        "url": "http://sateconomy.co.kr/news/view/1065573267248963"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6628610764176607,
+        "relevance_score": 22,
+        "sector": "저축은행",
+        "title": "정보보호의 날 기념식 찾은 금융권 수장들[한 컷]",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026071009485204148"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "거시·시장": 2,
+      "디지털자산": 1,
+      "여전": 1,
+      "은행": 3,
+      "입법·정책": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 3,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 3,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 1,
+      "환율·외환": 1
+    }
+  }
+}
