@@ -1,0 +1,251 @@
+{
+  "clusters": {
+    "cluster_count": 73,
+    "cluster_size_max": 30,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 155,
+    "displayed_articles": 50,
+    "final_tagged_representatives": 73,
+    "normalized_articles": 208,
+    "raw_items": 208,
+    "relevance_filtered_articles": 116,
+    "rule_filtered_articles": 151,
+    "tagged_before_cluster": 116
+  },
+  "date": "2026-07-12",
+  "generated_at": "2026-07-12T10:15:49.409979+09:00",
+  "publishers": {
+    "missing_publisher_count": 73,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 30,
+    "no_topic_ratio": 0.411,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7289176258208088,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[세미콜론] 국세청 고공단 승진 티켓 잡은 '비고시 3인방' 그들은?",
+        "url": "https://www.sejungilbo.com/news/articleView.html?idxno=59200"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6528540049519769,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "쓰레스홀드·비쓰리 급등, 리플XRP 보합…거래대금 20.7% 감소",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16131761"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5172150891976212,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "7월부터 번지는 대출 한파…금융당국 총량 규제에 은행권 빗장",
+        "url": "https://n.news.naver.com/mnews/article/243/0000100331?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6917705633556945,
+        "relevance_score": 16,
+        "sector": "저축은행",
+        "title": "점포 문 닫고 사람 줄이는 저축은행…영업망 재편 속 몸집 줄이기",
+        "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5039687"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8490275926419375,
+        "relevance_score": 10,
+        "sector": "상호금융",
+        "title": "\"평소와 달랐다\"…어르신 2억 지킨 당진 신협 지점장의 눈썰미",
+        "url": "http://www.tjb.co.kr/sub0301/bodo/view/id/100826"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6702627490254914,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "[크립토리뷰] 넥써쓰, 두바이와 협력 강화…글로벌 무대 공략 본격화(7월...",
+        "url": "https://www.theguru.co.kr/news/article.html?no=104274"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8553661706723967,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"안면인증, 중국식 사회주의?\"…폰개통 다중인증제도, 오해와 진실",
+        "url": "https://n.news.naver.com/mnews/article/421/0009054149?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5902890961775072,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "만 7세 체크카드, 카드사 사회적 책임 다해야 [데스크칼럼]",
+        "url": "https://www.sisaon.co.kr/news/articleView.html?idxno=202581"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7714455693836537,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "천문학적 자산이 순식간에 공중분해… 갤럭시 디지털 매도 타깃 된 BTC의...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=467634"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6942655510299519,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "이미 계약서에 도장까지 찍었는데... 이사철 앞두고 날벼락 맞은 사람들",
+        "url": "https://www.wikitree.co.kr/articles/1145975"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 3,
+      "거시·시장": 9,
+      "기타": 29,
+      "디지털자산": 12,
+      "보험": 1,
+      "상호금융": 1,
+      "여전": 4,
+      "은행": 7,
+      "입법·정책": 4,
+      "자산운용·연기금": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 7,
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 11,
+      "디지털자산": 10,
+      "물가·경기지표": 2,
+      "불법사금융·불법추심·보이스피싱": 6,
+      "상품·영업·예금금리": 6,
+      "서민금융·대환·채무조정": 2,
+      "업계동정·사회공헌": 1,
+      "일정·브리핑": 4,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 2,
+      "해외·글로벌": 4,
+      "환율·외환": 2
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.825322836477989,
+        "relevance_score": 23,
+        "sector": "기타",
+        "title": "홈플 전단채 제재·분쟁조정 속도낸다…리스크 연착륙에도 총력",
+        "url": "https://n.news.naver.com/mnews/article/001/0016189097?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7689875556628691,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "미래에셋그룹, 코빗 인수 뒤 과제는 '법인 온보딩'",
+        "url": "https://n.news.naver.com/mnews/article/293/0000087515?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7616861180650275,
+        "relevance_score": 22,
+        "sector": "여전",
+        "title": "[단독] 홈플러스 임차점포 자금 회수 ‘대주단 전원동의’ 없이 못 한다",
+        "url": "https://n.news.naver.com/mnews/article/016/0002668989?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.78282148675404,
+        "relevance_score": 21,
+        "sector": "디지털자산",
+        "title": "코빗 품은 미래에셋…디지털 금융 판 키우나",
+        "url": "https://www.sentv.co.kr/article/view/sentv202607100140"
+      },
+      {
+        "cluster_size": 30,
+        "relevance_prob": 0.8767294381734502,
+        "relevance_score": 17,
+        "sector": "거시·시장",
+        "title": "[금통위폴] 전문가 전원 “한은 만장일치로 금리인상 예상... 연말 3% 전...",
+        "url": "https://n.news.naver.com/mnews/article/366/0001178545?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6917705633556945,
+        "relevance_score": 16,
+        "sector": "저축은행",
+        "title": "점포 문 닫고 사람 줄이는 저축은행…영업망 재편 속 몸집 줄이기",
+        "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5039687"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8626712677144707,
+        "relevance_score": 10,
+        "sector": "감독·제재",
+        "title": "\"딱 한 번만 확인해보자\" 설득 끝에 70대 보이스피싱 2억 피해 막아",
+        "url": "https://n.news.naver.com/mnews/article/277/0005788546?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7356667974357689,
+        "relevance_score": 13,
+        "sector": "입법·정책",
+        "title": "코인이 된 달러 '스테이블코인'…달러 패권 강화할까?",
+        "url": "https://n.news.naver.com/mnews/article/008/0005384620?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8049062686787061,
+        "relevance_score": 15,
+        "sector": "자산운용·연기금",
+        "title": "국장 흔든 '삼전닉스' 레버리지 ETF… 금융당국 칼 빼들까 [주간 증시해...",
+        "url": "https://n.news.naver.com/mnews/article/665/0000007726?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6082322751729409,
+        "relevance_score": 15,
+        "sector": "IB·자본시장",
+        "title": "\"회사채보다 은행 대출\"…하반기도 증권사 DCM 한파 우려",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1715940"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 1,
+      "거시·시장": 1,
+      "기타": 1,
+      "디지털자산": 2,
+      "여전": 1,
+      "입법·정책": 1,
+      "자산운용·연기금": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 3,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "업계동정·사회공헌": 1,
+      "환율·외환": 1
+    }
+  }
+}
