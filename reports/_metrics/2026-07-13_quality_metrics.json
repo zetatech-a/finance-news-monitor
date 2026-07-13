@@ -1,0 +1,268 @@
+{
+  "clusters": {
+    "cluster_count": 179,
+    "cluster_size_max": 63,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 63,
+        "relevance_prob": 0.8108983286531467,
+        "relevance_score": 17,
+        "sector": "거시·시장",
+        "title": "[기획] ‘긴축시계’ 3년 반만 다시 째깍… 한은, 금리 얼마나 올릴까",
+        "url": "https://n.news.naver.com/mnews/article/029/0003036568?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 541,
+    "displayed_articles": 124,
+    "final_tagged_representatives": 179,
+    "normalized_articles": 681,
+    "raw_items": 681,
+    "relevance_filtered_articles": 340,
+    "rule_filtered_articles": 533,
+    "tagged_before_cluster": 340
+  },
+  "date": "2026-07-13",
+  "generated_at": "2026-07-13T10:18:03.529418+09:00",
+  "publishers": {
+    "missing_publisher_count": 179,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 59,
+    "no_topic_ratio": 0.3296,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7240673696769747,
+        "relevance_score": 4,
+        "sector": "은행",
+        "title": "〈팩트 해부〉집 값을 못 잡자 대출이 숨었다!",
+        "url": "http://www.breaknews.com/1221093"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8265623567132553,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "AI가 키운 스미싱, 국내 은행권이 “AI로 맞불”",
+        "url": "http://datanews.co.kr/news/article.html?no=145526"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.5893717563727703,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "카드사, 1분기 카드론 늘어도 수익 감소…중금리 대출 확대 영향",
+        "url": "https://n.news.naver.com/mnews/article/016/0002669241?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5031547494577459,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "[오늘의 브릿지경제 1면] 대출 넘어 모험자본으로…금융지주, 스타트업...",
+        "url": "https://www.viva100.com/article/20260712500552"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7068853048601061,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "\"금융 당국 칼 뽑을 것\"... 리플 비밀 거래 도입에 개미들 '집단 패닉'",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=467774"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7159683354375443,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "'보완수사권 폐지'라는 위험한 역주행, 결국 피해는 국민 몫이 될 것 [신...",
+        "url": "https://www.mediafine.co.kr/news/articleView.html?idxno=83357"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6511732815081095,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "[애큐온 품는 한화] 캐피탈업 첫 진출…기업금융 강자 '밑그림'",
+        "url": "https://news.dealsitetv.com/articles/173026"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.722623821991842,
+        "relevance_score": 14,
+        "sector": "저축은행",
+        "title": "[교보생명 IPO] 교보생명 몸값의 숨은 변수, 계열사 성적표",
+        "url": "https://dealsite.co.kr/articles/165056"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6622854528103168,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "BNB 570달러대 등락…시총 4위 유지에도 주간 흐름은 시장 밑돌아",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=588605"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8465112997813623,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[도박이 삼킨 교실] ④ 통장 뜯고 캄보디아 가고…졸업 후 '범죄지옥'",
+        "url": "https://n.news.naver.com/mnews/article/001/0016190080?sid=102"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 3,
+      "거시·시장": 24,
+      "기타": 65,
+      "대부": 2,
+      "디지털자산": 11,
+      "보험": 8,
+      "상호금융": 4,
+      "여전": 5,
+      "은행": 46,
+      "입법·정책": 7,
+      "저축은행": 2,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 29,
+      "감독·제재": 4,
+      "건전성·자본규제": 6,
+      "규제·가계부채": 6,
+      "금리·수수료·최고금리": 19,
+      "기업금융·익스포저": 3,
+      "디지털자산": 14,
+      "물가·경기지표": 5,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 25,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 9,
+      "서민금융·대환·채무조정": 6,
+      "업계동정·사회공헌": 11,
+      "연체·부실": 4,
+      "일정·브리핑": 10,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 2,
+      "증시·시장시황": 9,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 11,
+      "환율·외환": 10
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.8397304819554795,
+        "relevance_score": 36,
+        "sector": "디지털자산",
+        "title": "금융·가상자산 합종연횡 속도…'업비트' 흔들 첫 주자는?",
+        "url": "https://n.news.naver.com/mnews/article/119/0003110583?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7573955130557808,
+        "relevance_score": 23,
+        "sector": "감독·제재",
+        "title": "홈플러스 파산 '기로'···금융당국, 제재·리스크 관리 '투트랙'",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=633165"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7619537196927152,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "[금융家] 이찬진 금융감독원장 ④ㅣ 레버리지 투자 과열 경고…금융교육...",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=588535"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8658340198912367,
+        "relevance_score": 25,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "정보보호 투자 늘린 코인 거래소…두나무는 대형 증권사 넘어",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4424569"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7882817818058802,
+        "relevance_score": 23,
+        "sector": "디지털자산",
+        "title": "업비트·빗썸 '실명계좌' 계약만료 눈앞…은행권, 거래소 쟁탈전 불붙나",
+        "url": "https://n.news.naver.com/mnews/article/015/0005309026?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7250203842029798,
+        "relevance_score": 18,
+        "sector": "상호금융",
+        "title": "행안부·금융위, 새마을금고 특별관리 TF 연말까지 연장 검토",
+        "url": "https://n.news.naver.com/mnews/article/366/0001178652?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.43276727843034996,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "보유ㆍ양도세에 대출규제까지…‘똘똘한 한 채’도 손본다 [종합]",
+        "url": "https://www.etoday.co.kr/news/view/2602784"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5922857541750709,
+        "relevance_score": 18,
+        "sector": "은행",
+        "title": "'생산적 금융' 10개월…은행권 '기업금융' 중점 드라이브",
+        "url": "http://www.metroseoul.co.kr/article/20260713500001"
+      },
+      {
+        "cluster_size": 63,
+        "relevance_prob": 0.8108983286531467,
+        "relevance_score": 17,
+        "sector": "거시·시장",
+        "title": "[기획] ‘긴축시계’ 3년 반만 다시 째깍… 한은, 금리 얼마나 올릴까",
+        "url": "https://n.news.naver.com/mnews/article/029/0003036568?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7794068711195792,
+        "relevance_score": 13,
+        "sector": "감독·제재",
+        "title": "중앙그룹 부도 사태… 개미들은 몰랐다, 물렸다",
+        "url": "https://n.news.naver.com/mnews/article/036/0000053886?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "은행": 2,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 2,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 3,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 1,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 1,
+      "환율·외환": 1
+    }
+  }
+}
