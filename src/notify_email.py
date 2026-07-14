@@ -164,7 +164,6 @@ def send_email(subject: str, body: str, attachments: list[Path]) -> None:
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = formataddr((mail_from_name, mail_from_email))
-    msg["To"] = ", ".join(mail_to)
     msg.set_content(body)
 
     for path in attachments:
@@ -181,16 +180,21 @@ def send_email(subject: str, body: str, attachments: list[Path]) -> None:
             filename=path.name,
         )
 
-    _send_message_with_retry(
-        host=host,
-        port=port,
-        user=user,
-        password=password,
-        message=msg,
-        timeout=timeout,
-        attempts=attempts,
-        backoff=backoff,
-    )
+    # Send an individual message to each recipient so that each person only sees
+    # their own address in the "To" header (the full MAIL_TO list is never exposed).
+    for recipient in mail_to:
+        del msg["To"]
+        msg["To"] = recipient
+        _send_message_with_retry(
+            host=host,
+            port=port,
+            user=user,
+            password=password,
+            message=msg,
+            timeout=timeout,
+            attempts=attempts,
+            backoff=backoff,
+        )
 
 
 def resolve_report_date_and_attachments(report_dir: Path) -> tuple[str, list[Path]]:
