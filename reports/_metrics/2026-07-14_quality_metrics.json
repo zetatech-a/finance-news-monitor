@@ -1,0 +1,268 @@
+{
+  "clusters": {
+    "cluster_count": 340,
+    "cluster_size_max": 67,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 67,
+        "relevance_prob": 0.7850418515016906,
+        "relevance_score": 19,
+        "sector": "거시·시장",
+        "title": "[N2 모닝 경제 브리핑-7월 14일] 美 증시, 호르무즈 통행료·금리 부담에...",
+        "url": "https://www.news2day.co.kr/article/20260714500005"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 801,
+    "displayed_articles": 218,
+    "final_tagged_representatives": 340,
+    "normalized_articles": 1040,
+    "raw_items": 1040,
+    "relevance_filtered_articles": 548,
+    "rule_filtered_articles": 790,
+    "tagged_before_cluster": 548
+  },
+  "date": "2026-07-14",
+  "generated_at": "2026-07-14T10:08:39.771472+09:00",
+  "publishers": {
+    "missing_publisher_count": 340,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 140,
+    "no_topic_ratio": 0.4118,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7746470395294566,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "업비트는 AI, 코빗은 인증, 빗썸은 보안…침체장 속 거래소 '생존 경쟁'...",
+        "url": "http://coinreaders.com/247544"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7017881774463621,
+        "relevance_score": 11,
+        "sector": "기타",
+        "title": "반도체 급락이 바꾼 시총 지형도...은행株 40년만에 일본 시총 1위, KB금...",
+        "url": "https://n.news.naver.com/mnews/article/023/0003987466?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7273367849008597,
+        "relevance_score": 12,
+        "sector": "입법·정책",
+        "title": "금감원, 전산장애 잦은 금융사 맞춤형 IT 컨설팅 착수",
+        "url": "https://news.bbsi.co.kr/news/articleView.html?idxno=4094842"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7437035076426386,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "시중은행 막히자 지방은행으로…금융당국 '풍선효과' 선제 차단",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=713326"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6750205593742539,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "비트코인, 9200만원선…美 대이란 재봉쇄에 '흔들'",
+        "url": "https://n.news.naver.com/mnews/article/003/0014064551?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7718471767574403,
+        "relevance_score": 14,
+        "sector": "기타",
+        "title": "펀드매니저 1587명이 뽑았다…최고 증권사에 ‘KB증권’ [2026 상반기 베...",
+        "url": "https://n.news.naver.com/mnews/article/050/0000108507?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7655462984957075,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "\"2년 겨울잠 끝났다\"… 바이낸스.US, '점유율 20%' 탈환 선언",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=468130"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6944535624662693,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "법인·체크카드 '쌍끌이'...KB국민카드, ESG 행보도 \"보폭 확대\"",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=222859"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.48535326419944613,
+        "relevance_score": 7,
+        "sector": "은행",
+        "title": "은행권 '포용금융 2.0' 시대…채무부담 완화해 재기 돕는다",
+        "url": "https://www.lcnews.co.kr/news/articleView.html?idxno=204884"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7143679833393223,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "‘탐정들의 영업비밀’ 500억 먹튀 실체",
+        "url": "https://www.bntnews.co.kr/article/view/bnt202607140049"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 6,
+      "거시·시장": 28,
+      "기타": 132,
+      "대부": 3,
+      "디지털자산": 47,
+      "보험": 5,
+      "상호금융": 11,
+      "여전": 8,
+      "은행": 60,
+      "입법·정책": 29,
+      "자산운용·연기금": 2,
+      "저축은행": 4,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 28,
+      "감독·제재": 5,
+      "건전성·자본규제": 7,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 28,
+      "기업금융·익스포저": 10,
+      "디지털자산": 57,
+      "물가·경기지표": 5,
+      "부동산·PF": 10,
+      "불법사금융·불법추심·보이스피싱": 18,
+      "사고·사기·횡령": 9,
+      "상품·영업·예금금리": 14,
+      "서민금융·대환·채무조정": 7,
+      "소비자보호·민원·불완전판매": 4,
+      "업계동정·사회공헌": 7,
+      "연체·부실": 8,
+      "일정·브리핑": 4,
+      "자금시장·유동성": 6,
+      "정책·제도개선": 8,
+      "증시·시장시황": 16,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 21,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 16,
+        "relevance_prob": 0.8621172190083254,
+        "relevance_score": 39,
+        "sector": "디지털자산",
+        "title": "코빗 품은 미래에셋…증권사들 '디지털자산 플랫폼' 경쟁 본격화",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=207418"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7974516742353699,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "[이슈] 두나무, 스테이블코인 '글로벌·원화' 두 시장 모두 잡는다",
+        "url": "http://www.paxetv.com/news/articleView.html?idxno=277066"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7158850703797902,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "‘9200억 주가조작’ 수사 물꼬 튼 FIU, 국제사회서 우뚝",
+        "url": "https://www.kukinews.com/article/view/kuk202607130050"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.707730995963326,
+        "relevance_score": 20,
+        "sector": "상호금융",
+        "title": "건전성 개선세 새마을금고, 합동 TF 연장 논의…부실 지역금고 관리 지...",
+        "url": "https://www.ceoscoredaily.com/page/view/2026071316111455086"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6605811467707727,
+        "relevance_score": 19,
+        "sector": "감독·제재",
+        "title": "[줌인] 중앙그룹 채권 '불완전판매' 논란..신한-키움 책임은?",
+        "url": "https://www.dailybrief.co.kr/news/articleView.html?idxno=6307"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7881805520271256,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "은행권-디지털자산 거래소 입출금계정 제휴, 변화 바람 부나",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=699250"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7198229989356831,
+        "relevance_score": 27,
+        "sector": "핀테크·플랫폼",
+        "title": "안도걸 “스테이블코인, 은행 50%+핀테크 34%…코인 세금 법대로”",
+        "url": "https://n.news.naver.com/mnews/article/018/0006329492?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8671706301965605,
+        "relevance_score": 25,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "정보보호 투자 늘린 코인 거래소…두나무는 대형 증권사 넘어",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4424569"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7117238505855789,
+        "relevance_score": 19,
+        "sector": "여전",
+        "title": "홈플 임차점포 자금회수 ‘대주단 만장일치’ 없이 못한다 [H-EXCLUSIVE]",
+        "url": "https://n.news.naver.com/mnews/article/016/0002669492?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8536750943736973,
+        "relevance_score": 15,
+        "sector": "감독·제재",
+        "title": "캄보디아 보이스피싱 조직원들 ‘중형’···443억 뜯은 총책 ‘징역 1...",
+        "url": "https://n.news.naver.com/mnews/article/032/0003457745?sid=102"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 2,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "여전": 1,
+      "은행": 1,
+      "입법·정책": 1,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "디지털자산": 6,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "소비자보호·민원·불완전판매": 1
+    }
+  }
+}
