@@ -80,6 +80,7 @@ def _send_message_once(
     user: str,
     password: str,
     message: EmailMessage,
+    recipients: list[str],
     timeout: float,
 ) -> None:
     # STARTTLS (587)
@@ -87,7 +88,10 @@ def _send_message_once(
         server.ehlo()
         server.starttls()
         server.login(user, password)
-        server.send_message(message)
+        # smtplib은 일부 수신자만 거부돼도 예외 없이 dict로 반환하므로 직접 실패 처리한다.
+        refused = server.send_message(message, to_addrs=recipients)
+        if refused:
+            raise smtplib.SMTPRecipientsRefused(refused)
 
 
 def _send_message_with_retry(
@@ -97,6 +101,7 @@ def _send_message_with_retry(
     user: str,
     password: str,
     message: EmailMessage,
+    recipients: list[str],
     timeout: float,
     attempts: int,
     backoff: float,
@@ -110,6 +115,7 @@ def _send_message_with_retry(
                 user=user,
                 password=password,
                 message=message,
+                recipients=recipients,
                 timeout=timeout,
             )
             return
@@ -164,6 +170,10 @@ def send_email(subject: str, body: str, attachments: list[Path]) -> None:
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = formataddr((mail_from_name, mail_from_email))
+    # 수신자 목록 노출 방지: To 헤더에는 발신 주소만 넣고, 실제 수신자는
+    # SMTP envelope(to_addrs)로만 전달한다(BCC와 동일). 단일 트랜잭션이라
+    # 수신자별 개별 발송과 달리 일부만 발송된 상태로 실패하지 않는다.
+    msg["To"] = formataddr((mail_from_name, mail_from_email))
     msg.set_content(body)
 
     for path in attachments:
@@ -180,21 +190,17 @@ def send_email(subject: str, body: str, attachments: list[Path]) -> None:
             filename=path.name,
         )
 
-    # Send an individual message to each recipient so that each person only sees
-    # their own address in the "To" header (the full MAIL_TO list is never exposed).
-    for recipient in mail_to:
-        del msg["To"]
-        msg["To"] = recipient
-        _send_message_with_retry(
-            host=host,
-            port=port,
-            user=user,
-            password=password,
-            message=msg,
-            timeout=timeout,
-            attempts=attempts,
-            backoff=backoff,
-        )
+    _send_message_with_retry(
+        host=host,
+        port=port,
+        user=user,
+        password=password,
+        message=msg,
+        recipients=mail_to,
+        timeout=timeout,
+        attempts=attempts,
+        backoff=backoff,
+    )
 
 
 def resolve_report_date_and_attachments(report_dir: Path) -> tuple[str, list[Path]]:
