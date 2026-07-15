@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import html
 import re
+from dataclasses import dataclass
 from difflib import SequenceMatcher
 from typing import Any
 
@@ -251,14 +252,6 @@ def _low_value_named_terms(text: str) -> set[str]:
     }
 
 
-def _issue_similarity(a: TaggedArticle, b: TaggedArticle) -> float:
-    terms_a = _extract_issue_terms(a)
-    terms_b = _extract_issue_terms(b)
-    term_score = _jaccard(terms_a, terms_b)
-    title_score = _title_similarity(_article_title(a), _article_title(b))
-    return max(term_score, title_score * 0.75)
-
-
 def _rule_issue_fingerprint(item: TaggedArticle) -> str | None:
     terms = _extract_issue_terms(item)
     if {"savings_bank", "field_inspection"}.issubset(terms):
@@ -279,14 +272,6 @@ def _issue_fingerprint(item: TaggedArticle) -> str | None:
     return _rule_issue_fingerprint(item) or _digital_asset_fingerprint(text) or _macro_market_fingerprint(text) or _finance_policy_fingerprint(text)
 
 
-def _title_similarity(a: str, b: str) -> float:
-    na = _normalize_title(a)
-    nb = _normalize_title(b)
-    if not na or not nb:
-        return 0.0
-    return SequenceMatcher(None, na, nb).ratio()
-
-
 def _jaccard(a: set[str], b: set[str]) -> float:
     if not a or not b:
         return 0.0
@@ -298,59 +283,77 @@ def _meaningful_overlap(a_tokens: set[str], b_tokens: set[str]) -> bool:
     return len(shared) >= 2 or bool(shared & (_extract_entities(" ".join(a_tokens)) | _extract_entities(" ".join(b_tokens))))
 
 
-def _should_cluster(a: TaggedArticle, b: TaggedArticle) -> bool:
-    title_a = _article_title(a)
-    title_b = _article_title(b)
-    norm_a = _normalize_title(title_a)
-    norm_b = _normalize_title(title_b)
-    if not norm_a or not norm_b:
+@dataclass
+class _ClusterFeatures:
+    """페어 비교(O(n²))마다 재계산하지 않도록 기사당 1회만 뽑아두는 피처."""
+
+    norm_title: str
+    sector: str
+    fingerprint: str | None
+    low_value: bool
+    low_value_named_terms: set[str]
+    tokens: set[str]
+    entities: set[str]
+    numbers: set[str]
+    issue_terms: set[str]
+
+
+def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
+    title = _article_title(item)
+    norm_title = _normalize_title(title)
+    return _ClusterFeatures(
+        norm_title=norm_title,
+        sector=_primary_sector(item),
+        fingerprint=_issue_fingerprint(item),
+        low_value=_is_low_value_format(norm_title),
+        low_value_named_terms=_low_value_named_terms(norm_title),
+        tokens=_tokenize_title(title),
+        entities=_extract_entities(title),
+        numbers=_extract_numbers(title),
+        issue_terms=_extract_issue_terms(item),
+    )
+
+
+def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
+    if not a.norm_title or not b.norm_title:
         return False
-    if norm_a == norm_b:
+    if a.norm_title == b.norm_title:
         return True
 
-    low_a = _is_low_value_format(norm_a)
-    low_b = _is_low_value_format(norm_b)
-    if low_a or low_b:
-        if not (low_a and low_b):
+    if a.low_value or b.low_value:
+        if not (a.low_value and b.low_value):
             return False
-        named_overlap = _low_value_named_terms(norm_a) & _low_value_named_terms(norm_b)
-        return _title_similarity(title_a, title_b) >= 0.88 or (bool(named_overlap) and _title_similarity(title_a, title_b) >= 0.72)
+        named_overlap = a.low_value_named_terms & b.low_value_named_terms
+        sim = SequenceMatcher(None, a.norm_title, b.norm_title).ratio()
+        return sim >= 0.88 or (bool(named_overlap) and sim >= 0.72)
 
-    fp_a = _issue_fingerprint(a)
-    fp_b = _issue_fingerprint(b)
-    same_sector = _primary_sector(a) == _primary_sector(b)
-    if fp_a and fp_a == fp_b:
+    same_sector = a.sector == b.sector
+    if a.fingerprint and a.fingerprint == b.fingerprint:
         if same_sector:
             return True
-        return fp_a.startswith(_CROSS_SECTOR_SAFE_PREFIXES)
-    if fp_a and fp_b and fp_a.split(":", 1)[0] == fp_b.split(":", 1)[0]:
+        return a.fingerprint.startswith(_CROSS_SECTOR_SAFE_PREFIXES)
+    if a.fingerprint and b.fingerprint and a.fingerprint.split(":", 1)[0] == b.fingerprint.split(":", 1)[0]:
         return False
 
-    sim = _title_similarity(title_a, title_b)
+    sim = SequenceMatcher(None, a.norm_title, b.norm_title).ratio()
     if not same_sector:
         return sim >= 0.90
-    if min(len(norm_a), len(norm_b)) < 12:
+    if min(len(a.norm_title), len(b.norm_title)) < 12:
         return False
 
-    tokens_a = _tokenize_title(title_a)
-    tokens_b = _tokenize_title(title_b)
-    entities_a = _extract_entities(title_a)
-    entities_b = _extract_entities(title_b)
-    numbers_a = _extract_numbers(title_a)
-    numbers_b = _extract_numbers(title_b)
-
-    shared_entities = entities_a & entities_b
-    shared_numbers = numbers_a & numbers_b
-    issue_terms_a = _extract_issue_terms(a)
-    issue_terms_b = _extract_issue_terms(b)
-    shared_issue_terms = issue_terms_a & issue_terms_b
-    token_jaccard = _jaccard((tokens_a | issue_terms_a) - _GENERIC_TOKENS, (tokens_b | issue_terms_b) - _GENERIC_TOKENS)
+    shared_entities = a.entities & b.entities
+    shared_numbers = a.numbers & b.numbers
+    shared_issue_terms = a.issue_terms & b.issue_terms
+    token_jaccard = _jaccard(
+        (a.tokens | a.issue_terms) - _GENERIC_TOKENS,
+        (b.tokens | b.issue_terms) - _GENERIC_TOKENS,
+    )
 
     if not shared_issue_terms and not shared_entities and not shared_numbers:
         return False
-    if shared_issue_terms and sim >= 0.72 and _meaningful_overlap(tokens_a | issue_terms_a, tokens_b | issue_terms_b):
+    if shared_issue_terms and sim >= 0.72 and _meaningful_overlap(a.tokens | a.issue_terms, b.tokens | b.issue_terms):
         return True
-    if len(shared_issue_terms) >= 2 and _issue_similarity(a, b) >= 0.42:
+    if len(shared_issue_terms) >= 2 and max(_jaccard(a.issue_terms, b.issue_terms), sim * 0.75) >= 0.42:
         return True
     if token_jaccard >= 0.55 and (shared_entities or shared_numbers or shared_issue_terms):
         return True
@@ -359,9 +362,8 @@ def _should_cluster(a: TaggedArticle, b: TaggedArticle) -> bool:
     return False
 
 
-
-def _can_cluster(a: TaggedArticle, b: TaggedArticle) -> bool:
-    return _should_cluster(a, b)
+def _should_cluster(a: TaggedArticle, b: TaggedArticle) -> bool:
+    return _should_cluster_features(_build_cluster_features(a), _build_cluster_features(b))
 
 
 def _relevance_value(item: TaggedArticle) -> float:
@@ -404,17 +406,20 @@ def _cluster_id(members: list[TaggedArticle]) -> str:
 
 
 def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
-    clusters: list[list[TaggedArticle]] = []
-    for item in tagged:
-        target: list[TaggedArticle] | None = None
-        for cluster in clusters:
-            if any(_should_cluster(item, member) for member in cluster):
+    features = [_build_cluster_features(item) for item in tagged]
+    index_clusters: list[list[int]] = []
+    for idx in range(len(tagged)):
+        target: list[int] | None = None
+        for cluster in index_clusters:
+            if any(_should_cluster_features(features[idx], features[member]) for member in cluster):
                 target = cluster
                 break
         if target is None:
-            clusters.append([item])
+            index_clusters.append([idx])
         else:
-            target.append(item)
+            target.append(idx)
+
+    clusters = [[tagged[idx] for idx in cluster] for cluster in index_clusters]
 
     representatives: list[TaggedArticle] = []
     for cluster in clusters:
