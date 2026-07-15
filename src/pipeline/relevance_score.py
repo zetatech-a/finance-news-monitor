@@ -218,7 +218,9 @@ _WEIGHTS = _Weights(
     },
 )
 
-_STRONG_FINANCE_ANCHORS: tuple[str, ...] = (
+# NOTE: 아래 세 목록은 relevance_filter.py에서도 import해 사용하는 단일 출처(canonical)다.
+# 여기 말고 다른 곳에 복사본을 만들지 말 것 (과거 복사본 간 drift가 실제로 발생했음).
+STRONG_FINANCE_ANCHORS: tuple[str, ...] = (
     "불법사금융", "불법사채", "불법대부", "미등록대부", "대부업", "대부업체",
     "채권추심", "불법추심", "보이스피싱", "스미싱", "대포통장",
     "불법 대출광고", "대출광고", "대부광고", "금융위", "금융위원회", "금감원", "금융감독원",
@@ -228,14 +230,14 @@ _STRONG_FINANCE_ANCHORS: tuple[str, ...] = (
     "pf", "익스포저", "워크아웃",
 )
 
-_FINANCE_RISK_OR_REGULATORY_SIGNALS: tuple[str, ...] = (
+FINANCE_RISK_OR_REGULATORY_SIGNALS: tuple[str, ...] = (
     "피해", "협박", "단속", "점검", "검사", "착수", "경고", "경고등", "상승",
     "연체", "연체율", "부실", "부실채권", "불법", "미등록", "추심", "광고",
     "대출광고", "금리", "예금금리", "재진입", "당국", "제재", "과징금", "행정처분",
     "악용", "조직", "확산", "리스크", "위험", "관리", "워크아웃", "익스포저",
 )
 
-_CAPPED_NOISE_TERMS: tuple[str, ...] = (
+CAPPED_NOISE_TERMS: tuple[str, ...] = (
     "sns",
     "유튜브",
     "맛집",
@@ -252,11 +254,11 @@ _STRONG_CONTEXT_NEGATIVE_CAP = 1
 
 
 def _has_strong_finance_anchor(text: str) -> bool:
-    return has_any_term(text, _STRONG_FINANCE_ANCHORS)
+    return has_any_term(text, STRONG_FINANCE_ANCHORS)
 
 
 def _has_finance_risk_or_regulatory_signal(text: str) -> bool:
-    return has_any_term(text, _FINANCE_RISK_OR_REGULATORY_SIGNALS)
+    return has_any_term(text, FINANCE_RISK_OR_REGULATORY_SIGNALS)
 
 
 def _cap_negative_for_strong_finance_context(text: str, neg_score: int) -> int:
@@ -264,7 +266,7 @@ def _cap_negative_for_strong_finance_context(text: str, neg_score: int) -> int:
     if (
         neg_score > _STRONG_CONTEXT_NEGATIVE_CAP
         and matched_negative
-        and set(matched_negative).issubset(set(_CAPPED_NOISE_TERMS))
+        and set(matched_negative).issubset(set(CAPPED_NOISE_TERMS))
         and _has_strong_finance_anchor(text)
         and _has_finance_risk_or_regulatory_signal(text)
     ):

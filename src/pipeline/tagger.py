@@ -717,12 +717,81 @@ def _has_explicit_loan_business_anchor(text: str) -> bool:
     return has_benefit_debt_anchor and has_loan_business_context
 
 
-def _apply_sector_adjustments(
+@dataclass(frozen=True)
+class _AdjustmentWeights:
+    """섹터 점수 보정 가중치.
+
+    전체점수 보정(_SECTOR_ADJUSTMENT_WEIGHTS)과 제목점수 보정(_TITLE_BIAS_WEIGHTS)은
+    로직이 완전히 같고 숫자와 IPO 판정 범위만 다르다.
+    """
+
+    bank_subject_boost: float
+    bank_desc_boost: float
+    bank_quote_penalty: float
+    market_title_macro_boost: float
+    market_title_bank_penalty: float
+    generic_macro_corporate_penalty: float
+    generic_macro_financial_penalty: float
+    generic_macro_default_penalty: float
+    generic_ipo_penalty: float
+    ipo_scope_title_only: bool  # IPO 노이즈 판정을 제목만으로 할지(제목점수 보정) 여부
+    schedule_penalty: float
+    policy_legislation_boost: float
+    policy_macro_penalty: float
+    supervision_action_boost: float
+    supervision_no_action_penalty: float
+    supervision_no_regulator_penalty: float
+    loan_business_boost: float
+
+
+_SECTOR_ADJUSTMENT_WEIGHTS = _AdjustmentWeights(
+    bank_subject_boost=5.0,
+    bank_desc_boost=1.5,
+    bank_quote_penalty=2.5,
+    market_title_macro_boost=5.0,
+    market_title_bank_penalty=4.0,
+    generic_macro_corporate_penalty=10.0,
+    generic_macro_financial_penalty=8.0,
+    generic_macro_default_penalty=5.0,
+    generic_ipo_penalty=6.0,
+    ipo_scope_title_only=False,
+    schedule_penalty=1.2,
+    policy_legislation_boost=4.0,
+    policy_macro_penalty=2.0,
+    supervision_action_boost=8.0,
+    supervision_no_action_penalty=4.0,
+    supervision_no_regulator_penalty=10.0,
+    loan_business_boost=14.0,
+)
+
+_TITLE_BIAS_WEIGHTS = _AdjustmentWeights(
+    bank_subject_boost=7.0,
+    bank_desc_boost=1.0,
+    bank_quote_penalty=2.0,
+    market_title_macro_boost=6.0,
+    market_title_bank_penalty=3.0,
+    generic_macro_corporate_penalty=12.0,
+    generic_macro_financial_penalty=9.0,
+    generic_macro_default_penalty=7.0,
+    generic_ipo_penalty=7.0,
+    ipo_scope_title_only=True,
+    schedule_penalty=1.0,
+    policy_legislation_boost=3.0,
+    policy_macro_penalty=1.0,
+    supervision_action_boost=12.0,
+    supervision_no_action_penalty=5.0,
+    supervision_no_regulator_penalty=12.0,
+    loan_business_boost=16.0,
+)
+
+
+def _apply_score_adjustments(
     title_text: str,
     desc_text: str,
-    sector_scores: dict[str, int],
+    scores: dict[str, int],
+    weights: _AdjustmentWeights,
 ) -> dict[str, float]:
-    adjusted: dict[str, float] = {k: float(v) for k, v in sector_scores.items()}
+    adjusted: dict[str, float] = {k: float(v) for k, v in scores.items()}
     configured = set(adjusted)
     combined = f"{title_text} {desc_text}".strip()
     has_schedule = _is_schedule_article(combined)
@@ -744,55 +813,64 @@ def _apply_sector_adjustments(
 
     if "은행" in configured:
         if has_bank_subject_title:
-            adjusted["은행"] += 5.0
+            adjusted["은행"] += weights.bank_subject_boost
         elif has_bank_desc:
-            adjusted["은행"] += 1.5
+            adjusted["은행"] += weights.bank_desc_boost
         if has_bank_quote_source:
-            adjusted["은행"] -= 2.5
+            adjusted["은행"] -= weights.bank_quote_penalty
     if has_market_title and "거시·시장" in configured:
-        adjusted["거시·시장"] += 5.0
+        adjusted["거시·시장"] += weights.market_title_macro_boost
         if "은행" in configured and (has_bank_quote_source or has_bank_desc) and not has_bank_subject_title:
-            adjusted["은행"] -= 4.0
+            adjusted["은행"] -= weights.market_title_bank_penalty
     if "거시·시장" in configured and has_generic_macro and not has_market_context:
         if has_corporate_context and not has_financial_context:
-            adjusted["거시·시장"] -= 10.0
+            adjusted["거시·시장"] -= weights.generic_macro_corporate_penalty
         elif has_financial_context:
-            adjusted["거시·시장"] -= 8.0
+            adjusted["거시·시장"] -= weights.generic_macro_financial_penalty
         else:
-            adjusted["거시·시장"] -= 5.0
-    if "IB·자본시장" in configured and _has_generic_ipo_only(combined):
-        adjusted["IB·자본시장"] -= 6.0
+            adjusted["거시·시장"] -= weights.generic_macro_default_penalty
+    ipo_scope_text = title_text if weights.ipo_scope_title_only else combined
+    if "IB·자본시장" in configured and _has_generic_ipo_only(ipo_scope_text):
+        adjusted["IB·자본시장"] -= weights.generic_ipo_penalty
 
     if has_schedule:
         for sector in ("감독·제재", "입법·정책", "거시·시장"):
             if sector in configured:
-                adjusted[sector] -= 1.2
+                adjusted[sector] -= weights.schedule_penalty
         if not has_action and "감독·제재" in configured:
             adjusted["감독·제재"] -= 2.0
 
     if has_policy:
         if "입법·정책" in configured:
-            adjusted["입법·정책"] += 4.0
+            adjusted["입법·정책"] += weights.policy_legislation_boost
         if "거시·시장" in configured:
-            adjusted["거시·시장"] -= 2.0
+            adjusted["거시·시장"] -= weights.policy_macro_penalty
         if "감독·제재" in configured:
             adjusted["감독·제재"] -= 3.0 if not has_action else 1.0
 
     if "감독·제재" in configured:
         if has_regulator and has_action and not has_policy:
-            adjusted["감독·제재"] += 8.0
+            adjusted["감독·제재"] += weights.supervision_action_boost
         elif has_regulator and not has_action:
-            adjusted["감독·제재"] -= 4.0
+            adjusted["감독·제재"] -= weights.supervision_no_action_penalty
         elif not has_regulator:
-            adjusted["감독·제재"] -= 10.0
+            adjusted["감독·제재"] -= weights.supervision_no_regulator_penalty
 
     if "대부" in configured and has_loan_business_anchor and not has_non_financial_lease:
-        adjusted["대부"] += 14.0
+        adjusted["대부"] += weights.loan_business_boost
         for sector in ("입법·정책", "감독·제재", "은행", "거시·시장"):
             if sector in configured:
                 adjusted[sector] -= 4.0
 
     return adjusted
+
+
+def _apply_sector_adjustments(
+    title_text: str,
+    desc_text: str,
+    sector_scores: dict[str, int],
+) -> dict[str, float]:
+    return _apply_score_adjustments(title_text, desc_text, sector_scores, _SECTOR_ADJUSTMENT_WEIGHTS)
 
 
 def _apply_title_biases(
@@ -800,72 +878,7 @@ def _apply_title_biases(
     desc_text: str,
     title_scores: dict[str, int],
 ) -> dict[str, float]:
-    adjusted = {k: float(v) for k, v in title_scores.items()}
-    configured = set(adjusted)
-    combined = f"{title_text} {desc_text}".strip()
-    has_schedule = _is_schedule_article(combined)
-    has_action = _has_supervisory_action(combined)
-    has_regulator = _has_regulator_anchor(combined)
-    has_policy = _has_policy_signal(combined)
-    has_market_context = _has_market_context(combined)
-    has_generic_macro = _has_generic_macro_term(combined)
-    has_corporate_context = _has_corporate_earnings_context(combined)
-    has_financial_context = _has_financial_company_context(combined)
-    has_bank_title = _has_bank_identity(title_text)
-    has_bank_desc = _has_bank_identity(desc_text)
-    has_market_title = _has_market_title_signal(title_text)
-    has_bank_quote_source = _has_bank_quote_source_signal(combined)
-    has_explicit_bank_title = _has_explicit_bank_brand(title_text)
-    has_bank_subject_title = has_bank_title and (has_explicit_bank_title or not (has_market_title and _has_bank_quote_source_signal(title_text)))
-    has_loan_business_anchor = _has_explicit_loan_business_anchor(combined)
-    has_non_financial_lease = _has_non_financial_loan_lease_context(combined)
-
-    if "은행" in configured:
-        if has_bank_subject_title:
-            adjusted["은행"] += 7.0
-        elif has_bank_desc:
-            adjusted["은행"] += 1.0
-        if has_bank_quote_source:
-            adjusted["은행"] -= 2.0
-    if has_market_title and "거시·시장" in configured:
-        adjusted["거시·시장"] += 6.0
-        if "은행" in configured and (has_bank_quote_source or has_bank_desc) and not has_bank_subject_title:
-            adjusted["은행"] -= 3.0
-    if "거시·시장" in configured and has_generic_macro and not has_market_context:
-        if has_corporate_context and not has_financial_context:
-            adjusted["거시·시장"] -= 12.0
-        elif has_financial_context:
-            adjusted["거시·시장"] -= 9.0
-        else:
-            adjusted["거시·시장"] -= 7.0
-    if "IB·자본시장" in configured and _has_generic_ipo_only(title_text):
-        adjusted["IB·자본시장"] -= 7.0
-    if has_schedule:
-        for sector in ("감독·제재", "입법·정책", "거시·시장"):
-            if sector in configured:
-                adjusted[sector] -= 1.0
-        if not has_action and "감독·제재" in configured:
-            adjusted["감독·제재"] -= 2.0
-    if has_policy:
-        if "입법·정책" in configured:
-            adjusted["입법·정책"] += 3.0
-        if "거시·시장" in configured:
-            adjusted["거시·시장"] -= 1.0
-        if "감독·제재" in configured:
-            adjusted["감독·제재"] -= 3.0 if not has_action else 1.0
-    if "감독·제재" in configured:
-        if has_regulator and has_action and not has_policy:
-            adjusted["감독·제재"] += 12.0
-        elif has_regulator and not has_action:
-            adjusted["감독·제재"] -= 5.0
-        elif not has_regulator:
-            adjusted["감독·제재"] -= 12.0
-    if "대부" in configured and has_loan_business_anchor and not has_non_financial_lease:
-        adjusted["대부"] += 16.0
-        for sector in ("입법·정책", "감독·제재", "은행", "거시·시장"):
-            if sector in configured:
-                adjusted[sector] -= 4.0
-    return adjusted
+    return _apply_score_adjustments(title_text, desc_text, title_scores, _TITLE_BIAS_WEIGHTS)
 
 
 def _score_sector(title_text: str, desc_text: str, rules: dict[str, list[str]]) -> tuple[int, int, list[str]]:
