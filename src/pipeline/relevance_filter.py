@@ -484,11 +484,12 @@ def _rule_decide_relevance(
     min_score: int,
     matched_hard: str = "",
     matched_negative: str = "",
-    article_text: str = "",
 ) -> tuple[bool, str]:
     if score >= min_score:
         return True, "rule_keep_score_ge_threshold"
-    if matched_negative and not (score >= min_score and _has_strong_finance_context(article_text)):
+    # 강한 금융 컨텍스트에서 negative를 완화하는 처리는 relevance_score의
+    # negative cap(점수 보정)이 담당하므로 여기서는 점수 미달 사유만 구분한다.
+    if matched_negative:
         return False, "rule_drop_negative_signal"
     if not matched_hard:
         return False, "rule_drop_no_financial_anchor"
@@ -518,7 +519,6 @@ def _decide_relevance(
             min_score=min_score,
             matched_hard=matched_hard,
             matched_negative=matched_negative,
-            article_text=article_text,
         )
 
     if model_policy == "candidate_hybrid":
@@ -597,7 +597,6 @@ def _decide_relevance(
         min_score=min_score,
         matched_hard=matched_hard,
         matched_negative=matched_negative,
-        article_text=article_text,
     )
 
 

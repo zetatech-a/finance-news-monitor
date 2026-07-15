@@ -136,6 +136,77 @@ def compute_window(
     return start, end
 
 
+MAX_SUMMARIZE = 80  # 리포트에 반영할 추출요약 성공 건수 상한 (필요하면 60~120 사이로 조정)
+MAX_SUMMARY_FETCH_ATTEMPTS = 160  # 본문 크롤링 시도(실패 포함) 상한 — 실행시간 폭주 방지
+
+
+def apply_extractive_summaries(
+    tagged: list,
+    summary_cache: dict[str, str],
+    *,
+    max_summaries: int = MAX_SUMMARIZE,
+    max_fetch_attempts: int = MAX_SUMMARY_FETCH_ATTEMPTS,
+) -> tuple[int, int, int]:
+    """대표 기사들의 본문을 추출·요약해 description에 반영한다.
+
+    max_summaries는 성공 건수 기준, max_fetch_attempts는 네트워크 크롤링
+    시도(실패 포함) 기준이다. 크롤링 한도를 다 써도 캐시 hit는 계속 반영한다.
+    Returns (summarized, cache_hits, fetch_attempts).
+    """
+    summarized = 0
+    cache_hits = 0
+    fetch_attempts = 0
+    seen_urls: set[str] = set()
+
+    # 최신 기사부터 처리(리포트에 들어갈 가능성이 높은 것 우선)
+    for item in sorted(
+        tagged, key=lambda x: _article_pub_timestamp(x.article), reverse=True
+    ):
+        if summarized >= max_summaries:
+            break
+        fetch_url = (
+            item.article.naver_link or item.article.originallink or item.article.link
+        )
+        if not fetch_url or fetch_url in seen_urls:
+            continue
+        seen_urls.add(fetch_url)
+
+        # 캐시 hit면 크롤링 없이 바로 사용
+        cached = (summary_cache.get(fetch_url) or "").strip()
+        if cached:
+            item.article.description = cached
+            setattr(item.article, "summary_cached", True)  # UI에서 ⚡ 표시용
+            summarized += 1
+            cache_hits += 1
+            continue
+
+        if fetch_attempts >= max_fetch_attempts:
+            continue
+        fetch_attempts += 1
+
+        # 캐시에 없으면 본문 추출 → 추출요약 시도
+        try:
+            html = fetch_html(fetch_url, timeout=12)
+            full = extract_main_text(fetch_url, html)
+
+            s = summarize_with_fallback(
+                full or "",
+                title=item.article.title,
+                description=item.article.description,
+                max_chars=220,
+            )
+            if s and len(s) >= 24:
+                item.article.description = s
+                summary_cache[fetch_url] = s
+                setattr(item.article, "summary_cached", False)
+                summarized += 1
+        except Exception:
+            # 실패하면 기존 description(네이버 스니펫) 그대로 사용
+            pass
+
+    return summarized, cache_hits, fetch_attempts
+
+
 def _article_pub_timestamp(article: object) -> float:
     pub_date = getattr(article, "pub_date", None)
     if isinstance(pub_date, datetime):
@@ -346,63 +417,18 @@ def main() -> None:
     summary_cache = load_cache(cache_path)
 
     # ✅ (중요) 태깅 후, 리포트에 실릴 "일부 기사만" 본문 추출 + 추출요약
-    MAX_SUMMARIZE = 80  # 필요하면 60~120 사이로 조정
-    summarized = 0
-    seen_urls: set[str] = set()
-    cache_hits = 0
-
-    # 최신 기사부터 처리(리포트에 들어갈 가능성이 높은 것 우선)
-    for item in sorted(
-        tagged, key=lambda x: _article_pub_timestamp(x.article), reverse=True
-    ):
-        fetch_url = (
-            item.article.naver_link or item.article.originallink or item.article.link
-        )
-        if not fetch_url or fetch_url in seen_urls:
-            continue
-        seen_urls.add(fetch_url)
-
-        # ✅ 캐시 hit면 크롤링 없이 바로 사용
-        cached = (summary_cache.get(fetch_url) or "").strip()
-        if cached:
-            item.article.description = cached
-            setattr(item.article, "summary_cached", True)  # ✅ UI에서 ⚡ 표시용
-            summarized += 1
-            cache_hits += 1
-            if summarized >= MAX_SUMMARIZE:
-                break
-            continue
-
-        # ✅ 캐시에 없으면 본문 추출 → 추출요약 시도
-        try:
-            html = fetch_html(fetch_url, timeout=12)
-            full = extract_main_text(fetch_url, html)
-
-            s = summarize_with_fallback(
-                full or "",
-                title=item.article.title,
-                description=item.article.description,
-                max_chars=220,
-            )
-            if s and len(s) >= 24:
-                item.article.description = s
-                summary_cache[fetch_url] = s  # ✅ 캐시에 저장
-                setattr(
-                    item.article, "summary_cached", False
-                )  # ✅ (선택) 신규 요약 표시
-                summarized += 1
-        except Exception:
-            # 실패하면 기존 description(네이버 스니펫) 그대로 사용
-            pass
-
-        if summarized >= MAX_SUMMARIZE:
-            break
+    summarized, cache_hits, fetch_attempts = apply_extractive_summaries(
+        tagged, summary_cache
+    )
 
     # ✅ 캐시 저장
     save_cache(cache_path, summary_cache)
     logger.info("Summary cache saved: %s (items=%d)", cache_path, len(summary_cache))
     logger.info(
-        "Extractive summaries applied: %s (cache_hits=%s)", summarized, cache_hits
+        "Extractive summaries applied: %s (cache_hits=%s, fetch_attempts=%s)",
+        summarized,
+        cache_hits,
+        fetch_attempts,
     )
 
     # 요약 반영 후 최종 본문(description) 기준으로 대표 기사만 태깅 재계산
