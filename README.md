@@ -21,6 +21,14 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+환경변수는 `.env.example`을 참고해 설정합니다. **`.env` 파일은 자동으로 로드되지
+않으므로**(dotenv 미사용) 실행 전에 셸로 export해야 합니다:
+
+```bash
+cp .env.example .env   # 값 편집 후
+set -a; source .env; set +a
+```
+
 ## 실행
 ```bash
 python -m src.run_daily
@@ -32,17 +40,28 @@ python -m src.run_daily --date 2024-01-01 --window_hours 24 --end_hhmm 0800 --ov
 ```
 
 - `--window_hours` (기본: `24.0`)
-- `--end_hhmm` (기본: `0730`, 형식: `0800` 또는 `08:00`)
+- `--end_hhmm` (기본: `0730`, 형식: `0800` 또는 `08:00`. 운영은 `0855` 사용)
 - `--overlap_minutes` (기본: `15`)
+- `--max_pages` (기본: `5`, 쿼리당 Naver API 페이지 수 상한)
 - `--dry_run` (윈도우 계산만 출력 후 종료)
 - `--disable_candidate_model` (운영 모델이 없을 때 후보 모델을 무시하고 룰만 사용)
 - `--candidate_keep_prob` (기본: `0.65`, 후보 모델 hybrid keep 임계값)
 - `--candidate_drop_prob` (기본: `0.35`, 후보 모델 hybrid drop 임계값)
 
+## 테스트
+```bash
+pip install pytest   # requirements.txt에 포함되지 않음
+python -m pytest tests/ -q
+```
+테스트는 네트워크에 접근하지 않으며(SMTP/HTTP는 monkeypatch로 대체), 푸시 전에
+전체 통과를 확인합니다.
+
 ## 리포트 위치
 - `reports/YYYY-MM-DD.md`
 - `reports/YYYY-MM-DD.html`
 - `reports/index.html`
+- `reports/_candidates/`, `reports/_metrics/` (필터 관측성/품질 지표)
+- `reports/_sent/` (이메일 발송 marker)
 
 ## 관련성 라벨링/후보 모델 준비
 Phase 4A의 수동 라벨링 샘플/검증 스크립트는 선택적인 진단·감사용 도구입니다. 기본 워크플로는 사람이 라벨을 편집하지 않는 자동 pseudo-label 기반입니다.
