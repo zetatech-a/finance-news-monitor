@@ -178,6 +178,14 @@ jobs:
             --event-name "$GITHUB_EVENT_NAME" \
             --collection-end-hhmm "$COLLECTION_END_HHMM"
 
+      - name: Prune old reports (retention policy)
+        if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
+        continue-on-error: true
+        run: |
+          python scripts/prune_reports.py \
+            --reports-dir reports \
+            --reference-date "${{ steps.phase5_recheck.outputs.report_date }}"
+
       - name: Commit reports and sent marker
         if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
         run: |
@@ -186,5 +194,16 @@ jobs:
 
           git add reports/
           git commit -m "Daily report" || echo "No changes to commit"
-          git pull --rebase origin main || true
-          git push origin HEAD:main
+
+          # 다른 실행/커밋과 경합할 수 있으므로 rebase+push를 재시도한다.
+          # (기존 `git pull --rebase || true`는 충돌을 조용히 무시해 push가 그대로 실패했음)
+          for attempt in 1 2 3; do
+            git rebase --abort 2>/dev/null || true
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "push attempt ${attempt} failed; retrying..."
+            sleep $((attempt * 5))
+          done
+          echo "Failed to push reports after 3 attempts" >&2
+          exit 1

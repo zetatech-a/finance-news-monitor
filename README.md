@@ -130,3 +130,6 @@ python scripts/validate_relevance_labels.py \
 - 수동 실행(`workflow_dispatch`)의 기본값은 메일 미발송이며, 필요할 때만 `send_email=true`로 발송합니다. 이미 sent-marker가 있으면 `force_send=true`를 지정해야 수동 재발송합니다.
 - 기본값(`--end_hhmm 0730`)은 로컬/하위호환 용도로 유지되어 기존 07:30 마감 기준 실행도 가능합니다.
 - 원문 전문은 저장하지 않고 제목/요약/링크만 저장합니다.
+- 보존 정책: 일별 리포트는 180일, `_candidates`/`_metrics`/`_sent`는 90일 보관 후
+  일일 워크플로에서 자동 정리됩니다(`scripts/prune_reports.py`). `index.html`과
+  `_cache`는 정리 대상이 아닙니다.

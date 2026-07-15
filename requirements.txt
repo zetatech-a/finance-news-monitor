@@ -1,9 +1,10 @@
-requests
-python-dateutil
-pyyaml
-jinja2
-markdown
-scikit-learn
-joblib
-beautifulsoup4
-lxml
+requests==2.33.1
+python-dateutil==2.9.0.post0
+PyYAML==6.0.1
+markdown==3.10.2
+scikit-learn==1.9.0
+joblib==1.5.3
+beautifulsoup4==4.15.0
+lxml==6.1.1
+# fulltext_fetch.py가 직접 import하므로 명시 (requests의 전이 의존성에 기대지 않음)
+charset-normalizer==3.4.6

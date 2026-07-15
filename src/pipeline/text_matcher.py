@@ -3,6 +3,7 @@ from __future__ import annotations
 import html
 import re
 from dataclasses import dataclass, field
+from functools import lru_cache
 from typing import Iterable
 
 _HTML_TAG_RE = re.compile(r"<[^>]+>")
@@ -32,6 +33,9 @@ _TERM_ALIASES: dict[str, tuple[str, ...]] = {
 }
 
 
+# \uac19\uc740 \uae30\uc0ac \ud14d\uc2a4\ud2b8\uc5d0 \ub300\ud574 \uc6a9\uc5b4 \uc218\ub9cc\ud07c(\uc218\ubc31 \ud68c) \ubc18\ubcf5 \ud638\ucd9c\ub418\ubbc0\ub85c \uce90\uc2dc\ud55c\ub2e4.
+# \ud504\ub85c\uc138\uc2a4\ub294 \uc77c\uc77c \uc2e4\ud589 \ud6c4 \uc885\ub8cc\ub418\ubbc0\ub85c \uce90\uc2dc \ub204\uc801\uc740 \ubb38\uc81c\ub418\uc9c0 \uc54a\ub294\ub2e4.
+@lru_cache(maxsize=8192)
 def normalize_text(text: str) -> str:
     """Normalize article text for safe keyword matching."""
     value = html.unescape(str(text or ""))
@@ -65,9 +69,9 @@ def _auto_mode(term: str) -> str:
     return "phrase"
 
 
-def _match_spans(text: str, term: str, mode: str) -> list[tuple[int, int]]:
-    if not term:
-        return []
+# 용어 수(1000+)가 re 모듈 내부 캐시(512개)를 넘어 재컴파일이 반복되므로 직접 캐시한다.
+@lru_cache(maxsize=4096)
+def _compiled_pattern(term: str, mode: str) -> re.Pattern[str]:
     if mode == "phrase":
         pattern = re.escape(term)
     elif mode == "english_token":
@@ -82,18 +86,28 @@ def _match_spans(text: str, term: str, mode: str) -> list[tuple[int, int]]:
         elif term == "보험":
             pattern = r"(?<![가-힣a-z0-9])보험(?![가-힣a-z0-9])"
         elif term == "감독":
-            if not has_any_term(text, ("프로야구", "프로축구", "선수", "구단", "k리그", "mlb", "epl", "월드컵")):
-                return []
             pattern = r"감독\s*경질|(?<![가-힣a-z0-9])감독(?![가-힣a-z0-9])"
         elif term == "경기":
-            if not has_any_term(text, ("축구", "프로야구", "프로축구", "선수", "득점", "구단", "k리그", "mlb", "epl", "월드컵")):
-                return []
             pattern = r"축구\s*경기|경기\s*결과|(?<![가-힣a-z0-9])경기(?![가-힣a-z0-9])"
         else:
             pattern = rf"(?<![가-힣a-z0-9]){re.escape(term)}(?![가-힣a-z0-9])"
     else:
         raise ValueError(f"unsupported match mode: {mode}")
-    return [match.span() for match in re.finditer(pattern, text)]
+    return re.compile(pattern)
+
+
+def _match_spans(text: str, term: str, mode: str) -> list[tuple[int, int]]:
+    if not term:
+        return []
+    # '감독'/'경기'는 스포츠 문맥이 있을 때만 (negative 용어로) 매칭한다.
+    if mode == "korean_short" and term == "감독":
+        if not has_any_term(text, ("프로야구", "프로축구", "선수", "구단", "k리그", "mlb", "epl", "월드컵")):
+            return []
+    if mode == "korean_short" and term == "경기":
+        if not has_any_term(text, ("축구", "프로야구", "프로축구", "선수", "득점", "구단", "k리그", "mlb", "epl", "월드컵")):
+            return []
+    pattern = _compiled_pattern(term, mode)
+    return [match.span() for match in pattern.finditer(text)]
 
 
 def _contains_normalized(

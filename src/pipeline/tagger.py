@@ -1134,6 +1134,16 @@ def tag_articles(
 ) -> list[TaggedArticle]:
     topic_queries = topic_queries or {}
 
+    # 규칙 빌드는 기사와 무관하므로 루프 밖에서 1회만 수행한다.
+    sector_rules_map = {
+        sector: _build_sector_rules(sector, keywords)
+        for sector, keywords in sector_queries.items()
+    }
+    topic_rules_map = {
+        topic: _build_topic_rules(topic, keywords)
+        for topic, keywords in topic_queries.items()
+    }
+
     tagged: list[TaggedArticle] = []
     for article in articles:
         title_text = _normalize_text((article.title or "").lower())
@@ -1158,8 +1168,7 @@ def tag_articles(
         sector_scores: dict[str, int] = {}
         sector_title_scores: dict[str, int] = {}
         sector_hits: dict[str, list[str]] = {}
-        for sector, keywords in sector_queries.items():
-            rules = _build_sector_rules(sector, keywords)
+        for sector, rules in sector_rules_map.items():
             score, title_score, hits = _score_sector(title_text, desc_text, rules)
             sector_scores[sector] = score
             sector_title_scores[sector] = title_score
@@ -1182,8 +1191,7 @@ def tag_articles(
         # -----------------------
         topics: list[str] = []
         topic_hits_all: list[str] = []
-        for topic, keywords in topic_queries.items():
-            rules = _build_topic_rules(topic, keywords)
+        for topic, rules in topic_rules_map.items():
             score, hits = _score_topic(title_text, body_text, query_text, best_sector, topic, rules)
             if score >= rules["threshold"] and hits:
                 topics.append(topic)
