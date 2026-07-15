@@ -116,6 +116,25 @@ def _is_high_confidence_misc(article: Any) -> bool:
     return score is not None and score >= 6
 
 
+# 리포트 섹션 표시 순서(대부업권 우선). "기타"는 마크다운에서만 목록 말미에 붙는다.
+SECTOR_ORDER: tuple[str, ...] = (
+    "대부",
+    "은행",
+    "저축은행",
+    "상호금융",
+    "여전",
+    "보험",
+    "증권(브로커리지/리테일)",
+    "자산운용·연기금",
+    "IB·자본시장",
+    "핀테크·플랫폼",
+    "디지털자산",
+    "거시·시장",
+    "감독·제재",
+    "입법·정책",
+)
+
+
 def _primary_sector(item: TaggedArticle) -> str:
     return item.sectors[0] if item.sectors else "기타"
 
@@ -147,23 +166,7 @@ def _build_visible_sector_buckets(
     if misc_review_items:
         by_sector["기타"] = misc_review_items
 
-    sector_order = [
-        "대부",
-        "은행",
-        "저축은행",
-        "상호금융",
-        "여전",
-        "보험",
-        "증권(브로커리지/리테일)",
-        "자산운용·연기금",
-        "IB·자본시장",
-        "핀테크·플랫폼",
-        "디지털자산",
-        "거시·시장",
-        "감독·제재",
-        "입법·정책",
-    ]
-    ordered_sectors = sector_order + [s for s in by_sector.keys() if s not in sector_order]
+    ordered_sectors = list(SECTOR_ORDER) + [s for s in by_sector.keys() if s not in SECTOR_ORDER]
     return by_sector, ordered_sectors
 
 
@@ -480,24 +483,7 @@ def render_markdown(
         for sector in item.sectors:
             by_sector[sector].append(item)
 
-    sector_order = [
-        "대부",
-        "은행",
-        "저축은행",
-        "상호금융",
-        "여전",
-        "보험",
-        "증권(브로커리지/리테일)",
-        "자산운용·연기금",
-        "IB·자본시장",
-        "핀테크·플랫폼",
-        "디지털자산",
-        "거시·시장",
-        "감독·제재",
-        "입법·정책",
-        "기타",
-    ]
-
+    sector_order = [*SECTOR_ORDER, "기타"]
     ordered_sectors = sector_order + [s for s in by_sector.keys() if s not in sector_order]
     for sector in ordered_sectors:
         if sector not in by_sector:

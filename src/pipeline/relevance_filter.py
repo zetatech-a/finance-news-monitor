@@ -8,7 +8,13 @@ from pathlib import Path
 from typing import Any, Literal
 
 from src.ml.relevance_model import load_model, predict_proba
-from src.pipeline.relevance_score import matched_terms as score_matched_terms, relevance_score
+from src.pipeline.relevance_score import (
+    CAPPED_NOISE_TERMS,
+    FINANCE_RISK_OR_REGULATORY_SIGNALS,
+    STRONG_FINANCE_ANCHORS,
+    matched_terms as score_matched_terms,
+    relevance_score,
+)
 from src.pipeline.text_matcher import find_terms, has_any_term, normalize_text
 
 logger = logging.getLogger(__name__)
@@ -202,97 +208,9 @@ _MARKET_OR_IPO_CONTEXT_TERMS: tuple[str, ...] = (
     "공매도",
     "시장",
 )
-_STRONG_FINANCE_ANCHORS: tuple[str, ...] = (
-    "불법사금융",
-    "불법사채",
-    "불법대부",
-    "미등록대부",
-    "대부업",
-    "대부업체",
-    "채권추심",
-    "불법추심",
-    "보이스피싱",
-    "스미싱",
-    "대포통장",
-    "불법 대출광고",
-    "대출광고",
-    "대부광고",
-    "금융위",
-    "금융위원회",
-    "금감원",
-    "금융감독원",
-    "금융당국",
-    "저축은행",
-    "은행권",
-    "시중은행",
-    "인터넷은행",
-    "카드론",
-    "현금서비스",
-    "여전채",
-    "보험사",
-    "증권사",
-    "상호금융",
-    "신협",
-    "새마을금고",
-    "연체율",
-    "부실채권",
-    "가계대출",
-    "주담대",
-    "기업대출",
-    "부동산 pf",
-    "부동산pf",
-    "pf",
-    "익스포저",
-    "워크아웃",
-)
-
-_CAPPED_NOISE_TERMS: tuple[str, ...] = (
-    "sns",
-    "유튜브",
-    "맛집",
-    "인플루언서",
-    "행사",
-    "이벤트",
-    "루머",
-    "먹방",
-    "여행",
-    "축제",
-)
-
-_FINANCE_RISK_OR_REGULATORY_SIGNALS: tuple[str, ...] = (
-    "피해",
-    "협박",
-    "단속",
-    "점검",
-    "검사",
-    "착수",
-    "경고",
-    "경고등",
-    "상승",
-    "연체",
-    "연체율",
-    "부실",
-    "불법",
-    "미등록",
-    "추심",
-    "광고",
-    "대출광고",
-    "금리",
-    "예금금리",
-    "재진입",
-    "당국",
-    "제재",
-    "과징금",
-    "행정처분",
-    "악용",
-    "조직",
-    "확산",
-    "리스크",
-    "위험",
-    "관리",
-    "워크아웃",
-    "익스포저",
-)
+# 강한 금융 앵커/리스크 신호/노이즈 캡 목록은 relevance_score.py의
+# STRONG_FINANCE_ANCHORS / FINANCE_RISK_OR_REGULATORY_SIGNALS / CAPPED_NOISE_TERMS를
+# import해 사용한다 (단일 출처 — 복사본 금지).
 
 _REGULATOR_POLICY_ENFORCEMENT_TERMS: tuple[str, ...] = (
     "금감원",
@@ -419,12 +337,12 @@ def is_low_value_overseas_market_noise(article_or_text: Any) -> bool:
 
 def _has_strong_finance_anchor(article_or_text: Any) -> bool:
     text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
-    return has_any_term(text, _STRONG_FINANCE_ANCHORS)
+    return has_any_term(text, STRONG_FINANCE_ANCHORS)
 
 
 def _has_finance_risk_or_regulatory_signal(article_or_text: Any) -> bool:
     text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
-    return has_any_term(text, _FINANCE_RISK_OR_REGULATORY_SIGNALS)
+    return has_any_term(text, FINANCE_RISK_OR_REGULATORY_SIGNALS)
 
 
 def _has_strong_finance_context(article_or_text: Any) -> bool:
@@ -434,7 +352,7 @@ def _has_strong_finance_context(article_or_text: Any) -> bool:
 
 def _has_only_capped_noise(matched_negative: str) -> bool:
     negative_terms = _split_matched_terms(matched_negative)
-    capped_terms = {normalize_text(term) for term in _CAPPED_NOISE_TERMS}
+    capped_terms = {normalize_text(term) for term in CAPPED_NOISE_TERMS}
     return bool(negative_terms) and negative_terms.issubset(capped_terms)
 
 
@@ -496,6 +414,92 @@ def _rule_decide_relevance(
     return False, "rule_drop_score_lt_threshold"
 
 
+def _decide_candidate_hybrid(
+    *,
+    score: int,
+    prob: float | None,
+    matched_hard: str,
+    matched_negative: str,
+    article_text: str,
+    candidate_keep_prob: float,
+    candidate_drop_prob: float,
+    strong_rule_keep_score: int,
+    gray_keep_min_score: int,
+    no_model_keep_min_score: int,
+    model_keep_min_score: int,
+) -> tuple[bool, str]:
+    """candidate_hybrid 정책 결정 — 위에서 아래로 첫 매치가 승리하는 우선순위 규칙.
+
+    규칙 순서 자체가 정책이다: negative → 해외 규칙 → 노이즈 필터 →
+    강한 도메인 룰 → 모델 확신 구간 → gray zone → 모델 없음 순으로 평가하며,
+    앞 단계에서 반환되지 않았다는 사실이 뒤 단계의 전제가 된다.
+    """
+    domain_anchor = has_domain_anchor(article_text, matched_hard)
+
+    # 1) negative 신호: 강한 금융 컨텍스트 + 캡 대상 노이즈만 있을 때만 예외적으로 keep
+    if (
+        matched_negative
+        and score >= no_model_keep_min_score
+        and _has_only_capped_noise(matched_negative)
+        and _has_strong_finance_context(article_text)
+    ):
+        return True, "candidate_hybrid_keep_strong_finance_anchor_neg_cap"
+    if matched_negative:
+        return False, "candidate_hybrid_drop_negative_signal"
+
+    # 2) 해외 기사 규칙. 이 블록을 통과하면 overseas_impact는 항상 False이고,
+    #    overseas_reference가 참이면 domain_anchor도 참이다 — 아래 분기들은
+    #    이 불변식에 기대어 domain_anchor만 검사한다.
+    if is_low_value_overseas_market_noise(article_text):
+        return False, "candidate_hybrid_drop_low_value_overseas_market_noise"
+    if has_overseas_korean_market_impact(article_text):
+        return True, "candidate_hybrid_keep_overseas_korean_market_impact"
+    if has_overseas_global_reference_context(article_text) and not domain_anchor:
+        return True, "candidate_hybrid_keep_overseas_global_reference"
+
+    # 3) 노이즈 필터
+    if is_corporate_macro_noise(article_text, matched_hard):
+        return False, "candidate_hybrid_drop_corporate_macro_noise"
+    if is_generic_market_or_ipo_noise(article_text, matched_hard):
+        return False, "candidate_hybrid_drop_generic_market_or_ipo_noise"
+
+    # 4) 모델 확률과 무관한 강한 도메인 룰 keep
+    if score >= strong_rule_keep_score and matched_hard and domain_anchor:
+        return True, "candidate_hybrid_keep_strong_domain_rule_anchor"
+
+    # 5) 모델 확신 구간
+    if prob is not None and prob >= candidate_keep_prob:
+        if (
+            domain_anchor
+            or (
+                score >= model_keep_min_score
+                and not has_only_generic_anchors(article_text, matched_hard)
+            )
+            or has_regulator_policy_enforcement_context(article_text)
+        ):
+            return True, "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor"
+        return False, "candidate_hybrid_drop_model_keep_without_domain_anchor"
+    if prob is not None and prob <= candidate_drop_prob:
+        return False, "candidate_hybrid_model_drop_prob_le_threshold"
+
+    # 6) gray zone(모델은 있으나 확신 없음): 룰 점수 + 도메인 앵커로 판정
+    if prob is not None:
+        if score < gray_keep_min_score:
+            return False, "candidate_hybrid_gray_drop_score_lt_threshold"
+        if not domain_anchor:
+            if has_only_generic_anchors(article_text, matched_hard):
+                return False, "candidate_hybrid_gray_drop_generic_anchor_only"
+            return False, "candidate_hybrid_gray_drop_no_domain_anchor"
+        return True, "candidate_hybrid_gray_keep_domain_score_ge_threshold"
+
+    # 7) 모델 확률 없음: 룰 점수 + 도메인 앵커로 판정
+    if score < no_model_keep_min_score:
+        return False, "candidate_hybrid_no_model_drop_score_lt_threshold"
+    if not domain_anchor:
+        return False, "candidate_hybrid_no_model_drop_no_domain_anchor"
+    return True, "candidate_hybrid_no_model_keep_domain_score_ge_threshold"
+
+
 def _decide_relevance(
     *,
     score: int,
@@ -522,70 +526,19 @@ def _decide_relevance(
         )
 
     if model_policy == "candidate_hybrid":
-        domain_anchor = has_domain_anchor(article_text, matched_hard)
-        overseas_impact = has_overseas_korean_market_impact(article_text)
-        overseas_reference = has_overseas_global_reference_context(article_text)
-        low_value_overseas_noise = is_low_value_overseas_market_noise(article_text)
-        generic_only = has_only_generic_anchors(article_text, matched_hard)
-        corporate_noise = is_corporate_macro_noise(article_text, matched_hard)
-        market_noise = is_generic_market_or_ipo_noise(article_text, matched_hard)
-
-        if (
-            matched_negative
-            and score >= no_model_keep_min_score
-            and _has_only_capped_noise(matched_negative)
-            and _has_strong_finance_context(article_text)
-        ):
-            return True, "candidate_hybrid_keep_strong_finance_anchor_neg_cap"
-        if matched_negative:
-            return False, "candidate_hybrid_drop_negative_signal"
-        if low_value_overseas_noise:
-            return False, "candidate_hybrid_drop_low_value_overseas_market_noise"
-        if overseas_impact:
-            return True, "candidate_hybrid_keep_overseas_korean_market_impact"
-        if overseas_reference and not domain_anchor:
-            return True, "candidate_hybrid_keep_overseas_global_reference"
-        if corporate_noise:
-            return False, "candidate_hybrid_drop_corporate_macro_noise"
-        if market_noise:
-            return False, "candidate_hybrid_drop_generic_market_or_ipo_noise"
-        if score >= strong_rule_keep_score and matched_hard and (domain_anchor or overseas_impact or overseas_reference):
-            if overseas_impact:
-                return True, "candidate_hybrid_keep_overseas_korean_market_impact"
-            if overseas_reference and not domain_anchor:
-                return True, "candidate_hybrid_keep_overseas_global_reference"
-            return True, "candidate_hybrid_keep_strong_domain_rule_anchor"
-
-        if prob is not None and prob >= candidate_keep_prob:
-            if domain_anchor or overseas_impact or overseas_reference or (
-                score >= model_keep_min_score and not generic_only
-            ) or has_regulator_policy_enforcement_context(article_text):
-                return True, "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor"
-            return False, "candidate_hybrid_drop_model_keep_without_domain_anchor"
-        if prob is not None and prob <= candidate_drop_prob:
-            return False, "candidate_hybrid_model_drop_prob_le_threshold"
-        if prob is not None:
-            if score < gray_keep_min_score:
-                return False, "candidate_hybrid_gray_drop_score_lt_threshold"
-            if not (domain_anchor or overseas_impact or overseas_reference):
-                if generic_only:
-                    return False, "candidate_hybrid_gray_drop_generic_anchor_only"
-                return False, "candidate_hybrid_gray_drop_no_domain_anchor"
-            if overseas_impact and not domain_anchor:
-                return True, "candidate_hybrid_keep_overseas_korean_market_impact"
-            if overseas_reference and not domain_anchor:
-                return True, "candidate_hybrid_keep_overseas_global_reference"
-            return True, "candidate_hybrid_gray_keep_domain_score_ge_threshold"
-
-        if score < no_model_keep_min_score:
-            return False, "candidate_hybrid_no_model_drop_score_lt_threshold"
-        if not (domain_anchor or overseas_impact or overseas_reference):
-            return False, "candidate_hybrid_no_model_drop_no_domain_anchor"
-        if overseas_impact:
-            return True, "candidate_hybrid_keep_overseas_korean_market_impact"
-        if overseas_reference and not domain_anchor:
-            return True, "candidate_hybrid_keep_overseas_global_reference"
-        return True, "candidate_hybrid_no_model_keep_domain_score_ge_threshold"
+        return _decide_candidate_hybrid(
+            score=score,
+            prob=prob,
+            matched_hard=matched_hard,
+            matched_negative=matched_negative,
+            article_text=article_text,
+            candidate_keep_prob=candidate_keep_prob,
+            candidate_drop_prob=candidate_drop_prob,
+            strong_rule_keep_score=strong_rule_keep_score,
+            gray_keep_min_score=gray_keep_min_score,
+            no_model_keep_min_score=no_model_keep_min_score,
+            model_keep_min_score=model_keep_min_score,
+        )
 
     if prob is not None:
         if prob >= min_prob:
@@ -675,9 +628,8 @@ def _write_metrics(
         "decision_reason_counts": dict(sorted(decision_reason_counts.items())),
         "model_prob_available_count": sum(1 for row in rows if row["prob"] != ""),
         "model_prob_missing_count": sum(1 for row in rows if row["prob"] == ""),
+        # 집계 키 이름은 외부(과거 metrics JSON) 호환을 위해 유지한다.
         "candidate_hybrid_model_keep": decision_reason_counts[
-            "candidate_hybrid_model_keep_prob_ge_threshold"
-        ] + decision_reason_counts[
             "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor"
         ],
         "candidate_hybrid_model_keep_with_domain_anchor": decision_reason_counts[
@@ -687,16 +639,12 @@ def _write_metrics(
             "candidate_hybrid_model_drop_prob_le_threshold"
         ],
         "candidate_hybrid_gray_rule_keep": decision_reason_counts[
-            "candidate_hybrid_gray_keep_rule_score_ge_threshold"
-        ] + decision_reason_counts[
             "candidate_hybrid_gray_keep_domain_score_ge_threshold"
         ],
         "candidate_hybrid_gray_keep_domain": decision_reason_counts[
             "candidate_hybrid_gray_keep_domain_score_ge_threshold"
         ],
         "candidate_hybrid_gray_rule_drop": decision_reason_counts[
-            "candidate_hybrid_gray_drop_rule_score_lt_threshold"
-        ] + decision_reason_counts[
             "candidate_hybrid_gray_drop_score_lt_threshold"
         ],
         "candidate_hybrid_gray_drop_no_domain_anchor": decision_reason_counts[
@@ -706,8 +654,6 @@ def _write_metrics(
             "candidate_hybrid_gray_drop_generic_anchor_only"
         ],
         "candidate_hybrid_strong_rule_keep": decision_reason_counts[
-            "candidate_hybrid_keep_strong_rule_anchor"
-        ] + decision_reason_counts[
             "candidate_hybrid_keep_strong_domain_rule_anchor"
         ],
         "candidate_hybrid_keep_strong_domain_rule_anchor": decision_reason_counts[
