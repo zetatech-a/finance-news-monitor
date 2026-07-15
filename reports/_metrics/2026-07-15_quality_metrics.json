@@ -1,0 +1,272 @@
+{
+  "clusters": {
+    "cluster_count": 369,
+    "cluster_size_max": 114,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 114,
+        "relevance_prob": 0.8179958381679111,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "회사채 금리 뛰고 국채 3년물 3.8% 돌파",
+        "url": "https://n.news.naver.com/mnews/article/014/0005548147?sid=101"
+      },
+      {
+        "cluster_size": 55,
+        "relevance_prob": 0.7825772351286985,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "한은 \"원/달러 환율 7월 들어 안정세…외국인 주식 순유출은 지속\"",
+        "url": "https://n.news.naver.com/mnews/article/417/0001151577?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1017,
+    "displayed_articles": 227,
+    "final_tagged_representatives": 369,
+    "normalized_articles": 1373,
+    "raw_items": 1373,
+    "relevance_filtered_articles": 700,
+    "rule_filtered_articles": 1007,
+    "tagged_before_cluster": 700
+  },
+  "date": "2026-07-15",
+  "generated_at": "2026-07-15T10:07:36.564642+09:00",
+  "publishers": {
+    "missing_publisher_count": 369,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 165,
+    "no_topic_ratio": 0.4472,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6044436429966181,
+        "relevance_score": 9,
+        "sector": "디지털자산",
+        "title": "美 인플레 우려 둔화에 비트코인 9500만원선 반등",
+        "url": "https://n.news.naver.com/mnews/article/003/0014067284?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6798546165549212,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "[농협금융 이사회③] 형식은 갖췄지만 독립성-투명성이 문제",
+        "url": "https://www.dailybrief.co.kr/news/articleView.html?idxno=6304"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6652143243482916,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 美 금리인상 우려 완화…비트코인 6만4000달...",
+        "url": "https://www.ajunews.com/view/20260715081313370"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7261761059392616,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "보완수사권 완전 폐지 제동 걸리나…범여권 법사위원 4명 반대 행보",
+        "url": "http://www.sisafocus.co.kr/news/articleView.html?idxno=362521"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7693273480546734,
+        "relevance_score": 4,
+        "sector": "자산운용·연기금",
+        "title": "코인 현물 ETF 로드맵 나왔다…선결 과제로 ‘입법·김프 해소·선물 개...",
+        "url": "https://n.news.naver.com/mnews/article/277/0005790055?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5886029316621607,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "이소영 \"보완수사 폐지가 왜 검찰개혁 종착역? 설명 못하면 선동\"[한판...",
+        "url": "https://n.news.naver.com/mnews/article/079/0004168486?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6906580747413225,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "\"SEC의 사법 세탁 시작\"... 'XRP 비증권' 판결 3주년 뒤에 숨은 거대한 음...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=468443"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.6162476982054178,
+        "relevance_score": 14,
+        "sector": "은행",
+        "title": "[대출 규제 역설] \"잔금 앞두고 길거리로\"…'주거 사다리' 끊긴 대출 난...",
+        "url": "https://n.news.naver.com/mnews/article/119/0003111507?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7160194027753944,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "[Invest]ADR 상장 즉시 등장한 'SKHY 토큰'…국내는 빨라야 내년",
+        "url": "https://www.investchosun.com/site/data/html_dir/2026/07/14/2026071480140.html"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6529518450209464,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "얼라인 JB-BNK금융 합병 검토 요구, 왜 지금인가 [금융지주는 지금]",
+        "url": "https://www.fntimes.com/html/view.php?ud=202607142227415925b4a7c6999c_18"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 4,
+      "감독·제재": 14,
+      "거시·시장": 25,
+      "기타": 152,
+      "대부": 3,
+      "디지털자산": 34,
+      "보험": 7,
+      "상호금융": 8,
+      "여전": 16,
+      "은행": 57,
+      "입법·정책": 34,
+      "자산운용·연기금": 5,
+      "저축은행": 7,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 39,
+      "감독·제재": 6,
+      "건전성·자본규제": 5,
+      "규제·가계부채": 10,
+      "금리·수수료·최고금리": 26,
+      "기업금융·익스포저": 6,
+      "디지털자산": 46,
+      "물가·경기지표": 5,
+      "부동산·PF": 15,
+      "불법사금융·불법추심·보이스피싱": 15,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 18,
+      "서민금융·대환·채무조정": 8,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 8,
+      "연체·부실": 18,
+      "자금시장·유동성": 6,
+      "정책·제도개선": 6,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 22,
+      "환율·외환": 14
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8266762580686681,
+        "relevance_score": 42,
+        "sector": "자산운용·연기금",
+        "title": "정부 “스테이블코인법 연내 입법”…비트코인 ETF 도입",
+        "url": "https://n.news.naver.com/mnews/article/018/0006329957?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8462732544213002,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "재경부 \"디지털자산기본법 하반기 추진\"…원구성 '변수'",
+        "url": "https://n.news.naver.com/mnews/article/092/0002430519?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7998530898160895,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "정부, 디지털자산기본법·비트코인 현물 ETF 연내 추진 공식화…업계는...",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=345039"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.762055757625434,
+        "relevance_score": 33,
+        "sector": "은행",
+        "title": "산은 \"5.5조 펀드\"·IBK \"스타트업 육성\"…정책금융 성과 경쟁",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026071413290882281"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7020193230912285,
+        "relevance_score": 28,
+        "sector": "보험",
+        "title": "'금융소비자권익대상' 성료...\"양적·질적으로 큰 발전과 변화\"",
+        "url": "https://n.news.naver.com/mnews/article/008/0005385956?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5429452710459834,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "잠재성장률 3%·수출 4강·국민소득 5만 달러…'경제 대도약 원년'",
+        "url": "https://www.korea.kr/news/policyNewsView.do?newsId=148968126&call_from=naver_news"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7522704885510904,
+        "relevance_score": 27,
+        "sector": "거시·시장",
+        "title": "[채권마감] 4단 충격에…베어플랫, 30년·50년금리 역대최고",
+        "url": "https://www.etoday.co.kr/news/view/2603705"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8210405298841209,
+        "relevance_score": 26,
+        "sector": "기타",
+        "title": "[스테이블코인의 대전환②] 원화 스테이블코인 주도권 잡아라…은행·빅...",
+        "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=724344"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6042533899771078,
+        "relevance_score": 28,
+        "sector": "은행",
+        "title": "장민영號 첫 조직개편…AX·생산적 금융 강화로 수익성 제고 나선다",
+        "url": "https://www.asiatoday.co.kr/kn/view.php?key=20260714010005338"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7497280865416683,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "가계대출 '빗장' 전방위 확산...시중은행 이어 지방은행까지",
+        "url": "http://www.newsfc.co.kr/news/articleView.html?idxno=79893"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "거시·시장": 2,
+      "기타": 1,
+      "디지털자산": 2,
+      "보험": 1,
+      "은행": 3,
+      "자산운용·연기금": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 2,
+      "기업금융·익스포저": 1,
+      "디지털자산": 4,
+      "소비자보호·민원·불완전판매": 1,
+      "환율·외환": 2
+    }
+  }
+}
