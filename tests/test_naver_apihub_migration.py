@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from datetime import datetime, timezone
 
 import pytest
@@ -27,62 +28,47 @@ def _clear_naver_env(monkeypatch):
 
 
 # ---------------------------------------------------------------------------
-# load_config: 신규 API HUB 키 우선, 레거시 폴백
+# load_config: NAVER API HUB 키 전용 (이관 후 기존 키는 무효)
 # ---------------------------------------------------------------------------
 
-def test_load_config_prefers_apihub_keys(monkeypatch):
+def test_load_config_uses_apihub_keys(monkeypatch):
     _clear_naver_env(monkeypatch)
     monkeypatch.setenv("NCP_APIGW_API_KEY_ID", "hub-id")
     monkeypatch.setenv("NCP_APIGW_API_KEY", "hub-secret")
-    monkeypatch.setenv("NAVER_CLIENT_ID", "legacy-id")
-    monkeypatch.setenv("NAVER_CLIENT_SECRET", "legacy-secret")
 
     config = load_config()
 
-    assert config.naver.api_mode == "apihub"
     assert config.naver.client_id == "hub-id"
     assert config.naver.client_secret == "hub-secret"
 
 
-def test_load_config_falls_back_to_legacy_keys(monkeypatch):
+def test_load_config_ignores_legacy_keys(monkeypatch):
+    # 이관 후 무효화된 기존 키만 있으면 명확히 실패해야 한다
     _clear_naver_env(monkeypatch)
     monkeypatch.setenv("NAVER_CLIENT_ID", "legacy-id")
     monkeypatch.setenv("NAVER_CLIENT_SECRET", "legacy-secret")
-
-    config = load_config()
-
-    assert config.naver.api_mode == "openapi"
-    assert config.naver.client_id == "legacy-id"
-
-
-def test_load_config_partial_apihub_keys_fall_back_to_legacy(monkeypatch):
-    # KEY_ID만 있고 KEY가 없으면 API HUB 모드로 가면 안 됨
-    _clear_naver_env(monkeypatch)
-    monkeypatch.setenv("NCP_APIGW_API_KEY_ID", "hub-id")
-    monkeypatch.setenv("NAVER_CLIENT_ID", "legacy-id")
-    monkeypatch.setenv("NAVER_CLIENT_SECRET", "legacy-secret")
-
-    config = load_config()
-
-    assert config.naver.api_mode == "openapi"
-
-
-def test_load_config_error_mentions_both_credential_sets(monkeypatch):
-    _clear_naver_env(monkeypatch)
 
     with pytest.raises(EnvironmentError, match="NCP_APIGW_API_KEY_ID"):
         load_config()
 
 
+def test_load_config_error_lists_missing_apihub_vars(monkeypatch):
+    _clear_naver_env(monkeypatch)
+    monkeypatch.setenv("NCP_APIGW_API_KEY_ID", "hub-id")
+
+    with pytest.raises(EnvironmentError, match="NCP_APIGW_API_KEY"):
+        load_config()
+
+
 # ---------------------------------------------------------------------------
-# fetch_news: 모드별 엔드포인트/인증 헤더
+# fetch_news: API HUB 엔드포인트/인증 헤더
 # ---------------------------------------------------------------------------
 
-def test_apihub_mode_uses_new_endpoint_and_headers(monkeypatch):
+def test_fetch_news_uses_apihub_endpoint_and_headers(monkeypatch):
     start, end = _window()
     session = FakeSession([FakeResponse(200, _success_payload())])
     monkeypatch.setattr(naver.requests, "Session", lambda: session)
-    config = NaverConfig(client_id="hub-id", client_secret="hub-secret", api_mode="apihub")
+    config = NaverConfig(client_id="hub-id", client_secret="hub-secret")
 
     items = naver.fetch_news(config, ["금융"], start, end, display=100, max_pages=1)
 
@@ -92,37 +78,19 @@ def test_apihub_mode_uses_new_endpoint_and_headers(monkeypatch):
         "X-NCP-APIGW-API-KEY-ID": "hub-id",
         "X-NCP-APIGW-API-KEY": "hub-secret",
     }
-    # 요청 파라미터는 기존과 동일해야 함 (이관 가이드 기준)
+    # 요청 파라미터는 기존과 동일 (이관 가이드 기준)
     assert call["params"]["query"] == "금융"
     assert call["params"]["sort"] == "date"
     assert len(items) == 1
 
 
-def test_legacy_mode_keeps_old_endpoint_and_headers(monkeypatch):
-    start, end = _window()
-    session = FakeSession([FakeResponse(200, _success_payload())])
-    monkeypatch.setattr(naver.requests, "Session", lambda: session)
-    config = NaverConfig(client_id="legacy-id", client_secret="legacy-secret")
-
-    naver.fetch_news(config, ["금융"], start, end, display=100, max_pages=1)
-
-    call = session.calls[0]
-    assert call["url"] == "https://openapi.naver.com/v1/search/news.json"
-    assert call["headers"] == {
-        "X-Naver-Client-Id": "legacy-id",
-        "X-Naver-Client-Secret": "legacy-secret",
-    }
-
-
 def test_apihub_secret_not_logged_on_retry(monkeypatch, caplog):
-    import logging
-
     start, end = _window()
     session = FakeSession([FakeResponse(500), FakeResponse(200, _success_payload())])
     monkeypatch.setattr(naver.requests, "Session", lambda: session)
     monkeypatch.setattr(naver.time, "sleep", lambda seconds: None)
     monkeypatch.setenv("NAVER_RETRY_BACKOFF_SECONDS", "0")
-    config = NaverConfig(client_id="hub-id", client_secret="hub-super-secret", api_mode="apihub")
+    config = NaverConfig(client_id="hub-id", client_secret="hub-super-secret")
 
     with caplog.at_level(logging.INFO):
         naver.fetch_news(config, ["금융"], start, end, display=100, max_pages=1)
