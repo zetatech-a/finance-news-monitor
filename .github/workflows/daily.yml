@@ -167,7 +167,9 @@ jobs:
           MAIL_FROM: ${{ secrets.MAIL_FROM }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
         run: |
-          python -m src.notify_email
+          # 리포트를 생성한 날짜를 그대로 전달 — 발송 시점에 자정(KST)을 넘겨도
+          # 방금 만든 리포트가 정확히 첨부된다
+          python -m src.notify_email --report-date "${{ steps.phase5_recheck.outputs.report_date }}"
           echo "email_sent_at_kst=$(TZ='Asia/Seoul' date --iso-8601=seconds)"
 
       - name: Write sent marker

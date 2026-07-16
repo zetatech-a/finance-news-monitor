@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import argparse
 import logging
 import mimetypes
 import os
 import smtplib
+import sys
 import time
+from datetime import date
 from email.message import EmailMessage
 from email.utils import formataddr
 from pathlib import Path
@@ -202,23 +205,44 @@ def send_email(subject: str, body: str, attachments: list[Path]) -> None:
     )
 
 
-def resolve_report_date_and_attachments(report_dir: Path) -> tuple[str, list[Path]]:
+def resolve_report_date_and_attachments(
+    report_dir: Path, report_date: str | None = None
+) -> tuple[str, list[Path]]:
     """
     Return (report_date, attachments) for email.
-    Email attachments policy: HTML only, 당일 리포트만.
+    Email attachments policy: HTML only, 지정 날짜(기본: 오늘 KST) 리포트만.
 
-    과거에는 당일 리포트가 없으면 가장 최근 옛 리포트로 대체 발송했지만,
+    report_date는 워크플로가 리포트를 생성한 날짜를 그대로 전달하기 위한 값이다.
+    발송 시점에 now_kst()로 다시 계산하면 생성과 발송 사이에 자정(KST)을 넘긴
+    경우(지연 러너·수동 재실행 등) 방금 만든 리포트를 못 찾는다.
+
+    과거에는 대상 리포트가 없으면 가장 최근 옛 리포트로 대체 발송했지만,
     생성 실패가 '옛 날짜 리포트 메일'로 위장되는 문제가 있어 제거했다.
-    당일 파일이 없으면 main()에서 발송 없이 실패하고, sent marker가 없으므로
+    파일이 없으면 main()에서 발송 없이 실패하고, sent marker가 없으므로
     다음 cron 실행이 리포트를 다시 만든 뒤 발송을 재시도한다.
     """
-    today = now_kst().date().isoformat()
-    return today, [report_dir / f"{today}.html"]
+    date_str = (report_date or "").strip() or now_kst().date().isoformat()
+    date.fromisoformat(date_str)  # 잘못된 날짜 형식이면 즉시 실패
+    return date_str, [report_dir / f"{date_str}.html"]
 
 
-def main() -> None:
+def parse_args(argv: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Send the daily report email")
+    parser.add_argument(
+        "--report-date",
+        default="",
+        help="발송할 리포트 날짜(YYYY-MM-DD). 미지정 시 오늘(KST). "
+        "CI에서는 워크플로의 report_date를 그대로 전달할 것",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> None:
+    args = parse_args(argv if argv is not None else [])
     report_dir = Path("reports")
-    report_date, attachments = resolve_report_date_and_attachments(report_dir)
+    report_date, attachments = resolve_report_date_and_attachments(
+        report_dir, args.report_date
+    )
 
     missing = [path for path in attachments if not path.exists()]
     if missing:
@@ -242,4 +266,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
