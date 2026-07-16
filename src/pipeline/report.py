@@ -478,13 +478,9 @@ def render_markdown(
     lines.append("")
     lines.append("## 업권별 주요 기사")
 
-    by_sector: dict[str, list[TaggedArticle]] = defaultdict(list)
-    for item in tagged:
-        for sector in item.sectors:
-            by_sector[sector].append(item)
-
-    sector_order = [*SECTOR_ORDER, "기타"]
-    ordered_sectors = sector_order + [s for s in by_sector.keys() if s not in sector_order]
+    # HTML 리포트와 동일한 노출 규칙 사용 — '기타'는 고신뢰 기사만 최대 10건.
+    # (과거에는 MD가 모든 기타 기사를 노출해 HTML과 목록이 어긋났다)
+    by_sector, ordered_sectors = _build_visible_sector_buckets(tagged)
     for sector in ordered_sectors:
         if sector not in by_sector:
             continue

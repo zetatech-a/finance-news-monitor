@@ -91,9 +91,11 @@ pip install pytest
 cp .env.example .env   # template for your values
 ```
 
-**IMPORTANT**: There is no python-dotenv integration — `.env` is **not** loaded
-automatically. `src/config.py` reads `os.environ` directly, so export the
-variables into your shell before running:
+`.env` is auto-loaded (best-effort, no python-dotenv dependency) by the
+`run_daily` and `notify_email` entry points via
+`src/config.py::load_dotenv_if_present()` — **already-exported variables always
+win** (CI secrets are never overridden). Standalone scripts under `scripts/`
+do not load `.env`; export variables manually for those:
 
 ```bash
 set -a; source .env; set +a
@@ -315,6 +317,9 @@ Notes:
   `git push origin HEAD:main`.
 - Manual runs default to no email; `send_email=true` to send, plus
   `force_send=true` to re-send when a marker already exists.
+- Missing SMTP secrets **skip** the email step (with a workflow-summary
+  warning) instead of failing the run — repos without email configured
+  stay green.
 
 ---
 
@@ -357,6 +362,11 @@ Conventions: files named `test_*.py`; no network access (SMTP/HTTP are faked
 via monkeypatch). The suite must pass before pushing. Some files are named
 after project phases (`test_phase8c_candidate_hybrid.py` etc.) — treat the
 assertions, not the phase names, as the spec.
+
+One guard test inspects the **uncommitted git diff** and fails while
+`.github/workflows/daily.yml` or `src/ml/` have local modifications. When
+editing those intentionally, run with `ALLOW_DELIVERY_SCHEDULE_CHANGES=1`
+to skip it (it passes again after commit).
 
 Additional quality checks: CI smoke test (`smoke.yml`), manual review of
 `reports/_candidates/*.csv` and `reports/_metrics/*.json`.

@@ -150,9 +150,17 @@ jobs:
             fi
           done
 
+          # secrets 미설정은 "발송 의도 없음"으로 보고 skip한다 — 예전처럼 exit 1로
+          # 실패시키면 발송을 안 쓰는 저장소에서 매일 cron 5회가 전부 빨간불이 된다.
+          # 대신 워크플로 Summary에 눈에 띄는 경고를 남긴다.
           if (( ${#missing[@]} > 0 )); then
-            echo "Missing secrets: ${missing[*]}" >&2
-            exit 1
+            echo "::warning::Email skipped — missing secrets: ${missing[*]}"
+            {
+              echo "## ⚠️ 이메일 미발송"
+              echo "다음 secrets가 설정되지 않아 발송을 건너뜁니다: ${missing[*]}"
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "should_send=false" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
           echo "should_send=true" >> "$GITHUB_OUTPUT"
