@@ -105,8 +105,15 @@ set -a; source .env; set +a
 
 | Variable | Required | Purpose |
 |----------|----------|---------|
-| `NAVER_CLIENT_ID` | Yes | Naver News API authentication |
-| `NAVER_CLIENT_SECRET` | Yes | Naver News API authentication |
+| `NCP_APIGW_API_KEY_ID` | Yes* | **NAVER API HUB** Client ID (preferred when set) |
+| `NCP_APIGW_API_KEY` | Yes* | **NAVER API HUB** Client Secret (preferred when set) |
+| `NAVER_CLIENT_ID` | Yes* | Legacy NAVER Developers Center Client ID (fallback) |
+| `NAVER_CLIENT_SECRET` | Yes* | Legacy NAVER Developers Center Client Secret (fallback) |
+
+\* One credential pair is required. When both `NCP_APIGW_*` vars are set the
+pipeline calls **NAVER API HUB** (`naverapihub.apigw.ntruss.com`); otherwise it
+falls back to the legacy `openapi.naver.com` endpoint. Removing the `NCP_APIGW_*`
+secrets instantly rolls back to the legacy path.
 | `NAVER_HTTP_TIMEOUT_SECONDS` | No | Naver API timeout (default 10, max 60) |
 | `NAVER_RETRY_ATTEMPTS` | No | Naver API retry count (default 3, max 5) |
 | `NAVER_RETRY_BACKOFF_SECONDS` | No | Naver API retry backoff base (default 1, max 30) |
@@ -398,11 +405,22 @@ daily reports are kept 180 days; `_candidates`/`_metrics`/`_sent` files 90 days
 
 ### Naver News Search API
 
-- **Base URL**: `https://openapi.naver.com/v1/search/news.json`
-- **Auth**: `X-Naver-Client-Id` + `X-Naver-Client-Secret` headers
+Two modes, selected by `src/config.py::load_config()` (API HUB preferred):
+
+| | **NAVER API HUB** (current) | Legacy NAVER Developers Center |
+|---|---|---|
+| Base URL | `https://naverapihub.apigw.ntruss.com/search/v1/news` | `https://openapi.naver.com/v1/search/news.json` |
+| Auth headers | `X-NCP-APIGW-API-KEY-ID` + `X-NCP-APIGW-API-KEY` | `X-Naver-Client-Id` + `X-Naver-Client-Secret` |
+| Env vars | `NCP_APIGW_API_KEY_ID` / `NCP_APIGW_API_KEY` | `NAVER_CLIENT_ID` / `NAVER_CLIENT_SECRET` |
+
+- Request params (`query`/`display`/`start`/`sort`) and the response JSON are
+  the same in both modes (per the migration guide); parsing code is shared.
+- Legacy credentials can NOT call API HUB and vice versa.
 - **Pagination**: `display=100`, `start=1/101/201/...` (max 1000 results per query)
 - **Sort**: always `sort=date`; paging stops early once a page is older than the window
-- **Retry**: 429/5xx and timeouts retried with exponential backoff (env-tunable)
+- **Retry**: 429/5xx and timeouts retried with exponential backoff (env-tunable).
+  Note: API HUB is API-Gateway-based, so error response bodies/status codes may
+  differ from the legacy endpoint.
 
 ### Full-Text Scraping
 

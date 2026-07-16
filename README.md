@@ -10,9 +10,11 @@
 
 ## 요구사항
 - Python 3.11+
-- 환경변수 설정
-  - `NAVER_CLIENT_ID`
-  - `NAVER_CLIENT_SECRET`
+- 환경변수 설정 (둘 중 한 쌍 필수)
+  - **NAVER API HUB** (네이버 클라우드 플랫폼, 권장): `NCP_APIGW_API_KEY_ID` / `NCP_APIGW_API_KEY`
+  - 레거시 NAVER Developers Center (폴백): `NAVER_CLIENT_ID` / `NAVER_CLIENT_SECRET`
+  - 신규 키가 설정되어 있으면 API HUB(`naverapihub.apigw.ntruss.com`)를 우선 호출하고,
+    없으면 기존 `openapi.naver.com`으로 동작합니다.
 
 ## 설치
 ```bash

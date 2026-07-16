@@ -115,6 +115,9 @@ jobs:
       - name: Run daily report
         if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
         env:
+          # NAVER API HUB 신규 키가 우선, 없으면 기존 키로 폴백 (src/config.py)
+          NCP_APIGW_API_KEY_ID: ${{ secrets.NCP_APIGW_API_KEY_ID }}
+          NCP_APIGW_API_KEY: ${{ secrets.NCP_APIGW_API_KEY }}
           NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
           NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
         run: |

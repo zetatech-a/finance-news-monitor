@@ -12,7 +12,12 @@ from dateutil import parser as date_parser
 
 from src.config import KST, NaverConfig, env_float as _env_float, env_int as _env_int
 
+# 기존 NAVER Developers Center (2026 NAVER API HUB 이관 전 방식 — 폴백용)
 NAVER_NEWS_ENDPOINT = "https://openapi.naver.com/v1/search/news.json"
+# NAVER API HUB (네이버 클라우드 플랫폼) — 이관 가이드 기준:
+# 도메인 naverapihub.apigw.ntruss.com, Path /search/v1/news (.json 접미사 없음),
+# Method/Query String은 기존과 동일
+APIHUB_NEWS_ENDPOINT = "https://naverapihub.apigw.ntruss.com/search/v1/news"
 DEFAULT_NAVER_HTTP_TIMEOUT_SECONDS = 10.0
 DEFAULT_NAVER_RETRY_ATTEMPTS = 3
 DEFAULT_NAVER_RETRY_BACKOFF_SECONDS = 1.0
@@ -134,10 +139,21 @@ def fetch_news(
         maximum=MAX_NAVER_RETRY_BACKOFF_SECONDS,
     )
 
-    headers = {
-        "X-Naver-Client-Id": config.client_id,
-        "X-Naver-Client-Secret": config.client_secret,
-    }
+    # 모드별 엔드포인트/인증 헤더 — 요청 파라미터와 응답 파싱은 두 모드 동일
+    if getattr(config, "api_mode", "openapi") == "apihub":
+        endpoint = APIHUB_NEWS_ENDPOINT
+        headers = {
+            "X-NCP-APIGW-API-KEY-ID": config.client_id,
+            "X-NCP-APIGW-API-KEY": config.client_secret,
+        }
+    else:
+        endpoint = NAVER_NEWS_ENDPOINT
+        headers = {
+            "X-Naver-Client-Id": config.client_id,
+            "X-Naver-Client-Secret": config.client_secret,
+        }
+    logger.info("Naver API mode=%s endpoint=%s", getattr(config, "api_mode", "openapi"), endpoint)
+
     items: list[dict] = []
     session = requests.Session()
     for query in queries:
@@ -153,7 +169,7 @@ def fetch_news(
             }
             response = _request_with_retry(
                 session,
-                url=NAVER_NEWS_ENDPOINT,
+                url=endpoint,
                 headers=headers,
                 params=params,
                 timeout=timeout,

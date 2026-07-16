@@ -89,6 +89,9 @@ def now_kst() -> datetime:
 class NaverConfig:
     client_id: str
     client_secret: str
+    # "apihub": NAVER API HUB(naverapihub.apigw.ntruss.com, X-NCP-APIGW-* 헤더)
+    # "openapi": 기존 NAVER Developers Center(openapi.naver.com, X-Naver-Client-* 헤더)
+    api_mode: str = "openapi"
 
 
 @dataclass(frozen=True)
@@ -97,18 +100,30 @@ class AppConfig:
 
 
 def load_config() -> AppConfig:
+    # NAVER API HUB 이관: 신규 키(NCP_APIGW_*)가 설정되어 있으면 API HUB 모드를
+    # 우선 사용하고, 없으면 기존 NAVER Developers Center 키로 폴백한다.
+    # 신규 키에 문제가 생기면 해당 secret만 제거해 즉시 기존 방식으로 롤백할 수 있다.
+    apihub_key_id = os.environ.get("NCP_APIGW_API_KEY_ID")
+    apihub_key = os.environ.get("NCP_APIGW_API_KEY")
+    if apihub_key_id and apihub_key:
+        return AppConfig(
+            naver=NaverConfig(
+                client_id=apihub_key_id,
+                client_secret=apihub_key,
+                api_mode="apihub",
+            )
+        )
+
     client_id = os.environ.get("NAVER_CLIENT_ID")
     client_secret = os.environ.get("NAVER_CLIENT_SECRET")
     if not client_id or not client_secret:
-        missing = [
-            name
-            for name, value in [
-                ("NAVER_CLIENT_ID", client_id),
-                ("NAVER_CLIENT_SECRET", client_secret),
-            ]
-            if not value
-        ]
         raise EnvironmentError(
-            f"Missing required environment variables: {', '.join(missing)}"
+            "Missing Naver API credentials: set NCP_APIGW_API_KEY_ID + "
+            "NCP_APIGW_API_KEY (NAVER API HUB) or NAVER_CLIENT_ID + "
+            "NAVER_CLIENT_SECRET (legacy NAVER Developers Center)"
         )
-    return AppConfig(naver=NaverConfig(client_id=client_id, client_secret=client_secret))
+    return AppConfig(
+        naver=NaverConfig(
+            client_id=client_id, client_secret=client_secret, api_mode="openapi"
+        )
+    )
