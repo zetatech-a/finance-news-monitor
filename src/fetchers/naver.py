@@ -10,7 +10,7 @@ from typing import Iterable
 import requests
 from dateutil import parser as date_parser
 
-from src.config import NaverConfig
+from src.config import KST, NaverConfig
 
 NAVER_NEWS_ENDPOINT = "https://openapi.naver.com/v1/search/news.json"
 DEFAULT_NAVER_HTTP_TIMEOUT_SECONDS = 10.0
@@ -26,10 +26,15 @@ logger = logging.getLogger(__name__)
 
 def _parse_pub_date(value: str) -> datetime | None:
     try:
-        return date_parser.parse(value)
+        parsed = date_parser.parse(value)
     except (ValueError, TypeError) as exc:
         logger.warning("Failed to parse pubDate %s: %s", value, exc)
         return None
+    if parsed.tzinfo is None:
+        # tz가 빠진 pubDate가 오면 KST로 간주한다 — naive datetime이 그대로
+        # 흘러가면 수집 윈도우(aware)와의 비교에서 TypeError로 전체 실행이 죽는다.
+        parsed = parsed.replace(tzinfo=KST)
+    return parsed
 
 
 def _clean_text(text: str) -> str:

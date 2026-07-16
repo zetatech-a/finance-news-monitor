@@ -18,7 +18,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
-from src.ml.relevance_model import predict_proba
+from src.ml.relevance_model import model_input_text, predict_proba
 
 REQUIRED_COLUMNS = {"title", "summary", "auto_label"}
 VALID_LABELS = {"1", "0", "review", ""}
@@ -31,9 +31,8 @@ DISAGREEMENT_COLUMNS = [
 
 
 def _text(row: dict[str, str]) -> str:
-    title = (row.get("title") or "").strip()
-    summary = (row.get("summary") or "").strip()
-    return f"{title}\n{title}\n{summary}".strip()
+    # 운영 추론(relevance_filter)과 동일한 형식이어야 한다 — 공용 함수 사용
+    return model_input_text(row.get("title", ""), row.get("summary", ""))
 
 
 def _weight(row: dict[str, str]) -> float:

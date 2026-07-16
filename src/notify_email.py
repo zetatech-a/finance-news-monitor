@@ -5,7 +5,6 @@ import mimetypes
 import os
 import smtplib
 import time
-from datetime import date
 from email.message import EmailMessage
 from email.utils import formataddr
 from pathlib import Path
@@ -206,36 +205,27 @@ def send_email(subject: str, body: str, attachments: list[Path]) -> None:
 def resolve_report_date_and_attachments(report_dir: Path) -> tuple[str, list[Path]]:
     """
     Return (report_date, attachments) for email.
-    Email attachments policy: HTML only.
+    Email attachments policy: HTML only, 당일 리포트만.
+
+    과거에는 당일 리포트가 없으면 가장 최근 옛 리포트로 대체 발송했지만,
+    생성 실패가 '옛 날짜 리포트 메일'로 위장되는 문제가 있어 제거했다.
+    당일 파일이 없으면 main()에서 발송 없이 실패하고, sent marker가 없으므로
+    다음 cron 실행이 리포트를 다시 만든 뒤 발송을 재시도한다.
     """
     today = now_kst().date().isoformat()
-    html_today = report_dir / f"{today}.html"
-
-    # Prefer today's HTML report
-    if html_today.exists():
-        return today, [html_today]
-
-    # Otherwise, find the latest available HTML report date
-    available_dates: set[str] = set()
-    for path in report_dir.glob("*.html"):
-        if len(path.stem) == 10:
-            try:
-                _ = date.fromisoformat(path.stem)
-                available_dates.add(path.stem)
-            except ValueError:
-                continue
-
-    if not available_dates:
-        # Nothing exists yet; return the expected path (send_email will skip if missing)
-        return today, [html_today]
-
-    latest = max(available_dates)
-    return latest, [report_dir / f"{latest}.html"]
+    return today, [report_dir / f"{today}.html"]
 
 
 def main() -> None:
     report_dir = Path("reports")
     report_date, attachments = resolve_report_date_and_attachments(report_dir)
+
+    missing = [path for path in attachments if not path.exists()]
+    if missing:
+        raise RuntimeError(
+            f"오늘({report_date}) 리포트가 없어 이메일을 발송하지 않습니다: "
+            f"{missing[0]} — 리포트 생성부터 다시 실행하세요"
+        )
 
     subject = f"[금융권 언론동향] {report_date} (KST)"
 

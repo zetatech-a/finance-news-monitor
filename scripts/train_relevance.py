@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import sys
 from pathlib import Path
 
 import joblib
@@ -10,6 +11,12 @@ from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
+ROOT_DIR = Path(__file__).resolve().parents[1]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
+from src.ml.relevance_model import model_input_text
+
 def load_labels(path: Path):
     rows = []
     with path.open("r", encoding="utf-8") as f:
@@ -18,7 +25,8 @@ def load_labels(path: Path):
             if not row.get("label"):
                 continue
             rows.append(row)
-    texts = [(row.get("title","") + "\n" + row.get("summary","")).strip() for row in rows]
+    # 운영 추론(relevance_filter)과 동일한 입력 형식이어야 한다 — 공용 함수 사용
+    texts = [model_input_text(row.get("title", ""), row.get("summary", "")) for row in rows]
     y = [int(row["label"]) for row in rows]
     return texts, y
 

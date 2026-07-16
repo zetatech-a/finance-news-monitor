@@ -7,7 +7,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Literal
 
-from src.ml.relevance_model import load_model, predict_proba
+from src.ml.relevance_model import load_model, model_input_text, predict_proba
 from src.pipeline.relevance_score import (
     CAPPED_NOISE_TERMS,
     FINANCE_RISK_OR_REGULATORY_SIGNALS,
@@ -726,12 +726,17 @@ def filter_relevance(
             )
 
     texts = [_text(a) for a in articles]
+    # 모델 입력은 룰 매칭용 텍스트와 별도 형식(제목 2회 가중) — 학습 스크립트와 공유
+    model_texts = [
+        model_input_text(_get(a, "title"), _get(a, "summary") or _get(a, "description"))
+        for a in articles
+    ]
     scores = [relevance_score(a) for a in articles]
 
     probs = None
     if model is not None and model_policy != "rule_only":
         try:
-            probs = predict_proba(model, texts)
+            probs = predict_proba(model, model_texts)
         except Exception as exc:
             logger.warning(
                 "Failed to score relevance model at %s; falling back to rules: %s",

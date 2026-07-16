@@ -185,6 +185,53 @@ def test_mail_backoff_sleep_is_capped(monkeypatch):
     assert sleeps == [120.0, 120.0, 120.0, 120.0]
 
 
+def test_main_raises_when_todays_report_missing(monkeypatch, tmp_path):
+    _set_required_mail_env(monkeypatch)
+    monkeypatch.setattr(notify_email.smtplib, "SMTP", FakeSMTP)
+    monkeypatch.chdir(tmp_path)
+    Path("reports").mkdir()
+
+    with pytest.raises(RuntimeError, match="발송하지 않습니다"):
+        notify_email.main()
+
+    # 발송 시도 자체가 없어야 하고, sent marker도 생기지 않아야 함
+    assert FakeSMTP.attempts == 0
+    assert not (tmp_path / "reports" / "_sent").exists()
+
+
+def test_main_does_not_fall_back_to_older_report(monkeypatch, tmp_path):
+    _set_required_mail_env(monkeypatch)
+    monkeypatch.setattr(notify_email.smtplib, "SMTP", FakeSMTP)
+    monkeypatch.chdir(tmp_path)
+    reports = Path("reports")
+    reports.mkdir()
+    (reports / "2020-01-01.html").write_text("old report", encoding="utf-8")
+
+    # 과거에는 가장 최근 옛 리포트로 대체 발송했지만, 이제는 실패해야 한다
+    with pytest.raises(RuntimeError, match="발송하지 않습니다"):
+        notify_email.main()
+
+    assert FakeSMTP.attempts == 0
+
+
+def test_main_sends_todays_report_when_present(monkeypatch, tmp_path):
+    _set_required_mail_env(monkeypatch)
+    monkeypatch.setattr(notify_email.smtplib, "SMTP", FakeSMTP)
+    monkeypatch.chdir(tmp_path)
+    reports = Path("reports")
+    reports.mkdir()
+    today = notify_email.now_kst().date().isoformat()
+    (reports / f"{today}.html").write_text("<html>report</html>", encoding="utf-8")
+
+    notify_email.main()
+
+    assert FakeSMTP.attempts == 1
+    attachment_names = [
+        part.get_filename() for part in FakeSMTP.sent_message.iter_attachments()
+    ]
+    assert attachment_names == [f"{today}.html"]
+
+
 def test_email_failure_does_not_create_or_touch_sent_marker(monkeypatch, tmp_path):
     _set_required_mail_env(monkeypatch)
     FakeSMTP.fail_until = 3
