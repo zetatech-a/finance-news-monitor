@@ -10,9 +10,10 @@
 
 ## 요구사항
 - Python 3.11+
-- 환경변수 설정
-  - `NAVER_CLIENT_ID`
-  - `NAVER_CLIENT_SECRET`
+- 환경변수 설정 — **NAVER API HUB** (네이버 클라우드 플랫폼)
+  - `NCP_APIGW_API_KEY_ID` / `NCP_APIGW_API_KEY`
+  - 2026년 이관으로 기존 NAVER Developers Center 키(`NAVER_CLIENT_ID`/`SECRET`)는
+    무효화되어 더 이상 사용하지 않습니다.
 
 ## 설치
 ```bash

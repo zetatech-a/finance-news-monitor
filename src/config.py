@@ -97,18 +97,21 @@ class AppConfig:
 
 
 def load_config() -> AppConfig:
-    client_id = os.environ.get("NAVER_CLIENT_ID")
-    client_secret = os.environ.get("NAVER_CLIENT_SECRET")
+    # NAVER API HUB(네이버 클라우드 플랫폼) 전용 — 2026년 이관으로 기존
+    # NAVER Developers Center 키(NAVER_CLIENT_ID/SECRET)는 더 이상 유효하지 않다.
+    client_id = os.environ.get("NCP_APIGW_API_KEY_ID")
+    client_secret = os.environ.get("NCP_APIGW_API_KEY")
     if not client_id or not client_secret:
         missing = [
             name
             for name, value in [
-                ("NAVER_CLIENT_ID", client_id),
-                ("NAVER_CLIENT_SECRET", client_secret),
+                ("NCP_APIGW_API_KEY_ID", client_id),
+                ("NCP_APIGW_API_KEY", client_secret),
             ]
             if not value
         ]
         raise EnvironmentError(
-            f"Missing required environment variables: {', '.join(missing)}"
+            f"Missing required environment variables: {', '.join(missing)} "
+            "(NAVER API HUB credentials)"
         )
     return AppConfig(naver=NaverConfig(client_id=client_id, client_secret=client_secret))

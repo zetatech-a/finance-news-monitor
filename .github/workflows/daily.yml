@@ -115,8 +115,9 @@ jobs:
       - name: Run daily report
         if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
         env:
-          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
-          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          # NAVER API HUB (기존 Developers Center 키는 이관 후 무효)
+          NCP_APIGW_API_KEY_ID: ${{ secrets.NCP_APIGW_API_KEY_ID }}
+          NCP_APIGW_API_KEY: ${{ secrets.NCP_APIGW_API_KEY }}
         run: |
           echo "report_generation_started_kst=$(TZ='Asia/Seoul' date --iso-8601=seconds)"
           echo "collection_end_hhmm=$COLLECTION_END_HHMM"

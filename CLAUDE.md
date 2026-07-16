@@ -77,7 +77,8 @@ finance-news-monitor/
 ### Prerequisites
 
 - Python 3.11+
-- Naver Developer account (for `NAVER_CLIENT_ID` / `NAVER_CLIENT_SECRET`)
+- Naver Cloud Platform account with a NAVER API HUB application
+  (for `NCP_APIGW_API_KEY_ID` / `NCP_APIGW_API_KEY`)
 - `pytest` for running tests (not in requirements.txt — install separately)
 
 ### Local Setup
@@ -105,8 +106,13 @@ set -a; source .env; set +a
 
 | Variable | Required | Purpose |
 |----------|----------|---------|
-| `NAVER_CLIENT_ID` | Yes | Naver News API authentication |
-| `NAVER_CLIENT_SECRET` | Yes | Naver News API authentication |
+| `NCP_APIGW_API_KEY_ID` | Yes | **NAVER API HUB** Client ID |
+| `NCP_APIGW_API_KEY` | Yes | **NAVER API HUB** Client Secret |
+
+Naver migrated its open APIs to **NAVER API HUB** (Naver Cloud Platform) in
+2026. Legacy NAVER Developers Center credentials (`NAVER_CLIENT_ID` /
+`NAVER_CLIENT_SECRET`) were invalidated by the migration and are no longer
+read anywhere in this codebase.
 | `NAVER_HTTP_TIMEOUT_SECONDS` | No | Naver API timeout (default 10, max 60) |
 | `NAVER_RETRY_ATTEMPTS` | No | Naver API retry count (default 3, max 5) |
 | `NAVER_RETRY_BACKOFF_SECONDS` | No | Naver API retry backoff base (default 1, max 30) |
@@ -396,13 +402,20 @@ daily reports are kept 180 days; `_candidates`/`_metrics`/`_sent` files 90 days
 
 ## External APIs
 
-### Naver News Search API
+### Naver News Search API (NAVER API HUB)
 
-- **Base URL**: `https://openapi.naver.com/v1/search/news.json`
-- **Auth**: `X-Naver-Client-Id` + `X-Naver-Client-Secret` headers
+- **Base URL**: `https://naverapihub.apigw.ntruss.com/search/v1/news`
+  (2026 migration from the retired `openapi.naver.com/v1/search/news.json`;
+  note the path reordering and the dropped `.json` suffix)
+- **Auth**: `X-NCP-APIGW-API-KEY-ID` + `X-NCP-APIGW-API-KEY` headers
+  (legacy `X-Naver-Client-*` headers/credentials no longer work)
+- Request params (`query`/`display`/`start`/`sort`) and the response JSON are
+  unchanged from the legacy API (per the migration guide)
 - **Pagination**: `display=100`, `start=1/101/201/...` (max 1000 results per query)
 - **Sort**: always `sort=date`; paging stops early once a page is older than the window
-- **Retry**: 429/5xx and timeouts retried with exponential backoff (env-tunable)
+- **Retry**: 429/5xx and timeouts retried with exponential backoff (env-tunable).
+  Note: API HUB is API-Gateway-based, so error response bodies/status codes may
+  differ from the legacy endpoint.
 
 ### Full-Text Scraping
 
