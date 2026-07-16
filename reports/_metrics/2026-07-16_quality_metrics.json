@@ -1,0 +1,267 @@
+{
+  "clusters": {
+    "cluster_count": 435,
+    "cluster_size_max": 187,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 187,
+        "relevance_prob": 0.8207881401325074,
+        "relevance_score": 31,
+        "sector": "거시·시장",
+        "title": "靑도 놀란 문제의 '삼전닉스 레버리지'…'F4회의' 오늘 열린다",
+        "url": "https://n.news.naver.com/mnews/article/079/0004168925?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1166,
+    "displayed_articles": 272,
+    "final_tagged_representatives": 435,
+    "normalized_articles": 1647,
+    "raw_items": 1647,
+    "relevance_filtered_articles": 837,
+    "rule_filtered_articles": 1142,
+    "tagged_before_cluster": 837
+  },
+  "date": "2026-07-16",
+  "generated_at": "2026-07-16T10:08:15.736542+09:00",
+  "publishers": {
+    "missing_publisher_count": 435,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 170,
+    "no_topic_ratio": 0.3908,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7013695647104818,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "경찰, 중대범죄 중수청 통보 규정에 \"민생사건 지연 우려\" 입장",
+        "url": "https://n.news.naver.com/mnews/article/001/0016197538?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8622853410847645,
+        "relevance_score": 15,
+        "sector": "핀테크·플랫폼",
+        "title": "PG사 부정결제 공동대응 나선다…금감원, 표준지침 마련 추진",
+        "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=847257"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7053805097269561,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 비트코인 6만4000달러선 유지…美 물가 둔...",
+        "url": "https://www.ajunews.com/view/20260716081356178"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6053016506754038,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "주태영 KB증권 부사장 \"경쟁력 갖춘 탑티어 IB 하우스로…생산적 금융 ...",
+        "url": "https://www.etoday.co.kr/news/view/2603844"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8151320096296258,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "보안 투자 996억원…LG유플러스, AI 보안 성과 담은 백서 발간",
+        "url": "https://www.ngonews.kr/news/articleView.html?idxno=233057"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7655975968460926,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "거래량 회복에 6.4만달러선…美·이란 긴장에 정체 [코인 모닝콜]",
+        "url": "https://n.news.naver.com/mnews/article/018/0006331358?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6897701053618166,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[더벨][Board Change] 한미약품, 채이배 사외이사 공직 재진입으로 이사...",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202607130801385740101682"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7640036954852163,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "서울 외곽까지 번진 집값 상승…전세난에 월세도 ‘사상 최고’",
+        "url": "https://n.news.naver.com/mnews/article/123/0002386646?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6649081901000733,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "사후 차단에서 '선제 예방'으로…이통사, AI 피싱 대응 고도화",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=713598"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.663690573875197,
+        "relevance_score": 4,
+        "sector": "입법·정책",
+        "title": "백악관 한마디에 비트코인 급반등…6만5000달러 회복, 불장 다시 오나",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=468861"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 1,
+      "거시·시장": 28,
+      "기타": 173,
+      "대부": 4,
+      "디지털자산": 59,
+      "보험": 4,
+      "상호금융": 12,
+      "여전": 17,
+      "은행": 37,
+      "입법·정책": 66,
+      "자산운용·연기금": 15,
+      "저축은행": 13,
+      "증권(브로커리지/리테일)": 2,
+      "핀테크·플랫폼": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 82,
+      "감독·제재": 4,
+      "건전성·자본규제": 5,
+      "규제·가계부채": 39,
+      "금리·수수료·최고금리": 24,
+      "기업금융·익스포저": 6,
+      "디지털자산": 65,
+      "물가·경기지표": 2,
+      "부동산·PF": 8,
+      "불법사금융·불법추심·보이스피싱": 26,
+      "사고·사기·횡령": 6,
+      "상품·영업·예금금리": 20,
+      "서민금융·대환·채무조정": 13,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 7,
+      "연체·부실": 10,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 16,
+      "증시·시장시황": 15,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 12,
+      "환율·외환": 8
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.80963237083495,
+        "relevance_score": 34,
+        "sector": "디지털자산",
+        "title": "금융위 “디지털자산법 연내 마련”…9월 당정 통합안 주목(종합)",
+        "url": "https://n.news.naver.com/mnews/article/018/0006331114?sid=101"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.8158120653034859,
+        "relevance_score": 30,
+        "sector": "입법·정책",
+        "title": "“원화 스테이블코인 조기 출시해야…한국형 온쇼어링 제언”",
+        "url": "https://www.etoday.co.kr/news/view/2604160"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6324652951404505,
+        "relevance_score": 30,
+        "sector": "입법·정책",
+        "title": "이재명 대통령 \"부동산 비중 너무 커 원시적…생산적 금융 전환 중요\"",
+        "url": "https://n.news.naver.com/mnews/article/008/0005386527?sid=100"
+      },
+      {
+        "cluster_size": 187,
+        "relevance_prob": 0.8207881401325074,
+        "relevance_score": 31,
+        "sector": "거시·시장",
+        "title": "靑도 놀란 문제의 '삼전닉스 레버리지'…'F4회의' 오늘 열린다",
+        "url": "https://n.news.naver.com/mnews/article/079/0004168925?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7028030849462201,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "포용금융 제도화 속도…중저신용자 지원·채무자 보호 강화 [금융위 업...",
+        "url": "https://n.news.naver.com/mnews/article/119/0003111649?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.6841557153946357,
+        "relevance_score": 29,
+        "sector": "입법·정책",
+        "title": "금융위, 국민성장펀드 200조 확대…생산·포용금융 개혁 속도",
+        "url": "https://www.geconomy.co.kr/news/article.html?no=321798"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.854136974445643,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "디지털자산기본법 속도 낸다…금융위 \"연내 마련\"",
+        "url": "https://n.news.naver.com/mnews/article/092/0002430627?sid=105"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.5982632807223494,
+        "relevance_score": 25,
+        "sector": "자산운용·연기금",
+        "title": "李대통령, 삼전·닉스 레버리지 ETF에 \"보완대책 신속히 마련하라\"",
+        "url": "https://n.news.naver.com/mnews/article/014/0005548627?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.528844569757875,
+        "relevance_score": 23,
+        "sector": "저축은행",
+        "title": "[포커스] 홈플러스 매각값에 달린 376억…'후순위' 저축은행 변수에 긴...",
+        "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=806684"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.40377395750967254,
+        "relevance_score": 23,
+        "sector": "자산운용·연기금",
+        "title": "[2차 부처보고-금융위] 李 \"빚 과감하게 탕감\" \"삼전닉스 레버리지ETF 대...",
+        "url": "https://www.polinews.co.kr/news/articleView.html?idxno=737149"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "입법·정책": 3,
+      "자산운용·연기금": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 3,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 1
+    }
+  }
+}
