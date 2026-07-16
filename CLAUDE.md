@@ -289,6 +289,11 @@ Two separate models; neither is currently committed to the repository:
 If neither model exists or loading/prediction fails, the run continues with
 `rule_only` — do not raise.
 
+**Model input format**: both models are trained AND served with
+`model_input_text(title, summary)` from `src/ml/relevance_model.py`
+(title repeated twice for TF-IDF weighting). Never build model input text
+inline — training/serving skew silently corrupts probabilities and metrics.
+
 ---
 
 ## CI/CD Workflows (`.github/workflows/`)
@@ -332,6 +337,9 @@ Notes:
   Partial recipient refusal raises and is retried; the sent marker is only
   written after a successful send. Do not reintroduce per-recipient send loops —
   they break idempotency across workflow re-runs.
+- **Email requires today's report**: if `reports/<today>.html` is missing,
+  `notify_email.main()` raises instead of sending — no fallback to older
+  reports, no attachment-less sends. The next cron run regenerates and retries.
 - **Metrics writing failures**: log a warning, continue
 - **Naver API failures in CI**: propagate after retries so the workflow fails visibly
 

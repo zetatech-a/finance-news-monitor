@@ -63,6 +63,31 @@ def _success_payload() -> dict:
     }
 
 
+def test_naive_pubdate_is_treated_as_kst_and_does_not_crash(monkeypatch):
+    start, end = _window()
+    payload = {
+        "items": [
+            {
+                "title": "tz 없는 기사",
+                "description": "desc",
+                "link": "https://news.naver.com/naive",
+                "originallink": "https://example.com/naive",
+                "pubDate": "2026-05-13 09:00:00",  # 타임존 정보 없음
+            }
+        ]
+    }
+    session = FakeSession([FakeResponse(200, payload)])
+    monkeypatch.setattr(naver.requests, "Session", lambda: session)
+
+    # naive datetime이 그대로 흘러가면 윈도우 비교에서 TypeError가 났었다
+    items = naver.fetch_news(_config(), ["금융"], start, end, display=100, max_pages=1)
+
+    assert len(items) == 1
+    pub = items[0]["pubDate"]
+    assert pub.tzinfo is not None
+    assert pub.utcoffset().total_seconds() == 9 * 3600  # KST로 간주
+
+
 def test_retries_once_on_http_500_then_succeeds(monkeypatch):
     start, end = _window()
     session = FakeSession([FakeResponse(500), FakeResponse(200, _success_payload())])

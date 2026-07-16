@@ -248,7 +248,47 @@ CAPPED_NOISE_TERMS: tuple[str, ...] = (
     "먹방",
     "여행",
     "축제",
+    # 금융상품 문맥(결혼 비용 대출, 출산 지원 금융 등)과 자주 결합하는 생활어 —
+    # 강한 금융 앵커 + 리스크/규제 신호가 함께 있을 때만 감점이 캡된다.
+    "결혼",
+    "임신",
+    "출산",
 )
+
+# 집행/감독 일반어 — 검찰 검사(동음이의), 비금융 공정위 기사 등에서도 흔해
+# 단독으로는 금융 신호로 치지 않고, 아래 금융 주체가 함께 언급될 때만 인정한다.
+ENFORCEMENT_GENERIC_TERMS: tuple[str, ...] = (
+    "검사",
+    "제재",
+    "과징금",
+    "행정처분",
+    "제도개선",
+    "특별단속",
+)
+
+# 집행 일반어를 금융 신호로 인정하기 위한 금융 주체/문맥 목록.
+# 공정위 자체는 비금융 사건도 다루므로 넣지 않는다 — "공정위 + 카드사 과징금"은
+# 카드사가 주체 조건을 채워 keep되고, "공정위 + 식품업체 과징금"은 drop된다.
+FINANCE_ENTITY_TERMS: tuple[str, ...] = (
+    "금감원", "금융감독원", "금융위", "금융위원회", "금융당국",
+    "금융권", "금융회사", "금융사", "금융업", "금융업권", "금융상품", "금융소비자",
+    "은행", "은행권", "시중은행", "인터넷은행", "저축은행", "상호금융",
+    "신협", "새마을금고", "농협", "수협",
+    "국민은행", "신한은행", "우리은행", "하나은행", "농협은행", "기업은행",
+    "산업은행", "카카오뱅크", "케이뱅크", "토스뱅크",
+    "카드사", "카드론", "카드수수료", "캐피탈", "여전사", "여신전문금융",
+    "보험사", "보험업계", "손해보험", "생명보험", "손보사", "생보사", "보험",
+    "증권사", "자산운용", "운용사", "연기금", "펀드",
+    # 자본시장 집행(공매도 과징금, 주가조작 제재 등)도 금융 문맥으로 인정
+    "자본시장", "공매도", "주가조작", "불공정거래", "회사채", "공모주",
+    "코스피", "코스닥", "한국거래소",
+    "대부업", "대부업체", "대부업권", "불법사금융", "불법 사금융", "사금융", "채권추심",
+    "가상자산", "암호화폐", "코인거래소", "가상자산거래소", "핀테크",
+)
+
+
+def has_finance_entity_context(text: str) -> bool:
+    return has_any_term(text, FINANCE_ENTITY_TERMS)
 
 _STRONG_CONTEXT_NEGATIVE_CAP = 1
 
@@ -328,8 +368,12 @@ def relevance_score(article) -> int:
     soft_score = 0
     neg_score = 0
 
-    # add hard anchors
+    # add hard anchors — 집행 일반어(검사/제재 등)는 금융 주체 문맥이 있을 때만 집계
+    finance_entity = has_finance_entity_context(text)
+    enforcement_generic = set(ENFORCEMENT_GENERIC_TERMS)
     for k, w in _WEIGHTS.hard.items():
+        if k in enforcement_generic and not finance_entity:
+            continue
         if contains_term(text, k):
             hard_score += w
 
@@ -366,8 +410,13 @@ def relevance_score(article) -> int:
 def matched_terms(article) -> dict[str, list[str]]:
     """Return safe matched relevance terms for observability/debugging."""
     text = normalize_text(_text(article))
+    hard = find_terms(text, _WEIGHTS.hard)
+    # 점수 집계와 동일하게, 금융 주체 문맥이 없으면 집행 일반어는 hard에서 제외
+    if not has_finance_entity_context(text):
+        enforcement_generic = set(ENFORCEMENT_GENERIC_TERMS)
+        hard = [term for term in hard if term not in enforcement_generic]
     return {
-        "hard": find_terms(text, _WEIGHTS.hard),
+        "hard": hard,
         "soft": find_terms(text, _WEIGHTS.soft),
         "negative": find_terms(text, _WEIGHTS.neg),
     }

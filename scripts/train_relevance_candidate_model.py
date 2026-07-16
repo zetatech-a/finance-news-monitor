@@ -18,7 +18,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
-from src.ml.relevance_model import predict_proba
+from src.ml.relevance_model import model_input_text, predict_proba
 
 REQUIRED_COLUMNS = {"title", "summary", "auto_label"}
 VALID_LABELS = {"1", "0", "review", ""}
@@ -31,9 +31,8 @@ DISAGREEMENT_COLUMNS = [
 
 
 def _text(row: dict[str, str]) -> str:
-    title = (row.get("title") or "").strip()
-    summary = (row.get("summary") or "").strip()
-    return f"{title}\n{title}\n{summary}".strip()
+    # 운영 추론(relevance_filter)과 동일한 형식이어야 한다 — 공용 함수 사용
+    return model_input_text(row.get("title", ""), row.get("summary", ""))
 
 
 def _weight(row: dict[str, str]) -> float:
@@ -81,9 +80,11 @@ def usable_rows(rows: Iterable[dict[str, str]]) -> tuple[list[dict[str, str]], d
 
 
 def build_model(seed: int) -> Pipeline:
+    # 운영 모델(train_relevance.py)과 동일한 char 2-5gram — 한국어는 형태소 분석
+    # 없이도 char ngram이 강력하고, 복합어 경계('국민은행' 속 '은행')도 자연히 잡는다.
     return Pipeline([
-        ("tfidf", TfidfVectorizer(ngram_range=(1, 2), min_df=1, max_features=50000)),
-        ("clf", LogisticRegression(max_iter=1000, class_weight="balanced", random_state=seed)),
+        ("tfidf", TfidfVectorizer(analyzer="char", ngram_range=(2, 5), min_df=1, max_features=50000)),
+        ("clf", LogisticRegression(max_iter=2000, class_weight="balanced", random_state=seed)),
     ])
 
 
