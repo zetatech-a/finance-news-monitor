@@ -7,7 +7,7 @@ from pathlib import Path
 
 import yaml
 
-from src.config import KST, load_config, now_kst
+from src.config import KST, load_config, load_dotenv_if_present, now_kst
 from src.fetchers.naver import fetch_news
 from src.pipeline.dedup import deduplicate
 from src.pipeline.filtering import filter_articles
@@ -295,6 +295,7 @@ def main() -> None:
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s"
     )
+    load_dotenv_if_present()  # 로컬 .env 자동 로드 (이미 export된 값은 유지)
     args = parse_args()
 
     if args.date:
@@ -319,9 +320,13 @@ def main() -> None:
     if args.use_deepsearch:
         logger.warning("DeepSearch is not configured in this MVP; skipping.")
 
-    # reports 폴더 없으면 생성
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    run_pipeline(args, start, end)
 
+
+def collect_articles(
+    args: argparse.Namespace, start: datetime, end: datetime
+) -> tuple[list, dict[str, list[str]], dict[str, list[str]], dict[str, int]]:
+    """수집 → 정규화 → 중복 제거 → 1차 룰 필터."""
     sector_queries, topic_queries, fetch_queries = load_queries()
     query_list = build_fetch_query_list(fetch_queries, sector_queries)
     logger.info(
@@ -336,36 +341,38 @@ def main() -> None:
         end=end,
         max_pages=args.max_pages,
     )
-    raw_items_count = len(raw_items)
-    logger.info("Counts: raw_items=%d", raw_items_count)
+    counts: dict[str, int] = {"raw_items": len(raw_items)}
+    logger.info("Counts: raw_items=%d", counts["raw_items"])
 
     articles = normalize(raw_items)
-    normalized_articles_count = len(articles)
-    logger.info("Counts: normalize=%d", normalized_articles_count)
+    counts["normalized_articles"] = len(articles)
+    logger.info("Counts: normalize=%d", counts["normalized_articles"])
 
     articles = deduplicate(articles)
-    deduped_articles_count = len(articles)
-    logger.info("Counts: dedup=%d", deduped_articles_count)
+    counts["deduped_articles"] = len(articles)
+    logger.info("Counts: dedup=%d", counts["deduped_articles"])
 
-    # ✅ 기존 1차 룰 필터(스포츠/엔터/잡기사 등)
+    # 1차 룰 필터(스포츠/엔터/잡기사 등)
     articles = filter_articles(articles)
-    rule_filtered_articles_count = len(articles)
-    logger.info("Counts: rule_filter=%d", rule_filtered_articles_count)
+    counts["rule_filtered_articles"] = len(articles)
+    logger.info("Counts: rule_filter=%d", counts["rule_filtered_articles"])
+    return articles, sector_queries, topic_queries, counts
 
-    # ✅ 금융 관련성 필터
+
+def apply_relevance_filter(
+    articles: list, args: argparse.Namespace, end: datetime
+) -> tuple[list, Path]:
+    """2차 금융 관련성 필터 — 정책 선택 + 후보 CSV/메트릭 기록."""
     # operating model은 authoritative, candidate model은 guardrail hybrid, 없으면 rule_only
-    operating_model_path = ROOT_DIR / "models" / "relevance.joblib"
-    candidate_model_path = ROOT_DIR / "models" / "relevance_candidate.joblib"
     model_path, model_policy = choose_relevance_model_policy(
-        operating_model_path=operating_model_path,
-        candidate_model_path=candidate_model_path,
+        operating_model_path=ROOT_DIR / "models" / "relevance.joblib",
+        candidate_model_path=ROOT_DIR / "models" / "relevance_candidate.joblib",
         disable_candidate_model=args.disable_candidate_model,
     )
-    candidates_csv = (
-        REPORT_DIR / "_candidates" / f"{end.date().isoformat()}_candidates.csv"
-    )
+    date_str = end.date().isoformat()
+    candidates_csv = REPORT_DIR / "_candidates" / f"{date_str}_candidates.csv"
     relevance_metrics_path = (
-        REPORT_DIR / "_metrics" / f"{end.date().isoformat()}_relevance_filter_metrics.json"
+        REPORT_DIR / "_metrics" / f"{date_str}_relevance_filter_metrics.json"
     )
     before = len(articles)
     articles = filter_relevance(
@@ -381,7 +388,7 @@ def main() -> None:
         gray_keep_min_score=args.candidate_gray_keep_min_score,
         no_model_keep_min_score=args.candidate_no_model_keep_min_score,
         metrics_path=relevance_metrics_path,
-        metrics_date=end.date().isoformat(),
+        metrics_date=date_str,
     )
     logger.info(
         "Relevance filtered: %d -> %d (dropped=%d, policy=%s, model_path=%s)",
@@ -391,37 +398,41 @@ def main() -> None:
         model_policy,
         model_path,
     )
-    relevance_filtered_articles_count = len(articles)
-    logger.info("Counts: relevance_filter=%d", relevance_filtered_articles_count)
+    logger.info("Counts: relevance_filter=%d", len(articles))
+    return articles, candidates_csv
 
-    # ✅ 금융 관련성 통과 기사만 섹터/토픽 태깅
+
+def tag_and_cluster(
+    articles: list,
+    sector_queries: dict[str, list[str]],
+    topic_queries: dict[str, list[str]],
+) -> tuple[list, list]:
+    """섹터/토픽 태깅 후 같은 이슈는 대표 기사만 남긴다."""
     tagged = tag_articles(articles, sector_queries, topic_queries=topic_queries)
     tagged_before_cluster_items = list(tagged)
 
-    # ✅ Phase 3: 같은 이슈 반복 기사는 대표 기사만 요약/렌더링
-    tagged_before_cluster_count = len(tagged)
-    before_cluster = tagged_before_cluster_count
+    before_cluster = len(tagged)
     tagged = cluster_tagged_articles(tagged)
     cluster_sizes = [int(getattr(item.article, "cluster_size", 1) or 1) for item in tagged]
-    max_cluster_size = max(cluster_sizes, default=0)
     logger.info(
         "Issue clustering: %d -> %d representatives grouped=%d max_cluster_size=%d",
         before_cluster,
         len(tagged),
         before_cluster - len(tagged),
-        max_cluster_size,
+        max(cluster_sizes, default=0),
     )
+    return tagged, tagged_before_cluster_items
 
-    # ✅ 요약 캐시 로드 (같은 URL 재요청 방지)
+
+def summarize_representatives(tagged: list) -> None:
+    """대표 기사 본문 추출요약 — 캐시 사용, description 교체."""
     cache_path = REPORT_DIR / "_cache" / "summary_cache.json"
     summary_cache = load_cache(cache_path)
 
-    # ✅ (중요) 태깅 후, 리포트에 실릴 "일부 기사만" 본문 추출 + 추출요약
     summarized, cache_hits, fetch_attempts = apply_extractive_summaries(
         tagged, summary_cache
     )
 
-    # ✅ 캐시 저장
     save_cache(cache_path, summary_cache)
     logger.info("Summary cache saved: %s (items=%d)", cache_path, len(summary_cache))
     logger.info(
@@ -431,18 +442,15 @@ def main() -> None:
         fetch_attempts,
     )
 
-    # 요약 반영 후 최종 본문(description) 기준으로 대표 기사만 태깅 재계산
-    representative_articles = [item.article for item in tagged]
-    tagged = tag_articles(representative_articles, sector_queries, topic_queries=topic_queries)
-    final_tagged_representatives_count = len(tagged)
-    visible_items = visible_report_items(tagged)
-    top_items = top_report_items(tagged, limit=10)
-    displayed_articles_count = len(visible_items)
-    logger.info(
-        "Counts: final_tagged_representatives=%d",
-        final_tagged_representatives_count,
-    )
 
+def write_quality(
+    end: datetime,
+    counts: dict[str, int],
+    tagged_before_cluster_items: list,
+    tagged: list,
+    top_items: list,
+) -> None:
+    """품질 메트릭 JSON 기록 — 실패해도 리포트 생성은 계속한다."""
     quality_metrics_path = (
         REPORT_DIR / "_metrics" / f"{end.date().isoformat()}_quality_metrics.json"
     )
@@ -450,16 +458,7 @@ def main() -> None:
         quality_metrics = build_quality_metrics(
             report_date=end.date().isoformat(),
             generated_at=now_kst(),
-            counts={
-                "raw_items": raw_items_count,
-                "normalized_articles": normalized_articles_count,
-                "deduped_articles": deduped_articles_count,
-                "rule_filtered_articles": rule_filtered_articles_count,
-                "relevance_filtered_articles": relevance_filtered_articles_count,
-                "tagged_before_cluster": tagged_before_cluster_count,
-                "final_tagged_representatives": final_tagged_representatives_count,
-                "displayed_articles": displayed_articles_count,
-            },
+            counts=counts,
             tagged_before_cluster=tagged_before_cluster_items,
             tagged_final=tagged,
             top_items=top_items,
@@ -473,13 +472,12 @@ def main() -> None:
             exc,
         )
 
+
+def write_outputs(end: datetime, tagged: list, candidates_csv: Path) -> None:
+    """Markdown/HTML 리포트 + 14일 인덱스 생성."""
     trends = keyword_trends(tagged)
     markdown_text = render_markdown(end, tagged, trends)
-
-    # ✅ 제품형 UI HTML 생성
     html_page = render_html(end, tagged, trends)
-
-    # ✅ html_override로 저장
     paths = write_report(end, markdown_text, REPORT_DIR, html_override=html_page)
 
     # index.html은 최근 리스트에서 제외하고, 날짜 파일명 기준으로 정렬 (YYYY-MM-DD.html)
@@ -493,6 +491,36 @@ def main() -> None:
     logger.info("Report written: %s", paths["markdown"])
     logger.info("Index written: %s", REPORT_DIR / "index.html")
     logger.info("Candidates saved: %s", candidates_csv)
+
+
+def run_pipeline(args: argparse.Namespace, start: datetime, end: datetime) -> None:
+    """일일 파이프라인: 수집 → 필터 → 태깅/클러스터 → 요약 → 리포트."""
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+
+    articles, sector_queries, topic_queries, counts = collect_articles(args, start, end)
+
+    articles, candidates_csv = apply_relevance_filter(articles, args, end)
+    counts["relevance_filtered_articles"] = len(articles)
+
+    tagged, tagged_before_cluster_items = tag_and_cluster(
+        articles, sector_queries, topic_queries
+    )
+    counts["tagged_before_cluster"] = len(tagged_before_cluster_items)
+
+    summarize_representatives(tagged)
+
+    # 요약 반영 후 최종 본문(description) 기준으로 대표 기사만 태깅 재계산
+    representative_articles = [item.article for item in tagged]
+    tagged = tag_articles(representative_articles, sector_queries, topic_queries=topic_queries)
+    counts["final_tagged_representatives"] = len(tagged)
+    logger.info("Counts: final_tagged_representatives=%d", len(tagged))
+
+    visible_items = visible_report_items(tagged)
+    top_items = top_report_items(tagged, limit=10)
+    counts["displayed_articles"] = len(visible_items)
+
+    write_quality(end, counts, tagged_before_cluster_items, tagged, top_items)
+    write_outputs(end, tagged, candidates_csv)
 
 
 if __name__ == "__main__":

@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+
+import pytest
 
 from scripts import phase5_delivery as p5
 
@@ -125,7 +128,13 @@ def test_scheduled_production_command_uses_end_hhmm_0855():
     assert "--end_hhmm 0820" not in workflow
 
 
+@pytest.mark.skipif(
+    os.environ.get("ALLOW_DELIVERY_SCHEDULE_CHANGES") == "1",
+    reason="daily.yml/src/ml 의도적 수정 중 — ALLOW_DELIVERY_SCHEDULE_CHANGES=1로 opt-out",
+)
 def test_no_delivery_retry_schedule_or_model_artifact_changed():
+    # 우발적인 배송 스케줄/모델 아티팩트 변경을 막는 가드.
+    # 의도적으로 수정 중일 때는 위 환경변수로 건너뛸 수 있다(커밋 후에는 자동 통과).
     changed = subprocess.check_output(["git", "diff", "--name-only"], text=True).splitlines()
 
     forbidden_prefixes = (

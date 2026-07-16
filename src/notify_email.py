@@ -12,7 +12,12 @@ from email.message import EmailMessage
 from email.utils import formataddr
 from pathlib import Path
 
-from src.config import now_kst
+from src.config import (
+    env_float as _env_float,
+    env_int as _env_int,
+    load_dotenv_if_present,
+    now_kst,
+)
 
 DEFAULT_SMTP_TIMEOUT_SECONDS = 30.0
 DEFAULT_MAIL_RETRY_ATTEMPTS = 3
@@ -29,46 +34,6 @@ def _req(name: str) -> str:
     if not v:
         raise RuntimeError(f"Missing environment variable: {name}")
     return v
-
-
-def _env_int(
-    name: str, default: int, minimum: int = 1, maximum: int | None = None
-) -> int:
-    raw = os.environ.get(name, "").strip()
-    if not raw:
-        return default
-    try:
-        value = int(raw)
-    except ValueError:
-        logger.warning("Invalid %s value; using default %s", name, default)
-        return default
-    if value < minimum:
-        logger.warning("Invalid %s value below %s; using default %s", name, minimum, default)
-        return default
-    if maximum is not None and value > maximum:
-        logger.warning("Invalid %s value above %s; using default %s", name, maximum, default)
-        return default
-    return value
-
-
-def _env_float(
-    name: str, default: float, minimum: float = 0.0, maximum: float | None = None
-) -> float:
-    raw = os.environ.get(name, "").strip()
-    if not raw:
-        return default
-    try:
-        value = float(raw)
-    except ValueError:
-        logger.warning("Invalid %s value; using default %s", name, default)
-        return default
-    if value < minimum:
-        logger.warning("Invalid %s value below %s; using default %s", name, minimum, default)
-        return default
-    if maximum is not None and value > maximum:
-        logger.warning("Invalid %s value above %s; using default %s", name, maximum, default)
-        return default
-    return value
 
 
 def _backoff_seconds(initial_backoff: float, attempt: int) -> float:
@@ -238,6 +203,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 
 
 def main(argv: list[str] | None = None) -> None:
+    load_dotenv_if_present()  # 로컬 .env 자동 로드 (이미 export된 값은 유지)
     args = parse_args(argv if argv is not None else [])
     report_dir = Path("reports")
     report_date, attachments = resolve_report_date_and_attachments(

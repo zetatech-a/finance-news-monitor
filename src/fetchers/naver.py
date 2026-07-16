@@ -10,7 +10,7 @@ from typing import Iterable
 import requests
 from dateutil import parser as date_parser
 
-from src.config import KST, NaverConfig
+from src.config import KST, NaverConfig, env_float as _env_float, env_int as _env_int
 
 NAVER_NEWS_ENDPOINT = "https://openapi.naver.com/v1/search/news.json"
 DEFAULT_NAVER_HTTP_TIMEOUT_SECONDS = 10.0
@@ -39,46 +39,6 @@ def _parse_pub_date(value: str) -> datetime | None:
 
 def _clean_text(text: str) -> str:
     return unescape(text).replace("<b>", "").replace("</b>", "").strip()
-
-
-def _env_int(
-    name: str, default: int, minimum: int = 1, maximum: int | None = None
-) -> int:
-    raw = os.environ.get(name, "").strip()
-    if not raw:
-        return default
-    try:
-        value = int(raw)
-    except ValueError:
-        logger.warning("Invalid %s value; using default %s", name, default)
-        return default
-    if value < minimum:
-        logger.warning("Invalid %s value below %s; using default %s", name, minimum, default)
-        return default
-    if maximum is not None and value > maximum:
-        logger.warning("Invalid %s value above %s; using default %s", name, maximum, default)
-        return default
-    return value
-
-
-def _env_float(
-    name: str, default: float, minimum: float = 0.0, maximum: float | None = None
-) -> float:
-    raw = os.environ.get(name, "").strip()
-    if not raw:
-        return default
-    try:
-        value = float(raw)
-    except ValueError:
-        logger.warning("Invalid %s value; using default %s", name, default)
-        return default
-    if value < minimum:
-        logger.warning("Invalid %s value below %s; using default %s", name, minimum, default)
-        return default
-    if maximum is not None and value > maximum:
-        logger.warning("Invalid %s value above %s; using default %s", name, maximum, default)
-        return default
-    return value
 
 
 def _is_retryable_status(status_code: int) -> bool:

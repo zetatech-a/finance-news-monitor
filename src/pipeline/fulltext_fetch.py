@@ -44,23 +44,36 @@ def _fix_mojibake(s: str) -> str:
                 pass
     return s
 
-def fetch_html(url: str, timeout: int = 12) -> str:
+# 응답 크기 상한 — 뉴스 본문은 앞부분에 있으므로 초대형 페이지(무한 피드,
+# 대용량 임베드 등)는 여기서 잘라 메모리 폭주를 막는다.
+MAX_HTML_BYTES = 2_000_000
+
+
+def fetch_html(url: str, timeout: int = 12, max_bytes: int = MAX_HTML_BYTES) -> str:
     """
     requests의 r.text(추정 인코딩)에 의존하지 말고,
     바이트 기반 + charset_normalizer로 디코딩해서 모지바케를 최소화.
     """
-    r = requests.get(url, headers=DEFAULT_HEADERS, timeout=timeout)
-    r.raise_for_status()
+    with requests.get(url, headers=DEFAULT_HEADERS, timeout=timeout, stream=True) as r:
+        r.raise_for_status()
+        header_encoding = r.encoding
+        chunks: list[bytes] = []
+        size = 0
+        for chunk in r.iter_content(chunk_size=65536):
+            chunks.append(chunk)
+            size += len(chunk)
+            if size >= max_bytes:
+                logger.debug("fetch_html truncated %s at %d bytes", url, size)
+                break
+        raw = b"".join(chunks)
 
-    raw = r.content
     best = from_bytes(raw).best()
     if best is not None:
         return str(best)
 
-    # fallback
-    enc = r.encoding or getattr(r, "apparent_encoding", None) or "utf-8"
+    # fallback: 헤더 선언 인코딩 → utf-8
     try:
-        return raw.decode(enc, errors="replace")
+        return raw.decode(header_encoding or "utf-8", errors="replace")
     except Exception:
         return raw.decode("utf-8", errors="replace")
 

@@ -21,12 +21,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-환경변수는 `.env.example`을 참고해 설정합니다. **`.env` 파일은 자동으로 로드되지
-않으므로**(dotenv 미사용) 실행 전에 셸로 export해야 합니다:
+환경변수는 `.env.example`을 참고해 설정합니다. `.env` 파일은 `run_daily`와
+`notify_email` 실행 시 자동으로 로드됩니다(이미 export된 값은 덮어쓰지 않음).
+`scripts/` 하위 스크립트를 직접 실행할 때는 수동 export가 필요합니다:
 
 ```bash
 cp .env.example .env   # 값 편집 후
-set -a; source .env; set +a
+set -a; source .env; set +a   # scripts/ 직접 실행 시에만 필요
 ```
 
 ## 실행
