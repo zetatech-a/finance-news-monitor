@@ -10,8 +10,10 @@ from typing import Any, Literal
 from src.ml.relevance_model import load_model, model_input_text, predict_proba
 from src.pipeline.relevance_score import (
     CAPPED_NOISE_TERMS,
+    ENFORCEMENT_GENERIC_TERMS,
     FINANCE_RISK_OR_REGULATORY_SIGNALS,
     STRONG_FINANCE_ANCHORS,
+    has_finance_entity_context,
     matched_terms as score_matched_terms,
     relevance_score,
 )
@@ -68,11 +70,9 @@ DOMAIN_SPECIFIC_ANCHORS: tuple[str, ...] = (
     "가계대출",
     "예대금리차",
     "pf",
-    "검사",
-    "제재",
-    "과징금",
-    "행정처분",
-    "제도개선",
+    # NOTE: 검사/제재/과징금/행정처분/제도개선 같은 집행 일반어는 검찰·비금융
+    # 공정위 기사에서도 흔해 무조건 앵커에서 제외 — has_domain_anchor()에서
+    # 금융 주체 문맥(FINANCE_ENTITY_TERMS)이 있을 때만 앵커로 인정한다.
     "불완전판매",
     "보이스피싱",
     # digital assets
@@ -212,20 +212,17 @@ _MARKET_OR_IPO_CONTEXT_TERMS: tuple[str, ...] = (
 # STRONG_FINANCE_ANCHORS / FINANCE_RISK_OR_REGULATORY_SIGNALS / CAPPED_NOISE_TERMS를
 # import해 사용한다 (단일 출처 — 복사본 금지).
 
-_REGULATOR_POLICY_ENFORCEMENT_TERMS: tuple[str, ...] = (
+_REGULATOR_TERMS: tuple[str, ...] = (
     "금감원",
     "금융감독원",
     "금융위",
     "금융위원회",
     "금융당국",
-    "검사",
-    "제재",
-    "과징금",
-    "행정처분",
-    "제도개선",
-    "불완전판매",
-    "특별단속",
 )
+
+# 감독기구명·금융 전문용어는 단독 인정, 집행 일반어(검사/제재/과징금/행정처분/
+# 제도개선/특별단속)는 금융 주체 문맥이 있을 때만 인정한다.
+_UNCONDITIONAL_ENFORCEMENT_TERMS: tuple[str, ...] = (*_REGULATOR_TERMS, "불완전판매")
 
 
 def _split_matched_terms(value: str | None) -> set[str]:
@@ -238,7 +235,11 @@ def has_domain_anchor(article_or_text: Any, matched_hard: str | None = None) -> 
     domain = {normalize_text(term) for term in DOMAIN_SPECIFIC_ANCHORS}
     if matched & domain:
         return True
-    return has_any_term(text, DOMAIN_SPECIFIC_ANCHORS)
+    if has_any_term(text, DOMAIN_SPECIFIC_ANCHORS):
+        return True
+    # 집행 일반어(검사/제재/과징금 등)는 금융 주체가 함께 언급될 때만 앵커로 인정
+    # — "공정위, 카드사 과징금"은 keep, "검찰, 담당 검사"·"식품업체 과징금"은 제외.
+    return has_any_term(text, ENFORCEMENT_GENERIC_TERMS) and has_finance_entity_context(text)
 
 
 def has_only_generic_anchors(article_or_text: Any, matched_hard: str | None = None) -> bool:
@@ -358,7 +359,9 @@ def _has_only_capped_noise(matched_negative: str) -> bool:
 
 def has_regulator_policy_enforcement_context(article_or_text: Any) -> bool:
     text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
-    return has_any_term(text, _REGULATOR_POLICY_ENFORCEMENT_TERMS)
+    if has_any_term(text, _UNCONDITIONAL_ENFORCEMENT_TERMS):
+        return True
+    return has_any_term(text, ENFORCEMENT_GENERIC_TERMS) and has_finance_entity_context(text)
 
 
 def is_corporate_macro_noise(article_or_text: Any, matched_hard: str | None = None) -> bool:
@@ -373,6 +376,16 @@ def is_generic_market_or_ipo_noise(article_or_text: Any, matched_hard: str | Non
     if has_domain_anchor(text, matched_hard) or has_regulator_policy_enforcement_context(text) or has_overseas_korean_market_impact(text) or (has_overseas_global_reference_context(text) and not is_low_value_overseas_market_noise(text)):
         return False
     return has_only_generic_anchors(text, matched_hard) and has_any_term(text, _MARKET_OR_IPO_CONTEXT_TERMS)
+
+
+def _loose_domain_anchor_hit(text: str) -> bool:
+    """토큰 경계 무시(단순 부분 문자열)로 도메인 앵커가 존재하는지 확인.
+
+    안전 매칭이 놓친 drop을 자동 계측하기 위한 용도로만 사용 — keep/drop
+    판정에는 절대 쓰지 않는다(리스크→리스 류 오탐이 그대로 살아나기 때문).
+    """
+    normalized = normalize_text(text)
+    return any(normalize_text(term) in normalized for term in DOMAIN_SPECIFIC_ANCHORS)
 
 
 def _get(article: Any, key: str) -> str:
@@ -608,8 +621,10 @@ def _write_metrics(
     input_count: int,
     kept_count: int,
     rows: list[dict[str, Any]],
+    suspect_boundary_drops: list[dict[str, str]] | None = None,
 ) -> None:
     decision_reason_counts = Counter(str(row["decision_reason"]) for row in rows)
+    suspect_boundary_drops = suspect_boundary_drops or []
     payload = {
         "date": date,
         "model_policy": model_policy,
@@ -685,6 +700,11 @@ def _write_metrics(
         "candidate_hybrid_negative_drop": decision_reason_counts[
             "candidate_hybrid_drop_negative_signal"
         ],
+        # 토큰 경계 언더매칭 모니터링: 느슨한 부분 문자열로는 도메인 앵커가 있는데
+        # 안전 매칭으로는 hard 매칭이 없어 drop된 기사 수. 이 값이 커지면
+        # 복합어 키워드 추가가 필요하다는 신호다.
+        "suspect_boundary_drop_count": len(suspect_boundary_drops),
+        "suspect_boundary_drop_samples": suspect_boundary_drops[:10],
     }
     metrics_path.parent.mkdir(parents=True, exist_ok=True)
     metrics_path.write_text(
@@ -748,6 +768,9 @@ def filter_relevance(
     model_used = probs is not None
     kept: list[Any] = []
     rows = []
+    # 안전 매칭(토큰 경계)이 도메인 앵커를 못 잡아 떨어졌을 가능성이 있는 drop을
+    # 자동 계측한다 — 사람이 주기적으로 CSV를 훑는 대신 metrics로 추이를 본다.
+    suspect_boundary_drops: list[dict[str, str]] = []
 
     for i, a in enumerate(articles):
         p = probs[i] if probs is not None else None
@@ -786,6 +809,10 @@ def filter_relevance(
 
         if keep:
             kept.append(a)
+        elif not matched["matched_hard"] and _loose_domain_anchor_hit(texts[i]):
+            suspect_boundary_drops.append(
+                {"title": _get(a, "title"), "url": _get(a, "url") or _get(a, "link")}
+            )
 
         prob_value = "" if p is None else round(p, 4)
         rows.append({
@@ -852,8 +879,16 @@ def filter_relevance(
                 input_count=len(articles),
                 kept_count=len(kept),
                 rows=rows,
+                suspect_boundary_drops=suspect_boundary_drops,
             )
         except Exception as exc:
             logger.warning("Failed to write relevance filter metrics to %s: %s", metrics_path, exc)
+
+    if suspect_boundary_drops:
+        logger.info(
+            "Relevance filter: %d dropped article(s) contain a domain anchor only under "
+            "loose substring matching (possible token-boundary miss)",
+            len(suspect_boundary_drops),
+        )
 
     return kept

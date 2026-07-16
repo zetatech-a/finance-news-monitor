@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Iterable
 
 from src.pipeline.normalize import Article
-from src.pipeline.text_matcher import has_any_term, normalize_text
+from src.pipeline.text_matcher import find_terms, has_any_term, normalize_text
 
 
 SPORTS_KEYWORDS = (
@@ -68,8 +68,8 @@ ENTERTAINMENT_DOMAINS = (
     "isplus.com",
 )
 
-ENTERTAINMENT_KEYWORDS = (
-    # 방송/연예
+# 명백한 연예/방송 신호 — 단독으로도 드랍 (강한 금융 앵커가 있으면 구제)
+ENTERTAINMENT_STRONG_KEYWORDS = (
     "예능",
     "연예",
     "연예계",
@@ -77,32 +77,39 @@ ENTERTAINMENT_KEYWORDS = (
     "가수",
     "아이돌",
     "드라마",
-    "영화",
     "시청률",
-    "방송",
-    "tv",
     "ost",
     "화보",
-    "팬",
     "콘서트",
     "뮤지컬",
+    "열애",
+    "공개열애",
+    "이혼",
+    # 특정 프로그램 태그(예: '(이숙캠)')
+    "이숙캠",
+)
+
+# 일상어와 겹치는 약한 신호 — 단독으로는 드랍하지 않고 2개 이상 겹칠 때만 드랍.
+# 예: "배우 ○○ 결혼"(배우=강)은 드랍되지만 "결혼 비용 대출 수요"(결혼 1개)는 통과.
+ENTERTAINMENT_WEAK_KEYWORDS = (
+    "영화",
+    "방송",
+    "tv",
+    "팬",
     "유튜브",
     "인스타",
     "sns",
     "틱톡",
-    # 가십/사생활
-    "열애",
-    "공개열애",
     "결혼",
-    "이혼",
     "임신",
     "출산",
     "근황",
     "해명",
     "캡처",
-    # 특정 프로그램 태그(예: '(이숙캠)')
-    "이숙캠",
 )
+
+# 하위호환: 기존 이름을 참조하는 코드/테스트용 (드랍 판정은 강/약 분리 로직 사용)
+ENTERTAINMENT_KEYWORDS = ENTERTAINMENT_STRONG_KEYWORDS + ENTERTAINMENT_WEAK_KEYWORDS
 
 # '대부'가 임대(공유재산) 맥락으로 쓰이는 비금융 노이즈를 차단
 PUBLIC_LEASE_KEYWORDS = (
@@ -138,6 +145,8 @@ FINANCE_STRONG_ANCHORS = (
     "대부업",
     "대부업법",
     "불법사금융",
+    "불법 사금융",  # 띄어 쓴 표기 — 실데이터에서 이 표기가 구제에 안 잡혀 유실된 사례 있음
+    "사금융",
     "채권추심",
     "npl",
     "부실채권",
@@ -156,13 +165,14 @@ FINANCE_STRONG_ANCHORS = (
 
 
 def _get_text_fields(article: Article | dict) -> str:
+    # URL은 키워드 매칭 대상에서 제외한다 — 경로/도메인 문자열('.tv' 등)이
+    # 엔터/스포츠 키워드로 오탐되는 것을 막는다. 도메인 차단은 _get_urls()로
+    # ENTERTAINMENT_DOMAINS에서 정밀하게 처리한다.
     if isinstance(article, Article):
         values = (
             article.title,
             article.description,
             article.query,
-            article.link,
-            article.originallink or "",
         )
     else:
         values = (
@@ -171,9 +181,6 @@ def _get_text_fields(article: Article | dict) -> str:
             article.get("summary", ""),
             article.get("content", ""),
             article.get("query", ""),
-            article.get("link", ""),
-            article.get("url", ""),
-            article.get("originallink", ""),
         )
     return normalize_text(" ".join(str(value) for value in values if value))
 
@@ -226,9 +233,13 @@ def filter_articles(articles: Iterable[Article]) -> list[Article]:
         if has_public_lease and not has_finance_strong:
             continue
 
-        # entertainment hints: drop unless strong finance anchors exist
-        if has_any_term(text, ENTERTAINMENT_KEYWORDS) and not has_finance_strong:
-            continue
+        # entertainment hints: 강한 신호 1개 또는 약한 신호 2개 이상이면 드랍
+        # (강한 금융 앵커가 있으면 구제). 약한 신호 1개만으로는 드랍하지 않는다.
+        if not has_finance_strong:
+            if has_any_term(text, ENTERTAINMENT_STRONG_KEYWORDS):
+                continue
+            if len(find_terms(text, ENTERTAINMENT_WEAK_KEYWORDS)) >= 2:
+                continue
 
         filtered.append(article)
 
