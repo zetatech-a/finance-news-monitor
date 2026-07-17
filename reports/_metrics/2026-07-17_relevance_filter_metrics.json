@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 24,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 27,
+  "candidate_hybrid_gray_rule_drop": 100,
+  "candidate_hybrid_gray_rule_keep": 27,
+  "candidate_hybrid_keep_overseas_global_reference": 33,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 31,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 807,
+  "candidate_hybrid_model_drop": 28,
+  "candidate_hybrid_model_keep": 196,
+  "candidate_hybrid_model_keep_with_domain_anchor": 196,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 807,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-17",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 24,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 21,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 100,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 27,
+    "candidate_hybrid_keep_overseas_global_reference": 33,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 31,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 807,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 28,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 196
+  },
+  "dropped_count": 189,
+  "input_count": 1284,
+  "kept_count": 1095,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1284,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 37,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[단독] 노인 2명 중 1명, 국민연금 담보 걸고 병원비 빌렸다 [예은이]",
+      "url": "https://biz.heraldcorp.com/article/10811792?ref=naver"
+    },
+    {
+      "title": "“취약 대출자 부담 재정-금융정책으로 덜어줘야”",
+      "url": "https://www.donga.com/news/Economy/article/all/20260716/134315503/2"
+    },
+    {
+      "title": "재무건전성 가늠 길목에 선 SC제일은행, 자본 관리의 과제 직면",
+      "url": "http://www.lkp.news/news/articleView.html?idxno=82026"
+    },
+    {
+      "title": "주담대 금리 8% ‘눈앞’인데…가계 이자 부담만 年 3.3조 급증",
+      "url": "https://www.sedaily.com/article/20068724?ref=naver"
+    },
+    {
+      "title": "신현송 “금리인상 따른 취약 대출자 부담, 재정·금융정책으로 덜어줘...",
+      "url": "https://www.donga.com/news/Economy/article/all/20260716/134312955/1"
+    },
+    {
+      "title": "[우리금융 임종룡 체제 2기] ⑥ '글로벌 강자' 였던 우리금융…뒤처진 ...",
+      "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=61676"
+    },
+    {
+      "title": "[이슈분석] 한은의 0.25%p 인상…빚 많을수록 커지는 금리 충격",
+      "url": "https://www.tfmedia.co.kr/news/article.html?no=205819"
+    },
+    {
+      "title": "삼성전자·계열사, 포용금융에 2000억 출연…무담보 대출로 4만명 지원",
+      "url": "http://www.ttlnews.com/news/articleView.html?idxno=3126199"
+    },
+    {
+      "title": "[데스크 칼럼] 긴축의 시간, 금리 너머의 과제",
+      "url": "https://www.ekn.kr/web/view.php?key=20260716025533105"
+    },
+    {
+      "title": "[이슈]SC제일은행, 3000억 신종자본증권 미차환…자본관리 부담 커지나",
+      "url": "https://www.the-today.com/news/articleView.html?idxno=87662"
+    }
+  ]
+}
