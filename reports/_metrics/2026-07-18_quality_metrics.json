@@ -1,0 +1,260 @@
+{
+  "clusters": {
+    "cluster_count": 70,
+    "cluster_size_max": 64,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 2,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 64,
+        "relevance_prob": 0.8960419387152248,
+        "relevance_score": 18,
+        "sector": "거시·시장",
+        "title": "“8월에 또 오를 수도”···긴축 고삐 죄는 한은, 다시 ‘고금리 예금...",
+        "url": "https://n.news.naver.com/mnews/article/032/0003458812?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 195,
+    "displayed_articles": 51,
+    "final_tagged_representatives": 70,
+    "normalized_articles": 277,
+    "raw_items": 277,
+    "relevance_filtered_articles": 141,
+    "rule_filtered_articles": 188,
+    "tagged_before_cluster": 141
+  },
+  "date": "2026-07-18",
+  "generated_at": "2026-07-18T10:06:29.589721+09:00",
+  "publishers": {
+    "missing_publisher_count": 70,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 24,
+    "no_topic_ratio": 0.3429,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7070436578193823,
+        "relevance_score": 14,
+        "sector": "여전",
+        "title": "\"휴가철 소비 잡아라\"···카드사, 해외결제부터 레저·문화까지 혜택...",
+        "url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422466"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7968558737103982,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[속담으로 배우는 100가지 보안 습관 66] 아는 길도 물어가라(6)-보이스...",
+        "url": "http://www.boannews.com/media/view.asp?idx=144218&kind=2"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7139399475742344,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "[N2 포커스] 대통령 업무보고 오른 CIFO 제도화…은행권 \"직책보다 실효...",
+        "url": "https://www.news2day.co.kr/article/20260715500246"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8096352623291883,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "리플(XRP), 1.08달러 박스권 속 규제 명확성이 향후 방향성 결정할 듯",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/378937"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7524623308279962,
+        "relevance_score": 9,
+        "sector": "감독·제재",
+        "title": "“은행 자체 감정평가 시정하라”… 감평협, 금융위에 공식 회신 요구",
+        "url": "https://n.news.naver.com/mnews/article/366/0001180023?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.719343132134777,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "영화까지 “마계 도시” 조롱…오명 억울한 인천 특단대책",
+        "url": "https://n.news.naver.com/mnews/article/025/0003538365?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6144599472157879,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[법조광장] '양형'과 '약관'으로의 후퇴",
+        "url": "https://www.lawtimes.co.kr/news/articleView.html?idxno=222317"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9115036276276234,
+        "relevance_score": 18,
+        "sector": "기타",
+        "title": "[자정 뉴스브리핑] 이란혁명수비대, 시리아 알탄프 미군 지휘센터 공격...",
+        "url": "https://www.tokenpost.kr/news/briefing/378858"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8395439066633029,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[막전막후] 보완수사권 폐지 제동 거는 4가지 기류...강경파는 '1818원 후...",
+        "url": "https://www.pennmike.com/news/articleView.html?idxno=123894"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8308823721398837,
+        "relevance_score": 10,
+        "sector": "입법·정책",
+        "title": "[단독] 韓美거래소 8월 MOU …\"24시간 거래체계 협력\"",
+        "url": "https://n.news.naver.com/mnews/article/009/0005708849?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 12,
+      "기타": 29,
+      "대부": 1,
+      "디지털자산": 9,
+      "상호금융": 1,
+      "여전": 1,
+      "은행": 6,
+      "입법·정책": 6,
+      "자산운용·연기금": 1,
+      "저축은행": 2,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 5,
+      "감독·제재": 1,
+      "건전성·자본규제": 2,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 10,
+      "기업금융·익스포저": 2,
+      "디지털자산": 12,
+      "불법사금융·불법추심·보이스피싱": 7,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 2,
+      "소비자보호·민원·불완전판매": 1,
+      "연체·부실": 2,
+      "일정·브리핑": 1,
+      "정책·제도개선": 3,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 1,
+      "해외·글로벌": 6,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8934522355426389,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "EU, 암호자산 자본규제 강화…\"국내 금융권도 선제 대응 필요\"",
+        "url": "http://www.fins.co.kr/news/articleView.html?idxno=109123"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.943169547199979,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "스테이블코인 제도화부터 과세까지…하반기 가상자산 무엇이 바뀌나",
+        "url": "https://www.etoday.co.kr/news/view/2604585"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8147081698809504,
+        "relevance_score": 26,
+        "sector": "거시·시장",
+        "title": "한은·정치권, 원화 스테이블코인 발행권 놓고 '시각차'",
+        "url": "https://daily.hankooki.com/news/articleView.html?idxno=1386682"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8620502107212856,
+        "relevance_score": 17,
+        "sector": "거시·시장",
+        "title": "기준금리 등 인상영향, 증권-저축은행-신용카드-캐피탈-리츠업종 '부정...",
+        "url": "http://www.newsfc.co.kr/news/articleView.html?idxno=79972"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7070436578193823,
+        "relevance_score": 14,
+        "sector": "여전",
+        "title": "\"휴가철 소비 잡아라\"···카드사, 해외결제부터 레저·문화까지 혜택...",
+        "url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422466"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7833345292408948,
+        "relevance_score": 16,
+        "sector": "디지털자산",
+        "title": "'실명계좌' 계약 줄줄이 만료···가상자산거래소-은행, 합종연횡 '촉각...",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=633269"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6648400564535287,
+        "relevance_score": 14,
+        "sector": "입법·정책",
+        "title": "[LIVE] 미 하원 금융위 '클래리티(CLARITY) 법안' 특별 청문회 라이브 중...",
+        "url": "https://www.tokenpost.kr/news/insights/378867"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9115036276276234,
+        "relevance_score": 18,
+        "sector": "기타",
+        "title": "[자정 뉴스브리핑] 이란혁명수비대, 시리아 알탄프 미군 지휘센터 공격...",
+        "url": "https://www.tokenpost.kr/news/briefing/378858"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4592750828496967,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "이재명 정부 포용금융의 그늘…금리 역전·은행 건전성 ‘경고등'",
+        "url": "https://n.news.naver.com/mnews/article/243/0000100556?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7524623308279962,
+        "relevance_score": 9,
+        "sector": "감독·제재",
+        "title": "“은행 자체 감정평가 시정하라”… 감평협, 금융위에 공식 회신 요구",
+        "url": "https://n.news.naver.com/mnews/article/366/0001180023?sid=101"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 2,
+      "기타": 1,
+      "디지털자산": 2,
+      "여전": 1,
+      "은행": 1,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "건전성·자본규제": 2,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 4,
+      "상품·영업·예금금리": 1,
+      "연체·부실": 2,
+      "정책·제도개선": 1,
+      "환율·외환": 1
+    }
+  }
+}

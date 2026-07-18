@@ -1,0 +1,91 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 7,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 4,
+  "candidate_hybrid_gray_rule_drop": 25,
+  "candidate_hybrid_gray_rule_keep": 4,
+  "candidate_hybrid_keep_overseas_global_reference": 7,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 103,
+  "candidate_hybrid_model_drop": 7,
+  "candidate_hybrid_model_keep": 26,
+  "candidate_hybrid_model_keep_with_domain_anchor": 26,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 103,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-18",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 7,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 1,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 25,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 4,
+    "candidate_hybrid_keep_overseas_global_reference": 7,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 103,
+    "candidate_hybrid_model_drop_prob_le_threshold": 7,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 26
+  },
+  "dropped_count": 47,
+  "input_count": 188,
+  "kept_count": 141,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 188,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 9,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "1·2금융권 금리차이 분석 … 서민들 이자 부담 낮췄죠",
+      "url": "https://www.mk.co.kr/article/12101059"
+    },
+    {
+      "title": "금리 인상에 취약차주 '빨간불'…자영업자 이자부담 1.8조원 늘어난다",
+      "url": "http://www.opinionnews.co.kr/news/articleView.html?idxno=141652"
+    },
+    {
+      "title": "비트코인 9360만원대 하락, 미국·이란 공방 격화에 위험자산 회피 심리...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=442570"
+    },
+    {
+      "title": "대출은 죄고 투자는 넓혔다…우리은행, '가계대출 관리·자산관리·국민...",
+      "url": "https://www.smartbizn.com/news/articleView.html?idxno=148647"
+    },
+    {
+      "title": "해외여행 전 환전만?…카드 설정도 꼭 챙기세요!",
+      "url": "https://www.koreareport.co.kr/news/articleView.html?idxno=51523"
+    },
+    {
+      "title": "대출 축소에 \"잔금 어떡하나\"...외곽 등 풍선효과 우려도",
+      "url": "https://www.ytn.co.kr/_ln/0102_202607180622233650"
+    },
+    {
+      "title": "BNK경남은행, ‘2026년 하반기 경영전략회의’… 빈대인 회장·정영두 시...",
+      "url": "http://www.breaknews.com/1222485"
+    },
+    {
+      "title": "[금융家] KB국민은행 ③ㅣ포용금융 강화 속 대출 조정·상생 지원 병행",
+      "url": "https://www.cbci.co.kr/news/articleView.html?idxno=589591"
+    },
+    {
+      "title": "부동산 토론회 릴레이 속 주택·건설업계 “규제보다 공급” “금융 숨...",
+      "url": "https://www.ekn.kr/web/view.php?key=20260716020563051"
+    }
+  ]
+}
