@@ -1,0 +1,80 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 5,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 0,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 3,
+  "candidate_hybrid_gray_rule_drop": 14,
+  "candidate_hybrid_gray_rule_keep": 3,
+  "candidate_hybrid_keep_overseas_global_reference": 2,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 91,
+  "candidate_hybrid_model_drop": 4,
+  "candidate_hybrid_model_keep": 20,
+  "candidate_hybrid_model_keep_with_domain_anchor": 20,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 91,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-19",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 5,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 14,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 3,
+    "candidate_hybrid_keep_overseas_global_reference": 2,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 91,
+    "candidate_hybrid_model_drop_prob_le_threshold": 4,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 20
+  },
+  "dropped_count": 27,
+  "input_count": 144,
+  "kept_count": 117,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 144,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 7,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "이종욱 의원 \"금리 0.75%p 인상 시 주택대출 이자 연 5조5000억 폭증\"",
+      "url": "https://www.pointe.co.kr/news/articleView.html?idxno=81911"
+    },
+    {
+      "title": "“도수치료 실손 끊긴다고?”…보험금 안 밀리려면 ‘이 서류’부터 챙...",
+      "url": "https://biz.heraldcorp.com/article/10812252?ref=naver"
+    },
+    {
+      "title": "집값 치솟고 대출 어려워지고...2030 주거불안↑",
+      "url": "https://www.ytn.co.kr/_ln/0102_202607190635396518"
+    },
+    {
+      "title": "\"마통이 벌써?\" 애꿎은 주담대만 막았다…총량규제에 실수요 '날벼락'",
+      "url": "https://www.mt.co.kr/finance/2026/07/19/2026071615443451523"
+    },
+    {
+      "title": "\"대출 숨통 틔워달라\" 분출…난제 직면한 정부[부동산 새판 짜기③]",
+      "url": "https://www.newsis.com/view/NISX20260716_0003712670"
+    },
+    {
+      "title": "대출 축소에 \"잔금 어떡하나\"...외곽 등 풍선효과 우려도",
+      "url": "https://www.ytn.co.kr/_ln/0102_202607182329376668"
+    },
+    {
+      "title": "잔금일 앞두고 '멘탈 붕괴'...대출 꽉 막히자 '매매 포기' 위기 [자막뉴...",
+      "url": "https://www.ytn.co.kr/_ln/0134_202607181441132492"
+    }
+  ]
+}
