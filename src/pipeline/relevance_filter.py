@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Literal
 
 from src.ml.relevance_model import load_model, model_input_text, predict_proba
+from src.pipeline.fields import field_value
 from src.pipeline.relevance_score import (
     CAPPED_NOISE_TERMS,
     ENFORCEMENT_GENERIC_TERMS,
@@ -389,9 +390,7 @@ def _loose_domain_anchor_hit(text: str) -> bool:
 
 
 def _get(article: Any, key: str) -> str:
-    if isinstance(article, dict):
-        return (article.get(key) or "").strip()
-    return (getattr(article, key, "") or "").strip()
+    return str(field_value(article, key) or "").strip()
 
 
 def _text(article: Any) -> str:
@@ -580,28 +579,40 @@ def _set_article_meta(
     candidate_drop_prob: float,
 ) -> None:
     label = "high" if score >= 8 else "med" if score >= 4 else "low"
-    values = {
-        "relevance_score": score,
-        "score": score,
-        "relevance_prob": prob,
-        "prob": prob,
-        "relevance_label": label,
-        "relevance_bucket": label,
-        "decision": "keep" if keep else "drop",
-        "decision_reason": decision_reason,
-        "keep": keep,
-        "relevance_model_policy": model_policy,
-        "model_used": model_used,
-        "candidate_keep_prob": candidate_keep_prob,
-        "candidate_drop_prob": candidate_drop_prob,
-        **matched,
-    }
     if isinstance(article, dict):
-        article.update(values)
+        # dict 입력(테스트/스크립트)은 별칭 키(score/prob/relevance_bucket)까지 기존 그대로 유지
+        article.update({
+            "relevance_score": score,
+            "score": score,
+            "relevance_prob": prob,
+            "prob": prob,
+            "relevance_label": label,
+            "relevance_bucket": label,
+            "decision": "keep" if keep else "drop",
+            "decision_reason": decision_reason,
+            "keep": keep,
+            "relevance_model_policy": model_policy,
+            "model_used": model_used,
+            "candidate_keep_prob": candidate_keep_prob,
+            "candidate_drop_prob": candidate_drop_prob,
+            **matched,
+        })
         return
 
-    for key, value in values.items():
-        setattr(article, key, value)
+    # Article은 정식 선언된 필드에만 기록한다 (별칭 없음 — 소비자는 canonical 이름 사용)
+    article.relevance_score = score
+    article.relevance_prob = prob
+    article.relevance_label = label
+    article.decision = "keep" if keep else "drop"
+    article.decision_reason = decision_reason
+    article.keep = keep
+    article.relevance_model_policy = model_policy
+    article.model_used = model_used
+    article.candidate_keep_prob = candidate_keep_prob
+    article.candidate_drop_prob = candidate_drop_prob
+    article.matched_hard = matched.get("matched_hard", "")
+    article.matched_soft = matched.get("matched_soft", "")
+    article.matched_negative = matched.get("matched_negative", "")
 
 
 def _write_metrics(

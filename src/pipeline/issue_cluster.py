@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from difflib import SequenceMatcher
 from typing import Any
 
+from src.pipeline.fields import field_value as _article_field
 from src.pipeline.filtering import is_blocked_source_url
 from src.pipeline.source_quality import publisher_name
 from src.pipeline.tagger import TaggedArticle
@@ -89,12 +90,6 @@ _ENTITY_PATTERNS = (
 _ENTITY_SUFFIXES = ("은행", "증권", "보험", "카드", "캐피탈", "저축은행", "자산운용", "거래소")
 
 _CROSS_SECTOR_SAFE_PREFIXES = ("finance:securities_liquidity", "finance:loan_relief")
-
-
-def _article_field(article: Any, key: str) -> Any:
-    if isinstance(article, dict):
-        return article.get(key)
-    return getattr(article, key, None)
 
 
 def _article_title(item: TaggedArticle) -> str:
@@ -445,12 +440,12 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
         size = len(cluster) + absorbed
 
         for rank, item in enumerate(sorted(cluster, key=_representative_score, reverse=True), start=1):
-            setattr(item.article, "cluster_id", cid)
-            setattr(item.article, "cluster_size", size)
-            setattr(item.article, "cluster_rank", rank)
-            setattr(item.article, "cluster_is_representative", item is representative)
-            setattr(item.article, "related_count", max(size - 1, 0))
-            setattr(item.article, "related_articles", [])
+            item.article.cluster_id = cid
+            item.article.cluster_size = size
+            item.article.cluster_rank = rank
+            item.article.cluster_is_representative = item is representative
+            item.article.related_count = max(size - 1, 0)
+            item.article.related_articles = []
 
         # 관련 기사 목록: 클러스터 멤버(대표 제외) 우선, 이어서 각 멤버가 흡수한
         # 중복 출처 순으로 병합. 링크(없으면 제목) 기준으로 중복 제거 후 5건 저장.
@@ -482,7 +477,7 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
             seen_keys.add(key)
             related.append(entry)
 
-        setattr(representative.article, "related_articles", related[:5])
+        representative.article.related_articles = related[:5]
         representatives.append(representative)
 
     return representatives

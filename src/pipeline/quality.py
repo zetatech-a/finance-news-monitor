@@ -7,6 +7,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from src.pipeline.fields import field_value as _field, unwrap_article as _article
 from src.pipeline.tagger import TaggedArticle
 
 MISC_SECTOR = "\uae30\ud0c0"
@@ -23,17 +24,6 @@ COUNT_KEYS = (
 )
 
 PUBLISHER_KEYS = ("press", "publisher", "office", "company", "source")
-
-
-def _field(obj: Any, key: str) -> Any:
-    if isinstance(obj, dict):
-        return obj.get(key)
-    return getattr(obj, key, None)
-
-
-def _article(item: TaggedArticle | Any) -> Any:
-    article = _field(item, "article")
-    return item if article is None else article
 
 
 def _clean_str(value: Any) -> str:
