@@ -4,6 +4,7 @@ import re
 from typing import Iterable
 
 from src.pipeline.normalize import Article
+from src.pipeline.source_quality import publisher_name
 
 _TRAILING_MEDIA_SUFFIX_RE = re.compile(
     r"(?:\s*(?:-|\||·|:)\s*(?:"
@@ -106,7 +107,8 @@ def deduplicate(articles: Iterable[Article]) -> list[Article]:
             {
                 "title": item.title or "",
                 "link": _canonical_link(item),
-                "press": str(getattr(item, "press", "") or getattr(item, "publisher", "") or ""),
+                # 네이버 API는 언론사명을 주지 않으므로 원문 도메인으로 출처 라벨 유도
+                "press": publisher_name(item),
                 "pub_date": str(item.pub_date or ""),
             }
             for item in items

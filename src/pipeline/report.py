@@ -635,19 +635,23 @@ def render_html(
         related_html = ""
         if cluster_size_int > 1 and related_articles:
             related_items = []
-            for related in related_articles[:3]:
+            # 저장 상한(5건)과 동일하게 전부 표시 — 3건만 그리면 병합된 흡수분이 안 보인다
+            for related in related_articles[:5]:
                 if not isinstance(related, dict):
                     continue
                 related_title = str(related.get("title") or "").strip()
                 if not related_title:
                     continue
                 related_link = str(related.get("link") or "").strip()
+                related_press = str(related.get("press") or "").strip()
+                # 같은 제목 보도가 흔하므로 출처 라벨로 링크를 구분해준다
+                press_html = f" <span class='count'>{_h(related_press)}</span>" if related_press else ""
                 if related_link:
                     related_items.append(
-                        f"<li><a href='{_h(related_link)}' target='_blank' rel='noopener noreferrer'>{_h(_truncate(related_title, 70))}</a></li>"
+                        f"<li><a href='{_h(related_link)}' target='_blank' rel='noopener noreferrer'>{_h(_truncate(related_title, 70))}</a>{press_html}</li>"
                     )
                 else:
-                    related_items.append(f"<li>{_h(_truncate(related_title, 70))}</li>")
+                    related_items.append(f"<li>{_h(_truncate(related_title, 70))}{press_html}</li>")
             if related_items:
                 related_html = "<ul class='related' aria-label='관련 기사'>" + "".join(related_items) + "</ul>"
 

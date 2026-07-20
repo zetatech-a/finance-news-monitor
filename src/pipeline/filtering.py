@@ -198,6 +198,18 @@ def _get_urls(article: Article | dict) -> tuple[str, ...]:
     return tuple(str(url) for url in urls if url)
 
 
+def is_blocked_source_url(url: str) -> bool:
+    """엔터/스포츠 차단 도메인 URL 여부.
+
+    dedup 흡수분(duplicate_sources)처럼 1차/2차 필터를 거치지 않고 리포트에
+    노출되는 메타데이터를 내보내기 전에 최소한의 도메인 검사를 하기 위한 용도.
+    """
+    value = (url or "").strip()
+    if not value:
+        return False
+    return any(domain in value for domain in ENTERTAINMENT_DOMAINS)
+
+
 def filter_articles(articles: Iterable[Article]) -> list[Article]:
     """Lightweight rule-based pre-filter.
 

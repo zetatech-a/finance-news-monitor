@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from difflib import SequenceMatcher
 from typing import Any
 
+from src.pipeline.filtering import is_blocked_source_url
+from src.pipeline.source_quality import publisher_name
 from src.pipeline.tagger import TaggedArticle
 
 _BRACKET_LABEL_RE = re.compile(r"\[[^\]]*(?:속보|단독|종합|사진|영상)[^\]]*\]|\([^)]*(?:종합|사진|영상)[^)]*\)")
@@ -396,7 +398,8 @@ def _representative_score(item: TaggedArticle) -> tuple[float, int, int, float, 
 
 def _related_metadata(item: TaggedArticle) -> dict[str, str]:
     article = item.article
-    return {"title": _article_title(item), "link": _link_value(item), "press": str(_article_field(article, "press") or _article_field(article, "publisher") or ""), "pub_date": str(_article_field(article, "pub_date") or "")}
+    # press 필드가 없으면(네이버 API는 언론사명을 주지 않음) 원문 도메인으로 출처 라벨 유도
+    return {"title": _article_title(item), "link": _link_value(item), "press": publisher_name(article), "pub_date": str(_article_field(article, "pub_date") or "")}
 
 
 def _cluster_id(members: list[TaggedArticle]) -> str:
@@ -429,9 +432,16 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
 
         # dedup 단계에서 같은 제목으로 흡수된 다른 출처 기사까지 포함한 총 규모 —
         # "관련 기사 N건" 배지와 Top-10 랭킹의 cluster_size 가중치가 실제 보도량을 반영한다.
-        absorbed = sum(
-            len(getattr(item.article, "duplicate_sources", None) or []) for item in cluster
-        )
+        # 흡수분은 1차/2차 필터를 거치지 않았으므로 차단 도메인(엔터/스포츠) 출처는
+        # 개수 집계와 목록 노출 모두에서 제외한다.
+        def _eligible_duplicates(member: TaggedArticle) -> list[dict[str, str]]:
+            return [
+                dup
+                for dup in getattr(member.article, "duplicate_sources", None) or []
+                if not is_blocked_source_url(str(dup.get("link") or ""))
+            ]
+
+        absorbed = sum(len(_eligible_duplicates(item)) for item in cluster)
         size = len(cluster) + absorbed
 
         for rank, item in enumerate(sorted(cluster, key=_representative_score, reverse=True), start=1):
@@ -446,7 +456,7 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
         # 중복 출처 순으로 병합. 링크(없으면 제목) 기준으로 중복 제거 후 5건 저장.
         related_entries = [_related_metadata(item) for item in non_representatives]
         for item in (representative, *non_representatives):
-            for dup in getattr(item.article, "duplicate_sources", None) or []:
+            for dup in _eligible_duplicates(item):
                 related_entries.append(
                     {
                         "title": str(dup.get("title") or ""),
