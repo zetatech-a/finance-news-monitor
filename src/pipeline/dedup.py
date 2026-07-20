@@ -100,6 +100,18 @@ def deduplicate(articles: Iterable[Article]) -> list[Article]:
         rep.cluster_key = cluster_key
         rep.cluster_id = cluster_id
         rep.cluster_size = cluster_size
+        # 흡수된 기사(다른 출처의 같은 제목 보도)의 메타를 대표에 실어 보낸다 —
+        # 버리면 이후 issue_cluster의 관련 기사 목록/개수에서 영영 누락된다.
+        rep.duplicate_sources = [
+            {
+                "title": item.title or "",
+                "link": _canonical_link(item),
+                "press": str(getattr(item, "press", "") or getattr(item, "publisher", "") or ""),
+                "pub_date": str(item.pub_date or ""),
+            }
+            for item in items
+            if item is not rep
+        ]
         if not rep.normalized_title:
             rep.normalized_title = normalize_title(rep.title or "")
         unique.append(rep)

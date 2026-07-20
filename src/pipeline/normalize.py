@@ -24,6 +24,9 @@ class Article:
     cluster_is_representative: bool | None = None
     related_count: int | None = None
     related_articles: list[dict[str, str]] = field(default_factory=list)
+    # dedup 단계에서 같은 제목으로 흡수된 다른 출처 기사들의 최소 메타.
+    # issue_cluster가 최종 cluster_size와 related_articles에 병합한다.
+    duplicate_sources: list[dict[str, str]] = field(default_factory=list)
 
 
 def normalize(raw_items: list[dict]) -> list[Article]:

@@ -425,8 +425,14 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
     for cluster in clusters:
         representative = max(cluster, key=_representative_score)
         cid = _cluster_id(cluster)
-        size = len(cluster)
         non_representatives = [item for item in cluster if item is not representative]
+
+        # dedup 단계에서 같은 제목으로 흡수된 다른 출처 기사까지 포함한 총 규모 —
+        # "관련 기사 N건" 배지와 Top-10 랭킹의 cluster_size 가중치가 실제 보도량을 반영한다.
+        absorbed = sum(
+            len(getattr(item.article, "duplicate_sources", None) or []) for item in cluster
+        )
+        size = len(cluster) + absorbed
 
         for rank, item in enumerate(sorted(cluster, key=_representative_score, reverse=True), start=1):
             setattr(item.article, "cluster_id", cid)
@@ -436,8 +442,37 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
             setattr(item.article, "related_count", max(size - 1, 0))
             setattr(item.article, "related_articles", [])
 
-        related = [_related_metadata(item) for item in non_representatives[:5]]
-        setattr(representative.article, "related_articles", related)
+        # 관련 기사 목록: 클러스터 멤버(대표 제외) 우선, 이어서 각 멤버가 흡수한
+        # 중복 출처 순으로 병합. 링크(없으면 제목) 기준으로 중복 제거 후 5건 저장.
+        related_entries = [_related_metadata(item) for item in non_representatives]
+        for item in (representative, *non_representatives):
+            for dup in getattr(item.article, "duplicate_sources", None) or []:
+                related_entries.append(
+                    {
+                        "title": str(dup.get("title") or ""),
+                        "link": str(dup.get("link") or ""),
+                        "press": str(dup.get("press") or ""),
+                        "pub_date": str(dup.get("pub_date") or ""),
+                    }
+                )
+
+        # 같은 기사가 두 번 실리는 것을 막는다. 링크 단독 키는 (테스트 픽스처처럼)
+        # 링크가 겹치는 다른 기사까지 지워버리므로 링크+제목 조합으로 판별한다.
+        def _entry_key(link: str, title: str) -> str:
+            return f"{link}|{title}"
+
+        seen_keys: set[str] = {
+            _entry_key(_link_value(representative), _article_title(representative))
+        }
+        related: list[dict[str, str]] = []
+        for entry in related_entries:
+            key = _entry_key(str(entry.get("link") or ""), str(entry.get("title") or ""))
+            if key == "|" or key in seen_keys:
+                continue
+            seen_keys.add(key)
+            related.append(entry)
+
+        setattr(representative.article, "related_articles", related[:5])
         representatives.append(representative)
 
     return representatives
