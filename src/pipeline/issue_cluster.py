@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from difflib import SequenceMatcher
 from typing import Any
 
+from src.pipeline.filtering import is_blocked_source_url
+from src.pipeline.source_quality import publisher_name
 from src.pipeline.tagger import TaggedArticle
 
 _BRACKET_LABEL_RE = re.compile(r"\[[^\]]*(?:속보|단독|종합|사진|영상)[^\]]*\]|\([^)]*(?:종합|사진|영상)[^)]*\)")
@@ -396,7 +398,8 @@ def _representative_score(item: TaggedArticle) -> tuple[float, int, int, float, 
 
 def _related_metadata(item: TaggedArticle) -> dict[str, str]:
     article = item.article
-    return {"title": _article_title(item), "link": _link_value(item), "press": str(_article_field(article, "press") or _article_field(article, "publisher") or ""), "pub_date": str(_article_field(article, "pub_date") or "")}
+    # press 필드가 없으면(네이버 API는 언론사명을 주지 않음) 원문 도메인으로 출처 라벨 유도
+    return {"title": _article_title(item), "link": _link_value(item), "press": publisher_name(article), "pub_date": str(_article_field(article, "pub_date") or "")}
 
 
 def _cluster_id(members: list[TaggedArticle]) -> str:
@@ -425,8 +428,21 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
     for cluster in clusters:
         representative = max(cluster, key=_representative_score)
         cid = _cluster_id(cluster)
-        size = len(cluster)
         non_representatives = [item for item in cluster if item is not representative]
+
+        # dedup 단계에서 같은 제목으로 흡수된 다른 출처 기사까지 포함한 총 규모 —
+        # "관련 기사 N건" 배지와 Top-10 랭킹의 cluster_size 가중치가 실제 보도량을 반영한다.
+        # 흡수분은 1차/2차 필터를 거치지 않았으므로 차단 도메인(엔터/스포츠) 출처는
+        # 개수 집계와 목록 노출 모두에서 제외한다.
+        def _eligible_duplicates(member: TaggedArticle) -> list[dict[str, str]]:
+            return [
+                dup
+                for dup in getattr(member.article, "duplicate_sources", None) or []
+                if not is_blocked_source_url(str(dup.get("link") or ""))
+            ]
+
+        absorbed = sum(len(_eligible_duplicates(item)) for item in cluster)
+        size = len(cluster) + absorbed
 
         for rank, item in enumerate(sorted(cluster, key=_representative_score, reverse=True), start=1):
             setattr(item.article, "cluster_id", cid)
@@ -436,8 +452,37 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
             setattr(item.article, "related_count", max(size - 1, 0))
             setattr(item.article, "related_articles", [])
 
-        related = [_related_metadata(item) for item in non_representatives[:5]]
-        setattr(representative.article, "related_articles", related)
+        # 관련 기사 목록: 클러스터 멤버(대표 제외) 우선, 이어서 각 멤버가 흡수한
+        # 중복 출처 순으로 병합. 링크(없으면 제목) 기준으로 중복 제거 후 5건 저장.
+        related_entries = [_related_metadata(item) for item in non_representatives]
+        for item in (representative, *non_representatives):
+            for dup in _eligible_duplicates(item):
+                related_entries.append(
+                    {
+                        "title": str(dup.get("title") or ""),
+                        "link": str(dup.get("link") or ""),
+                        "press": str(dup.get("press") or ""),
+                        "pub_date": str(dup.get("pub_date") or ""),
+                    }
+                )
+
+        # 같은 기사가 두 번 실리는 것을 막는다. 링크 단독 키는 (테스트 픽스처처럼)
+        # 링크가 겹치는 다른 기사까지 지워버리므로 링크+제목 조합으로 판별한다.
+        def _entry_key(link: str, title: str) -> str:
+            return f"{link}|{title}"
+
+        seen_keys: set[str] = {
+            _entry_key(_link_value(representative), _article_title(representative))
+        }
+        related: list[dict[str, str]] = []
+        for entry in related_entries:
+            key = _entry_key(str(entry.get("link") or ""), str(entry.get("title") or ""))
+            if key == "|" or key in seen_keys:
+                continue
+            seen_keys.add(key)
+            related.append(entry)
+
+        setattr(representative.article, "related_articles", related[:5])
         representatives.append(representative)
 
     return representatives
