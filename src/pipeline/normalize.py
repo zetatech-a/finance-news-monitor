@@ -13,9 +13,23 @@ class Article:
     naver_link: str | None  # 본문 추출용(있으면 우선)
     pub_date: datetime
     query: str
+    # --- 관련성 필터(relevance_filter)가 채우는 필드 ---
     relevance_score: int | None = None
     relevance_prob: float | None = None
     relevance_label: str | None = None
+    decision: str | None = None  # "keep" | "drop"
+    decision_reason: str | None = None
+    keep: bool | None = None
+    relevance_model_policy: str | None = None
+    model_used: bool | None = None
+    candidate_keep_prob: float | None = None
+    candidate_drop_prob: float | None = None
+    matched_hard: str | None = None  # ";"로 연결된 매칭 용어들
+    matched_soft: str | None = None
+    matched_negative: str | None = None
+    # --- 요약 단계(run_daily)가 채우는 필드 ---
+    summary_cached: bool | None = None  # UI에서 ⚡ 캐시 배지 표시용
+    # --- dedup / issue_cluster가 채우는 필드 ---
     normalized_title: str | None = None
     cluster_key: str | None = None
     cluster_id: str | None = None

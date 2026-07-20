@@ -5,6 +5,7 @@ from typing import Any, Literal
 from urllib.parse import urlparse
 
 from src.pipeline.content_type import classify_content_type
+from src.pipeline.fields import field_value as _field, unwrap_article as _article
 
 SourceQuality = Literal[
     "primary",
@@ -161,16 +162,6 @@ ADJUSTMENTS: dict[str, float] = {
     "press_release_like": -0.9,
     "promo_or_stock_snippet": -1.2,
 }
-
-
-def _field(obj: Any, key: str) -> Any:
-    if isinstance(obj, dict):
-        return obj.get(key)
-    return getattr(obj, key, None)
-
-
-def _article(item: Any) -> Any:
-    return _field(item, "article") or item
 
 
 def _clean(value: Any) -> str:

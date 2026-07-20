@@ -3,6 +3,8 @@ from __future__ import annotations
 import re
 from typing import Any, Literal
 
+from src.pipeline.fields import field_value as _field, unwrap_article as _article
+
 ContentType = Literal[
     "hard_news",
     "regulatory",
@@ -18,16 +20,6 @@ ContentType = Literal[
     "briefing",
     "price_quote",
 ]
-
-
-def _field(obj: Any, key: str) -> Any:
-    if isinstance(obj, dict):
-        return obj.get(key)
-    return getattr(obj, key, None)
-
-
-def _article(item: Any) -> Any:
-    return _field(item, "article") or item
 
 
 def _list_field(item: Any, key: str) -> list[str]:

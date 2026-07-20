@@ -245,10 +245,13 @@ class TaggedArticle:
     matched_keywords: list[str]
 ```
 
-**Caveat**: several pipeline stages attach extra attributes to `Article` via
-`setattr` (`decision`, `keep`, `summary_cached`, `model_used`, …). When reading
-such fields, use `getattr(article, key, None)`-style access like the existing
-`_field` helpers do.
+**Field conventions**: every pipeline-populated attribute (`decision`, `keep`,
+`summary_cached`, `model_used`, `matched_*`, cluster fields, …) is formally
+declared on the `Article` dataclass — do NOT attach new attributes via
+`setattr`; declare them. Consumers that accept both `Article` objects and
+plain dicts (tests/scripts pass dicts) read fields via
+`src/pipeline/fields.py::field_value()` / `unwrap_article()` — use those
+instead of re-implementing per-module `_field` helpers.
 
 ---
 

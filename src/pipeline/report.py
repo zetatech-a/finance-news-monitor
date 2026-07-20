@@ -7,6 +7,7 @@ from typing import Any
 
 import markdown
 
+from src.pipeline.fields import field_value as _field
 from src.pipeline.tagger import TaggedArticle
 from src.pipeline.content_type import classify_content_type
 from src.pipeline.source_quality import source_quality_rank_adjustment
@@ -87,11 +88,6 @@ def _primary_link(article: Any) -> str:
     # 제목 클릭은 네이버 우선, 없으면 원문, 없으면 link
     return _link_naver(article) or _link_original(article) or _link_fallback(article)
 
-
-def _field(article: Any, key: str) -> Any:
-    if isinstance(article, dict):
-        return article.get(key)
-    return getattr(article, key, None)
 
 
 def _numeric_field(article: Any, *keys: str) -> float | None:

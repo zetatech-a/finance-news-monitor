@@ -175,7 +175,7 @@ def apply_extractive_summaries(
         cached = (summary_cache.get(fetch_url) or "").strip()
         if cached:
             item.article.description = cached
-            setattr(item.article, "summary_cached", True)  # UI에서 ⚡ 표시용
+            item.article.summary_cached = True  # UI에서 ⚡ 표시용
             summarized += 1
             cache_hits += 1
             continue
@@ -198,7 +198,7 @@ def apply_extractive_summaries(
             if s and len(s) >= 24:
                 item.article.description = s
                 summary_cache[fetch_url] = s
-                setattr(item.article, "summary_cached", False)
+                item.article.summary_cached = False
                 summarized += 1
         except Exception:
             # 실패하면 기존 description(네이버 스니펫) 그대로 사용
