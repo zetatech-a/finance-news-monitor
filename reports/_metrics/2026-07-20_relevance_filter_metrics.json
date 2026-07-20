@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 0,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 20,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 12,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 6,
+  "candidate_hybrid_gray_keep_domain": 19,
+  "candidate_hybrid_gray_rule_drop": 63,
+  "candidate_hybrid_gray_rule_keep": 19,
+  "candidate_hybrid_keep_overseas_global_reference": 7,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 289,
+  "candidate_hybrid_model_drop": 17,
+  "candidate_hybrid_model_keep": 66,
+  "candidate_hybrid_model_keep_with_domain_anchor": 66,
+  "candidate_hybrid_negative_drop": 12,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 289,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-20",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 20,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 3,
+    "candidate_hybrid_drop_negative_signal": 12,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 12,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 6,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 63,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 19,
+    "candidate_hybrid_keep_overseas_global_reference": 7,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 289,
+    "candidate_hybrid_model_drop_prob_le_threshold": 17,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 66
+  },
+  "dropped_count": 135,
+  "input_count": 517,
+  "kept_count": 382,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 517,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 24,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "“나도 2천만 원 빌릴 수 있나?”…삼성, 2천억 무담보 대출 [잇슈 머니...",
+      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8614458&ref=A"
+    },
+    {
+      "title": "우리금융, 증권·보험 편입 맞춰 '고객 기반 확대' 총력전",
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=207751"
+    },
+    {
+      "title": "코스피 '금융위기'급 저평가…\"분할 매수 유효\"[주간증시전망]",
+      "url": "https://www.newsis.com/view/NISX20260716_0003712321"
+    },
+    {
+      "title": "‘증시 도박판’ 만든 레버리지 뒷북 규제, 3000만원 벽 세웠다",
+      "url": "https://weekly.khan.co.kr/article/202607200600021"
+    },
+    {
+      "title": "반도체주 조정·중동 긴장에도...비트코인 6만4000달러대 회복 [디센터 ...",
+      "url": "https://www.decenter.kr/article/20069269?ref=naverdc"
+    },
+    {
+      "title": "비트코인 9541만 원대 횡보, 미국 이란 긴장 고조에도 ETF 자금 유입은 ...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=442587"
+    },
+    {
+      "title": "[위클리 생활금융] 맞춤형 콘텐츠로 고객잡기 나선 카드업계…세대별 공...",
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=724569"
+    },
+    {
+      "title": "[머니 마이웨이] 월급 받자마자 카드값 내고 또 한 달을 외상으로",
+      "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=256269"
+    },
+    {
+      "title": "집은 더 짓고 투기 돈줄은 죈다 [부동산 정책 윤곽 ①]",
+      "url": "https://www.etoday.co.kr/news/view/2604798"
+    },
+    {
+      "title": "“대출 막혀 계약금 날릴 판”… 부동산토론회 홈페이지에 국민 제안 쏟...",
+      "url": "https://biz.chosun.com/real_estate/real_estate_general/2026/07/20/QDDUKSGZ7JCV5A6XKKKZ3KZENA/?utm_source=naver&utm_medium=original&utm_campaign=biz"
+    }
+  ]
+}
