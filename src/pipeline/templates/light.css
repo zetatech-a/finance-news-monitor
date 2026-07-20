@@ -1,0 +1,117 @@
+
+:root{
+  --bg: #f6f8fb;
+  --paper: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --link: #2563eb;
+  --link_hover: #1d4ed8;
+  --chip: #eef2ff;
+  --chip_text: #3730a3;
+  --shadow: 0 10px 30px rgba(17,24,39,0.08);
+}
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+  line-height: 1.6;
+}
+.wrap{
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 26px 16px 60px;
+}
+.header{
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 18px;
+  box-shadow: var(--shadow);
+}
+.header-top{
+  display:flex;
+  gap:12px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+h1{
+  margin:0;
+  font-size: 22px;
+  letter-spacing: -0.2px;
+}
+.meta{
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+}
+.pills{
+  display:flex;
+  gap:8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fafafa;
+  color: var(--muted);
+  font-size: 12px;
+}
+.main{
+  margin-top: 14px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 18px;
+  box-shadow: var(--shadow);
+}
+a{
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover{ color: var(--link_hover); text-decoration: underline; }
+h2{
+  margin: 18px 0 10px;
+  padding-top: 6px;
+  font-size: 16px;
+  border-top: 1px solid var(--border);
+}
+h3{
+  margin: 14px 0 8px;
+  font-size: 14px;
+  color: #0f172a;
+}
+ul{
+  margin: 8px 0 14px 0;
+  padding-left: 18px;
+}
+li{
+  margin: 8px 0;
+}
+hr{
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 18px 0;
+}
+.footer{
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.notice{
+  background: var(--chip);
+  color: var(--chip_text);
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 12px;
+  margin-top: 10px;
+}
