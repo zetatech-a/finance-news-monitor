@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 27,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+  "candidate_hybrid_gray_keep_domain": 32,
+  "candidate_hybrid_gray_rule_drop": 126,
+  "candidate_hybrid_gray_rule_keep": 32,
+  "candidate_hybrid_keep_overseas_global_reference": 11,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 433,
+  "candidate_hybrid_model_drop": 38,
+  "candidate_hybrid_model_keep": 70,
+  "candidate_hybrid_model_keep_with_domain_anchor": 70,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 433,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-21",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 27,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 4,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 126,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 32,
+    "candidate_hybrid_keep_overseas_global_reference": 11,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 433,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 38,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 70
+  },
+  "dropped_count": 213,
+  "input_count": 761,
+  "kept_count": 548,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 761,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 52,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[#금융톡톡] 토스 '중저신용 대출' 출시·국민은행 '시니어 건강관리' 협...",
+      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=847602"
+    },
+    {
+      "title": "노인 2명 중 1명, 국민연금 담보로 병원비 빌렸다 [H-EXCLUSIVE]",
+      "url": "https://biz.heraldcorp.com/article/10813587?ref=naver"
+    },
+    {
+      "title": "\"담보도 보증도 없어도 돼\"…삼성, 취약계층에 2000억원 푼다",
+      "url": "http://www.newsfc.co.kr/news/articleView.html?idxno=79986"
+    },
+    {
+      "title": "가계대출 총량 압박에 '빚투'까지…국민은행, 신용대출 '출구 관리'",
+      "url": "https://www.newspim.com/news/view/20260720000463"
+    },
+    {
+      "title": "[금융CEO 열전]부산은행맨이 BNK금융 수장에···빈대인 승부수는",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=700003"
+    },
+    {
+      "title": "[원화 국제화, 30년 금기 깨다]①비로소 국경 넘는다…원화 위상, 경제 ...",
+      "url": "https://view.asiae.co.kr/article/2026071912583548113"
+    },
+    {
+      "title": "[NZSI INDEX] 2026년 7월 16일 사상 최대 변동성 지속",
+      "url": "https://www.the-today.com/news/articleView.html?idxno=87742"
+    },
+    {
+      "title": "[기자수첩]몸통 흔드는 레버리지…제 2·3의 사태 막으려면",
+      "url": "https://www.edaily.co.kr/news/newspath.asp?newsid=03138966645516488"
+    },
+    {
+      "title": "버스서 다쳤는데 공짜 치료비?…서울시 '숨은 보험' 아시나요?",
+      "url": "https://biz.sbs.co.kr/article_hub/20000323519?division=NAVER"
+    },
+    {
+      "title": "우리금융 임종룡 질타한 野 \"거대 금융지주사의 언론 '입틀막 소송'\"",
+      "url": "https://www.pennmike.com/news/articleView.html?idxno=124010"
+    }
+  ]
+}
