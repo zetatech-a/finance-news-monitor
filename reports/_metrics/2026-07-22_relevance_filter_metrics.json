@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 5,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 34,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 59,
+  "candidate_hybrid_gray_rule_drop": 133,
+  "candidate_hybrid_gray_rule_keep": 59,
+  "candidate_hybrid_keep_overseas_global_reference": 13,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 528,
+  "candidate_hybrid_model_drop": 30,
+  "candidate_hybrid_model_keep": 172,
+  "candidate_hybrid_model_keep_with_domain_anchor": 172,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 528,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-22",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 5,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 34,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 133,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 59,
+    "candidate_hybrid_keep_overseas_global_reference": 13,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 528,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 3,
+    "candidate_hybrid_model_drop_prob_le_threshold": 30,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 172
+  },
+  "dropped_count": 224,
+  "input_count": 1000,
+  "kept_count": 776,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1000,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 41,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "피해자라더니..알고보니 ′불법 사채업자′",
+      "url": "https://busanmbc.co.kr/01_new/new01_view.asp?idx=287286"
+    },
+    {
+      "title": "상품권 거래 위장 불법 사금융 일당 5명 구속",
+      "url": "https://busanmbc.co.kr/01_new/new01_view.asp?idx=287278"
+    },
+    {
+      "title": "빌린 돈 '상품권'으로 상환 꼼수…불법 대부업자들 무더기 검거",
+      "url": "https://www.nocutnews.co.kr/news/6550870?utm_source=naver&utm_medium=article&utm_campaign=20260721012347"
+    },
+    {
+      "title": "부산경찰, 온라인 변종 대부업체 무더기 적발… 초고금리 사금융의 실체",
+      "url": "https://www.tokenpost.kr/news/society/379770"
+    },
+    {
+      "title": "'변종사채' 영장 기각…악성민원에 떠는 양주시 공무원",
+      "url": "https://www.incheonilbo.com/news/articleView.html?idxno=1327724"
+    },
+    {
+      "title": "금리 오르고 대출 막고…코너 몰린 차주들",
+      "url": "https://www.kukinews.com/article/view/kuk202607210143"
+    },
+    {
+      "title": "온투업 '1.5금융' 역할 구체화... 연계투자 늘리고 자금공급 확대",
+      "url": "http://www.fnnews.com/news/202607211809109026"
+    },
+    {
+      "title": "반 년 만에 포용금융 11조 공급…지속 가능성은?",
+      "url": "https://news.mtn.co.kr/news-detail/2026072116384559043"
+    },
+    {
+      "title": "신파일러 잡으려 소비·송금 데이터까지…대안신용평가 고도화",
+      "url": "https://www.sentv.co.kr/article/view/sentv202607210085"
+    },
+    {
+      "title": "[글로컬뱅킹] '원화국제화' 가시화…역외 원화결제시스템, 국민·신한·...",
+      "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7175234"
+    }
+  ]
+}

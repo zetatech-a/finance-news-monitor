@@ -1,0 +1,270 @@
+{
+  "clusters": {
+    "cluster_count": 312,
+    "cluster_size_max": 127,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 6,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 127,
+        "relevance_prob": 0.9283930149375286,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "한은 긴축 전환에 복잡해지는 은행 셈법…NIM 개선 vs 대출 둔화",
+        "url": "https://n.news.naver.com/mnews/article/629/0000517557?sid=101"
+      },
+      {
+        "cluster_size": 55,
+        "relevance_prob": 0.8621867516758734,
+        "relevance_score": 33,
+        "sector": "디지털자산",
+        "title": "하나금융·두나무 \"새 미래 금융 구축\" 예금·코인 등 한데 모은 통합금...",
+        "url": "http://www.smedaily.co.kr/news/articleView.html?idxno=360561"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1013,
+    "displayed_articles": 194,
+    "final_tagged_representatives": 312,
+    "normalized_articles": 1369,
+    "raw_items": 1369,
+    "relevance_filtered_articles": 776,
+    "rule_filtered_articles": 1000,
+    "tagged_before_cluster": 776
+  },
+  "date": "2026-07-22",
+  "generated_at": "2026-07-22T10:07:48.502354+09:00",
+  "publishers": {
+    "missing_publisher_count": 312,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 121,
+    "no_topic_ratio": 0.3878,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8299961490073157,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "태광그룹 티시스, 어르신 대상 금융사기 예방 교육… 디지털 격차 해소...",
+        "url": "http://www.newsdream.kr/news/articleView.html?idxno=114794"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7537763757324085,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "삼일PwC·MG암코 \"부실자산 시장 확대기…선제적 투자전략 필수\"",
+        "url": "https://www.etoday.co.kr/news/view/2605948"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6245603157598406,
+        "relevance_score": 9,
+        "sector": "거시·시장",
+        "title": "공공기관 22곳 사내대출 기준 위반 정부 지침 '있으나 마나'",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=470326"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6271203225330024,
+        "relevance_score": 10,
+        "sector": "IB·자본시장",
+        "title": "[2026 상반기 리그테이블] ⑨KB증권, '6년 연속' DCM 지존(至尊)...20조 돌...",
+        "url": "http://www.thevaluenews.co.kr/news/view.php?idx=199778"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5155857946164968,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "[예규·판례] 해외카드 분담금 원천세 일률 합산에 제동…대법원 파기환...",
+        "url": "https://www.tfmedia.co.kr/news/article.html?no=205916"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.721498900949668,
+        "relevance_score": 10,
+        "sector": "상호금융",
+        "title": "가방 들고 \"신협 가달라\"…택시서 내리자 신고한 기사",
+        "url": "https://n.news.naver.com/mnews/article/055/0001374365?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7274875382750774,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[속담으로 배우는 100가지 보안 습관 70] 아는 길도 물어가라(10)-공공기...",
+        "url": "http://www.boannews.com/media/view.asp?idx=144222&kind=2"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4120451260845802,
+        "relevance_score": 7,
+        "sector": "은행",
+        "title": "유안타 \"카카오뱅크, 개인사업자 대출 확대 기대…수신 성장도 지속\"",
+        "url": "https://www.etoday.co.kr/news/view/2605918"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7377901077142057,
+        "relevance_score": 14,
+        "sector": "기타",
+        "title": "비은행 대출 급증세… 주택 관련 대출 증가세의 이유는?",
+        "url": "https://www.gokorea.kr/news/articleView.html?idxno=872734"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7291378385467292,
+        "relevance_score": 11,
+        "sector": "여전",
+        "title": "카드론 죄니…현금서비스·리볼빙 늘었다",
+        "url": "http://www.metroseoul.co.kr/article/20260722500009"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 4,
+      "감독·제재": 7,
+      "거시·시장": 21,
+      "기타": 128,
+      "대부": 8,
+      "디지털자산": 46,
+      "보험": 6,
+      "상호금융": 3,
+      "여전": 17,
+      "은행": 38,
+      "입법·정책": 24,
+      "자산운용·연기금": 1,
+      "저축은행": 7,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 17,
+      "감독·제재": 3,
+      "건전성·자본규제": 5,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 23,
+      "기업금융·익스포저": 4,
+      "디지털자산": 46,
+      "부동산·PF": 6,
+      "불법사금융·불법추심·보이스피싱": 38,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 14,
+      "서민금융·대환·채무조정": 12,
+      "소비자보호·민원·불완전판매": 18,
+      "업계동정·사회공헌": 10,
+      "연체·부실": 10,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 9,
+      "정책·제도개선": 4,
+      "증시·시장시황": 5,
+      "칼럼·오피니언": 8,
+      "해외·글로벌": 13,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8925511249169279,
+        "relevance_score": 42,
+        "sector": "디지털자산",
+        "title": "박영선 “스테이블코인은 AI 시대 인프라…입법 시급”",
+        "url": "https://n.news.naver.com/mnews/article/018/0006333901?sid=101"
+      },
+      {
+        "cluster_size": 55,
+        "relevance_prob": 0.8621867516758734,
+        "relevance_score": 33,
+        "sector": "디지털자산",
+        "title": "하나금융·두나무 \"새 미래 금융 구축\" 예금·코인 등 한데 모은 통합금...",
+        "url": "http://www.smedaily.co.kr/news/articleView.html?idxno=360561"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.8470010277365588,
+        "relevance_score": 31,
+        "sector": "입법·정책",
+        "title": "\"은행 넘어 금투·보험까지\"...금감원, 금융권 경영진 소비자보호 교육...",
+        "url": "https://www.joongangenews.com/news/articleView.html?idxno=534216"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6723408808881232,
+        "relevance_score": 25,
+        "sector": "감독·제재",
+        "title": "이찬진 금감원장 \"홈플러스 사태, 제재 절차 신속히 진행\"",
+        "url": "http://www.newsian.co.kr/news/articleView.html?idxno=92545"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8508494130510267,
+        "relevance_score": 25,
+        "sector": "감독·제재",
+        "title": "금감원·6개 금융기관, '소비자보호' 역량 강화 협약",
+        "url": "https://www.insnews.co.kr/news/articleView.html?idxno=91959"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5473090979352414,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "김기홍 ‘고수익 경영’ 시험대…JB금융지주, 석 달 새 부실채권 1123억...",
+        "url": "https://sateconomy.co.kr/news/view/1065582417890759"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8986155704999366,
+        "relevance_score": 28,
+        "sector": "입법·정책",
+        "title": "금감원, 금융사 임직원 소비자보호 역량 강화 '업무협약' 체결",
+        "url": "http://www.sisunnews.co.kr/news/articleView.html?idxno=242848"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8777196127148178,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "금융위 “스테이블코인 조속 입법…AI 커머스 신중 검토”(종합)",
+        "url": "https://n.news.naver.com/mnews/article/018/0006334112?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8832962439676757,
+        "relevance_score": 25,
+        "sector": "보험",
+        "title": "금감원-금투∙보험∙여신∙저축업권, 소비자보호 역량 강화 맞손",
+        "url": "http://www.segyebiz.com/newsView/20260721514278?OutUrl=naver"
+      },
+      {
+        "cluster_size": 39,
+        "relevance_prob": 0.8521271355759361,
+        "relevance_score": 22,
+        "sector": "기타",
+        "title": "은행 대출 연체율, 9년 7개월만에 최고",
+        "url": "https://www.viewsnnews.com/article?q=237347"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 3,
+      "기타": 1,
+      "디지털자산": 2,
+      "보험": 1,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "디지털자산": 3,
+      "소비자보호·민원·불완전판매": 4,
+      "업계동정·사회공헌": 3,
+      "연체·부실": 2
+    }
+  }
+}
