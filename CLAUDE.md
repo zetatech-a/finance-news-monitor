@@ -259,7 +259,7 @@ instead of re-implementing per-module `_field` helpers.
 
 Controls three things:
 
-- **`fetch_queries`**: ~45 high-precision Korean search terms sent to the Naver API.
+- **`fetch_queries`**: ~48 high-precision Korean search terms sent to the Naver API.
 - **`sectors`**: 15 sectors (incl. `기타`) with base keyword lists.
 - **`topics`**: 24 cross-cutting topics with base keyword lists.
 
