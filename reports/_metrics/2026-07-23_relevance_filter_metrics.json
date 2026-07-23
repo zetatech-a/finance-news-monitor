@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 22,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 7,
+  "candidate_hybrid_gray_keep_domain": 58,
+  "candidate_hybrid_gray_rule_drop": 210,
+  "candidate_hybrid_gray_rule_keep": 58,
+  "candidate_hybrid_keep_overseas_global_reference": 9,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 0,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 535,
+  "candidate_hybrid_model_drop": 81,
+  "candidate_hybrid_model_keep": 129,
+  "candidate_hybrid_model_keep_with_domain_anchor": 129,
+  "candidate_hybrid_negative_drop": 10,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 535,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-23",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 22,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 10,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 7,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 210,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 58,
+    "candidate_hybrid_keep_overseas_global_reference": 9,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 535,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 5,
+    "candidate_hybrid_model_drop_prob_le_threshold": 81,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 129
+  },
+  "dropped_count": 342,
+  "input_count": 1078,
+  "kept_count": 736,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1078,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 58,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "주담대 금리 상단 8% 육박..은행은 '웃고' 차주는 '울고'",
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=470547"
+    },
+    {
+      "title": "돈 못 갚는 중기·자영업자 급증…금리 상승 어쩌나",
+      "url": "https://www.asiatime.co.kr/article/20260722500262"
+    },
+    {
+      "title": "토스뱅크의 마지막 퍼즐 '주담대'…출범 5년 만에 여신 다변화",
+      "url": "https://www.sidae.com/article/2026072208511133868"
+    },
+    {
+      "title": "물가는 오르고 금리도 인상…취약차주 덮친 '이중 압박'",
+      "url": "https://www.straightnews.co.kr/news/articleView.html?idxno=307416"
+    },
+    {
+      "title": "빅테크 첫 금융복합집단 된 토스…그룹 감독 체계 진입",
+      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=686075"
+    },
+    {
+      "title": "정치권 “공익채권이 MBK 방패 되나”…홈플러스 2000억 DIP 맹공",
+      "url": "https://www.ddaily.co.kr/page/view/2026072210590998270"
+    },
+    {
+      "title": "[금융지주 지배구조 개편] 회장 3연임 제한 예고·장기채무 탕감·출연금...",
+      "url": "https://www.g-enews.com/view.php?ud=202607221428223045bb91c46fcd_1"
+    },
+    {
+      "title": "[금융지주 지배구조 개편] 3연임 제한보다 승계 투명성·이사회 독립성...",
+      "url": "https://www.g-enews.com/view.php?ud=202607221422291725cd0bfacc1c_1"
+    },
+    {
+      "title": "[노트북 너머] 이름값에는 위험도 붙는다",
+      "url": "https://www.etoday.co.kr/news/view/2606140"
+    },
+    {
+      "title": "“업무추진비도 예금토큰으로”… 정부, 디지털 결제 시대 연다",
+      "url": "https://www.viva100.com/article/20260722501305"
+    }
+  ]
+}

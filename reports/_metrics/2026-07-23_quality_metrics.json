@@ -1,0 +1,281 @@
+{
+  "clusters": {
+    "cluster_count": 316,
+    "cluster_size_max": 116,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 3,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 116,
+        "relevance_prob": 0.8250365161594376,
+        "relevance_score": 25,
+        "sector": "은행",
+        "title": "대출 연체율 0.67% ‘10년래 최고’… 은행권, 하반기 ‘건전성 비상’",
+        "url": "https://n.news.naver.com/mnews/article/029/0003038291?sid=101"
+      },
+      {
+        "cluster_size": 107,
+        "relevance_prob": 0.8368440418635326,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "금리 뛰는데…중기 연체율 1%로 11년만에 최고",
+        "url": "https://n.news.naver.com/mnews/article/011/0004643991?sid=101"
+      },
+      {
+        "cluster_size": 77,
+        "relevance_prob": 0.9195624028576435,
+        "relevance_score": 21,
+        "sector": "기타",
+        "title": "은행 대출 연체율, 9년 7개월 만에 최고…중소기업 연체율 1%대 '빨간불...",
+        "url": "https://www.getnews.co.kr/news/articleView.html?idxno=875740"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1086,
+    "displayed_articles": 199,
+    "final_tagged_representatives": 316,
+    "normalized_articles": 1501,
+    "raw_items": 1501,
+    "relevance_filtered_articles": 736,
+    "rule_filtered_articles": 1078,
+    "tagged_before_cluster": 736
+  },
+  "date": "2026-07-23",
+  "generated_at": "2026-07-23T10:13:26.130302+09:00",
+  "publishers": {
+    "missing_publisher_count": 316,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 107,
+    "no_topic_ratio": 0.3386,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.56680757179316,
+        "relevance_score": 7,
+        "sector": "디지털자산",
+        "title": "인플레 우려에 비트코인 6.5만달러대 묶였다 [코인 모닝콜]",
+        "url": "https://n.news.naver.com/mnews/article/018/0006335149?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.645433597064327,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "펀드랑 똑같네…디파이 대출·금고 싹 다 옥죄는 美 SEC의 진짜 속내",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=470688"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6966116493331757,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "[자본시장] 상장폐지 요건 강화와 기업의 대응전략",
+        "url": "http://www.legaltimes.co.kr/news/articleView.html?idxno=95208"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7015809950465033,
+        "relevance_score": 4,
+        "sector": "입법·정책",
+        "title": "비트코인·이더리움·리플XRP 혼조…유가·금리에 거래 위축",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16143445"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5872024858332715,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "다시 관료냐, 민간이냐…관심 쏠리는 차기 은행연합회장",
+        "url": "https://dealsite.co.kr/articles/165646"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7387928298299407,
+        "relevance_score": 14,
+        "sector": "여전",
+        "title": "카드론 규제 속 법인카드 시장 ‘후끈’…KB 선두 속 하나·신한 추격전",
+        "url": "https://www.ceoscoredaily.com/page/view/2026072216212893715"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6650582495635545,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"개인정보 계속 털리네\"…반복되는 유출에 사이버보험 '주목'",
+        "url": "https://n.news.naver.com/mnews/article/119/0003113944?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.683522935532004,
+        "relevance_score": 4,
+        "sector": "은행",
+        "title": "예금시장 관심 확대…농협은행 정기예금 브랜드 경쟁력 1위",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=470679"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.815163167664938,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "\"누가 요즘 코인하나요\"...파리 날리는 국내 주요 거래소",
+        "url": "https://n.news.naver.com/mnews/article/215/0001259645?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6508978291219332,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "개미는 쫄아서 관망하는데…XRP '대형 고래'들 조용히 판 뒤엎는 중",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=470673"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 6,
+      "거시·시장": 22,
+      "기타": 127,
+      "대부": 6,
+      "디지털자산": 30,
+      "보험": 7,
+      "상호금융": 7,
+      "여전": 20,
+      "은행": 62,
+      "입법·정책": 18,
+      "자산운용·연기금": 3,
+      "저축은행": 5,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 36,
+      "감독·제재": 5,
+      "건전성·자본규제": 8,
+      "규제·가계부채": 10,
+      "금리·수수료·최고금리": 31,
+      "기업금융·익스포저": 13,
+      "디지털자산": 43,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 27,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 30,
+      "서민금융·대환·채무조정": 6,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 10,
+      "연체·부실": 25,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 5,
+      "정책·제도개선": 5,
+      "증시·시장시황": 9,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 11,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 116,
+        "relevance_prob": 0.8250365161594376,
+        "relevance_score": 25,
+        "sector": "은행",
+        "title": "대출 연체율 0.67% ‘10년래 최고’… 은행권, 하반기 ‘건전성 비상’",
+        "url": "https://n.news.naver.com/mnews/article/029/0003038291?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8814270904368451,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "김민석 \"검찰개혁 다음은 '금융·지방·사법·언론개혁'\"",
+        "url": "https://n.news.naver.com/mnews/article/031/0001043887?sid=100"
+      },
+      {
+        "cluster_size": 107,
+        "relevance_prob": 0.8368440418635326,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "금리 뛰는데…중기 연체율 1%로 11년만에 최고",
+        "url": "https://n.news.naver.com/mnews/article/011/0004643991?sid=101"
+      },
+      {
+        "cluster_size": 33,
+        "relevance_prob": 0.6731129711001852,
+        "relevance_score": 22,
+        "sector": "대부",
+        "title": "불법 사채 4년 새 305% 급증… 경찰, '불법 사금융과의 전쟁' 선포",
+        "url": "https://www.joongangenews.com/news/articleView.html?idxno=534471"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7391425316326659,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "이종오 금감원 부원장보 \"가상자산업계, 자율규범 강화해야…보안도 우...",
+        "url": "https://n.news.naver.com/mnews/article/421/0009071799?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7803113839592372,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "헥토월렛원 부대표 \"스테이블코인 법안, 결제·정산 등 실무 논의도 필...",
+        "url": "https://n.news.naver.com/mnews/article/421/0009072352?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.847789662232086,
+        "relevance_score": 20,
+        "sector": "보험",
+        "title": "금리 50bp 뛰어도 생보사 70% 킥스 급락…IFRS17이 깨부순 '금리 수혜'",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=362421"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.8982053552087877,
+        "relevance_score": 23,
+        "sector": "디지털자산",
+        "title": "[허프 사람&말] 박현주의 '미래에셋3.0 핵심' 초거대금융 플랫폼 구상 실...",
+        "url": "https://www.huffingtonpost.kr/article/258907"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6736312421452938,
+        "relevance_score": 21,
+        "sector": "은행",
+        "title": "대기업 연체율도 급등…생산적 금융 본격화에 상승폭 확대 전망",
+        "url": "https://www.naeil.com/news/read/596087?ref=naver"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8267957554813814,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "조진석 한국디지털에셋 대표 \"美·日 스테이블코인 진전…韓도 준비해야...",
+        "url": "https://n.news.naver.com/mnews/article/421/0009071789?sid=101"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "보험": 1,
+      "은행": 3,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "건전성·자본규제": 2,
+      "금리·수수료·최고금리": 3,
+      "기업금융·익스포저": 1,
+      "디지털자산": 5,
+      "연체·부실": 2,
+      "정책·제도개선": 1,
+      "환율·외환": 1
+    }
+  }
+}
