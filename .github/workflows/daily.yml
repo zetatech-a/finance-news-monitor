@@ -193,9 +193,12 @@ jobs:
         if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
         continue-on-error: true
         run: |
+          # 리포트 60일 보관 (index는 14일만 노출, 이메일은 당일만 첨부 — 기능 영향 없음.
+          # _candidates/_metrics는 기본 90일 유지: 후보 모델 학습 lookback 21일용)
           python scripts/prune_reports.py \
             --reports-dir reports \
-            --reference-date "${{ steps.phase5_recheck.outputs.report_date }}"
+            --reference-date "${{ steps.phase5_recheck.outputs.report_date }}" \
+            --report-keep-days 60
 
       - name: Commit reports and sent marker
         if: ${{ steps.phase5_recheck.outputs.should_run == 'true' }}
