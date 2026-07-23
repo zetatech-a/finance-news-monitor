@@ -77,6 +77,15 @@ def test_strong_finance_anchor_still_rescues_entertainment_text():
     assert _stage1_keeps("저축은행 광고 모델 된 배우 ○○…금리 경쟁 심화")
 
 
+def test_assembly_loan_business_bill_passes_politics_rule():
+    # 국회(정치 키워드) + 대부업법 개정 기사 — '정치 전용'으로 오판해 차단하면 안 됨
+    assert _stage1_keeps("대부업법 개정안 국회 통과…등록요건 자기자본 강화")
+
+
+def test_pure_politics_article_still_dropped():
+    assert not _stage1_keeps("국회 개헌 논의 본격화…여야 공방")
+
+
 def test_url_string_no_longer_triggers_keyword_match():
     # URL 경로의 'tv' 등이 엔터 키워드로 오탐되지 않아야 함
     assert _stage1_keeps(
