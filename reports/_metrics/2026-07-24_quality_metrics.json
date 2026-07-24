@@ -1,0 +1,282 @@
+{
+  "clusters": {
+    "cluster_count": 359,
+    "cluster_size_max": 182,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 3,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 182,
+        "relevance_prob": 0.9371084223688754,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "기준금리 인상, 시장금리 재조정···채권·예금·환율 연쇄 요동",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=140972"
+      },
+      {
+        "cluster_size": 155,
+        "relevance_prob": 0.953399356065182,
+        "relevance_score": 36,
+        "sector": "디지털자산",
+        "title": "미래에셋, 코빗 지분 97% 확보…전통금융의 디지털자산 시대 연다",
+        "url": "https://www.e-science.co.kr/news/articleView.html?idxno=132296"
+      },
+      {
+        "cluster_size": 50,
+        "relevance_prob": 0.5618577208125751,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "KB금융, 상반기 사회적 가치 1조 6,626억원 창출…포용금융·청년 지원 ...",
+        "url": "https://www.polinews.co.kr/news/articleView.html?idxno=737805"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1442,
+    "displayed_articles": 233,
+    "final_tagged_representatives": 359,
+    "normalized_articles": 1893,
+    "raw_items": 1893,
+    "relevance_filtered_articles": 871,
+    "rule_filtered_articles": 1432,
+    "tagged_before_cluster": 871
+  },
+  "date": "2026-07-24",
+  "generated_at": "2026-07-24T10:09:48.265445+09:00",
+  "publishers": {
+    "missing_publisher_count": 359,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 136,
+    "no_topic_ratio": 0.3788,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7339270731712111,
+        "relevance_score": 12,
+        "sector": "여전",
+        "title": "금융감독원, 여름 휴가철 국내외 카드 부정결제 피해 예방책 제시",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=208206"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8022114865491619,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "SEC, 겐슬러 전 회장 '누락된 문자' 파문에 코인베이스와 전격 합의",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=471095"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.789628266479808,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "“위급할 땐 태그하세요”…소진공, 골목상권에 NFC 안심망",
+        "url": "https://www.sentv.co.kr/article/view/sentv202607240014"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7557706214479869,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "소상공인 점포에 NFC 긴급신고 태그 도입...소진공, 전국 골목상권 확대...",
+        "url": "https://www.newspim.com/news/view/20260724000118"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6794936184522019,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "비트코인 6만5000달러대로 하락… 중동 리스크·美 클래리티법 지연 영...",
+        "url": "https://n.news.naver.com/mnews/article/366/0001181469?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7158932834303626,
+        "relevance_score": 18,
+        "sector": "여전",
+        "title": "KB금융 \"중장기 ROE 13% 목표\"…증권 키워 자본효율 높인다 [컨콜 돋보기...",
+        "url": "https://www.sisaon.co.kr/news/articleView.html?idxno=202942"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5205645000040876,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[미국 특징주] 알파벳 100년물 채권, 액면가 90% 수준으로 '뚝'",
+        "url": "https://www.newspim.com/news/view/20260724000103"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7945205389701532,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "여성·1인 소상공인 범죄 예방…'스마트 안심 태그' 늘린다",
+        "url": "https://n.news.naver.com/mnews/article/421/0009076410?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6539490764825748,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[기업이슈] LS일렉트릭, 2분기 역대 최대 실적…전력 인프라 훈풍↑",
+        "url": "https://n.news.naver.com/mnews/article/374/0000523459?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6084260843782074,
+        "relevance_score": 14,
+        "sector": "IB·자본시장",
+        "title": "[예별손보 M&A] OK금융, 인수자금 독자 조달…계열사 자금순환 '가동'",
+        "url": "https://dealsite.co.kr/articles/165676"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 2,
+      "거시·시장": 28,
+      "기타": 136,
+      "대부": 4,
+      "디지털자산": 63,
+      "보험": 11,
+      "상호금융": 13,
+      "여전": 31,
+      "은행": 29,
+      "입법·정책": 23,
+      "자산운용·연기금": 7,
+      "저축은행": 4,
+      "증권(브로커리지/리테일)": 4,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 27,
+      "감독·제재": 2,
+      "건전성·자본규제": 14,
+      "규제·가계부채": 11,
+      "금리·수수료·최고금리": 24,
+      "기업금융·익스포저": 5,
+      "디지털자산": 80,
+      "부동산·PF": 7,
+      "불법사금융·불법추심·보이스피싱": 20,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 8,
+      "서민금융·대환·채무조정": 4,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 11,
+      "연체·부실": 23,
+      "자금시장·유동성": 5,
+      "정책·제도개선": 4,
+      "증시·시장시황": 12,
+      "칼럼·오피니언": 11,
+      "해외·글로벌": 13,
+      "환율·외환": 8
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.8228466827277847,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "지자체 특사경 적발 계좌도 동결… 불법사금융 차단 강화",
+        "url": "https://n.news.naver.com/mnews/article/366/0001181333?sid=102"
+      },
+      {
+        "cluster_size": 155,
+        "relevance_prob": 0.953399356065182,
+        "relevance_score": 36,
+        "sector": "디지털자산",
+        "title": "미래에셋, 코빗 지분 97% 확보…전통금융의 디지털자산 시대 연다",
+        "url": "https://www.e-science.co.kr/news/articleView.html?idxno=132296"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8710885231992018,
+        "relevance_score": 26,
+        "sector": "입법·정책",
+        "title": "[특징주] 갤럭시아머니트리, 금융위 '스테이블코인법 최대한 신속 추진...",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=714392"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8373046807723198,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "코인원, FIU 대주주 변경신고 수리…한투·OKX '4자 연합' 본격 가동",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=745960"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7771710857647298,
+        "relevance_score": 30,
+        "sector": "거시·시장",
+        "title": "유가 폭등에 국채금리 뛰자 암호화폐도 ‘출렁’",
+        "url": "https://www.bntnews.co.kr/article/view/bnt202607240011"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.7301905940615189,
+        "relevance_score": 27,
+        "sector": "거시·시장",
+        "title": "재경부, 런던·싱가포르서 韓경제 설명회...글로벌 IB 참여 '소통 협의체...",
+        "url": "http://www.metroseoul.co.kr/article/20260723500408"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6452077981031824,
+        "relevance_score": 25,
+        "sector": "여전",
+        "title": "여신협회, 청년·외국인 신용카드 발급 위한 신평 체계 구축 지원 나선...",
+        "url": "https://n.news.naver.com/mnews/article/015/0005312975?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8093072331261226,
+        "relevance_score": 22,
+        "sector": "여전",
+        "title": "여전채 금리 4.5% 돌파… 카드사 '조달 비용 증가' 혜택 축소로 이어지...",
+        "url": "https://www.m-i.kr/news/articleView.html?idxno=1394449"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.634529135091593,
+        "relevance_score": 22,
+        "sector": "은행",
+        "title": "'제2 ELS' 우려...시중은행, 과도한 실적 압박에 'ETF 밀어내기' 손실 민...",
+        "url": "https://www.joongangenews.com/news/articleView.html?idxno=534960"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6262646606272853,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "고려신용정보, 7월 채권추심 평판 1위 독주…서울평가정보 62% '폭풍 성장...",
+        "url": "http://www.popcornnews.net/news/articleView.html?idxno=127370"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "거시·시장": 2,
+      "대부": 2,
+      "디지털자산": 2,
+      "여전": 2,
+      "은행": 1,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 4,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "연체·부실": 1,
+      "자금시장·유동성": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}

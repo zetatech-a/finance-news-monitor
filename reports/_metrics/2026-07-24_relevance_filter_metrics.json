@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 15,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 82,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 21,
+  "candidate_hybrid_gray_keep_domain": 91,
+  "candidate_hybrid_gray_rule_drop": 267,
+  "candidate_hybrid_gray_rule_keep": 91,
+  "candidate_hybrid_keep_overseas_global_reference": 15,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 603,
+  "candidate_hybrid_model_drop": 140,
+  "candidate_hybrid_model_keep": 158,
+  "candidate_hybrid_model_keep_with_domain_anchor": 158,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 603,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-24",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 15,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 82,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 20,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 21,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 267,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 91,
+    "candidate_hybrid_keep_overseas_global_reference": 15,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 603,
+    "candidate_hybrid_model_drop_prob_le_threshold": 140,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 158
+  },
+  "dropped_count": 561,
+  "input_count": 1432,
+  "kept_count": 871,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1432,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 145,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[재미로 보는 오늘의 운세] 7월 24일 (금요일) 59년생, 자녀문제로 신경...",
+      "url": "https://www.segye.com/newsView/20260723519762?OutUrl=naver"
+    },
+    {
+      "title": "실수요자 \"풀어달라\", 李 대통령 \"더 조여야\"…빠져나갈 구석 없는 대출...",
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=208179"
+    },
+    {
+      "title": "주운 신분증으로 타인 행세...15억대 투자 사기 50대 징역 7년",
+      "url": "https://www.cwn.kr/news/articleView.html?idxno=51115"
+    },
+    {
+      "title": "\"경영난이라더니 호화생활\" … 국세·관세청 첫 합동 추적, 악성 체납자...",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/07/23/2026072300103.html"
+    },
+    {
+      "title": "JB금융, 2분기 실적 서프라이즈…영업이익 3천억 돌파",
+      "url": "https://www.tokenpost.kr/news/economy/380596"
+    },
+    {
+      "title": "KB·신한금융 상반기 13%대 성장…금융권 '역대급 실적'",
+      "url": "https://www.asiatime.co.kr/article/20260723500411"
+    },
+    {
+      "title": "장기 연체채무 정리 확대하는 정부…취약계층 대출 위축될라",
+      "url": "http://www.iminju.net/news/articleView.html?idxno=166979"
+    },
+    {
+      "title": "현대카드, 상반기 순익 1852억원…4년 연속 성장세",
+      "url": "https://www.sidae.com/article/2026072315592764728"
+    },
+    {
+      "title": "고창군산림조합, 산림조합금융 업적평가 금상 수상",
+      "url": "http://www.jeollailbo.com/news/articleView.html?idxno=806127"
+    },
+    {
+      "title": "단일 레버리지 도입 '잘못한 결정' 63.7%·'잘한 결정' 19.0%[리얼미터]",
+      "url": "https://www.yna.co.kr/view/AKR20260724030200001?input=1195m"
+    }
+  ]
+}
