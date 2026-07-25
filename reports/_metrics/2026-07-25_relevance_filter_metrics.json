@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 7,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 28,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 14,
+  "candidate_hybrid_gray_keep_domain": 23,
+  "candidate_hybrid_gray_rule_drop": 110,
+  "candidate_hybrid_gray_rule_keep": 23,
+  "candidate_hybrid_keep_overseas_global_reference": 13,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 0,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 319,
+  "candidate_hybrid_model_drop": 120,
+  "candidate_hybrid_model_keep": 88,
+  "candidate_hybrid_model_keep_with_domain_anchor": 88,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 319,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-25",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 7,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 28,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 10,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 14,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 110,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 23,
+    "candidate_hybrid_keep_overseas_global_reference": 13,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 319,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 2,
+    "candidate_hybrid_model_drop_prob_le_threshold": 120,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 88
+  },
+  "dropped_count": 294,
+  "input_count": 739,
+  "kept_count": 445,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 739,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 80,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[재미로 보는 오늘의 운세] 7월 25일 (토요일) 74년생, 금전지출이 많은...",
+      "url": "https://www.segye.com/newsView/20260723519647?OutUrl=naver"
+    },
+    {
+      "title": "‘급전 창구’ 자동차 담보대출도 조인다 [H-EXCLUSIVE]",
+      "url": "https://biz.heraldcorp.com/article/10819014?ref=naver"
+    },
+    {
+      "title": "하나금융, 2026년 상반기 2조4천29억원 순이익 기록…역대 최대 실적 경...",
+      "url": "https://www.tokenpost.kr/news/economy/381029"
+    },
+    {
+      "title": "진옥동號 신한금융, 반기 순익 3.4조로 '성공적인 2기'…주주환원 2.8조...",
+      "url": "https://www.newswhoplus.com/news/articleView.html?idxno=65347"
+    },
+    {
+      "title": "하나금융, 상반기 순익 2조4029억원…핵심이익 성장에 4.4% 증가",
+      "url": "https://www.sidae.com/article/2026072414172170815"
+    },
+    {
+      "title": "세종시, ‘육아기 여성대표’ 핀셋 지원… 카카오뱅크 손잡고 30억 보증...",
+      "url": "https://www.wikitree.co.kr/articles/1148226"
+    },
+    {
+      "title": "현대카드, 상반기 순익 1852억···전년比 11.9%↑",
+      "url": "https://www.seoulfn.com/news/articleView.html?idxno=634050"
+    },
+    {
+      "title": "우리카드, 상반기 순익 945억원…독자매출 40% 돌파",
+      "url": "http://sateconomy.co.kr/news/view/1065612964174656"
+    },
+    {
+      "title": "우리카드, 독자매출 비중 최초 40% 돌파…상반기 순익 945억",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=668960"
+    },
+    {
+      "title": "현대카드, 상반기 순익 1852억원…신용판매·회원 증가 견인",
+      "url": "http://www.press9.kr/news/articleView.html?idxno=80022"
+    }
+  ]
+}
