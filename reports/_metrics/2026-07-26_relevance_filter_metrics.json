@@ -1,0 +1,92 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 3,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 5,
+  "candidate_hybrid_gray_rule_drop": 17,
+  "candidate_hybrid_gray_rule_keep": 5,
+  "candidate_hybrid_keep_overseas_global_reference": 7,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 0,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 63,
+  "candidate_hybrid_model_drop": 15,
+  "candidate_hybrid_model_keep": 25,
+  "candidate_hybrid_model_keep_with_domain_anchor": 25,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 63,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-26",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 3,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 17,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 5,
+    "candidate_hybrid_keep_overseas_global_reference": 7,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 63,
+    "candidate_hybrid_model_drop_prob_le_threshold": 15,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 25
+  },
+  "dropped_count": 43,
+  "input_count": 143,
+  "kept_count": 100,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 143,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 12,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "1조 달러를 빨아들인 AI 블랙홀 … 호황이 만든 불균형 [반도체 슈퍼사...",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/07/23/2026072300114.html"
+    },
+    {
+      "title": "현대와 벌리고 신한 추격하고… KB국민카드, 상반기 매서운 반격",
+      "url": "https://www.mt.co.kr/finance/2026/07/26/2026072413275366672"
+    },
+    {
+      "title": "[CEO&뉴스] '구원투수' 정상호 롯데카드 대표, 수습 넘어 도약 모색",
+      "url": "https://www.seoulfn.com/news/articleView.html?idxno=634070"
+    },
+    {
+      "title": "[인뱅 2막 ③] '선도자→추격자' 케이뱅크, SME·디지털 '승부수'",
+      "url": "https://www.seoulfn.com/news/articleView.html?idxno=634059"
+    },
+    {
+      "title": "[7월 넷째 주 세계경제동향 브리핑] 코스피 6,600선 후퇴…한미 증시 동...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3029841"
+    },
+    {
+      "title": "이용 금액 최대 13% 적립… 9개월만에 250만명 모은 ‘삼성월렛’",
+      "url": "https://biz.chosun.com/about-investing/2026/07/26/RJFMUOD35FC3VCA5SCJ6ZFVBWI/?utm_source=naver&utm_medium=original&utm_campaign=biz"
+    },
+    {
+      "title": "비이자이익서 드러난 체급 차이… 증권·보험 강화하는 금융지주",
+      "url": "https://it.chosun.com/news/articleView.html?idxno=2023092166553"
+    },
+    {
+      "title": "잔금대출 뿐 아니라 이주비·중도금도 '핀셋지원'..총량규제 1.5%는 유지",
+      "url": "https://www.mt.co.kr/finance/2026/07/26/2026072417243175302"
+    },
+    {
+      "title": "가계대출 소폭 감소에도 5대은행 연간 총량 초과…부동산 종합대책 주목",
+      "url": "https://www.news1.kr/finance/general-finance/6238451"
+    },
+    {
+      "title": "\"길거리 나앉을 판\"…입주 앞둔 아파트서 무슨 일이",
+      "url": "http://www.yonhapnewstv.co.kr/news/MYH20260725180904i3P"
+    }
+  ]
+}
