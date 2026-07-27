@@ -1,0 +1,265 @@
+{
+  "clusters": {
+    "cluster_count": 179,
+    "cluster_size_max": 54,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 54,
+        "relevance_prob": 0.8263931301016935,
+        "relevance_score": 18,
+        "sector": "거시·시장",
+        "title": "국고채 금리 고점에 크레딧 투자 매력 부각…금융채·회사채 관심 확대",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=591920"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 440,
+    "displayed_articles": 105,
+    "final_tagged_representatives": 179,
+    "normalized_articles": 637,
+    "raw_items": 637,
+    "relevance_filtered_articles": 316,
+    "rule_filtered_articles": 434,
+    "tagged_before_cluster": 316
+  },
+  "date": "2026-07-27",
+  "generated_at": "2026-07-27T10:19:45.552715+09:00",
+  "publishers": {
+    "missing_publisher_count": 179,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 79,
+    "no_topic_ratio": 0.4413,
+    "no_topic_samples": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6794065796903117,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "코인원·한국투자증권 첫 협업…앱에서 주식투자 서비스 연결",
+        "url": "https://www.ajunews.com/view/20260727084859556"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7157451346718878,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "코인원, 앱서 한국투자증권 주식 거래 연결…지분 투자 후 첫 협업",
+        "url": "http://www.popcornnews.net/news/articleView.html?idxno=127686"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6719631991945819,
+        "relevance_score": 9,
+        "sector": "대부",
+        "title": "온라인 불법 대부광고 차단 추진…사전심의·신고포상제 도입 추진",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=471676"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.730939787545386,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코인원, 혁신금융연합 시너지 시작..한국투자증권 WTS 연결 메뉴 신설",
+        "url": "https://kpenews.com/View.aspx?No=4162804"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.706180523166063,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[SV 리포트] 외부서도 인정한 삼성생명 'ESG 경영'…취약계층 지원부터...",
+        "url": "https://www.socialvalue.kr/news/view/1065592631576197"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5187414863590885,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[NSPCEO인덱스:CEO혁신동력]박종문 삼성증권 대표, CEO인덱스 4.0점 ‘성...",
+        "url": "https://www.nspna.com/news/?mode=view&newsid=821963"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5569839893084978,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "與윤준병, ‘불법 대부광고 차단법’ 대표발의…“안전한 금융환경 조성...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002675301?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5505045087781242,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "[더벨][Board Change] HD현대일렉트릭, 감사위원 공백 한 달 만에 후임 낙...",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202607212258215120107942"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6662554663391391,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "비트마트·비트멕스 폐쇄 여파…톰 리 \"이더리움 25만 달러 바닥 신호\" ...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=471645"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8402058599624838,
+        "relevance_score": 13,
+        "sector": "입법·정책",
+        "title": "LS증권 “반도체 다음은 결제 플랫폼…정책·밸류·성장 삼박자”",
+        "url": "https://www.etoday.co.kr/news/view/2607568"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 5,
+      "거시·시장": 13,
+      "기타": 84,
+      "대부": 5,
+      "디지털자산": 26,
+      "보험": 4,
+      "상호금융": 2,
+      "여전": 6,
+      "은행": 14,
+      "입법·정책": 16,
+      "자산운용·연기금": 2,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 10,
+      "감독·제재": 8,
+      "건전성·자본규제": 4,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 16,
+      "기업금융·익스포저": 5,
+      "디지털자산": 31,
+      "부동산·PF": 3,
+      "불법사금융·불법추심·보이스피싱": 7,
+      "사고·사기·횡령": 6,
+      "상품·영업·예금금리": 3,
+      "서민금융·대환·채무조정": 1,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 12,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 2,
+      "정책·제도개선": 1,
+      "증시·시장시황": 3,
+      "칼럼·오피니언": 9,
+      "해외·글로벌": 7,
+      "환율·외환": 3
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9187825020274116,
+        "relevance_score": 27,
+        "sector": "거시·시장",
+        "title": "금주 한국은행 및 금융당국(금융위·금감원) 주요 일정",
+        "url": "https://n.news.naver.com/mnews/article/123/0002387239?sid=101"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.9303982245880349,
+        "relevance_score": 26,
+        "sector": "디지털자산",
+        "title": "[단독]정부 “원화코인·STO 검증”…디지털자산 시험장 만든다",
+        "url": "https://n.news.naver.com/mnews/article/011/0004645247?sid=101"
+      },
+      {
+        "cluster_size": 7,
+        "relevance_prob": 0.6252002227287217,
+        "relevance_score": 17,
+        "sector": "대부",
+        "title": "금융위, 2026년 상반기 적극행정 우수공무원 시상",
+        "url": "http://www.intn.co.kr/news/articleView.html?idxno=2052149"
+      },
+      {
+        "cluster_size": 17,
+        "relevance_prob": 0.8290753427934362,
+        "relevance_score": 20,
+        "sector": "은행",
+        "title": "“고금리에 빚 못 갚는다”…2분기 은행 가계대출 연체율 10년만 최고",
+        "url": "https://n.news.naver.com/mnews/article/025/0003540170?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.79104389961319,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "'민원 처리' 넘어 '소비자 중심'으로, 금융권 교육체계 개편",
+        "url": "https://www.insnews.co.kr/news/articleView.html?idxno=91976"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7091552932700259,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "6천억원 과징금 어떻게 되나…ELS 제재 또 미뤄질 듯",
+        "url": "https://www.jnilbo.com/news/articleView.html?idxno=90000052397"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8492168799991366,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "홍콩 ELS 과징금 결론 또 미뤄질 듯…금융위, 31일 확정 불투명",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=746210"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6474570937090379,
+        "relevance_score": 15,
+        "sector": "감독·제재",
+        "title": "홍콩H지수 ELS 제재, 7월 결론 미뤄지나",
+        "url": "https://www.tokenpost.kr/news/economy/381467"
+      },
+      {
+        "cluster_size": 54,
+        "relevance_prob": 0.8263931301016935,
+        "relevance_score": 18,
+        "sector": "거시·시장",
+        "title": "국고채 금리 고점에 크레딧 투자 매력 부각…금융채·회사채 관심 확대",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=591920"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7510604883814449,
+        "relevance_score": 17,
+        "sector": "입법·정책",
+        "title": "청년·서민 실수요 대출 숨통…금융위 예외 확대 검토",
+        "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202607261406048930538"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 2,
+      "대부": 1,
+      "디지털자산": 1,
+      "은행": 1,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 3,
+      "금리·수수료·최고금리": 2,
+      "기업금융·익스포저": 1,
+      "디지털자산": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "소비자보호·민원·불완전판매": 1,
+      "연체·부실": 1,
+      "자금시장·유동성": 1
+    }
+  }
+}

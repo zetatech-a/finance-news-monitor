@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 14,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 25,
+  "candidate_hybrid_gray_rule_drop": 65,
+  "candidate_hybrid_gray_rule_keep": 25,
+  "candidate_hybrid_keep_overseas_global_reference": 10,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 194,
+  "candidate_hybrid_model_drop": 24,
+  "candidate_hybrid_model_keep": 81,
+  "candidate_hybrid_model_keep_with_domain_anchor": 81,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 194,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-27",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 14,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 5,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 65,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 25,
+    "candidate_hybrid_keep_overseas_global_reference": 10,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 194,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 3,
+    "candidate_hybrid_model_drop_prob_le_threshold": 24,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 81
+  },
+  "dropped_count": 118,
+  "input_count": 434,
+  "kept_count": 316,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 434,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 31,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "OK금융 오케이벤처스, 계열사서 빌린 단기차입 금리 9.78%",
+      "url": "http://www.newsfc.co.kr/news/articleView.html?idxno=80122"
+    },
+    {
+      "title": "대법 “중개 없이 전세계약서만 써준 공인중개사도 대출 사기 책임”",
+      "url": "https://www.segye.com/newsView/20260726508006?OutUrl=naver"
+    },
+    {
+      "title": "대법 \"중개 없이 전세계약서 작성…공인중개사, 주의의무 위반\"",
+      "url": "https://www.edaily.co.kr/news/newspath.asp?newsid=01377606645518456"
+    },
+    {
+      "title": "대법 \"당사자 제대로 확인 않은 공인중개사도 손해배상 책임\"",
+      "url": "https://www.news1.kr/society/court-prosecution/6239004"
+    },
+    {
+      "title": "[스타트 경제] '똘똘한 한 채' 종부세 강화 유력...부동산 세제개편 임박",
+      "url": "https://www.ytn.co.kr/_ln/0102_202607270735414965"
+    },
+    {
+      "title": "KB국민카드 상반기 순익 21% 껑충",
+      "url": "http://www.fnnews.com/news/202607261805391898"
+    },
+    {
+      "title": "동서천농협, 한산농협과 합병 추진…\"경영 정상화·조합원 실익 위한 선...",
+      "url": "https://www.ngonews.kr/news/articleView.html?idxno=233829"
+    },
+    {
+      "title": "금리 상승에 영끌족 비명…서울 주담대 연체율도 ‘꿈틀’",
+      "url": "https://www.kmib.co.kr/article/view.asp?arcid=0030162306&code=61141111&cp=nv"
+    },
+    {
+      "title": "이찬진 금감원장, 동아시아·태평양지역 금융감독기관장·중앙은행총재...",
+      "url": "https://biz.chosun.com/stock/stock_general/2026/07/26/QBTEFLLLNBGGJLMSRABQSZMWFQ/?utm_source=naver&utm_medium=original&utm_campaign=biz"
+    },
+    {
+      "title": "병력 있어도 가입하는 유병자보험…향후 과제는?",
+      "url": "http://www.fins.co.kr/news/articleView.html?idxno=109302"
+    }
+  ]
+}
