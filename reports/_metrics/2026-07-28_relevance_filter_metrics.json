@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 32,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 11,
+  "candidate_hybrid_gray_keep_domain": 50,
+  "candidate_hybrid_gray_rule_drop": 168,
+  "candidate_hybrid_gray_rule_keep": 50,
+  "candidate_hybrid_keep_overseas_global_reference": 24,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 8,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 398,
+  "candidate_hybrid_model_drop": 86,
+  "candidate_hybrid_model_keep": 232,
+  "candidate_hybrid_model_keep_with_domain_anchor": 232,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 398,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-28",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 32,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 8,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 11,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 168,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 50,
+    "candidate_hybrid_keep_overseas_global_reference": 24,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 8,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 398,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 3,
+    "candidate_hybrid_model_drop_prob_le_threshold": 86,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 232
+  },
+  "dropped_count": 323,
+  "input_count": 1038,
+  "kept_count": 715,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1038,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 85,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "\"참여 안 하면 페널티\"…새도약기금 압박에 대부업계 \"차라리 폐업\"",
+      "url": "https://www.dailian.co.kr/news/view/1671349/?sc=Naver"
+    },
+    {
+      "title": "iM뱅크, 수도권·지방 '투트랙 전략' 순항",
+      "url": "http://www.metroseoul.co.kr/article/20260728500035"
+    },
+    {
+      "title": "[오늘의 신문] 가계빚·대출규제 ‘경고등’…AI 공급망과 청년고용은 ...",
+      "url": "http://kor.theasian.asia/archives/410743"
+    },
+    {
+      "title": "이익도 상생도 '두 자릿수'…우리·하나카드, 포용금융 업고 달렸다",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1395518"
+    },
+    {
+      "title": "연체율은 물론 '빚투'까지...지금 우리 경제 수치, 얼마나 심각할까 [이...",
+      "url": "https://www.ytn.co.kr/_ln/0134_202607271000382238"
+    },
+    {
+      "title": "삼성카드, 상반기 순익 7.5% 감소…취급고는 9% 증가",
+      "url": "https://www.straightnews.co.kr/news/articleView.html?idxno=307765"
+    },
+    {
+      "title": "삼성카드, 상반기 순익 3105억원…조달금리 상승에 수익성 둔화",
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=725112"
+    },
+    {
+      "title": "[중소기업 프리즘] 버티는 것이 항상 정답은 아니다",
+      "url": "http://www.kbiznews.co.kr/news/articleView.html?idxno=114571"
+    },
+    {
+      "title": "보은군산림조합, 올 상반기 산림조합금융 업적평가 '금상'",
+      "url": "https://www.jbnews.com/news/articleView.html?idxno=1508315"
+    },
+    {
+      "title": "중동 긴장 완화에 국고채 금리 일제히↓…3년물 연 3.865%(종합)",
+      "url": "https://www.yna.co.kr/view/AKR20260727136251008?input=1195m"
+    }
+  ]
+}

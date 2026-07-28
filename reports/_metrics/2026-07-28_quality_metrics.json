@@ -1,0 +1,275 @@
+{
+  "clusters": {
+    "cluster_count": 331,
+    "cluster_size_max": 70,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 70,
+        "relevance_prob": 0.8865817679470963,
+        "relevance_score": 19,
+        "sector": "거시·시장",
+        "title": "[미리보는 FOMC] '매파적 동결' 무게···인상 신호에 쏠린 시선",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=634214"
+      },
+      {
+        "cluster_size": 56,
+        "relevance_prob": 0.8816454840071917,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "한국투자증권, 코인원 앱 연계 국내주식 거래 서비스 오픈",
+        "url": "https://www.smarttoday.co.kr/ko-kr/articles/109832"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1043,
+    "displayed_articles": 206,
+    "final_tagged_representatives": 331,
+    "normalized_articles": 1342,
+    "raw_items": 1342,
+    "relevance_filtered_articles": 715,
+    "rule_filtered_articles": 1038,
+    "tagged_before_cluster": 715
+  },
+  "date": "2026-07-28",
+  "generated_at": "2026-07-28T10:06:03.319921+09:00",
+  "publishers": {
+    "missing_publisher_count": 331,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 139,
+    "no_topic_ratio": 0.4199,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7251497732516988,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "SK하이닉스 토큰화 주식 하루 거래 5조…'웩더독' 경계해야 하나",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1718013"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6734302549774162,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "[이슈체크] KCGI 500억 실탄 넣는 한양증권, 몸집 키우기 앞서 내부통제...",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=312602"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7181553335518296,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[이윤구의 프리킥스] 보험사기 근절 '반짝 성과' 넘어서야",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4427150"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4666971135323196,
+        "relevance_score": 11,
+        "sector": "기타",
+        "title": "연 순익 4800억 전망…iM금융, CET1 12.27% 안착 속 자사주 300억 소각",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=362663"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.48467810372937786,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "실수요자 대출 숨통 트이나?…이억원 금융위원장 \"핀셋 지원으로 불편 ...",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=746360"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7777117189823264,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "700억 절감·경영권 유지…코인원의 '영리한 딜'",
+        "url": "https://n.news.naver.com/mnews/article/648/0000049257?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6562334463760559,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "코인베이스 \"투자자들 변동성 완화 기다리며 자금 이동\"",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=852575"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6674770862162244,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "펀딩피 급변의 경고… XRP 개미들, 순식간에 다 털릴 위험",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=472022"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5438475534753197,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[김보형의 뷰파인더]4개월 전부터 뜨거운 은행연합회장선임 민간 윤종규...",
+        "url": "https://n.news.naver.com/mnews/article/050/0000109019?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8027128368673537,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "코스피엔 36조 몰렸는데…코인 개미는 실종",
+        "url": "https://n.news.naver.com/mnews/article/119/0003115486?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 10,
+      "거시·시장": 18,
+      "기타": 135,
+      "대부": 5,
+      "디지털자산": 70,
+      "보험": 7,
+      "상호금융": 7,
+      "여전": 10,
+      "은행": 33,
+      "입법·정책": 17,
+      "자산운용·연기금": 5,
+      "저축은행": 8,
+      "증권(브로커리지/리테일)": 4,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 14,
+      "감독·제재": 14,
+      "건전성·자본규제": 12,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 22,
+      "기업금융·익스포저": 12,
+      "디지털자산": 69,
+      "부동산·PF": 5,
+      "불법사금융·불법추심·보이스피싱": 21,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 9,
+      "서민금융·대환·채무조정": 7,
+      "연체·부실": 24,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 5,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 3,
+      "해외·글로벌": 11,
+      "환율·외환": 3
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 33,
+        "relevance_prob": 0.9280310063077231,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "코인 거래소-금융사 연합전선 넓히는데… ‘빅2’ 빗썸, 골든타임 놓치...",
+        "url": "https://n.news.naver.com/mnews/article/029/0003039125?sid=105"
+      },
+      {
+        "cluster_size": 14,
+        "relevance_prob": 0.8793737037073877,
+        "relevance_score": 25,
+        "sector": "은행",
+        "title": "[이슈] 은행권 가계대출 연체율 10년 만에 최고…고금리 장기화에 부실...",
+        "url": "https://www.polinews.co.kr/news/articleView.html?idxno=738124"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7421946865407852,
+        "relevance_score": 26,
+        "sector": "입법·정책",
+        "title": "검사 부서는 잔류, 기획은 세종行… 금감원 분리 이전설",
+        "url": "https://n.news.naver.com/mnews/article/366/0001182129?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7770109148240762,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "오하운용, 'PF 부실채권' OEM 논란 속 2천억원 전액 청산",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4427160"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8167360312988485,
+        "relevance_score": 21,
+        "sector": "저축은행",
+        "title": "교보생명 품에 안긴 SBI저축은행…생산적 금융 보폭 넓힐까",
+        "url": "http://www.iminju.net/news/articleView.html?idxno=167185"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.7572679292290243,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "홍콩H지수 ELS 제재 8월로 넘어가나…6000억 과징금 놓고 금융위 고심",
+        "url": "https://sateconomy.co.kr/news/view/1065571552308815"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8702736443666491,
+        "relevance_score": 23,
+        "sector": "디지털자산",
+        "title": "\"원화 스테이블코인 논의, 온체인 데이터로 확장해야\"…민간 포럼 출범",
+        "url": "https://n.news.naver.com/mnews/article/421/0009081864?sid=101"
+      },
+      {
+        "cluster_size": 18,
+        "relevance_prob": 0.6261149378157439,
+        "relevance_score": 18,
+        "sector": "대부",
+        "title": "서민금융연구원, '저신용자 보고서' 발간...\"불법 사금융 이동 저신용자...",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=268030"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5517429228597464,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "공공기관 지방이전 임박…정책금융 '흔들'",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=362637"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8135689862007077,
+        "relevance_score": 17,
+        "sector": "상호금융",
+        "title": "[상호금융 하프타임]② 신협, 건전성 다지고 디지털 전환…'성장' 시험...",
+        "url": "http://www.wikileaks-kr.org/news/articleView.html?idxno=190213"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 2,
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "은행": 2,
+      "입법·정책": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 2,
+      "감독·제재": 1,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 1,
+      "기업금융·익스포저": 1,
+      "디지털자산": 2,
+      "부동산·PF": 2,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 2
+    }
+  }
+}
