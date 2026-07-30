@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 79,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 9,
+  "candidate_hybrid_gray_keep_domain": 31,
+  "candidate_hybrid_gray_rule_drop": 162,
+  "candidate_hybrid_gray_rule_keep": 31,
+  "candidate_hybrid_keep_overseas_global_reference": 79,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 51,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 475,
+  "candidate_hybrid_model_drop": 70,
+  "candidate_hybrid_model_keep": 129,
+  "candidate_hybrid_model_keep_with_domain_anchor": 129,
+  "candidate_hybrid_negative_drop": 8,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 475,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-07-30",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 79,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 5,
+    "candidate_hybrid_drop_negative_signal": 8,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 9,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 162,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 31,
+    "candidate_hybrid_keep_overseas_global_reference": 79,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 51,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 475,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 2,
+    "candidate_hybrid_model_drop_prob_le_threshold": 70,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 129
+  },
+  "dropped_count": 343,
+  "input_count": 1110,
+  "kept_count": 767,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1110,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 75,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "윤상현 의원, '불법 대부 광고·추심 근절법' 발의…\"SNS 불법 추심·초...",
+      "url": "https://www.greened.kr/news/articleView.html?idxno=346250"
+    },
+    {
+      "title": "윤상현, \"불법 사금융 SNS 뿌리뽑겠다\"…법 개정안 발의",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3649587"
+    },
+    {
+      "title": "김이태 삼성카드 대표, 신한 턱밑 추격…'신용판매 1위' 판 뒤집나",
+      "url": "https://www.insightkorea.co.kr/news/articleView.html?idxno=251232"
+    },
+    {
+      "title": "‘빈대인 2기’ 출발부터 가시밭길…BNK금융, 부실대출 5년 새 최고",
+      "url": "https://www.ddaily.co.kr/page/view/2026072915065422665"
+    },
+    {
+      "title": "강원 자영업자 빚 25조원 대로 급증···벼랑 끝에 선 고령층",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2453657"
+    },
+    {
+      "title": "상반기 희비 엇갈린 지방금융권…JB '맑음' BNK·iM '흐림'",
+      "url": "https://www.mediapen.com/news/view/1112934"
+    },
+    {
+      "title": "상조·여행 선불업체 ‘우후죽순’ 옛말…2분기 2곳 또 폐업, 정상 영위...",
+      "url": "https://view.asiae.co.kr/article/2026072911074420254"
+    },
+    {
+      "title": "정읍산림조합, 상반기 금융업적 평가 전국 1위 '대상'",
+      "url": "http://www.jeonmin.co.kr/news/articleView.html?idxno=444277"
+    },
+    {
+      "title": "정읍산림조합, 전국 142개 중 1위…2년 연속 대상",
+      "url": "http://www.jeollailbo.com/news/articleView.html?idxno=806663"
+    },
+    {
+      "title": "국민은행, 가계대출 금리 최대 0.53%p 인상",
+      "url": "https://www.mediapen.com/news/view/1113099"
+    }
+  ]
+}
