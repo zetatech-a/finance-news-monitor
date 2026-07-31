@@ -1,0 +1,264 @@
+{
+  "clusters": {
+    "cluster_count": 270,
+    "cluster_size_max": 215,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 215,
+        "relevance_prob": 0.8942158702913378,
+        "relevance_score": 34,
+        "sector": "거시·시장",
+        "title": "연준 5연속 동결…당국 \"금융·외환시장 변동성 대응 강화\"",
+        "url": "https://www.mediapen.com/news/view/1113190"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 994,
+    "displayed_articles": 180,
+    "final_tagged_representatives": 270,
+    "normalized_articles": 1439,
+    "raw_items": 1439,
+    "relevance_filtered_articles": 632,
+    "rule_filtered_articles": 978,
+    "tagged_before_cluster": 632
+  },
+  "date": "2026-07-31",
+  "generated_at": "2026-07-31T10:15:06.809855+09:00",
+  "publishers": {
+    "missing_publisher_count": 270,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 104,
+    "no_topic_ratio": 0.3852,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.3370230263441389,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "NH농협금융, 하반기 '지역밀착형 생산적·포용금융' 속도",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=208787"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6862950401591721,
+        "relevance_score": 6,
+        "sector": "거시·시장",
+        "title": "구윤철 “실물경제 견조…중동전쟁·금융시장 변동성 적기 대응”",
+        "url": "https://n.news.naver.com/mnews/article/119/0003116823?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.674025133879359,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "알뜰폰 5G 저가요금제 나온다",
+        "url": "https://n.news.naver.com/mnews/article/003/0014100092?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.29557799598064305,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "농협금융, 상반기 생산·포용금융 14조 공급...하반기 지역밀착 생산적...",
+        "url": "https://www.g-enews.com/view.php?ud=202607310826442578bb91c46fcd_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6142413467772808,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "과기정통부, 알뜰폰 5G 도매대가 낮추고 자체설비 사업자 키운다",
+        "url": "https://n.news.naver.com/mnews/article/366/0001183355?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.607462521072445,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "법인카드 점유율 경쟁 후끈…하나카드, 1위 노린다",
+        "url": "http://www.datanews.co.kr/news/article.html?no=145805"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6941086901292283,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "비트코인 거래 둔화에 비명… 코인베이스, 2분기 3억5900만 달러 적자 전...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=473117"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.600829324207455,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "금융기관 대출 증가폭 확대‥예금은 감소",
+        "url": "https://jejumbc.com/NewsArticle/853965"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6030878692432415,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "주식은 급락, 집값은 상승···서울 아파트 향한 불안한 머니무브",
+        "url": "https://www.smartbizn.com/news/articleView.html?idxno=149967"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.46424148289500966,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "향토 은행 맞아?…늘어나는 자금 역외 유출",
+        "url": "https://n.news.naver.com/mnews/article/056/0012228844?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 5,
+      "거시·시장": 38,
+      "기타": 100,
+      "대부": 5,
+      "디지털자산": 42,
+      "보험": 2,
+      "상호금융": 7,
+      "여전": 10,
+      "은행": 35,
+      "입법·정책": 12,
+      "자산운용·연기금": 6,
+      "저축은행": 4,
+      "증권(브로커리지/리테일)": 2,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 13,
+      "감독·제재": 6,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 40,
+      "기업금융·익스포저": 6,
+      "디지털자산": 46,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 18,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 6,
+      "서민금융·대환·채무조정": 2,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 17,
+      "자금시장·유동성": 5,
+      "정책·제도개선": 4,
+      "증시·시장시황": 8,
+      "칼럼·오피니언": 12,
+      "해외·글로벌": 29,
+      "환율·외환": 8
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 215,
+        "relevance_prob": 0.8942158702913378,
+        "relevance_score": 34,
+        "sector": "거시·시장",
+        "title": "연준 5연속 동결…당국 \"금융·외환시장 변동성 대응 강화\"",
+        "url": "https://www.mediapen.com/news/view/1113190"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.8218310891434342,
+        "relevance_score": 30,
+        "sector": "대부",
+        "title": "금융위, '12대 입법과제' 국회 제출…서민금융법·자본시장법 드라이브",
+        "url": "https://n.news.naver.com/mnews/article/421/0009089506?sid=101"
+      },
+      {
+        "cluster_size": 31,
+        "relevance_prob": 0.928686364556127,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "9년 묵은 금가분리 해제 초읽기…증권사-가상자산거래소 커플링 본격화",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1718392"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7103528244193688,
+        "relevance_score": 22,
+        "sector": "대부",
+        "title": "허가제 앞두고 추심업체 이탈…반년 새 18곳 사라져",
+        "url": "https://n.news.naver.com/mnews/article/011/0004646998?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8685192538317447,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "정부, 美금리 5회 연속 동결에 \"경제·금융시장 영향 면밀점검\"",
+        "url": "https://n.news.naver.com/mnews/article/658/0000150965?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6534532885036133,
+        "relevance_score": 23,
+        "sector": "디지털자산",
+        "title": "[단독]드디어 불법 코인거래소 차단된다…방미심위 \"사기사이트처럼 차...",
+        "url": "https://n.news.naver.com/mnews/article/277/0005797131?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5304046180609886,
+        "relevance_score": 22,
+        "sector": "은행",
+        "title": "2차 공공기관 지방 이전 '로드맵' 나오나···국책은행·농협 노조 반발",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=634528"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8498272091213666,
+        "relevance_score": 23,
+        "sector": "자산운용·연기금",
+        "title": "은행 ETF 수수료 7배 더 챙겼다…금감원 판매관행 손질(종합)",
+        "url": "https://n.news.naver.com/mnews/article/018/0006340192?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.724726426775481,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "[단독] 대신증권, 법 위반 무더기 적발...임직원 9명 제재",
+        "url": "https://www.dailybrief.co.kr/news/articleView.html?idxno=6437"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.825658115240288,
+        "relevance_score": 21,
+        "sector": "기타",
+        "title": "[컨콜] 삼성SDS, 'AI 풀스택' 실행 방안 공개…'클라이언트 제로' 체계 구...",
+        "url": "https://www.itdaily.kr/news/articleView.html?idxno=240715"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 2,
+      "기타": 1,
+      "대부": 2,
+      "디지털자산": 2,
+      "은행": 1,
+      "자산운용·연기금": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 3,
+      "서민금융·대환·채무조정": 1,
+      "정책·제도개선": 1,
+      "해외·글로벌": 2,
+      "환율·외환": 1
+    }
+  }
+}
