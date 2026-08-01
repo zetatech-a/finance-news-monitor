@@ -1,0 +1,267 @@
+{
+  "clusters": {
+    "cluster_count": 203,
+    "cluster_size_max": 65,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 65,
+        "relevance_prob": 0.8108533091076573,
+        "relevance_score": 30,
+        "sector": "감독·제재",
+        "title": "금융위, 고객 정보유출 롯데카드에 '1.5개월 업무정지·과징금 50억'",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=208877"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 620,
+    "displayed_articles": 141,
+    "final_tagged_representatives": 203,
+    "normalized_articles": 885,
+    "raw_items": 885,
+    "relevance_filtered_articles": 411,
+    "rule_filtered_articles": 618,
+    "tagged_before_cluster": 411
+  },
+  "date": "2026-08-01",
+  "generated_at": "2026-08-01T10:14:29.106691+09:00",
+  "publishers": {
+    "missing_publisher_count": 203,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 86,
+    "no_topic_ratio": 0.4236,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.771020499082866,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[정치라떼] ‘보완수사권 폐지’ 형소법 통과…“재개정·혼란 불가피”",
+        "url": "https://www.viva100.com/article/20260731500669"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6717332159440824,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"그냥 양아치하고 달라요\"…형님 4명에 인사도 4번",
+        "url": "https://n.news.naver.com/mnews/article/055/0001377176?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6406655837996074,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[N2 포커스] 신한카드, 매출 늘었지만 이익 증가율 '뒷걸음'…체력은 여...",
+        "url": "https://www.news2day.co.kr/article/20260729500291"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7257183902712723,
+        "relevance_score": 15,
+        "sector": "거시·시장",
+        "title": "금융안정 ‘경고’만 하고 ‘감독’은 못하는 한은…직접 규제할 ‘칼’...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002678107?sid=101"
+      },
+      {
+        "cluster_size": 12,
+        "relevance_prob": 0.6467016438014229,
+        "relevance_score": 14,
+        "sector": "기타",
+        "title": "'매각저해 간접여파'는 아쉽지만...당국, 롯데카드 업무정지 4.5→1.5개월...",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=268739"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7657295178978867,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "리플, RLUSD 원화시장 진입 뒤 기관 발행망까지 확대…XRP와 연결고리는",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=593747"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.540676577965047,
+        "relevance_score": 12,
+        "sector": "대부",
+        "title": "“살인적 이자 13000%” 덜미 잡힌 사채조직의 수법",
+        "url": "https://n.news.naver.com/mnews/article/018/0006341795?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7021919120616558,
+        "relevance_score": 14,
+        "sector": "자산운용·연기금",
+        "title": "소비자경보 하루 만에 현장검사…금감원, 은행 ETF 판매관행 정조준",
+        "url": "https://www.koreareport.co.kr/news/articleView.html?idxno=51874"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6999441172748402,
+        "relevance_score": 9,
+        "sector": "감독·제재",
+        "title": "해킹 첫 영업제재…롯데카드 신규영업 1개월 반 멈춘다",
+        "url": "https://www.koreareport.co.kr/news/articleView.html?idxno=51873"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.54663199084237,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "향토 은행 맞아?…늘어나는 자금 역외 유출",
+        "url": "https://n.news.naver.com/mnews/article/056/0012229277?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 11,
+      "거시·시장": 20,
+      "기타": 72,
+      "대부": 7,
+      "디지털자산": 30,
+      "보험": 4,
+      "상호금융": 3,
+      "여전": 4,
+      "은행": 24,
+      "입법·정책": 15,
+      "자산운용·연기금": 4,
+      "저축은행": 6,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 7,
+      "감독·제재": 10,
+      "건전성·자본규제": 6,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 23,
+      "기업금융·익스포저": 3,
+      "디지털자산": 37,
+      "물가·경기지표": 2,
+      "부동산·PF": 5,
+      "불법사금융·불법추심·보이스피싱": 8,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 5,
+      "서민금융·대환·채무조정": 3,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 5,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 2,
+      "정책·제도개선": 6,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 4,
+      "해외·글로벌": 14,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 65,
+        "relevance_prob": 0.8108533091076573,
+        "relevance_score": 30,
+        "sector": "감독·제재",
+        "title": "금융위, 고객 정보유출 롯데카드에 '1.5개월 업무정지·과징금 50억'",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=208877"
+      },
+      {
+        "cluster_size": 21,
+        "relevance_prob": 0.618943668238015,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "대구경찰청, 16억·연이자 최고 1만3000% 불법사금융 및 채권추심 업자 ...",
+        "url": "http://www.lawissue.co.kr/view.php?ud=2026073110172178679a8c8bf58f_12"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7380206520211301,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "'변동성 큰 자산' 옛말?…비트코인, 코스피보다 안정적이었다",
+        "url": "https://n.news.naver.com/mnews/article/421/0009090247?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.61865430825519,
+        "relevance_score": 31,
+        "sector": "거시·시장",
+        "title": "주식이 코인보다 심하다더니... 7월 코스피 변동성, 비트코인의 3.7배",
+        "url": "https://www.insight.co.kr/news/565880"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.7350706736266821,
+        "relevance_score": 23,
+        "sector": "감독·제재",
+        "title": "금감원, 은행 ETF 신탁 검사…'수수료 설명의무 위반' 들여다본다",
+        "url": "https://n.news.naver.com/mnews/article/008/0005394061?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7878989640678542,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "금융위, 5대 금융지주·은행 D-SIB 재지정…산은·기은 제외",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4428074"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7911054972986623,
+        "relevance_score": 21,
+        "sector": "감독·제재",
+        "title": "롯데카드, 297만건 정보유출로 첫 업무정지 처분… 금융권 보안 강화 촉...",
+        "url": "https://www.tokenpost.kr/news/economy/383394"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.681026262338912,
+        "relevance_score": 24,
+        "sector": "보험",
+        "title": "보험계약대출 한도 낮췄지만 다시 증가, 추가 관리도 '난제'",
+        "url": "https://www.newspim.com/news/view/20260730001328"
+      },
+      {
+        "cluster_size": 48,
+        "relevance_prob": 0.9389770966110567,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "한은, 8월 '백투백 금리 인상설' 솔솔···美 9월 인상 가능성 증대",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=634669"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.9046035565709863,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "디지털자산 전문가 양성, 뜨거운 관심 속 3기 과정 개설",
+        "url": "https://www.fntoday.co.kr/news/articleView.html?idxno=389398"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 2,
+      "대부": 1,
+      "디지털자산": 2,
+      "보험": 1,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 2,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "증시·시장시황": 1,
+      "해외·글로벌": 1
+    }
+  }
+}

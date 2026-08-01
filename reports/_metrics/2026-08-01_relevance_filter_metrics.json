@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 32,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 7,
+  "candidate_hybrid_gray_keep_domain": 27,
+  "candidate_hybrid_gray_rule_drop": 108,
+  "candidate_hybrid_gray_rule_keep": 27,
+  "candidate_hybrid_keep_overseas_global_reference": 22,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 5,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 279,
+  "candidate_hybrid_model_drop": 45,
+  "candidate_hybrid_model_keep": 77,
+  "candidate_hybrid_model_keep_with_domain_anchor": 77,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 279,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-01",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 32,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 4,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 7,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 108,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 27,
+    "candidate_hybrid_keep_overseas_global_reference": 22,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 5,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 279,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 45,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 77
+  },
+  "dropped_count": 207,
+  "input_count": 618,
+  "kept_count": 411,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 618,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 43,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "새도약기금, 상록수 등 연체채권 2.6조 추가 매입…23.6만명 추심 중단",
+      "url": "https://www.getnews.co.kr/news/articleView.html?idxno=876704"
+    },
+    {
+      "title": "새도약기금, 상록수·케이비스타 연체채권 매입 완료…23만명 채무조정...",
+      "url": "https://www.dailian.co.kr/news/view/1673229/?sc=Naver"
+    },
+    {
+      "title": "23만명 독촉 전화 끊긴다…새도약기금, 장기연체채권 2조 6천억 매입",
+      "url": "https://www.raonnews.com/news/article.html?no=59970"
+    },
+    {
+      "title": "23만명 빚 독촉 멈춘다...새도약기금, 장기연체채권 2.6조 매입",
+      "url": "http://www.fnnews.com/news/202607310939570326"
+    },
+    {
+      "title": "새도약기금, 장기연체채권 2.6조 추가 매입…23.6만명 추심 중단",
+      "url": "https://www.mediapen.com/news/view/1113549"
+    },
+    {
+      "title": "새도약기금 ‘상록수·케이비스타 연체채권’ 매입완료",
+      "url": "https://www.naeil.com/news/read/597216?ref=naver"
+    },
+    {
+      "title": "새도약기금, 2조6천146억 장기 연체채권 매입...채무자 숨 돌릴 기회",
+      "url": "https://www.tokenpost.kr/news/economy/383171"
+    },
+    {
+      "title": "새도약기금, 2.6조 연체채권 매입 … 23만 장기연체자 숨통 트인다",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/07/31/2026073100114.html"
+    },
+    {
+      "title": "새도약기금, 2조6천억 연체채권 추가 매입…23만명 수혜",
+      "url": "https://www.hani.co.kr/arti/economy/finance/1270834.html"
+    },
+    {
+      "title": "새도약기금, 상록수·케이비스타 2.6조 장기연체채권 매입",
+      "url": "https://www.news1.kr/finance/general-finance/6245011"
+    }
+  ]
+}
