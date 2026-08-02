@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>금융권 일일 언론동향 2026-08-02</title>
+  <style>
+:root{
+  --bg:#f6f8fb; --paper:#ffffff; --text:#0f172a; --muted:#64748b; --border:#e5e7eb;
+  --link:#2563eb; --link_hover:#1d4ed8;
+  --chip:#eef2ff; --chip_text:#3730a3;
+  --shadow:0 10px 30px rgba(17,24,39,0.08);
+  --shadow2:0 6px 18px rgba(17,24,39,0.08);
+  --ring: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+html[data-theme="dark"]{
+  --bg:#0b1220; --paper:#0f172a; --text:#e5e7eb; --muted:#94a3b8; --border:#22304a;
+  --link:#60a5fa; --link_hover:#93c5fd;
+  --chip:#111c33; --chip_text:#c7d2fe;
+  --shadow:0 12px 30px rgba(0,0,0,0.45);
+  --shadow2:0 10px 22px rgba(0,0,0,0.40);
+  --ring: 0 0 0 3px rgba(96,165,250,0.20);
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans KR",Arial,sans-serif;
+  line-height:1.5;
+}
+body.no-scroll{ overflow:hidden; }
+
+.wrap{ max-width:1600px; margin:0 auto; padding:12px 16px 42px; }
+.layout{ display:block; }
+.mobile-mini{ display:none; }
+
+.sidebar{ margin-bottom:14px; }
+.sheet-backdrop{ display:none; }
+.filter-shell{
+  background:var(--paper); border:1px solid var(--border);
+  border-radius:16px; padding:14px; box-shadow:var(--shadow);
+}
+
+.header-top{ display:flex; gap:10px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; }
+h1{ margin:0; font-size:19px; letter-spacing:-0.2px; }
+.meta{ color:var(--muted); font-size:13px; margin-top:4px; }
+
+.controls{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.input{
+  display:flex; align-items:center; gap:8px;
+  background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  border:1px solid var(--border); border-radius:12px;
+  padding:8px 10px; min-width:250px;
+}
+.input input{ border:none; outline:none; background:transparent; color:var(--text); font-size:13px; width:100%; min-width:150px; }
+.input:focus-within{ box-shadow:var(--ring); border-color: color-mix(in srgb, var(--link) 55%, var(--border)); }
+
+.btn, .select{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  border:1px solid var(--border); background:var(--paper); color:var(--text);
+  padding:8px 10px; border-radius:12px; font-size:13px; cursor:pointer;
+}
+.btn:hover, .select:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
+.btn.primary{ background: color-mix(in srgb, var(--link) 12%, var(--paper)); border-color: color-mix(in srgb, var(--link) 30%, var(--border)); }
+.btn.active{ background: color-mix(in srgb, var(--link) 14%, var(--paper)); border-color: color-mix(in srgb, var(--link) 35%, var(--border)); color:var(--text); }
+.btn.small{ padding:6px 8px; border-radius:10px; font-size:12px; }
+.select{ cursor:default; }
+.select select{ border:none; outline:none; background:transparent; color:var(--text); font-size:13px; }
+
+.toggle{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--border); background:var(--paper);
+  padding:8px 10px; border-radius:12px; font-size:13px;
+}
+.toggle input{ transform: translateY(1px); }
+
+.nav{
+  margin-top:10px; display:flex; gap:8px;
+  flex-wrap:nowrap; overflow-x:auto; overflow-y:hidden;
+  padding-bottom:2px;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted) 45%, transparent) transparent;
+}
+.nav::-webkit-scrollbar{ height:6px; }
+.nav::-webkit-scrollbar-thumb{
+  border-radius:999px;
+  background: color-mix(in srgb, var(--muted) 45%, transparent);
+}
+.nav-wrap{ position:relative; }
+.nav-wrap .nav-hint{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:20px; height:20px; border-radius:999px;
+  display:none; align-items:center; justify-content:center;
+  color:var(--muted); font-size:12px; font-weight:700;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  pointer-events:none;
+}
+.nav-wrap .nav-hint.left{ left:0; }
+.nav-wrap .nav-hint.right{ right:0; }
+.nav-wrap.can-scroll-left .nav-hint.left,
+.nav-wrap.can-scroll-right .nav-hint.right{ display:inline-flex; }
+.pill, .kchip{ white-space:nowrap; }
+
+.pill{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:7px 10px; border-radius:999px;
+  border:1px solid var(--border); background: color-mix(in srgb, var(--paper) 92%, var(--bg));
+  color:var(--muted); font-size:12px; cursor:pointer;
+}
+.pill strong{ color:var(--text); font-weight:700; }
+.pill.active{
+  background: color-mix(in srgb, var(--link) 14%, var(--paper));
+  border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+  color:var(--text);
+}
+
+.main{
+  background:var(--paper); border:1px solid var(--border);
+  border-radius:16px; padding:14px; box-shadow:var(--shadow);
+}
+
+.section-head{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  margin: 6px 0 10px; padding-top: 12px; border-top: 1px solid var(--border);
+}
+.section-head:first-child{ border-top:none; padding-top:0; }
+h2{ margin:0; font-size:15px; }
+.count{ color:var(--muted); font-size:12px; margin-left:6px; }
+.note{ color:var(--muted); font-size:12px; }
+
+.grid{ display:grid; grid-template-columns:1fr; gap:8px; }
+.card{
+  border:1px solid var(--border); border-radius:12px;
+  padding:10px; background: color-mix(in srgb, var(--paper) 96%, var(--bg));
+  box-shadow: var(--shadow2); transition: transform .08s ease, border-color .08s ease;
+}
+.card:hover{ transform: translateY(-1px); border-color: color-mix(in srgb, var(--link) 35%, var(--border)); }
+.card-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+.clip{ border:1px solid var(--border); background:var(--paper); color:var(--muted); border-radius:12px; padding:6px 8px; cursor:pointer; line-height:1; font-size:14px; }
+.clip:hover{ border-color: color-mix(in srgb, var(--link) 45%, var(--border)); }
+.clip.on{ color: var(--link_hover); background: color-mix(in srgb, var(--link) 10%, var(--paper)); border-color: color-mix(in srgb, var(--link) 35%, var(--border)); }
+
+.title{ margin:0 0 4px; font-size:14px; font-weight:800; line-height:1.3; }
+.title a{ color:var(--text); text-decoration:none; }
+.title a:hover{ color:var(--link_hover); text-decoration:underline; }
+.meta-row{ display:flex; flex-wrap:wrap; gap:6px; align-items:center; color:var(--muted); font-size:12px; margin-bottom:7px; }
+.badge{ display:inline-flex; align-items:center; padding:3px 8px; border-radius:999px; border:1px solid var(--border); background: var(--chip); color: var(--chip_text); font-size:11px; }
+.badge.r-high{ font-weight:700; }
+.badge.r-med{ opacity:0.95; }
+.badge.r-low{ opacity:0.85; }
+
+.summary{
+  margin:0; color: color-mix(in srgb, var(--text) 82%, var(--muted)); font-size:12.5px;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+}
+.related{ margin:8px 0 0; padding-left:16px; color:var(--muted); font-size:12px; }
+.related li{ margin:2px 0; }
+.related a{ color:var(--muted); text-decoration:none; }
+.related a:hover{ color:var(--link_hover); text-decoration:underline; }
+.actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:9px; }
+.load-more-wrap{ margin:8px 0 2px; }
+mark{ background: color-mix(in srgb, var(--link) 18%, transparent); color: inherit; border-radius: 6px; padding: 0 3px; }
+.footer{ margin-top:12px; color:var(--muted); font-size:12px; text-align:center; }
+.kchips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+.kchip{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background: color-mix(in srgb, var(--paper) 92%, var(--bg)); color:var(--text); font-size:12px; }
+.kchip .n{ color:var(--muted); font-size:12px; }
+
+@media (min-width:768px){
+  .grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; }
+}
+
+@media (min-width:1200px){
+  .wrap{ max-width:1720px; padding:14px 20px 52px; }
+  .layout{ display:grid; grid-template-columns:minmax(320px, 360px) minmax(0, 1fr); gap:16px; align-items:start; }
+  .sidebar{ margin-bottom:0; }
+  .filter-shell{ position:sticky; top:12px; max-height:calc(100vh - 24px); overflow:auto; }
+  .main{ padding:16px; }
+  .grid{ grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); }
+}
+
+@media (max-width:1199px){
+  .header-top{ gap:8px; }
+  .input{ min-width:200px; }
+}
+
+@media (max-width:767px){
+  .wrap{ padding:74px 10px 24px; }
+  .mobile-mini{
+    display:block; position:fixed; top:0; left:0; right:0; z-index:95;
+    background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--border); padding:8px 10px;
+  }
+  .mobile-mini-head{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .mobile-mini h1{ font-size:14px; }
+  .mobile-mini .meta{ margin-top:1px; font-size:11px; }
+  .mobile-mini-actions{ display:flex; gap:6px; }
+  .mobile-mini .btn, .mobile-mini .toggle{ padding:6px 8px; font-size:12px; border-radius:10px; }
+
+  .sidebar{ position:fixed; inset:0; z-index:100; pointer-events:none; }
+  .sheet-backdrop{ display:block; position:absolute; inset:0; background:rgba(0,0,0,0.35); opacity:0; transition:opacity .18s ease; }
+  .filter-shell{
+    position:absolute; left:0; right:0; bottom:0; margin:0;
+    border-radius:16px 16px 0 0; max-height:78vh; overflow:auto;
+    transform:translateY(105%); transition:transform .2s ease;
+  }
+  .sidebar.open{ pointer-events:auto; }
+  .sidebar.open .sheet-backdrop{ opacity:1; }
+  .sidebar.open .filter-shell{ transform:translateY(0); }
+
+  .header-top .meta{ display:none; }
+  .controls{ gap:6px; }
+  .controls .input{ min-width:100%; }
+  .controls .toggle, .controls .btn, .controls .select{ font-size:12px; padding:7px 8px; }
+
+  .main{ padding:10px; }
+  .section-head{ margin:4px 0 8px; padding-top:10px; }
+  .card{ padding:8px; border-radius:10px; }
+  .summary{ -webkit-line-clamp:2; font-size:12px; }
+  .meta-row{ margin-bottom:5px; gap:5px; }
+  .actions{ margin-top:7px; gap:6px; }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="mobile-mini">
+      <div class="mobile-mini-head">
+        <div>
+          <h1>금융권 일일 언론동향</h1>
+          <div class="meta">2026-08-02</div>
+        </div>
+        <div class="mobile-mini-actions">
+          <button id="mobileSearchBtn" class="btn" type="button" aria-label="검색/필터 열기" aria-controls="filterSidebar">🔎</button>
+          <button id="mobileFilterBtn" class="btn" type="button" aria-label="필터 열기" aria-controls="filterSidebar" aria-expanded="false">필터</button>
+          <button id="mobileTopBtn" class="btn" type="button" aria-label="Top만 토글">Top만</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout">
+      <aside class="sidebar" id="filterSidebar" aria-label="필터 패널">
+        <div class="sheet-backdrop" data-sheet-close></div>
+        <div class="filter-shell">
+          <div class="header-top">
+            <div>
+              <h1>금융권 일일 언론동향 <span style="color:var(--muted);">(2026-08-02)</span></h1>
+              <div class="meta">대부업권 우선 · 전 금융업권 주요 기사 요약</div>
+            </div>
+          </div>
+          <div class="controls">
+            <div class="input" title="제목/요약/업권/주제에서 검색">
+              <span style="color:var(--muted); font-size:12px;">🔎</span>
+              <input id="searchInput" type="text" placeholder="키워드로 검색 (예: 연체, PF, 국민연금)"/>
+            </div>
+            <span class="select" title="정렬"><span style="color:var(--muted); font-size:12px;">정렬</span><select id="sortSel"><option value="new" selected>최신순</option><option value="rel">관련도순</option></select></span>
+            <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
+            <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
+            <button id="themeBtn" class="btn">다크</button>
+          </div>
+          <div class="nav-wrap" data-scroll-hint><div class="nav"><button class='pill active' data-sector-pill data-sector='ALL'><strong>전체</strong><span class='count'>42</span></button><button class='pill' data-sector-pill data-sector='대부'><strong>대부</strong><span class='count'>2</span></button><button class='pill' data-sector-pill data-sector='은행'><strong>은행</strong><span class='count'>8</span></button><button class='pill' data-sector-pill data-sector='저축은행'><strong>저축은행</strong><span class='count'>1</span></button><button class='pill' data-sector-pill data-sector='여전'><strong>여전</strong><span class='count'>3</span></button><button class='pill' data-sector-pill data-sector='자산운용·연기금'><strong>자산운용·연기금</strong><span class='count'>3</span></button><button class='pill' data-sector-pill data-sector='디지털자산'><strong>디지털자산</strong><span class='count'>8</span></button><button class='pill' data-sector-pill data-sector='거시·시장'><strong>거시·시장</strong><span class='count'>8</span></button><button class='pill' data-sector-pill data-sector='감독·제재'><strong>감독·제재</strong><span class='count'>3</span></button><button class='pill' data-sector-pill data-sector='입법·정책'><strong>입법·정책</strong><span class='count'>4</span></button><button class='pill' data-sector-pill data-sector='기타'><strong>기타</strong><span class='count'>2</span></button></div><span class="nav-hint left">‹</span><span class="nav-hint right">›</span></div>
+          <div class="nav-wrap" data-scroll-hint><div class="nav"><button class='pill active' data-topic-pill data-topic='ALL'><strong>전체 주제</strong></button><button class='pill' data-topic-pill data-topic='디지털자산'><strong>디지털자산</strong><span class='count'>9</span></button><button class='pill' data-topic-pill data-topic='가계대출·부채'><strong>가계대출·부채</strong><span class='count'>5</span></button><button class='pill' data-topic-pill data-topic='감독·제재'><strong>감독·제재</strong><span class='count'>5</span></button><button class='pill' data-topic-pill data-topic='금리·수수료·최고금리'><strong>금리·수수료·최고금리</strong><span class='count'>5</span></button><button class='pill' data-topic-pill data-topic='증시·시장시황'><strong>증시·시장시황</strong><span class='count'>5</span></button><button class='pill' data-topic-pill data-topic='상품·영업·예금금리'><strong>상품·영업·예금금리</strong><span class='count'>4</span></button><button class='pill' data-topic-pill data-topic='환율·외환'><strong>환율·외환</strong><span class='count'>4</span></button><button class='pill' data-topic-pill data-topic='연체·부실'><strong>연체·부실</strong><span class='count'>3</span></button><button class='pill' data-topic-pill data-topic='해외·글로벌'><strong>해외·글로벌</strong><span class='count'>3</span></button><button class='pill' data-topic-pill data-topic='기업금융·익스포저'><strong>기업금융·익스포저</strong><span class='count'>1</span></button><button class='pill' data-topic-pill data-topic='불법사금융·불법추심·보이스피싱'><strong>불법사금융·불법추심·보이스피싱</strong><span class='count'>1</span></button><button class='pill' data-topic-pill data-topic='서민금융·대환·채무조정'><strong>서민금융·대환·채무조정</strong><span class='count'>1</span></button><button class='pill' data-topic-pill data-topic='일정·브리핑'><strong>일정·브리핑</strong><span class='count'>1</span></button><button class='pill' data-topic-pill data-topic='정책·제도개선'><strong>정책·제도개선</strong><span class='count'>1</span></button><button class='pill' data-topic-pill data-topic='__NO_TOPIC__'><strong>주제 없음</strong><span class='count'>11</span></button></div><span class="nav-hint left">‹</span><span class="nav-hint right">›</span></div>
+        </div>
+      </aside>
+
+      <div class="main">
+        <div id="emptyState" class="note" style="display:none; margin-bottom:12px;">필터 조건에 맞는 기사가 없습니다. 검색어/필터를 조정해 보세요.</div>
+        <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">10</span></h2><div class="note">전 금융권 주요 기사 중 대부·시장 영향도가 큰 이슈 우선</div></div><div class="grid"><article class='card' data-card data-sector='디지털자산' data-top=1 data-hay='거래소 품고 STO 키우고…증권사, 디지털자산 영토 확장 STO 제도화 앞두고 디지털자산 투자 확대 코빗 품은 미래에셋…코인원 손잡은 한투 발행부터 유통까지…STO 생태계 선점 경쟁 ChatGPT로 생성한 &#x27;증권사들이 가상자산거래소 투자와 토큰증권(STO) 사업 확대를 통해... 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1785622920.0' data-rel='30.0' data-cluster='issue-d266605f8ca1' data-cluster-size='3' data-url='http://www.metroseoul.co.kr/article/20260802500003'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.metroseoul.co.kr/article/20260802500003' target='_blank' rel='noopener noreferrer' data-title>거래소 품고 STO 키우고…증권사, 디지털자산 영토 확장</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 07:22</span>        <span>·</span><span class='badge'>디지털자산</span><span class='badge'>TOP</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 3건</span>  </div>  <div class='meta-row'><span class='badge'>디지털자산</span></div>  <p class='summary' data-summary>STO 제도화 앞두고 디지털자산 투자 확대 코빗 품은 미래에셋…코인원 손잡은 한투 발행부터 유통까지…STO 생태계 선점 경쟁 ChatGPT로 생성한 &#x27;증권사들이 가상자산거래소 투자와 토큰증권(STO) 사업 확대를 통해...</p>  <ul class='related' aria-label='관련 기사'><li><a href='https://www.theguru.co.kr/news/article.html?no=105235' target='_blank' rel='noopener noreferrer'>[크립토리뷰] 넷마블 마브렉스, &#x27;일곱 개의 대죄: 계명의 부활 NFT&#x27; 공개...</a> <span class='count'>theguru.co.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/138/0002236252?sid=101' target='_blank' rel='noopener noreferrer'>[STO 돋보기 ㊤] “시장 플레이어 다 떠날라”…토큰증권 ‘소 잃은 외양...</a> <span class='count'>ddaily.co.kr</span></li></ul>  <div class='actions'><a class='btn small primary' href='http://www.metroseoul.co.kr/article/20260802500003' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='감독·제재' data-top=1 data-hay='롯데카드 징계 축소...우리·신한카드 부담 더 커졌다 자료=롯데카드 금융당국이 개인정보 297만건 유출 사고를 낸 롯데카드의 영업정지 기간을 당초 4.5개월에서 1.5개월로 줄이면서 카드업계 개인정보 유출 제재의 기준점이 마련됐다. 이후 금융위는 안건검토소위원회를 두 차례 열어 제재 수위를 재검토한 끝에 영업정지 기간을 1.5개월로 확정했다. 감독·제재  감독·제재' data-topics='감독·제재' data-ts='1785625320.0' data-rel='24.0' data-cluster='issue-148d05981fe5' data-cluster-size='1' data-url='https://theviewers.co.kr/View.aspx?No=4170750'>  <div class='card-head'>    <h3 class='title'>      <a href='https://theviewers.co.kr/View.aspx?No=4170750' target='_blank' rel='noopener noreferrer' data-title>롯데카드 징계 축소...우리·신한카드 부담 더 커졌다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 08:02</span>        <span>·</span><span class='badge'>감독·제재</span><span class='badge'>TOP</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>감독·제재</span></div>  <p class='summary' data-summary>자료=롯데카드 금융당국이 개인정보 297만건 유출 사고를 낸 롯데카드의 영업정지 기간을 당초 4.5개월에서 1.5개월로 줄이면서 카드업계 개인정보 유출 제재의 기준점이 마련됐다. 이후 금융위는 안건검토소위원회를 두 차례 열어 제재 수위를 재검토한 끝에 영업정지 기간을 1.5개월로 확정했다.</p>    <div class='actions'><a class='btn small primary' href='https://theviewers.co.kr/View.aspx?No=4170750' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=1 data-hay='비트코인, 롤러코스피보다 안정적…박스권에서 멈췄다, 왜? 연방준비제도 가 기준금리를 동결했고 일본은행 도 기준금리를 유지하면서 시장 예상에서 크게 벗어난 결정이 나오지 않았으며, 미국과 이란 간 긴장 고조에 따른 국제유가 상승과 인플레이션 우려 속에서도 투자자들은 적극적인 위험자산 투자에 나서지 않았다. 코스피가 대형주 쏠림 현상 속에 급등락을 반복하며 높은 변동성을 보인 반면, 비트코인은 장기간 박스권에서 횡보하는 모습을 나타냈다. 거시·시장  금리·수수료·최고금리' data-topics='금리·수수료·최고금리' data-ts='1785550260.0' data-rel='28.0' data-cluster='issue-6310c55fe1f4' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/243/0000101152?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/243/0000101152?sid=101' target='_blank' rel='noopener noreferrer' data-title>비트코인, 롤러코스피보다 안정적…박스권에서 멈췄다, 왜?</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 11:11</span>        <span>·</span><span class='badge'>거시·시장</span><span class='badge'>TOP</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>금리·수수료·최고금리</span></div>  <p class='summary' data-summary>연방준비제도 가 기준금리를 동결했고 일본은행 도 기준금리를 유지하면서 시장 예상에서 크게 벗어난 결정이 나오지 않았으며, 미국과 이란 간 긴장 고조에 따른 국제유가 상승과 인플레이션 우려 속에서도 투자자들은 적극적인 위험자산 투자에 나서지 않았다. 코스피가 대형주 쏠림 현상 속에 급등락을 반복하며 높은 변동성을 보인 반면, 비트코인은 장기간 박스권에서 횡보하는 모습을 나타냈다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/243/0000101152?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://economist.co.kr/article/view/ecn202608010008' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='감독·제재' data-top=1 data-hay='&#x27;개인정보 유출&#x27; 롯데카드 영업정지 1.5개월 투데이e코노믹 = | 지난해 대규모 개인정보 유출 사고를 낸 롯데카드가 영업정지 1.5개월과 과징금 50억원의 제재를 받게 됐다. 당초 영업정지 4.5개월서 제재 수위 낮춰 당초 금융감독원은 영업정지 4.5개월과 과징금 50억원의 중징계를 의결했지만, 금융위원회는 제재 수위를 영업정지 1.5개월로 조정했다. 감독·제재  감독·제재' data-topics='감독·제재' data-ts='1785560280.0' data-rel='21.0' data-cluster='issue-87892953ba9e' data-cluster-size='4' data-url='https://www.todayeconomic.com/news/article.html?no=31569'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.todayeconomic.com/news/article.html?no=31569' target='_blank' rel='noopener noreferrer' data-title>&#x27;개인정보 유출&#x27; 롯데카드 영업정지 1.5개월</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 13:58</span>        <span>·</span><span class='badge'>감독·제재</span><span class='badge'>TOP</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 4건</span>  </div>  <div class='meta-row'><span class='badge'>감독·제재</span></div>  <p class='summary' data-summary>투데이e코노믹 = | 지난해 대규모 개인정보 유출 사고를 낸 롯데카드가 영업정지 1.5개월과 과징금 50억원의 제재를 받게 됐다. 당초 영업정지 4.5개월서 제재 수위 낮춰 당초 금융감독원은 영업정지 4.5개월과 과징금 50억원의 중징계를 의결했지만, 금융위원회는 제재 수위를 영업정지 1.5개월로 조정했다.</p>  <ul class='related' aria-label='관련 기사'><li><a href='http://www.hansbiz.co.kr/news/articleView.html?idxno=853910' target='_blank' rel='noopener noreferrer'>&#x27;정보유출&#x27; 롯데카드,업무정지 1.5개월·과징금 50억</a> <span class='count'>hansbiz.co.kr</span></li><li><a href='http://www.biztribune.co.kr/news/articleView.html?idxno=356837' target='_blank' rel='noopener noreferrer'>롯데카드 &#x27;정보유출&#x27; 사고 업무정지 1.5개월 확정…금융위, 제재 감경</a> <span class='count'>biztribune.co.kr</span></li><li><a href='http://www.newsroad.co.kr/news/articleView.html?idxno=62290' target='_blank' rel='noopener noreferrer'>해킹 첫 업무정지에도…롯데카드, 신규모집만 막고 1.5개월 &#x27;감경&#x27;</a> <span class='count'>newsroad.co.kr</span></li></ul>  <div class='actions'><a class='btn small primary' href='https://www.todayeconomic.com/news/article.html?no=31569' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=1 data-hay='[N위크] 세제개편안 다음주 발표…중복상장제도 개선안 시행 금융·통신·수사기관이 서로 보이스피싱 의심정보를 공유하는 법적 근거를 마련한 &#x27;통신사기피해환급법&#x27; 및 이 법의 시행령도 다음 주 시행될 예정이다. 또 금감원은 불법대부·채권추심의 대표적 수단인 대포폰을. 대부  불법사금융·불법추심·보이스피싱 정책·제도개선 일정·브리핑' data-topics='불법사금융·불법추심·보이스피싱|정책·제도개선|일정·브리핑' data-ts='1785554400.0' data-rel='18.0' data-cluster='issue-25436cf693cd' data-cluster-size='1' data-url='https://www.tfmedia.co.kr/news/article.html?no=206143'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tfmedia.co.kr/news/article.html?no=206143' target='_blank' rel='noopener noreferrer' data-title>[N위크] 세제개편안 다음주 발표…중복상장제도 개선안 시행</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 12:20</span>        <span>·</span><span class='badge'>대부</span><span class='badge'>TOP</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>불법사금융·불법추심·보이스피싱</span><span class='badge'>정책·제도개선</span><span class='badge'>일정·브리핑</span></div>  <p class='summary' data-summary>금융·통신·수사기관이 서로 보이스피싱 의심정보를 공유하는 법적 근거를 마련한 &#x27;통신사기피해환급법&#x27; 및 이 법의 시행령도 다음 주 시행될 예정이다. 또 금감원은 불법대부·채권추심의 대표적 수단인 대포폰을.</p>    <div class='actions'><a class='btn small primary' href='https://www.tfmedia.co.kr/news/article.html?no=206143' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=1 data-hay='원/달러 환율, 9개월 만에 최저치… 원화 가치 급등 이유는? 원/달러 환율, 9개월 만에 최저치. 토큰포스트 2026.08.02 06:46 원/달러 환율이 2026년 7월 급격히 하락하면서 9개월 만의 저점 수준을 기록했다. 거시·시장  해외·글로벌 환율·외환' data-topics='해외·글로벌|환율·외환' data-ts='1785620880.0' data-rel='22.0' data-cluster='issue-a98033d92593' data-cluster-size='25' data-url='https://www.tokenpost.kr/news/economy/383717'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tokenpost.kr/news/economy/383717' target='_blank' rel='noopener noreferrer' data-title>원/달러 환율, 9개월 만에 최저치… 원화 가치 급등 이유는?</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 06:48</span>        <span>·</span><span class='badge'>거시·시장</span><span class='badge'>TOP</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 25건</span>  </div>  <div class='meta-row'><span class='badge'>해외·글로벌</span><span class='badge'>환율·외환</span></div>  <p class='summary' data-summary>원/달러 환율, 9개월 만에 최저치. 토큰포스트 2026.08.02 06:46 원/달러 환율이 2026년 7월 급격히 하락하면서 9개월 만의 저점 수준을 기록했다.</p>  <ul class='related' aria-label='관련 기사'><li><a href='https://n.news.naver.com/mnews/article/014/0005555908?sid=101' target='_blank' rel='noopener noreferrer'>롤러코스터 환율, 1600원 가려다 1400원대로 급락</a> <span class='count'>fnnews.com</span></li><li><a href='https://n.news.naver.com/mnews/article/023/0003990897?sid=101' target='_blank' rel='noopener noreferrer'>45년 만에 ‘연준 시계’ 바꾸려는 워시…왜 FOMC 횟수 줄이려 하나</a> <span class='count'>chosun.com</span></li><li><a href='https://www.slist.kr/news/articleView.html?idxno=755889' target='_blank' rel='noopener noreferrer'>7월 원화 절상률 8.8%, 금융위기 후 최고…1400원선 깨질까</a> <span class='count'>slist.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/421/0009092056?sid=101' target='_blank' rel='noopener noreferrer'>환율, 1600원 문턱서 1400원대로 급락…&quot;장기적 고환율 국면은 계속&quot;</a> <span class='count'>news1.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/119/0003117294?sid=101' target='_blank' rel='noopener noreferrer'>기름값 쇼크와 물가 전쟁…유류세·금리·총력 대응으로 물가안정 시급...</a> <span class='count'>dailian.co.kr</span></li></ul>  <div class='actions'><a class='btn small primary' href='https://www.tokenpost.kr/news/economy/383717' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='감독·제재' data-top=1 data-hay='금융위, &#x27;해킹 사태&#x27; 롯데카드에 1.5개월 영업 정지 다만 지난 4월 말 롯데카드 영업정지 4.5개월과 과징금 50억원 등을 결정한 금감원 제재안과 비교해 영업정지 기간은 3개월 줄었다. /TV조선 방송화면 캡처 지난해 8월 해킹 사고로 297만명의 개인정보가 유출된 롯데카드에 영업정지 1.5개월, 과징금 50억원 처분이 내려졌다. 감독·제재  감독·제재' data-topics='감독·제재' data-ts='1785555600.0' data-rel='18.0' data-cluster='issue-fee9de009a61' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/448/0000630735?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/448/0000630735?sid=101' target='_blank' rel='noopener noreferrer' data-title>금융위, &#x27;해킹 사태&#x27; 롯데카드에 1.5개월 영업 정지</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 12:40</span>        <span>·</span><span class='badge'>감독·제재</span><span class='badge'>TOP</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>감독·제재</span></div>  <p class='summary' data-summary>다만 지난 4월 말 롯데카드 영업정지 4.5개월과 과징금 50억원 등을 결정한 금감원 제재안과 비교해 영업정지 기간은 3개월 줄었다. /TV조선 방송화면 캡처 지난해 8월 해킹 사고로 297만명의 개인정보가 유출된 롯데카드에 영업정지 1.5개월, 과징금 50억원 처분이 내려졌다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/448/0000630735?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://news.tvchosun.com/site/data/html_dir/2026/08/01/2026080190033.html' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=1 data-hay='2억5000만원 대출받았더니 月이자 125만원으로 뛰었다…전세대출 금리도... ‘실수요’ 대출 전세자금 금리도 상승세 은행채·코픽스 금리 상승 영향 고정형 주담대 금리도 8% 눈앞 한은 긴축 돌입에 금리 상승세 장기화 전망 5대 은행 대출 총량 1조원 초과 은행권, 우대금리 축소하며 대출 문턱 더 높일 듯 서울 시내 마련된 주요 은행의. 지난 3월 30일 고정형 주담대 상단 금리는 연 7%였는데, 지난달 31일에는 연 7.50%까지 올랐다. 은행  상품·영업·예금금리 가계대출·부채' data-topics='상품·영업·예금금리|가계대출·부채' data-ts='1785621660.0' data-rel='21.0' data-cluster='issue-7edb2573308e' data-cluster-size='4' data-url='https://n.news.naver.com/mnews/article/016/0002678270?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/016/0002678270?sid=101' target='_blank' rel='noopener noreferrer' data-title>2억5000만원 대출받았더니 月이자 125만원으로 뛰었다…전세대출 금리도...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 07:01</span>        <span>·</span><span class='badge'>은행</span><span class='badge'>TOP</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 4건</span>  </div>  <div class='meta-row'><span class='badge'>상품·영업·예금금리</span><span class='badge'>가계대출·부채</span></div>  <p class='summary' data-summary>‘실수요’ 대출 전세자금 금리도 상승세 은행채·코픽스 금리 상승 영향 고정형 주담대 금리도 8% 눈앞 한은 긴축 돌입에 금리 상승세 장기화 전망 5대 은행 대출 총량 1조원 초과 은행권, 우대금리 축소하며 대출 문턱 더 높일 듯 서울 시내 마련된 주요 은행의. 지난 3월 30일 고정형 주담대 상단 금리는 연 7%였는데, 지난달 31일에는 연 7.50%까지 올랐다.</p>  <ul class='related' aria-label='관련 기사'><li><a href='https://www.sentv.co.kr/article/view/sentv202607310127' target='_blank' rel='noopener noreferrer'>한도 줄이고 금리 올리고…은행권 &#x27;마통 조이기&#x27;</a> <span class='count'>sentv.co.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/243/0000101161?sid=101' target='_blank' rel='noopener noreferrer'>대출 막았더니 은행이 웃었다…주담대 7%의 역설</a> <span class='count'>economist.co.kr</span></li><li><a href='https://www.lecturernews.com/news/articleView.html?idxno=207662' target='_blank' rel='noopener noreferrer'>KB국민·신한·하나·우리·NH농협은행 가계대출 증가세 지속…주담대 ...</a> <span class='count'>lecturernews.com</span></li></ul>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/016/0002678270?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.heraldcorp.com/article/10827947?ref=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='여전' data-top=1 data-hay='롯데카드 45일 업무정지…&#x27;3조 몸값&#x27; 멀어질라 MBK 전전긍긍 카드사의 가치는 회원 수와 카드 이용액, 신용판매 수익, 조달비용 및 연체율뿐 아니라 내부통제와 보안사고 재발 가능성. 1일 금융위원회와 금융권에 따르면 금융위는 지난달 31일 제14차 회의를 열고 롯데카드에 대해. 여전' data-topics='' data-ts='1785558360.0' data-rel='12.0' data-cluster='issue-d77de15b79cd' data-cluster-size='1' data-url='https://www.the-today.com/news/articleView.html?idxno=88040'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.the-today.com/news/articleView.html?idxno=88040' target='_blank' rel='noopener noreferrer' data-title>롯데카드 45일 업무정지…&#x27;3조 몸값&#x27; 멀어질라 MBK 전전긍긍</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 13:26</span>        <span>·</span><span class='badge'>여전</span><span class='badge'>TOP</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>카드사의 가치는 회원 수와 카드 이용액, 신용판매 수익, 조달비용 및 연체율뿐 아니라 내부통제와 보안사고 재발 가능성. 1일 금융위원회와 금융권에 따르면 금융위는 지난달 31일 제14차 회의를 열고 롯데카드에 대해.</p>    <div class='actions'><a class='btn small primary' href='https://www.the-today.com/news/articleView.html?idxno=88040' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=1 data-hay='카뱅 파업에 농협·국책은행까지…뜨거워진 금융권 하투(夏鬪) 현재 금융노조는 산업은행, IBK기업은행, 한국수출입은행, 수협, 신협, 산림조합, 새마을금고 등 14개 지부와 &#x27;지방이전 공동대응 태스크포스팀 &#x27; 구성을 마치고 정부와 대화를 이어가고 있다. 은행' data-topics='' data-ts='1785614460.0' data-rel='18.0' data-cluster='issue-60c2f77b3203' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/079/0004174537?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/079/0004174537?sid=101' target='_blank' rel='noopener noreferrer' data-title>카뱅 파업에 농협·국책은행까지…뜨거워진 금융권 하투(夏鬪)</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 05:01</span>        <span>·</span><span class='badge'>은행</span><span class='badge'>TOP</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>현재 금융노조는 산업은행, IBK기업은행, 한국수출입은행, 수협, 신협, 산림조합, 새마을금고 등 14개 지부와 &#x27;지방이전 공동대응 태스크포스팀 &#x27; 구성을 마치고 정부와 대화를 이어가고 있다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/079/0004174537?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.nocutnews.co.kr/news/6556731?utm_source=naver&amp;utm_medium=article&amp;utm_campaign=20260802050054' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
+        <section data-group id='sec-대부'>  <div class='section-head'>    <h2>대부<span class='count'>2</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='대부' data-top=0 data-hay='상품권 거래 위장 불법 사채 확산…기획수사·단속 나선다 연이율 최대 수천% 초고금리로 불법 수취 서울시 민사국, 3개 수사반 투입·모니터링 서울시 민생사법경찰국 은 ‘상품권 사채’ 등 변종 불법 사금융에 대해 이달 말까지 집중 기획수사와 단속에 나선다고 2일 밝혔다. 상품권 사채란 상품권 거래를 빙자한 변종 불법 사금융 으로, 최근 확산되면서 피해를 초래할 우려가 커진 데 따른 조치라고 시는 전했다. 대부  감독·제재' data-topics='감독·제재' data-ts='1785621300.0' data-rel='7.0' data-cluster='issue-3368573e0f75' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/016/0002678264?sid=102'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/016/0002678264?sid=102' target='_blank' rel='noopener noreferrer' data-title>상품권 거래 위장 불법 사채 확산…기획수사·단속 나선다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 06:55</span>        <span>·</span><span class='badge'>대부</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>감독·제재</span></div>  <p class='summary' data-summary>연이율 최대 수천% 초고금리로 불법 수취 서울시 민사국, 3개 수사반 투입·모니터링 서울시 민생사법경찰국 은 ‘상품권 사채’ 등 변종 불법 사금융에 대해 이달 말까지 집중 기획수사와 단속에 나선다고 2일 밝혔다. 상품권 사채란 상품권 거래를 빙자한 변종 불법 사금융 으로, 최근 확산되면서 피해를 초래할 우려가 커진 데 따른 조치라고 시는 전했다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/016/0002678264?sid=102' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.heraldcorp.com/article/10827800?ref=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='대부' data-top=0 data-hay='[N위크] 세제개편안 다음주 발표…중복상장제도 개선안 시행 금융·통신·수사기관이 서로 보이스피싱 의심정보를 공유하는 법적 근거를 마련한 &#x27;통신사기피해환급법&#x27; 및 이 법의 시행령도 다음 주 시행될 예정이다. 또 금감원은 불법대부·채권추심의 대표적 수단인 대포폰을. 대부  불법사금융·불법추심·보이스피싱 정책·제도개선 일정·브리핑' data-topics='불법사금융·불법추심·보이스피싱|정책·제도개선|일정·브리핑' data-ts='1785554400.0' data-rel='18.0' data-cluster='issue-25436cf693cd' data-cluster-size='1' data-url='https://www.tfmedia.co.kr/news/article.html?no=206143'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tfmedia.co.kr/news/article.html?no=206143' target='_blank' rel='noopener noreferrer' data-title>[N위크] 세제개편안 다음주 발표…중복상장제도 개선안 시행</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 12:20</span>        <span>·</span><span class='badge'>대부</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>불법사금융·불법추심·보이스피싱</span><span class='badge'>정책·제도개선</span><span class='badge'>일정·브리핑</span></div>  <p class='summary' data-summary>금융·통신·수사기관이 서로 보이스피싱 의심정보를 공유하는 법적 근거를 마련한 &#x27;통신사기피해환급법&#x27; 및 이 법의 시행령도 다음 주 시행될 예정이다. 또 금감원은 불법대부·채권추심의 대표적 수단인 대포폰을.</p>    <div class='actions'><a class='btn small primary' href='https://www.tfmedia.co.kr/news/article.html?no=206143' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-은행'>  <div class='section-head'>    <h2>은행<span class='count'>8</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='은행' data-top=0 data-hay='은행권 신용대출 조이기에 취약차주 직격탄… 금리격차 확대·부실 우려... 대출 공급을 줄이는 과정에서 저신용자의 자금 조달 통로가 지나치게 좁아질 경우 연체율 상승과 부실 확대로. 2일 금융권과 은행연합회 소비자포털 가계대출금리 비교공시에 따르면 주요 은행의 신규 취급 신용대출. 은행  연체·부실 상품·영업·예금금리 가계대출·부채 서민금융·대환·채무조정' data-topics='연체·부실|상품·영업·예금금리|가계대출·부채|서민금융·대환·채무조정' data-ts='1785626880.0' data-rel='11.0' data-cluster='issue-e2563034af38' data-cluster-size='1' data-url='https://www.g-enews.com/view.php?ud=202607301556406265cd0bfacc1c_1'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.g-enews.com/view.php?ud=202607301556406265cd0bfacc1c_1' target='_blank' rel='noopener noreferrer' data-title>은행권 신용대출 조이기에 취약차주 직격탄… 금리격차 확대·부실 우려...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 08:28</span>        <span>·</span><span class='badge'>은행</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>연체·부실</span><span class='badge'>상품·영업·예금금리</span><span class='badge'>가계대출·부채</span><span class='badge'>서민금융·대환·채무조정</span></div>  <p class='summary' data-summary>대출 공급을 줄이는 과정에서 저신용자의 자금 조달 통로가 지나치게 좁아질 경우 연체율 상승과 부실 확대로. 2일 금융권과 은행연합회 소비자포털 가계대출금리 비교공시에 따르면 주요 은행의 신규 취급 신용대출.</p>    <div class='actions'><a class='btn small primary' href='https://www.g-enews.com/view.php?ud=202607301556406265cd0bfacc1c_1' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='&quot;외형보다 수익성에 방점&quot;...Sh수협은행, 하반기 질적성장 전환 &#x27;고삐&#x27; 자산관리 경쟁력 제고 여신 심사·사후관리 강화…연체율·NPL 등 건전성 관리 집중 현장 아이디어 사업화. 1일 금융권에 따르면 Sh수협은행 은 올해 상반기 잠정 기준 세전 당기순이익이 2천34억원으로. 은행  연체·부실 기업금융·익스포저' data-topics='연체·부실|기업금융·익스포저' data-ts='1785625320.0' data-rel='10.0' data-cluster='issue-4a6cf2941ae1' data-cluster-size='1' data-url='https://www.youthdaily.co.kr/news/article.html?no=224166'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.youthdaily.co.kr/news/article.html?no=224166' target='_blank' rel='noopener noreferrer' data-title>&quot;외형보다 수익성에 방점&quot;...Sh수협은행, 하반기 질적성장 전환 &#x27;고삐&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 08:02</span>        <span>·</span><span class='badge'>은행</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>연체·부실</span><span class='badge'>기업금융·익스포저</span></div>  <p class='summary' data-summary>자산관리 경쟁력 제고 여신 심사·사후관리 강화…연체율·NPL 등 건전성 관리 집중 현장 아이디어 사업화. 1일 금융권에 따르면 Sh수협은행 은 올해 상반기 잠정 기준 세전 당기순이익이 2천34억원으로.</p>    <div class='actions'><a class='btn small primary' href='https://www.youthdaily.co.kr/news/article.html?no=224166' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='2억5000만원 대출받았더니 月이자 125만원으로 뛰었다…전세대출 금리도... ‘실수요’ 대출 전세자금 금리도 상승세 은행채·코픽스 금리 상승 영향 고정형 주담대 금리도 8% 눈앞 한은 긴축 돌입에 금리 상승세 장기화 전망 5대 은행 대출 총량 1조원 초과 은행권, 우대금리 축소하며 대출 문턱 더 높일 듯 서울 시내 마련된 주요 은행의. 지난 3월 30일 고정형 주담대 상단 금리는 연 7%였는데, 지난달 31일에는 연 7.50%까지 올랐다. 은행  상품·영업·예금금리 가계대출·부채' data-topics='상품·영업·예금금리|가계대출·부채' data-ts='1785621660.0' data-rel='21.0' data-cluster='issue-7edb2573308e' data-cluster-size='4' data-url='https://n.news.naver.com/mnews/article/016/0002678270?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/016/0002678270?sid=101' target='_blank' rel='noopener noreferrer' data-title>2억5000만원 대출받았더니 月이자 125만원으로 뛰었다…전세대출 금리도...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 07:01</span>        <span>·</span><span class='badge'>은행</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 4건</span>  </div>  <div class='meta-row'><span class='badge'>상품·영업·예금금리</span><span class='badge'>가계대출·부채</span></div>  <p class='summary' data-summary>‘실수요’ 대출 전세자금 금리도 상승세 은행채·코픽스 금리 상승 영향 고정형 주담대 금리도 8% 눈앞 한은 긴축 돌입에 금리 상승세 장기화 전망 5대 은행 대출 총량 1조원 초과 은행권, 우대금리 축소하며 대출 문턱 더 높일 듯 서울 시내 마련된 주요 은행의. 지난 3월 30일 고정형 주담대 상단 금리는 연 7%였는데, 지난달 31일에는 연 7.50%까지 올랐다.</p>  <ul class='related' aria-label='관련 기사'><li><a href='https://www.sentv.co.kr/article/view/sentv202607310127' target='_blank' rel='noopener noreferrer'>한도 줄이고 금리 올리고…은행권 &#x27;마통 조이기&#x27;</a> <span class='count'>sentv.co.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/243/0000101161?sid=101' target='_blank' rel='noopener noreferrer'>대출 막았더니 은행이 웃었다…주담대 7%의 역설</a> <span class='count'>economist.co.kr</span></li><li><a href='https://www.lecturernews.com/news/articleView.html?idxno=207662' target='_blank' rel='noopener noreferrer'>KB국민·신한·하나·우리·NH농협은행 가계대출 증가세 지속…주담대 ...</a> <span class='count'>lecturernews.com</span></li></ul>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/016/0002678270?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.heraldcorp.com/article/10827947?ref=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='금융당국 은행권 집단대출 총량 제외 검토, 상호금융권도 포함될까 &#x27;촉... 상대적으로 부실 위험이 낮은 주택담보대출을 중심으로 가계대출을 확대해야 연체율을 안정시키고 이자이익도 방어할 수 있어서다. 실제 상호금융권은 올해 금융당국의 총량 관리 강화로 가계대출 영업에 큰 제약을 받고... 은행  가계대출·부채' data-topics='가계대출·부채' data-ts='1785618120.0' data-rel='10.0' data-cluster='issue-805d47adfc2c' data-cluster-size='1' data-url='https://www.businesspost.co.kr/BP?command=article_view&amp;num=443715'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.businesspost.co.kr/BP?command=article_view&amp;num=443715' target='_blank' rel='noopener noreferrer' data-title>금융당국 은행권 집단대출 총량 제외 검토, 상호금융권도 포함될까 &#x27;촉...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 06:02</span>        <span>·</span><span class='badge'>은행</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>가계대출·부채</span></div>  <p class='summary' data-summary>상대적으로 부실 위험이 낮은 주택담보대출을 중심으로 가계대출을 확대해야 연체율을 안정시키고 이자이익도 방어할 수 있어서다. 실제 상호금융권은 올해 금융당국의 총량 관리 강화로 가계대출 영업에 큰 제약을 받고...</p>    <div class='actions'><a class='btn small primary' href='https://www.businesspost.co.kr/BP?command=article_view&amp;num=443715' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='&#x27;집값 상승&#x27; 전망에 주담대 2조 넘게 쑥…&#x27;빚투&#x27; 신용대출도 1.4조↑ 집값 상승 기대감으로 주택담보대출 이 2조원 넘게 급증했고, 코스피 조정에도 &#x27;빚투 &#x27; 수요가 이어지면서. 국내 5대 시중은행의 가계대출이 지난달에도 4조원에 육박하는 증가세를 이어갔다. 은행  상품·영업·예금금리 가계대출·부채' data-topics='상품·영업·예금금리|가계대출·부채' data-ts='1785618000.0' data-rel='6.0' data-cluster='issue-717e222e09d9' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/003/0014102720?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/003/0014102720?sid=101' target='_blank' rel='noopener noreferrer' data-title>&#x27;집값 상승&#x27; 전망에 주담대 2조 넘게 쑥…&#x27;빚투&#x27; 신용대출도 1.4조↑</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 06:00</span>        <span>·</span><span class='badge'>은행</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>상품·영업·예금금리</span><span class='badge'>가계대출·부채</span></div>  <p class='summary' data-summary>집값 상승 기대감으로 주택담보대출 이 2조원 넘게 급증했고, 코스피 조정에도 &#x27;빚투 &#x27; 수요가 이어지면서. 국내 5대 시중은행의 가계대출이 지난달에도 4조원에 육박하는 증가세를 이어갔다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/003/0014102720?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.newsis.com/view/NISX20260731_0003732266' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='카뱅 파업에 농협·국책은행까지…뜨거워진 금융권 하투(夏鬪) 현재 금융노조는 산업은행, IBK기업은행, 한국수출입은행, 수협, 신협, 산림조합, 새마을금고 등 14개 지부와 &#x27;지방이전 공동대응 태스크포스팀 &#x27; 구성을 마치고 정부와 대화를 이어가고 있다. 은행' data-topics='' data-ts='1785614460.0' data-rel='18.0' data-cluster='issue-60c2f77b3203' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/079/0004174537?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/079/0004174537?sid=101' target='_blank' rel='noopener noreferrer' data-title>카뱅 파업에 농협·국책은행까지…뜨거워진 금융권 하투(夏鬪)</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 05:01</span>        <span>·</span><span class='badge'>은행</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>현재 금융노조는 산업은행, IBK기업은행, 한국수출입은행, 수협, 신협, 산림조합, 새마을금고 등 14개 지부와 &#x27;지방이전 공동대응 태스크포스팀 &#x27; 구성을 마치고 정부와 대화를 이어가고 있다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/079/0004174537?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.nocutnews.co.kr/news/6556731?utm_source=naver&amp;utm_medium=article&amp;utm_campaign=20260802050054' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='은행권 연체율 10년 만 최고…우량 차주 쏠림 심화되나 NPL 7조4000억원 돌파...실수요자 지원 속 건전성 관리 강화 시장금리 상승에 여신심사 강화...취약차주 자금조달 우려도 시중은행 ATM기.c연합뉴스 고금리 장기화와 경기 둔화 여파로 은행권의 가계·기업 대출 연체율이 10년 만에 최고 수준으로 치솟으면서. 자산건전성 관리가 최우선 과제로 부상하면서 하반기에는 우량 차주 중심의 선별 대출 기조가 한층 강화될 것이라는 전망이 나온다. 은행  연체·부실' data-topics='연체·부실' data-ts='1785542400.0' data-rel='10.0' data-cluster='issue-1a61dd52295c' data-cluster-size='1' data-url='https://daily.hankooki.com/news/articleView.html?idxno=1390216'>  <div class='card-head'>    <h3 class='title'>      <a href='https://daily.hankooki.com/news/articleView.html?idxno=1390216' target='_blank' rel='noopener noreferrer' data-title>은행권 연체율 10년 만 최고…우량 차주 쏠림 심화되나</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 09:00</span>        <span>·</span><span class='badge'>은행</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>연체·부실</span></div>  <p class='summary' data-summary>NPL 7조4000억원 돌파...실수요자 지원 속 건전성 관리 강화 시장금리 상승에 여신심사 강화...취약차주 자금조달 우려도 시중은행 ATM기.c연합뉴스 고금리 장기화와 경기 둔화 여파로 은행권의 가계·기업 대출 연체율이 10년 만에 최고 수준으로 치솟으면서. 자산건전성 관리가 최우선 과제로 부상하면서 하반기에는 우량 차주 중심의 선별 대출 기조가 한층 강화될 것이라는 전망이 나온다.</p>    <div class='actions'><a class='btn small primary' href='https://daily.hankooki.com/news/articleView.html?idxno=1390216' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='[슬기로운 금융생활] 연 4%대 특판 쏟아진다…예금 금리 경쟁 &#x27;재점화&#x27; 시중은행들이 일제히 예·적금 금리를 인상한 데 이어 저축은행과 상호금융권도 연 4%대 특판 상품을. KB국민은행과 우리은행, NH농협은행, 하나은행은 정기예금과 적금 등 주요 수신상품 금리를 최대 0.3%p 인상했고. 은행  금리·수수료·최고금리 상품·영업·예금금리' data-topics='금리·수수료·최고금리|상품·영업·예금금리' data-ts='1785542400.0' data-rel='13.0' data-cluster='issue-fc6f17a67d02' data-cluster-size='1' data-url='http://www.opinionnews.co.kr/news/articleView.html?idxno=142394'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.opinionnews.co.kr/news/articleView.html?idxno=142394' target='_blank' rel='noopener noreferrer' data-title>[슬기로운 금융생활] 연 4%대 특판 쏟아진다…예금 금리 경쟁 &#x27;재점화&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 09:00</span>        <span>·</span><span class='badge'>은행</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>금리·수수료·최고금리</span><span class='badge'>상품·영업·예금금리</span></div>  <p class='summary' data-summary>시중은행들이 일제히 예·적금 금리를 인상한 데 이어 저축은행과 상호금융권도 연 4%대 특판 상품을. KB국민은행과 우리은행, NH농협은행, 하나은행은 정기예금과 적금 등 주요 수신상품 금리를 최대 0.3%p 인상했고.</p>    <div class='actions'><a class='btn small primary' href='http://www.opinionnews.co.kr/news/articleView.html?idxno=142394' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-저축은행'>  <div class='section-head'>    <h2>저축은행<span class='count'>1</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='저축은행' data-top=0 data-hay='핀다, 저축은행 품고 &#x27;핀다뱅크&#x27; 도전…금융사 도약 성공할까 특히 저축은행은 고객 예금을 기반으로 영업하는 금융회사인 만큼 지속적인 자본 확충 능력과 건전성 관리. 대원저축은행 최대주주인 대아상호저축은행과 주식매매계약을 체결했으며, 현재 금융우원회의 대주주 변경. 저축은행' data-topics='' data-ts='1785572400.0' data-rel='6.0' data-cluster='issue-565204dbc03a' data-cluster-size='1' data-url='https://www.sentv.co.kr/article/view/sentv202607310112'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.sentv.co.kr/article/view/sentv202607310112' target='_blank' rel='noopener noreferrer' data-title>핀다, 저축은행 품고 &#x27;핀다뱅크&#x27; 도전…금융사 도약 성공할까</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 17:20</span>        <span>·</span><span class='badge'>저축은행</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>특히 저축은행은 고객 예금을 기반으로 영업하는 금융회사인 만큼 지속적인 자본 확충 능력과 건전성 관리. 대원저축은행 최대주주인 대아상호저축은행과 주식매매계약을 체결했으며, 현재 금융우원회의 대주주 변경.</p>    <div class='actions'><a class='btn small primary' href='https://www.sentv.co.kr/article/view/sentv202607310112' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-여전'>  <div class='section-head'>    <h2>여전<span class='count'>3</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='여전' data-top=0 data-hay='카드사 상반기 순익 6.5%↑…은행계 약진 속 삼성카드 1위 수성 주요 카드사의 연체율도 대체로 개선됐다. 가계대출 규제로 카드론 확대가 제한되자 신용판매와 기업카드, 해외 결제 등 결제 부문을 강화한 점도 영향을 미쳤다. 여전' data-topics='' data-ts='1785596520.0' data-rel='8.0' data-cluster='issue-185117a9e2f8' data-cluster-size='1' data-url='https://www.theguru.co.kr/news/article.html?no=105078'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.theguru.co.kr/news/article.html?no=105078' target='_blank' rel='noopener noreferrer' data-title>카드사 상반기 순익 6.5%↑…은행계 약진 속 삼성카드 1위 수성</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 00:02</span>        <span>·</span><span class='badge'>여전</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>주요 카드사의 연체율도 대체로 개선됐다. 가계대출 규제로 카드론 확대가 제한되자 신용판매와 기업카드, 해외 결제 등 결제 부문을 강화한 점도 영향을 미쳤다.</p>    <div class='actions'><a class='btn small primary' href='https://www.theguru.co.kr/news/article.html?no=105078' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='여전' data-top=0 data-hay='롯데카드 45일 업무정지…&#x27;3조 몸값&#x27; 멀어질라 MBK 전전긍긍 카드사의 가치는 회원 수와 카드 이용액, 신용판매 수익, 조달비용 및 연체율뿐 아니라 내부통제와 보안사고 재발 가능성. 1일 금융위원회와 금융권에 따르면 금융위는 지난달 31일 제14차 회의를 열고 롯데카드에 대해. 여전' data-topics='' data-ts='1785558360.0' data-rel='12.0' data-cluster='issue-d77de15b79cd' data-cluster-size='1' data-url='https://www.the-today.com/news/articleView.html?idxno=88040'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.the-today.com/news/articleView.html?idxno=88040' target='_blank' rel='noopener noreferrer' data-title>롯데카드 45일 업무정지…&#x27;3조 몸값&#x27; 멀어질라 MBK 전전긍긍</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 13:26</span>        <span>·</span><span class='badge'>여전</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>카드사의 가치는 회원 수와 카드 이용액, 신용판매 수익, 조달비용 및 연체율뿐 아니라 내부통제와 보안사고 재발 가능성. 1일 금융위원회와 금융권에 따르면 금융위는 지난달 31일 제14차 회의를 열고 롯데카드에 대해.</p>    <div class='actions'><a class='btn small primary' href='https://www.the-today.com/news/articleView.html?idxno=88040' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='여전' data-top=0 data-hay='신한카드, 개인결제 시장 ‘불안한 1위’ [데이터로 보는 세상] 여신금융협회에 따르면, 신한카드의 개인 신용판매 점유율은 18.48%로 9개 카드사 가운데 가장 높았다. 신한카드 점유율은 지난해 같은 기간보다 0.08%포인트 하락했다. 여전' data-topics='' data-ts='1785546060.0' data-rel='9.0' data-cluster='issue-9c45d52a23c4' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/024/0000107261?sid=102'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/024/0000107261?sid=102' target='_blank' rel='noopener noreferrer' data-title>신한카드, 개인결제 시장 ‘불안한 1위’ [데이터로 보는 세상]</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 10:01</span>        <span>·</span><span class='badge'>여전</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>여신금융협회에 따르면, 신한카드의 개인 신용판매 점유율은 18.48%로 9개 카드사 가운데 가장 높았다. 신한카드 점유율은 지난해 같은 기간보다 0.08%포인트 하락했다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/024/0000107261?sid=102' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mk.co.kr/article/12106712' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-자산운용·연기금'>  <div class='section-head'>    <h2>자산운용·연기금<span class='count'>3</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='자산운용·연기금' data-top=0 data-hay='[Invest]현대로보틱스 IPO, 국민연금·HD현대 소액주주 설득이 관건 HD현대 주주 가운데 지분 3% 이상을 보유한 주주는 정몽준 아산재단 이사장 과 정기선 HD현대 회장 , 국민연금 이다. HD현대의 소액주주 지분율은 약 40%에 달한다. 자산운용·연기금' data-topics='' data-ts='1785621720.0' data-rel='7.0' data-cluster='issue-4af7600cd8ec' data-cluster-size='1' data-url='https://www.investchosun.com/site/data/html_dir/2026/08/01/2026080180030.html'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.investchosun.com/site/data/html_dir/2026/08/01/2026080180030.html' target='_blank' rel='noopener noreferrer' data-title>[Invest]현대로보틱스 IPO, 국민연금·HD현대 소액주주 설득이 관건</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 07:02</span>        <span>·</span><span class='badge'>자산운용·연기금</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>HD현대 주주 가운데 지분 3% 이상을 보유한 주주는 정몽준 아산재단 이사장 과 정기선 HD현대 회장 , 국민연금 이다. HD현대의 소액주주 지분율은 약 40%에 달한다.</p>    <div class='actions'><a class='btn small primary' href='https://www.investchosun.com/site/data/html_dir/2026/08/01/2026080180030.html' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='자산운용·연기금' data-top=0 data-hay='[이슈] 고객돈으로 대주주 배 불린 한국교통자산운용 기관주의 과징금 ... 이번 제재를 계기로 한국교통자산운용의 내부통제 체계와 대주주 관련 거래에 대한 이사회 감시 기능이 제대로. 금융회사의 자금이 대주주의 사익을 위해 사용되는 것을 막고 이해상충을 방지하기 위한 규정이다. 자산운용·연기금  감독·제재' data-topics='감독·제재' data-ts='1785597960.0' data-rel='3.0' data-cluster='issue-dcfdaed2b54a' data-cluster-size='1' data-url='https://www.the-today.com/news/articleView.html?idxno=88045'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.the-today.com/news/articleView.html?idxno=88045' target='_blank' rel='noopener noreferrer' data-title>[이슈] 고객돈으로 대주주 배 불린 한국교통자산운용 기관주의 과징금 ...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 00:26</span>        <span>·</span><span class='badge'>자산운용·연기금</span><span class='badge r-low'>Rel Low</span>  </div>  <div class='meta-row'><span class='badge'>감독·제재</span></div>  <p class='summary' data-summary>이번 제재를 계기로 한국교통자산운용의 내부통제 체계와 대주주 관련 거래에 대한 이사회 감시 기능이 제대로. 금융회사의 자금이 대주주의 사익을 위해 사용되는 것을 막고 이해상충을 방지하기 위한 규정이다.</p>    <div class='actions'><a class='btn small primary' href='https://www.the-today.com/news/articleView.html?idxno=88045' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='자산운용·연기금' data-top=0 data-hay='은행 ETF 수수료 체계 도마 위…금감원 &quot;원점 재검토&quot; 금감원에 따르면 작년부터 올해 5월까지 6개 주요 은행 ·농협 등)의 ETF. 이어 &quot;고객에게 불리한 수수료 방식을 유도했는지 검사할 필요가 있다&quot;며 &quot;업계·협회와 논의해 수수료. 자산운용·연기금  금리·수수료·최고금리' data-topics='금리·수수료·최고금리' data-ts='1785542760.0' data-rel='10.0' data-cluster='issue-e56d6acf975f' data-cluster-size='1' data-url='https://www.thepublic.kr/news/articleView.html?idxno=313427'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.thepublic.kr/news/articleView.html?idxno=313427' target='_blank' rel='noopener noreferrer' data-title>은행 ETF 수수료 체계 도마 위…금감원 &quot;원점 재검토&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 09:06</span>        <span>·</span><span class='badge'>자산운용·연기금</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>금리·수수료·최고금리</span></div>  <p class='summary' data-summary>금감원에 따르면 작년부터 올해 5월까지 6개 주요 은행 ·농협 등)의 ETF. 이어 &quot;고객에게 불리한 수수료 방식을 유도했는지 검사할 필요가 있다&quot;며 &quot;업계·협회와 논의해 수수료.</p>    <div class='actions'><a class='btn small primary' href='https://www.thepublic.kr/news/articleView.html?idxno=313427' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-디지털자산'>  <div class='section-head'>    <h2>디지털자산<span class='count'>8</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='업비트 독주 흔든 스테이블코인…5,603억원 해외 유출에 네카오까지 참... 해외 거래소들이 비트코인 을 비롯한 가상자산 파생상품뿐 아니라 삼성전자와 SK하이닉스, 현대차 등 국내 주식 연계 현·선물 상품까지 확대하면서, 스테이블코인이 고위험 레버리지 투자로 이동하는. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1785623760.0' data-rel='15.0' data-cluster='issue-4ce2917cff77' data-cluster-size='1' data-url='http://coinreaders.com/250736'>  <div class='card-head'>    <h3 class='title'>      <a href='http://coinreaders.com/250736' target='_blank' rel='noopener noreferrer' data-title>업비트 독주 흔든 스테이블코인…5,603억원 해외 유출에 네카오까지 참...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 07:36</span>        <span>·</span><span class='badge'>디지털자산</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>디지털자산</span></div>  <p class='summary' data-summary>해외 거래소들이 비트코인 을 비롯한 가상자산 파생상품뿐 아니라 삼성전자와 SK하이닉스, 현대차 등 국내 주식 연계 현·선물 상품까지 확대하면서, 스테이블코인이 고위험 레버리지 투자로 이동하는.</p>    <div class='actions'><a class='btn small primary' href='http://coinreaders.com/250736' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='거래소 품고 STO 키우고…증권사, 디지털자산 영토 확장 STO 제도화 앞두고 디지털자산 투자 확대 코빗 품은 미래에셋…코인원 손잡은 한투 발행부터 유통까지…STO 생태계 선점 경쟁 ChatGPT로 생성한 &#x27;증권사들이 가상자산거래소 투자와 토큰증권(STO) 사업 확대를 통해... 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1785622920.0' data-rel='30.0' data-cluster='issue-d266605f8ca1' data-cluster-size='3' data-url='http://www.metroseoul.co.kr/article/20260802500003'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.metroseoul.co.kr/article/20260802500003' target='_blank' rel='noopener noreferrer' data-title>거래소 품고 STO 키우고…증권사, 디지털자산 영토 확장</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 07:22</span>        <span>·</span><span class='badge'>디지털자산</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 3건</span>  </div>  <div class='meta-row'><span class='badge'>디지털자산</span></div>  <p class='summary' data-summary>STO 제도화 앞두고 디지털자산 투자 확대 코빗 품은 미래에셋…코인원 손잡은 한투 발행부터 유통까지…STO 생태계 선점 경쟁 ChatGPT로 생성한 &#x27;증권사들이 가상자산거래소 투자와 토큰증권(STO) 사업 확대를 통해...</p>  <ul class='related' aria-label='관련 기사'><li><a href='https://www.theguru.co.kr/news/article.html?no=105235' target='_blank' rel='noopener noreferrer'>[크립토리뷰] 넷마블 마브렉스, &#x27;일곱 개의 대죄: 계명의 부활 NFT&#x27; 공개...</a> <span class='count'>theguru.co.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/138/0002236252?sid=101' target='_blank' rel='noopener noreferrer'>[STO 돋보기 ㊤] “시장 플레이어 다 떠날라”…토큰증권 ‘소 잃은 외양...</a> <span class='count'>ddaily.co.kr</span></li></ul>  <div class='actions'><a class='btn small primary' href='http://www.metroseoul.co.kr/article/20260802500003' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='[비즈톡톡] 또 뚫린 위메이드 위믹스… 국내 게임사 코인 사업성 ‘시험... 신뢰 회복에 다시 제동 시장 침체에 게임사 발행 코인 급락 위메이드의 가상화폐 ‘위믹스 ’가 또 다시 해킹을 당하면서 시장 신뢰 회복에도 제동이 걸렸습니다. 넥슨의 블록체인 계열사 넥스페이스가 발행한 NXPC는 지난해 5월 국내 거래소 상장 당시 4500원이던 가격이 최근 345원까지 떨어지며 90% 이상 하락했습니다. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1785618120.0' data-rel='9.0' data-cluster='issue-dab073f1e954' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/366/0001183762?sid=105'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/366/0001183762?sid=105' target='_blank' rel='noopener noreferrer' data-title>[비즈톡톡] 또 뚫린 위메이드 위믹스… 국내 게임사 코인 사업성 ‘시험...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 06:02</span>        <span>·</span><span class='badge'>디지털자산</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>디지털자산</span></div>  <p class='summary' data-summary>신뢰 회복에 다시 제동 시장 침체에 게임사 발행 코인 급락 위메이드의 가상화폐 ‘위믹스 ’가 또 다시 해킹을 당하면서 시장 신뢰 회복에도 제동이 걸렸습니다. 넥슨의 블록체인 계열사 넥스페이스가 발행한 NXPC는 지난해 5월 국내 거래소 상장 당시 4500원이던 가격이 최근 345원까지 떨어지며 90% 이상 하락했습니다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/366/0001183762?sid=105' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.chosun.com/it-science/ict/2026/08/02/HIZWYPD4KZFAPKVZRDTYR3X5FI/?utm_source=naver&amp;utm_medium=original&amp;utm_campaign=biz' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='국내 가상자산 거래소 활동 이용자 비율 20% 하회 KYC 거친 이용자 중 5분의 1만 실제 코인 거래·서비스 이용 상승 기대·변동성 모두 주식에 밀려…투자 매력 &#x27;뚝&#x27; 한지훈 박수현 = 국내 가상자산 거래소가 투자자들에게 외면받으면서 활동 이용자 비율이 20. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1785617940.0' data-rel='4.0' data-cluster='issue-77ea52904c9a' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/001/0016228560?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/001/0016228560?sid=101' target='_blank' rel='noopener noreferrer' data-title>국내 가상자산 거래소 활동 이용자 비율 20% 하회</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 05:59</span>        <span>·</span><span class='badge'>디지털자산</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>디지털자산</span></div>  <p class='summary' data-summary>KYC 거친 이용자 중 5분의 1만 실제 코인 거래·서비스 이용 상승 기대·변동성 모두 주식에 밀려…투자 매력 &#x27;뚝&#x27; 한지훈 박수현 = 국내 가상자산 거래소가 투자자들에게 외면받으면서 활동 이용자 비율이 20.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/001/0016228560?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.yna.co.kr/view/AKR20260731174400002?input=1195m' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='시그넘, 반카스타토에 가상자산 연동…계좌서 4종 매매 시그넘, 반카스타토에 가상자산 연동...계좌서 4종 매매 / TokenPost.ai 스위스 시그넘뱅크 가 반카스타토 온라인뱅킹에 가상자산 매매·보관 기능을 연동했다. 비트코인닷컴 뉴스는 시그넘 설명을 인용해 규제 대상 가상자산 서비스를 반카스타토 온라인뱅킹 시스템에 직접 연결한 방식이라고 전했다. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1785586440.0' data-rel='7.0' data-cluster='issue-fdefdc5dbb99' data-cluster-size='1' data-url='https://www.tokenpost.kr/news/breaking/383642'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tokenpost.kr/news/breaking/383642' target='_blank' rel='noopener noreferrer' data-title>시그넘, 반카스타토에 가상자산 연동…계좌서 4종 매매</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 21:14</span>        <span>·</span><span class='badge'>디지털자산</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>디지털자산</span></div>  <p class='summary' data-summary>시그넘, 반카스타토에 가상자산 연동...계좌서 4종 매매 / TokenPost.ai 스위스 시그넘뱅크 가 반카스타토 온라인뱅킹에 가상자산 매매·보관 기능을 연동했다. 비트코인닷컴 뉴스는 시그넘 설명을 인용해 규제 대상 가상자산 서비스를 반카스타토 온라인뱅킹 시스템에 직접 연결한 방식이라고 전했다.</p>    <div class='actions'><a class='btn small primary' href='https://www.tokenpost.kr/news/breaking/383642' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='업비트, AQT·AERGO 거래지원…3일 종료된다 두 종목은 8월 3일 거래 지원 종료 대상이다. 알파쿼크 와 아르고 가 거래 지원 종료 대상이다. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1785581640.0' data-rel='9.0' data-cluster='issue-fb5698b75b57' data-cluster-size='1' data-url='https://www.tokenpost.kr/news/breaking/383624'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tokenpost.kr/news/breaking/383624' target='_blank' rel='noopener noreferrer' data-title>업비트, AQT·AERGO 거래지원…3일 종료된다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 19:54</span>        <span>·</span><span class='badge'>디지털자산</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>디지털자산</span></div>  <p class='summary' data-summary>두 종목은 8월 3일 거래 지원 종료 대상이다. 알파쿼크 와 아르고 가 거래 지원 종료 대상이다.</p>    <div class='actions'><a class='btn small primary' href='https://www.tokenpost.kr/news/breaking/383624' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='두바이 미인가 거래소, 이란 40억달러 통로로 지목 두바이 미인가 거래소, 이란 40억달러 통로로 지목 / TokenPost.ai 두바이 기반 미인가 가상자산 거래소 Shelbit이 40억 달러 규모 이란 제재 회피 네트워크의 핵심 통로로 지목됐다. Shelbit은 40억 달러 규모 이란 제재 회피 네트워크의 핵심 통로로 지목됐다. 디지털자산' data-topics='' data-ts='1785574680.0' data-rel='8.0' data-cluster='issue-225f32a18eae' data-cluster-size='1' data-url='https://www.tokenpost.kr/news/breaking/383571'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tokenpost.kr/news/breaking/383571' target='_blank' rel='noopener noreferrer' data-title>두바이 미인가 거래소, 이란 40억달러 통로로 지목</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 17:58</span>        <span>·</span><span class='badge'>디지털자산</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>두바이 미인가 거래소, 이란 40억달러 통로로 지목 / TokenPost.ai 두바이 기반 미인가 가상자산 거래소 Shelbit이 40억 달러 규모 이란 제재 회피 네트워크의 핵심 통로로 지목됐다. Shelbit은 40억 달러 규모 이란 제재 회피 네트워크의 핵심 통로로 지목됐다.</p>    <div class='actions'><a class='btn small primary' href='https://www.tokenpost.kr/news/breaking/383571' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='[코인 TOP 10 주간동향] 펄·쑨·플루언트 주간 급등…매수 체결강도 500... 주간 상승률 / 업비트 1위 펄 +33.58% 2위 쑨 +28.63% 3위 플루언트 +19.42% 4위 유니스왑 +16.48% 5위 아이리스 +15.54% 6위 모멘텀 +14.79% 7위 펌프펀 +13.79% 8위 파로스 +10.80% 9위 엔소 +10.17% 10위. 일 매수 체결강도 순위/업비트 1위 에이셔 500.00% 2위 너보스 500.00% 3위 베니스토큰 500.00% 4위. 디지털자산' data-topics='' data-ts='1785543120.0' data-rel='4.0' data-cluster='issue-62dfc0d76069' data-cluster-size='1' data-url='https://www.tokenpost.kr/news/cryptocurrency/383483'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tokenpost.kr/news/cryptocurrency/383483' target='_blank' rel='noopener noreferrer' data-title>[코인 TOP 10 주간동향] 펄·쑨·플루언트 주간 급등…매수 체결강도 500...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 09:12</span>        <span>·</span><span class='badge'>디지털자산</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>주간 상승률 / 업비트 1위 펄 +33.58% 2위 쑨 +28.63% 3위 플루언트 +19.42% 4위 유니스왑 +16.48% 5위 아이리스 +15.54% 6위 모멘텀 +14.79% 7위 펌프펀 +13.79% 8위 파로스 +10.80% 9위 엔소 +10.17% 10위. 일 매수 체결강도 순위/업비트 1위 에이셔 500.00% 2위 너보스 500.00% 3위 베니스토큰 500.00% 4위.</p>    <div class='actions'><a class='btn small primary' href='https://www.tokenpost.kr/news/cryptocurrency/383483' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-거시·시장'>  <div class='section-head'>    <h2>거시·시장<span class='count'>8</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='[주식 소화불량③] 코인보다 요동친 증시…‘도파민’ 뺏긴 가상자산 증시 거래일에 맞춰 비교한 원화 거래소의 일평균 거래량은 7027억원으로, 코스피 거래대금의 1.94%에 불과했다. 삼성전자와 SK하이닉스가 코인보다 큰 변동성을 보이면서 증시 급락에도 투자자금은 가상자산 시장으로 이동하지 않았다. 거시·시장  증시·시장시황 디지털자산 환율·외환' data-topics='증시·시장시황|디지털자산|환율·외환' data-ts='1785621720.0' data-rel='8.0' data-cluster='issue-37ea6e0ef167' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/119/0003117293?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/119/0003117293?sid=101' target='_blank' rel='noopener noreferrer' data-title>[주식 소화불량③] 코인보다 요동친 증시…‘도파민’ 뺏긴 가상자산</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 07:02</span>        <span>·</span><span class='badge'>거시·시장</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>증시·시장시황</span><span class='badge'>디지털자산</span><span class='badge'>환율·외환</span></div>  <p class='summary' data-summary>증시 거래일에 맞춰 비교한 원화 거래소의 일평균 거래량은 7027억원으로, 코스피 거래대금의 1.94%에 불과했다. 삼성전자와 SK하이닉스가 코인보다 큰 변동성을 보이면서 증시 급락에도 투자자금은 가상자산 시장으로 이동하지 않았다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/119/0003117293?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.dailian.co.kr/news/view/1673153/?sc=Naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='원/달러 환율, 9개월 만에 최저치… 원화 가치 급등 이유는? 원/달러 환율, 9개월 만에 최저치. 토큰포스트 2026.08.02 06:46 원/달러 환율이 2026년 7월 급격히 하락하면서 9개월 만의 저점 수준을 기록했다. 거시·시장  해외·글로벌 환율·외환' data-topics='해외·글로벌|환율·외환' data-ts='1785620880.0' data-rel='22.0' data-cluster='issue-a98033d92593' data-cluster-size='25' data-url='https://www.tokenpost.kr/news/economy/383717'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tokenpost.kr/news/economy/383717' target='_blank' rel='noopener noreferrer' data-title>원/달러 환율, 9개월 만에 최저치… 원화 가치 급등 이유는?</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 06:48</span>        <span>·</span><span class='badge'>거시·시장</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 25건</span>  </div>  <div class='meta-row'><span class='badge'>해외·글로벌</span><span class='badge'>환율·외환</span></div>  <p class='summary' data-summary>원/달러 환율, 9개월 만에 최저치. 토큰포스트 2026.08.02 06:46 원/달러 환율이 2026년 7월 급격히 하락하면서 9개월 만의 저점 수준을 기록했다.</p>  <ul class='related' aria-label='관련 기사'><li><a href='https://n.news.naver.com/mnews/article/014/0005555908?sid=101' target='_blank' rel='noopener noreferrer'>롤러코스터 환율, 1600원 가려다 1400원대로 급락</a> <span class='count'>fnnews.com</span></li><li><a href='https://n.news.naver.com/mnews/article/023/0003990897?sid=101' target='_blank' rel='noopener noreferrer'>45년 만에 ‘연준 시계’ 바꾸려는 워시…왜 FOMC 횟수 줄이려 하나</a> <span class='count'>chosun.com</span></li><li><a href='https://www.slist.kr/news/articleView.html?idxno=755889' target='_blank' rel='noopener noreferrer'>7월 원화 절상률 8.8%, 금융위기 후 최고…1400원선 깨질까</a> <span class='count'>slist.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/421/0009092056?sid=101' target='_blank' rel='noopener noreferrer'>환율, 1600원 문턱서 1400원대로 급락…&quot;장기적 고환율 국면은 계속&quot;</a> <span class='count'>news1.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/119/0003117294?sid=101' target='_blank' rel='noopener noreferrer'>기름값 쇼크와 물가 전쟁…유류세·금리·총력 대응으로 물가안정 시급...</a> <span class='count'>dailian.co.kr</span></li></ul>  <div class='actions'><a class='btn small primary' href='https://www.tokenpost.kr/news/economy/383717' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='증시 떨어질 때 가상자산 거래 늘었는데…반등 시점은 여전히 ‘불투명... 최근 국내 증시가 이틀 연속 서킷브레이커가 발동된 기간 동안 국내 가상자산거래소들의 거래대금이 급증했던 것으로 확인됐다. 코스피보다 낮은 변동성을 기록해 상대적으로 안정적인 흐름을 보인 여파로... 거시·시장  증시·시장시황 디지털자산' data-topics='증시·시장시황|디지털자산' data-ts='1785618120.0' data-rel='9.0' data-cluster='issue-5d21f0d1afb1' data-cluster-size='1' data-url='https://www.kukinews.com/article/view/kuk202607310120'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.kukinews.com/article/view/kuk202607310120' target='_blank' rel='noopener noreferrer' data-title>증시 떨어질 때 가상자산 거래 늘었는데…반등 시점은 여전히 ‘불투명...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 06:02</span>        <span>·</span><span class='badge'>거시·시장</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>증시·시장시황</span><span class='badge'>디지털자산</span></div>  <p class='summary' data-summary>최근 국내 증시가 이틀 연속 서킷브레이커가 발동된 기간 동안 국내 가상자산거래소들의 거래대금이 급증했던 것으로 확인됐다. 코스피보다 낮은 변동성을 기록해 상대적으로 안정적인 흐름을 보인 여파로...</p>    <div class='actions'><a class='btn small primary' href='https://www.kukinews.com/article/view/kuk202607310120' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='7월 물가 3% 밑돌까…한은 ‘8월 연속 인상’ 향방 가른다 신현송 한은 총재는 이후에도 금리 인상 기조를 이어갈 필요가 있다며 추가 인상 가능성을 열어뒀다. 반대로 소비자물가가 3% 아래로 떨어지고 기조적인 물가 압력까지 약해진다면 한은이 인상 시기를 10월 이후로 늦출 여지도 커진다. 거시·시장' data-topics='' data-ts='1785578460.0' data-rel='23.0' data-cluster='issue-129b2842746a' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/016/0002678230?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/016/0002678230?sid=101' target='_blank' rel='noopener noreferrer' data-title>7월 물가 3% 밑돌까…한은 ‘8월 연속 인상’ 향방 가른다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 19:01</span>        <span>·</span><span class='badge'>거시·시장</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>신현송 한은 총재는 이후에도 금리 인상 기조를 이어갈 필요가 있다며 추가 인상 가능성을 열어뒀다. 반대로 소비자물가가 3% 아래로 떨어지고 기조적인 물가 압력까지 약해진다면 한은이 인상 시기를 10월 이후로 늦출 여지도 커진다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/016/0002678230?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://biz.heraldcorp.com/article/10827878?ref=naver' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='[2026년 7월 월간 주요 경제지표 변화] 7월 코스피 22% 급락…美 금리 상... 원·달러 환율은 전월 대비 103.56원 하락한 1,443.97원​에서 거래됐다. 환율 하락에도 국내 증시가 급락하면서 외환시장 안정이 증시 회복으로 이어지지는 못했다. 거시·시장  해외·글로벌 증시·시장시황 환율·외환 금리·수수료·최고금리' data-topics='해외·글로벌|증시·시장시황|환율·외환|금리·수수료·최고금리' data-ts='1785556440.0' data-rel='11.0' data-cluster='issue-5d0ea019bcd6' data-cluster-size='4' data-url='https://www.kihoilbo.co.kr/news/articleView.html?idxno=3030452'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.kihoilbo.co.kr/news/articleView.html?idxno=3030452' target='_blank' rel='noopener noreferrer' data-title>[2026년 7월 월간 주요 경제지표 변화] 7월 코스피 22% 급락…美 금리 상...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 12:54</span>        <span>·</span><span class='badge'>거시·시장</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 4건</span>  </div>  <div class='meta-row'><span class='badge'>해외·글로벌</span><span class='badge'>증시·시장시황</span><span class='badge'>환율·외환</span><span class='badge'>금리·수수료·최고금리</span></div>  <p class='summary' data-summary>원·달러 환율은 전월 대비 103.56원 하락한 1,443.97원​에서 거래됐다. 환율 하락에도 국내 증시가 급락하면서 외환시장 안정이 증시 회복으로 이어지지는 못했다.</p>  <ul class='related' aria-label='관련 기사'><li><a href='https://www.digitaltoday.co.kr/news/articleView.html?idxno=689036' target='_blank' rel='noopener noreferrer'>일본은행, 기준금리 1.0% 동결…엔화 장중 3.5% 급반등</a> <span class='count'>digitaltoday.co.kr</span></li><li><a href='http://www.e-platform.net/news/articleView.html?idxno=104296' target='_blank' rel='noopener noreferrer'>국제 LPG가격 반등...9월 국내 공급가 ㎏당 50원 인상요인</a> <span class='count'>e-platform.net</span></li><li><a href='https://www.pinpointnews.co.kr/news/articleView.html?idxno=473430' target='_blank' rel='noopener noreferrer'>[7월 종합] 코스피 한달 −22.19%, IMF·금융위기 이후 최악…100대 기업...</a> <span class='count'>pinpointnews.co.kr</span></li></ul>  <div class='actions'><a class='btn small primary' href='https://www.kihoilbo.co.kr/news/articleView.html?idxno=3030452' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='주요국 주가 변동성 심화 및 고물가 지속-최근 국제금융동향 &lt;2026.8.1. 분... 2026년 7월 국제금융시장 - 주요국 금융시장은 중동전쟁 재개 및 인플레이션 우려로 변동성 심화... 하락 * 원/달러 환율은 월초 상승 후 하이닉스 ADR 상장 및 월말 수출대금 결제로 하락 - 채권금리는 일부 연준... 거시·시장  환율·외환 해외·글로벌' data-topics='환율·외환|해외·글로벌' data-ts='1785556200.0' data-rel='11.0' data-cluster='issue-5e1baec8aee7' data-cluster-size='2' data-url='http://www.ifs.or.kr/bbs/board.php?bo_table=research&amp;wr_id=11349'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.ifs.or.kr/bbs/board.php?bo_table=research&amp;wr_id=11349' target='_blank' rel='noopener noreferrer' data-title>주요국 주가 변동성 심화 및 고물가 지속-최근 국제금융동향 &lt;2026.8.1. 분...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 12:50</span>        <span>·</span><span class='badge'>거시·시장</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 2건</span>  </div>  <div class='meta-row'><span class='badge'>환율·외환</span><span class='badge'>해외·글로벌</span></div>  <p class='summary' data-summary>2026년 7월 국제금융시장 - 주요국 금융시장은 중동전쟁 재개 및 인플레이션 우려로 변동성 심화... 하락 * 원/달러 환율은 월초 상승 후 하이닉스 ADR 상장 및 월말 수출대금 결제로 하락 - 채권금리는 일부 연준...</p>  <ul class='related' aria-label='관련 기사'><li><a href='https://www.g-enews.com/view.php?ud=20260802072132469e250e8e188_1' target='_blank' rel='noopener noreferrer'>연준 &#x27;깜깜이 행보&#x27;에 춤추는 반도체주… 케빈 워시 &#x27;침묵&#x27;에 월가 초긴...</a> <span class='count'>g-enews.com</span></li></ul>  <div class='actions'><a class='btn small primary' href='http://www.ifs.or.kr/bbs/board.php?bo_table=research&amp;wr_id=11349' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='&#x27;카지노 증시&#x27; 헛말 아니네.. &quot;코스피 변동성, 비트코인 3.7배&quot; 비트코인은 1.25% 지난달 국내 증시의 변동성이 대표적인 위험자산으로 평가됐었던 가상자산보다 더 컸다는 집계 결과가 나왔습니다. 코스피 변동성이 비트코인보다 약 3.7배, 알트코인보다 약 2.6배 높은 수준인 셈입니다. 거시·시장  증시·시장시황' data-topics='증시·시장시황' data-ts='1785553380.0' data-rel='6.0' data-cluster='issue-7eb420063394' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/661/0000080904?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/661/0000080904?sid=101' target='_blank' rel='noopener noreferrer' data-title>&#x27;카지노 증시&#x27; 헛말 아니네.. &quot;코스피 변동성, 비트코인 3.7배&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 12:03</span>        <span>·</span><span class='badge'>거시·시장</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>증시·시장시황</span></div>  <p class='summary' data-summary>비트코인은 1.25% 지난달 국내 증시의 변동성이 대표적인 위험자산으로 평가됐었던 가상자산보다 더 컸다는 집계 결과가 나왔습니다. 코스피 변동성이 비트코인보다 약 3.7배, 알트코인보다 약 2.6배 높은 수준인 셈입니다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/661/0000080904?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.jibs.co.kr/news/articles/articlesDetail/64079?feed=na' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='비트코인, 롤러코스피보다 안정적…박스권에서 멈췄다, 왜? 연방준비제도 가 기준금리를 동결했고 일본은행 도 기준금리를 유지하면서 시장 예상에서 크게 벗어난 결정이 나오지 않았으며, 미국과 이란 간 긴장 고조에 따른 국제유가 상승과 인플레이션 우려 속에서도 투자자들은 적극적인 위험자산 투자에 나서지 않았다. 코스피가 대형주 쏠림 현상 속에 급등락을 반복하며 높은 변동성을 보인 반면, 비트코인은 장기간 박스권에서 횡보하는 모습을 나타냈다. 거시·시장  금리·수수료·최고금리' data-topics='금리·수수료·최고금리' data-ts='1785550260.0' data-rel='28.0' data-cluster='issue-6310c55fe1f4' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/243/0000101152?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/243/0000101152?sid=101' target='_blank' rel='noopener noreferrer' data-title>비트코인, 롤러코스피보다 안정적…박스권에서 멈췄다, 왜?</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 11:11</span>        <span>·</span><span class='badge'>거시·시장</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>금리·수수료·최고금리</span></div>  <p class='summary' data-summary>연방준비제도 가 기준금리를 동결했고 일본은행 도 기준금리를 유지하면서 시장 예상에서 크게 벗어난 결정이 나오지 않았으며, 미국과 이란 간 긴장 고조에 따른 국제유가 상승과 인플레이션 우려 속에서도 투자자들은 적극적인 위험자산 투자에 나서지 않았다. 코스피가 대형주 쏠림 현상 속에 급등락을 반복하며 높은 변동성을 보인 반면, 비트코인은 장기간 박스권에서 횡보하는 모습을 나타냈다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/243/0000101152?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://economist.co.kr/article/view/ecn202608010008' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-감독·제재'>  <div class='section-head'>    <h2>감독·제재<span class='count'>3</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='감독·제재' data-top=0 data-hay='롯데카드 징계 축소...우리·신한카드 부담 더 커졌다 자료=롯데카드 금융당국이 개인정보 297만건 유출 사고를 낸 롯데카드의 영업정지 기간을 당초 4.5개월에서 1.5개월로 줄이면서 카드업계 개인정보 유출 제재의 기준점이 마련됐다. 이후 금융위는 안건검토소위원회를 두 차례 열어 제재 수위를 재검토한 끝에 영업정지 기간을 1.5개월로 확정했다. 감독·제재  감독·제재' data-topics='감독·제재' data-ts='1785625320.0' data-rel='24.0' data-cluster='issue-148d05981fe5' data-cluster-size='1' data-url='https://theviewers.co.kr/View.aspx?No=4170750'>  <div class='card-head'>    <h3 class='title'>      <a href='https://theviewers.co.kr/View.aspx?No=4170750' target='_blank' rel='noopener noreferrer' data-title>롯데카드 징계 축소...우리·신한카드 부담 더 커졌다</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 08:02</span>        <span>·</span><span class='badge'>감독·제재</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>감독·제재</span></div>  <p class='summary' data-summary>자료=롯데카드 금융당국이 개인정보 297만건 유출 사고를 낸 롯데카드의 영업정지 기간을 당초 4.5개월에서 1.5개월로 줄이면서 카드업계 개인정보 유출 제재의 기준점이 마련됐다. 이후 금융위는 안건검토소위원회를 두 차례 열어 제재 수위를 재검토한 끝에 영업정지 기간을 1.5개월로 확정했다.</p>    <div class='actions'><a class='btn small primary' href='https://theviewers.co.kr/View.aspx?No=4170750' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='감독·제재' data-top=0 data-hay='&#x27;개인정보 유출&#x27; 롯데카드 영업정지 1.5개월 투데이e코노믹 = | 지난해 대규모 개인정보 유출 사고를 낸 롯데카드가 영업정지 1.5개월과 과징금 50억원의 제재를 받게 됐다. 당초 영업정지 4.5개월서 제재 수위 낮춰 당초 금융감독원은 영업정지 4.5개월과 과징금 50억원의 중징계를 의결했지만, 금융위원회는 제재 수위를 영업정지 1.5개월로 조정했다. 감독·제재  감독·제재' data-topics='감독·제재' data-ts='1785560280.0' data-rel='21.0' data-cluster='issue-87892953ba9e' data-cluster-size='4' data-url='https://www.todayeconomic.com/news/article.html?no=31569'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.todayeconomic.com/news/article.html?no=31569' target='_blank' rel='noopener noreferrer' data-title>&#x27;개인정보 유출&#x27; 롯데카드 영업정지 1.5개월</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 13:58</span>        <span>·</span><span class='badge'>감독·제재</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 4건</span>  </div>  <div class='meta-row'><span class='badge'>감독·제재</span></div>  <p class='summary' data-summary>투데이e코노믹 = | 지난해 대규모 개인정보 유출 사고를 낸 롯데카드가 영업정지 1.5개월과 과징금 50억원의 제재를 받게 됐다. 당초 영업정지 4.5개월서 제재 수위 낮춰 당초 금융감독원은 영업정지 4.5개월과 과징금 50억원의 중징계를 의결했지만, 금융위원회는 제재 수위를 영업정지 1.5개월로 조정했다.</p>  <ul class='related' aria-label='관련 기사'><li><a href='http://www.hansbiz.co.kr/news/articleView.html?idxno=853910' target='_blank' rel='noopener noreferrer'>&#x27;정보유출&#x27; 롯데카드,업무정지 1.5개월·과징금 50억</a> <span class='count'>hansbiz.co.kr</span></li><li><a href='http://www.biztribune.co.kr/news/articleView.html?idxno=356837' target='_blank' rel='noopener noreferrer'>롯데카드 &#x27;정보유출&#x27; 사고 업무정지 1.5개월 확정…금융위, 제재 감경</a> <span class='count'>biztribune.co.kr</span></li><li><a href='http://www.newsroad.co.kr/news/articleView.html?idxno=62290' target='_blank' rel='noopener noreferrer'>해킹 첫 업무정지에도…롯데카드, 신규모집만 막고 1.5개월 &#x27;감경&#x27;</a> <span class='count'>newsroad.co.kr</span></li></ul>  <div class='actions'><a class='btn small primary' href='https://www.todayeconomic.com/news/article.html?no=31569' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='감독·제재' data-top=0 data-hay='금융위, &#x27;해킹 사태&#x27; 롯데카드에 1.5개월 영업 정지 다만 지난 4월 말 롯데카드 영업정지 4.5개월과 과징금 50억원 등을 결정한 금감원 제재안과 비교해 영업정지 기간은 3개월 줄었다. /TV조선 방송화면 캡처 지난해 8월 해킹 사고로 297만명의 개인정보가 유출된 롯데카드에 영업정지 1.5개월, 과징금 50억원 처분이 내려졌다. 감독·제재  감독·제재' data-topics='감독·제재' data-ts='1785555600.0' data-rel='18.0' data-cluster='issue-fee9de009a61' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/448/0000630735?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/448/0000630735?sid=101' target='_blank' rel='noopener noreferrer' data-title>금융위, &#x27;해킹 사태&#x27; 롯데카드에 1.5개월 영업 정지</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 12:40</span>        <span>·</span><span class='badge'>감독·제재</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>감독·제재</span></div>  <p class='summary' data-summary>다만 지난 4월 말 롯데카드 영업정지 4.5개월과 과징금 50억원 등을 결정한 금감원 제재안과 비교해 영업정지 기간은 3개월 줄었다. /TV조선 방송화면 캡처 지난해 8월 해킹 사고로 297만명의 개인정보가 유출된 롯데카드에 영업정지 1.5개월, 과징금 50억원 처분이 내려졌다.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/448/0000630735?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://news.tvchosun.com/site/data/html_dir/2026/08/01/2026080190033.html' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-입법·정책'>  <div class='section-head'>    <h2>입법·정책<span class='count'>4</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='금융당국, 잔금대출 풀고 전세대출은 조인다…부동산금융 &#x27;투트랙&#x27; 잔금대출 완화 검토...6.27 이전·이후 여부 등 따져본다 2일 금융당국 등에 따르면 금융위원회는 이르면 이번 주 5대 시중은행 등을 다시 모아 잔금대출 등 집단대출 현황을 점검하고 규제 완화 방안에 대해 논의할 예정이다. 금융당국 관계자는 &quot;부동산 토론회 때 대통령도 6.27 대책 이전 입주자모집공고가 난 단지의 경우 피해가 없도록 말했다&quot;라며 &quot;특정 단지의 경우 조합원은 6.27. 입법·정책  가계대출·부채' data-topics='가계대출·부채' data-ts='1785623100.0' data-rel='7.0' data-cluster='issue-e966dbd85f3d' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/421/0009092054?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/421/0009092054?sid=101' target='_blank' rel='noopener noreferrer' data-title>금융당국, 잔금대출 풀고 전세대출은 조인다…부동산금융 &#x27;투트랙&#x27;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 07:25</span>        <span>·</span><span class='badge'>입법·정책</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>가계대출·부채</span></div>  <p class='summary' data-summary>잔금대출 완화 검토...6.27 이전·이후 여부 등 따져본다 2일 금융당국 등에 따르면 금융위원회는 이르면 이번 주 5대 시중은행 등을 다시 모아 잔금대출 등 집단대출 현황을 점검하고 규제 완화 방안에 대해 논의할 예정이다. 금융당국 관계자는 &quot;부동산 토론회 때 대통령도 6.27 대책 이전 입주자모집공고가 난 단지의 경우 피해가 없도록 말했다&quot;라며 &quot;특정 단지의 경우 조합원은 6.27.</p>    <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/421/0009092054?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.news1.kr/finance/general-finance/6246079' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='윤상현 의원, 형사사법체계 개편에 &quot;빈대 잡으려다 초가삼간 태웠다&quot; 피해자는 어디에서 보호받게 되는 것이냐&quot;며 &quot;새 제도는 정말 제대로 작동하는 것이냐&quot;고 물었다. 전세사기와 보이스피싱처럼 계좌와 통신기록을 끝까지 추적해야 하는 사건들&quot;이라고 설명했다. 입법·정책' data-topics='' data-ts='1785556320.0' data-rel='6.0' data-cluster='issue-a7ab914b266c' data-cluster-size='2' data-url='https://www.newspim.com/news/view/20260801000066'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.newspim.com/news/view/20260801000066' target='_blank' rel='noopener noreferrer' data-title>윤상현 의원, 형사사법체계 개편에 &quot;빈대 잡으려다 초가삼간 태웠다&quot;</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 12:52</span>        <span>·</span><span class='badge'>입법·정책</span><span class='badge r-med'>Rel Med</span><span class='badge'>관련 기사 2건</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>피해자는 어디에서 보호받게 되는 것이냐&quot;며 &quot;새 제도는 정말 제대로 작동하는 것이냐&quot;고 물었다. 전세사기와 보이스피싱처럼 계좌와 통신기록을 끝까지 추적해야 하는 사건들&quot;이라고 설명했다.</p>  <ul class='related' aria-label='관련 기사'><li><a href='http://www.breaknews.com/1226062' target='_blank' rel='noopener noreferrer'>형사사법체계 개편...“빈대 잡으려다 초가삼간 태웠습니다!”</a> <span class='count'>breaknews.com</span></li></ul>  <div class='actions'><a class='btn small primary' href='https://www.newspim.com/news/view/20260801000066' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='율도게임스·캣제랩스, ESPORTS 토큰 가격 급락에 입장 발표… &quot;러그풀 ... 가상자산 업계는 하반기 Web3 기반 상장 프로젝트의 무형 가치를 평가하는 핵심 지표로 단순 토큰 발행량을 넘어. 프로젝트팀은 사건 발생 후 거래소와 협력해 자금 이동 경로를 확인하고 대응을 진행했으나, 조사와. 입법·정책' data-topics='' data-ts='1785549960.0' data-rel='4.0' data-cluster='issue-a5597a9e3d65' data-cluster-size='1' data-url='https://www.nbntv.kr/news/articleView.html?idxno=340546'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.nbntv.kr/news/articleView.html?idxno=340546' target='_blank' rel='noopener noreferrer' data-title>율도게임스·캣제랩스, ESPORTS 토큰 가격 급락에 입장 발표… &quot;러그풀 ...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 11:06</span>        <span>·</span><span class='badge'>입법·정책</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>주제 없음</span></div>  <p class='summary' data-summary>가상자산 업계는 하반기 Web3 기반 상장 프로젝트의 무형 가치를 평가하는 핵심 지표로 단순 토큰 발행량을 넘어. 프로젝트팀은 사건 발생 후 거래소와 협력해 자금 이동 경로를 확인하고 대응을 진행했으나, 조사와.</p>    <div class='actions'><a class='btn small primary' href='https://www.nbntv.kr/news/articleView.html?idxno=340546' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='현금화 안 해도 과세될 수 있다?…코인 교환·결제도 세금 대상[e가상자... I 설주완 I 임윤선 I 정치대학 마켓 최신 뉴스 금융당국, 증시 급변에 긴급조치권 확보 추진...단일종목 레버리지 정조준 7월엔 22% 폭락, 8월엔 반등할까...코스피 앞에 놓인 변수들 20% 폭등에도 목표가의 반토막...삼성전자·SK하이닉스 괴리율 96% 국장도. 31일 한국거래소에 따르면 삼성전자와 SK하이닉스를 기초자산으로 삼는 단일종목 레버리지·인버스 ETF 햄토리ᆞ밤으깡. 입법·정책  증시·시장시황' data-topics='증시·시장시황' data-ts='1785542400.0' data-rel='4.0' data-cluster='issue-7c0c03302a74' data-cluster-size='1' data-url='https://www.etoday.co.kr/news/view/2609771'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.etoday.co.kr/news/view/2609771' target='_blank' rel='noopener noreferrer' data-title>현금화 안 해도 과세될 수 있다?…코인 교환·결제도 세금 대상[e가상자...</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 09:00</span>        <span>·</span><span class='badge'>입법·정책</span><span class='badge r-med'>Rel Med</span>  </div>  <div class='meta-row'><span class='badge'>증시·시장시황</span></div>  <p class='summary' data-summary>I 설주완 I 임윤선 I 정치대학 마켓 최신 뉴스 금융당국, 증시 급변에 긴급조치권 확보 추진...단일종목 레버리지 정조준 7월엔 22% 폭락, 8월엔 반등할까...코스피 앞에 놓인 변수들 20% 폭등에도 목표가의 반토막...삼성전자·SK하이닉스 괴리율 96% 국장도. 31일 한국거래소에 따르면 삼성전자와 SK하이닉스를 기초자산으로 삼는 단일종목 레버리지·인버스 ETF 햄토리ᆞ밤으깡.</p>    <div class='actions'><a class='btn small primary' href='https://www.etoday.co.kr/news/view/2609771' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-기타'>  <div class='section-head'>    <h2>기타<span class='count'>2</span></h2>    <div class='note'>고신뢰 기타 기사만 최대 10건 표시</div>  </div>  <div class='grid'><article class='card' data-card data-sector='기타' data-top=0 data-hay='디핀·스테이블코인·레이어1·디파이 [이주의 상장코인] 2일 가상자산 업계에 따르면. 8월 첫째 주, 국내 가상자산 거래소에서는 탈중앙화 물리 인프라 , 스테이블코인, 레이어1, 탈중앙화금융 , 온체인 거래 플랫폼 등 다양한 분야의 프로젝트가 거래를 시작했다. 기타  디지털자산' data-topics='디지털자산' data-ts='1785619200.0' data-rel='9.0' data-cluster='issue-af7215fa894e' data-cluster-size='1' data-url='https://it.chosun.com/news/articleView.html?idxno=2023092166704'>  <div class='card-head'>    <h3 class='title'>      <a href='https://it.chosun.com/news/articleView.html?idxno=2023092166704' target='_blank' rel='noopener noreferrer' data-title>디핀·스테이블코인·레이어1·디파이 [이주의 상장코인]</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-02 06:20</span>        <span>·</span><span class='badge'>기타</span><span class='badge r-high'>Rel High</span>  </div>  <div class='meta-row'><span class='badge'>디지털자산</span></div>  <p class='summary' data-summary>2일 가상자산 업계에 따르면. 8월 첫째 주, 국내 가상자산 거래소에서는 탈중앙화 물리 인프라 , 스테이블코인, 레이어1, 탈중앙화금융 , 온체인 거래 플랫폼 등 다양한 분야의 프로젝트가 거래를 시작했다.</p>    <div class='actions'><a class='btn small primary' href='https://it.chosun.com/news/articleView.html?idxno=2023092166704' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='신도림 59㎡ 1년새 4억 뛰었다…대출 규제에 서울 외곽 중소형 급등 수도권 집값 상승과 은행 가계대출 확대도 금리 인상 배경으로 꼽힌 가운데 연내 추가 인상 가능성도 제기되고 있다. 한국은행은 지난 16일 기준금리를 연 2.50%에서 2.75%로 0.25%포인트 인상했다. 기타  금리·수수료·최고금리' data-topics='금리·수수료·최고금리' data-ts='1785542400.0' data-rel='13.0' data-cluster='issue-6ce260d31c0b' data-cluster-size='3' data-url='https://n.news.naver.com/mnews/article/003/0014102170?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/003/0014102170?sid=101' target='_blank' rel='noopener noreferrer' data-title>신도림 59㎡ 1년새 4억 뛰었다…대출 규제에 서울 외곽 중소형 급등</a>    </h3>    <button class='clip' type='button' title='저장' data-clip>☆</button>  </div>  <div class='meta-row'>    <span>08-01 09:00</span>        <span>·</span><span class='badge'>기타</span><span class='badge r-high'>Rel High</span><span class='badge'>관련 기사 3건</span>  </div>  <div class='meta-row'><span class='badge'>금리·수수료·최고금리</span></div>  <p class='summary' data-summary>수도권 집값 상승과 은행 가계대출 확대도 금리 인상 배경으로 꼽힌 가운데 연내 추가 인상 가능성도 제기되고 있다. 한국은행은 지난 16일 기준금리를 연 2.50%에서 2.75%로 0.25%포인트 인상했다.</p>  <ul class='related' aria-label='관련 기사'><li><a href='https://n.news.naver.com/mnews/article/215/0001260823?sid=101' target='_blank' rel='noopener noreferrer'>주담대도 마통도 늘었다…은행 대출 조여도 &#x27;빚투&#x27; 질주</a> <span class='count'>wowtv.co.kr</span></li><li><a href='https://www.tokenpost.kr/news/economy/383712' target='_blank' rel='noopener noreferrer'>5대 은행 가계대출 급증, 주택담보·신용대출 쌍끌이 증가</a> <span class='count'>tokenpost.kr</span></li></ul>  <div class='actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/003/0014102170?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.newsis.com/view/NISX20260731_0003731915' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
+        <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div><div class='kchips'><span class='kchip'>가상자산 <span class='n'>8</span></span><span class='kchip'>가계대출 <span class='n'>6</span></span><span class='kchip'>금융위 <span class='n'>6</span></span><span class='kchip'>증시 <span class='n'>6</span></span><span class='kchip'>금리 <span class='n'>4</span></span><span class='kchip'>은행권 <span class='n'>4</span></span><span class='kchip'>연체율 <span class='n'>4</span></span><span class='kchip'>주택담보대출 <span class='n'>4</span></span><span class='kchip'>코스피 <span class='n'>4</span></span><span class='kchip'>거래소 <span class='n'>4</span></span></div></section>
+        <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.</div>
+      </div>
+    </div>
+  </div>
+  <script>
+(function(){
+  const NO_TOPIC_TOKEN = "__NO_TOPIC__";
+  const root = document.documentElement;
+  const body = document.body;
+  const themeBtn = document.getElementById("themeBtn");
+  const search = document.getElementById("searchInput");
+  const topOnly = document.getElementById("topOnly");
+  const favOnly = document.getElementById("favOnly");
+  const sortSel = document.getElementById("sortSel");
+  const emptyState = document.getElementById("emptyState");
+  const sidebar = document.getElementById("filterSidebar");
+  const mobileFilterBtn = document.getElementById("mobileFilterBtn");
+  const mobileSearchBtn = document.getElementById("mobileSearchBtn");
+  const mobileTopBtn = document.getElementById("mobileTopBtn");
+  const navElements = Array.from(document.querySelectorAll(".nav-wrap[data-scroll-hint] .nav"));
+
+  const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
+  const topicPills = Array.from(document.querySelectorAll("[data-topic-pill]"));
+  const cards = Array.from(document.querySelectorAll("[data-card]"));
+  const groups = Array.from(document.querySelectorAll("[data-group]"));
+  const PAGE_SIZE = 20;
+  const SEARCH_DEBOUNCE_MS = 150;
+
+  const LS_THEME = "reportTheme";
+  const LS_FAVS = "reportFavs_v1";
+  let activeSector = "ALL";
+  let activeTopic = "ALL";
+
+  const groupMetaMap = new Map();
+  const groupMetas = groups.map(groupEl => {
+    const meta = {
+      el: groupEl,
+      grid: groupEl.querySelector(".grid"),
+      loadMoreBtn: groupEl.querySelector("[data-load-more]"),
+      cards: [],
+      orderedCards: [],
+      visibleLimit: PAGE_SIZE,
+      lastOrder: []
+    };
+    groupMetaMap.set(groupEl, meta);
+    return meta;
+  });
+
+  const cardMetas = cards.map((cardEl, idx) => {
+    const groupMeta = groupMetaMap.get(cardEl.closest("[data-group]"));
+    const meta = {
+      id: idx,
+      el: cardEl,
+      group: groupMeta,
+      hay: (cardEl.dataset.hay || "").toLowerCase(),
+      sector: cardEl.dataset.sector || "",
+      topics: (() => {
+        const values = (cardEl.dataset.topics || "").split("|").filter(Boolean);
+        if(values.length === 0) values.push(NO_TOPIC_TOKEN);
+        return values;
+      })(),
+      ts: parseFloat(cardEl.dataset.ts || "0"),
+      rel: parseFloat(cardEl.dataset.rel || "0"),
+      isTop: cardEl.dataset.top === "1",
+      url: cardEl.dataset.url || "",
+      isMatch: cardEl.dataset.match === "1",
+      isShown: cardEl.style.display !== "none"
+    };
+    if(groupMeta) groupMeta.cards.push(meta);
+    return meta;
+  });
+  groupMetas.forEach(g => { g.orderedCards = g.cards.slice(); g.lastOrder = g.cards.slice(); });
+
+  let renderRafId = 0;
+  let pendingRender = { recomputeMatch: true, recomputeSort: true, resetPagination: true };
+
+  function loadTheme(){ const saved = localStorage.getItem(LS_THEME); root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light"; if(themeBtn) themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크"; }
+  function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); if(themeBtn) themeBtn.textContent = (next === "dark") ? "라이트" : "다크"; }
+  function getFavs(){ try{ const raw = localStorage.getItem(LS_FAVS); const arr = raw ? JSON.parse(raw) : []; return new Set(Array.isArray(arr) ? arr : []);}catch(e){ return new Set(); }}
+  function saveFavs(set){ localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set))); }
+  function setActivePill(sector){
+    const resolvedSector = pills.some(p => p.dataset.sector === sector) ? sector : "ALL";
+    activeSector = resolvedSector;
+    pills.forEach(p => p.classList.toggle("active", p.dataset.sector === resolvedSector));
+  }
+  function setActiveTopicPill(topic){
+    const resolvedTopic = topicPills.some(p => p.dataset.topic === topic) ? topic : "ALL";
+    activeTopic = resolvedTopic;
+    topicPills.forEach(p => p.classList.toggle("active", p.dataset.topic === resolvedTopic));
+  }
+  function debounce(fn, waitMs){ let timer = 0; return (...args) => { clearTimeout(timer); timer = window.setTimeout(() => fn(...args), waitMs); }; }
+  function setFilterSheetOpen(nextOpen, options){
+    const focusSearch = !!options?.focusSearch;
+    const isMobile = window.innerWidth < 768;
+    const open = !!nextOpen && isMobile;
+    if(sidebar){
+      sidebar.classList.toggle("open", open);
+      sidebar.setAttribute("aria-hidden", open ? "false" : "true");
+    }
+    body.classList.toggle("no-scroll", open);
+    if(mobileFilterBtn){
+      mobileFilterBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      mobileFilterBtn.setAttribute("aria-label", open ? "필터 닫기" : "필터 열기");
+      mobileFilterBtn.textContent = "필터";
+    }
+    if(open && focusSearch) setTimeout(() => search?.focus(), 120);
+  }
+
+  function updateNavScrollHints(){
+    navElements.forEach(nav => {
+      const wrap = nav.closest(".nav-wrap");
+      if(!wrap) return;
+      const maxLeft = Math.max(0, nav.scrollWidth - nav.clientWidth);
+      const canScroll = maxLeft > 2;
+      wrap.classList.toggle("can-scroll-left", canScroll && nav.scrollLeft > 2);
+      wrap.classList.toggle("can-scroll-right", canScroll && nav.scrollLeft < maxLeft - 2);
+    });
+  }
+
+  function sortCards(mode, cardsToSort){
+    return cardsToSort.slice().sort((a,b) => {
+      if(mode === "rel"){
+        if(b.rel !== a.rel) return b.rel - a.rel;
+        return b.ts - a.ts;
+      }
+      return b.ts - a.ts;
+    });
+  }
+
+  function computeFilterState(){
+    const q = (search?.value || "").trim().toLowerCase();
+    const qTokens = q ? q.split(/\s+/).filter(Boolean) : [];
+    const onlyTop = !!(topOnly && topOnly.checked);
+    const onlyFav = !!(favOnly && favOnly.checked);
+    const favs = getFavs();
+    let totalMatched = 0;
+
+    cardMetas.forEach(meta => {
+      const isFav = favs.has(meta.url);
+      let ok = true;
+      if(activeSector !== "ALL" && meta.sector !== activeSector) ok = false;
+      if(activeTopic !== "ALL" && !meta.topics.includes(activeTopic)) ok = false;
+      if(onlyTop && !meta.isTop) ok = false;
+      if(onlyFav && !isFav) ok = false;
+      if(qTokens.length && !qTokens.some(tok => meta.hay.includes(tok))) ok = false;
+      meta.isMatch = ok;
+      if(ok) totalMatched += 1;
+    });
+    return totalMatched;
+  }
+
+  function applyDomState(totalMatched){
+    groupMetas.forEach(g => {
+      const matchedOrdered = g.orderedCards.filter(meta => meta.isMatch);
+      const matchedCount = matchedOrdered.length;
+      if(g.visibleLimit < PAGE_SIZE) g.visibleLimit = PAGE_SIZE;
+      const visibleLimit = Math.min(g.visibleLimit, matchedCount);
+
+      let shownMatched = 0;
+      g.orderedCards.forEach(meta => {
+        const shouldShow = meta.isMatch && shownMatched < visibleLimit;
+        if(meta.isMatch) shownMatched += 1;
+        if((meta.el.dataset.match === "1") !== meta.isMatch) meta.el.dataset.match = meta.isMatch ? "1" : "0";
+        if(meta.isShown !== shouldShow){
+          meta.el.style.display = shouldShow ? "" : "none";
+          meta.isShown = shouldShow;
+        }
+      });
+
+      if(g.loadMoreBtn){
+        const nextOffset = Math.min(visibleLimit, matchedCount);
+        if(g.loadMoreBtn.dataset.offset !== String(nextOffset)) g.loadMoreBtn.dataset.offset = String(nextOffset);
+        const showLoadMore = visibleLimit < matchedCount;
+        if((g.loadMoreBtn.style.display !== "none") !== showLoadMore) g.loadMoreBtn.style.display = showLoadMore ? "" : "none";
+      }
+      const showGroup = matchedCount > 0;
+      if((g.el.style.display !== "none") !== showGroup) g.el.style.display = showGroup ? "" : "none";
+    });
+    if (emptyState) emptyState.style.display = totalMatched > 0 ? "none" : "";
+  }
+
+  function runRender(){
+    renderRafId = 0;
+    const task = pendingRender;
+    pendingRender = { recomputeMatch: false, recomputeSort: false, resetPagination: false };
+    const mode = (sortSel?.value || "new");
+
+    groupMetas.forEach(g => {
+      if(task.recomputeSort){
+        const nextOrder = sortCards(mode, g.cards);
+        const sameOrder = nextOrder.length === g.lastOrder.length && nextOrder.every((meta, idx) => meta === g.lastOrder[idx]);
+        g.orderedCards = nextOrder;
+        if(!sameOrder && g.grid){
+          nextOrder.forEach(meta => g.grid.appendChild(meta.el));
+          g.lastOrder = nextOrder.slice();
+        }
+      }
+      if(task.resetPagination) g.visibleLimit = PAGE_SIZE;
+    });
+
+    let totalMatched = cardMetas.reduce((acc, meta) => acc + (meta.isMatch ? 1 : 0), 0);
+    if(task.recomputeMatch) totalMatched = computeFilterState();
+    applyDomState(totalMatched);
+  }
+
+  function scheduleRender(nextTask){
+    pendingRender = {
+      recomputeMatch: pendingRender.recomputeMatch || !!nextTask?.recomputeMatch,
+      recomputeSort: pendingRender.recomputeSort || !!nextTask?.recomputeSort,
+      resetPagination: pendingRender.resetPagination || !!nextTask?.resetPagination,
+    };
+    if(renderRafId) return;
+    renderRafId = window.requestAnimationFrame(runRender);
+  }
+
+  function applySort(){
+    scheduleRender({ recomputeSort: true, resetPagination: true });
+  }
+
+  function applyFilter(){
+    scheduleRender({ recomputeMatch: true, resetPagination: true });
+  }
+
+  function initFavButtons(){
+    const favs = getFavs();
+    cards.forEach(card => {
+      const btn = card.querySelector("[data-clip]"); const url = card.dataset.url || ""; if(!btn || !url) return;
+      const on = favs.has(url); btn.classList.toggle("on", on); btn.textContent = on ? "★" : "☆";
+      btn.addEventListener("click", () => { const set = getFavs(); const nowOn = set.has(url) ? (set.delete(url), false) : (set.add(url), true); saveFavs(set); btn.classList.toggle("on", nowOn); btn.textContent = nowOn ? "★" : "☆"; if(favOnly && favOnly.checked) applyFilter(); });
+    });
+  }
+
+  function bindEvents(){
+    pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); if(window.innerWidth < 768) setFilterSheetOpen(false); }));
+    topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); if(window.innerWidth < 768) setFilterSheetOpen(false); }));
+    groupMetas.forEach(g => { const btn = g.loadMoreBtn; if(!btn) return; btn.addEventListener("click", ()=>{ g.visibleLimit += PAGE_SIZE; scheduleRender({ resetPagination: false }); }); });
+    const debouncedSearch = debounce(()=>{ applyFilter(); }, SEARCH_DEBOUNCE_MS);
+    search?.addEventListener("input", debouncedSearch);
+    if(topOnly) topOnly.addEventListener("change", applyFilter);
+    if(favOnly) favOnly.addEventListener("change", applyFilter);
+    sortSel?.addEventListener("change", ()=>{ applySort(); applyFilter(); });
+    themeBtn?.addEventListener("click", toggleTheme);
+
+    mobileFilterBtn?.addEventListener("click", () => setFilterSheetOpen(!sidebar?.classList.contains("open")));
+    mobileSearchBtn?.addEventListener("click", () => setFilterSheetOpen(true, { focusSearch: true }));
+    sidebar?.addEventListener("click", (e)=>{ if(e.target.closest("[data-sheet-close]")) setFilterSheetOpen(false); });
+    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") setFilterSheetOpen(false); });
+    mobileTopBtn?.addEventListener("click", ()=>{ if(!topOnly) return; topOnly.checked = !topOnly.checked; mobileTopBtn.classList.toggle("active", topOnly.checked); applyFilter(); });
+    topOnly?.addEventListener("change", ()=> mobileTopBtn?.classList.toggle("active", topOnly.checked));
+    navElements.forEach(nav => nav.addEventListener("scroll", updateNavScrollHints, { passive: true }));
+    window.addEventListener("resize", ()=>{ setFilterSheetOpen(false); updateNavScrollHints(); });
+  }
+
+  loadTheme();
+  setActivePill("ALL");
+  setActiveTopicPill("ALL");
+  applySort();
+  initFavButtons();
+  bindEvents();
+  applyFilter();
+  setFilterSheetOpen(false);
+  updateNavScrollHints();
+  mobileTopBtn?.classList.toggle("active", !!topOnly?.checked);
+})();
+</script>
+</body>
+</html>

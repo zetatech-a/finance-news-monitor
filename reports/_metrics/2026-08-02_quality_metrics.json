@@ -1,0 +1,250 @@
+{
+  "clusters": {
+    "cluster_count": 65,
+    "cluster_size_max": 25,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 153,
+    "displayed_articles": 42,
+    "final_tagged_representatives": 65,
+    "normalized_articles": 204,
+    "raw_items": 204,
+    "relevance_filtered_articles": 104,
+    "rule_filtered_articles": 145,
+    "tagged_before_cluster": 104
+  },
+  "date": "2026-08-02",
+  "generated_at": "2026-08-02T10:15:35.193744+09:00",
+  "publishers": {
+    "missing_publisher_count": 65,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 26,
+    "no_topic_ratio": 0.4,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6641867844081689,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "\"전망 내놓기 무섭다\"…코인보다 심한 널뛰기에 증권가 '패닉'[도박판韓...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014102763?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5973189781362278,
+        "relevance_score": 7,
+        "sector": "자산운용·연기금",
+        "title": "[Invest]현대로보틱스 IPO, 국민연금·HD현대 소액주주 설득이 관건",
+        "url": "https://www.investchosun.com/site/data/html_dir/2026/08/01/2026080180030.html"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7755436706830428,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "모건스탠리 ETH·SOL ETP 스테이킹 보상 95% 준다",
+        "url": "https://www.wikitree.co.kr/articles/1149851"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.2427192743877333,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "금융당국, 신축 아파트 잔금 대출 보완책 검토…기존 주택 배제 가능성",
+        "url": "https://www.tokenpost.kr/news/economy/383714"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6809362058928757,
+        "relevance_score": 18,
+        "sector": "은행",
+        "title": "카뱅 파업에 농협·국책은행까지…뜨거워진 금융권 하투(夏鬪)",
+        "url": "https://n.news.naver.com/mnews/article/079/0004174537?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.38542566931919214,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "우리금융지주, 허리띠 졸라맨 효과…시장 기대 웃돈 실적",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=473483"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.531693013708963,
+        "relevance_score": 8,
+        "sector": "여전",
+        "title": "카드사 상반기 순익 6.5%↑…은행계 약진 속 삼성카드 1위 수성",
+        "url": "https://www.theguru.co.kr/news/article.html?no=105078"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6929776807827339,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "최민희 \"왜 졌냐\" 윤용근 \"배려해 드려야 하는데\"… 동아일보 \"화 더 돋...",
+        "url": "https://n.news.naver.com/mnews/article/006/0000137015?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7331070408724449,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "형소법 넘었지만…국민의힘 ‘이재명 방탄 입법’ 총공세",
+        "url": "https://n.news.naver.com/mnews/article/022/0004147633?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7219863452287211,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "IREN 17.55% 급등…코인베이스는 7.73% 하락",
+        "url": "https://www.tokenpost.kr/news/breaking/383620"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 8,
+      "기타": 25,
+      "대부": 2,
+      "디지털자산": 8,
+      "여전": 3,
+      "은행": 8,
+      "입법·정책": 4,
+      "자산운용·연기금": 3,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 8,
+      "감독·제재": 5,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 5,
+      "기업금융·익스포저": 2,
+      "디지털자산": 10,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 4,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 4,
+      "일정·브리핑": 1,
+      "정책·제도개선": 1,
+      "증시·시장시황": 5,
+      "칼럼·오피니언": 2,
+      "해외·글로벌": 4,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.9511562323744596,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "거래소 품고 STO 키우고…증권사, 디지털자산 영토 확장",
+        "url": "http://www.metroseoul.co.kr/article/20260802500003"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8712944969071091,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "롯데카드 징계 축소...우리·신한카드 부담 더 커졌다",
+        "url": "https://theviewers.co.kr/View.aspx?No=4170750"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7129855606314192,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "비트코인, 롤러코스피보다 안정적…박스권에서 멈췄다, 왜?",
+        "url": "https://n.news.naver.com/mnews/article/243/0000101152?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8360649887138437,
+        "relevance_score": 21,
+        "sector": "감독·제재",
+        "title": "'개인정보 유출' 롯데카드 영업정지 1.5개월",
+        "url": "https://www.todayeconomic.com/news/article.html?no=31569"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8031792116854999,
+        "relevance_score": 18,
+        "sector": "대부",
+        "title": "[N위크] 세제개편안 다음주 발표…중복상장제도 개선안 시행",
+        "url": "https://www.tfmedia.co.kr/news/article.html?no=206143"
+      },
+      {
+        "cluster_size": 25,
+        "relevance_prob": 0.8612934730558941,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "원/달러 환율, 9개월 만에 최저치… 원화 가치 급등 이유는?",
+        "url": "https://www.tokenpost.kr/news/economy/383717"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8988461365153212,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "금융위, '해킹 사태' 롯데카드에 1.5개월 영업 정지",
+        "url": "https://n.news.naver.com/mnews/article/448/0000630735?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8039549106211455,
+        "relevance_score": 21,
+        "sector": "은행",
+        "title": "2억5000만원 대출받았더니 月이자 125만원으로 뛰었다…전세대출 금리도...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002678270?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8511073941676809,
+        "relevance_score": 12,
+        "sector": "여전",
+        "title": "롯데카드 45일 업무정지…'3조 몸값' 멀어질라 MBK 전전긍긍",
+        "url": "https://www.the-today.com/news/articleView.html?idxno=88040"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6809362058928757,
+        "relevance_score": 18,
+        "sector": "은행",
+        "title": "카뱅 파업에 농협·국책은행까지…뜨거워진 금융권 하투(夏鬪)",
+        "url": "https://n.news.naver.com/mnews/article/079/0004174537?sid=101"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 2,
+      "대부": 1,
+      "디지털자산": 1,
+      "여전": 1,
+      "은행": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 3,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 1,
+      "일정·브리핑": 1,
+      "정책·제도개선": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}

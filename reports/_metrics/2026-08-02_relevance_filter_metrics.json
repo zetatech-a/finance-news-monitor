@@ -1,0 +1,72 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 0,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 8,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 9,
+  "candidate_hybrid_gray_rule_drop": 21,
+  "candidate_hybrid_gray_rule_keep": 9,
+  "candidate_hybrid_keep_overseas_global_reference": 4,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 69,
+  "candidate_hybrid_model_drop": 5,
+  "candidate_hybrid_model_keep": 20,
+  "candidate_hybrid_model_keep_with_domain_anchor": 20,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 69,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-02",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 8,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 3,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 21,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 9,
+    "candidate_hybrid_keep_overseas_global_reference": 4,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 69,
+    "candidate_hybrid_model_drop_prob_le_threshold": 5,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 20
+  },
+  "dropped_count": 41,
+  "input_count": 145,
+  "kept_count": 104,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 145,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 5,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[재미로 보는 오늘의 운세] 8월 2일 (일요일) 66년생 어렵게 얻은 것을 ...",
+      "url": "https://www.segye.com/newsView/20260730514916?OutUrl=naver"
+    },
+    {
+      "title": "KB·신한·하나·우리·농협, '중요 금융기관' 지정…1% 추가자본 유지해...",
+      "url": "https://www.econovill.com/news/articleView.html?idxno=746855"
+    },
+    {
+      "title": "자생한방병원 고소한 보험사들…양방보다 3배 비싼 진료비",
+      "url": "https://economist.co.kr/article/view/ecn202607270025"
+    },
+    {
+      "title": "[주간금융이슈] 8월 첫날부터 주담대 '오픈런' 예고",
+      "url": "https://www.newspim.com/news/view/20260731000299"
+    },
+    {
+      "title": "토스뱅크, 매일 자동환전으로 달러 모으는 '외화 저금통' 선보여 外",
+      "url": "https://www.rcast.co.kr/news/articleView.html?idxno=31377"
+    }
+  ]
+}
