@@ -5,5 +5,5 @@ Used rows: 3814
 Labels: positive=3216 negative=598 review=1186
 Split: train=2860 test=954 stratified=True
 Evaluation skipped: False
-Metrics @ 0.65: accuracy=0.759 precision=0.980 recall=0.729 f1=0.836
+Metrics @ 0.65: accuracy=0.760 precision=0.980 recall=0.730 f1=0.837
 Model output: models/relevance_candidate.joblib

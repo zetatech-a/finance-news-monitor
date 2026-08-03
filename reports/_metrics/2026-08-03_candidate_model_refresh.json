@@ -3,7 +3,6 @@
   "candidates_dir": "reports/_candidates",
   "disagreements_output": "reports/_metrics/2026-08-03_relevance_disagreements.csv",
   "discovered_candidate_files": [
-    "reports/_candidates/2026-05-04_candidates.csv",
     "reports/_candidates/2026-05-05_candidates.csv",
     "reports/_candidates/2026-05-06_candidates.csv",
     "reports/_candidates/2026-05-07_candidates.csv",
@@ -93,7 +92,8 @@
     "reports/_candidates/2026-07-30_candidates.csv",
     "reports/_candidates/2026-07-31_candidates.csv",
     "reports/_candidates/2026-08-01_candidates.csv",
-    "reports/_candidates/2026-08-02_candidates.csv"
+    "reports/_candidates/2026-08-02_candidates.csv",
+    "reports/_candidates/2026-08-03_candidates.csv"
   ],
   "eligible_candidate_files": [
     "reports/_candidates/2026-08-02_candidates.csv",
@@ -119,11 +119,6 @@
     "reports/_candidates/2026-07-13_candidates.csv"
   ],
   "excluded_candidate_files": [
-    {
-      "date": "2026-05-04",
-      "path": "reports/_candidates/2026-05-04_candidates.csv",
-      "reason": "outside_lookback_window"
-    },
     {
       "date": "2026-05-05",
       "path": "reports/_candidates/2026-05-05_candidates.csv",
@@ -468,12 +463,18 @@
       "date": "2026-07-12",
       "path": "reports/_candidates/2026-07-12_candidates.csv",
       "reason": "outside_lookback_window"
+    },
+    {
+      "date": "2026-08-03",
+      "path": "reports/_candidates/2026-08-03_candidates.csv",
+      "reason": "current_report_date"
     }
   ],
   "excluded_reason_counts": {
-    "outside_lookback_window": 70
+    "current_report_date": 1,
+    "outside_lookback_window": 69
   },
-  "finished_at_utc": "2026-08-03T01:13:50Z",
+  "finished_at_utc": "2026-08-03T04:37:24Z",
   "input_candidate_files": [
     "reports/_candidates/2026-08-02_candidates.csv",
     "reports/_candidates/2026-08-01_candidates.csv",
@@ -508,7 +509,7 @@
   "pseudo_label_rows": 5000,
   "report_date": "2026-08-03",
   "report_output": "reports/_metrics/2026-08-03_relevance_candidate_eval.txt",
-  "started_at_utc": "2026-08-03T01:13:33Z",
+  "started_at_utc": "2026-08-03T04:36:52Z",
   "status": "refreshed",
   "trainable_negative": 598,
   "trainable_positive": 3216,
