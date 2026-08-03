@@ -125,6 +125,100 @@ python scripts/validate_relevance_labels.py \
   --metrics-output reports/_metrics/relevance_label_validation.json
 ```
 
+## Cloudflare Workers 외부 스케줄러 (`cloudflare-scheduler/`)
+
+GitHub Actions의 cron 트리거는 지연이 잦아, 장기적으로 예약 실행을 Cloudflare
+Workers Cron으로 옮기기 위한 스케줄러입니다.
+
+```text
+Cloudflare Cron Trigger
+  → Worker scheduled()
+  → GitHub workflow_dispatch API (daily.yml)
+  → GitHub-hosted runner
+  → 기존 daily.yml 파이프라인
+```
+
+Cloudflare는 **실행 요청만** 담당합니다. 뉴스 수집·리포트 생성·이메일 발송은
+기존 파이프라인에서 그대로 수행됩니다. Worker에는 공개 `fetch()` 핸들러가 없고
+cron으로만 실행됩니다.
+
+### Cron (KST/UTC)
+- Worker cron: `59 23 * * *` (UTC 23:59 = **KST 08:59**)
+- 09:03(KST) 전후 메일 도착을 목표로 기존 GitHub schedule보다 조금 앞당긴 값입니다.
+- Cloudflare Cron Trigger는 UTC 기준입니다.
+
+### Canary → 운영 전환
+- 초기 canary는 `DISPATCH_SEND_EMAIL=false`로 배포합니다. 워크플로는 실행되지만
+  이메일은 발송되지 않아 기존 GitHub schedule 발송과 충돌하지 않습니다.
+- 검증이 끝나면 `wrangler.jsonc`의 `DISPATCH_SEND_EMAIL`을 `"true"`로 바꿔
+  재배포합니다. dispatch는 `force_send=false`로 보내므로 날짜별 sent marker가
+  중복 발송을 계속 막아줍니다.
+
+### PAT 최소 권한
+- fine-grained PAT, 대상 저장소 `zetatech-a/finance-news-monitor` 하나만 선택
+- 권한은 **Actions: Read and write** 만 부여 (workflow_dispatch 호출에 필요)
+- 토큰은 반드시 secret으로 저장합니다. `wrangler.jsonc`의 `vars`에 넣지 않습니다.
+
+`wrangler.jsonc`의 `secrets.required`가 `GITHUB_TOKEN`을 필수로 선언하므로,
+토큰 없이 배포하면 wrangler가 배포를 **거부**합니다(조용히 성공한 뒤 다음 cron에서
+실패하는 일이 없습니다). 다만 최초 배포와 이후 배포의 절차가 다릅니다.
+
+**최초 배포 (Worker가 아직 존재하지 않을 때)**
+
+Worker가 없으면 `wrangler secret put`을 미리 쓸 수 없습니다(설정할 대상이 없음).
+이때는 배포와 동시에 secret을 올립니다. 토큰이 셸 히스토리나 저장소에 남지 않도록
+저장소 밖 임시 파일을 쓰고 즉시 지웁니다.
+
+```bash
+cd cloudflare-scheduler
+umask 077
+secrets_file="$(mktemp -t fnm-scheduler-secrets.XXXXXX)"
+trap 'rm -f "$secrets_file"' EXIT
+read -rs -p "GitHub PAT: " pat && echo
+printf 'GITHUB_TOKEN=%s\n' "$pat" > "$secrets_file"
+unset pat
+npx wrangler deploy --secrets-file "$secrets_file"
+```
+
+**이후 배포 (Worker가 이미 있을 때)**
+
+```bash
+cd cloudflare-scheduler
+npx wrangler secret put GITHUB_TOKEN   # 토큰 교체가 필요할 때만
+npm run deploy
+```
+
+> ⚠️ `wrangler dev`는 `.dev.vars`에 `GITHUB_TOKEN`이 없으면 **셸 환경변수의
+> `GITHUB_TOKEN`을 그대로 사용**합니다. 다른 용도의 광범위한 토큰이 환경에 떠 있으면
+> 그 토큰으로 dispatch가 나갈 수 있으니, 로컬 실행 시에는 `.dev.vars`에 명시적으로
+> 값을 넣거나 `env -u GITHUB_TOKEN npm run dev`로 실행하세요.
+
+### 로컬 검사 / 실행 / 배포
+```bash
+cd cloudflare-scheduler
+npm ci
+npm run check   # TypeScript 타입 검사
+npm test        # 단위 테스트 (네트워크·실제 PAT 미사용)
+npm run dev     # 로컬 실행 (wrangler dev)
+npm run deploy  # 배포 (wrangler deploy)
+```
+
+로컬에서 scheduled 핸들러를 직접 실행하려면 `npm run dev` 상태에서:
+
+```bash
+curl "http://localhost:8787/cdn-cgi/handler/scheduled?cron=59+23+*+*+*&format=json"
+```
+
+> ⚠️ 실제 Secret(PAT, Account ID 등)은 저장소에 커밋하지 않습니다.
+> 로컬 값은 `.dev.vars`(git-ignored)에만 두고, `.dev.vars.example`에는
+> 자리표시자만 유지합니다.
+
+### 기존 GitHub schedule 제거 절차
+1차 PR에서는 기존 GitHub schedule 5개를 **그대로 유지**합니다. Cloudflare Cron이
+안정적으로 동작하는 것을 확인한 뒤(요청 성공률, 실행 시각, 메일 도착 시각),
+별도의 2차 PR에서 `daily.yml`의 `schedule:` 블록을 제거하고 예약 실행을 Cloudflare로
+일원화합니다.
+
 ## 참고
 - 운영 기준(프로덕션 스케줄)은 전일 08:55 ~ 당일 08:55 (KST) 수집, 매일 09:00 전후(KST) 발송을 목표로 합니다.
 - 운영 실행 파라미터는 `--window_hours 24 --end_hhmm 0855 --overlap_minutes 15`이며, 오버랩 15분을 적용하면 실제 수집 시작은 전일 08:40(KST)입니다.

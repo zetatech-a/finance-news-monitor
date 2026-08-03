@@ -1,0 +1,15 @@
+# Local development only — copy to .dev.vars and fill in.
+# .dev.vars is git-ignored. NEVER commit a real token.
+#
+# GITHUB_TOKEN: fine-grained PAT scoped to zetatech-a/finance-news-monitor with
+# "Actions: Read and write". In production it is set with:
+#   npx wrangler secret put GITHUB_TOKEN
+GITHUB_TOKEN=replace-with-a-local-test-token
+
+# These mirror the "vars" block in wrangler.jsonc and are only needed locally
+# if you want to override them.
+GITHUB_OWNER=zetatech-a
+GITHUB_REPO=finance-news-monitor
+GITHUB_WORKFLOW=daily.yml
+GITHUB_REF=main
+DISPATCH_SEND_EMAIL=false
