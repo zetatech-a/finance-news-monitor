@@ -11,6 +11,13 @@ venv/
 .env.*
 *.key
 
+# Cloudflare Workers scheduler
+cloudflare-scheduler/node_modules/
+cloudflare-scheduler/.dev.vars
+cloudflare-scheduler/.dev.vars.*
+!cloudflare-scheduler/.dev.vars.example
+cloudflare-scheduler/.wrangler/
+
 # Logs / temp
 *.log
 .DS_Store

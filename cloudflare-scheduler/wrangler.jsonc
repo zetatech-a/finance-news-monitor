@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "finance-news-monitor-scheduler",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-01",
+
+  // Cron-only Worker: there is no fetch() handler and no public route.
+  "workers_dev": false,
+  "preview_urls": false,
+
+  "triggers": {
+    // UTC 23:59 = KST 08:59 — slightly ahead of the ~09:03 KST mail target so
+    // the run finishes in time. GitHub's own schedule triggers stay in place
+    // for now; the sent-marker prevents duplicate emails.
+    "crons": ["59 23 * * *"]
+  },
+
+  "vars": {
+    "GITHUB_OWNER": "zetatech-a",
+    "GITHUB_REPO": "finance-news-monitor",
+    "GITHUB_WORKFLOW": "daily.yml",
+    "GITHUB_REF": "main",
+    // Canary: request a run without sending email. Flip to "true" for production.
+    "DISPATCH_SEND_EMAIL": "false"
+  },
+
+  // GITHUB_TOKEN is a secret and must never appear in "vars" or in this file.
+  // Set it with: npx wrangler secret put GITHUB_TOKEN
+  "secrets": {
+    "required": ["GITHUB_TOKEN"]
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}

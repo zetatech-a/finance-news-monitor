@@ -1,0 +1,22 @@
+{
+  "name": "finance-news-monitor-scheduler",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker cron scheduler that dispatches the finance-news-monitor daily GitHub Actions workflow.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260801.1",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.118.0"
+  }
+}

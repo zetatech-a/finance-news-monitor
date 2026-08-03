@@ -25,10 +25,26 @@ on:
         description: "Wait until about 08:55 KST on manual run"
         type: boolean
         default: false
+      trigger_source:
+        description: "워크플로 실행 요청 출처"
+        required: false
+        default: "manual"
+        type: string
+      scheduled_for:
+        description: "외부 스케줄러 기준 실행 예정 UTC 시각"
+        required: false
+        type: string
+      cron_expression:
+        description: "외부 스케줄러가 사용한 Cron 표현식"
+        required: false
+        type: string
 
 jobs:
   run:
     runs-on: ubuntu-latest
+    # 리포트/sent marker를 main에 커밋·푸시하기 위한 최소 권한
+    permissions:
+      contents: write
     env:
       COLLECTION_END_HHMM: "0855"
     steps:
@@ -45,7 +61,12 @@ jobs:
 
       - name: Diagnostics
         run: |
+          # 외부 스케줄러(Cloudflare Cron)에서 온 요청인지 로그로 확인할 수 있게 한다.
+          # 민감정보는 출력하지 않는다.
           echo "Event: $GITHUB_EVENT_NAME"
+          echo "inputs.trigger_source=${{ inputs.trigger_source }}"
+          echo "inputs.scheduled_for=${{ inputs.scheduled_for }}"
+          echo "inputs.cron_expression=${{ inputs.cron_expression }}"
           echo "inputs.send_email=${{ inputs.send_email }}"
           echo "inputs.force_send=${{ inputs.force_send }}"
           echo "inputs.wait_until_target=${{ inputs.wait_until_target }}"
