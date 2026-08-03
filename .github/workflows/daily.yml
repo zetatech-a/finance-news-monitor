@@ -60,13 +60,20 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Diagnostics
+        env:
+          # 자유 문자열 입력은 셸에 직접 보간하지 않는다. ${{ }}를 run 스크립트에
+          # 끼워 넣으면 dispatch 권한만 있어도 `$(...)`로 임의 명령을 실행할 수
+          # 있으므로, 값은 환경변수로 전달하고 아래에서 인용해 출력만 한다.
+          TRIGGER_SOURCE: ${{ inputs.trigger_source }}
+          SCHEDULED_FOR: ${{ inputs.scheduled_for }}
+          CRON_EXPRESSION: ${{ inputs.cron_expression }}
         run: |
           # 외부 스케줄러(Cloudflare Cron)에서 온 요청인지 로그로 확인할 수 있게 한다.
           # 민감정보는 출력하지 않는다.
           echo "Event: $GITHUB_EVENT_NAME"
-          echo "inputs.trigger_source=${{ inputs.trigger_source }}"
-          echo "inputs.scheduled_for=${{ inputs.scheduled_for }}"
-          echo "inputs.cron_expression=${{ inputs.cron_expression }}"
+          echo "inputs.trigger_source=$TRIGGER_SOURCE"
+          echo "inputs.scheduled_for=$SCHEDULED_FOR"
+          echo "inputs.cron_expression=$CRON_EXPRESSION"
           echo "inputs.send_email=${{ inputs.send_email }}"
           echo "inputs.force_send=${{ inputs.force_send }}"
           echo "inputs.wait_until_target=${{ inputs.wait_until_target }}"
