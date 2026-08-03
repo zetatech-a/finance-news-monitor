@@ -1,0 +1,263 @@
+{
+  "clusters": {
+    "cluster_count": 156,
+    "cluster_size_max": 76,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 76,
+        "relevance_prob": 0.9545604819140768,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "미 기준금리 '매파적' 동결…한은 이달 금리 향방은?",
+        "url": "https://n.news.naver.com/mnews/article/648/0000049437?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 424,
+    "displayed_articles": 107,
+    "final_tagged_representatives": 156,
+    "normalized_articles": 612,
+    "raw_items": 612,
+    "relevance_filtered_articles": 277,
+    "rule_filtered_articles": 400,
+    "tagged_before_cluster": 277
+  },
+  "date": "2026-08-03",
+  "generated_at": "2026-08-03T10:16:05.579279+09:00",
+  "publishers": {
+    "missing_publisher_count": 156,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 50,
+    "no_topic_ratio": 0.3205,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5976364385256625,
+        "relevance_score": 6,
+        "sector": "IB·자본시장",
+        "title": "[안희철의 M&A 나침반] 딜 무산에 창업자 개인 빚 된 투자금",
+        "url": "https://n.news.naver.com/mnews/article/293/0000088492?sid=110"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5979794682969528,
+        "relevance_score": 8,
+        "sector": "보험",
+        "title": "[보험사 M&A] [KDB생명] 삼성생명 우위 굳힐까...\"자본력·명분 모두 갖...",
+        "url": "https://www.topdaily.kr/articles/111249"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5366697282349494,
+        "relevance_score": 6,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 비트코인 6만3000달러 회복…중동 긴장 완...",
+        "url": "https://www.ajunews.com/view/20260803075438908"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7413719196029588,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "신한라이프, CSM 기준 생보 3위 안착...천상영 대표, 외형 확장 보다 내...",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=346608"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6577234483216585,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "바이낸스, 셸빗 계정 없다면서도 6.76억달러 유입 확인",
+        "url": "https://www.wikitree.co.kr/articles/1149982"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5791525973428866,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "빈대인號 BNK금융, 비은행 성장률 59% '1위'···iM, 증권 성장 '관건' [...",
+        "url": "https://www.fntimes.com/html/view.php?ud=202608030315516353b4a7c6999c_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5354959658251567,
+        "relevance_score": 11,
+        "sector": "대부",
+        "title": "[판세] 금융기관이 대부중개수수료 상한제를 위반하여 지급한 수수료의...",
+        "url": "https://www.sejungilbo.com/news/articleView.html?idxno=59363"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.687550985744692,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "아마존·셰브론 '어닝 서프라이즈' vs 애플·로블록스 '전망 실망'에 주...",
+        "url": "https://n.news.naver.com/mnews/article/215/0001260873?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7092921552974478,
+        "relevance_score": 8,
+        "sector": "IB·자본시장",
+        "title": "[Invest]연간 목표 달성 멀어진 DCM 강자들…외화채서 돌파구 찾나",
+        "url": "https://www.investchosun.com/site/data/html_dir/2026/08/01/2026080180023.html"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5137891156710339,
+        "relevance_score": 7,
+        "sector": "대부",
+        "title": "[대출 규제 역설] 대부업마저 막혔다…저신용자 '금융 절벽' 현실화",
+        "url": "https://n.news.naver.com/mnews/article/119/0003117423?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 4,
+      "거시·시장": 14,
+      "기타": 57,
+      "대부": 12,
+      "디지털자산": 25,
+      "보험": 5,
+      "상호금융": 4,
+      "여전": 7,
+      "은행": 15,
+      "입법·정책": 8,
+      "자산운용·연기금": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 15,
+      "감독·제재": 7,
+      "건전성·자본규제": 4,
+      "금리·수수료·최고금리": 17,
+      "기업금융·익스포저": 3,
+      "디지털자산": 29,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 11,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 7,
+      "서민금융·대환·채무조정": 2,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 11,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 2,
+      "증시·시장시황": 9,
+      "칼럼·오피니언": 4,
+      "해외·글로벌": 12,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 21,
+        "relevance_prob": 0.8094511933067862,
+        "relevance_score": 43,
+        "sector": "대부",
+        "title": "집요한 불법사채 추심…금감원 \"대포폰 제로로 차단\"",
+        "url": "https://n.news.naver.com/mnews/article/421/0009092357?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7745092009926202,
+        "relevance_score": 35,
+        "sector": "대부",
+        "title": "불법사채의 집요한 공격, ‘대포폰 제로’로 차단 나선 금감원",
+        "url": "https://n.news.naver.com/mnews/article/009/0005715462?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.857412247284694,
+        "relevance_score": 26,
+        "sector": "입법·정책",
+        "title": "원화 스테이블코인 시장 달아오른다…네이버·카카오 주도권 경쟁 본격...",
+        "url": "https://www.viva100.com/article/20260802500541"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8460305277376813,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "‘양강 구도’ 깨진 스테이블코인 시장…빗썸·업비트 제치고 1위 올라...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002678398?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8290078107460722,
+        "relevance_score": 21,
+        "sector": "감독·제재",
+        "title": "롯데카드 정보유출 책임 물어 1.5개월 업무정지…과징금 50억원 부과",
+        "url": "http://www.intn.co.kr/news/articleView.html?idxno=2052292"
+      },
+      {
+        "cluster_size": 76,
+        "relevance_prob": 0.9545604819140768,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "미 기준금리 '매파적' 동결…한은 이달 금리 향방은?",
+        "url": "https://n.news.naver.com/mnews/article/648/0000049437?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.617049047612328,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "[모닝 리포트] 기업은행, 환율·비용 부담에 실적 둔화…분기배당은 긍...",
+        "url": "https://www.newspim.com/news/view/20260803000084"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7543073757354483,
+        "relevance_score": 20,
+        "sector": "대부",
+        "title": "금감원, ‘대포폰 제로’로 불법사채 대포폰 3일 내로 차단",
+        "url": "https://n.news.naver.com/mnews/article/366/0001183831?sid=101"
+      },
+      {
+        "cluster_size": 11,
+        "relevance_prob": 0.8903359901100251,
+        "relevance_score": 23,
+        "sector": "디지털자산",
+        "title": "원화 스테이블코인 제도화 기대…네이버·카카오 시장 선점 경쟁",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=593889"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5406476710353127,
+        "relevance_score": 20,
+        "sector": "은행",
+        "title": "은행권, 기업 중심 대출 늘렸더니…연체율 우려↑",
+        "url": "http://www.datanews.co.kr/news/article.html?no=145837"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 1,
+      "대부": 3,
+      "디지털자산": 2,
+      "은행": 2,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "기업금융·익스포저": 1,
+      "디지털자산": 3,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "연체·부실": 2,
+      "해외·글로벌": 1
+    }
+  }
+}

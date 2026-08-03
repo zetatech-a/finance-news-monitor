@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 0,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 20,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 13,
+  "candidate_hybrid_gray_rule_drop": 75,
+  "candidate_hybrid_gray_rule_keep": 13,
+  "candidate_hybrid_keep_overseas_global_reference": 8,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 197,
+  "candidate_hybrid_model_drop": 14,
+  "candidate_hybrid_model_keep": 51,
+  "candidate_hybrid_model_keep_with_domain_anchor": 51,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 197,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-03",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 20,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 3,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 75,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 13,
+    "candidate_hybrid_keep_overseas_global_reference": 8,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 197,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 14,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 51
+  },
+  "dropped_count": 123,
+  "input_count": 400,
+  "kept_count": 277,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 400,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 26,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[단독] 돈 회수 안되고 신규 대출은 줄고… 캐피털사 건전성 위험수위",
+      "url": "https://www.kmib.co.kr/article/view.asp?arcid=1785658476&code=11151100&cp=nv"
+    },
+    {
+      "title": "\"배달앱 1위 목표 아니다\"…'3년내 망한다'더니 폭풍 성장한 땡겨요",
+      "url": "https://economist.co.kr/article/view/ecn202607290060"
+    },
+    {
+      "title": "[이찬진 금감원장 1년 ㊤] 금융소비자 보호, 사전 예방으로 대전환...조...",
+      "url": "http://www.consumernews.co.kr/news/articleView.html?idxno=760421"
+    },
+    {
+      "title": "25세 ‘AI 노스트라다무스’의 추락…한달새 펀드자산 64조→14조원[지금...",
+      "url": "https://www.donga.com/news/Inter/article/all/20260802/134409099/2"
+    },
+    {
+      "title": "글로벌 AI·반도체주 흔든 24살 천재의 ‘빚투’",
+      "url": "https://www.hani.co.kr/arti/economy/economy_general/1271054.html"
+    },
+    {
+      "title": "25세 월가 AI 천재 레오폴드는 왜 실패했나",
+      "url": "https://www.chosun.com/economy/money/2026/08/02/IWPCGYNCZFD75DQWOJATI72BFM/?utm_source=naver&utm_medium=referral&utm_campaign=naver-news"
+    },
+    {
+      "title": "[위클리 생활금융] 여행·레저·사회공헌으로 경쟁…카드업계, 생활밀착...",
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=725437"
+    },
+    {
+      "title": "2배 레버리지' 손보나…금융당국 비상권한 꺼낸다",
+      "url": "https://biz.sbs.co.kr/article_hub/20000326122?division=NAVER"
+    },
+    {
+      "title": "[언주로칼럼] 답정너 정부, 진짜 '대출 해법' 내놔야",
+      "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202608020108090420421"
+    },
+    {
+      "title": "[여성농민으로 산다는 건] 이다지도 어려운 내 집 마련",
+      "url": "http://www.ikpnews.net/news/articleView.html?idxno=71101"
+    }
+  ]
+}
