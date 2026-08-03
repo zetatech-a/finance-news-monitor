@@ -4,6 +4,7 @@ import {
   buildDispatchBody,
   buildDispatchUrl,
   dispatchWorkflow,
+  extractRunDetails,
   resolveConfig,
   runScheduled,
   SchedulerError,
@@ -122,6 +123,57 @@ describe("buildDispatchBody", () => {
   });
 });
 
+describe("extractRunDetails", () => {
+  const RUN_URL = "https://github.com/zetatech-a/finance-news-monitor/actions/runs/987654321";
+  const API_URL = "https://api.github.com/repos/zetatech-a/finance-news-monitor/actions/runs/987654321";
+
+  // The exact `return_run_details` payload shape is not pinned down, so every
+  // plausible shape must yield the same log fields.
+  it.each([
+    [
+      "flat workflow_run_* fields",
+      { workflow_run_id: 987654321, workflow_run_html_url: RUN_URL, workflow_run_url: API_URL },
+    ],
+    ["flat id/html_url fields", { id: 987654321, html_url: RUN_URL }],
+    ["run envelope", { run: { id: 987654321, html_url: RUN_URL } }],
+    ["workflow_run envelope", { workflow_run: { id: 987654321, html_url: RUN_URL } }],
+    [
+      "envelope using workflow_run_* names",
+      { run: { workflow_run_id: 987654321, workflow_run_html_url: RUN_URL } },
+    ],
+  ])("reads the run id and HTML url from %s", (_label, payload) => {
+    expect(extractRunDetails(payload)).toEqual({ id: 987654321, url: RUN_URL });
+  });
+
+  it("prefers the HTML url over the API url", () => {
+    expect(extractRunDetails({ workflow_run_url: API_URL, workflow_run_html_url: RUN_URL }).url).toBe(
+      RUN_URL,
+    );
+    // ...but still reports the API url when no HTML url is present.
+    expect(extractRunDetails({ workflow_run_url: API_URL }).url).toBe(API_URL);
+  });
+
+  it("accepts a string run id and ignores empty or wrongly typed values", () => {
+    expect(extractRunDetails({ workflow_run_id: "987654321" }).id).toBe("987654321");
+    expect(extractRunDetails({ workflow_run_id: "", id: 42 }).id).toBe(42);
+    expect(extractRunDetails({ workflow_run_html_url: { nested: true }, url: API_URL }).url).toBe(
+      API_URL,
+    );
+  });
+
+  it("reports the top-level key names when no known field matches", () => {
+    expect(extractRunDetails({ something_else: 1, another: 2 })).toEqual({
+      unrecognizedShapeKeys: ["something_else", "another"],
+    });
+  });
+
+  it("returns nothing for a non-object or empty payload", () => {
+    expect(extractRunDetails(null)).toEqual({});
+    expect(extractRunDetails("not json")).toEqual({});
+    expect(extractRunDetails({})).toEqual({});
+  });
+});
+
 describe("dispatchWorkflow", () => {
   it("builds the exact URL, headers and body for a healthy environment", async () => {
     const { impl, calls } = stubFetch(noContent());
@@ -186,10 +238,9 @@ describe("dispatchWorkflow", () => {
     const { impl } = stubFetch(
       Response.json(
         {
-          run: {
-            id: 987654321,
-            html_url: "https://github.com/zetatech-a/finance-news-monitor/actions/runs/987654321",
-          },
+          workflow_run_id: 987654321,
+          workflow_run_html_url:
+            "https://github.com/zetatech-a/finance-news-monitor/actions/runs/987654321",
         },
         { status: 200 },
       ),

@@ -174,21 +174,66 @@ function truncate(text: string): string {
     : collapsed;
 }
 
-/** Pulls run id/url out of a 200 response body, tolerating an unexpected shape. */
-function extractRunDetails(payload: unknown): { id?: number | string; url?: string } {
+/**
+ * Candidate field names for the run id / run URL in a `return_run_details`
+ * response, in priority order.
+ *
+ * The exact shape is not pinned down here on purpose: the response is accepted
+ * either flat (`workflow_run_id`) or nested under `run`, so a naming difference
+ * degrades to a missing log field rather than a failed dispatch. HTML URLs are
+ * preferred over API URLs because the log is read by humans.
+ */
+const RUN_ID_KEYS = ["workflow_run_id", "run_id", "id"] as const;
+const RUN_URL_KEYS = ["workflow_run_html_url", "html_url", "workflow_run_url", "url"] as const;
+/** Cap on the key names logged when no known field matches. */
+const MAX_LOGGED_SHAPE_KEYS = 20;
+
+export interface RunDetails {
+  id?: number | string;
+  url?: string;
+  /** Top-level key *names* of an unrecognized payload, to aid canary debugging. */
+  unrecognizedShapeKeys?: string[];
+}
+
+function pickField<T>(
+  sources: readonly Record<string, unknown>[],
+  keys: readonly string[],
+  accept: (value: unknown) => value is T,
+): T | undefined {
+  for (const key of keys) {
+    for (const source of sources) {
+      const value = source[key];
+      if (accept(value)) return value;
+    }
+  }
+  return undefined;
+}
+
+const isId = (value: unknown): value is number | string =>
+  typeof value === "number" || (typeof value === "string" && value !== "");
+const isUrl = (value: unknown): value is string => typeof value === "string" && value !== "";
+
+/** Pulls run id/url out of a 2xx response body, tolerating an unexpected shape. */
+export function extractRunDetails(payload: unknown): RunDetails {
   if (typeof payload !== "object" || payload === null) return {};
   const record = payload as Record<string, unknown>;
-  const run =
-    typeof record.run === "object" && record.run !== null
-      ? (record.run as Record<string, unknown>)
-      : record;
 
-  const rawId = run.id ?? run.run_id;
-  const rawUrl = run.html_url ?? run.url;
-  return {
-    id: typeof rawId === "number" || typeof rawId === "string" ? rawId : undefined,
-    url: typeof rawUrl === "string" ? rawUrl : undefined,
-  };
+  const sources: Record<string, unknown>[] = [record];
+  for (const envelope of ["run", "workflow_run"]) {
+    const nested = record[envelope];
+    if (typeof nested === "object" && nested !== null) {
+      sources.push(nested as Record<string, unknown>);
+    }
+  }
+
+  const id = pickField(sources, RUN_ID_KEYS, isId);
+  const url = pickField(sources, RUN_URL_KEYS, isUrl);
+  if (id !== undefined || url !== undefined) return { id, url };
+
+  // Nothing matched. Log the key *names* only (never values) so the first real
+  // canary run tells us the actual field names instead of staying silent.
+  const keys = Object.keys(record);
+  return keys.length > 0 ? { unrecognizedShapeKeys: keys.slice(0, MAX_LOGGED_SHAPE_KEYS) } : {};
 }
 
 /**
@@ -258,7 +303,7 @@ export async function dispatchWorkflow(
     return;
   }
 
-  let details: { id?: number | string; url?: string } = {};
+  let details: RunDetails = {};
   try {
     details = extractRunDetails(await response.json());
   } catch {
@@ -270,6 +315,7 @@ export async function dispatchWorkflow(
       status: response.status,
       run_id: details.id,
       run_url: details.url,
+      unrecognized_shape_keys: details.unrecognizedShapeKeys,
     }),
   );
 }
