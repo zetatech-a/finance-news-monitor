@@ -159,10 +159,39 @@ cron으로만 실행됩니다.
 - 권한은 **Actions: Read and write** 만 부여 (workflow_dispatch 호출에 필요)
 - 토큰은 반드시 secret으로 저장합니다. `wrangler.jsonc`의 `vars`에 넣지 않습니다.
 
+`wrangler.jsonc`의 `secrets.required`가 `GITHUB_TOKEN`을 필수로 선언하므로,
+토큰 없이 배포하면 wrangler가 배포를 **거부**합니다(조용히 성공한 뒤 다음 cron에서
+실패하는 일이 없습니다). 다만 최초 배포와 이후 배포의 절차가 다릅니다.
+
+**최초 배포 (Worker가 아직 존재하지 않을 때)**
+
+Worker가 없으면 `wrangler secret put`을 미리 쓸 수 없습니다(설정할 대상이 없음).
+이때는 배포와 동시에 secret을 올립니다. 토큰이 셸 히스토리나 저장소에 남지 않도록
+저장소 밖 임시 파일을 쓰고 즉시 지웁니다.
+
 ```bash
 cd cloudflare-scheduler
-npx wrangler secret put GITHUB_TOKEN
+umask 077
+secrets_file="$(mktemp -t fnm-scheduler-secrets.XXXXXX)"
+trap 'rm -f "$secrets_file"' EXIT
+read -rs -p "GitHub PAT: " pat && echo
+printf 'GITHUB_TOKEN=%s\n' "$pat" > "$secrets_file"
+unset pat
+npx wrangler deploy --secrets-file "$secrets_file"
 ```
+
+**이후 배포 (Worker가 이미 있을 때)**
+
+```bash
+cd cloudflare-scheduler
+npx wrangler secret put GITHUB_TOKEN   # 토큰 교체가 필요할 때만
+npm run deploy
+```
+
+> ⚠️ `wrangler dev`는 `.dev.vars`에 `GITHUB_TOKEN`이 없으면 **셸 환경변수의
+> `GITHUB_TOKEN`을 그대로 사용**합니다. 다른 용도의 광범위한 토큰이 환경에 떠 있으면
+> 그 토큰으로 dispatch가 나갈 수 있으니, 로컬 실행 시에는 `.dev.vars`에 명시적으로
+> 값을 넣거나 `env -u GITHUB_TOKEN npm run dev`로 실행하세요.
 
 ### 로컬 검사 / 실행 / 배포
 ```bash
