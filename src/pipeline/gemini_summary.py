@@ -760,11 +760,19 @@ def validate_batch_response(
         reason = reason.strip()
 
         if not usable:
-            # 모델이 스스로 "요약 불가"를 신고한 경우 — 정상 응답이다.
-            # 사유가 예상 밖이어도 표시하지 않는 쪽이 안전하므로 내용 거부로 다룬다.
-            outcome.content_rejected[entry_id] = (
-                reason if reason in UNUSABLE_REASONS else "unspecified"
-            )
+            # 모델이 스스로 "요약 불가"를 신고한 경우 — 계약을 지킨 응답만 정상으로 본다.
+            # 계약: reason은 UNUSABLE_REASONS 중 하나, lines는 빈 배열.
+            # 이 형태를 벗어난 응답까지 내용 거부로 세면 (a) 재요청 대상에서 빠지고
+            # (b) smoke strict 검증이 "게이트가 걸렀다"로 읽어 초록이 되므로,
+            # 모델이 이 형태를 계속 뱉으면 AI 요약이 전부 사라져도 알 수 없다.
+            entry_lines = entry.get("lines")
+            if reason not in UNUSABLE_REASONS:
+                _reject("unusable_reason_conflict")
+                continue
+            if not isinstance(entry_lines, list) or entry_lines:
+                _reject("unusable_lines_present")
+                continue
+            outcome.content_rejected[entry_id] = reason
             continue
 
         if reason != REASON_OK:

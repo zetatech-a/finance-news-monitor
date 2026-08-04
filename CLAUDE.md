@@ -292,6 +292,11 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   보존된다. 분류·태깅·클러스터링 입력은 여전히 `description`이다.
 - `usable=true`인데 `reason != "ok"`이거나 lines가 3줄 계약을 어기면 **구조 위반**이다
   (재요청 대상). 이 둘을 섞지 마라.
+- 반대쪽도 대칭이다. `usable=false`의 정상 형태는 `reason ∈ UNUSABLE_REASONS` **그리고**
+  `lines == []`뿐이다. `reason="ok"`이거나 lines가 들어 있으면 구조 위반으로 다룬다 —
+  이런 응답까지 내용 거부로 세면 재요청 대상에서 빠지고, smoke strict 검증이 "게이트가
+  전부 걸렀다"로 읽어 초록이 된다(모델이 이 형태를 계속 뱉으면 AI 요약이 전부 사라져도
+  모른다). 스키마 enum 밖의 사유를 조용히 흡수하지 마라.
 - 배치 전체가 usable=false여도 API는 정상이므로 circuit breaker를 열지 않는다
   (`resolved_ids`가 비어 있을 때만 실패로 센다).
 - JSON Schema에 조건부 제약을 걸 수 없어 `lines`는 0~3으로 열어두고 앱에서 검증한다.

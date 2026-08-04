@@ -1415,8 +1415,25 @@ def test_usable_true_with_broken_lines_is_still_a_structural_violation():
     assert outcome.content_rejected == {}
 
 
-def test_unusable_with_lines_present_still_rejects_the_content():
-    """usable=false면 lines가 들어있어도 표시하지 않는다."""
+def test_unusable_contract_is_reason_plus_empty_lines():
+    """usable=false의 정상 형태 — 사유는 목록에 있고 lines는 빈 배열이다."""
+    items = _items(1)
+    payload = json.dumps(
+        {"summaries": [_entry(items[0].id, [], usable=False, reason="multi_topic")]},
+        ensure_ascii=False,
+    )
+    outcome = validate_batch_response(payload, items)
+    assert outcome.accepted == {}
+    assert outcome.content_rejected == {items[0].id: "multi_topic"}
+    assert outcome.failed_ids == []
+
+
+def test_unusable_with_lines_present_is_a_structural_violation():
+    """usable=false인데 lines가 들어있으면 "정상적인 요약 불가 신고"가 아니다.
+
+    내용 거부로 세면 재요청 대상에서 빠지고, smoke strict 검증도 "게이트가 걸렀다"로
+    읽어 초록이 된다 — 모델이 이 형태를 계속 뱉으면 AI 요약이 전부 사라져도 모른다.
+    """
     items = _items(1)
     payload = json.dumps(
         {
@@ -1428,19 +1445,64 @@ def test_unusable_with_lines_present_still_rejects_the_content():
     )
     outcome = validate_batch_response(payload, items)
     assert outcome.accepted == {}
-    assert outcome.content_rejected == {items[0].id: "multi_topic"}
-    assert outcome.failed_ids == []
+    assert outcome.content_rejected == {}
+    assert outcome.failed_ids == [items[0].id]
+    assert outcome.rejected_reasons.get("unusable_lines_present") == 1
 
 
-def test_unknown_unusable_reason_is_still_rejected_safely():
+def test_unknown_unusable_reason_is_a_structural_violation():
+    """스키마 enum 밖의 사유는 계약 위반이다 — 조용한 내용 거부로 흡수하지 않는다."""
     items = _items(1)
     payload = json.dumps(
         {"summaries": [_entry(items[0].id, [], usable=False, reason="something_else")]},
         ensure_ascii=False,
     )
     outcome = validate_batch_response(payload, items)
-    assert outcome.content_rejected == {items[0].id: "unspecified"}
-    assert outcome.failed_ids == []
+    assert outcome.content_rejected == {}
+    assert outcome.failed_ids == [items[0].id]
+    assert outcome.rejected_reasons.get("unusable_reason_conflict") == 1
+
+
+def test_unusable_reason_ok_is_a_structural_violation():
+    """usable=false + reason="ok"는 모순이다(usable=true + reason≠ok과 대칭)."""
+    items = _items(1)
+    payload = json.dumps(
+        {"summaries": [_entry(items[0].id, [], usable=False, reason="ok")]},
+        ensure_ascii=False,
+    )
+    outcome = validate_batch_response(payload, items)
+    assert outcome.content_rejected == {}
+    assert outcome.failed_ids == [items[0].id]
+    assert outcome.rejected_reasons.get("unusable_reason_conflict") == 1
+
+
+def test_malformed_unusable_items_are_retried_not_silently_dropped():
+    """구조 위반이므로 분할 재요청 대상이고, 끝내 실패하면 추출요약으로 내려간다."""
+    items = _items(30)
+    bad_ids = {items[0].id}
+
+    def responder(call_no, prompt, schema):
+        ids = _ids_in_prompt(prompt)
+        return json.dumps(
+            {
+                "summaries": [
+                    _entry(i, [], usable=False, reason="ok")
+                    if i in bad_ids
+                    else _entry(i, _lines(n))
+                    for n, i in enumerate(ids)
+                ]
+            },
+            ensure_ascii=False,
+        )
+
+    summarizer, recorder = _make(responder)
+    results = summarizer.summarize_many(items)
+
+    assert items[0].id not in results  # 표시는 추출요약으로 fallback
+    assert len(results) == 29
+    assert summarizer.stats["items_rejected"] >= 1
+    assert summarizer.stats["content_rejected"] == 0  # 내용 거부로 세지 않는다
+    assert recorder.count > 2  # 재요청이 실제로 일어났다
 
 
 @pytest.mark.parametrize("bad", [{"usable": "yes"}, {"reason": 5}])
