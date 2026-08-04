@@ -39,6 +39,13 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
+      - name: Mark run start
+        # 이번 실행에서 새로 생성·수정된 리포트만 고르기 위한 기준 시각.
+        # 이 마커가 없으면 실패한 실행에서 예전 날짜 리포트를 올려버릴 수 있다.
+        run: |
+          touch "$RUNNER_TEMP/smoke-start-marker"
+          echo "marker_utc=$(date -u --iso-8601=seconds)"
+
       - name: Run daily (naver)
         env:
           # NAVER API HUB (기존 Developers Center 키는 이관 후 무효)
@@ -62,3 +69,43 @@ jobs:
                "max_requests=$GEMINI_MAX_REQUESTS_PER_RUN" \
                "max_fetch_attempts=$GEMINI_MAX_FETCH_ATTEMPTS"
           python -m src.run_daily
+
+      - name: Collect smoke report
+        # 파이프라인이 실패해도 이번 실행이 남긴 리포트는 확인할 수 있어야 한다.
+        if: always()
+        run: |
+          set -uo pipefail
+          mkdir -p smoke-artifact
+
+          if [ ! -d reports ]; then
+            echo "collected_files=0 (reports/ 없음)"
+            exit 0
+          fi
+
+          # -maxdepth 1 로 reports/ 최상위 파일만 본다 → _cache/ _candidates/ _metrics/ 는
+          # 구조적으로 제외된다. 이름 패턴이 YYYY-MM-DD.{html,md}이라 index.html도 빠진다.
+          # -newer 마커로 이번 실행에서 생성·수정된 것만 남긴다(오래된 리포트 업로드 방지).
+          collected=0
+          while IFS= read -r -d '' report; do
+            cp "$report" smoke-artifact/
+            collected=$((collected + 1))
+          done < <(
+            find reports -maxdepth 1 -type f \
+              \( -name '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].html' \
+                 -o -name '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].md' \) \
+              -newer "$RUNNER_TEMP/smoke-start-marker" -print0
+          )
+
+          # 파일명(날짜)만 출력한다 — 리포트 내용이나 환경변수는 찍지 않는다.
+          echo "collected_files=$collected"
+          ls -1 smoke-artifact/ 2>/dev/null || true
+
+      - name: Upload smoke report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemini-smoke-report
+          path: smoke-artifact/
+          retention-days: 1
+          # 이번 실행이 리포트를 만들지 못했으면 조용히 넘어가지 않고 실패로 드러낸다.
+          if-no-files-found: error
