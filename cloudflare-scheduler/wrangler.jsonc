@@ -18,7 +18,7 @@
     "GITHUB_REPO": "finance-news-monitor",
     "GITHUB_WORKFLOW": "daily.yml",
     "GITHUB_REF": "main",
-    // Canary: request a run without sending email. Flip to "true" for production.
+    // Production: Cloudflare scheduled dispatch에서 이메일 발송을 활성화한다.
     "DISPATCH_SEND_EMAIL": "true"
   },
 
