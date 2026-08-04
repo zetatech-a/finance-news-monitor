@@ -81,20 +81,19 @@ def test_marker_json_contains_required_fields(tmp_path):
     assert marker["collection_end_hhmm"] == "0855"
 
 
-def test_workflow_yaml_contains_multiple_staggered_cron_triggers():
+def test_workflow_yaml_uses_external_scheduler_dispatch_only():
     workflow = Path(".github/workflows/daily.yml").read_text(encoding="utf-8")
 
-    for cron in (
-        'cron: "41 23 * * *"',
-        'cron: "49 23 * * *"',
-        'cron: "57 23 * * *"',
-        'cron: "7 0 * * *"',
-        'cron: "17 0 * * *"',
-    ):
-        assert cron in workflow
-    assert workflow.count("cron:") == 5
+    assert "\n  schedule:\n" not in workflow
+    assert '\n    - cron: "' not in workflow
+
     assert "workflow_dispatch:" in workflow
+    assert "send_email:" in workflow
     assert "force_send:" in workflow
+    assert "wait_until_target:" in workflow
+    assert "trigger_source:" in workflow
+    assert "scheduled_for:" in workflow
+    assert "cron_expression:" in workflow
 
 
 def test_workflow_yaml_contains_concurrency_without_cancel_in_progress():
