@@ -265,6 +265,21 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   상한에 도달하면 남은 기사는 추출요약을 쓴다.
 - 크기 1 요청은 분할 사다리의 **최종 복구 수단**으로만 나타난다. 정상 경로에 두지 마라.
 
+**내용 품질 게이트 — usable/reason (v3)**
+- 크롤링 본문에는 제목과 무관한 기사·사이드바·인기기사 목록이 섞인다. 실제 스모크에서
+  API 오류 0·구조 검증 실패 0인데도 제목과 무관한 요약이 생성됐다.
+- 응답 항목은 `{id, usable, reason, lines}`다. `reason`은 `ok` / `title_body_mismatch` /
+  `multi_topic` / `insufficient_content`.
+- `usable=false`는 **정상 응답**이다. 해당 기사는 AI 요약으로 쓰지 않고, **캐시하지 않고**,
+  **재요청하지 않으며**, 추출요약으로 표시한다. `items_rejected`나 `api_errors`로 세지 마라.
+- `usable=true`인데 `reason != "ok"`이거나 lines가 3줄 계약을 어기면 **구조 위반**이다
+  (재요청 대상). 이 둘을 섞지 마라.
+- 배치 전체가 usable=false여도 API는 정상이므로 circuit breaker를 열지 않는다
+  (`resolved_ids`가 비어 있을 때만 실패로 센다).
+- JSON Schema에 조건부 제약을 걸 수 없어 `lines`는 0~3으로 열어두고 앱에서 검증한다.
+- 프롬프트는 세 문장이 **제목의 단일 핵심 주제**를 설명하도록 요구한다. 서로 다른 사건을
+  한 줄씩 나열하거나 제목으로 사실을 추측해 채우면 안 된다.
+
 **부분 성공 — all-or-nothing 금지**
 - `validate_batch_response()`가 응답을 **항목별로** 검증한다. 요청 ID와 일치하고 3줄 계약을
   통과한 항목은 즉시 적용·캐시하고, 나머지만 실패 목록에 넣는다.
@@ -324,7 +339,8 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   (`Gemini run summary: ...`). 값은 전부 숫자/불리언이며 제목·본문·프롬프트·응답·전체 URL·
   API 키는 담지 않는다. 항목: targets / cache_hits / cache_miss / skipped_no_body / batches /
   requests / normal_requests / recovery_requests / sent_articles / sent_chars / gemini_applied /
-  extractive_fallback / items_rejected / api_errors / rate_limit_hits / splits /
+  extractive_fallback / content_rejected / title_body_mismatch / multi_topic /
+  insufficient_content / items_rejected / api_errors / rate_limit_hits / splits /
   breaker_tripped / disabled_reason / elapsed_seconds.
 - `quality.py`의 `COUNT_KEYS`는 고정 허용목록이라 Gemini 카운터를 넣어도 버려진다.
   기존 metrics JSON 스키마를 깨지 않기 위해 **의도적으로** 로그로만 남긴다.

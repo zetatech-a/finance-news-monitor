@@ -35,11 +35,27 @@ GOOD_LINES = [
 ]
 
 
+def _entry(article_id, lines=None, *, usable=True, reason=None):
+    """정상 응답 항목 하나. schema v3의 usable/reason을 항상 채운다."""
+    if reason is None:
+        reason = "ok" if usable else "title_body_mismatch"
+    return {
+        "id": article_id,
+        "usable": usable,
+        "reason": reason,
+        "lines": list(lines or []),
+    }
+
+
+def _unusable(article_id, reason="title_body_mismatch"):
+    return _entry(article_id, [], usable=False, reason=reason)
+
+
 def _batch_payload(prompt: str) -> str:
     """프롬프트에 들어온 article id 전부에 3줄 요약을 돌려주는 정상 배치 응답."""
     ids = re.findall(r'<article id="(article-\d+)">', prompt)
     return json.dumps(
-        {"summaries": [{"id": i, "lines": list(GOOD_LINES)} for i in ids]},
+        {"summaries": [_entry(i, list(GOOD_LINES)) for i in ids]},
         ensure_ascii=False,
     )
 
@@ -372,7 +388,7 @@ def test_every_article_ends_with_lines_or_extractive_fallback(tmp_path, count):
         ids = re.findall(r'<article id="(article-\d+)">', prompt)
         keep = ids[: len(ids) // 2]
         return json.dumps(
-            {"summaries": [{"id": i, "lines": list(GOOD_LINES)} for i in keep]},
+            {"summaries": [_entry(i, list(GOOD_LINES)) for i in keep]},
             ensure_ascii=False,
         )
 
@@ -416,7 +432,7 @@ def test_partial_failure_caches_only_the_successful_articles(tmp_path):
         if len(ids) == 10:
             ids = ids[:7]
         return json.dumps(
-            {"summaries": [{"id": i, "lines": list(GOOD_LINES)} for i in ids]},
+            {"summaries": [_entry(i, list(GOOD_LINES)) for i in ids]},
             ensure_ascii=False,
         )
 
@@ -699,3 +715,113 @@ def test_mobile_css_does_not_clamp_the_ai_summary():
     desktop_block = text.split("@media")[0]
     desktop_ai = desktop_block.split(".summary.ai{")[1].split("}")[0]
     assert "-webkit-line-clamp:none" in desktop_ai
+
+
+# --- 내용 품질 게이트: 파이프라인 동작 ----------------------------------------
+
+
+def _gate(unusable_indexes: dict[int, str]):
+    """지정한 순번의 기사만 usable=false로 답하는 responder."""
+
+    def behaviour(prompt: str) -> str:
+        ids = re.findall(r'<article id="(article-\d+)">', prompt)
+        summaries = []
+        for n, article_id in enumerate(ids):
+            index = int(article_id.split("-")[1]) - 1
+            if index in unusable_indexes:
+                summaries.append(_unusable(article_id, unusable_indexes[index]))
+            else:
+                summaries.append(_entry(article_id, list(GOOD_LINES)))
+        return json.dumps({"summaries": summaries}, ensure_ascii=False)
+
+    return behaviour
+
+
+def test_unusable_article_falls_back_to_extractive_summary(tmp_path):
+    items = [
+        _item(0, description="추출요약 문장입니다. 충분히 긴 설명입니다."),
+        _item(1),
+    ]
+    body_cache = {it.article.link: BODY for it in items}
+    applied = _apply(items, tmp_path, _summarizer(_gate({0: "title_body_mismatch"})), body_cache)
+
+    assert applied == 1
+    # unusable 기사는 AI 요약 없이 기존 추출요약이 그대로 표시된다.
+    assert items[0].article.summary_lines == []
+    assert items[0].article.summary_source is None
+    assert items[0].article.description == "추출요약 문장입니다. 충분히 긴 설명입니다."
+    # 같은 배치의 정상 기사는 그대로 적용된다.
+    assert items[1].article.summary_lines == GOOD_LINES
+
+
+def test_unusable_article_is_not_cached(tmp_path):
+    items = [_item(0), _item(1)]
+    body_cache = {it.article.link: BODY for it in items}
+    _apply(items, tmp_path, _summarizer(_gate({0: "multi_topic"})), body_cache)
+
+    payload = json.loads((tmp_path / "gemini_summary_cache.json").read_text(encoding="utf-8"))
+    assert len(payload["entries"]) == 1  # 정상 1건만 저장
+    cached_urls = {e["url"] for e in payload["entries"].values()}
+    assert items[0].article.link not in cached_urls
+    assert items[1].article.link in cached_urls
+
+
+def test_unusable_article_is_retried_on_the_next_run_not_within_the_run(tmp_path):
+    """캐시에 없으니 다음 실행에서는 다시 시도되지만, 이번 실행 중엔 재요청 없다."""
+    items = [_item(0)]
+    body_cache = {items[0].article.link: BODY}
+    calls: list[str] = []
+    _apply(items, tmp_path, _summarizer(_gate({0: "multi_topic"}), calls=calls), body_cache)
+    assert len(calls) == 1
+
+    fresh = [_item(0)]
+    calls2: list[str] = []
+    applied = _apply(fresh, tmp_path, _summarizer(calls=calls2), body_cache)
+    assert len(calls2) == 1  # 캐시 hit이 아니므로 다시 물어본다
+    assert applied == 1
+    assert fresh[0].article.summary_lines == GOOD_LINES
+
+
+def test_html_falls_back_for_unusable_articles(tmp_path):
+    items = [
+        _item(0, description="추출요약으로 남는 문장입니다."),
+        _item(1),
+    ]
+    body_cache = {it.article.link: BODY for it in items}
+    _apply(items, tmp_path, _summarizer(_gate({0: "title_body_mismatch"})), body_cache)
+
+    cards = _cards(_render(items))
+    unusable_cards = [c for c in cards if "대부업 감독 규정 개정 0" in c]
+    assert unusable_cards
+    for card in unusable_cards:
+        assert "summary ai" not in card
+        assert "AI 3줄" not in card
+        assert "추출요약으로 남는 문장입니다." in card
+
+
+def test_run_summary_log_reports_content_rejection_counters(tmp_path, caplog):
+    import logging
+
+    items = [_item(i) for i in range(6)]
+    body_cache = {it.article.link: BODY for it in items}
+    gate = _gate({0: "title_body_mismatch", 1: "multi_topic", 2: "insufficient_content"})
+
+    with caplog.at_level(logging.INFO):
+        _apply(items, tmp_path, _summarizer(gate), body_cache)
+
+    summary = [m for m in caplog.messages if m.startswith("Gemini run summary:")]
+    assert len(summary) == 1
+    line = summary[0]
+    assert "content_rejected=3" in line
+    assert "title_body_mismatch=1" in line
+    assert "multi_topic=1" in line
+    assert "insufficient_content=1" in line
+    assert "gemini_applied=3" in line
+    assert "extractive_fallback=3" in line
+    # 내용 거부는 오류가 아니다.
+    assert "api_errors=0" in line
+    assert "items_rejected=0" in line
+    # 제목·본문·URL은 로그에 없다.
+    assert "대부업 감독 규정 개정" not in line
+    assert "example.com" not in line
+    assert "금융위원회는" not in line

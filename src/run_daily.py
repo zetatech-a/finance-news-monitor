@@ -675,6 +675,11 @@ def apply_gemini_summaries(
         "sent_chars": stats["sent_chars"],
         "gemini_applied": applied,
         "extractive_fallback": len(targets) - applied,
+        # 모델이 usable=false로 신고한 건수 — 오류가 아니라 품질 게이트 결과다.
+        "content_rejected": stats["content_rejected"],
+        "title_body_mismatch": stats["title_body_mismatch"],
+        "multi_topic": stats["multi_topic"],
+        "insufficient_content": stats["insufficient_content"],
         "items_rejected": stats["items_rejected"],
         "api_errors": stats["api_error"],
         "rate_limit_hits": stats["rate_limit_hits"],

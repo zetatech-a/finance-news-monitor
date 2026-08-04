@@ -14,6 +14,7 @@ from src.pipeline.gemini_summary import (
     build_batch_item,
     chunk_items,
     estimate_item_chars,
+    build_batch_prompt,
     iter_batch_items,
     load_gemini_config,
     next_split_size,
@@ -34,10 +35,26 @@ def _lines(n: int) -> list[str]:
     ]
 
 
+def _entry(article_id, lines=None, *, usable=True, reason=None):
+    """정상 응답 항목 하나. schema v3의 usable/reason을 항상 채운다."""
+    if reason is None:
+        reason = "ok" if usable else "title_body_mismatch"
+    return {
+        "id": article_id,
+        "usable": usable,
+        "reason": reason,
+        "lines": list(lines or []),
+    }
+
+
+def _unusable(article_id, reason="title_body_mismatch"):
+    return _entry(article_id, [], usable=False, reason=reason)
+
+
 def _ok_response(items, *, skip: set[str] | None = None, extra=None):
     skip = skip or set()
     summaries = [
-        {"id": item.id, "lines": _lines(i)}
+        _entry(item.id, _lines(i))
         for i, item in enumerate(items)
         if item.id not in skip
     ]
@@ -131,7 +148,7 @@ def _all_ok(items):
     def responder(call_no, prompt, schema):
         ids = _ids_in_prompt(prompt)
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
             ensure_ascii=False,
         )
 
@@ -219,11 +236,11 @@ def test_partial_success_applies_47_and_reasks_only_the_missing_3():
         if call_no == 1:
             keep = [i for i in ids if i not in missing]
             return json.dumps(
-                {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(keep)]},
+                {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(keep)]},
                 ensure_ascii=False,
             )
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
             ensure_ascii=False,
         )
 
@@ -250,7 +267,7 @@ def test_successful_items_are_never_resent():
         if call_no == 1:
             ids = [i for i in ids if i not in missing]
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
             ensure_ascii=False,
         )
 
@@ -268,7 +285,7 @@ def test_out_of_order_response_maps_by_id():
     def responder(call_no, prompt, schema):
         ids = list(reversed(_ids_in_prompt(prompt)))
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(int(i[-4:]))} for i in ids]},
+            {"summaries": [_entry(i, _lines(int(i[-4:]))) for i in ids]},
             ensure_ascii=False,
         )
 
@@ -289,8 +306,8 @@ def test_unknown_id_is_rejected():
         json.dumps(
             {
                 "summaries": [
-                    {"id": items[0].id, "lines": _lines(0)},
-                    {"id": "article-9999", "lines": _lines(1)},
+                    _entry(items[0].id, _lines(0)),
+                    _entry("article-9999", _lines(1)),
                 ]
             },
             ensure_ascii=False,
@@ -308,9 +325,9 @@ def test_duplicate_id_keeps_the_first_and_rejects_the_rest():
         json.dumps(
             {
                 "summaries": [
-                    {"id": items[0].id, "lines": _lines(0)},
-                    {"id": items[0].id, "lines": _lines(5)},
-                    {"id": items[1].id, "lines": _lines(1)},
+                    _entry(items[0].id, _lines(0)),
+                    _entry(items[0].id, _lines(5)),
+                    _entry(items[1].id, _lines(1)),
                 ]
             },
             ensure_ascii=False,
@@ -339,8 +356,8 @@ def test_line_contract_violations_fail_only_that_item(bad_lines):
         json.dumps(
             {
                 "summaries": [
-                    {"id": items[0].id, "lines": bad_lines},
-                    {"id": items[1].id, "lines": _lines(1)},
+                    _entry(items[0].id, bad_lines),
+                    _entry(items[1].id, _lines(1)),
                 ]
             },
             ensure_ascii=False,
@@ -363,7 +380,7 @@ def test_entry_with_extra_fields_is_rejected():
     items = _items(1)
     outcome = validate_batch_response(
         json.dumps(
-            {"summaries": [{"id": items[0].id, "lines": _lines(0), "score": 0.9}]},
+            {"summaries": [{**_entry(items[0].id, _lines(0)), "score": 0.9}]},
             ensure_ascii=False,
         ),
         items,
@@ -390,7 +407,7 @@ def test_whole_json_parse_failure_splits_the_batch():
             return "not json at all"
         ids = _ids_in_prompt(prompt)
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
             ensure_ascii=False,
         )
 
@@ -409,7 +426,7 @@ def test_split_continues_down_the_ladder():
             return "broken"
         ids = _ids_in_prompt(prompt)
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
             ensure_ascii=False,
         )
 
@@ -464,7 +481,7 @@ def test_429_retries_the_same_batch():
             raise FakeAPIError(429)
         ids = _ids_in_prompt(prompt)
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
             ensure_ascii=False,
         )
 
@@ -495,7 +512,7 @@ def test_5xx_then_success():
             raise FakeAPIError(503)
         ids = _ids_in_prompt(prompt)
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
             ensure_ascii=False,
         )
 
@@ -521,7 +538,7 @@ def test_400_is_not_retried_but_may_split():
             raise FakeAPIError(400, "request too large")
         ids = _ids_in_prompt(prompt)
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
             ensure_ascii=False,
         )
 
@@ -582,7 +599,7 @@ def test_successful_batch_resets_the_failure_counter():
         if call_no == 2:
             ids = _ids_in_prompt(prompt)
             return json.dumps(
-                {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+                {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
                 ensure_ascii=False,
             )
         raise FakeAPIError(500)
@@ -622,7 +639,7 @@ def test_min_interval_paces_consecutive_requests():
         clock["now"] += 1.0
         ids = _ids_in_prompt(prompt)
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
             ensure_ascii=False,
         )
 
@@ -763,7 +780,7 @@ def _partial_failure_responder(drop_ratio: float = 0.1):
         drop = max(1, math.ceil(len(ids) * drop_ratio))
         keep = ids[: len(ids) - drop]
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(keep)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(keep)]},
             ensure_ascii=False,
         )
 
@@ -855,7 +872,7 @@ def test_rate_limit_hits_are_counted():
             raise FakeAPIError(429)
         ids = _ids_in_prompt(prompt)
         return json.dumps(
-            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
             ensure_ascii=False,
         )
 
@@ -1038,3 +1055,236 @@ def test_thinking_config_omitted_for_pre_gemini_3_models(monkeypatch):
     assert "thinking_config" not in captured["gen_config"]
     # api_version은 모델과 무관하게 항상 고정한다.
     assert captured["http_options"]["api_version"] == "v1"
+
+
+# --- 내용 품질 게이트 (usable=false) -----------------------------------------
+#
+# 실제 50건 smoke test에서 나온 회귀 사례들이다. API 오류 0, 구조 검증 실패 0인데도
+# 제목과 무관한 여러 뉴스가 한 요약에 섞여 나왔다.
+
+
+def _content_gate_response(prompt, unusable: dict[str, str]):
+    """unusable에 있는 id는 usable=false로, 나머지는 정상 3줄로 답한다."""
+    ids = _ids_in_prompt(prompt)
+    summaries = []
+    for n, article_id in enumerate(ids):
+        if article_id in unusable:
+            summaries.append(_unusable(article_id, unusable[article_id]))
+        else:
+            summaries.append(_entry(article_id, _lines(n)))
+    return json.dumps({"summaries": summaries}, ensure_ascii=False)
+
+
+def test_president_approval_title_with_unrelated_body_is_unusable():
+    """제목은 대통령 지지율인데 본문에 대부업·형사사건이 섞인 경우."""
+    items = iter_batch_items(
+        [
+            ("대통령 지지율 52% ... 전주 대비 3%p 상승", "지지율 조사 결과 " * 30),
+            ("금융위, 대부업 감독 규정 개정", "대부업 감독 규정 " * 30),
+        ],
+        article_max_chars=3000,
+    )
+    mismatch = {items[0].id: "title_body_mismatch"}
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: _content_gate_response(prompt, mismatch)
+    )
+    results = summarizer.summarize_many(items)
+
+    assert items[0].id not in results  # AI 요약으로 쓰이지 않는다
+    assert items[1].id in results  # 같은 배치의 정상 항목은 그대로 적용
+    assert recorder.count == 1  # 재요청 없음
+    assert summarizer.stats["title_body_mismatch"] == 1
+    assert summarizer.stats["content_rejected"] == 1
+
+
+def test_bank_title_with_reader_tip_roundup_body_is_unusable():
+    """IBK기업은행 제목인데 본문이 화물차 단속·동성결혼·독자 제보 모음인 경우."""
+    items = iter_batch_items(
+        [("IBK기업은행, 중소기업 대출 확대", "독자 제보 화물차 단속 " * 30)],
+        article_max_chars=3000,
+    )
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: _content_gate_response(
+            prompt, {items[0].id: "title_body_mismatch"}
+        )
+    )
+    assert summarizer.summarize_many(items) == {}
+    assert recorder.count == 1
+    assert summarizer.stats["title_body_mismatch"] == 1
+
+
+def test_front_page_roundup_without_a_single_topic_is_unusable():
+    """신문 1면 모음 기사 — 서로 다른 사건을 한 줄씩 나열하면 안 된다."""
+    items = iter_batch_items(
+        [("[오늘의 신문 1면] 주요 기사 모음", "1면 헤드라인 모음 " * 30)],
+        article_max_chars=3000,
+    )
+    summarizer, _ = _make(
+        lambda call_no, prompt, schema: _content_gate_response(
+            prompt, {items[0].id: "multi_topic"}
+        )
+    )
+    assert summarizer.summarize_many(items) == {}
+    assert summarizer.stats["multi_topic"] == 1
+    assert summarizer.stats["content_rejected"] == 1
+
+
+def test_insufficient_content_is_unusable():
+    items = _items(1)
+    summarizer, _ = _make(
+        lambda call_no, prompt, schema: _content_gate_response(
+            prompt, {items[0].id: "insufficient_content"}
+        )
+    )
+    assert summarizer.summarize_many(items) == {}
+    assert summarizer.stats["insufficient_content"] == 1
+
+
+def test_matching_title_and_body_stays_usable_with_exactly_three_lines():
+    items = _items(3)
+    summarizer, recorder = _make(_all_ok(items))
+    results = summarizer.summarize_many(items)
+
+    assert len(results) == 3
+    assert all(len(v) == 3 for v in results.values())
+    assert summarizer.stats["content_rejected"] == 0
+    assert recorder.count == 1
+
+
+def test_unusable_items_are_never_re_requested():
+    items = _items(50)
+    unusable = {items[i].id: "multi_topic" for i in range(10)}
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: _content_gate_response(prompt, unusable)
+    )
+    results = summarizer.summarize_many(items)
+
+    # usable=false는 정상 응답이므로 분할·재요청 대상이 아니다.
+    assert recorder.count == 1
+    assert recorder.sizes == [50]
+    assert len(results) == 40
+    assert summarizer.stats["splits"] == 0
+
+
+def test_content_rejection_is_not_counted_as_an_error():
+    items = _items(20)
+    unusable = {items[i].id: "title_body_mismatch" for i in range(5)}
+    summarizer, _ = _make(
+        lambda call_no, prompt, schema: _content_gate_response(prompt, unusable)
+    )
+    summarizer.summarize_many(items)
+    stats = summarizer.stats
+
+    assert stats["content_rejected"] == 5
+    # API 오류도, 구조 위반도 아니다.
+    assert stats["api_error"] == 0
+    assert stats["items_rejected"] == 0
+    assert stats["articles_ok"] == 15
+    assert not summarizer.disabled
+
+
+def test_all_unusable_batch_does_not_trip_the_circuit_breaker():
+    """뉴스 모음만 담긴 배치가 와도 API는 정상이므로 breaker가 열리면 안 된다."""
+    items = _items(150)
+
+    def responder(call_no, prompt, schema):
+        ids = _ids_in_prompt(prompt)
+        return json.dumps(
+            {"summaries": [_unusable(i, "multi_topic") for i in ids]}, ensure_ascii=False
+        )
+
+    summarizer, recorder = _make(responder, GEMINI_CIRCUIT_BREAKER_FAILURES=2)
+    assert summarizer.summarize_many(items) == {}
+    assert not summarizer.disabled
+    assert recorder.count == 3  # 세 배치 모두 정상 처리
+    assert summarizer.stats["content_rejected"] == 150
+
+
+def test_fifty_usable_articles_still_take_exactly_one_request():
+    items = _items(50)
+    summarizer, recorder = _make(_all_ok(items))
+    assert len(summarizer.summarize_many(items)) == 50
+    assert recorder.count == 1
+
+
+def test_usable_true_with_non_ok_reason_is_a_structural_violation():
+    items = _items(2)
+
+    def responder(call_no, prompt, schema):
+        ids = _ids_in_prompt(prompt)
+        return json.dumps(
+            {
+                "summaries": [
+                    _entry(ids[0], _lines(0), reason="multi_topic"),
+                    _entry(ids[1], _lines(1)),
+                ]
+            },
+            ensure_ascii=False,
+        )
+
+    outcome = validate_batch_response(responder(1, build_batch_prompt(items), None), items)
+    assert set(outcome.accepted) == {items[1].id}
+    assert outcome.failed_ids == [items[0].id]
+    assert outcome.rejected_reasons.get("usable_reason_conflict") == 1
+    assert outcome.content_rejected == {}
+
+
+def test_usable_true_with_broken_lines_is_still_a_structural_violation():
+    items = _items(2)
+    payload = json.dumps(
+        {"summaries": [_entry(items[0].id, _lines(0)[:2]), _entry(items[1].id, _lines(1))]},
+        ensure_ascii=False,
+    )
+    outcome = validate_batch_response(payload, items)
+    assert outcome.failed_ids == [items[0].id]
+    assert outcome.content_rejected == {}
+
+
+def test_unusable_with_lines_present_still_rejects_the_content():
+    """usable=false면 lines가 들어있어도 표시하지 않는다."""
+    items = _items(1)
+    payload = json.dumps(
+        {
+            "summaries": [
+                _entry(items[0].id, _lines(0), usable=False, reason="multi_topic")
+            ]
+        },
+        ensure_ascii=False,
+    )
+    outcome = validate_batch_response(payload, items)
+    assert outcome.accepted == {}
+    assert outcome.content_rejected == {items[0].id: "multi_topic"}
+    assert outcome.failed_ids == []
+
+
+def test_unknown_unusable_reason_is_still_rejected_safely():
+    items = _items(1)
+    payload = json.dumps(
+        {"summaries": [_entry(items[0].id, [], usable=False, reason="something_else")]},
+        ensure_ascii=False,
+    )
+    outcome = validate_batch_response(payload, items)
+    assert outcome.content_rejected == {items[0].id: "unspecified"}
+    assert outcome.failed_ids == []
+
+
+@pytest.mark.parametrize("bad", [{"usable": "yes"}, {"reason": 5}])
+def test_malformed_usable_or_reason_is_a_structural_violation(bad):
+    items = _items(1)
+    entry = _entry(items[0].id, _lines(0))
+    entry.update(bad)
+    outcome = validate_batch_response(
+        json.dumps({"summaries": [entry]}, ensure_ascii=False), items
+    )
+    assert outcome.failed_ids == [items[0].id]
+    assert outcome.rejected_reasons.get("usable_contract") == 1
+
+
+def test_prompt_states_the_single_topic_rule_and_unusable_reasons():
+    prompt = build_batch_prompt(_items(2))
+    assert "usable=false" in prompt
+    for reason in ("title_body_mismatch", "multi_topic", "insufficient_content"):
+        assert reason in prompt
+    assert "하나의 핵심 사건" in prompt
+    assert "사이드바" in prompt
+    assert "억지로" in prompt or "추측해 채우지 않는다" in prompt

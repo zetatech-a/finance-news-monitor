@@ -205,14 +205,25 @@ def test_accepts_bare_list_of_three():
     assert validate_lines(GOOD_LINES) == GOOD_LINES
 
 
-def test_response_schema_forces_exactly_three_strings_per_summary():
+def test_response_schema_carries_usable_reason_and_bounded_lines():
     schema = response_json_schema(7)
     entry = schema["properties"]["summaries"]["items"]
     lines_schema = entry["properties"]["lines"]
-    assert lines_schema["minItems"] == 3
+
+    # JSON Schema로 "usable=true일 때만 3줄"이라는 조건부 제약을 걸 수 없으므로
+    # lines를 0~3으로 열어두고 앱에서 엄격히 검증한다.
+    assert lines_schema["minItems"] == 0
     assert lines_schema["maxItems"] == 3
     assert lines_schema["items"]["type"] == "string"
-    assert entry["required"] == ["id", "lines"]
+
+    assert entry["properties"]["usable"]["type"] == "boolean"
+    assert entry["properties"]["reason"]["enum"] == [
+        "ok",
+        "title_body_mismatch",
+        "multi_topic",
+        "insufficient_content",
+    ]
+    assert entry["required"] == ["id", "usable", "reason", "lines"]
     assert entry["additionalProperties"] is False
     assert schema["required"] == ["summaries"]
     assert schema["additionalProperties"] is False
