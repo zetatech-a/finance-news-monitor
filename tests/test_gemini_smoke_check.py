@@ -199,11 +199,32 @@ def test_all_targets_without_a_body_is_an_explicit_skip(tmp_path, capsys):
     assert "::error::" not in out
 
 
-@pytest.mark.parametrize("reason", ["no_api_key", "disabled_by_env", "max_summaries_zero"])
-def test_disabled_feature_is_a_skip_not_a_failure(tmp_path, reason):
+@pytest.mark.parametrize(
+    "reason",
+    ["no_api_key", "disabled_by_env", "max_summaries_zero", "max_requests_zero"],
+)
+def test_disabled_before_any_request_is_a_skip_not_a_failure(tmp_path, reason):
     summary = _summary(disabled_reason=reason)
-    assert evaluate(summary)[0] == STATUS_SKIPPED
+    status, text = evaluate(summary)
+    assert status == STATUS_SKIPPED
+    assert "before any request" in text
     assert _run(tmp_path, summary) == EXIT_OK
+
+
+@pytest.mark.parametrize(
+    "reason", ["auth", "bad_model", "consecutive_failures", "programming_error"]
+)
+def test_runtime_disable_after_calling_the_api_fails(tmp_path, reason, capsys):
+    """호출을 시도한 뒤 죽어서 꺼진 것은 skip이 아니라 실패다."""
+    summary = _summary(
+        targets=50, cache_miss=50, sent_articles=25, requests=1,
+        api_errors=1, disabled_reason=reason,
+    )
+    status, text = evaluate(summary)
+    assert status == STATUS_FAILED
+    assert reason in text
+    assert _run(tmp_path, summary) == EXIT_FAILED
+    assert "::error::" in capsys.readouterr().out
 
 
 def test_no_display_articles_is_a_skip(tmp_path):

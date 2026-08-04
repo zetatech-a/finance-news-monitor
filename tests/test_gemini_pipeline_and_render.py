@@ -278,6 +278,41 @@ def test_schema_version_change_causes_cache_miss(tmp_path, monkeypatch):
     assert len(calls) == 1
 
 
+def test_cache_hit_is_revalidated_against_the_current_line_limit(tmp_path, monkeypatch):
+    """GEMINI_MAX_LINE_CHARS를 낮추면 캐시 hit도 지금 기준으로 다시 검증한다.
+
+    한도는 캐시 키에 들어가지 않으므로, 재검증이 없으면 "같은 응답이 지금은 거부되는데
+    캐시만 통과"하는 상태가 된다.
+    """
+    items = [_item(0)]
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(), body_cache)
+
+    # GOOD_LINES는 40자를 넘는 줄을 포함한다 — 한도를 낮추면 캐시 항목이 무효가 된다.
+    assert max(len(line) for line in GOOD_LINES) > 40
+    monkeypatch.setenv("GEMINI_MAX_LINE_CHARS", "40")
+
+    fresh = [_item(0)]
+    calls: list[str] = []
+    _apply(fresh, tmp_path, _summarizer(calls=calls), body_cache)
+    assert len(calls) == 1  # 캐시를 그대로 쓰지 않고 다시 요약했다
+
+
+def test_cache_hit_is_reused_when_the_line_limit_still_allows_it(tmp_path, monkeypatch):
+    items = [_item(0)]
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(), body_cache)
+
+    monkeypatch.setenv("GEMINI_MAX_LINE_CHARS", "90")
+    fresh = [_item(0)]
+    calls: list[str] = []
+    applied = _apply(fresh, tmp_path, _summarizer(calls=calls), body_cache)
+
+    assert applied == 1
+    assert calls == []
+    assert fresh[0].article.summary_lines == GOOD_LINES
+
+
 def test_cache_never_stores_article_body_or_prompt(tmp_path):
     items = [_item(0)]
     body_cache = {items[0].article.link: BODY}

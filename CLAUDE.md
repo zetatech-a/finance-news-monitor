@@ -352,7 +352,9 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   (평면 `{url: str}`, 상한 5000으로 이미 포화)은 건드리지 않는다.
 - **기사별로 저장한다** — 배치 전체를 하나의 entry로 저장하지 않는다.
 - 키는 `sha256(canonical_url|model|prompt_version|schema_version)`이라 모델/프롬프트/
-  스키마가 바뀌면 자동 cache miss가 난다. 본문·프롬프트·응답 원문은 저장하지 않으며,
+  스키마가 바뀌면 자동 cache miss가 난다. `GEMINI_MAX_LINE_CHARS`는 키에 없으므로
+  캐시 hit도 `validate_lines(..., max_line_chars=config.max_line_chars)`로 **현재 설정에
+  다시 검증**한 뒤 쓴다 — 한도를 낮췄을 때 캐시만 통과하는 상태를 막는다. 본문·프롬프트·응답 원문은 저장하지 않으며,
   손상된 항목은 개별적으로 버리고 나머지는 계속 쓴다. 쓰기는 tmp + `os.replace`로 원자적이다.
 - `PROMPT_VERSION` / `SCHEMA_VERSION`은 프롬프트나 스키마를 고칠 때 반드시 올린다.
 
@@ -383,6 +385,10 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   거부 건수가 보낸 기사(cache_miss) 전부를 설명할 때만 성공이다 — 일부만 거부이고 나머지가
   구조 위반/누락이면 API 경로가 반쯤 죽은 것이므로 실패. 전부 캐시 hit이면 성공.
   전부 본문 부족이면 명시적 skip(경고).
+- `disabled_reason`은 두 갈래다. 요청 전에 꺼진 사유(`no_api_key` / `disabled_by_env` /
+  `max_summaries_zero` / `max_requests_zero`)만 skip이고, 호출을 시도한 뒤 런타임에 꺼진
+  사유(`auth` / `bad_model` / `consecutive_failures` / `programming_error`)는 **실패**다 —
+  전부 skip으로 묶으면 라이브 경로가 완전히 죽어도 워크플로가 초록으로 끝난다.
 - **`daily.yml`에는 이 검증을 넣지 마라.** 일일 파이프라인의 fail-open 동작이 깨진다.
 - smoke 검증이 실패해도 artifact 업로드는 `always()`로 계속 실행된다.
 

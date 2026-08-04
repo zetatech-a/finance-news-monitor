@@ -54,6 +54,7 @@ from src.pipeline.gemini_summary import (
     iter_batch_items,
     load_gemini_config,
     safe_host,
+    validate_lines,
 )
 
 logger = logging.getLogger(__name__)
@@ -672,7 +673,16 @@ def apply_gemini_summaries(
             continue
 
         key = gemini_cache_key(fetch_url, config.model, PROMPT_VERSION, SCHEMA_VERSION)
-        lines = get_cached_lines(cache, key)
+        cached = get_cached_lines(cache, key)
+        # 캐시 키에는 GEMINI_MAX_LINE_CHARS가 들어가지 않는다 — 한도를 낮춘 뒤에도
+        # 예전 한도로 저장된 긴 줄이 그대로 표시되면 "같은 응답이 지금은 거부되는데
+        # 캐시만 통과"하는 상태가 된다. 현재 설정으로 다시 검증하고, 실패하면
+        # cache miss로 떨어뜨려 이번 실행에서 다시 요약한다.
+        lines = (
+            validate_lines(cached, max_line_chars=config.max_line_chars)
+            if cached is not None
+            else None
+        )
         if lines is not None:
             article.summary_lines = lines
             article.summary_source = "gemini"

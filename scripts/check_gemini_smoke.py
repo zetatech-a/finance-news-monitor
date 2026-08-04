@@ -14,7 +14,9 @@ daily 파이프라인의 fail-open 동작은 **절대** 건드리지 않는다. 
 - 일부라도 새로 적용됨 → 성공
 - 전송 대상이 없고 전부 캐시 hit → 성공 (호출할 이유가 없었다)
 - 전송 대상이 없고 전부 본문 부족 → skip (검증한 것이 없음을 명시적으로 알린다)
-- Gemini 기능 자체가 꺼져 있음 → skip
+- 요청 전에 기능이 꺼져 있음(키 없음/env로 끔/상한 0) → skip
+- 호출을 시도한 뒤 런타임에 꺼짐(인증 실패/잘못된 모델/breaker/프로그래밍 오류)
+  → **실패** (라이브 경로가 죽은 것을 초록으로 넘기지 않는다)
 """
 from __future__ import annotations
 
@@ -27,6 +29,13 @@ from typing import Any
 STATUS_OK = "ok"
 STATUS_SKIPPED = "skipped"
 STATUS_FAILED = "failed"
+
+# 요청을 한 번도 보내기 전에 기능이 꺼진 이유 — 검증할 것이 없으므로 skip이다.
+# 그 밖의 사유(auth / bad_model / consecutive_failures / programming_error)는
+# **호출을 시도한 뒤** 런타임에 꺼진 것이므로 라이브 경로가 죽었다는 뜻 → 실패.
+PRE_REQUEST_DISABLE_REASONS = frozenset(
+    {"no_api_key", "disabled_by_env", "max_summaries_zero", "max_requests_zero"}
+)
 
 EXIT_OK = 0
 EXIT_FAILED = 1
@@ -57,7 +66,10 @@ def evaluate(summary: dict[str, Any]) -> tuple[str, str]:
     """(status, reason) — reason은 사람이 읽는 짧은 사유(기사 정보 없음)."""
     disabled_reason = summary.get("disabled_reason")
     if disabled_reason:
-        return STATUS_SKIPPED, f"gemini disabled ({disabled_reason})"
+        if disabled_reason in PRE_REQUEST_DISABLE_REASONS:
+            return STATUS_SKIPPED, f"gemini disabled before any request ({disabled_reason})"
+        # 런타임 비활성화는 "호출해봤는데 죽었다"는 뜻이다 — 조용히 통과시키지 않는다.
+        return STATUS_FAILED, f"gemini disabled mid-run ({disabled_reason})"
 
     targets = _count(summary, "targets")
     if targets <= 0:
