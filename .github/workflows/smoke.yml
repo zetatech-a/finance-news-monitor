@@ -65,6 +65,13 @@ jobs:
           GEMINI_BATCH_MAX_INPUT_CHARS: ${{ vars.GEMINI_BATCH_MAX_INPUT_CHARS }}
           GEMINI_MAX_RECOVERY_REQUESTS: ${{ vars.GEMINI_MAX_RECOVERY_REQUESTS }}
           GEMINI_MIN_INTERVAL_SECONDS: ${{ vars.GEMINI_MIN_INTERVAL_SECONDS }}
+          GEMINI_BATCH_HARD_MAX_ARTICLES: ${{ vars.GEMINI_BATCH_HARD_MAX_ARTICLES }}
+          GEMINI_ARTICLE_MAX_CHARS: ${{ vars.GEMINI_ARTICLE_MAX_CHARS }}
+          GEMINI_INPUT_MIN_CHARS: ${{ vars.GEMINI_INPUT_MIN_CHARS }}
+          GEMINI_MAX_LINE_CHARS: ${{ vars.GEMINI_MAX_LINE_CHARS }}
+          GEMINI_REQUEST_TIMEOUT_SECONDS: ${{ vars.GEMINI_REQUEST_TIMEOUT_SECONDS }}
+          GEMINI_RETRY_ATTEMPTS: ${{ vars.GEMINI_RETRY_ATTEMPTS }}
+          GEMINI_CIRCUIT_BREAKER_FAILURES: ${{ vars.GEMINI_CIRCUIT_BREAKER_FAILURES }}
           # 이 실행만 sanitized 집계를 JSON으로 남긴다 — smoke 판정용이며
           # daily.yml은 이 변수를 설정하지 않아 동작이 달라지지 않는다.
           GEMINI_RUN_SUMMARY_PATH: ${{ runner.temp }}/gemini-run-summary.json

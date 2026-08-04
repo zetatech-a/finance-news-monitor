@@ -49,6 +49,7 @@ from src.pipeline.gemini_cache import (
 from src.pipeline.gemini_summary import (
     PROMPT_VERSION,
     SCHEMA_VERSION,
+    MIN_FITTED_BODY_CHARS,
     BatchCapacityPlanner,
     BatchItem,
     GeminiBatchSummarizer,
@@ -556,19 +557,23 @@ def _gemini_body_text(
 
 def _gemini_input_body(
     article: object, fetch_url: str, body_cache: dict[str, str], budget: list[int], min_chars: int
-) -> str:
-    """Gemini 입력 본문. 본문 fetch가 실패하면 현재 description을 후보로 쓴다.
+) -> tuple[str, bool]:
+    """Gemini 입력 본문과 "기사 본문에서 온 것인가" 여부.
 
-    그래도 정보가 너무 짧으면 빈 문자열을 돌려줘 호출 없이 기존 fallback을 쓰게 한다.
+    본문 fetch가 실패하면 현재 description(추출요약)을 후보로 쓴다. 그래도 정보가 너무
+    짧으면 빈 문자열을 돌려줘 호출 없이 기존 fallback을 쓰게 한다.
+    두 번째 값이 False면 스니펫 기반 입력이라 **캐시하지 않는다** — 일시적 크롤링 실패로
+    만든 저품질 요약이 캐시에 박히면, 나중에 본문을 정상적으로 받는 실행에서도 그 항목이
+    hit되어 신선도 상한이 지날 때까지 다시 만들어지지 않는다.
     """
     body = _gemini_body_text(fetch_url, body_cache, budget)
     if len(body) >= min_chars:
-        return body
+        return body, True
     # 추출요약이 반영된 description이라도 있으면 입력 후보로 삼는다.
     description = (getattr(article, "description", None) or "").strip()
     if len(description) >= min_chars:
-        return description
-    return ""
+        return description, False
+    return "", False
 
 
 def _gemini_run_summary(
@@ -681,7 +686,8 @@ def apply_gemini_summaries(
     capacity = BatchCapacityPlanner.for_config(config)
 
     # 1) 캐시 우선 — hit한 기사는 배치 대상에서 완전히 빠진다.
-    pending: list[tuple[object, str, str, BatchItem]] = []  # (article, cache_key, url, item)
+    # (article, cache_key, url, batch item, 본문에서 온 입력인가)
+    pending: list[tuple[object, str, str, BatchItem, bool]] = []
     now = now_kst()
     for item in targets:
         article = getattr(item, "article", item)
@@ -722,7 +728,7 @@ def apply_gemini_summaries(
             skipped_over_capacity += 1
             continue
 
-        body = _gemini_input_body(
+        body, from_full_text = _gemini_input_body(
             article, fetch_url, body_cache, fetch_budget, config.input_min_chars
         )
         if not body:
@@ -735,15 +741,22 @@ def apply_gemini_summaries(
             body,
             article_max_chars=config.article_max_chars,
         )
-        # 단독으로도 입력 예산을 넘는 기사는 여기서 잘라 맞춘다(맞출 수 없으면 보내지 않는다).
+        # 단독으로도 입력 예산을 넘는 기사는 여기서 잘라 맞춘다. 다만 잘라도
+        # GEMINI_INPUT_MIN_CHARS 아래로 내려가면 보내지 않는다 — 운영자가 정한 입력
+        # 하한을 "예산에 맞추려고" 우회하면 안 된다.
         batch_item = fit_item_to_budget(
-            batch_item, max_input_chars=config.batch_max_input_chars
+            batch_item,
+            max_input_chars=config.batch_max_input_chars,
+            min_body_chars=max(config.input_min_chars, MIN_FITTED_BODY_CHARS),
         )
         if batch_item is None:
+            skipped_no_body += 1
+            continue
+        # 실제 크기로 다시 확인한다 — 최소 크기 가정으로 통과했어도 여기서 걸릴 수 있다.
+        if not capacity.try_add(estimate_item_chars(batch_item)):
             skipped_over_capacity += 1
             continue
-        capacity.add(estimate_item_chars(batch_item))
-        pending.append((article, key, fetch_url, batch_item))
+        pending.append((article, key, fetch_url, batch_item, from_full_text))
 
     if skipped_over_capacity:
         logger.info(
@@ -766,29 +779,35 @@ def apply_gemini_summaries(
     )
 
     # 2) cache miss 기사만 (이미 불투명 ID가 붙은) 배치 항목으로 보낸다.
-    items = [batch_item for _article, _key, _url, batch_item in pending]
+    items = [entry[3] for entry in pending]
     by_id = {
-        batch_item.id: (article, key, url)
-        for article, key, url, batch_item in pending
+        batch_item.id: (article, key, url, from_full_text)
+        for article, key, url, batch_item, from_full_text in pending
     }
 
     def _on_result(item: BatchItem, lines: list[str]) -> None:
-        """검증을 통과하는 즉시 기사에 반영하고 **기사별로** 캐시한다."""
+        """검증을 통과하는 즉시 기사에 반영하고 **기사별로** 캐시한다.
+
+        단, 본문 크롤링이 실패해 스니펫으로 만든 요약은 캐시하지 않는다 — 캐시 키에
+        입력 출처가 없으므로, 저품질 입력으로 만든 요약이 나중에 본문을 정상적으로
+        받는 실행에서도 hit되어 신선도 상한까지 재생성을 막는다.
+        """
         nonlocal applied, cache_dirty
-        article, key, url = by_id[item.id]
+        article, key, url, from_full_text = by_id[item.id]
         article.summary_lines = lines
         article.summary_source = "gemini"
-        put_cached_lines(
-            cache,
-            key,
-            url=url,
-            model=config.model,
-            prompt_version=PROMPT_VERSION,
-            schema_version=SCHEMA_VERSION,
-            lines=lines,
-            created_at=now_kst().isoformat(),
-        )
-        cache_dirty = True
+        if from_full_text:
+            put_cached_lines(
+                cache,
+                key,
+                url=url,
+                model=config.model,
+                prompt_version=PROMPT_VERSION,
+                schema_version=SCHEMA_VERSION,
+                lines=lines,
+                created_at=now_kst().isoformat(),
+            )
+            cache_dirty = True
         applied += 1
 
     def _on_content_rejected(item: BatchItem, reason: str) -> None:
@@ -796,7 +815,7 @@ def apply_gemini_summaries(
 
         캐시하지 않고, 재요청하지 않으며, description(분류 입력)도 건드리지 않는다.
         """
-        article, _key, _url = by_id[item.id]
+        article, _key, _url, _from_full_text = by_id[item.id]
         article.summary_rejection_reason = reason
 
     try:

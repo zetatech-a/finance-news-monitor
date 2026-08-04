@@ -221,6 +221,36 @@ def test_oversized_single_article_is_truncated_to_fit_the_budget():
         assert len(batch[0].body) < 3000  # 예산에 맞춰 더 잘렸다
 
 
+def test_fitting_never_goes_below_the_configured_input_minimum():
+    """예산에 맞추려고 잘라도 운영자가 정한 입력 하한 아래로는 내려가지 않는다."""
+    from src.pipeline.gemini_summary import fit_item_to_budget
+
+    item = _items(1, body_chars=2000)[0]
+    budget = prompt_overhead_chars() + len(item.id) + len(item.title) + 64 + 400
+
+    # 기본 하한(200자)에서는 400자로 잘려 전송된다.
+    fitted = fit_item_to_budget(item, max_input_chars=budget)
+    assert fitted is not None and len(fitted.body) <= 400
+
+    # 하한을 1000자로 올리면 400자로 잘라 보내지 않고 아예 건너뛴다.
+    assert fit_item_to_budget(item, max_input_chars=budget, min_body_chars=1000) is None
+
+
+def test_summarizer_applies_the_configured_input_minimum_when_fitting():
+    """summarize_many 경로에서도 GEMINI_INPUT_MIN_CHARS가 fit 하한으로 쓰인다."""
+    items = _items(2, body_chars=2000)
+    per_item = estimate_item_chars(items[0])
+    summarizer, recorder = _make(
+        _all_ok(items),
+        GEMINI_BATCH_MAX_INPUT_CHARS=prompt_overhead_chars() + per_item // 2,
+        GEMINI_INPUT_MIN_CHARS=1500,
+    )
+    results = summarizer.summarize_many(items)
+
+    assert recorder.count == 0  # 하한을 지킬 수 없으니 아무것도 보내지 않는다
+    assert results == {}
+
+
 def test_article_that_cannot_fit_the_budget_at_all_is_dropped(caplog):
     """본문을 남길 자리조차 없으면 보내지 않는다(추출요약 fallback)."""
     items = _items(2, body_chars=3000)
@@ -242,7 +272,7 @@ def test_capacity_planner_accounts_for_the_char_budget():
         min_item_chars=200,
     )
     assert planner.has_room()
-    planner.add(item_chars)
+    assert planner.try_add(item_chars)
     assert not planner.has_room()  # 두 번째 기사는 새 요청이 필요한데 예산이 없다
     assert planner.planned_batches == 1
 
@@ -255,9 +285,33 @@ def test_capacity_planner_counts_articles_when_chars_are_generous():
     )
     for _ in range(4):  # 2건 × 2요청 = 4건까지는 여유가 있다
         assert planner.has_room()
-        planner.add(100)
+        assert planner.try_add(100)
     assert not planner.has_room()
     assert planner.planned_batches == 2
+
+
+def test_capacity_planner_never_spills_past_the_request_budget():
+    """최소 크기 가정으로 통과해도, 실제 크기가 크면 예산을 넘겨 담지 않는다.
+
+    여기서 배치를 열어버리면 계획 상태가 실제 전송 가능량보다 커지고,
+    `has_room()`이 계속 True를 돌려줘 전송되지 않을 기사를 계속 크롤링하게 된다.
+    """
+    from src.pipeline.gemini_summary import BatchCapacityPlanner
+
+    planner = BatchCapacityPlanner(
+        max_articles=25,
+        max_input_chars=prompt_overhead_chars() + 700,
+        max_requests=1,
+        min_item_chars=200,
+    )
+    assert planner.try_add(500)
+    # 남은 자리는 200자뿐 — 최소 크기 기준으로는 "자리 있음"이다.
+    assert planner.has_room()
+    # 그런데 실제 기사는 500자다 → 새 요청이 필요한데 예산이 없다.
+    assert not planner.try_add(500)
+    assert planner.planned_batches == 1
+    # 경계에서 fetch를 반복 낭비하지 않도록 준비를 닫는다.
+    assert not planner.has_room()
 
 
 def test_article_max_chars_truncates_each_article():

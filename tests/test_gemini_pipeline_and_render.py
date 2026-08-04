@@ -266,6 +266,40 @@ def test_fetch_cap_respects_the_input_char_budget(tmp_path, monkeypatch):
     assert applied == 1
 
 
+def test_fetch_stops_once_actual_sizes_fill_the_request_budget(tmp_path, monkeypatch):
+    """최소 크기 가정으로 통과했더라도 실제 크기로 담을 수 없으면 준비를 멈춘다.
+
+    여기서 계속 준비하면 요청 예산에서 어차피 버려질 기사를 계속 크롤링한다.
+    """
+    from src.pipeline.gemini_summary import (
+        estimate_item_chars,
+        iter_batch_items,
+        prompt_overhead_chars,
+    )
+
+    one_item = iter_batch_items([("대부업 감독 규정 개정 0", BODY)], article_max_chars=3000)[0]
+    item_chars = estimate_item_chars(one_item)
+    monkeypatch.setenv("GEMINI_MAX_REQUESTS_PER_RUN", "1")
+    monkeypatch.setenv("GEMINI_BATCH_MAX_ARTICLES", "25")
+    # 1건 + 최소 크기(약 276자) 자리가 남는 예산 — has_room()은 낙관적으로 통과한다.
+    monkeypatch.setenv(
+        "GEMINI_BATCH_MAX_INPUT_CHARS", str(prompt_overhead_chars() + item_chars + 400)
+    )
+
+    items = [_item(i) for i in range(6)]
+    fetched: list[str] = []
+    monkeypatch.setattr(
+        run_daily, "fetch_html", lambda url, timeout=12: fetched.append(url) or "<html/>"
+    )
+    monkeypatch.setattr(run_daily, "extract_main_text", lambda url, html: BODY)
+
+    applied = _apply(items, tmp_path, _summarizer(), {})
+
+    # 2건째에서 실제 크기로 실패 → 그 뒤로는 크롤링하지 않는다(최대 1건 낭비).
+    assert len(fetched) == 2
+    assert applied == 1
+
+
 def test_cached_articles_still_apply_past_the_request_capacity(tmp_path, monkeypatch):
     """용량 초과로 건너뛰는 것은 '본문 수집'뿐이다 — 캐시 hit은 그대로 적용된다."""
     warm = [_item(5)]
@@ -385,6 +419,50 @@ def test_cache_hit_is_reused_when_the_line_limit_still_allows_it(tmp_path, monke
     assert applied == 1
     assert calls == []
     assert fresh[0].article.summary_lines == GOOD_LINES
+
+
+def test_snippet_fallback_summaries_are_not_cached(tmp_path, monkeypatch):
+    """본문 크롤링이 실패해 스니펫으로 만든 요약은 캐시하지 않는다.
+
+    캐시 키에는 입력 출처가 없다 — 저품질 입력으로 만든 요약이 박히면, 나중에 본문을
+    정상적으로 받는 실행에서도 그 항목이 hit되어 신선도 상한까지 재생성되지 않는다.
+    """
+    long_description = "추출요약 문장입니다. " * 30
+    items = [_item(0, description=long_description)]
+
+    def _boom(url, timeout=12):
+        raise RuntimeError("fetch failed")
+
+    monkeypatch.setattr(run_daily, "fetch_html", _boom)
+
+    calls: list[str] = []
+    applied = _apply(items, tmp_path, _summarizer(calls=calls), {})
+    assert applied == 1  # 스니펫으로라도 요약은 만든다(표시는 정상)
+    assert len(calls) == 1
+    assert items[0].article.summary_lines == GOOD_LINES
+
+    cache_file = tmp_path / "gemini_summary_cache.json"
+    assert not cache_file.exists() or json.loads(cache_file.read_text(encoding="utf-8"))[
+        "entries"
+    ] == {}
+
+    # 다음 실행에서 본문을 정상적으로 받으면 캐시가 아니라 본문으로 다시 요약한다.
+    monkeypatch.setattr(run_daily, "fetch_html", lambda url, timeout=12: "<html/>")
+    monkeypatch.setattr(run_daily, "extract_main_text", lambda url, html: BODY)
+    fresh_calls: list[str] = []
+    _apply([_item(0, description=long_description)], tmp_path, _summarizer(calls=fresh_calls), {})
+    assert len(fresh_calls) == 1
+
+
+def test_full_text_summaries_are_still_cached(tmp_path):
+    items = [_item(0)]
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(), body_cache)
+
+    entries = json.loads(
+        (tmp_path / "gemini_summary_cache.json").read_text(encoding="utf-8")
+    )["entries"]
+    assert len(entries) == 1
 
 
 def test_corrected_title_at_the_same_url_causes_a_cache_miss(tmp_path):

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+import re
 import shutil
 import subprocess
 import time
@@ -66,6 +67,39 @@ def test_unset_kill_switch_keeps_the_feature_on(monkeypatch):
     assert load_gemini_config().enabled is True
     monkeypatch.setenv("GEMINI_ENABLED", "0")
     assert load_gemini_config().enabled is False
+
+
+def _config_env_names() -> set[str]:
+    """`load_gemini_config()`이 실제로 읽는 GEMINI_* 환경변수 이름을 코드에서 뽑는다."""
+    source = Path("src/pipeline/gemini_summary.py").read_text(encoding="utf-8")
+    return set(re.findall(r'"(GEMINI_[A-Z0-9_]+)"', source))
+
+
+@pytest.mark.parametrize("workflow_name", ["daily.yml", "smoke.yml"])
+def test_every_config_variable_is_wired(workflow_name):
+    """코드가 읽는 knob은 전부 워크플로 env에 있어야 한다.
+
+    GitHub repository variable은 자동으로 주입되지 않는다 — env에 없으면 변수를
+    설정해도 무시되고, 워크플로를 고쳐야만 조정할 수 있다(문서와 실제가 어긋난다).
+    """
+    env = _run_step_env(_load(workflow_name), "src.run_daily")
+    missing = sorted(name for name in _config_env_names() if name not in env)
+    assert not missing, f"{workflow_name}: {missing} 미배선"
+
+
+@pytest.mark.parametrize("workflow_name", ["daily.yml", "smoke.yml"])
+def test_validation_and_timeout_knobs_come_from_variables(workflow_name):
+    env = _run_step_env(_load(workflow_name), "src.run_daily")
+    for name in (
+        "GEMINI_MAX_LINE_CHARS",
+        "GEMINI_INPUT_MIN_CHARS",
+        "GEMINI_ARTICLE_MAX_CHARS",
+        "GEMINI_REQUEST_TIMEOUT_SECONDS",
+        "GEMINI_RETRY_ATTEMPTS",
+        "GEMINI_CIRCUIT_BREAKER_FAILURES",
+        "GEMINI_BATCH_HARD_MAX_ARTICLES",
+    ):
+        assert env[name] == "${{ vars.%s }}" % name
 
 
 @pytest.mark.parametrize("workflow_name", ["daily.yml", "smoke.yml"])
