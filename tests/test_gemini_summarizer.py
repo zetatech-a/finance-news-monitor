@@ -920,3 +920,121 @@ def test_auth_detection_uses_the_structured_reason_not_free_text():
         == CATEGORY_AUTH
     )
     assert classify_error(FakeAPIError(403, "denied")) == CATEGORY_AUTH
+
+
+# --- SDK 클라이언트 구성 (가짜 모듈 주입 — 실제 네트워크 없음) -----------------
+
+
+def _install_fake_genai(monkeypatch, captured):
+    """google.genai를 가짜로 주입해 client 구성 인자를 캡처한다."""
+    import sys
+    import types as pytypes
+
+    class HttpRetryOptions:
+        def __init__(self, **kw):
+            self.__dict__.update(kw)
+
+    class HttpOptions:
+        def __init__(self, **kw):
+            self.__dict__.update(kw)
+            captured["http_options"] = kw
+
+    class ThinkingConfig:
+        def __init__(self, **kw):
+            self.__dict__.update(kw)
+            captured["thinking"] = kw
+
+    class GenerateContentConfig:
+        def __init__(self, **kw):
+            self.__dict__.update(kw)
+            captured["gen_config"] = kw
+
+    class _Models:
+        def generate_content(self, **kw):
+            captured["request"] = kw
+            return pytypes.SimpleNamespace(text='{"summaries": []}')
+
+    class Client:
+        def __init__(self, **kw):
+            captured["client"] = kw
+            self.models = _Models()
+
+    types_mod = pytypes.ModuleType("google.genai.types")
+    types_mod.HttpOptions = HttpOptions
+    types_mod.HttpRetryOptions = HttpRetryOptions
+    types_mod.ThinkingConfig = ThinkingConfig
+    types_mod.GenerateContentConfig = GenerateContentConfig
+
+    genai_mod = pytypes.ModuleType("google.genai")
+    genai_mod.Client = Client
+    genai_mod.types = types_mod
+
+    google_mod = pytypes.ModuleType("google")
+    google_mod.genai = genai_mod
+
+    monkeypatch.setitem(sys.modules, "google", google_mod)
+    monkeypatch.setitem(sys.modules, "google.genai", genai_mod)
+    monkeypatch.setitem(sys.modules, "google.genai.types", types_mod)
+
+
+def test_client_pins_api_version_and_disables_sdk_retries(monkeypatch):
+    from src.pipeline.gemini_summary import (
+        API_VERSION, THINKING_LEVEL, build_generate_fn, response_json_schema,
+    )
+
+    captured: dict = {}
+    _install_fake_genai(monkeypatch, captured)
+    monkeypatch.setenv("GEMINI_REQUEST_TIMEOUT_SECONDS", "90")
+
+    fn = build_generate_fn(load_gemini_config())
+    fn(system_instruction="s", prompt="p", schema=response_json_schema(5))
+
+    http = captured["http_options"]
+    assert API_VERSION == "v1"
+    assert http["api_version"] == "v1"
+    # timeout은 밀리초로 변환된다.
+    assert http["timeout"] == 90_000
+    # SDK 자동 재시도는 꺼둔다 — 재시도 예산은 이 모듈이 통제한다.
+    assert http["retry_options"].attempts == 1
+    assert captured["thinking"]["thinking_level"] == THINKING_LEVEL
+    assert captured["gen_config"]["response_mime_type"] == "application/json"
+    assert captured["gen_config"]["response_json_schema"]["properties"]["summaries"]["maxItems"] == 5
+
+
+def test_client_is_constructed_once_across_requests(monkeypatch):
+    from src.pipeline.gemini_summary import build_generate_fn, response_json_schema
+
+    captured: dict = {}
+    calls = {"n": 0}
+    _install_fake_genai(monkeypatch, captured)
+
+    import sys
+
+    original = sys.modules["google.genai"].Client
+
+    class CountingClient(original):
+        def __init__(self, **kw):
+            calls["n"] += 1
+            super().__init__(**kw)
+
+    sys.modules["google.genai"].Client = CountingClient
+    fn = build_generate_fn(load_gemini_config())
+    for _ in range(3):
+        fn(system_instruction="s", prompt="p", schema=response_json_schema(1))
+    assert calls["n"] == 1
+
+
+def test_thinking_config_omitted_for_pre_gemini_3_models(monkeypatch):
+    from src.pipeline.gemini_summary import build_generate_fn, response_json_schema
+
+    captured: dict = {}
+    _install_fake_genai(monkeypatch, captured)
+    monkeypatch.setenv("GEMINI_MODEL", "gemini-2.0-flash")
+
+    fn = build_generate_fn(load_gemini_config())
+    fn(system_instruction="s", prompt="p", schema=response_json_schema(1))
+
+    assert "thinking" not in captured  # ThinkingConfig 자체를 만들지 않는다
+    assert "thinking_config" not in captured["gen_config"]
+    # api_version은 모델과 무관하게 항상 고정한다.
+    assert captured["http_options"]["api_version"] == "v1"

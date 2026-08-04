@@ -2,6 +2,29 @@ name: Smoke Test
 
 on:
   workflow_dispatch:
+    inputs:
+      # 스모크는 "동작하는지"만 보는 실행이다. Gemini 처리량은 여기서 명시적으로 묶어두고,
+      # 실수로 운영 기본값(300건)을 태우지 않게 한다. 필요하면 실행할 때 올려 쓴다.
+      gemini_max_summaries:
+        description: "Gemini로 요약할 최대 기사 수"
+        required: false
+        default: "5"
+        type: string
+      gemini_batch_max_articles:
+        description: "요청 1건에 담는 기사 수"
+        required: false
+        default: "5"
+        type: string
+      gemini_max_requests:
+        description: "총 generate 요청 상한(재시도·분할 포함)"
+        required: false
+        default: "1"
+        type: string
+      gemini_max_fetch_attempts:
+        description: "Gemini 전용 본문 크롤링 상한"
+        required: false
+        default: "5"
+        type: string
 
 jobs:
   run:
@@ -24,4 +47,18 @@ jobs:
           # Gemini 3줄 요약(선택). 미설정이면 추출식 요약으로 정상 동작한다.
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
-        run: python -m src.run_daily
+          # 처리량 4종은 dispatch input이 항상 값을 가지므로 repository variable보다 우선한다.
+          GEMINI_MAX_SUMMARIES: ${{ inputs.gemini_max_summaries }}
+          GEMINI_BATCH_MAX_ARTICLES: ${{ inputs.gemini_batch_max_articles }}
+          GEMINI_MAX_REQUESTS_PER_RUN: ${{ inputs.gemini_max_requests }}
+          GEMINI_MAX_FETCH_ATTEMPTS: ${{ inputs.gemini_max_fetch_attempts }}
+          # 나머지는 Repository Variables를 그대로 따른다(미설정 시 코드 기본값).
+          GEMINI_BATCH_MAX_INPUT_CHARS: ${{ vars.GEMINI_BATCH_MAX_INPUT_CHARS }}
+          GEMINI_MAX_RECOVERY_REQUESTS: ${{ vars.GEMINI_MAX_RECOVERY_REQUESTS }}
+          GEMINI_MIN_INTERVAL_SECONDS: ${{ vars.GEMINI_MIN_INTERVAL_SECONDS }}
+        run: |
+          echo "smoke gemini limits: max_summaries=$GEMINI_MAX_SUMMARIES" \
+               "batch_max_articles=$GEMINI_BATCH_MAX_ARTICLES" \
+               "max_requests=$GEMINI_MAX_REQUESTS_PER_RUN" \
+               "max_fetch_attempts=$GEMINI_MAX_FETCH_ATTEMPTS"
+          python -m src.run_daily

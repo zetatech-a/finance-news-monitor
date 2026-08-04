@@ -45,6 +45,9 @@ SCHEMA_VERSION = 2
 # 모델 교체는 GEMINI_MODEL 환경변수로만 한다 (이 상수는 유일한 정의 지점).
 DEFAULT_MODEL = "gemini-3.5-flash-lite"
 
+# 명시적으로 고정하는 Gemini API 버전. SDK 기본값이 바뀌어도 운영 동작이 흔들리지 않게 한다.
+API_VERSION = "v1"
+
 # 모델에게는 여유를 두고 80자를 요청하고, 검증은 90자까지 허용한다.
 # (프롬프트 목표치와 검증 상한이 같으면 경계에서 불필요한 fallback이 잦아진다)
 PROMPT_TARGET_LINE_CHARS = 80
@@ -650,15 +653,18 @@ def build_generate_fn(config: GeminiConfig) -> GenerateFn:
             from google import genai
             from google.genai import types
 
+            # timeout은 밀리초 단위다.
             timeout_ms = int(config.request_timeout_seconds * 1000)
             try:
-                # SDK 자체 자동 재시도를 끈다 — 재시도/페이싱 예산은 이 모듈이 통제한다.
                 http_options = types.HttpOptions(
+                    # SDK 기본값에 끌려다니지 않도록 안정 API 버전을 고정한다.
+                    api_version=API_VERSION,
                     timeout=timeout_ms,
+                    # SDK 자체 자동 재시도를 끈다 — 재시도/페이싱 예산은 이 모듈이 통제한다.
                     retry_options=types.HttpRetryOptions(attempts=1),
                 )
             except Exception:  # pragma: no cover - SDK 버전 차이 방어
-                http_options = types.HttpOptions(timeout=timeout_ms)
+                http_options = types.HttpOptions(api_version=API_VERSION, timeout=timeout_ms)
             state["client"] = genai.Client(api_key=config.api_key, http_options=http_options)
             state["types"] = types
         return state["client"], state["types"]

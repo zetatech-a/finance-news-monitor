@@ -148,7 +148,16 @@ jobs:
           NCP_APIGW_API_KEY: ${{ secrets.NCP_APIGW_API_KEY }}
           # Gemini 3줄 요약(선택). 미설정이면 추출식 요약으로 정상 생성된다 — 실패하지 않는다.
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # 아래 Repository Variables는 전부 선택이다. 미설정 시 빈 문자열이 전달되고,
+          # src/config.py의 env_int/env_float가 빈 값을 "미설정"으로 보고 코드 기본값을 쓴다.
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          GEMINI_MAX_SUMMARIES: ${{ vars.GEMINI_MAX_SUMMARIES }}
+          GEMINI_BATCH_MAX_ARTICLES: ${{ vars.GEMINI_BATCH_MAX_ARTICLES }}
+          GEMINI_BATCH_MAX_INPUT_CHARS: ${{ vars.GEMINI_BATCH_MAX_INPUT_CHARS }}
+          GEMINI_MAX_REQUESTS_PER_RUN: ${{ vars.GEMINI_MAX_REQUESTS_PER_RUN }}
+          GEMINI_MAX_RECOVERY_REQUESTS: ${{ vars.GEMINI_MAX_RECOVERY_REQUESTS }}
+          GEMINI_MAX_FETCH_ATTEMPTS: ${{ vars.GEMINI_MAX_FETCH_ATTEMPTS }}
+          GEMINI_MIN_INTERVAL_SECONDS: ${{ vars.GEMINI_MIN_INTERVAL_SECONDS }}
         run: |
           echo "report_generation_started_kst=$(TZ='Asia/Seoul' date --iso-8601=seconds)"
           echo "collection_end_hhmm=$COLLECTION_END_HHMM"
