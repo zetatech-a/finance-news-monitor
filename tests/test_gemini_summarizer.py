@@ -160,7 +160,7 @@ def _all_ok(items):
 
 @pytest.mark.parametrize(
     "count,expected_calls",
-    [(50, 1), (100, 2), (250, 5), (300, 6)],
+    [(25, 1), (50, 2), (100, 4), (250, 10), (300, 12)],
 )
 def test_normal_batching_call_counts(count, expected_calls):
     items = _items(count)
@@ -176,14 +176,15 @@ def test_no_per_article_call_in_the_normal_path():
     items = _items(50)
     summarizer, recorder = _make(_all_ok(items))
     summarizer.summarize_many(items)
-    # 정상 경로에서는 배치 크기가 1인 요청이 나오면 안 된다.
-    assert recorder.sizes == [50]
+    # 정상 경로에서는 검증된 배치 크기(25)로만 나가고 크기 1은 없다.
+    assert recorder.sizes == [25, 25]
     assert 1 not in recorder.sizes
 
 
-def test_char_budget_closes_the_batch_before_the_article_count():
+def test_char_budget_closes_the_batch_before_the_article_count(monkeypatch):
     # 기사당 ~3,116자(본문 3,000 + ID/제목/구분자) × 50건 ≈ 155,800자 > 150,000자 예산
-    # → 기사 수(50)가 아니라 문자 예산이 먼저 배치를 닫는다.
+    # → 배치 크기를 50으로 올려도 문자 예산이 먼저 배치를 닫는다.
+    monkeypatch.setenv("GEMINI_BATCH_MAX_ARTICLES", "50")
     items = _items(50, body_chars=3000)
     summarizer, recorder = _make(_all_ok(items))
     summarizer.summarize_many(items)
@@ -244,7 +245,7 @@ def test_partial_success_applies_47_and_reasks_only_the_missing_3():
             ensure_ascii=False,
         )
 
-    summarizer, recorder = _make(responder)
+    summarizer, recorder = _make(responder, GEMINI_BATCH_MAX_ARTICLES=50)
     applied: list[str] = []
     results = summarizer.summarize_many(
         items, on_result=lambda item, lines: applied.append(item.id)
@@ -411,7 +412,7 @@ def test_whole_json_parse_failure_splits_the_batch():
             ensure_ascii=False,
         )
 
-    summarizer, recorder = _make(responder)
+    summarizer, recorder = _make(responder, GEMINI_BATCH_MAX_ARTICLES=50)
     results = summarizer.summarize_many(items)
 
     assert recorder.sizes == [50, 25, 25]  # 50 → 25 단위로 분할 후 성공
@@ -430,7 +431,9 @@ def test_split_continues_down_the_ladder():
             ensure_ascii=False,
         )
 
-    summarizer, recorder = _make(responder, GEMINI_MAX_REQUESTS_PER_RUN=30)
+    summarizer, recorder = _make(
+        responder, GEMINI_MAX_REQUESTS_PER_RUN=30, GEMINI_BATCH_MAX_ARTICLES=50
+    )
     results = summarizer.summarize_many(items)
 
     assert recorder.sizes[0] == 50
@@ -459,7 +462,7 @@ def test_request_budget_stops_remaining_batches():
     results = summarizer.summarize_many(items)
 
     assert recorder.count == 3
-    assert len(results) == 150  # 3배치 × 50건, 나머지 100건은 extractive fallback
+    assert len(results) == 75  # 3배치 × 25건, 나머지 175건은 extractive fallback
 
 
 def test_zero_request_budget_disables_the_feature():
@@ -485,7 +488,7 @@ def test_429_retries_the_same_batch():
             ensure_ascii=False,
         )
 
-    summarizer, recorder = _make(responder)
+    summarizer, recorder = _make(responder, GEMINI_BATCH_MAX_ARTICLES=50)
     results = summarizer.summarize_many(items)
 
     assert recorder.sizes == [50, 50]  # 분할이 아니라 동일 배치 재시도
@@ -495,7 +498,8 @@ def test_429_retries_the_same_batch():
 def test_429_exhausted_falls_back_without_splitting():
     items = _items(50)
     summarizer, recorder = _make(
-        lambda call_no, prompt, schema: (_ for _ in ()).throw(FakeAPIError(429))
+        lambda call_no, prompt, schema: (_ for _ in ()).throw(FakeAPIError(429)),
+        GEMINI_BATCH_MAX_ARTICLES=50,
     )
     results = summarizer.summarize_many(items)
 
@@ -542,7 +546,7 @@ def test_400_is_not_retried_but_may_split():
             ensure_ascii=False,
         )
 
-    summarizer, recorder = _make(responder)
+    summarizer, recorder = _make(responder, GEMINI_BATCH_MAX_ARTICLES=50)
     results = summarizer.summarize_many(items)
 
     assert recorder.sizes == [50, 25, 25]  # 400은 재시도 없이 곧장 분할
@@ -609,6 +613,7 @@ def test_successful_batch_resets_the_failure_counter():
         GEMINI_RETRY_ATTEMPTS=1,
         GEMINI_CIRCUIT_BREAKER_FAILURES=3,
         GEMINI_MAX_REQUESTS_PER_RUN=50,
+        GEMINI_BATCH_MAX_ARTICLES=50,
     )
     summarizer.summarize_many(items)
     assert not summarizer.disabled
@@ -653,8 +658,9 @@ def test_min_interval_paces_consecutive_requests():
     )
     summarizer.summarize_many(items)
 
-    assert recorder.count == 2
-    assert slept == [pytest.approx(1.0)]  # 응답에 1초 걸렸으니 남은 1초만 대기
+    # 100건 / 배치 25 = 4회, 첫 호출은 대기 없음
+    assert recorder.count == 4
+    assert slept == [pytest.approx(1.0)] * 3  # 응답에 1초 걸렸으니 남은 1초만 대기
 
 
 # --- 비활성 조건 ------------------------------------------------------------
@@ -721,8 +727,8 @@ def test_logs_never_contain_api_key_or_article_body(caplog):
         ("GEMINI_MAX_SUMMARIES", "-5", "max_summaries", 300),
         ("GEMINI_MAX_SUMMARIES", "not-a-number", "max_summaries", 300),
         ("GEMINI_MAX_SUMMARIES", "99999", "max_summaries", 300),
-        ("GEMINI_BATCH_MAX_ARTICLES", "0", "batch_max_articles", 50),
-        ("GEMINI_BATCH_MAX_ARTICLES", "-1", "batch_max_articles", 50),
+        ("GEMINI_BATCH_MAX_ARTICLES", "0", "batch_max_articles", 25),
+        ("GEMINI_BATCH_MAX_ARTICLES", "-1", "batch_max_articles", 25),
         ("GEMINI_BATCH_MAX_INPUT_CHARS", "10", "batch_max_input_chars", 150_000),
         ("GEMINI_BATCH_MAX_INPUT_CHARS", "99999999", "batch_max_input_chars", 150_000),
         ("GEMINI_ARTICLE_MAX_CHARS", "5", "article_max_chars", 3_000),
@@ -747,7 +753,7 @@ def test_documented_defaults(monkeypatch):
     monkeypatch.delenv("GEMINI_MIN_INTERVAL_SECONDS", raising=False)
     monkeypatch_free = load_gemini_config()
     assert monkeypatch_free.max_summaries == 300
-    assert monkeypatch_free.batch_max_articles == 50
+    assert monkeypatch_free.batch_max_articles == 25
     assert monkeypatch_free.batch_hard_max_articles == 100
     assert monkeypatch_free.batch_max_input_chars == 150_000
     assert monkeypatch_free.article_max_chars == 3_000
@@ -793,14 +799,13 @@ def test_250_articles_with_partial_failures_fit_in_the_default_budget():
     summarizer, recorder = _make(_partial_failure_responder())
     results = summarizer.summarize_many(items)
 
-    # 정상 5회 + 복구 8회(상한) = 13회로 기본 상한 20 안에서 처리된다.
-    assert summarizer.stats["normal_requests"] == 5
+    # 배치 25 기준 정상 10회 + 복구 8회(상한) = 18회로 기본 상한 20 안에서 끝난다.
+    assert summarizer.stats["normal_requests"] == 10
     assert summarizer.stats["recovery_requests"] == 8
-    assert recorder.count == 13
+    assert recorder.count == 18
     assert recorder.count <= 20
-    # 예전 상한 12에서는 5번째 배치가 통째로 fallback됐다(196건).
-    assert len(results) == 241
-    assert 250 - len(results) == 9
+    assert len(results) == 228
+    assert 250 - len(results) == 22
 
 
 def test_recovery_budget_never_starves_the_normal_batches():
@@ -809,9 +814,9 @@ def test_recovery_budget_never_starves_the_normal_batches():
     summarizer, recorder = _make(_partial_failure_responder(), GEMINI_MAX_RECOVERY_REQUESTS=2)
     summarizer.summarize_many(items)
 
-    assert summarizer.stats["normal_requests"] == 5  # 5개 정상 배치 전부 전송됨
+    assert summarizer.stats["normal_requests"] == 10  # 10개 정상 배치 전부 전송됨
     assert summarizer.stats["recovery_requests"] == 2
-    assert recorder.count == 7
+    assert recorder.count == 12
 
 
 def test_recovery_budget_zero_disables_splitting_only():
@@ -819,9 +824,9 @@ def test_recovery_budget_zero_disables_splitting_only():
     summarizer, _ = _make(_partial_failure_responder(), GEMINI_MAX_RECOVERY_REQUESTS=0)
     results = summarizer.summarize_many(items)
 
-    assert summarizer.stats["normal_requests"] == 2
+    assert summarizer.stats["normal_requests"] == 4
     assert summarizer.stats["recovery_requests"] == 0
-    assert len(results) == 90  # 배치당 5건씩 누락, 복구 없음
+    assert len(results) == 88  # 배치(25)당 3건씩 누락, 복구 없음
 
 
 def test_transient_retries_count_against_the_recovery_budget():
@@ -832,7 +837,9 @@ def test_transient_retries_count_against_the_recovery_budget():
         calls["n"] += 1
         raise FakeAPIError(429)
 
-    summarizer, recorder = _make(responder, GEMINI_MAX_RECOVERY_REQUESTS=0)
+    summarizer, recorder = _make(
+        responder, GEMINI_MAX_RECOVERY_REQUESTS=0, GEMINI_BATCH_MAX_ARTICLES=50
+    )
     summarizer.summarize_many(items)
 
     # 복구 예산이 0이면 재시도를 하지 않는다(최초 요청 1회만).
@@ -850,9 +857,9 @@ def test_run_stats_expose_sanitized_aggregates():
     summarizer.summarize_many(items)
     stats = summarizer.stats
 
-    assert stats["batches"] == 2
-    assert stats["requests"] == 2
-    assert stats["normal_requests"] == 2
+    assert stats["batches"] == 4
+    assert stats["requests"] == 4
+    assert stats["normal_requests"] == 4
     assert stats["recovery_requests"] == 0
     assert stats["sent_articles"] == 100
     assert stats["sent_chars"] == sum(len(c["prompt"]) for c in recorder.calls)
@@ -1160,8 +1167,8 @@ def test_unusable_items_are_never_re_requested():
     results = summarizer.summarize_many(items)
 
     # usable=false는 정상 응답이므로 분할·재요청 대상이 아니다.
-    assert recorder.count == 1
-    assert recorder.sizes == [50]
+    assert recorder.count == 2  # 50건 = 25 + 25 정상 배치
+    assert recorder.sizes == [25, 25]
     assert len(results) == 40
     assert summarizer.stats["splits"] == 0
 
@@ -1196,15 +1203,21 @@ def test_all_unusable_batch_does_not_trip_the_circuit_breaker():
     summarizer, recorder = _make(responder, GEMINI_CIRCUIT_BREAKER_FAILURES=2)
     assert summarizer.summarize_many(items) == {}
     assert not summarizer.disabled
-    assert recorder.count == 3  # 세 배치 모두 정상 처리
+    assert recorder.count == 6  # 150건 = 25 × 6배치, 모두 정상 처리
     assert summarizer.stats["content_rejected"] == 150
 
 
-def test_fifty_usable_articles_still_take_exactly_one_request():
+def test_usable_articles_take_the_expected_number_of_requests():
+    # 검증된 기본 배치는 25다 — 25건은 1회, 50건은 2회.
+    items = _items(25)
+    summarizer, recorder = _make(_all_ok(items))
+    assert len(summarizer.summarize_many(items)) == 25
+    assert recorder.count == 1
+
     items = _items(50)
     summarizer, recorder = _make(_all_ok(items))
     assert len(summarizer.summarize_many(items)) == 50
-    assert recorder.count == 1
+    assert recorder.count == 2
 
 
 def test_usable_true_with_non_ok_reason_is_a_structural_violation():
@@ -1288,3 +1301,85 @@ def test_prompt_states_the_single_topic_rule_and_unusable_reasons():
     assert "하나의 핵심 사건" in prompt
     assert "사이드바" in prompt
     assert "억지로" in prompt or "추측해 채우지 않는다" in prompt
+
+
+# --- 400 오류 진단 (기계 판독 가능한 토큰만) ---------------------------------
+
+
+def test_400_diagnosis_extracts_only_safe_tokens():
+    from src.pipeline.gemini_summary import describe_client_error
+
+    err = FakeAPIError(
+        400,
+        "Invalid JSON payload received. Unknown name response_json_schema",
+        details={
+            "error": {
+                "code": 400,
+                "status": "INVALID_ARGUMENT",
+                "details": [{"reason": "INVALID_ARGUMENT", "domain": "googleapis.com"}],
+            }
+        },
+    )
+    err.status = "INVALID_ARGUMENT"
+    err.message = "Invalid JSON payload received. Unknown name response_json_schema"
+
+    info = describe_client_error(err)
+    assert info == {
+        "status": "INVALID_ARGUMENT",
+        "reason": "INVALID_ARGUMENT",
+        "schema_rejected": True,
+        "invalid_argument": True,
+    }
+    # 값은 전부 사전 정의된 토큰/불리언이다.
+    assert all(isinstance(v, (bool, str)) for v in info.values())
+
+
+def test_400_diagnosis_never_leaks_free_text():
+    from src.pipeline.gemini_summary import describe_client_error
+
+    secret = "일급비밀 기사 본문과 프롬프트가 섞인 서버 응답"
+    err = FakeAPIError(400, secret, details={"error": {"message": secret}})
+    err.status = secret
+    err.message = secret
+
+    info = describe_client_error(err)
+    blob = " ".join(str(v) for v in info.values())
+    assert secret not in blob
+    # 안전 토큰 패턴에 맞지 않으면 unknown으로 떨어뜨린다.
+    assert info["status"] == "unknown"
+    assert info["reason"] == "unknown"
+
+
+def test_400_diagnosis_marks_non_schema_errors():
+    from src.pipeline.gemini_summary import describe_client_error
+
+    err = FakeAPIError(400, "request payload size exceeds the limit")
+    err.status = "INVALID_ARGUMENT"
+    err.message = "request payload size exceeds the limit"
+
+    info = describe_client_error(err)
+    assert info["schema_rejected"] is False
+    assert info["invalid_argument"] is True
+
+
+def test_400_log_line_carries_diagnosis_but_no_prompt_or_body(caplog):
+    items = iter_batch_items(
+        [("비밀제목", "일급비밀본문 " * 60)], article_max_chars=3000
+    )
+    err = FakeAPIError(400, "bad", details={"reason": "INVALID_ARGUMENT"})
+    err.status = "INVALID_ARGUMENT"
+    err.message = "Unknown name response_json_schema"
+
+    summarizer, _ = _make(lambda call_no, prompt, schema: (_ for _ in ()).throw(err))
+    with caplog.at_level(logging.DEBUG):
+        summarizer.summarize_many(items)
+
+    blob = "\n".join(r.getMessage() for r in caplog.records)
+    assert "status=INVALID_ARGUMENT" in blob
+    assert "schema_rejected=True" in blob
+    assert "invalid_argument=True" in blob
+    # 프롬프트·본문·제목·키는 없다.
+    assert "일급비밀본문" not in blob
+    assert "비밀제목" not in blob
+    assert "<article" not in blob
+    assert API_KEY not in blob

@@ -103,12 +103,30 @@ def ai_summary_lines(article: Any) -> list[str]:
     return [line.strip() for line in lines]
 
 
+# 원본 스니펫이 이보다 짧으면 정보가 없다고 보고 현재 description을 쓴다.
+# (extractive_summary._is_quality_summary와 같은 기준)
+MIN_SOURCE_DESCRIPTION_CHARS = 24
+
+
 def display_summary_text(article: Any) -> str:
-    """AI 3줄이 있으면 합친 문장, 없으면 기존 description(추출요약/스니펫)."""
+    """표시용 요약 한 줄.
+
+    1) 유효한 Gemini 3줄
+    2) Gemini가 내용 부적합(usable=false)으로 거부했으면 **원본 네이버 스니펫**
+       — 이 경우 현재 description은 오염된 크롤링 본문에서 만든 추출요약일 수 있다
+    3) 원본 스니펫이 없거나 너무 짧으면 현재 description
+    4) 그 밖의 경우(일반 API 장애 포함)는 기존 description 그대로
+    """
     lines = ai_summary_lines(article)
     if lines:
         return " ".join(lines)
-    return (_field(article, "description") or "").strip()
+
+    description = (_field(article, "description") or "").strip()
+    if _field(article, "summary_rejection_reason"):
+        source = (_field(article, "source_description") or "").strip()
+        if len(source) >= MIN_SOURCE_DESCRIPTION_CHARS:
+            return source
+    return description
 
 
 # AI 3줄(줄당 최대 90자)이 마크다운에서 잘리지 않도록 한도만 올린다.
@@ -603,8 +621,9 @@ def render_html(
         topic_joined = "|".join(topics)
 
         title = a.title or ""
-        summary = a.description or ""
         ai_lines = ai_summary_lines(a)
+        # AI 3줄이 없을 때 표시할 문장 — 내용 거부 기사는 원본 스니펫으로 되돌아간다.
+        summary = display_summary_text(a) if not ai_lines else (a.description or "")
         pub = _fmt_dt(getattr(a, "pub_date", None))
         ts = _ts_dt(getattr(a, "pub_date", None))
         press = _get_press(a)
@@ -632,8 +651,21 @@ def render_html(
 
         cached = bool(getattr(a, "summary_cached", False))
         # AI 3줄이 있으면 검색 대상에 함께 넣는다(원본 요약도 계속 검색된다).
+        # 내용 거부 기사의 description은 오염된 본문에서 만든 추출요약이므로
+        # 검색 대상에서도 뺀다 — 넣어두면 무관한 키워드로 이 기사가 잡힌다.
+        searchable_description = (
+            "" if _field(a, "summary_rejection_reason") else (a.description or "")
+        )
         hay = " ".join(
-            [title, summary, " ".join(ai_lines), sector, press, " ".join(topics)]
+            [
+                title,
+                summary,
+                searchable_description,
+                " ".join(ai_lines),
+                sector,
+                press,
+                " ".join(topics),
+            ]
         ).strip()
 
         btns: list[str] = []

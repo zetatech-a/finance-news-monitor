@@ -8,22 +8,22 @@ on:
       gemini_max_summaries:
         description: "Gemini로 요약할 최대 기사 수"
         required: false
-        default: "5"
+        default: "50"
         type: string
       gemini_batch_max_articles:
-        description: "요청 1건에 담는 기사 수"
+        description: "요청 1건에 담는 기사 수 (25가 실 API 검증값)"
         required: false
-        default: "5"
+        default: "25"
         type: string
       gemini_max_requests:
-        description: "총 generate 요청 상한(재시도·분할 포함)"
+        description: "총 generate 요청 상한(재시도·분할 포함). 50건이면 정상 2회"
         required: false
-        default: "1"
+        default: "4"
         type: string
       gemini_max_fetch_attempts:
         description: "Gemini 전용 본문 크롤링 상한"
         required: false
-        default: "5"
+        default: "50"
         type: string
 
 jobs:

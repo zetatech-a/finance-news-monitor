@@ -10,7 +10,7 @@
   (Google의 비동기 Batch API는 사용하지 않는다.)
 - 배치는 **기사 수**와 **입력 문자 예산** 두 제한 중 먼저 걸리는 쪽에서 닫힌다.
 - 응답은 항목별로 검증한다. 정상 항목은 즉시 적용·캐시하고, 실패한 항목만 더 작은
-  배치로 재요청한다(50 → 25 → 10 → 1). 개별 호출은 정상 경로가 아니라 최종 복구 수단이다.
+  배치로 재요청한다(25 → 10 → 1). 개별 호출은 정상 경로가 아니라 최종 복구 수단이다.
 
 설계 원칙
 - 실패는 항상 fail-open: 3줄을 못 받은 기사는 기존 추출요약을 그대로 쓴다.
@@ -73,6 +73,7 @@ REASON_VALUES: tuple[str, ...] = (
 UNUSABLE_REASONS: tuple[str, ...] = REASON_VALUES[1:]
 
 # 배치가 실패했을 때 좁혀 들어가는 단계. 마지막 1은 "최종 복구 수단"이다.
+# 기본 배치(25)에서는 25 → 10 → 1 순으로 내려간다.
 SPLIT_LADDER: tuple[int, ...] = (25, 10, 1)
 
 SYSTEM_INSTRUCTION = (
@@ -169,7 +170,8 @@ def _env_bool(name: str, default: bool) -> bool:
 def load_gemini_config() -> GeminiConfig:
     """환경변수 로드. 잘못된 값은 경고 후 기본값 — 기존 config 정책과 동일하다."""
     hard_max = env_int("GEMINI_BATCH_HARD_MAX_ARTICLES", 100, minimum=1, maximum=500)
-    batch_max = env_int("GEMINI_BATCH_MAX_ARTICLES", 50, minimum=1, maximum=500)
+    # 25는 실제 API 호출로 검증된 크기다. 50은 400 INVALID_ARGUMENT를 받았다.
+    batch_max = env_int("GEMINI_BATCH_MAX_ARTICLES", 25, minimum=1, maximum=500)
     if batch_max > hard_max:
         # hard cap을 넘는 설정은 거부하지 않고 hard cap으로 낮춘다(파이프라인 계속 진행).
         logger.warning(
@@ -209,7 +211,7 @@ def load_gemini_config() -> GeminiConfig:
         # 기존 추출요약의 fetch 예산(MAX_SUMMARY_FETCH_ATTEMPTS)과 완전히 별개인
         # Gemini 전용 본문 크롤링 상한이다.
         max_fetch_attempts=env_int("GEMINI_MAX_FETCH_ATTEMPTS", 300, minimum=0, maximum=2000),
-        # 300건 / 배치 50 = 6회가 정상 경로다. 부분 실패 복구까지 감당하도록 여유를 둔다.
+        # 300건 / 배치 25 = 12회가 정상 경로다. 부분 실패 복구까지 감당하도록 여유를 둔다.
         max_requests_per_run=env_int(
             "GEMINI_MAX_REQUESTS_PER_RUN", 20, minimum=0, maximum=200
         ),
@@ -681,6 +683,47 @@ def classify_error(exc: BaseException) -> str:
     return CATEGORY_UNKNOWN
 
 
+# 400 오류 진단용 — 기계 판독 가능한 토큰만 뽑는다.
+# 전체 오류 메시지나 서버 응답 본문은 절대 로그로 내보내지 않는다(프롬프트·본문이 실릴 수 있다).
+_SAFE_TOKEN_RE = re.compile(r"^[A-Z][A-Z0-9_]{0,63}$")
+_REASON_FIELD_RE = re.compile(r"['\"]reason['\"]\s*:\s*['\"]([A-Z][A-Z0-9_]{0,63})['\"]")
+_SCHEMA_HINT_RE = re.compile(
+    r"response_json_schema|responseJsonSchema|response_schema|responseSchema|"
+    r"json ?schema|maxItems|minItems|propertyOrdering",
+    re.IGNORECASE,
+)
+
+
+def _safe_token(value: Any) -> str:
+    token = str(value or "").strip()
+    return token if _SAFE_TOKEN_RE.match(token) else "unknown"
+
+
+def describe_client_error(exc: BaseException) -> dict[str, Any]:
+    """400류 오류를 로그에 안전한 값으로만 요약한다.
+
+    반환값은 전부 사전 정의된 토큰 또는 불리언이다 — API 키·기사 제목·본문·URL·
+    프롬프트·서버 응답 원문이 섞여 나갈 수 없다.
+    """
+    status = _safe_token(getattr(exc, "status", None))
+
+    reason = "unknown"
+    details = getattr(exc, "details", None)
+    if details is not None:
+        match = _REASON_FIELD_RE.search(str(details))
+        if match:
+            reason = _safe_token(match.group(1))
+
+    # 메시지 자체는 로그에 남기지 않고, "스키마 관련인가"라는 불리언만 만든다.
+    haystack = f"{getattr(exc, 'message', '') or ''} {details or ''}"
+    return {
+        "status": status,
+        "reason": reason,
+        "schema_rejected": bool(_SCHEMA_HINT_RE.search(haystack)),
+        "invalid_argument": status == "INVALID_ARGUMENT" or reason == "INVALID_ARGUMENT",
+    }
+
+
 def safe_host(url: str | None) -> str:
     """로그용 — 전체 URL 대신 host만 남긴다."""
     try:
@@ -711,6 +754,7 @@ def supports_thinking_level(model: str) -> bool:
 
 GenerateFn = Callable[..., str]
 ResultFn = Callable[[BatchItem, list[str]], None]
+RejectionFn = Callable[[BatchItem, str], None]
 
 
 def build_generate_fn(config: GeminiConfig) -> GenerateFn:
@@ -904,12 +948,18 @@ class GeminiBatchSummarizer:
         )
 
     def summarize_many(
-        self, items: Sequence[BatchItem], *, on_result: ResultFn | None = None
+        self,
+        items: Sequence[BatchItem],
+        *,
+        on_result: ResultFn | None = None,
+        on_content_rejected: RejectionFn | None = None,
     ) -> dict[str, list[str]]:
         """배치로 요약하고 기사별 결과를 돌려준다.
 
         on_result는 항목이 검증을 통과하는 즉시 호출된다 — 호출부가 그 시점에 바로
         적용·캐시할 수 있게 하기 위함이다(배치 전체를 기다리지 않는다).
+        on_content_rejected는 모델이 usable=false로 신고한 기사마다 사유와 함께
+        호출된다 — 호출부가 "오염된 추출요약" 대신 원본 스니펫을 보여줄 수 있게 한다.
         프로그래밍 오류는 삼키지 않고 GeminiProgrammingError로 올린다.
         """
         results: dict[str, list[str]] = {}
@@ -953,11 +1003,14 @@ class GeminiBatchSummarizer:
 
             for item in batch:
                 lines = outcome.accepted.get(item.id)
-                if lines is None:
+                if lines is not None:
+                    results[item.id] = lines
+                    if on_result is not None:
+                        on_result(item, lines)
                     continue
-                results[item.id] = lines
-                if on_result is not None:
-                    on_result(item, lines)
+                reason = outcome.content_rejected.get(item.id)
+                if reason is not None and on_content_rejected is not None:
+                    on_content_rejected(item, reason)
 
             if not outcome.failed_ids:
                 continue
@@ -1015,13 +1068,28 @@ class GeminiBatchSummarizer:
                 self._stats["api_error"] += 1
                 if category == CATEGORY_RATE_LIMIT:
                     self._stats["rate_limit_hits"] += 1
-                logger.warning(
-                    "Gemini batch request failed: size=%s category=%s code=%s error=%s",
-                    len(batch),
-                    category,
-                    _error_code(exc),
-                    type(exc).__name__,
-                )
+                code = _error_code(exc)
+                if code == 400:
+                    # 400은 배치 크기·스키마 문제일 수 있어 원인 구분이 중요하다.
+                    # 기계 판독 가능한 토큰만 남긴다(전체 메시지·응답 본문은 금지).
+                    logger.warning(
+                        "Gemini batch request failed: size=%s category=%s code=400 error=%s %s",
+                        len(batch),
+                        category,
+                        type(exc).__name__,
+                        " ".join(
+                            f"{key}={value}"
+                            for key, value in describe_client_error(exc).items()
+                        ),
+                    )
+                else:
+                    logger.warning(
+                        "Gemini batch request failed: size=%s category=%s code=%s error=%s",
+                        len(batch),
+                        category,
+                        code,
+                        type(exc).__name__,
+                    )
                 if category in _DISABLE_IMMEDIATELY:
                     self._disable(category)
                     return _all_failed(batch, retryable_by_split=False)

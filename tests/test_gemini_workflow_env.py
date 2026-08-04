@@ -74,15 +74,32 @@ def test_smoke_inputs_have_small_explicit_defaults():
     trigger = workflow.get("on") or workflow[True]
     inputs = trigger["workflow_dispatch"]["inputs"]
 
-    assert inputs["gemini_max_summaries"]["default"] == "5"
-    assert inputs["gemini_batch_max_articles"]["default"] == "5"
-    assert inputs["gemini_max_requests"]["default"] == "1"
-    assert inputs["gemini_max_fetch_attempts"]["default"] == "5"
+    assert inputs["gemini_max_summaries"]["default"] == "50"
+    assert inputs["gemini_batch_max_articles"]["default"] == "25"
+    assert inputs["gemini_max_requests"]["default"] == "4"
+    assert inputs["gemini_max_fetch_attempts"]["default"] == "50"
 
     config = load_gemini_config()  # 코드 기본값
     assert int(inputs["gemini_max_summaries"]["default"]) < config.max_summaries
     assert int(inputs["gemini_max_requests"]["default"]) < config.max_requests_per_run
     assert int(inputs["gemini_max_fetch_attempts"]["default"]) < config.max_fetch_attempts
+    # 스모크도 실 API로 검증된 배치 크기를 그대로 쓴다.
+    assert int(inputs["gemini_batch_max_articles"]["default"]) == config.batch_max_articles
+
+
+def test_smoke_defaults_produce_two_normal_requests_for_fifty_articles():
+    """50건 스모크의 정상 기대값은 requests=2, normal_requests=2다."""
+    import math
+
+    workflow = _load("smoke.yml")
+    inputs = (workflow.get("on") or workflow[True])["workflow_dispatch"]["inputs"]
+    articles = int(inputs["gemini_max_summaries"]["default"])
+    batch = int(inputs["gemini_batch_max_articles"]["default"])
+    expected = math.ceil(articles / batch)
+
+    assert expected == 2
+    # 요청 상한이 정상 경로(2회)보다 커야 복구 여유가 남는다.
+    assert int(inputs["gemini_max_requests"]["default"]) > expected
 
 
 def test_smoke_throughput_inputs_win_over_repository_variables():

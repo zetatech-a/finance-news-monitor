@@ -13,6 +13,10 @@ class Article:
     naver_link: str | None  # 본문 추출용(있으면 우선)
     pub_date: datetime
     query: str
+    # 네이버 API가 돌려준 최초 description의 독립 사본.
+    # description은 추출요약 단계에서 덮어써지지만 이 값은 끝까지 유지된다 —
+    # 크롤링 본문이 오염돼 Gemini가 요약을 거부했을 때 보여줄 깨끗한 원본이다.
+    source_description: str = ""
     # --- 관련성 필터(relevance_filter)가 채우는 필드 ---
     relevance_score: int | None = None
     relevance_prob: float | None = None
@@ -33,6 +37,9 @@ class Article:
     # 절대 덮어쓰지 않으므로, AI 요약이 기존 분류 결과를 바꾸지 않는다.
     summary_lines: list[str] = field(default_factory=list)
     summary_source: str | None = None  # "gemini" | None(추출요약/네이버 스니펫)
+    # Gemini가 usable=false로 신고한 사유(title_body_mismatch / multi_topic /
+    # insufficient_content). 설정되면 표시 요약을 source_description으로 되돌린다.
+    summary_rejection_reason: str | None = None
     # --- dedup / issue_cluster가 채우는 필드 ---
     normalized_title: str | None = None
     cluster_key: str | None = None
@@ -52,10 +59,13 @@ def normalize(raw_items: list[dict]) -> list[Article]:
     for item in raw_items:
         if not item.get("title") or not item.get("link"):
             continue
+        description = (item.get("description") or "").strip()
         articles.append(
             Article(
                 title=(item.get("title") or "").strip(),
-                description=(item.get("description") or "").strip(),
+                description=description,
+                # 이후 단계가 description을 덮어써도 원본은 그대로 남는다.
+                source_description=description,
                 link=(item.get("link") or "").strip(),
                 originallink=item.get("originallink"),
                 naver_link=item.get("naver_link"),

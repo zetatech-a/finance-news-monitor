@@ -646,9 +646,19 @@ def apply_gemini_summaries(
         cache_dirty = True
         applied += 1
 
+    def _on_content_rejected(item: BatchItem, reason: str) -> None:
+        """usable=false — 표시 요약을 오염되지 않은 원본 스니펫으로 되돌린다.
+
+        캐시하지 않고, 재요청하지 않으며, description(분류 입력)도 건드리지 않는다.
+        """
+        article, _key, _url = by_id[item.id]
+        article.summary_rejection_reason = reason
+
     try:
         if items:
-            engine.summarize_many(items, on_result=_on_result)
+            engine.summarize_many(
+                items, on_result=_on_result, on_content_rejected=_on_content_rejected
+            )
     except GeminiProgrammingError:
         # 조용히 삼키지 않는다: 스택까지 남기되, 리포트 생성은 계속한다.
         logger.error("Gemini summarization aborted by a programming error", exc_info=True)

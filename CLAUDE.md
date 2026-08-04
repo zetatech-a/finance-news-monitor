@@ -135,7 +135,7 @@ read anywhere in this codebase.
 | `GEMINI_MODEL` | No | Default `gemini-3.5-flash-lite` (`gemini_summary.DEFAULT_MODEL`) |
 | `GEMINI_ENABLED` | No | `0` disables the feature even when a key is present |
 | `GEMINI_MAX_SUMMARIES` | No | Articles summarized per run (default 300, `0` = off) |
-| `GEMINI_BATCH_MAX_ARTICLES` | No | Articles per generateContent request (default 50) |
+| `GEMINI_BATCH_MAX_ARTICLES` | No | Articles per generateContent request (default 25, verified against the live API) |
 | `GEMINI_BATCH_HARD_MAX_ARTICLES` | No | Hard cap on batch size (default 100); larger settings are clamped |
 | `GEMINI_BATCH_MAX_INPUT_CHARS` | No | Input-char budget per request (default 150000) |
 | `GEMINI_ARTICLE_MAX_CHARS` | No | Per-article body cap (default 3000) |
@@ -252,9 +252,10 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
 - 배치는 `GEMINI_BATCH_MAX_ARTICLES`(기사 수)와 `GEMINI_BATCH_MAX_INPUT_CHARS`(입력 문자
   예산) 중 **먼저 걸리는 쪽**에서 닫힌다. `plan_batches()`가 이 두 제한을 함께 적용한다.
 - `GEMINI_BATCH_MAX_ARTICLES`가 `GEMINI_BATCH_HARD_MAX_ARTICLES`를 넘으면 hard cap으로 낮춘다.
-- 요청 수(평균 본문 ~1,200자): 50건→1회, 100건→2회, 250건→5회, 300건→6회.
-  **최악(전 기사가 `GEMINI_ARTICLE_MAX_CHARS`=3,000자)**: 문자 예산이 먼저 걸려 배치가
-  47건에서 닫히므로 250건→6회, 300건→7회.
+- 기본 배치는 **25건**이다. 실 API에서 50건 요청은 `400 INVALID_ARGUMENT`를 받았고
+  분할된 25건 2개는 200이었다. 50 이상은 실험적 설정이며, **실패가 알려진 요청을 먼저
+  보내고 400 후 분할하는 경로를 기본 동작으로 두지 마라.**
+- 요청 수: 25건→1회, 50건→2회, 100건→4회, 250건→10회, 300건→12회.
 - 입력량 실측(제목 40자 기준): 250건×3,000자 = 본문 **750,000자**, 실제 프롬프트 합계
   약 775,000자, 요청 1건 최대 약 146,000자. 300건이면 각각 900,000 / 930,000자.
   평균 본문(1,200자) 250건은 프롬프트 합계 약 325,000자다.
@@ -271,7 +272,14 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
 - 응답 항목은 `{id, usable, reason, lines}`다. `reason`은 `ok` / `title_body_mismatch` /
   `multi_topic` / `insufficient_content`.
 - `usable=false`는 **정상 응답**이다. 해당 기사는 AI 요약으로 쓰지 않고, **캐시하지 않고**,
-  **재요청하지 않으며**, 추출요약으로 표시한다. `items_rejected`나 `api_errors`로 세지 마라.
+  **재요청하지 않는다**. `items_rejected`나 `api_errors`로 세지 마라.
+- 내용 거부 기사의 표시 요약은 **`Article.source_description`(네이버 원본 스니펫)**으로
+  되돌린다 — 현재 `description`은 오염된 크롤링 본문에서 만든 추출요약일 수 있다.
+  원본이 없거나 24자 미만이면 `description`을 쓴다. 일반 API 장애는 내용 거부가 아니므로
+  기존 `description`을 그대로 둔다. `summarize_many(on_content_rejected=...)` 콜백으로
+  사유가 전달되고 `run_daily`가 `Article.summary_rejection_reason`에 기록한다.
+- `source_description`은 `normalize()`에서 채워져 추출요약이 `description`을 덮어써도
+  보존된다. 분류·태깅·클러스터링 입력은 여전히 `description`이다.
 - `usable=true`인데 `reason != "ok"`이거나 lines가 3줄 계약을 어기면 **구조 위반**이다
   (재요청 대상). 이 둘을 섞지 마라.
 - 배치 전체가 usable=false여도 API는 정상이므로 circuit breaker를 열지 않는다
@@ -287,7 +295,7 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   마크다운·번호 접두사 / 파싱 불가.
 - **이미 성공한 기사는 절대 재전송하지 않는다.**
 - 재요청 크기: 일부만 실패하면 그 부분집합을 한 번에(이미 더 작은 배치다), 전량 실패면
-  사다리(50 → 25 → 10 → 1)로 좁힌다. 1까지 가서도 실패하면 기사별 extractive fallback.
+  사다리(`SPLIT_LADDER` = 25 → 10 → 1)로 좁힌다. 1까지 가서도 실패하면 기사별 extractive fallback.
 - 429/5xx/timeout은 **분할하지 않고** 같은 배치로 제한 재시도한다(크기 문제가 아니다).
   400만 크기 문제일 수 있어 재시도 없이 곧장 분할한다.
 
@@ -318,6 +326,10 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   리포트 생성은 절대 중단되지 않는다.
 - 로그에 API 키·기사 전문·전체 프롬프트·전체 응답·전체 URL을 남기지 않는다
   (host는 `safe_host()`로만).
+- 400 오류는 `describe_client_error()`로 **기계 판독 가능한 토큰만** 남긴다
+  (`status` / `reason` / `schema_rejected` / `invalid_argument`). 안전 토큰 패턴
+  (`^[A-Z][A-Z0-9_]*$`)에 맞지 않으면 `unknown`으로 떨어뜨린다 — 서버 응답 원문이나
+  전체 오류 메시지는 절대 출력하지 않는다.
 
 **캐시**
 - `reports/_cache/gemini_summary_cache.json` **별도 파일**이다. 기존 `summary_cache.json`

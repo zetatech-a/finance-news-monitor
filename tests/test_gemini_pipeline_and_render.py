@@ -21,6 +21,7 @@ from src.pipeline.gemini_summary import GeminiBatchSummarizer, load_gemini_confi
 from src.pipeline.normalize import Article
 from src.pipeline.report import (
     ai_summary_lines,
+    display_summary_text,
     render_html,
     render_markdown,
     top_report_items,
@@ -367,7 +368,7 @@ def _bulk(count: int, tmp_path):
     return items, body_cache
 
 
-@pytest.mark.parametrize("count,expected_calls", [(40, 1), (50, 1), (100, 2), (250, 5)])
+@pytest.mark.parametrize("count,expected_calls", [(25, 1), (40, 2), (50, 2), (100, 4), (250, 10)])
 def test_display_articles_are_summarized_in_micro_batches(tmp_path, count, expected_calls):
     items, body_cache = _bulk(count, tmp_path)
     calls: list[str] = []
@@ -453,9 +454,9 @@ def test_request_budget_exhaustion_leaves_the_rest_on_extractive(tmp_path, monke
     applied = _apply(items, tmp_path, _summarizer(calls=calls), body_cache)
 
     assert len(calls) == 2
-    assert applied == 100
+    assert applied == 50  # 배치 25 × 2회
     remaining = [it for it in items if not it.article.summary_lines]
-    assert len(remaining) == 150
+    assert len(remaining) == 200
     assert all((it.article.description or "").strip() for it in remaining)
 
 
@@ -465,7 +466,7 @@ def test_no_single_article_request_in_the_normal_path(tmp_path):
     _apply(items, tmp_path, _summarizer(calls=calls), body_cache)
 
     sizes = [len(re.findall(r'<article id="', c)) for c in calls]
-    assert sizes == [50, 50, 20]
+    assert sizes == [25, 25, 25, 25, 20]
     assert 1 not in sizes
 
 
@@ -825,3 +826,143 @@ def test_run_summary_log_reports_content_rejection_counters(tmp_path, caplog):
     assert "대부업 감독 규정 개정" not in line
     assert "example.com" not in line
     assert "금융위원회는" not in line
+
+
+# --- 내용 거부 시 원본 스니펫 fallback ----------------------------------------
+#
+# usable=false 기사의 현재 description은 "오염된 크롤링 본문"에서 만든 추출요약일 수
+# 있다. 그런 기사에는 네이버 API 원본 스니펫을 대신 보여준다.
+
+SOURCE_SNIPPET = "금융위원회가 대부업 최고금리 산정 방식을 개편한다고 밝혔다."
+POLLUTED_EXTRACTIVE = "화물차 단속 독자 제보 동성결혼 인기기사 목록이 섞인 추출요약."
+
+
+def _polluted(idx: int) -> TaggedArticle:
+    """추출요약이 오염된 상태의 기사 — 원본 스니펫은 따로 보존돼 있다."""
+    item = _item(idx, description=POLLUTED_EXTRACTIVE)
+    item.article.source_description = SOURCE_SNIPPET
+    return item
+
+
+@pytest.mark.parametrize(
+    "reason", ["title_body_mismatch", "multi_topic", "insufficient_content"]
+)
+def test_content_rejection_shows_the_original_naver_snippet(tmp_path, reason):
+    items = [_polluted(0)]
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(_gate({0: reason})), body_cache)
+
+    article = items[0].article
+    assert article.summary_rejection_reason == reason
+    assert article.summary_lines == []
+    # 분류 입력인 description은 그대로 둔다.
+    assert article.description == POLLUTED_EXTRACTIVE
+    # 표시만 원본 스니펫으로 되돌린다.
+    assert display_summary_text(article) == SOURCE_SNIPPET
+
+    cards = [c for c in _cards(_render(items)) if "대부업 감독 규정 개정 0" in c]
+    assert cards
+    for card in cards:
+        assert SOURCE_SNIPPET in card
+        assert POLLUTED_EXTRACTIVE not in card
+        assert "AI 3줄" not in card
+        assert "summary ai" not in card
+
+
+def test_content_rejection_without_source_description_keeps_description(tmp_path):
+    items = [_item(0, description="추출요약만 남아 있는 충분히 긴 문장입니다.")]
+    items[0].article.source_description = ""
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(_gate({0: "multi_topic"})), body_cache)
+
+    assert display_summary_text(items[0].article) == "추출요약만 남아 있는 충분히 긴 문장입니다."
+
+
+def test_content_rejection_with_too_short_source_description_keeps_description(tmp_path):
+    items = [_item(0, description="추출요약만 남아 있는 충분히 긴 문장입니다.")]
+    items[0].article.source_description = "짧음"  # MIN_SOURCE_DESCRIPTION_CHARS 미만
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(_gate({0: "title_body_mismatch"})), body_cache)
+
+    assert display_summary_text(items[0].article) == "추출요약만 남아 있는 충분히 긴 문장입니다."
+
+
+@pytest.mark.parametrize("code", [429, 500])
+def test_general_api_failure_keeps_the_existing_description(tmp_path, code):
+    """일반 API 장애는 내용 거부가 아니다 — 기존 description을 그대로 쓴다."""
+
+    class Boom(Exception):
+        pass
+
+    err = Boom()
+    err.code = code
+    items = [_polluted(0)]
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(err), body_cache)
+
+    article = items[0].article
+    assert article.summary_rejection_reason is None
+    assert display_summary_text(article) == POLLUTED_EXTRACTIVE
+
+
+def test_source_description_survives_the_extractive_summary_stage(monkeypatch):
+    """추출요약이 description을 덮어써도 원본 스니펫은 그대로 남는다."""
+    from src.pipeline.normalize import normalize
+
+    articles = normalize(
+        [
+            {
+                "title": "제목",
+                "description": SOURCE_SNIPPET,
+                "link": "https://example.com/a",
+                "originallink": None,
+                "naver_link": None,
+                "pubDate": datetime(2026, 8, 1, tzinfo=KST),
+                "query": "q",
+            }
+        ]
+    )
+    assert articles[0].description == SOURCE_SNIPPET
+    assert articles[0].source_description == SOURCE_SNIPPET
+
+    tagged = [
+        TaggedArticle(article=articles[0], sectors=["대부"], topics=[], matched_keywords=[])
+    ]
+    monkeypatch.setattr(run_daily, "fetch_html", lambda url, timeout=12: "<html/>")
+    monkeypatch.setattr(run_daily, "extract_main_text", lambda url, html: "본문")
+    monkeypatch.setattr(
+        run_daily,
+        "summarize_with_fallback",
+        lambda full, *, title, description, max_chars: POLLUTED_EXTRACTIVE,
+    )
+    run_daily.apply_extractive_summaries(tagged, {})
+
+    assert articles[0].description == POLLUTED_EXTRACTIVE  # 덮어써졌고
+    assert articles[0].source_description == SOURCE_SNIPPET  # 원본은 보존된다
+
+
+def test_content_rejection_does_not_change_classification_or_top10(tmp_path):
+    items = [_polluted(i) for i in range(6)]
+    body_cache = {it.article.link: BODY for it in items}
+
+    before_visible = [it.article.title for it in visible_report_items(items)]
+    before_top = [it.article.title for it in top_report_items(items, limit=10)]
+    before_sectors = [list(it.sectors) for it in items]
+    before_descriptions = [it.article.description for it in items]
+
+    _apply(items, tmp_path, _summarizer(_gate({0: "multi_topic", 3: "title_body_mismatch"})), body_cache)
+
+    assert [it.article.title for it in visible_report_items(items)] == before_visible
+    assert [it.article.title for it in top_report_items(items, limit=10)] == before_top
+    assert [list(it.sectors) for it in items] == before_sectors
+    assert [it.article.description for it in items] == before_descriptions
+
+
+def test_markdown_uses_the_source_snippet_for_rejected_articles(tmp_path):
+    items = [_polluted(0)]
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(_gate({0: "multi_topic"})), body_cache)
+
+    md = render_markdown(datetime(2026, 8, 1, tzinfo=KST), items, [])
+    assert SOURCE_SNIPPET.rstrip(".") in md
+    assert "화물차 단속" not in md
