@@ -5,6 +5,7 @@
 ## 주요 기능
 - Naver News Search API 기반 기사 수집
 - 업권별 분류 및 키워드 트렌드 집계
+- 기사 본문 추출식 요약 + **(선택) Gemini API 기반 한국어 3줄 요약**
 - `reports/YYYY-MM-DD.md` 및 `reports/YYYY-MM-DD.html` 리포트 생성
 - 최근 14일 리포트 링크를 모은 `reports/index.html` 생성
 
@@ -50,6 +51,129 @@ python -m src.run_daily --date 2024-01-01 --window_hours 24 --end_hhmm 0800 --ov
 - `--candidate_keep_prob` (기본: `0.65`, 후보 모델 hybrid keep 임계값)
 - `--candidate_drop_prob` (기본: `0.35`, 후보 모델 hybrid drop 임계값)
 
+## Gemini 3줄 요약 (선택 기능)
+
+기사 카드의 요약을 **AI가 만든 정확히 3줄의 한국어 문장**으로 보여줍니다.
+① 무슨 일이 있었는지 ② 핵심 주체·날짜·금액·비율 ③ 기사에 명시된 영향·후속 조치.
+자세한 내용은 기존과 동일하게 기사 제목이나 `네이버`/`원문` 버튼으로 확인합니다.
+
+**목표는 일일 리포트에 표시되는 기사 전체를 요약하는 것입니다.** 실제 표시 기사 수는
+적은 날 40~50건, 많은 날 200~250건이며 안전 상한은 300건입니다.
+
+**완전히 선택 기능입니다.** `GEMINI_API_KEY`가 없거나 API 호출이 실패해도
+리포트 생성과 이메일 발송은 그대로 성공합니다.
+
+### 처리 방식: generateContent 마이크로배치
+
+기사 1건당 1회 호출하지 않습니다. **일반(동기) `generateContent` 요청 하나에 여러 기사를
+담고**, 기사별 불투명 ID(`article-0001`)와 3줄 요약을 구조화 응답으로 돌려받습니다.
+
+> Google의 **비동기 Batch API는 사용하지 않습니다.** 일반 동기 요청만 씁니다.
+
+배치는 **기사 수**와 **입력 문자 예산** 중 먼저 걸리는 쪽에서 닫힙니다.
+
+| 표시 기사 | 정상 시 요청 수 |
+|---|---|
+| 40~50건 | 1회 |
+| 100건 | 2회 |
+| 200~250건 | 4~5회 |
+| 300건 | 6회 (본문이 모두 최대 길이면 최대 7회) |
+
+캐시에 있는 기사는 배치를 만들기 **전에** 제외되므로, 표시 50건 중 43건이 캐시에 있으면
+Gemini에는 7건만 전송됩니다.
+
+### API 키 설정
+
+[Google AI Studio](https://aistudio.google.com/apikey)에서 발급한 키를 환경변수로 전달합니다.
+
+```bash
+# 로컬 실행 — .env에 넣으면 run_daily 실행 시 자동 로드됩니다
+echo 'GEMINI_API_KEY=your-key-here' >> .env
+python -m src.run_daily
+
+# 또는 셸에서 직접
+GEMINI_API_KEY=your-key-here python -m src.run_daily --date 2026-08-01 --end_hhmm 0855
+```
+
+> ⚠️ **API 키를 저장소에 커밋하지 마세요.** `.env`는 `.gitignore` 대상이며,
+> `.env.example`에는 실제 값이 아니라 자리표시자만 둡니다.
+> CI에서는 GitHub Secret(`GEMINI_API_KEY`)으로만 주입합니다.
+
+### 모델
+
+기본 모델은 **`gemini-3.5-flash-lite`** 입니다(코드 상수 `DEFAULT_MODEL`, 유일한 정의 지점).
+대량의 단순 문서를 JSON으로 뽑아내는 고처리량 작업에 맞춰 선택했고, 지원 모델에서는
+thinking level을 최소(`minimal`)로 명시합니다. `-latest` alias는 대상 모델이 예고 없이
+바뀔 수 있어 기본값으로 쓰지 않습니다.
+
+```bash
+GEMINI_MODEL=gemini-3.6-flash python -m src.run_daily   # 더 강한 모델로 교체
+```
+
+모델을 바꾸면 캐시 키가 달라져 이전 모델의 요약을 재사용하지 않습니다.
+
+### 처리량 제어
+
+무료 티어의 RPM/TPM/RPD 수치는 프로젝트·리전마다 달라 코드에 고정하지 않았습니다.
+**실제 한도는 [AI Studio](https://aistudio.google.com/)에서 직접 확인**하고, 아래 환경변수로
+배치 크기와 처리량을 맞춰 조정하세요.
+
+| 변수 | 기본값 | 설명 |
+|------|--------|------|
+| `GEMINI_API_KEY` | (없음) | 미설정 시 Gemini 전체 비활성화 |
+| `GEMINI_MODEL` | `gemini-3.5-flash-lite` | 사용할 모델 ID |
+| `GEMINI_ENABLED` | `1` | `0`이면 키가 있어도 호출하지 않는 kill switch |
+| `GEMINI_MAX_SUMMARIES` | `300` | 한 실행에서 요약할 최대 기사 수. `0`이면 비활성 |
+| `GEMINI_BATCH_MAX_ARTICLES` | `50` | 요청 1건에 담는 기사 수 |
+| `GEMINI_BATCH_HARD_MAX_ARTICLES` | `100` | 배치 크기 hard cap. 이를 넘는 설정은 이 값으로 낮춤 |
+| `GEMINI_BATCH_MAX_INPUT_CHARS` | `150000` | 요청 1건의 입력 문자 예산(기사 수보다 먼저 걸릴 수 있음) |
+| `GEMINI_ARTICLE_MAX_CHARS` | `3000` | 기사 1건의 본문 최대 길이(문장 경계 보존해 절단) |
+| `GEMINI_MAX_REQUESTS_PER_RUN` | `12` | 한 실행의 총 generate 요청 상한(재시도·분할 포함) |
+| `GEMINI_MAX_FETCH_ATTEMPTS` | `300` | Gemini 전용 본문 크롤링 상한(추출요약 예산과 별개) |
+| `GEMINI_INPUT_MIN_CHARS` | `200` | 이보다 짧은 입력은 호출하지 않음 |
+| `GEMINI_MAX_LINE_CHARS` | `90` | 한 줄 최대 길이(초과 시 그 항목만 거부) |
+| `GEMINI_REQUEST_TIMEOUT_SECONDS` | `90` | 요청 타임아웃(배치 응답은 단건보다 큼) |
+| `GEMINI_RETRY_ATTEMPTS` | `2` | 일시적 오류의 총 시도 횟수 |
+| `GEMINI_MIN_INTERVAL_SECONDS` | `2` | 요청 시작 사이의 최소 간격 |
+| `GEMINI_CIRCUIT_BREAKER_FAILURES` | `3` | 연속 실패가 이 횟수에 도달하면 남은 기사는 호출하지 않음 |
+
+잘못된 값(음수, 숫자가 아님, 과도하게 큰 값)은 경고 후 기본값을 사용합니다.
+
+### 부분 성공 처리
+
+배치 응답을 all-or-nothing으로 다루지 않고 **항목별로 검증**합니다.
+
+- 요청한 ID와 일치하고 3줄 계약을 만족하는 항목 → **즉시 적용·캐시**
+- 누락/알 수 없는 ID/중복 ID/2줄·4줄/빈 문자열/길이 초과/마크다운·번호 → 그 항목만 실패
+- 실패한 항목만 더 작은 배치로 재요청합니다. **성공한 항목은 절대 다시 보내지 않습니다.**
+- 일부만 실패하면 그 부분집합을 한 번에 재요청하고, 배치 전체가 깨지면 50 → 25 → 10 → 1로
+  좁혀 들어갑니다. 개별 호출은 정상 경로가 아니라 **최종 복구 수단**입니다.
+- 총 요청 수가 `GEMINI_MAX_REQUESTS_PER_RUN`에 도달하면 남은 기사는 추출식 요약을 씁니다.
+
+### 실패 시 동작 (fallback)
+
+표시 요약은 다음 순서로 결정됩니다.
+
+1. 유효한 Gemini 캐시 (`reports/_cache/gemini_summary_cache.json`)
+2. Gemini API가 만든, 검증을 통과한 3줄
+3. 기존 추출식 요약 (`extractive_summary.py`)
+4. 네이버 스니펫(원본 `description`)
+
+캐시는 **기사별**로 저장되며(배치 전체를 한 entry로 저장하지 않음), 키에 canonical URL·모델·
+prompt version·schema version이 들어가 모델이나 프롬프트가 바뀌면 자동으로 무효화됩니다.
+기사 전문은 캐시에 저장하지 않습니다.
+
+키가 없거나, 인증·쿼터·타임아웃 오류가 나거나, 응답이 계약을 어기면 **해당 기사만** 기존
+추출식 요약으로 표시되고 파이프라인은 계속 진행됩니다. 인증 실패(401/403)·잘못된 모델
+ID(404)·연속 실패가 임계값에 도달하면 그 실행의 남은 기사에 대해서는 Gemini를 호출하지
+않습니다.
+
+AI 요약은 **표시 전용**입니다. 관련성 판정·업권/주제 태깅·이슈 클러스터링·대표 기사
+선정·Top 10 순위는 Gemini 사용 여부와 무관하게 동일한 결과를 냅니다.
+
+> 무료 티어는 입력이 Google의 제품 개선에 사용될 수 있습니다. 이 파이프라인이 보내는
+> 것은 공개된 뉴스 기사 본문과 제목뿐이며, URL은 전송하지 않습니다.
+
 ## 테스트
 ```bash
 pip install pytest   # requirements.txt에 포함되지 않음
@@ -64,6 +188,7 @@ python -m pytest tests/ -q
 - `reports/index.html`
 - `reports/_candidates/`, `reports/_metrics/` (필터 관측성/품질 지표)
 - `reports/_sent/` (이메일 발송 marker)
+- `reports/_cache/summary_cache.json` (추출요약 캐시), `reports/_cache/gemini_summary_cache.json` (Gemini 3줄 캐시)
 
 ## 관련성 라벨링/후보 모델 준비
 Phase 4A의 수동 라벨링 샘플/검증 스크립트는 선택적인 진단·감사용 도구입니다. 기본 워크플로는 사람이 라벨을 편집하지 않는 자동 pseudo-label 기반입니다.

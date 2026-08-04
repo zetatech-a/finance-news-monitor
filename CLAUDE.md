@@ -4,7 +4,8 @@ This file provides guidance for AI assistants working on this codebase.
 
 ## Project Overview
 
-**Finance News Monitor** is a Python-based automated daily aggregator of Korean domestic financial news (loan-business/대부업권 focus). It fetches articles from the Naver News Search API, runs them through a multi-stage filtering pipeline (rule pre-filter → relevance scoring/ML), tags them by financial sector and topic, clusters same-issue duplicates, generates extractive summaries, and produces Markdown + interactive HTML reports plus quality-metrics JSON. A GitHub Actions workflow runs this pipeline **every day** (multiple cron triggers around 08:41–09:17 KST, deduplicated by a sent-marker), commits the output reports back to `main`, and optionally emails the HTML report.
+**Finance News Monitor** is a Python-based automated daily aggregator of Korean domestic financial news (loan-business/대부업권 focus). It fetches articles from the Naver News Search API, runs them through a multi-stage filtering pipeline (rule pre-filter → relevance scoring/ML), tags them by financial sector and topic, clusters same-issue duplicates, generates extractive summaries (plus optional Gemini
+3-line display summaries), and produces Markdown + interactive HTML reports plus quality-metrics JSON. A GitHub Actions workflow runs this pipeline **every day** (multiple cron triggers around 08:41–09:17 KST, deduplicated by a sent-marker), commits the output reports back to `main`, and optionally emails the HTML report.
 
 **Primary language**: Python 3.11+
 **Domain**: Korean financial media monitoring
@@ -28,8 +29,11 @@ finance-news-monitor/
 │       ├── content_type.py     # Article content-type classification (regulatory/risk/pr/…)
 │       ├── dedup.py            # Exact-dup drop + normalized-title clustering (representative pick)
 │       ├── extractive_summary.py  # Sentence scoring → 2-sentence, ≤220-char summaries
+│       ├── fields.py           # field_value()/unwrap_article() — dict/Article 공용 접근자
 │       ├── filtering.py        # Stage 1: rule-based pre-filter (sports/entertainment/politics/lease)
 │       ├── fulltext_fetch.py   # HTML fetch (charset_normalizer) + main-text extraction (BS4+lxml)
+│       ├── gemini_cache.py     # Gemini 3-line cache (versioned key, atomic write, separate file)
+│       ├── gemini_summary.py   # Gemini API 3-line Korean summary (optional, display-only)
 │       ├── issue_cluster.py    # Same-issue clustering across outlets (fingerprints + similarity)
 │       ├── normalize.py        # Article dataclass + raw dict → Article
 │       ├── quality.py          # Per-run quality metrics JSON (counts/taxonomy/clusters/top10)
@@ -49,15 +53,16 @@ finance-news-monitor/
 │   ├── make_relevance_labeling_sample.py   # Optional manual labeling sample (Phase 4A)
 │   ├── validate_relevance_labels.py        # Optional label validation (Phase 4A)
 │   ├── phase5_delivery.py                  # CI helpers: sent-marker precheck/wait/mark-sent
-│   └── prune_reports.py                    # CI: reports retention (reports 180d, artifacts 90d)
-├── tests/                      # pytest suite (~30 files, run with `python -m pytest tests/`)
+│   └── prune_reports.py                    # CI: reports retention (daily.yml passes 60d; artifacts 90d)
+├── tests/                      # pytest suite (run with `python -m pytest tests/`)
 ├── data/
 │   └── relevance_labels.csv    # Manual labeled data for the operating model (optional)
 ├── models/                     # NOT committed by default; see "ML Models" below
 ├── reports/                    # Generated output (committed by CI)
 │   ├── YYYY-MM-DD.md / .html   # Daily reports
 │   ├── index.html              # 14-day report index
-│   ├── _cache/summary_cache.json
+│   ├── _cache/summary_cache.json          # extractive summaries
+│   ├── _cache/gemini_summary_cache.json   # Gemini 3-line summaries
 │   ├── _candidates/YYYY-MM-DD_candidates.csv   # All stage-2 inputs with scores/decisions
 │   ├── _metrics/               # relevance_filter / quality / candidate-model metrics JSON
 │   └── _sent/YYYY-MM-DD_email_sent.json        # Email dedup markers
@@ -126,6 +131,22 @@ read anywhere in this codebase.
 | `MAIL_RETRY_ATTEMPTS` | No | Email retry count (default 3, max 5) |
 | `MAIL_RETRY_BACKOFF_SECONDS` | No | Email retry backoff base (default 10, max 120) |
 | `DEEPSEARCH_API_KEY` | No | Reserved; DeepSearch integration is NOT implemented |
+| `GEMINI_API_KEY` | No | Gemini 3-line summary. Unset ⇒ feature off, extractive summary used |
+| `GEMINI_MODEL` | No | Default `gemini-3.5-flash-lite` (`gemini_summary.DEFAULT_MODEL`) |
+| `GEMINI_ENABLED` | No | `0` disables the feature even when a key is present |
+| `GEMINI_MAX_SUMMARIES` | No | Articles summarized per run (default 300, `0` = off) |
+| `GEMINI_BATCH_MAX_ARTICLES` | No | Articles per generateContent request (default 50) |
+| `GEMINI_BATCH_HARD_MAX_ARTICLES` | No | Hard cap on batch size (default 100); larger settings are clamped |
+| `GEMINI_BATCH_MAX_INPUT_CHARS` | No | Input-char budget per request (default 150000) |
+| `GEMINI_ARTICLE_MAX_CHARS` | No | Per-article body cap (default 3000) |
+| `GEMINI_MAX_REQUESTS_PER_RUN` | No | Total generate requests per run incl. retries/splits (default 12) |
+| `GEMINI_MAX_FETCH_ATTEMPTS` | No | Gemini-only body fetch cap (default 300; separate from the extractive budget) |
+| `GEMINI_INPUT_MIN_CHARS` | No | Below this the article is not sent (default 200) |
+| `GEMINI_MAX_LINE_CHARS` | No | Per-line validation limit (default 90) |
+| `GEMINI_REQUEST_TIMEOUT_SECONDS` | No | Request timeout (default 90, max 600) |
+| `GEMINI_RETRY_ATTEMPTS` | No | Total attempts for retryable errors (default 2, max 5) |
+| `GEMINI_MIN_INTERVAL_SECONDS` | No | Minimum gap between request **starts** (default 2) |
+| `GEMINI_CIRCUIT_BREAKER_FAILURES` | No | Consecutive failures before the breaker opens (default 3) |
 
 `resend_test.yml` uses separate `RESEND_API_KEY` / `RESEND_FROM` / `RESEND_TO` secrets and does not touch the SMTP path.
 
@@ -199,9 +220,100 @@ The full pipeline runs in `src/run_daily.py::main()` in this order:
                           MAX_SUMMARY_FETCH_ATTEMPTS=160 network attempts (failures count).
                           Cache: reports/_cache/summary_cache.json (max 5000 entries)
 11. tag_articles() again  re-tag representatives so sector/topic reflect the final summary text
-12. build_quality_metrics()  [pipeline/quality.py] → reports/_metrics/*_quality_metrics.json
-13. keyword_trends() + render_markdown() + render_html() + write_report() + write_index()
+12. visible_report_items() + top_report_items()  [pipeline/report.py] 노출 대상 + Top 10 확정
+13. apply_gemini_summaries()  [run_daily.py] **표시 전용** Gemini 3줄 요약 (선택).
+                          Top 10 우선, 최대 GEMINI_MAX_SUMMARIES(기본 300)건.
+                          캐시 hit 기사는 배치 구성 **전에** 제외되어 전송되지 않는다.
+                          cache miss만 마이크로배치(기본 50건/요청)로 묶어 보낸다.
+                          article.summary_lines만 채우고 description은 건드리지 않는다.
+14. build_quality_metrics()  [pipeline/quality.py] → reports/_metrics/*_quality_metrics.json
+15. keyword_trends() + render_markdown() + render_html() + write_report() + write_index()
 ```
+
+### 요약이 분류에 미치는 영향 (중요)
+
+10단계의 **추출요약은 `Article.description`을 덮어쓰고**, 그 값이 11단계 재태깅과
+12단계 Top 10 랭킹(`report.py::_top_rank_score`, `content_type.py`, `source_quality.py`)의
+입력이 된다. 즉 추출요약 결과는 분류·순위를 바꾼다.
+
+반면 **Gemini 3줄은 표시 전용**이다. 13단계는 노출 대상과 Top 10이 확정된 뒤에 실행되고
+`description`이 아니라 `Article.summary_lines`만 채우므로, Gemini 사용 여부와 무관하게
+관련성 판정·태깅·클러스터링·대표 기사 선정·Top 10 결과가 동일하다. 이 순서를 바꾸거나
+Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류가 흔들린다.
+
+### Gemini 3줄 요약 (`pipeline/gemini_summary.py`)
+
+**처리량 구조 — 적응형 마이크로배치**
+- 일일 표시 기사 전체(적은 날 40~50건, 많은 날 200~250건, 상한 300건)를 요약하는 것이 목표다.
+- **기사 1건당 1회 호출하는 정상 경로는 존재하지 않는다.** 일반(동기) `generateContent`
+  요청 하나에 여러 기사를 담고, 기사별 불투명 ID(`article-0001`)와 3줄을 구조화 응답으로 받는다.
+  **Google의 비동기 Batch API는 쓰지 않는다.**
+- 배치는 `GEMINI_BATCH_MAX_ARTICLES`(기사 수)와 `GEMINI_BATCH_MAX_INPUT_CHARS`(입력 문자
+  예산) 중 **먼저 걸리는 쪽**에서 닫힌다. `plan_batches()`가 이 두 제한을 함께 적용한다.
+- `GEMINI_BATCH_MAX_ARTICLES`가 `GEMINI_BATCH_HARD_MAX_ARTICLES`를 넘으면 hard cap으로 낮춘다.
+- 정상 시 요청 수: 50건→1회, 100건→2회, 250건→5회, 300건→6회
+  (본문이 전부 최대 길이면 문자 예산이 먼저 걸려 각각 +1회 수준).
+- 총 요청 수는 `GEMINI_MAX_REQUESTS_PER_RUN`(기본 12)을 절대 넘지 않는다. 초과하면 남은
+  기사는 추출요약을 쓴다.
+- 크기 1 요청은 분할 사다리의 **최종 복구 수단**으로만 나타난다. 정상 경로에 두지 마라.
+
+**부분 성공 — all-or-nothing 금지**
+- `validate_batch_response()`가 응답을 **항목별로** 검증한다. 요청 ID와 일치하고 3줄 계약을
+  통과한 항목은 즉시 적용·캐시하고, 나머지만 실패 목록에 넣는다.
+- 실패 사유: 누락 ID / 알 수 없는 ID / 중복 ID / 2줄·4줄 / 빈 문자열 / 길이 초과 /
+  마크다운·번호 접두사 / 파싱 불가.
+- **이미 성공한 기사는 절대 재전송하지 않는다.**
+- 재요청 크기: 일부만 실패하면 그 부분집합을 한 번에(이미 더 작은 배치다), 전량 실패면
+  사다리(50 → 25 → 10 → 1)로 좁힌다. 1까지 가서도 실패하면 기사별 extractive fallback.
+- 429/5xx/timeout은 **분할하지 않고** 같은 배치로 제한 재시도한다(크기 문제가 아니다).
+  400만 크기 문제일 수 있어 재시도 없이 곧장 분할한다.
+
+**모델 / thinking**
+- 모델 ID의 유일한 정의 지점은 `DEFAULT_MODEL` 상수다(기본 `gemini-3.5-flash-lite`).
+  `gemini-2.5-flash`는 쓰지 않고, `-latest` alias도 기본값으로 쓰지 않는다.
+  `GEMINI_MODEL`로 `gemini-3.6-flash` 등으로 교체할 수 있다.
+- 공식 `google-genai` SDK만 사용한다 (구 `google-generativeai` 금지). import는 실제 호출
+  직전까지 지연되므로 패키지 미설치 상태에서도 파이프라인과 테스트가 동작한다.
+- Gemini 3 계열에서만 `types.ThinkingConfig(thinking_level="minimal")`을 붙인다
+  (`supports_thinking_level()`). 그 이전 모델에 주면 오류가 나므로 안전하게 생략한다.
+- 그 밖의 생성 파라미터(temperature 등)는 추측해서 넣지 않는다.
+
+**보안 / 검증**
+- 기사 본문은 신뢰할 수 없는 외부 입력이다 — system instruction으로 격리하고, 기사 경계를
+  넘어 사실이 섞이지 않도록 명시한다. **URL은 프롬프트에 넣지 않는다** (불투명 ID만 사용).
+- SDK의 structured output을 받은 뒤에도 `validate_lines()`로 재검증한다(문자열 3개, 타입,
+  빈 문자열, 줄바꿈, 마크다운/불릿/번호, 최대 길이, 추가 필드). 실패하면 추출요약으로 fallback.
+- 스키마의 `summaries.maxItems`는 해당 요청의 기사 수를 넘지 않게 배치마다 생성한다
+  (`response_json_schema(n)`).
+
+**오류 처리**
+- **fail-open이되 조용히 삼키지 않는다.** API 오류는 분류(`classify_error`)해서 경고 로그를
+  남기고, 401/403/404는 즉시 비활성화, 400은 재시도 없음, 429/5xx/timeout은 제한적 재시도,
+  연속 실패가 임계값에 도달하면 circuit breaker가 열린다.
+- 프로그래밍 오류(TypeError 등)는 `GeminiProgrammingError`로 **raise**되어 테스트에 드러나고,
+  `run_daily.apply_gemini_summaries`가 파이프라인 경계에서 스택과 함께 로깅한 뒤 흡수한다 —
+  리포트 생성은 절대 중단되지 않는다.
+- 로그에 API 키·기사 전문·전체 프롬프트·전체 응답·전체 URL을 남기지 않는다
+  (host는 `safe_host()`로만).
+
+**캐시**
+- `reports/_cache/gemini_summary_cache.json` **별도 파일**이다. 기존 `summary_cache.json`
+  (평면 `{url: str}`, 상한 5000으로 이미 포화)은 건드리지 않는다.
+- **기사별로 저장한다** — 배치 전체를 하나의 entry로 저장하지 않는다.
+- 키는 `sha256(canonical_url|model|prompt_version|schema_version)`이라 모델/프롬프트/
+  스키마가 바뀌면 자동 cache miss가 난다. 본문·프롬프트·응답 원문은 저장하지 않으며,
+  손상된 항목은 개별적으로 버리고 나머지는 계속 쓴다. 쓰기는 tmp + `os.replace`로 원자적이다.
+- `PROMPT_VERSION` / `SCHEMA_VERSION`은 프롬프트나 스키마를 고칠 때 반드시 올린다.
+
+**본문 수집**
+- 추출요약 단계가 `body_sink`에 담아둔 본문을 재사용한다 — 같은 URL을 다시 fetch하지 않는다.
+- 없는 기사만 `GEMINI_MAX_FETCH_ATTEMPTS`(기본 300, 추출요약 예산과 별개) 안에서 추가 fetch한다.
+- fetch가 실패하면 현재 `description`(추출요약)을 입력 후보로 쓰고, 그마저
+  `GEMINI_INPUT_MIN_CHARS` 미만이면 호출 없이 기존 fallback을 그대로 둔다.
+
+**무료 티어**
+- RPM/TPM/RPD 수치를 코드에 하드코딩하지 않는다. 실제 한도는 AI Studio에서 확인하고
+  배치 크기·요청 상한·호출 간격 환경변수로 맞춘다.
 
 ### Relevance Policies (`filter_relevance`)
 
@@ -344,8 +456,13 @@ Notes:
 
 ### Error Handling
 
-- **Network errors during summarization**: catch silently and skip (best-effort),
+- **Network errors during extractive summarization**: skip the article (best-effort),
   but respect the fetch-attempt cap (`MAX_SUMMARY_FETCH_ATTEMPTS`)
+- **Gemini summarization**: fail-open per article, but **never silently**. Classify the
+  error, log a sanitized warning, and let the circuit breaker stop the rest of the run when
+  appropriate. `except Exception: pass` around Gemini calls is prohibited — programming
+  errors must raise (`GeminiProgrammingError`) so tests catch them; only the pipeline
+  boundary in `run_daily.apply_gemini_summaries` absorbs them, with `exc_info=True`.
 - **Missing/broken ML model**: fall back (candidate_hybrid → rule paths, or rule_only); never raise
 - **Candidate model refresh failures**: best-effort; the daily report must still generate
 - **Email**: a single atomic SMTP send to all recipients (envelope BCC).
@@ -362,7 +479,7 @@ Notes:
 
 ## Test Suite
 
-Tests live in `tests/` (~30 files, pytest). Run with:
+Tests live in `tests/` (pytest). Run with:
 
 ```bash
 python -m pytest tests/ -q
@@ -389,7 +506,8 @@ Committed to the repository by CI. Do not manually edit files in `reports/` —
 they are regenerated by the pipeline.
 
 Retention (`scripts/prune_reports.py`, run by `daily.yml` before commit):
-daily reports are kept 180 days; `_candidates`/`_metrics`/`_sent` files 90 days
+daily reports are kept 60 days (`daily.yml` passes `--report-keep-days 60`, overriding
+the script default of 180); `_candidates`/`_metrics`/`_sent` files 90 days
 (safely above the candidate model's 21-day training lookback). `index.html` and
 `_cache/` are never pruned.
 

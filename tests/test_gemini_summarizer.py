@@ -1,0 +1,747 @@
+"""GeminiBatchSummarizer — 배치 구성/부분성공/분할/재시도/breaker. 실제 API 호출 없음."""
+from __future__ import annotations
+
+import json
+import logging
+import os
+
+import pytest
+
+from src.pipeline.gemini_summary import (
+    BatchItem,
+    GeminiBatchSummarizer,
+    GeminiProgrammingError,
+    build_batch_item,
+    chunk_items,
+    estimate_item_chars,
+    iter_batch_items,
+    load_gemini_config,
+    next_split_size,
+    plan_batches,
+    prompt_overhead_chars,
+    validate_batch_response,
+)
+
+API_KEY = "test-key-not-a-real-credential"
+BODY = "금융위원회는 대부업 감독 규정 개정안을 의결했다고 밝혔다. " * 20
+
+
+def _lines(n: int) -> list[str]:
+    return [
+        f"금융위원회가 {n}번 안건을 의결했다고 발표했다.",
+        f"안건은 2026년 9월 {n % 28 + 1}일 시행되며 대상은 {n}곳이다.",
+        f"금융위는 시행 후 {n % 12 + 1}개월간 이행 실태를 점검할 계획이다.",
+    ]
+
+
+def _ok_response(items, *, skip: set[str] | None = None, extra=None):
+    skip = skip or set()
+    summaries = [
+        {"id": item.id, "lines": _lines(i)}
+        for i, item in enumerate(items)
+        if item.id not in skip
+    ]
+    if extra:
+        summaries.extend(extra)
+    return json.dumps({"summaries": summaries}, ensure_ascii=False)
+
+
+class FakeAPIError(Exception):
+    """google.genai.errors.APIError처럼 .code(HTTP status)를 갖는 예외."""
+
+    def __init__(self, code: int, message: str = "fake", response=None, details=None):
+        super().__init__(message)
+        self.code = code
+        self.response = response
+        self.details = details
+
+
+class FakeTimeout(Exception):
+    pass
+
+
+FakeTimeout.__name__ = "ReadTimeout"
+
+
+@pytest.fixture(autouse=True)
+def _clean_gemini_env(monkeypatch):
+    for name in list(dict(os.environ)):
+        if name.startswith("GEMINI_"):
+            monkeypatch.delenv(name, raising=False)
+    monkeypatch.setenv("GEMINI_API_KEY", API_KEY)
+    monkeypatch.setenv("GEMINI_MIN_INTERVAL_SECONDS", "0")
+
+
+def _items(count: int, *, body_chars: int = 800, article_max_chars: int = 3000):
+    body = "가" * body_chars
+    return iter_batch_items(
+        ((f"기사 제목 {i}", body) for i in range(count)), article_max_chars=article_max_chars
+    )
+
+
+class Recorder:
+    """generate_fn mock — 호출 횟수와 배치 크기를 그대로 기록한다."""
+
+    def __init__(self, responder):
+        self.responder = responder
+        self.calls: list[dict] = []
+
+    def __call__(self, *, system_instruction, prompt, schema):
+        self.calls.append(
+            {
+                "prompt": prompt,
+                "schema": schema,
+                "size": schema["properties"]["summaries"]["maxItems"],
+                "ids": sorted(set(_ids_in_prompt(prompt))),
+            }
+        )
+        return self.responder(len(self.calls), prompt, schema)
+
+    @property
+    def count(self) -> int:
+        return len(self.calls)
+
+    @property
+    def sizes(self) -> list[int]:
+        return [c["size"] for c in self.calls]
+
+
+def _ids_in_prompt(prompt: str) -> list[str]:
+    import re
+
+    return re.findall(r'<article id="(article-\d+)">', prompt)
+
+
+def _make(responder, **env):
+    for key, value in env.items():
+        os.environ[key] = str(value)
+    recorder = Recorder(responder)
+    summarizer = GeminiBatchSummarizer(
+        load_gemini_config(),
+        generate_fn=recorder,
+        sleep_fn=lambda _s: None,
+        monotonic_fn=lambda: 0.0,
+    )
+    return summarizer, recorder
+
+
+def _all_ok(items):
+    """요청된 기사를 프롬프트에서 읽어 전부 정상 응답하는 responder."""
+
+    def responder(call_no, prompt, schema):
+        ids = _ids_in_prompt(prompt)
+        return json.dumps(
+            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    return responder
+
+
+# --- 배치 구성: 호출 횟수 --------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "count,expected_calls",
+    [(50, 1), (100, 2), (250, 5), (300, 6)],
+)
+def test_normal_batching_call_counts(count, expected_calls):
+    items = _items(count)
+    summarizer, recorder = _make(_all_ok(items))
+    results = summarizer.summarize_many(items)
+
+    assert recorder.count == expected_calls
+    assert len(results) == count
+    assert all(len(v) == 3 for v in results.values())
+
+
+def test_no_per_article_call_in_the_normal_path():
+    items = _items(50)
+    summarizer, recorder = _make(_all_ok(items))
+    summarizer.summarize_many(items)
+    # 정상 경로에서는 배치 크기가 1인 요청이 나오면 안 된다.
+    assert recorder.sizes == [50]
+    assert 1 not in recorder.sizes
+
+
+def test_char_budget_closes_the_batch_before_the_article_count():
+    # 기사 3000자 × 50건 = 15만자 초과 → 문자 예산이 먼저 배치를 닫는다.
+    items = _items(50, body_chars=3000)
+    summarizer, recorder = _make(_all_ok(items))
+    summarizer.summarize_many(items)
+
+    assert recorder.count == 2
+    assert recorder.sizes[0] < 50
+    assert sum(recorder.sizes) == 50
+
+
+def test_plan_batches_respects_both_limits():
+    items = _items(10, body_chars=1000)
+    by_count = plan_batches(items, max_articles=3, max_input_chars=10**9)
+    assert [len(b) for b in by_count] == [3, 3, 3, 1]
+
+    per_item = estimate_item_chars(items[0])
+    budget = prompt_overhead_chars() + per_item * 2
+    by_chars = plan_batches(items, max_articles=100, max_input_chars=budget)
+    assert [len(b) for b in by_chars] == [2, 2, 2, 2, 2]
+
+
+def test_oversized_single_article_is_still_included_alone():
+    items = _items(2, body_chars=3000)
+    batches = plan_batches(items, max_articles=50, max_input_chars=100)
+    assert [len(b) for b in batches] == [1, 1]
+
+
+def test_article_max_chars_truncates_each_article():
+    item = build_batch_item("article-0001", "제목", "가" * 9999, article_max_chars=3000)
+    assert len(item.body) <= 3000
+
+
+def test_batch_max_articles_clamped_to_hard_cap(monkeypatch, caplog):
+    monkeypatch.setenv("GEMINI_BATCH_MAX_ARTICLES", "400")
+    monkeypatch.setenv("GEMINI_BATCH_HARD_MAX_ARTICLES", "100")
+    with caplog.at_level(logging.WARNING):
+        config = load_gemini_config()
+    assert config.batch_max_articles == 100
+    assert "hard cap" in caplog.text
+
+
+# --- 부분 성공 --------------------------------------------------------------
+
+
+def test_partial_success_applies_47_and_reasks_only_the_missing_3():
+    items = _items(50)
+    missing = {items[7].id, items[20].id, items[41].id}
+
+    def responder(call_no, prompt, schema):
+        ids = _ids_in_prompt(prompt)
+        if call_no == 1:
+            keep = [i for i in ids if i not in missing]
+            return json.dumps(
+                {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(keep)]},
+                ensure_ascii=False,
+            )
+        return json.dumps(
+            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    summarizer, recorder = _make(responder)
+    applied: list[str] = []
+    results = summarizer.summarize_many(
+        items, on_result=lambda item, lines: applied.append(item.id)
+    )
+
+    # 1차에서 47건 즉시 확정, 2차 요청에는 실패한 3건만 들어간다.
+    assert len(applied) == 50
+    assert applied[:47] == [i.id for i in items if i.id not in missing]
+    assert recorder.count == 2
+    assert recorder.calls[1]["ids"] == sorted(missing)
+    assert len(results) == 50
+
+
+def test_successful_items_are_never_resent():
+    items = _items(50)
+    missing = {items[3].id}
+
+    def responder(call_no, prompt, schema):
+        ids = _ids_in_prompt(prompt)
+        if call_no == 1:
+            ids = [i for i in ids if i not in missing]
+        return json.dumps(
+            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    summarizer, recorder = _make(responder)
+    summarizer.summarize_many(items)
+
+    sent_twice = set(recorder.calls[0]["ids"]) & set(recorder.calls[1]["ids"])
+    assert sent_twice == missing
+
+
+def test_out_of_order_response_maps_by_id():
+    items = _items(5)
+    ordered_ids = [i.id for i in items]
+
+    def responder(call_no, prompt, schema):
+        ids = list(reversed(_ids_in_prompt(prompt)))
+        return json.dumps(
+            {"summaries": [{"id": i, "lines": _lines(int(i[-4:]))} for i in ids]},
+            ensure_ascii=False,
+        )
+
+    summarizer, _ = _make(responder)
+    results = summarizer.summarize_many(items)
+
+    assert set(results) == set(ordered_ids)
+    for item in items:
+        assert results[item.id] == _lines(int(item.id[-4:]))
+
+
+# --- 항목 검증 --------------------------------------------------------------
+
+
+def test_unknown_id_is_rejected():
+    items = _items(3)
+    outcome = validate_batch_response(
+        json.dumps(
+            {
+                "summaries": [
+                    {"id": items[0].id, "lines": _lines(0)},
+                    {"id": "article-9999", "lines": _lines(1)},
+                ]
+            },
+            ensure_ascii=False,
+        ),
+        items,
+    )
+    assert set(outcome.accepted) == {items[0].id}
+    assert outcome.rejected_reasons.get("unknown_id") == 1
+    assert sorted(outcome.failed_ids) == sorted([items[1].id, items[2].id])
+
+
+def test_duplicate_id_keeps_the_first_and_rejects_the_rest():
+    items = _items(2)
+    outcome = validate_batch_response(
+        json.dumps(
+            {
+                "summaries": [
+                    {"id": items[0].id, "lines": _lines(0)},
+                    {"id": items[0].id, "lines": _lines(5)},
+                    {"id": items[1].id, "lines": _lines(1)},
+                ]
+            },
+            ensure_ascii=False,
+        ),
+        items,
+    )
+    assert outcome.accepted[items[0].id] == _lines(0)
+    assert outcome.rejected_reasons.get("duplicate_id") == 1
+    assert outcome.failed_ids == []
+
+
+@pytest.mark.parametrize(
+    "bad_lines",
+    [
+        _lines(1)[:2],
+        _lines(1) + ["네 번째 문장이다."],
+        ["", _lines(1)[1], _lines(1)[2]],
+        ["- 불릿으로 시작하는 문장이다.", _lines(1)[1], _lines(1)[2]],
+        ["1. 번호로 시작하는 문장이다.", _lines(1)[1], _lines(1)[2]],
+        ["가" * 200, _lines(1)[1], _lines(1)[2]],
+    ],
+)
+def test_line_contract_violations_fail_only_that_item(bad_lines):
+    items = _items(2)
+    outcome = validate_batch_response(
+        json.dumps(
+            {
+                "summaries": [
+                    {"id": items[0].id, "lines": bad_lines},
+                    {"id": items[1].id, "lines": _lines(1)},
+                ]
+            },
+            ensure_ascii=False,
+        ),
+        items,
+    )
+    assert set(outcome.accepted) == {items[1].id}
+    assert outcome.failed_ids == [items[0].id]
+
+
+def test_unparsable_response_fails_the_whole_batch():
+    items = _items(4)
+    outcome = validate_batch_response("{completely broken", items)
+    assert outcome.parse_failed
+    assert outcome.accepted == {}
+    assert outcome.failed_ids == [i.id for i in items]
+
+
+def test_entry_with_extra_fields_is_rejected():
+    items = _items(1)
+    outcome = validate_batch_response(
+        json.dumps(
+            {"summaries": [{"id": items[0].id, "lines": _lines(0), "score": 0.9}]},
+            ensure_ascii=False,
+        ),
+        items,
+    )
+    assert outcome.accepted == {}
+    assert outcome.rejected_reasons.get("unexpected_fields") == 1
+
+
+# --- 분할 ------------------------------------------------------------------
+
+
+def test_split_ladder_is_50_25_10_1():
+    assert next_split_size(50) == 25
+    assert next_split_size(25) == 10
+    assert next_split_size(10) == 1
+    assert next_split_size(1) is None
+
+
+def test_whole_json_parse_failure_splits_the_batch():
+    items = _items(50)
+
+    def responder(call_no, prompt, schema):
+        if call_no == 1:
+            return "not json at all"
+        ids = _ids_in_prompt(prompt)
+        return json.dumps(
+            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    summarizer, recorder = _make(responder)
+    results = summarizer.summarize_many(items)
+
+    assert recorder.sizes == [50, 25, 25]  # 50 → 25 단위로 분할 후 성공
+    assert len(results) == 50
+
+
+def test_split_continues_down_the_ladder():
+    items = _items(50)
+
+    def responder(call_no, prompt, schema):
+        if schema["properties"]["summaries"]["maxItems"] > 10:
+            return "broken"
+        ids = _ids_in_prompt(prompt)
+        return json.dumps(
+            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    summarizer, recorder = _make(responder, GEMINI_MAX_REQUESTS_PER_RUN=30)
+    results = summarizer.summarize_many(items)
+
+    assert recorder.sizes[0] == 50
+    assert 25 in recorder.sizes and 10 in recorder.sizes
+    assert len(results) == 50
+
+
+def test_final_failure_at_size_one_falls_back_without_infinite_retry():
+    items = _items(10)
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: "broken", GEMINI_MAX_REQUESTS_PER_RUN=50
+    )
+    results = summarizer.summarize_many(items)
+
+    assert results == {}
+    assert 1 in recorder.sizes  # 최종 복구 수단으로 개별 호출까지 내려갔다
+    assert recorder.count <= 50
+
+
+# --- 요청 예산 --------------------------------------------------------------
+
+
+def test_request_budget_stops_remaining_batches():
+    items = _items(250)
+    summarizer, recorder = _make(_all_ok(items), GEMINI_MAX_REQUESTS_PER_RUN=3)
+    results = summarizer.summarize_many(items)
+
+    assert recorder.count == 3
+    assert len(results) == 150  # 3배치 × 50건, 나머지 100건은 extractive fallback
+
+
+def test_zero_request_budget_disables_the_feature():
+    summarizer, recorder = _make(lambda *a, **k: "", GEMINI_MAX_REQUESTS_PER_RUN=0)
+    assert summarizer.disabled
+    assert summarizer.disabled_reason == "max_requests_zero"
+    assert summarizer.summarize_many(_items(10)) == {}
+    assert recorder.count == 0
+
+
+# --- 일시적 오류 ------------------------------------------------------------
+
+
+def test_429_retries_the_same_batch():
+    items = _items(50)
+
+    def responder(call_no, prompt, schema):
+        if call_no == 1:
+            raise FakeAPIError(429)
+        ids = _ids_in_prompt(prompt)
+        return json.dumps(
+            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    summarizer, recorder = _make(responder)
+    results = summarizer.summarize_many(items)
+
+    assert recorder.sizes == [50, 50]  # 분할이 아니라 동일 배치 재시도
+    assert len(results) == 50
+
+
+def test_429_exhausted_falls_back_without_splitting():
+    items = _items(50)
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: (_ for _ in ()).throw(FakeAPIError(429))
+    )
+    results = summarizer.summarize_many(items)
+
+    assert results == {}
+    assert recorder.sizes == [50, 50]  # retry_attempts=2, 분할 없음
+    assert 25 not in recorder.sizes
+
+
+def test_5xx_then_success():
+    items = _items(20)
+
+    def responder(call_no, prompt, schema):
+        if call_no == 1:
+            raise FakeAPIError(503)
+        ids = _ids_in_prompt(prompt)
+        return json.dumps(
+            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    summarizer, recorder = _make(responder)
+    assert len(summarizer.summarize_many(items)) == 20
+    assert recorder.count == 2
+
+
+def test_timeout_is_retried():
+    items = _items(20)
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: (_ for _ in ()).throw(FakeTimeout("read timeout"))
+    )
+    assert summarizer.summarize_many(items) == {}
+    assert recorder.count == 2
+
+
+def test_400_is_not_retried_but_may_split():
+    items = _items(50)
+
+    def responder(call_no, prompt, schema):
+        if schema["properties"]["summaries"]["maxItems"] > 25:
+            raise FakeAPIError(400, "request too large")
+        ids = _ids_in_prompt(prompt)
+        return json.dumps(
+            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    summarizer, recorder = _make(responder)
+    results = summarizer.summarize_many(items)
+
+    assert recorder.sizes == [50, 25, 25]  # 400은 재시도 없이 곧장 분할
+    assert len(results) == 50
+
+
+# --- 인증 실패 / circuit breaker --------------------------------------------
+
+
+@pytest.mark.parametrize("code", [401, 403])
+def test_auth_error_stops_all_remaining_gemini_calls(code):
+    items = _items(250)
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: (_ for _ in ()).throw(FakeAPIError(code))
+    )
+    results = summarizer.summarize_many(items)
+
+    assert results == {}
+    assert recorder.count == 1  # 재시도도 분할도 하지 않는다
+    assert summarizer.disabled_reason == "auth"
+    # 이후 호출도 전부 차단
+    assert summarizer.summarize_many(items) == {}
+    assert recorder.count == 1
+
+
+def test_invalid_model_id_stops_all_remaining_calls():
+    items = _items(100)
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: (_ for _ in ()).throw(FakeAPIError(404)),
+        GEMINI_MODEL="gemini-does-not-exist",
+    )
+    assert summarizer.summarize_many(items) == {}
+    assert recorder.count == 1
+    assert summarizer.disabled_reason == "bad_model"
+
+
+def test_consecutive_batch_failures_open_the_circuit_breaker():
+    items = _items(150)
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: (_ for _ in ()).throw(FakeAPIError(500)),
+        GEMINI_RETRY_ATTEMPTS=1,
+        GEMINI_CIRCUIT_BREAKER_FAILURES=2,
+        GEMINI_MAX_REQUESTS_PER_RUN=50,
+    )
+    assert summarizer.summarize_many(items) == {}
+    assert summarizer.disabled_reason == "consecutive_failures"
+    assert recorder.count == 2  # 3번째 배치는 시도조차 하지 않는다
+
+
+def test_successful_batch_resets_the_failure_counter():
+    items = _items(150)
+
+    def responder(call_no, prompt, schema):
+        if call_no == 2:
+            ids = _ids_in_prompt(prompt)
+            return json.dumps(
+                {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+                ensure_ascii=False,
+            )
+        raise FakeAPIError(500)
+
+    summarizer, _ = _make(
+        responder,
+        GEMINI_RETRY_ATTEMPTS=1,
+        GEMINI_CIRCUIT_BREAKER_FAILURES=3,
+        GEMINI_MAX_REQUESTS_PER_RUN=50,
+    )
+    summarizer.summarize_many(items)
+    assert not summarizer.disabled
+
+
+# --- 프로그래밍 오류 --------------------------------------------------------
+
+
+def test_programming_error_is_not_silently_swallowed():
+    items = _items(10)
+    summarizer, _ = _make(
+        lambda call_no, prompt, schema: (_ for _ in ()).throw(TypeError("bad kwargs"))
+    )
+    with pytest.raises(GeminiProgrammingError):
+        summarizer.summarize_many(items)
+    assert summarizer.disabled_reason == "programming_error"
+
+
+# --- 페이싱 ----------------------------------------------------------------
+
+
+def test_min_interval_paces_consecutive_requests():
+    clock = {"now": 0.0}
+    slept: list[float] = []
+    items = _items(100)
+
+    def responder(call_no, prompt, schema):
+        clock["now"] += 1.0
+        ids = _ids_in_prompt(prompt)
+        return json.dumps(
+            {"summaries": [{"id": i, "lines": _lines(n)} for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    os.environ["GEMINI_MIN_INTERVAL_SECONDS"] = "2"
+    recorder = Recorder(responder)
+    summarizer = GeminiBatchSummarizer(
+        load_gemini_config(),
+        generate_fn=recorder,
+        sleep_fn=lambda s: (slept.append(s), clock.__setitem__("now", clock["now"] + s)),
+        monotonic_fn=lambda: clock["now"],
+    )
+    summarizer.summarize_many(items)
+
+    assert recorder.count == 2
+    assert slept == [pytest.approx(1.0)]  # 응답에 1초 걸렸으니 남은 1초만 대기
+
+
+# --- 비활성 조건 ------------------------------------------------------------
+
+
+def test_missing_api_key_disables_without_calling(monkeypatch):
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+    summarizer, recorder = _make(lambda *a, **k: "")
+    assert summarizer.disabled_reason == "no_api_key"
+    assert summarizer.summarize_many(_items(50)) == {}
+    assert recorder.count == 0
+
+
+def test_gemini_enabled_false_disables_without_calling():
+    summarizer, recorder = _make(lambda *a, **k: "", GEMINI_ENABLED="0")
+    assert summarizer.disabled_reason == "disabled_by_env"
+    assert recorder.count == 0
+
+
+def test_max_summaries_zero_disables():
+    summarizer, _ = _make(lambda *a, **k: "", GEMINI_MAX_SUMMARIES="0")
+    assert summarizer.disabled_reason == "max_summaries_zero"
+
+
+def test_empty_item_list_makes_no_request():
+    summarizer, recorder = _make(lambda *a, **k: "")
+    assert summarizer.summarize_many([]) == {}
+    assert recorder.count == 0
+
+
+# --- 로그 안전성 ------------------------------------------------------------
+
+
+def test_logs_never_contain_api_key_or_article_body(caplog):
+    secret = "일급비밀_기사_본문_토큰"
+    items = iter_batch_items(
+        ((f"비밀 제목 {i}", f"{secret} " * 40) for i in range(20)), article_max_chars=3000
+    )
+    responses = ["broken", "broken", "broken"]
+
+    def responder(call_no, prompt, schema):
+        if call_no <= len(responses):
+            return responses[call_no - 1]
+        raise FakeAPIError(401)
+
+    summarizer, _ = _make(responder, GEMINI_MAX_REQUESTS_PER_RUN=40)
+    with caplog.at_level(logging.DEBUG):
+        summarizer.summarize_many(items)
+
+    blob = "\n".join(record.getMessage() for record in caplog.records)
+    assert blob  # 오류가 조용히 삼켜지지 않고 실제로 기록됐다
+    assert API_KEY not in blob
+    assert secret not in blob
+    assert "<article" not in blob  # 전체 프롬프트가 실리지 않는다
+    assert "비밀 제목" not in blob
+
+
+# --- 설정 검증 --------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "name,bad,attr,expected",
+    [
+        ("GEMINI_MAX_SUMMARIES", "-5", "max_summaries", 300),
+        ("GEMINI_MAX_SUMMARIES", "not-a-number", "max_summaries", 300),
+        ("GEMINI_MAX_SUMMARIES", "99999", "max_summaries", 300),
+        ("GEMINI_BATCH_MAX_ARTICLES", "0", "batch_max_articles", 50),
+        ("GEMINI_BATCH_MAX_ARTICLES", "-1", "batch_max_articles", 50),
+        ("GEMINI_BATCH_MAX_INPUT_CHARS", "10", "batch_max_input_chars", 150_000),
+        ("GEMINI_BATCH_MAX_INPUT_CHARS", "99999999", "batch_max_input_chars", 150_000),
+        ("GEMINI_ARTICLE_MAX_CHARS", "5", "article_max_chars", 3_000),
+        ("GEMINI_MAX_FETCH_ATTEMPTS", "-1", "max_fetch_attempts", 300),
+        ("GEMINI_MAX_REQUESTS_PER_RUN", "-2", "max_requests_per_run", 12),
+        ("GEMINI_MAX_REQUESTS_PER_RUN", "9999", "max_requests_per_run", 12),
+        ("GEMINI_RETRY_ATTEMPTS", "0", "retry_attempts", 2),
+        ("GEMINI_MIN_INTERVAL_SECONDS", "-3", "min_interval_seconds", 2.0),
+        ("GEMINI_REQUEST_TIMEOUT_SECONDS", "99999", "request_timeout_seconds", 90.0),
+        ("GEMINI_CIRCUIT_BREAKER_FAILURES", "0", "circuit_breaker_failures", 3),
+    ],
+)
+def test_invalid_env_values_fall_back_to_safe_defaults(monkeypatch, name, bad, attr, expected):
+    monkeypatch.delenv("GEMINI_MIN_INTERVAL_SECONDS", raising=False)
+    monkeypatch.setenv(name, bad)
+    assert getattr(load_gemini_config(), attr) == expected
+
+
+def test_documented_defaults(monkeypatch):
+    monkeypatch.delenv("GEMINI_MIN_INTERVAL_SECONDS", raising=False)
+    monkeypatch_free = load_gemini_config()
+    assert monkeypatch_free.max_summaries == 300
+    assert monkeypatch_free.batch_max_articles == 50
+    assert monkeypatch_free.batch_hard_max_articles == 100
+    assert monkeypatch_free.batch_max_input_chars == 150_000
+    assert monkeypatch_free.article_max_chars == 3_000
+    assert monkeypatch_free.max_fetch_attempts == 300
+    assert monkeypatch_free.max_requests_per_run == 12
+    assert monkeypatch_free.min_interval_seconds == 2.0
+
+
+def test_model_is_overridable_by_env(monkeypatch):
+    monkeypatch.setenv("GEMINI_MODEL", "gemini-3.6-flash")
+    assert load_gemini_config().model == "gemini-3.6-flash"
+
+
+def test_chunk_items_helper():
+    items = _items(7)
+    assert [len(c) for c in chunk_items(items, 3)] == [3, 3, 1]
+    assert isinstance(items[0], BatchItem)

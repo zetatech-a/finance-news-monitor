@@ -21,4 +21,7 @@ jobs:
           # NAVER API HUB (기존 Developers Center 키는 이관 후 무효)
           NCP_APIGW_API_KEY_ID: ${{ secrets.NCP_APIGW_API_KEY_ID }}
           NCP_APIGW_API_KEY: ${{ secrets.NCP_APIGW_API_KEY }}
+          # Gemini 3줄 요약(선택). 미설정이면 추출식 요약으로 정상 동작한다.
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
         run: python -m src.run_daily

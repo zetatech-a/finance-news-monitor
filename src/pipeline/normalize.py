@@ -29,6 +29,10 @@ class Article:
     matched_negative: str | None = None
     # --- 요약 단계(run_daily)가 채우는 필드 ---
     summary_cached: bool | None = None  # UI에서 ⚡ 캐시 배지 표시용
+    # Gemini 3줄 요약은 **표시 전용**이다. description(관련성/태깅/클러스터링/랭킹 입력)은
+    # 절대 덮어쓰지 않으므로, AI 요약이 기존 분류 결과를 바꾸지 않는다.
+    summary_lines: list[str] = field(default_factory=list)
+    summary_source: str | None = None  # "gemini" | None(추출요약/네이버 스니펫)
     # --- dedup / issue_cluster가 채우는 필드 ---
     normalized_title: str | None = None
     cluster_key: str | None = None

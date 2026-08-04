@@ -34,6 +34,25 @@ from src.pipeline.extractive_summary import summarize_with_fallback
 # ✅ 캐시(같은 URL 재요청 방지)
 from src.pipeline.summary_cache import load_cache, save_cache
 
+# ✅ (선택) Gemini 기반 표시용 3줄 요약 — 실패해도 추출요약으로 계속 진행한다
+from src.pipeline.gemini_cache import (
+    cache_key as gemini_cache_key,
+    get_cached_lines,
+    load_gemini_cache,
+    put_cached_lines,
+    save_gemini_cache,
+)
+from src.pipeline.gemini_summary import (
+    PROMPT_VERSION,
+    SCHEMA_VERSION,
+    BatchItem,
+    GeminiBatchSummarizer,
+    GeminiProgrammingError,
+    iter_batch_items,
+    load_gemini_config,
+    safe_host,
+)
+
 logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -140,18 +159,33 @@ MAX_SUMMARIZE = 80  # 리포트에 반영할 추출요약 성공 건수 상한 (
 MAX_SUMMARY_FETCH_ATTEMPTS = 160  # 본문 크롤링 시도(실패 포함) 상한 — 실행시간 폭주 방지
 
 
+def article_fetch_url(article: object) -> str:
+    """본문 크롤링/캐시 키로 쓰는 canonical URL (네이버 → 원문 → link 순)."""
+    return (
+        getattr(article, "naver_link", None)
+        or getattr(article, "originallink", None)
+        or getattr(article, "link", None)
+        or ""
+    )
+
+
 def apply_extractive_summaries(
     tagged: list,
     summary_cache: dict[str, str],
     *,
     max_summaries: int = MAX_SUMMARIZE,
     max_fetch_attempts: int = MAX_SUMMARY_FETCH_ATTEMPTS,
+    body_sink: dict[str, str] | None = None,
 ) -> tuple[int, int, int]:
     """대표 기사들의 본문을 추출·요약해 description에 반영한다.
 
     max_summaries는 성공 건수 기준, max_fetch_attempts는 네트워크 크롤링
     시도(실패 포함) 기준이다. 크롤링 한도를 다 써도 캐시 hit는 계속 반영한다.
     Returns (summarized, cache_hits, fetch_attempts).
+
+    body_sink가 주어지면 이번 실행에서 새로 받아온 본문을 담아둔다(메모리 한정,
+    디스크 저장 없음). Gemini 요약 단계가 같은 기사를 다시 크롤링하지 않게 하는
+    용도이며, 예산 계산과 반환값에는 전혀 영향을 주지 않는다.
     """
     summarized = 0
     cache_hits = 0
@@ -164,9 +198,7 @@ def apply_extractive_summaries(
     ):
         if summarized >= max_summaries:
             break
-        fetch_url = (
-            item.article.naver_link or item.article.originallink or item.article.link
-        )
+        fetch_url = article_fetch_url(item.article)
         if not fetch_url or fetch_url in seen_urls:
             continue
         seen_urls.add(fetch_url)
@@ -188,6 +220,8 @@ def apply_extractive_summaries(
         try:
             html = fetch_html(fetch_url, timeout=12)
             full = extract_main_text(fetch_url, html)
+            if body_sink is not None and full:
+                body_sink[fetch_url] = full
 
             s = summarize_with_fallback(
                 full or "",
@@ -424,13 +458,17 @@ def tag_and_cluster(
     return tagged, tagged_before_cluster_items
 
 
-def summarize_representatives(tagged: list) -> None:
-    """대표 기사 본문 추출요약 — 캐시 사용, description 교체."""
+def summarize_representatives(tagged: list) -> dict[str, str]:
+    """대표 기사 본문 추출요약 — 캐시 사용, description 교체.
+
+    이번 실행에서 새로 받아온 본문을 {url: text}로 돌려준다(Gemini 단계 재사용용).
+    """
     cache_path = REPORT_DIR / "_cache" / "summary_cache.json"
     summary_cache = load_cache(cache_path)
+    body_sink: dict[str, str] = {}
 
     summarized, cache_hits, fetch_attempts = apply_extractive_summaries(
-        tagged, summary_cache
+        tagged, summary_cache, body_sink=body_sink
     )
 
     save_cache(cache_path, summary_cache)
@@ -441,6 +479,195 @@ def summarize_representatives(tagged: list) -> None:
         cache_hits,
         fetch_attempts,
     )
+    return body_sink
+
+
+GEMINI_CACHE_PATH_NAME = "gemini_summary_cache.json"
+
+
+def _gemini_targets(priority_items: list, visible_items: list, limit: int) -> list:
+    """Top 이슈 우선, 그다음 노출 기사 순으로 중복 없이 limit개를 고른다."""
+    targets: list = []
+    seen: set[int] = set()
+    for item in list(priority_items) + list(visible_items):
+        if len(targets) >= limit:
+            break
+        marker = id(getattr(item, "article", item))
+        if marker in seen:
+            continue
+        seen.add(marker)
+        targets.append(item)
+    return targets
+
+
+def _gemini_body_text(
+    fetch_url: str, body_cache: dict[str, str], budget: list[int]
+) -> str:
+    """추출요약 단계에서 받아둔 본문 우선, 없으면 Gemini 전용 예산으로 크롤링."""
+    cached = (body_cache.get(fetch_url) or "").strip()
+    if cached:
+        return cached
+    if budget[0] <= 0:
+        return ""
+    budget[0] -= 1
+    try:
+        html = fetch_html(fetch_url, timeout=12)
+        text = extract_main_text(fetch_url, html) or ""
+    except Exception as exc:
+        logger.warning(
+            "Gemini body fetch failed: host=%s error=%s",
+            safe_host(fetch_url),
+            type(exc).__name__,
+        )
+        return ""
+    if text:
+        body_cache[fetch_url] = text
+    return text
+
+
+def _gemini_input_body(
+    article: object, fetch_url: str, body_cache: dict[str, str], budget: list[int], min_chars: int
+) -> str:
+    """Gemini 입력 본문. 본문 fetch가 실패하면 현재 description을 후보로 쓴다.
+
+    그래도 정보가 너무 짧으면 빈 문자열을 돌려줘 호출 없이 기존 fallback을 쓰게 한다.
+    """
+    body = _gemini_body_text(fetch_url, body_cache, budget)
+    if len(body) >= min_chars:
+        return body
+    # 추출요약이 반영된 description이라도 있으면 입력 후보로 삼는다.
+    description = (getattr(article, "description", None) or "").strip()
+    if len(description) >= min_chars:
+        return description
+    return ""
+
+
+def apply_gemini_summaries(
+    *,
+    priority_items: list,
+    visible_items: list,
+    body_cache: dict[str, str],
+    cache_path: Path,
+    summarizer: GeminiBatchSummarizer | None = None,
+) -> int:
+    """표시용 Gemini 3줄 요약을 마이크로배치로 채운다.
+
+    분류·클러스터링·Top10 선정이 모두 끝난 뒤에 호출되며, description은 건드리지
+    않고 article.summary_lines만 채우므로 기존 판정 결과에 영향이 없다.
+    캐시 hit 기사는 배치를 만들기 전에 제외되어 Gemini로 전송되지 않는다.
+    어떤 실패도 리포트 생성을 막지 않는다. Returns 적용된 기사 수.
+    """
+    engine = (
+        summarizer
+        if summarizer is not None
+        else GeminiBatchSummarizer(load_gemini_config())
+    )
+    config = engine.config
+
+    if engine.disabled:
+        logger.info(
+            "Gemini summaries skipped (reason=%s); using extractive summaries",
+            engine.disabled_reason,
+        )
+        return 0
+
+    targets = _gemini_targets(priority_items, visible_items, config.max_summaries)
+    if not targets:
+        return 0
+
+    cache = load_gemini_cache(cache_path)
+    fetch_budget = [config.max_fetch_attempts]
+    applied = 0
+    cache_hits = 0
+    skipped_no_body = 0
+    cache_dirty = False
+
+    # 1) 캐시 우선 — hit한 기사는 배치 대상에서 완전히 빠진다.
+    pending: list[tuple[object, str, str, str]] = []  # (article, cache_key, url, body)
+    for item in targets:
+        article = getattr(item, "article", item)
+        fetch_url = article_fetch_url(article)
+        if not fetch_url:
+            continue
+
+        key = gemini_cache_key(fetch_url, config.model, PROMPT_VERSION, SCHEMA_VERSION)
+        lines = get_cached_lines(cache, key)
+        if lines is not None:
+            article.summary_lines = lines
+            article.summary_source = "gemini"
+            applied += 1
+            cache_hits += 1
+            continue
+
+        body = _gemini_input_body(
+            article, fetch_url, body_cache, fetch_budget, config.input_min_chars
+        )
+        if not body:
+            skipped_no_body += 1
+            continue
+        pending.append((article, key, fetch_url, body))
+
+    logger.info(
+        "Gemini batching: targets=%s cache_hits=%s to_summarize=%s skipped_no_body=%s",
+        len(targets),
+        cache_hits,
+        len(pending),
+        skipped_no_body,
+    )
+
+    # 2) cache miss 기사만 불투명 ID를 붙여 마이크로배치로 보낸다.
+    items = iter_batch_items(
+        ((getattr(article, "title", "") or "", body) for article, _key, _url, body in pending),
+        article_max_chars=config.article_max_chars,
+    )
+    by_id = {
+        item.id: (article, key, url)
+        for item, (article, key, url, _body) in zip(items, pending)
+    }
+
+    def _on_result(item: BatchItem, lines: list[str]) -> None:
+        """검증을 통과하는 즉시 기사에 반영하고 **기사별로** 캐시한다."""
+        nonlocal applied, cache_dirty
+        article, key, url = by_id[item.id]
+        article.summary_lines = lines
+        article.summary_source = "gemini"
+        put_cached_lines(
+            cache,
+            key,
+            url=url,
+            model=config.model,
+            prompt_version=PROMPT_VERSION,
+            schema_version=SCHEMA_VERSION,
+            lines=lines,
+            created_at=now_kst().isoformat(),
+        )
+        cache_dirty = True
+        applied += 1
+
+    try:
+        if items:
+            engine.summarize_many(items, on_result=_on_result)
+    except GeminiProgrammingError:
+        # 조용히 삼키지 않는다: 스택까지 남기되, 리포트 생성은 계속한다.
+        logger.error("Gemini summarization aborted by a programming error", exc_info=True)
+    except Exception:
+        logger.error("Gemini summarization aborted by an unexpected error", exc_info=True)
+    finally:
+        if cache_dirty:
+            save_gemini_cache(cache_path, cache)
+
+    logger.info(
+        "Gemini summaries applied: %s (cache_hits=%s, generated=%s, requests=%s, model=%s, "
+        "stats=%s, disabled=%s)",
+        applied,
+        cache_hits,
+        applied - cache_hits,
+        engine.requests_used,
+        config.model,
+        engine.stats,
+        engine.disabled_reason,
+    )
+    return applied
 
 
 def write_quality(
@@ -507,7 +734,7 @@ def run_pipeline(args: argparse.Namespace, start: datetime, end: datetime) -> No
     )
     counts["tagged_before_cluster"] = len(tagged_before_cluster_items)
 
-    summarize_representatives(tagged)
+    body_cache = summarize_representatives(tagged)
 
     # 요약 반영 후 최종 본문(description) 기준으로 대표 기사만 태깅 재계산
     representative_articles = [item.article for item in tagged]
@@ -518,6 +745,16 @@ def run_pipeline(args: argparse.Namespace, start: datetime, end: datetime) -> No
     visible_items = visible_report_items(tagged)
     top_items = top_report_items(tagged, limit=10)
     counts["displayed_articles"] = len(visible_items)
+
+    # 표시용 Gemini 3줄 요약은 분류·클러스터링·Top10 선정이 모두 끝난 뒤에 채운다.
+    # description을 건드리지 않으므로 위 판정 결과는 Gemini 사용 여부와 무관하게 동일하다.
+    # (결과 건수는 로그로만 남긴다 — quality metrics의 counts 스키마는 그대로 둔다)
+    apply_gemini_summaries(
+        priority_items=top_items,
+        visible_items=visible_items,
+        body_cache=body_cache,
+        cache_path=REPORT_DIR / "_cache" / GEMINI_CACHE_PATH_NAME,
+    )
 
     write_quality(end, counts, tagged_before_cluster_items, tagged, top_items)
     write_outputs(end, tagged, candidates_csv)
