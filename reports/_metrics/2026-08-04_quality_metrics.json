@@ -1,0 +1,259 @@
+{
+  "clusters": {
+    "cluster_count": 221,
+    "cluster_size_max": 64,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 64,
+        "relevance_prob": 0.8685198942460494,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "한은, 13년 만에 금 현물 매입 재개…달러 쏠림 완화 나서",
+        "url": "https://n.news.naver.com/mnews/article/020/0003738413?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 670,
+    "displayed_articles": 158,
+    "final_tagged_representatives": 221,
+    "normalized_articles": 853,
+    "raw_items": 853,
+    "relevance_filtered_articles": 443,
+    "rule_filtered_articles": 659,
+    "tagged_before_cluster": 443
+  },
+  "date": "2026-08-04",
+  "generated_at": "2026-08-04T09:03:12.487176+09:00",
+  "publishers": {
+    "missing_publisher_count": 221,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 95,
+    "no_topic_ratio": 0.4299,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4849571745037102,
+        "relevance_score": 6,
+        "sector": "보험",
+        "title": "현대해상, 맞춤형 보험 솔루션·신사업 역량 강화에 집중",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=854061"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6683102567897959,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "[클릭 e종목]\"코인베이스, 단기 실적 변동성 지속 전망\"",
+        "url": "https://n.news.naver.com/mnews/article/277/0005798328?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.37797760819372145,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "[데스크칼럼]'투서'가 먹히는 금융, '법'이 되는 관치",
+        "url": "https://n.news.naver.com/mnews/article/421/0009095198?sid=110"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.46478780126712654,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "경남축협 당기순이익…전년동기 比 17.27% 감소",
+        "url": "https://n.news.naver.com/mnews/article/003/0014106124?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5801121404618749,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "해외 신용결제 1위 굳힌 현대카드…프리미엄 전략 통했다",
+        "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202608031333446220560"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5064270202907671,
+        "relevance_score": 2,
+        "sector": "기타",
+        "title": "일론 머스크, 조만장자 탈락…제프 베이조스 세계 3위 탈환",
+        "url": "https://www.g-enews.com/view.php?ud=202608031700141112fbbec65dfb_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8008837380805387,
+        "relevance_score": 4,
+        "sector": "저축은행",
+        "title": "OK저축은행, 고위험 ETF 투자에 수백억 손실 우려",
+        "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=314086"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7592304224590052,
+        "relevance_score": 11,
+        "sector": "여전",
+        "title": "카드론 고삐 쥐자 리볼빙 풍선효과…19% 고금리 늪 빠진 취약층",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=141978"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6513177492861922,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "크라우드스트라이크 \"북한, 전 세계 국가 지원 해킹 55% 차지…가장 활...",
+        "url": "https://www.voakorea.com/a/north-korea-accounts-for-55-of-state-sponsored-hacking-080326/8182084.html"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6615677570264843,
+        "relevance_score": 4,
+        "sector": "입법·정책",
+        "title": "바이비트, 전 VARA 법무책임자 피터 루 선임",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/384391"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 10,
+      "거시·시장": 18,
+      "기타": 73,
+      "대부": 9,
+      "디지털자산": 38,
+      "보험": 4,
+      "상호금융": 11,
+      "여전": 7,
+      "은행": 21,
+      "입법·정책": 15,
+      "자산운용·연기금": 6,
+      "저축은행": 4,
+      "증권(브로커리지/리테일)": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 13,
+      "감독·제재": 7,
+      "건전성·자본규제": 2,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 17,
+      "기업금융·익스포저": 1,
+      "디지털자산": 40,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 13,
+      "사고·사기·횡령": 5,
+      "상품·영업·예금금리": 7,
+      "소비자보호·민원·불완전판매": 6,
+      "연체·부실": 10,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 7,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 15,
+      "환율·외환": 9
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 17,
+        "relevance_prob": 0.8365375812822933,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "[톺아보기] 악재 속 호실적 이어간 하나금융···두나무 지분인수 '히든...",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=634804"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7661456761692738,
+        "relevance_score": 29,
+        "sector": "대부",
+        "title": "불법사채 대포폰에 2~3초마다 자동전화… 금감원 ‘대포폰 제로’ 가동",
+        "url": "https://www.kbmaeil.com/article/20260803500113"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8170109321378702,
+        "relevance_score": 29,
+        "sector": "감독·제재",
+        "title": "금감원, '오지급 사태' 빗썸 검사의견서 송부",
+        "url": "https://n.news.naver.com/mnews/article/003/0014106135?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8399137294073267,
+        "relevance_score": 27,
+        "sector": "감독·제재",
+        "title": "[크레딧뷰어] 롯데카드, 영업정지 1.5개월로 중장기 수익성 부담↑",
+        "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=661778"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.8074400746918575,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "불법사금융 대포폰 무력화 빨라진다",
+        "url": "https://www.naeil.com/news/read/597420?ref=naver"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.736172418135233,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "대신증권, 부동산 PF 사모펀드 매입확약 맺고도 침묵...금감원 6.4억원 ...",
+        "url": "http://www.newsworker.co.kr/news/articleView.html?idxno=439519"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8461821836690864,
+        "relevance_score": 25,
+        "sector": "상호금융",
+        "title": "새마을금고 감독 체계 재논의… 행안부, 금융 당국에 일부 권한 이관 검...",
+        "url": "https://n.news.naver.com/mnews/article/366/0001183932?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7796571815852407,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "불법사채 활용되는 대포폰 금감원 “사흘 내 착신 차단”",
+        "url": "https://n.news.naver.com/mnews/article/082/0001392432?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8273598553274961,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "국내 거래소, '환전 창구'로 전락하나…입법 공백에 '코인 썰물' 여전",
+        "url": "https://www.insightkorea.co.kr/news/articleView.html?idxno=251557"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9278702598295848,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "금융위, 토큰증권 세부 법안 이달 중순 발표…투자한도·유통체계 주목",
+        "url": "https://n.news.naver.com/mnews/article/003/0014104786?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 2,
+      "대부": 3,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "디지털자산": 4,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "정책·제도개선": 1
+    }
+  }
+}

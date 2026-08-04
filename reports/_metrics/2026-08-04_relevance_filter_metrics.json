@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 38,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 0,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+  "candidate_hybrid_gray_keep_domain": 26,
+  "candidate_hybrid_gray_rule_drop": 126,
+  "candidate_hybrid_gray_rule_keep": 26,
+  "candidate_hybrid_keep_overseas_global_reference": 30,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 288,
+  "candidate_hybrid_model_drop": 31,
+  "candidate_hybrid_model_keep": 93,
+  "candidate_hybrid_model_keep_with_domain_anchor": 93,
+  "candidate_hybrid_negative_drop": 5,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 288,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-04",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 38,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 5,
+    "candidate_hybrid_drop_negative_signal": 5,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 126,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 26,
+    "candidate_hybrid_keep_overseas_global_reference": 30,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 288,
+    "candidate_hybrid_model_drop_prob_le_threshold": 31,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 93
+  },
+  "dropped_count": 216,
+  "input_count": 659,
+  "kept_count": 443,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 659,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 37,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "대부업체에 5%대 저리대출…서민금융 힘 주는 우리은행",
+      "url": "https://www.sedaily.com/article/20075251?ref=naver"
+    },
+    {
+      "title": "케이뱅크, 일회성 이익 빠지자 순익 ‘뚝’…하반기 과제는",
+      "url": "https://www.dailian.co.kr/news/view/1673945/?sc=Naver"
+    },
+    {
+      "title": "엇갈린 지방금융지주 상반기 실적···하반기는?",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2455198"
+    },
+    {
+      "title": "제재 줄었지만 안심하긴 이르다...롯데카드 '회원기반 복구' 과제",
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=268930"
+    },
+    {
+      "title": "[은행CEO 인선 코드]②이환주 KB국민은행장, 상반기 순익 성장…연임 가...",
+      "url": "https://www.newspost.kr/news/articleView.html?idxno=224493"
+    },
+    {
+      "title": "[일요서울 4기 독자 위원회 1683호 모니터링]  은행권의 중소기업 대출...",
+      "url": "https://www.ilyoseoul.co.kr/news/articleView.html?idxno=520634"
+    },
+    {
+      "title": "[포커스] '재무통' 김이태의 트랜스포메이션...삼성카드, '본업' 외형확...",
+      "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=808606"
+    },
+    {
+      "title": "고환율에 불티난 달러보험…손보사는 왜 없을까",
+      "url": "https://m.skyedaily.com/news_view.html?ID=309077"
+    },
+    {
+      "title": "어느 레버리지의 몰락 [유레카]",
+      "url": "https://www.hani.co.kr/arti/opinion/column/1271167.html"
+    },
+    {
+      "title": "AI 투자로 급성장한 SA, 레버리지에 발목…한 달 새 67% 손실·주식 대부...",
+      "url": "http://www.inews24.com/view/1991336"
+    }
+  ]
+}
