@@ -21,7 +21,7 @@
     "GITHUB_WORKFLOW": "daily.yml",
     "GITHUB_REF": "main",
     // Canary: request a run without sending email. Flip to "true" for production.
-    "DISPATCH_SEND_EMAIL": "false"
+    "DISPATCH_SEND_EMAIL": "true"
   },
 
   // GITHUB_TOKEN is a secret and must never appear in "vars" or in this file.
