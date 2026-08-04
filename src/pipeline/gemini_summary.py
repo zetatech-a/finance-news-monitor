@@ -39,7 +39,9 @@ logger = logging.getLogger(__name__)
 # v2: 단건 요청 → 마이크로배치(기사 ID + summaries 배열)로 전환.
 # v3: 항목별 usable/reason 추가 — 제목과 본문이 어긋나거나 여러 뉴스가 섞인 기사는
 #     모델이 억지로 3줄을 만들지 않고 스스로 사용 불가를 신고한다.
-PROMPT_VERSION = 3
+# v4: 기사 텍스트의 꺾쇠를 전각으로 치환해 <article> 경계를 위조할 수 없게 하고,
+#     각 줄이 "마침표로 끝나는 완결된 한 문장"임을 프롬프트/검증 양쪽에서 요구한다.
+PROMPT_VERSION = 4
 SCHEMA_VERSION = 3
 
 # 운영 기본 모델. 이 프로젝트의 실제 API 검증에서 50건(배치 25 × 2회)을 오류 없이 처리했다.
@@ -101,6 +103,13 @@ _PREAMBLE_RE = re.compile(
 )
 _WS_RE = re.compile(r"\s+")
 _SENTENCE_END_RE = re.compile(r"[.!?。](?:\s|$)")
+# 줄 끝의 종결부호(뒤따르는 닫는 따옴표/괄호 포함) — "한 줄 = 한 문장" 검증에 쓴다.
+_SENTENCE_TAIL_RE = re.compile(r"[.!?。][\"'’”』」\)\]]*$")
+
+# 기사 제목·본문은 신뢰할 수 없는 외부 입력이다. 프롬프트의 <article> 경계를 기사
+# 내용으로 위조할 수 없도록 꺾쇠를 전각 문자로 치환한다. 길이가 보존되므로
+# estimate_item_chars()의 배치 예산 계산도 그대로 맞는다.
+_ANGLE_TRANSLATION = str.maketrans({"<": "＜", ">": "＞"})
 
 
 class GeminiProgrammingError(Exception):
@@ -263,11 +272,21 @@ def truncate_body(body: str, max_chars: int) -> str:
     return window.strip()
 
 
+def sanitize_article_text(text: str) -> str:
+    """기사 텍스트가 <article> 델리미터를 만들 수 없게 만든다(길이 보존, 멱등).
+
+    `</article>`나 `<article id="article-0002">` 같은 문자열이 본문에 들어 있으면
+    자기 블록을 닫거나 가짜 블록을 만들어 기사 간 격리를 무너뜨릴 수 있다.
+    구조 검증은 "요청한 ID가 돌아왔는지"만 보므로 이런 경계 위조를 잡지 못한다.
+    """
+    return (text or "").translate(_ANGLE_TRANSLATION)
+
+
 def build_batch_item(article_id: str, title: str, body: str, *, article_max_chars: int) -> BatchItem:
     return BatchItem(
         id=article_id,
-        title=_WS_RE.sub(" ", (title or "")).strip(),
-        body=truncate_body(body, article_max_chars),
+        title=sanitize_article_text(_WS_RE.sub(" ", (title or "")).strip()),
+        body=sanitize_article_text(truncate_body(body, article_max_chars)),
     )
 
 
@@ -347,7 +366,8 @@ def build_batch_prompt(items: Sequence[BatchItem]) -> str:
         "- 제목과 무관한 본문 블록, 다른 기사, 사이드바, 인기기사 목록은 완전히 무시한다.\n"
         "- 서로 다른 사건을 한 줄씩 나열하지 않는다. 그런 기사는 usable=false다.\n"
         "- 본문 정보가 부족할 때 제목만 보고 사실을 추측해 채우지 않는다. usable=false다.\n"
-        f"- 각 문장은 완결된 한 문장이며 {PROMPT_TARGET_LINE_CHARS}자를 넘기지 않는다.\n"
+        f"- 각 줄은 마침표로 끝나는 완결된 한 문장이며 {PROMPT_TARGET_LINE_CHARS}자를 넘기지 않는다.\n"
+        "- 한 줄에 두 문장 이상을 넣지 않는다. 문장 조각(명사형 종결)도 쓰지 않는다.\n"
         "- 오탈자나 문맥상 부자연스러운 표현을 만들지 않는다. 자연스러운 한국어 문장만 쓴다.\n"
         "- 마크다운, 번호, 불릿, 줄바꿈을 쓰지 않는다.\n"
         "- '이 기사는', '요약하면' 같은 머리말을 쓰지 않는다.\n"
@@ -359,8 +379,13 @@ def build_batch_prompt(items: Sequence[BatchItem]) -> str:
         "- 한 기사의 내용을 다른 기사의 요약에 섞지 않는다.\n"
         "\n"
     )
+    # 기사 텍스트는 블록 경계를 위조할 수 없게 한 번 더 정제한다(build_batch_item에서
+    # 이미 정제되지만 BatchItem을 직접 만든 경로도 있으므로 여기서도 방어한다).
     blocks = "\n".join(
-        f'<article id="{item.id}">\n제목: {item.title}\n본문: {item.body}\n</article>'
+        f'<article id="{item.id}">\n'
+        f"제목: {sanitize_article_text(item.title)}\n"
+        f"본문: {sanitize_article_text(item.body)}\n"
+        "</article>"
         for item in items
     )
     return header + blocks
@@ -409,6 +434,19 @@ def response_json_schema(item_count: int) -> dict[str, Any]:
 
 def _normalize_for_compare(text: str) -> str:
     return _WS_RE.sub(" ", (text or "")).strip().strip(".!?").lower()
+
+
+def is_single_sentence(line: str) -> bool:
+    """줄이 "완결된 한 문장"인지 — 종결부호로 끝나고 중간에 문장 경계가 없어야 한다.
+
+    3줄 계약은 세 문장이다. 한 줄에 두 문장을 넣거나("A했다. B했다.") 종결부호 없는
+    조각("금융위, 개편안 발표")을 주면 화면의 '3줄'이 3문장이 아니게 되므로 거부한다.
+    소수점·약어(`8.4%`, `1.5조원`)는 종결부호 뒤에 공백이 없어 문장 경계로 세지 않는다.
+    """
+    if not _SENTENCE_TAIL_RE.search(line):
+        return False
+    head = _SENTENCE_TAIL_RE.sub("", line)
+    return not _SENTENCE_END_RE.search(head)
 
 
 def validate_lines(
@@ -463,6 +501,9 @@ def validate_lines(
         if _MARKDOWN_INLINE_RE.search(line):
             return None
         if _PREAMBLE_RE.search(line):
+            return None
+        # "3줄 = 3문장" 계약: 줄마다 정확히 한 문장이어야 한다.
+        if not is_single_sentence(line):
             return None
         cleaned.append(line)
 
@@ -914,8 +955,9 @@ class GeminiBatchSummarizer:
     def _recovery_left(self) -> int:
         return self._config.max_recovery_requests - self._recovery_used
 
-    def _can_call(self, *, recovery: bool) -> bool:
-        if self._budget_left() <= 0:
+    def _can_call(self, *, recovery: bool, reserve: int = 0) -> bool:
+        """reserve = 아직 보내지 않은 정상 배치 몫(복구가 침범하면 안 되는 예산)."""
+        if self._budget_left() - reserve <= 0:
             return False
         return not recovery or self._recovery_left() > 0
 
@@ -991,16 +1033,31 @@ class GeminiBatchSummarizer:
                 break
 
             batch, is_recovery = worklist.pop(0)
-            if is_recovery and self._recovery_left() <= 0:
-                # 복구 예산 소진 — 남은 정상 배치는 계속 처리한다(굶기지 않는다).
-                logger.warning(
-                    "Gemini recovery budget exhausted (%s); %s article(s) fall back to extractive",
-                    cfg.max_recovery_requests,
-                    len(batch),
-                )
-                continue
+            # 아직 한 번도 보내지 않은 정상 배치 수 — 복구 요청이 침범하면 안 되는 몫이다.
+            pending_normal = sum(1 for _b, recovery in worklist if not recovery)
+            if is_recovery:
+                if self._recovery_left() <= 0:
+                    # 복구 예산 소진 — 남은 정상 배치는 계속 처리한다(굶기지 않는다).
+                    logger.warning(
+                        "Gemini recovery budget exhausted (%s); %s article(s) fall back to extractive",
+                        cfg.max_recovery_requests,
+                        len(batch),
+                    )
+                    continue
+                # 총 요청 예산 중 **아직 한 번도 보내지 않은 정상 배치 몫은 예약한다.**
+                # 복구 요청은 사다리 때문에 앞에 끼어들므로, 총 예산이 정상 배치 수에
+                # 가까우면(예: 요청 4회 / 정상 배치 2개) 복구가 예산을 먼저 다 써버려
+                # 뒤쪽 배치가 아예 전송되지 않는다. 복구 예산만으로는 이걸 막지 못한다.
+                if self._budget_left() - 1 < pending_normal:
+                    logger.warning(
+                        "Gemini request budget reserved for %s unsent normal batch(es); "
+                        "%s article(s) fall back to extractive",
+                        pending_normal,
+                        len(batch),
+                    )
+                    continue
 
-            outcome = self._run_batch(batch, recovery=is_recovery)
+            outcome = self._run_batch(batch, recovery=is_recovery, reserve=pending_normal)
             self._stats["batches"] += 1
 
             for item in batch:
@@ -1046,8 +1103,14 @@ class GeminiBatchSummarizer:
 
         return results
 
-    def _run_batch(self, batch: Sequence[BatchItem], *, recovery: bool = False) -> BatchOutcome:
-        """배치 1개를 실행한다(일시적 오류는 같은 배치로 제한 재시도)."""
+    def _run_batch(
+        self, batch: Sequence[BatchItem], *, recovery: bool = False, reserve: int = 0
+    ) -> BatchOutcome:
+        """배치 1개를 실행한다(일시적 오류는 같은 배치로 제한 재시도).
+
+        reserve는 아직 보내지 않은 정상 배치 수다 — 재시도도 복구 요청이므로
+        그 몫을 침범하지 않는다(분할 재요청과 같은 규칙).
+        """
         cfg = self._config
         prompt = build_batch_prompt(batch)
         schema = response_json_schema(len(batch))
@@ -1099,7 +1162,11 @@ class GeminiBatchSummarizer:
                 attempts += 1
                 retryable = category in _RETRYABLE
                 # 재시도는 언제나 복구 요청이다 — 복구 예산도 함께 확인한다.
-                if retryable and attempts < cfg.retry_attempts and self._can_call(recovery=True):
+                if (
+                    retryable
+                    and attempts < cfg.retry_attempts
+                    and self._can_call(recovery=True, reserve=reserve)
+                ):
                     is_recovery = True
                     self._sleep(self._backoff_seconds(exc, category, attempts))
                     continue

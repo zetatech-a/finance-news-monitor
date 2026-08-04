@@ -74,6 +74,39 @@ def test_applied_zero_with_rejections_but_api_errors_fails(tmp_path):
     assert _run(tmp_path, summary) == EXIT_FAILED
 
 
+def test_cache_hits_alone_do_not_prove_the_live_path(tmp_path):
+    """gemini_applied에는 캐시 hit이 포함된다 — 캐시 1건으로 전량 실패가 통과하면 안 된다."""
+    summary = _summary(
+        targets=50,
+        cache_hits=1,
+        cache_miss=49,
+        sent_articles=49,
+        requests=4,
+        gemini_applied=1,  # 전부 캐시 hit이다(새로 적용된 건 0)
+        api_errors=4,
+    )
+    status, reason = evaluate(summary)
+    assert status == STATUS_FAILED
+    assert "nothing new was applied" in reason
+    assert _run(tmp_path, summary) == EXIT_FAILED
+
+
+def test_partial_content_rejection_with_structural_failures_fails(tmp_path):
+    """거부 1건 + 나머지 24건 구조 위반은 "게이트가 전부 걸렀다"가 아니다."""
+    summary = _summary(
+        targets=25,
+        cache_miss=25,
+        sent_articles=25,
+        requests=2,
+        content_rejected=1,
+        items_rejected=24,
+    )
+    status, reason = evaluate(summary)
+    assert status == STATUS_FAILED
+    assert "do not account for every sent article" in reason
+    assert _run(tmp_path, summary) == EXIT_FAILED
+
+
 # --- 성공해야 하는 경우 ------------------------------------------------------
 
 
@@ -121,6 +154,26 @@ def test_every_target_from_cache_passes(tmp_path, capsys):
     assert "cache" in reason
     assert _run(tmp_path, summary) == EXIT_OK
     assert "::error::" not in capsys.readouterr().out
+
+
+def test_new_application_alongside_cache_hits_passes(tmp_path):
+    """캐시 hit이 섞여 있어도 새로 적용된 건이 있으면 라이브 경로가 살아 있다."""
+    summary = _summary(
+        targets=30, cache_hits=5, cache_miss=25, sent_articles=25, requests=1,
+        gemini_applied=25,  # 캐시 5 + 신규 20
+    )
+    assert evaluate(summary)[0] == STATUS_OK
+    assert _run(tmp_path, summary) == EXIT_OK
+
+
+def test_content_rejection_covering_every_sent_article_passes(tmp_path):
+    """일부는 구조 위반이었지만 재요청 끝에 결국 전부 내용 거부로 정리된 경우."""
+    summary = _summary(
+        targets=25, cache_miss=25, sent_articles=35, requests=3,
+        content_rejected=25, items_rejected=10,
+    )
+    assert evaluate(summary)[0] == STATUS_OK
+    assert _run(tmp_path, summary) == EXIT_OK
 
 
 def test_applied_and_rejected_cover_everything_sent_passes(tmp_path):

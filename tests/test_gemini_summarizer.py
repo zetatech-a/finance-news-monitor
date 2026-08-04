@@ -819,6 +819,65 @@ def test_recovery_budget_never_starves_the_normal_batches():
     assert recorder.count == 12
 
 
+def test_total_request_budget_is_reserved_for_unsent_normal_batches():
+    """복구가 총 요청 예산을 먼저 써버려 뒤쪽 정상 배치가 굶으면 안 된다.
+
+    smoke 설정(요청 4회 / 정상 배치 2개)처럼 총 예산이 정상 배치 수에 가까우면
+    복구 예산(기본 8)만으로는 굶주림을 막지 못한다 — 남은 정상 배치 몫을 예약한다.
+    """
+    items = _items(50)
+    first_ids = {item.id for item in items[:25]}
+
+    def responder(call_no, prompt, schema):
+        ids = _ids_in_prompt(prompt)
+        if ids[0] in first_ids:
+            return "broken"  # 첫 배치는 무슨 크기로 쪼개도 실패한다
+        return json.dumps(
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    summarizer, recorder = _make(
+        responder,
+        GEMINI_MAX_REQUESTS_PER_RUN=4,
+        GEMINI_BATCH_MAX_ARTICLES=25,
+        GEMINI_CIRCUIT_BREAKER_FAILURES=50,  # 여기서 보는 건 예산 배분이다
+    )
+    results = summarizer.summarize_many(items)
+
+    assert recorder.count == 4
+    # 두 번째 정상 배치가 반드시 전송된다(복구에 밀려 사라지지 않는다).
+    assert summarizer.stats["normal_requests"] == 2
+    assert recorder.calls[-1]["ids"] == sorted(item.id for item in items[25:])
+    assert set(results) == {item.id for item in items[25:]}
+
+
+def test_transient_retry_also_respects_the_reserved_normal_capacity():
+    """429 재시도도 복구 요청이다 — 뒤쪽 정상 배치 몫을 먹으면 안 된다."""
+    items = _items(50)
+    first_ids = {item.id for item in items[:25]}
+
+    def responder(call_no, prompt, schema):
+        ids = _ids_in_prompt(prompt)
+        if ids[0] in first_ids:
+            raise FakeAPIError(429)
+        return json.dumps(
+            {"summaries": [_entry(i, _lines(n)) for n, i in enumerate(ids)]},
+            ensure_ascii=False,
+        )
+
+    summarizer, recorder = _make(
+        responder, GEMINI_MAX_REQUESTS_PER_RUN=2, GEMINI_BATCH_MAX_ARTICLES=25
+    )
+    results = summarizer.summarize_many(items)
+
+    # 1회차(첫 배치 429) + 2회차(두 번째 정상 배치) — 재시도에 예산을 쓰지 않는다.
+    assert recorder.count == 2
+    assert summarizer.stats["normal_requests"] == 2
+    assert summarizer.stats["recovery_requests"] == 0
+    assert set(results) == {item.id for item in items[25:]}
+
+
 def test_recovery_budget_zero_disables_splitting_only():
     items = _items(100)
     summarizer, _ = _make(_partial_failure_responder(), GEMINI_MAX_RECOVERY_REQUESTS=0)
