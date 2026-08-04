@@ -123,14 +123,20 @@ GEMINI_API_KEY=your-key-here python -m src.run_daily --date 2026-08-01 --end_hhm
 
 ### 모델
 
-기본 모델은 **`gemini-3.5-flash-lite`** 입니다(코드 상수 `DEFAULT_MODEL`, 유일한 정의 지점).
-대량의 단순 문서를 JSON으로 뽑아내는 고처리량 작업에 맞춰 선택했고, 지원 모델에서는
-thinking level을 최소(`minimal`)로 명시합니다. `-latest` alias는 대상 모델이 예고 없이
-바뀔 수 있어 기본값으로 쓰지 않습니다.
+기본 모델은 **`gemini-3.6-flash`** 입니다(코드 상수 `DEFAULT_MODEL`, 유일한 정의 지점).
+지원 모델에서는 thinking level을 최소(`minimal`)로 명시합니다. `-latest` alias는 대상
+모델이 예고 없이 바뀔 수 있어 기본값으로 쓰지 않습니다.
+
+이 프로젝트의 실 API 검증 결과로 기본값을 정했습니다. `gemini-3.6-flash`는 50건(배치 25 ×
+2회)을 API 오류 없이 처리했고, `gemini-3.5-flash-lite`는 **같은 프로젝트·같은 조건에서
+반복적으로 503**을 받아 Gemini 적용이 0건이었습니다. 이는 이 프로젝트에서 관측한 결과이지
+해당 모델의 영구적인 결함을 뜻하지는 않으며, 상황이 바뀌면 환경변수로 되돌릴 수 있습니다.
 
 ```bash
-GEMINI_MODEL=gemini-3.6-flash python -m src.run_daily   # 더 강한 모델로 교체
+GEMINI_MODEL=gemini-3.5-flash-lite python -m src.run_daily   # 수동 선택
 ```
+
+자동 모델 fallback은 없습니다. 기본 모델이 실패하면 기존 추출식 요약으로 내려갑니다.
 
 모델을 바꾸면 캐시 키가 달라져 이전 모델의 요약을 재사용하지 않습니다.
 
@@ -143,7 +149,7 @@ GEMINI_MODEL=gemini-3.6-flash python -m src.run_daily   # 더 강한 모델로 �
 | 변수 | 기본값 | 설명 |
 |------|--------|------|
 | `GEMINI_API_KEY` | (없음) | 미설정 시 Gemini 전체 비활성화 |
-| `GEMINI_MODEL` | `gemini-3.5-flash-lite` | 사용할 모델 ID |
+| `GEMINI_MODEL` | `gemini-3.6-flash` | 사용할 모델 ID (3.5 Flash-Lite는 수동 선택지) |
 | `GEMINI_ENABLED` | `1` | `0`이면 키가 있어도 호출하지 않는 kill switch |
 | `GEMINI_MAX_SUMMARIES` | `300` | 한 실행에서 요약할 최대 기사 수. `0`이면 비활성 |
 | `GEMINI_BATCH_MAX_ARTICLES` | `25` | 요청 1건에 담는 기사 수. **25가 실 API 검증값**, 50 이상은 실험적 |
@@ -199,6 +205,28 @@ JSON Schema로는 "usable=true일 때만 lines가 3개"라는 조건부 제약�
 `lines`를 0~3으로 열어두고 애플리케이션 코드가 엄격하게 검증합니다.
 
 캐시에 저장되지 않으므로 다음 실행에서 다시 판정합니다(본문이 개선되면 요약이 생깁니다).
+
+### 수동 smoke의 strict 검증
+
+`smoke.yml`은 **수동 실행 전용**이라 "Gemini 경로가 실제로 동작했는가"를 엄격하게 봅니다.
+`run_daily`가 남긴 sanitized 집계 JSON(`GEMINI_RUN_SUMMARY_PATH`)을 읽어
+`scripts/check_gemini_smoke.py`가 판정합니다 — 자유 형식 로그를 grep하지 않습니다.
+
+| 상황 | 판정 |
+|---|---|
+| API로 보냈는데 적용 0 + 내용 거부도 0 | **실패** |
+| 보낸 것 중 일부라도 적용됨 | 성공 |
+| 내용 거부만 발생(적용 0, API 오류 0) | 성공 — API는 정상 응답했음 |
+| 전부 캐시 hit(전송 0) | 성공 |
+| 전부 본문 부족(전송 0) | skip — 검증한 것이 없음을 경고로 표시 |
+| Gemini 기능 비활성 | skip |
+
+**`daily.yml`에는 이 검증이 없습니다.** 일일 파이프라인은 Gemini가 0건이어도 기존 요약으로
+성공하는 fail-open 동작을 그대로 유지합니다. smoke가 실패해도 artifact 업로드는 `always()`로
+실행되어 원인을 확인할 수 있습니다.
+
+집계 JSON에는 숫자·불리언·모델 ID만 들어갑니다 — API 키·기사 제목·본문·URL·프롬프트·
+전체 응답은 담기지 않습니다.
 
 ### 부분 성공 처리
 

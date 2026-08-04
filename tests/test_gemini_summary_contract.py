@@ -310,11 +310,33 @@ def test_truncate_body_returns_short_text_unchanged():
     assert truncate_body("짧은 본문", 100) == "짧은 본문"
 
 
-def test_default_model_is_the_high_throughput_flash_lite():
-    # 대량 단순 문서 처리용. gemini-2.5-flash 금지 + `latest` alias 기본값 금지.
-    assert DEFAULT_MODEL == "gemini-3.5-flash-lite"
+def test_default_model_is_the_verified_production_model():
+    # 이 프로젝트 실 API 검증에서 50건을 오류 없이 처리한 모델.
+    # gemini-3.5-flash-lite는 같은 조건에서 반복 503이라 수동 선택지로만 남겼다.
+    # gemini-2.5-flash 금지 + `latest` alias 기본값 금지.
+    assert DEFAULT_MODEL == "gemini-3.6-flash"
     assert "2.5" not in DEFAULT_MODEL
     assert "latest" not in DEFAULT_MODEL
+
+
+def test_flash_lite_remains_selectable_by_env(monkeypatch):
+    monkeypatch.setenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
+    from src.pipeline.gemini_summary import load_gemini_config, supports_thinking_level
+
+    config = load_gemini_config()
+    assert config.model == "gemini-3.5-flash-lite"
+    assert supports_thinking_level(config.model)
+
+
+def test_model_change_alone_does_not_bump_prompt_or_schema_version():
+    """모델은 이미 캐시 키에 들어가므로 버전을 올릴 이유가 없다."""
+    from src.pipeline.gemini_summary import PROMPT_VERSION, SCHEMA_VERSION
+    from src.pipeline.gemini_cache import cache_key
+
+    assert (PROMPT_VERSION, SCHEMA_VERSION) == (3, 3)
+    a = cache_key("https://x", "gemini-3.6-flash", PROMPT_VERSION, SCHEMA_VERSION)
+    b = cache_key("https://x", "gemini-3.5-flash-lite", PROMPT_VERSION, SCHEMA_VERSION)
+    assert a != b  # 모델만 달라도 캐시는 분리된다
 
 
 def test_model_id_is_defined_in_exactly_one_place():

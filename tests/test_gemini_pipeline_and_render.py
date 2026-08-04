@@ -966,3 +966,90 @@ def test_markdown_uses_the_source_snippet_for_rejected_articles(tmp_path):
     md = render_markdown(datetime(2026, 8, 1, tzinfo=KST), items, [])
     assert SOURCE_SNIPPET.rstrip(".") in md
     assert "화물차 단속" not in md
+
+
+# --- 실행 집계 JSON (smoke 판정용) --------------------------------------------
+
+
+def test_run_summary_json_is_written_only_when_requested(tmp_path, monkeypatch):
+    items = [_item(0)]
+    body_cache = {items[0].article.link: BODY}
+
+    # 변수가 없으면 파일을 만들지 않는다 (daily 동작 불변).
+    monkeypatch.delenv(run_daily.GEMINI_RUN_SUMMARY_ENV, raising=False)
+    _apply(items, tmp_path, _summarizer(), body_cache)
+    assert not (tmp_path / "run-summary.json").exists()
+
+    target = tmp_path / "run-summary.json"
+    monkeypatch.setenv(run_daily.GEMINI_RUN_SUMMARY_ENV, str(target))
+    # 앞선 실행이 캐시를 채웠으므로 별도 캐시 경로로 실제 전송을 만든다.
+    fresh_cache = tmp_path / "second"
+    fresh_cache.mkdir()
+    _apply([_item(0)], fresh_cache, _summarizer(), body_cache)
+
+    summary = json.loads(target.read_text(encoding="utf-8"))
+    assert summary["targets"] == 1
+    assert summary["gemini_applied"] == 1
+    assert summary["sent_articles"] == 1
+    assert summary["model"] == gemini_summary.DEFAULT_MODEL
+
+
+def test_run_summary_json_contains_no_article_text_or_urls(tmp_path, monkeypatch):
+    target = tmp_path / "run-summary.json"
+    monkeypatch.setenv(run_daily.GEMINI_RUN_SUMMARY_ENV, str(target))
+    items = [_item(i) for i in range(3)]
+    body_cache = {it.article.link: BODY for it in items}
+    _apply(items, tmp_path, _summarizer(_gate({0: "multi_topic"})), body_cache)
+
+    raw = target.read_text(encoding="utf-8")
+    assert "대부업 감독 규정 개정" not in raw  # 제목
+    assert "example.com" not in raw  # URL
+    assert "금융위원회는" not in raw  # 본문
+    assert API_KEY not in raw
+
+    summary = json.loads(raw)
+    assert summary["content_rejected"] == 1
+    assert summary["multi_topic"] == 1
+    for key, value in summary.items():
+        assert isinstance(value, (int, float, bool)) or key in {"model", "disabled_reason"}
+
+
+def test_run_summary_json_written_even_when_gemini_is_disabled(tmp_path, monkeypatch):
+    target = tmp_path / "run-summary.json"
+    monkeypatch.setenv(run_daily.GEMINI_RUN_SUMMARY_ENV, str(target))
+    monkeypatch.delenv("GEMINI_API_KEY", raising=False)
+
+    items = [_item(0)]
+    run_daily.apply_gemini_summaries(
+        priority_items=items,
+        visible_items=items,
+        body_cache={items[0].article.link: BODY},
+        cache_path=tmp_path / "gemini_summary_cache.json",
+        summarizer=_summarizer(),
+    )
+    summary = json.loads(target.read_text(encoding="utf-8"))
+    assert summary["disabled_reason"] == "no_api_key"
+    assert summary["gemini_applied"] == 0
+
+
+def test_total_api_failure_still_produces_a_report_and_a_summary(tmp_path, monkeypatch):
+    """daily의 fail-open — API가 전부 죽어도 파이프라인은 성공한다."""
+
+    class Boom(Exception):
+        code = 503
+
+    target = tmp_path / "run-summary.json"
+    monkeypatch.setenv(run_daily.GEMINI_RUN_SUMMARY_ENV, str(target))
+    items = [_item(i) for i in range(5)]
+    body_cache = {it.article.link: BODY for it in items}
+
+    applied = _apply(items, tmp_path, _summarizer(Boom()), body_cache)
+    assert applied == 0
+    # 리포트는 정상 생성되고 기존 요약이 남는다.
+    html = _render(items)
+    assert "대부업 감독 규정 개정 0" in html
+    assert all(it.article.description for it in items)
+
+    summary = json.loads(target.read_text(encoding="utf-8"))
+    assert summary["gemini_applied"] == 0
+    assert summary["api_errors"] > 0

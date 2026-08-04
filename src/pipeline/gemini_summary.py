@@ -42,10 +42,12 @@ logger = logging.getLogger(__name__)
 PROMPT_VERSION = 3
 SCHEMA_VERSION = 3
 
-# 운영 기본 모델. 대량의 단순 문서 처리(고처리량 JSON 추출)에 맞춘 Flash-Lite다.
+# 운영 기본 모델. 이 프로젝트의 실제 API 검증에서 50건(배치 25 × 2회)을 오류 없이 처리했다.
+# gemini-3.5-flash-lite는 같은 프로젝트에서 반복적으로 503을 받아 기본값에서 제외했고,
+# GEMINI_MODEL로 수동 선택하는 선택지로만 남겨둔다(자동 모델 fallback은 없다).
 # `-latest` alias는 대상 모델이 예고 없이 바뀔 수 있어 무인 파이프라인 기본값으로 쓰지 않는다.
 # 모델 교체는 GEMINI_MODEL 환경변수로만 한다 (이 상수는 유일한 정의 지점).
-DEFAULT_MODEL = "gemini-3.5-flash-lite"
+DEFAULT_MODEL = "gemini-3.6-flash"
 
 # 명시적으로 고정하는 Gemini API 버전. SDK 기본값이 바뀌어도 운영 동작이 흔들리지 않게 한다.
 API_VERSION = "v1"

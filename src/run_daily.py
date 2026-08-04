@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import json
 import logging
+import os
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -485,6 +487,26 @@ def summarize_representatives(tagged: list) -> dict[str, str]:
 
 GEMINI_CACHE_PATH_NAME = "gemini_summary_cache.json"
 
+# 이 환경변수가 설정된 실행만 sanitized 집계를 JSON으로 남긴다.
+# 수동 smoke가 자유 형식 로그를 grep하지 않고 결과를 판정하기 위한 용도이며,
+# daily 실행은 이 변수를 설정하지 않으므로 동작이 전혀 달라지지 않는다.
+GEMINI_RUN_SUMMARY_ENV = "GEMINI_RUN_SUMMARY_PATH"
+
+
+def _write_gemini_run_summary(summary: dict[str, object]) -> None:
+    """집계 로그와 동일한 sanitized 값만 JSON으로 남긴다(실패해도 무시)."""
+    target = (os.environ.get(GEMINI_RUN_SUMMARY_ENV) or "").strip()
+    if not target:
+        return
+    try:
+        path = Path(target)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp_path = path.with_name(path.name + ".tmp")
+        tmp_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+        os.replace(tmp_path, path)
+    except OSError as exc:
+        logger.warning("Failed to write Gemini run summary: %s", type(exc).__name__)
+
 
 def _gemini_targets(priority_items: list, visible_items: list, limit: int) -> list:
     """Top 이슈 우선, 그다음 노출 기사 순으로 중복 없이 limit개를 고른다."""
@@ -543,6 +565,51 @@ def _gemini_input_body(
     return ""
 
 
+def _gemini_run_summary(
+    *,
+    config,
+    engine: GeminiBatchSummarizer,
+    targets: int,
+    cache_hits: int,
+    cache_miss: int,
+    skipped_no_body: int,
+    applied: int,
+    started_at: float,
+) -> dict[str, object]:
+    """실행 단위 sanitized 집계 — 전부 숫자/불리언/모델 ID다.
+
+    제목·본문·프롬프트·응답·전체 URL·API 키는 절대 담지 않는다.
+    """
+    stats = engine.stats
+    return {
+        "model": config.model,
+        "targets": targets,
+        "cache_hits": cache_hits,
+        "cache_miss": cache_miss,
+        "skipped_no_body": skipped_no_body,
+        "batches": stats["batches"],
+        "requests": stats["requests"],
+        "normal_requests": stats["normal_requests"],
+        "recovery_requests": stats["recovery_requests"],
+        "sent_articles": stats["sent_articles"],
+        "sent_chars": stats["sent_chars"],
+        "gemini_applied": applied,
+        "extractive_fallback": targets - applied,
+        # 모델이 usable=false로 신고한 건수 — 오류가 아니라 품질 게이트 결과다.
+        "content_rejected": stats["content_rejected"],
+        "title_body_mismatch": stats["title_body_mismatch"],
+        "multi_topic": stats["multi_topic"],
+        "insufficient_content": stats["insufficient_content"],
+        "items_rejected": stats["items_rejected"],
+        "api_errors": stats["api_error"],
+        "rate_limit_hits": stats["rate_limit_hits"],
+        "splits": stats["splits"],
+        "breaker_tripped": engine.breaker_tripped,
+        "disabled_reason": engine.disabled_reason,
+        "elapsed_seconds": round(time.monotonic() - started_at, 1),
+    }
+
+
 def apply_gemini_summaries(
     *,
     priority_items: list,
@@ -571,10 +638,22 @@ def apply_gemini_summaries(
             "Gemini summaries skipped (reason=%s); using extractive summaries",
             engine.disabled_reason,
         )
+        _write_gemini_run_summary(
+            _gemini_run_summary(
+                config=config, engine=engine, targets=0, cache_hits=0,
+                cache_miss=0, skipped_no_body=0, applied=0, started_at=started_at,
+            )
+        )
         return 0
 
     targets = _gemini_targets(priority_items, visible_items, config.max_summaries)
     if not targets:
+        _write_gemini_run_summary(
+            _gemini_run_summary(
+                config=config, engine=engine, targets=0, cache_hits=0,
+                cache_miss=0, skipped_no_body=0, applied=0, started_at=started_at,
+            )
+        )
         return 0
 
     cache = load_gemini_cache(cache_path)
@@ -668,40 +747,21 @@ def apply_gemini_summaries(
         if cache_dirty:
             save_gemini_cache(cache_path, cache)
 
-    # 실행 단위 sanitized 집계 — 전부 숫자/불리언이다.
-    # (제목·본문·프롬프트·응답·전체 URL·API 키는 절대 담지 않는다)
-    stats = engine.stats
-    summary = {
-        "model": config.model,
-        "targets": len(targets),
-        "cache_hits": cache_hits,
-        "cache_miss": len(pending),
-        "skipped_no_body": skipped_no_body,
-        "batches": stats["batches"],
-        "requests": stats["requests"],
-        "normal_requests": stats["normal_requests"],
-        "recovery_requests": stats["recovery_requests"],
-        "sent_articles": stats["sent_articles"],
-        "sent_chars": stats["sent_chars"],
-        "gemini_applied": applied,
-        "extractive_fallback": len(targets) - applied,
-        # 모델이 usable=false로 신고한 건수 — 오류가 아니라 품질 게이트 결과다.
-        "content_rejected": stats["content_rejected"],
-        "title_body_mismatch": stats["title_body_mismatch"],
-        "multi_topic": stats["multi_topic"],
-        "insufficient_content": stats["insufficient_content"],
-        "items_rejected": stats["items_rejected"],
-        "api_errors": stats["api_error"],
-        "rate_limit_hits": stats["rate_limit_hits"],
-        "splits": stats["splits"],
-        "breaker_tripped": engine.breaker_tripped,
-        "disabled_reason": engine.disabled_reason,
-        "elapsed_seconds": round(time.monotonic() - started_at, 1),
-    }
+    summary = _gemini_run_summary(
+        config=config,
+        engine=engine,
+        targets=len(targets),
+        cache_hits=cache_hits,
+        cache_miss=len(pending),
+        skipped_no_body=skipped_no_body,
+        applied=applied,
+        started_at=started_at,
+    )
     logger.info(
         "Gemini run summary: %s",
         " ".join(f"{key}={value}" for key, value in summary.items()),
     )
+    _write_gemini_run_summary(summary)
     return applied
 
 

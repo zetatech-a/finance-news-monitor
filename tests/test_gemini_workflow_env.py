@@ -320,3 +320,51 @@ def test_collect_script_uploads_nothing_when_the_run_produced_no_report(tmp_path
     assert "collected_files=0" in result.stdout
     # 비어 있으면 upload-artifact의 if-no-files-found: error가 실패로 드러낸다.
     assert _upload_step()["with"]["if-no-files-found"] == "error"
+
+
+# --- smoke strict 검증 --------------------------------------------------------
+
+
+def test_smoke_writes_a_sanitized_run_summary_json():
+    env = _run_step_env(_load("smoke.yml"), "src.run_daily")
+    assert env["GEMINI_RUN_SUMMARY_PATH"] == "${{ runner.temp }}/gemini-run-summary.json"
+
+
+def test_daily_does_not_enable_the_run_summary_json():
+    """daily는 이 변수를 설정하지 않아야 한다 — 동작이 달라지면 안 된다."""
+    env = _run_step_env(_load("daily.yml"), "src.run_daily")
+    assert "GEMINI_RUN_SUMMARY_PATH" not in env
+
+
+def test_smoke_has_a_strict_verification_step_after_the_run():
+    steps = [s for job in _load("smoke.yml")["jobs"].values() for s in job["steps"]]
+    names = [s.get("name") for s in steps]
+    assert "Verify Gemini smoke result" in names
+    assert names.index("Run daily (naver)") < names.index("Verify Gemini smoke result")
+
+    verify = _step(_load("smoke.yml"), "Verify Gemini smoke result")
+    # 자유 형식 로그 grep이 아니라 집계 JSON을 읽는다.
+    assert "scripts/check_gemini_smoke.py" in verify["run"]
+    assert "gemini-run-summary.json" in verify["run"]
+    for leaky in ("grep ", "| grep", "GEMINI_API_KEY", "secrets."):
+        assert leaky not in str(verify)
+    # 이 스텝은 always()가 아니다 — 실패하면 job이 빨간불이 되어야 한다.
+    assert verify.get("if") is None
+
+
+def test_artifact_upload_still_runs_after_a_failed_verification():
+    """strict 검증이 실패해도 artifact는 올라가야 원인을 볼 수 있다."""
+    workflow = _load("smoke.yml")
+    steps = [s for job in workflow["jobs"].values() for s in job["steps"]]
+    names = [s.get("name") for s in steps]
+    assert names.index("Verify Gemini smoke result") < names.index("Upload smoke report")
+    for name in ("Collect smoke report", "Upload smoke report"):
+        assert _step(workflow, name).get("if") == "always()"
+
+
+def test_daily_workflow_has_no_gemini_strict_check():
+    """daily는 Gemini 0건이어도 기존 요약으로 성공해야 한다."""
+    workflow = _load("daily.yml")
+    for job in workflow["jobs"].values():
+        for step in job["steps"]:
+            assert "check_gemini_smoke" not in str(step.get("run", ""))

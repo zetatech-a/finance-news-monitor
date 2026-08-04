@@ -52,6 +52,7 @@ finance-news-monitor/
 │   ├── refresh_relevance_candidate_model.py# CI: best-effort daily candidate-model refresh
 │   ├── make_relevance_labeling_sample.py   # Optional manual labeling sample (Phase 4A)
 │   ├── validate_relevance_labels.py        # Optional label validation (Phase 4A)
+│   ├── check_gemini_smoke.py                # Manual smoke only: strict Gemini result check
 │   ├── phase5_delivery.py                  # CI helpers: sent-marker precheck/wait/mark-sent
 │   └── prune_reports.py                    # CI: reports retention (daily.yml passes 60d; artifacts 90d)
 ├── tests/                      # pytest suite (run with `python -m pytest tests/`)
@@ -132,7 +133,7 @@ read anywhere in this codebase.
 | `MAIL_RETRY_BACKOFF_SECONDS` | No | Email retry backoff base (default 10, max 120) |
 | `DEEPSEARCH_API_KEY` | No | Reserved; DeepSearch integration is NOT implemented |
 | `GEMINI_API_KEY` | No | Gemini 3-line summary. Unset ⇒ feature off, extractive summary used |
-| `GEMINI_MODEL` | No | Default `gemini-3.5-flash-lite` (`gemini_summary.DEFAULT_MODEL`) |
+| `GEMINI_MODEL` | No | Default `gemini-3.6-flash` (`gemini_summary.DEFAULT_MODEL`) |
 | `GEMINI_ENABLED` | No | `0` disables the feature even when a key is present |
 | `GEMINI_MAX_SUMMARIES` | No | Articles summarized per run (default 300, `0` = off) |
 | `GEMINI_BATCH_MAX_ARTICLES` | No | Articles per generateContent request (default 25, verified against the live API) |
@@ -300,9 +301,14 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   400만 크기 문제일 수 있어 재시도 없이 곧장 분할한다.
 
 **모델 / thinking**
-- 모델 ID의 유일한 정의 지점은 `DEFAULT_MODEL` 상수다(기본 `gemini-3.5-flash-lite`).
+- 모델 ID의 유일한 정의 지점은 `DEFAULT_MODEL` 상수다(기본 `gemini-3.6-flash`).
+  이 프로젝트 실 API 검증에서 3.6 Flash는 50건을 오류 없이 처리했고,
+  `gemini-3.5-flash-lite`는 같은 조건에서 반복 503으로 적용 0건이었다 —
+  후자는 `GEMINI_MODEL`로 수동 선택하는 선택지로만 남긴다.
+  **자동 모델 fallback은 없다.** 실패하면 기존 추출요약으로 내려간다.
   `gemini-2.5-flash`는 쓰지 않고, `-latest` alias도 기본값으로 쓰지 않는다.
-  `GEMINI_MODEL`로 `gemini-3.6-flash` 등으로 교체할 수 있다.
+  모델은 캐시 키에 이미 포함되므로 **모델 교체만을 이유로 `PROMPT_VERSION`/`SCHEMA_VERSION`을
+  올리지 마라.**
 - 공식 `google-genai` SDK만 사용한다 (구 `google-generativeai` 금지). import는 실제 호출
   직전까지 지연되므로 패키지 미설치 상태에서도 파이프라인과 테스트가 동작한다.
 - Gemini 3 계열에서만 `types.ThinkingConfig(thinking_level="minimal")`을 붙인다
@@ -357,6 +363,14 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
 - `quality.py`의 `COUNT_KEYS`는 고정 허용목록이라 Gemini 카운터를 넣어도 버려진다.
   기존 metrics JSON 스키마를 깨지 않기 위해 **의도적으로** 로그로만 남긴다.
 - 디버깅 목적으로도 본문·프롬프트 일부를 출력하지 마라.
+
+**수동 smoke의 strict 검증 (daily는 불변)**
+- `smoke.yml`만 `GEMINI_RUN_SUMMARY_PATH`를 설정해 `run_daily`가 sanitized 집계 JSON을
+  남기게 하고, `scripts/check_gemini_smoke.py`가 그 JSON만 읽어 판정한다(로그 grep 금지).
+- 전송 대상이 1건 이상인데 적용 0 + 내용 거부 0이면 **실패**. 내용 거부만 있으면 API는
+  정상이므로 성공. 전부 캐시 hit이면 성공. 전부 본문 부족이면 명시적 skip(경고).
+- **`daily.yml`에는 이 검증을 넣지 마라.** 일일 파이프라인의 fail-open 동작이 깨진다.
+- smoke 검증이 실패해도 artifact 업로드는 `always()`로 계속 실행된다.
 
 **무료 티어**
 - RPM/TPM/RPD 수치를 코드에 하드코딩하지 않는다. 실제 한도는 AI Studio에서 확인하고
