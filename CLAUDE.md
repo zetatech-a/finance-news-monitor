@@ -139,7 +139,8 @@ read anywhere in this codebase.
 | `GEMINI_BATCH_HARD_MAX_ARTICLES` | No | Hard cap on batch size (default 100); larger settings are clamped |
 | `GEMINI_BATCH_MAX_INPUT_CHARS` | No | Input-char budget per request (default 150000) |
 | `GEMINI_ARTICLE_MAX_CHARS` | No | Per-article body cap (default 3000) |
-| `GEMINI_MAX_REQUESTS_PER_RUN` | No | Total generate requests per run incl. retries/splits (default 12) |
+| `GEMINI_MAX_REQUESTS_PER_RUN` | No | Total generate requests per run incl. retries/splits (default 20) |
+| `GEMINI_MAX_RECOVERY_REQUESTS` | No | Of those, the cap for retries/splits (default 8) |
 | `GEMINI_MAX_FETCH_ATTEMPTS` | No | Gemini-only body fetch cap (default 300; separate from the extractive budget) |
 | `GEMINI_INPUT_MIN_CHARS` | No | Below this the article is not sent (default 200) |
 | `GEMINI_MAX_LINE_CHARS` | No | Per-line validation limit (default 90) |
@@ -251,10 +252,17 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
 - 배치는 `GEMINI_BATCH_MAX_ARTICLES`(기사 수)와 `GEMINI_BATCH_MAX_INPUT_CHARS`(입력 문자
   예산) 중 **먼저 걸리는 쪽**에서 닫힌다. `plan_batches()`가 이 두 제한을 함께 적용한다.
 - `GEMINI_BATCH_MAX_ARTICLES`가 `GEMINI_BATCH_HARD_MAX_ARTICLES`를 넘으면 hard cap으로 낮춘다.
-- 정상 시 요청 수: 50건→1회, 100건→2회, 250건→5회, 300건→6회
-  (본문이 전부 최대 길이면 문자 예산이 먼저 걸려 각각 +1회 수준).
-- 총 요청 수는 `GEMINI_MAX_REQUESTS_PER_RUN`(기본 12)을 절대 넘지 않는다. 초과하면 남은
-  기사는 추출요약을 쓴다.
+- 요청 수(평균 본문 ~1,200자): 50건→1회, 100건→2회, 250건→5회, 300건→6회.
+  **최악(전 기사가 `GEMINI_ARTICLE_MAX_CHARS`=3,000자)**: 문자 예산이 먼저 걸려 배치가
+  47건에서 닫히므로 250건→6회, 300건→7회.
+- 입력량 실측(제목 40자 기준): 250건×3,000자 = 본문 **750,000자**, 실제 프롬프트 합계
+  약 775,000자, 요청 1건 최대 약 146,000자. 300건이면 각각 900,000 / 930,000자.
+  평균 본문(1,200자) 250건은 프롬프트 합계 약 325,000자다.
+  **평균과 최악을 혼동하지 마라** — 무료 티어 TPM 산정은 요청 1건(≈146,000자) 기준으로 한다.
+- 총 요청 수는 `GEMINI_MAX_REQUESTS_PER_RUN`(기본 20)을 절대 넘지 않고, 그중 재시도·분할은
+  `GEMINI_MAX_RECOVERY_REQUESTS`(기본 8)까지만 쓴다. 복구 예산이 바닥나도 아직 보내지 않은
+  정상 배치는 계속 처리한다 — 앞 배치의 복구가 뒤 배치를 굶기지 않는다.
+  상한에 도달하면 남은 기사는 추출요약을 쓴다.
 - 크기 1 요청은 분할 사다리의 **최종 복구 수단**으로만 나타난다. 정상 경로에 두지 마라.
 
 **부분 성공 — all-or-nothing 금지**
@@ -310,6 +318,17 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
 - 없는 기사만 `GEMINI_MAX_FETCH_ATTEMPTS`(기본 300, 추출요약 예산과 별개) 안에서 추가 fetch한다.
 - fetch가 실패하면 현재 `description`(추출요약)을 입력 후보로 쓰고, 그마저
   `GEMINI_INPUT_MIN_CHARS` 미만이면 호출 없이 기존 fallback을 그대로 둔다.
+
+**관측**
+- 실행이 끝나면 `run_daily.apply_gemini_summaries`가 **sanitized 집계 한 줄**을 남긴다
+  (`Gemini run summary: ...`). 값은 전부 숫자/불리언이며 제목·본문·프롬프트·응답·전체 URL·
+  API 키는 담지 않는다. 항목: targets / cache_hits / cache_miss / skipped_no_body / batches /
+  requests / normal_requests / recovery_requests / sent_articles / sent_chars / gemini_applied /
+  extractive_fallback / items_rejected / api_errors / rate_limit_hits / splits /
+  breaker_tripped / disabled_reason / elapsed_seconds.
+- `quality.py`의 `COUNT_KEYS`는 고정 허용목록이라 Gemini 카운터를 넣어도 버려진다.
+  기존 metrics JSON 스키마를 깨지 않기 위해 **의도적으로** 로그로만 남긴다.
+- 디버깅 목적으로도 본문·프롬프트 일부를 출력하지 마라.
 
 **무료 티어**
 - RPM/TPM/RPD 수치를 코드에 하드코딩하지 않는다. 실제 한도는 AI Studio에서 확인하고

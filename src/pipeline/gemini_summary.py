@@ -115,6 +115,7 @@ class GeminiConfig:
     circuit_breaker_failures: int
     max_fetch_attempts: int
     max_requests_per_run: int
+    max_recovery_requests: int
 
     @property
     def active(self) -> bool:
@@ -186,8 +187,13 @@ def load_gemini_config() -> GeminiConfig:
         # 기존 추출요약의 fetch 예산(MAX_SUMMARY_FETCH_ATTEMPTS)과 완전히 별개인
         # Gemini 전용 본문 크롤링 상한이다.
         max_fetch_attempts=env_int("GEMINI_MAX_FETCH_ATTEMPTS", 300, minimum=0, maximum=2000),
+        # 300건 / 배치 50 = 6회가 정상 경로다. 부분 실패 복구까지 감당하도록 여유를 둔다.
         max_requests_per_run=env_int(
-            "GEMINI_MAX_REQUESTS_PER_RUN", 12, minimum=0, maximum=200
+            "GEMINI_MAX_REQUESTS_PER_RUN", 20, minimum=0, maximum=200
+        ),
+        # 복구(재시도·분할) 요청 전용 상한. 정상 배치가 복구 요청에 밀려 굶지 않게 한다.
+        max_recovery_requests=env_int(
+            "GEMINI_MAX_RECOVERY_REQUESTS", 8, minimum=0, maximum=200
         ),
     )
 
@@ -560,7 +566,25 @@ def _retry_after_seconds(exc: BaseException) -> float | None:
     return None
 
 
+# 실제 SDK 검증에서 확인: 잘못된 API 키는 401/403이 아니라
+# 400 INVALID_ARGUMENT + reason=API_KEY_INVALID로 온다. 400으로만 두면 배치 3개를
+# 태워야 breaker가 열리므로, 기계가 읽는 reason 마커로 인증 오류를 골라낸다.
+_AUTH_REASON_RE = re.compile(
+    r"API_KEY_INVALID|API_KEY_SERVICE_BLOCKED|PERMISSION_DENIED|ACCESS_TOKEN_EXPIRED"
+)
+
+
+def _looks_like_auth_failure(exc: BaseException) -> bool:
+    for attr in ("details", "status", "message"):
+        value = getattr(exc, attr, None)
+        if value and _AUTH_REASON_RE.search(str(value)):
+            return True
+    return False
+
+
 def classify_error(exc: BaseException) -> str:
+    if _looks_like_auth_failure(exc):
+        return CATEGORY_AUTH
     code = _error_code(exc)
     if code is not None:
         if code in (401, 403):
@@ -693,13 +717,20 @@ class GeminiBatchSummarizer:
         self._disabled_reason: str | None = None
         self._last_call_at: float | None = None
         self._requests_used = 0
+        self._recovery_used = 0
+        # 실행 단위 집계 — 전부 숫자다(제목·본문·프롬프트·URL은 담지 않는다).
         self._stats = {
-            "ok": 0,
-            "invalid_item": 0,
-            "api_error": 0,
-            "batches": 0,
-            "splits": 0,
-            "requests": 0,
+            "batches": 0,  # 시도한 배치 수
+            "requests": 0,  # 실제 API 요청 수
+            "normal_requests": 0,  # 최초 계획된 배치 요청
+            "recovery_requests": 0,  # 재시도/분할 요청
+            "sent_articles": 0,  # API에 전달한 총 기사 수(재전송 포함)
+            "sent_chars": 0,  # API에 전달한 총 문자 수(프롬프트 기준)
+            "articles_ok": 0,  # 검증을 통과해 적용된 기사 수
+            "items_rejected": 0,  # 항목 단위 실패 수
+            "api_error": 0,  # API 예외 발생 횟수
+            "rate_limit_hits": 0,  # 429 발생 횟수
+            "splits": 0,  # 분할 횟수
         }
 
         if not config.active:
@@ -729,6 +760,14 @@ class GeminiBatchSummarizer:
         return self._requests_used
 
     @property
+    def recovery_used(self) -> int:
+        return self._recovery_used
+
+    @property
+    def breaker_tripped(self) -> bool:
+        return self._disabled_reason == "consecutive_failures"
+
+    @property
     def stats(self) -> dict[str, int]:
         return dict(self._stats)
 
@@ -744,6 +783,14 @@ class GeminiBatchSummarizer:
     def _budget_left(self) -> int:
         return self._config.max_requests_per_run - self._requests_used
 
+    def _recovery_left(self) -> int:
+        return self._config.max_recovery_requests - self._recovery_used
+
+    def _can_call(self, *, recovery: bool) -> bool:
+        if self._budget_left() <= 0:
+            return False
+        return not recovery or self._recovery_left() > 0
+
     def _pace(self) -> None:
         interval = self._config.min_interval_seconds
         if interval <= 0 or self._last_call_at is None:
@@ -752,12 +799,21 @@ class GeminiBatchSummarizer:
         if remaining > 0:
             self._sleep(remaining)
 
-    def _call(self, prompt: str, schema: dict[str, Any]) -> str:
+    def _call(
+        self, prompt: str, schema: dict[str, Any], *, size: int, recovery: bool
+    ) -> str:
         if self._generate_fn is None:
             self._generate_fn = build_generate_fn(self._config)
         self._pace()
         self._requests_used += 1
         self._stats["requests"] += 1
+        self._stats["sent_articles"] += size
+        self._stats["sent_chars"] += len(prompt)
+        if recovery:
+            self._recovery_used += 1
+            self._stats["recovery_requests"] += 1
+        else:
+            self._stats["normal_requests"] += 1
         # 간격은 요청 **시작** 기준으로 잰다 — 분당 요청 수 제한이 세는 단위가 그것이고,
         # 종료 시각 기준으로 재면 응답 시간만큼 과도하게 느려진다.
         self._last_call_at = self._monotonic()
@@ -779,11 +835,15 @@ class GeminiBatchSummarizer:
             return results
 
         cfg = self._config
-        worklist = plan_batches(
-            items,
-            max_articles=cfg.batch_max_articles,
-            max_input_chars=cfg.batch_max_input_chars,
-        )
+        # 각 항목은 (배치, 복구요청 여부) — 최초 계획된 배치는 정상 요청이다.
+        worklist: list[tuple[list[BatchItem], bool]] = [
+            (batch, False)
+            for batch in plan_batches(
+                items,
+                max_articles=cfg.batch_max_articles,
+                max_input_chars=cfg.batch_max_input_chars,
+            )
+        ]
 
         while worklist:
             if self.disabled:
@@ -792,12 +852,21 @@ class GeminiBatchSummarizer:
                 logger.warning(
                     "Gemini request budget exhausted (%s); %s article(s) fall back to extractive",
                     cfg.max_requests_per_run,
-                    sum(len(batch) for batch in worklist),
+                    sum(len(batch) for batch, _ in worklist),
                 )
                 break
 
-            batch = worklist.pop(0)
-            outcome = self._run_batch(batch)
+            batch, is_recovery = worklist.pop(0)
+            if is_recovery and self._recovery_left() <= 0:
+                # 복구 예산 소진 — 남은 정상 배치는 계속 처리한다(굶기지 않는다).
+                logger.warning(
+                    "Gemini recovery budget exhausted (%s); %s article(s) fall back to extractive",
+                    cfg.max_recovery_requests,
+                    len(batch),
+                )
+                continue
+
+            outcome = self._run_batch(batch, recovery=is_recovery)
             self._stats["batches"] += 1
 
             for item in batch:
@@ -834,20 +903,25 @@ class GeminiBatchSummarizer:
                 split_size,
                 outcome.rejected_reasons,
             )
-            worklist = chunk_items(failed_items, split_size) + worklist
+            # 분할로 만들어진 요청은 전부 복구 요청으로 센다.
+            retries = [(chunk, True) for chunk in chunk_items(failed_items, split_size)]
+            worklist = retries + worklist
 
         return results
 
-    def _run_batch(self, batch: Sequence[BatchItem]) -> BatchOutcome:
+    def _run_batch(self, batch: Sequence[BatchItem], *, recovery: bool = False) -> BatchOutcome:
         """배치 1개를 실행한다(일시적 오류는 같은 배치로 제한 재시도)."""
         cfg = self._config
         prompt = build_batch_prompt(batch)
         schema = response_json_schema(len(batch))
         attempts = 0
+        is_recovery = recovery
 
         while True:
             try:
-                raw = self._call(prompt, schema)
+                raw = self._call(
+                    prompt, schema, size=len(batch), recovery=is_recovery
+                )
             except _PROGRAMMING_ERRORS as exc:
                 # 우리 쪽 버그다 — fallback으로 감추면 영영 안 보인다.
                 self._disable("programming_error")
@@ -857,6 +931,8 @@ class GeminiBatchSummarizer:
             except Exception as exc:  # SDK/전송 계층 오류
                 category = classify_error(exc)
                 self._stats["api_error"] += 1
+                if category == CATEGORY_RATE_LIMIT:
+                    self._stats["rate_limit_hits"] += 1
                 logger.warning(
                     "Gemini batch request failed: size=%s category=%s code=%s error=%s",
                     len(batch),
@@ -870,7 +946,9 @@ class GeminiBatchSummarizer:
 
                 attempts += 1
                 retryable = category in _RETRYABLE
-                if retryable and attempts < cfg.retry_attempts and self._budget_left() > 0:
+                # 재시도는 언제나 복구 요청이다 — 복구 예산도 함께 확인한다.
+                if retryable and attempts < cfg.retry_attempts and self._can_call(recovery=True):
+                    is_recovery = True
                     self._sleep(self._backoff_seconds(exc, category, attempts))
                     continue
 
@@ -880,8 +958,8 @@ class GeminiBatchSummarizer:
 
             outcome = validate_batch_response(raw, batch, max_line_chars=cfg.max_line_chars)
             outcome.retryable_by_split = True
-            self._stats["ok"] += len(outcome.accepted)
-            self._stats["invalid_item"] += len(outcome.failed_ids)
+            self._stats["articles_ok"] += len(outcome.accepted)
+            self._stats["items_rejected"] += len(outcome.failed_ids)
             if outcome.accepted:
                 self._consecutive_failures = 0
             else:

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -557,6 +558,7 @@ def apply_gemini_summaries(
     캐시 hit 기사는 배치를 만들기 전에 제외되어 Gemini로 전송되지 않는다.
     어떤 실패도 리포트 생성을 막지 않는다. Returns 적용된 기사 수.
     """
+    started_at = time.monotonic()
     engine = (
         summarizer
         if summarizer is not None
@@ -656,16 +658,34 @@ def apply_gemini_summaries(
         if cache_dirty:
             save_gemini_cache(cache_path, cache)
 
+    # 실행 단위 sanitized 집계 — 전부 숫자/불리언이다.
+    # (제목·본문·프롬프트·응답·전체 URL·API 키는 절대 담지 않는다)
+    stats = engine.stats
+    summary = {
+        "model": config.model,
+        "targets": len(targets),
+        "cache_hits": cache_hits,
+        "cache_miss": len(pending),
+        "skipped_no_body": skipped_no_body,
+        "batches": stats["batches"],
+        "requests": stats["requests"],
+        "normal_requests": stats["normal_requests"],
+        "recovery_requests": stats["recovery_requests"],
+        "sent_articles": stats["sent_articles"],
+        "sent_chars": stats["sent_chars"],
+        "gemini_applied": applied,
+        "extractive_fallback": len(targets) - applied,
+        "items_rejected": stats["items_rejected"],
+        "api_errors": stats["api_error"],
+        "rate_limit_hits": stats["rate_limit_hits"],
+        "splits": stats["splits"],
+        "breaker_tripped": engine.breaker_tripped,
+        "disabled_reason": engine.disabled_reason,
+        "elapsed_seconds": round(time.monotonic() - started_at, 1),
+    }
     logger.info(
-        "Gemini summaries applied: %s (cache_hits=%s, generated=%s, requests=%s, model=%s, "
-        "stats=%s, disabled=%s)",
-        applied,
-        cache_hits,
-        applied - cache_hits,
-        engine.requests_used,
-        config.model,
-        engine.stats,
-        engine.disabled_reason,
+        "Gemini run summary: %s",
+        " ".join(f"{key}={value}" for key, value in summary.items()),
     )
     return applied
 
