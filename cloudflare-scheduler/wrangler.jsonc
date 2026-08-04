@@ -9,9 +9,7 @@
   "preview_urls": false,
 
   "triggers": {
-    // UTC 23:59 = KST 08:59 — slightly ahead of the ~09:03 KST mail target so
-    // the run finishes in time. GitHub's own schedule triggers stay in place
-    // for now; the sent-marker prevents duplicate emails.
+    // UTC 23:59 = KST 08:59. GitHub workflow를 호출해 09:03 전후 이메일 도착을 목표로 한다.
     "crons": ["59 23 * * *"]
   },
 
