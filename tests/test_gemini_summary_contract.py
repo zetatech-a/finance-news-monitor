@@ -123,6 +123,14 @@ def test_rejects_numbered_prefixes(bad):
     assert validate_lines(_payload([bad, GOOD_LINES[1], GOOD_LINES[2]])) is None
 
 
+def test_date_leading_sentence_is_not_a_numbered_prefix():
+    """`2026. 8. 4. 기준 …`은 번호 목록이 아니라 날짜로 시작하는 정상 문장이다."""
+    good = "2026. 8. 4. 기준 대부업 등록업체는 900곳이다."
+    assert validate_lines(_payload([good, GOOD_LINES[1], GOOD_LINES[2]])) is not None
+    # 진짜 번호 접두사는 그대로 거부된다.
+    assert validate_lines(_payload(["1. 금융위가 발표했다.", GOOD_LINES[1], GOOD_LINES[2]])) is None
+
+
 @pytest.mark.parametrize(
     "bad",
     [
@@ -186,10 +194,23 @@ def test_rejects_lines_that_are_not_exactly_one_sentence(bad):
         "저축은행 연체율은 8.4%로 전 분기 대비 1.2%포인트 올랐다.",  # 소수점은 문장 경계가 아니다
         "금융위는 \"제도 안착이 우선\"이라고 밝혔다.",
         "감독당국은 내년 1분기까지 이행 실태를 점검한다!",
+        # 프롬프트가 날짜·고유명사를 기사 표기 그대로 두라고 요구한다 —
+        # 국문 날짜 표기와 약어의 마침표를 문장 경계로 세면 안 된다.
+        "개정 규정은 2026. 8. 4. 시행될 예정이다.",
+        "2026. 8. 4. 기준 대부업 등록업체는 900곳이다.",
+        "시행일은 2026. 8. 4.",
+        "미국 U.S. SEC가 관련 규제안을 발표했다.",
+        "계약은 12. 31. 만료된다.",
     ],
 )
 def test_accepts_a_single_complete_sentence(good):
     assert validate_lines(_payload([good, GOOD_LINES[1], GOOD_LINES[2]])) is not None
+
+
+def test_masked_dots_do_not_hide_a_real_second_sentence():
+    """날짜를 가려도 진짜 두 문장은 계속 거부된다."""
+    bad = "금융위는 개편안을 발표했다. 2026. 8. 4. 시행된다."
+    assert validate_lines(_payload([bad, GOOD_LINES[1], GOOD_LINES[2]])) is None
 
 
 def test_prompt_requires_one_complete_sentence_per_line():

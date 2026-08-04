@@ -576,6 +576,7 @@ def _gemini_run_summary(
     skipped_no_body: int,
     applied: int,
     started_at: float,
+    skipped_over_capacity: int = 0,
 ) -> dict[str, object]:
     """실행 단위 sanitized 집계 — 전부 숫자/불리언/모델 ID다.
 
@@ -588,6 +589,8 @@ def _gemini_run_summary(
         "cache_hits": cache_hits,
         "cache_miss": cache_miss,
         "skipped_no_body": skipped_no_body,
+        # 요청 상한 때문에 애초에 보낼 수 없어 본문 수집조차 하지 않은 기사 수.
+        "skipped_over_capacity": skipped_over_capacity,
         "batches": stats["batches"],
         "requests": stats["requests"],
         "normal_requests": stats["normal_requests"],
@@ -662,7 +665,14 @@ def apply_gemini_summaries(
     applied = 0
     cache_hits = 0
     skipped_no_body = 0
+    skipped_over_capacity = 0
     cache_dirty = False
+
+    # 이번 실행에서 실제로 전송 가능한 기사 수의 상한. 요청 상한이 낮으면(예: 요청 1회)
+    # 25건만 보낼 수 있는데도 300건을 크롤링해 12초짜리 fetch를 낭비하고 그 본문을
+    # 그대로 버리게 된다. 배치는 문자 예산 때문에 더 일찍 닫힐 수 있고 복구 요청도
+    # 예산을 나눠 쓰므로 이 값은 상한(upper bound)이다 — 준비를 덜 하지는 않는다.
+    sendable_cap = config.max_requests_per_run * config.batch_max_articles
 
     # 1) 캐시 우선 — hit한 기사는 배치 대상에서 완전히 빠진다.
     pending: list[tuple[object, str, str, str]] = []  # (article, cache_key, url, body)
@@ -690,6 +700,12 @@ def apply_gemini_summaries(
             cache_hits += 1
             continue
 
+        if len(pending) >= sendable_cap:
+            # 보낼 수 없는 기사다 — 본문 크롤링을 시작조차 하지 않는다.
+            # (캐시 hit은 위에서 이미 처리되므로 남은 기사도 계속 확인한다)
+            skipped_over_capacity += 1
+            continue
+
         body = _gemini_input_body(
             article, fetch_url, body_cache, fetch_budget, config.input_min_chars
         )
@@ -698,12 +714,23 @@ def apply_gemini_summaries(
             continue
         pending.append((article, key, fetch_url, body))
 
+    if skipped_over_capacity:
+        logger.info(
+            "Gemini request capacity reached (%s requests × %s articles); "
+            "%s article(s) skipped without fetching",
+            config.max_requests_per_run,
+            config.batch_max_articles,
+            skipped_over_capacity,
+        )
+
     logger.info(
-        "Gemini batching: targets=%s cache_hits=%s to_summarize=%s skipped_no_body=%s",
+        "Gemini batching: targets=%s cache_hits=%s to_summarize=%s skipped_no_body=%s "
+        "skipped_over_capacity=%s",
         len(targets),
         cache_hits,
         len(pending),
         skipped_no_body,
+        skipped_over_capacity,
     )
 
     # 2) cache miss 기사만 불투명 ID를 붙여 마이크로배치로 보낸다.
@@ -764,6 +791,7 @@ def apply_gemini_summaries(
         cache_hits=cache_hits,
         cache_miss=len(pending),
         skipped_no_body=skipped_no_body,
+        skipped_over_capacity=skipped_over_capacity,
         applied=applied,
         started_at=started_at,
     )

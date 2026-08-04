@@ -53,6 +53,8 @@ jobs:
           NCP_APIGW_API_KEY: ${{ secrets.NCP_APIGW_API_KEY }}
           # Gemini 3줄 요약(선택). 미설정이면 추출식 요약으로 정상 동작한다.
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # kill switch: daily와 같은 repository variable을 따른다(0이면 호출하지 않는다).
+          GEMINI_ENABLED: ${{ vars.GEMINI_ENABLED }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
           # 처리량 4종은 dispatch input이 항상 값을 가지므로 repository variable보다 우선한다.
           GEMINI_MAX_SUMMARIES: ${{ inputs.gemini_max_summaries }}

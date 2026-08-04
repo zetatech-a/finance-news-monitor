@@ -150,6 +150,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # 아래 Repository Variables는 전부 선택이다. 미설정 시 빈 문자열이 전달되고,
           # src/config.py의 env_int/env_float가 빈 값을 "미설정"으로 보고 코드 기본값을 쓴다.
+          # kill switch: 키를 지우거나 워크플로를 고치지 않고도 GEMINI_ENABLED=0으로 끈다.
+          GEMINI_ENABLED: ${{ vars.GEMINI_ENABLED }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
           GEMINI_MAX_SUMMARIES: ${{ vars.GEMINI_MAX_SUMMARIES }}
           GEMINI_BATCH_MAX_ARTICLES: ${{ vars.GEMINI_BATCH_MAX_ARTICLES }}

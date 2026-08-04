@@ -300,6 +300,10 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   마크다운·번호 접두사 / **한 줄에 두 문장 또는 종결부호 없는 조각** / 파싱 불가.
   "한 줄 = 완결된 한 문장"은 `is_single_sentence()`가 검사한다 — 소수점·비율(`8.4%`)은
   종결부호 뒤에 공백이 없어 문장 경계로 세지 않는다.
+- 국문 날짜 표기(`2026. 8. 4.`)와 `U.S.` 같은 약어는 `_mask_non_sentence_dots()`로 가린 뒤
+  문장 경계·번호 접두사를 검사한다. 프롬프트가 "날짜·고유명사는 기사 표기 그대로"를
+  요구하므로 이 마침표를 문장 경계로 세면 정상 요약이 거부되어 복구 요청만 낭비하고
+  추출요약으로 떨어진다. 마스킹을 지우면 `2026. 8. 4. 기준 …`이 번호 목록으로도 오인된다.
 - **이미 성공한 기사는 절대 재전송하지 않는다.**
 - 재요청 크기: 일부만 실패하면 그 부분집합을 한 번에(이미 더 작은 배치다), 전량 실패면
   사다리(`SPLIT_LADDER` = 25 → 10 → 1)로 좁힌다. 1까지 가서도 실패하면 기사별 extractive fallback.
@@ -361,13 +365,18 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
 **본문 수집**
 - 추출요약 단계가 `body_sink`에 담아둔 본문을 재사용한다 — 같은 URL을 다시 fetch하지 않는다.
 - 없는 기사만 `GEMINI_MAX_FETCH_ATTEMPTS`(기본 300, 추출요약 예산과 별개) 안에서 추가 fetch한다.
+- **이번 실행에서 보낼 수 없는 기사는 fetch하지 않는다.** 전송 가능 상한은
+  `max_requests_per_run × batch_max_articles`이고, 이를 넘으면 `skipped_over_capacity`로
+  세고 본문 수집을 건너뛴다(캐시 hit은 이 상한과 무관하게 계속 적용된다). 이 가드가 없으면
+  요청 1회 설정에서도 300건을 크롤링해 버리고 그 본문을 그대로 버린다.
 - fetch가 실패하면 현재 `description`(추출요약)을 입력 후보로 쓰고, 그마저
   `GEMINI_INPUT_MIN_CHARS` 미만이면 호출 없이 기존 fallback을 그대로 둔다.
 
 **관측**
 - 실행이 끝나면 `run_daily.apply_gemini_summaries`가 **sanitized 집계 한 줄**을 남긴다
   (`Gemini run summary: ...`). 값은 전부 숫자/불리언이며 제목·본문·프롬프트·응답·전체 URL·
-  API 키는 담지 않는다. 항목: targets / cache_hits / cache_miss / skipped_no_body / batches /
+  API 키는 담지 않는다. 항목: targets / cache_hits / cache_miss / skipped_no_body /
+  skipped_over_capacity / batches /
   requests / normal_requests / recovery_requests / sent_articles / sent_chars / gemini_applied /
   extractive_fallback / content_rejected / title_body_mismatch / multi_topic /
   insufficient_content / items_rejected / api_errors / rate_limit_hits / splits /

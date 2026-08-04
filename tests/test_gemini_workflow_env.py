@@ -53,6 +53,22 @@ def test_api_key_comes_from_secrets_not_variables(workflow_name):
 
 
 @pytest.mark.parametrize("workflow_name", ["daily.yml", "smoke.yml"])
+def test_kill_switch_is_wired_as_a_repository_variable(workflow_name):
+    """GEMINI_ENABLED=0으로 끌 수 있어야 한다 — 배선이 없으면 문서상의 kill switch가
+    실제로는 동작하지 않아, 키를 지우거나 워크플로를 고쳐야만 중단할 수 있다."""
+    env = _run_step_env(_load(workflow_name), "src.run_daily")
+    assert env["GEMINI_ENABLED"] == "${{ vars.GEMINI_ENABLED }}"
+
+
+def test_unset_kill_switch_keeps_the_feature_on(monkeypatch):
+    """미설정 variable은 빈 문자열로 전달된다 — 기본값(활성)이 유지돼야 한다."""
+    monkeypatch.setenv("GEMINI_ENABLED", "")
+    assert load_gemini_config().enabled is True
+    monkeypatch.setenv("GEMINI_ENABLED", "0")
+    assert load_gemini_config().enabled is False
+
+
+@pytest.mark.parametrize("workflow_name", ["daily.yml", "smoke.yml"])
 def test_all_throughput_vars_are_wired(workflow_name):
     env = _run_step_env(_load(workflow_name), "src.run_daily")
     for name in THROUGHPUT_VARS:

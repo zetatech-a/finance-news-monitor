@@ -211,6 +211,48 @@ def test_empty_body_is_skipped_without_calling_the_api(tmp_path):
     assert calls == []
 
 
+def test_bodies_are_not_fetched_beyond_the_request_capacity(tmp_path, monkeypatch):
+    """보낼 수 없는 기사는 크롤링하지 않는다.
+
+    요청 상한이 낮으면(요청 1회 × 배치 2건 = 2건) 나머지 기사의 본문을 아무리 모아도
+    전송되지 않고 버려진다 — 12초짜리 fetch를 그만큼 낭비하게 된다.
+    """
+    monkeypatch.setenv("GEMINI_MAX_REQUESTS_PER_RUN", "1")
+    monkeypatch.setenv("GEMINI_BATCH_MAX_ARTICLES", "2")
+    monkeypatch.setenv("GEMINI_MAX_FETCH_ATTEMPTS", "300")  # fetch 예산은 넉넉하다
+
+    items = [_item(i) for i in range(6)]
+    fetched: list[str] = []
+    monkeypatch.setattr(
+        run_daily, "fetch_html", lambda url, timeout=12: fetched.append(url) or "<html/>"
+    )
+    monkeypatch.setattr(run_daily, "extract_main_text", lambda url, html: BODY)
+
+    applied = _apply(items, tmp_path, _summarizer(), {})
+
+    assert len(fetched) == 2  # 전송 가능한 2건만 크롤링한다
+    assert applied == 2
+
+
+def test_cached_articles_still_apply_past_the_request_capacity(tmp_path, monkeypatch):
+    """용량 초과로 건너뛰는 것은 '본문 수집'뿐이다 — 캐시 hit은 그대로 적용된다."""
+    warm = [_item(5)]
+    body_cache = {warm[0].article.link: BODY}
+    _apply(warm, tmp_path, _summarizer(), body_cache)
+
+    monkeypatch.setenv("GEMINI_MAX_REQUESTS_PER_RUN", "1")
+    monkeypatch.setenv("GEMINI_BATCH_MAX_ARTICLES", "1")
+    monkeypatch.setattr(run_daily, "fetch_html", lambda url, timeout=12: "<html/>")
+    monkeypatch.setattr(run_daily, "extract_main_text", lambda url, html: BODY)
+
+    # 앞의 2건은 cache miss(1건만 전송 가능), 마지막 1건은 cache hit이다.
+    items = [_item(0), _item(1), _item(5)]
+    applied = _apply(items, tmp_path, _summarizer(), {})
+
+    assert items[2].article.summary_lines == GOOD_LINES  # 캐시 hit은 살아남는다
+    assert applied == 2  # 캐시 1건 + 새로 요약한 1건
+
+
 def test_body_is_fetched_within_a_dedicated_budget(tmp_path, monkeypatch):
     monkeypatch.setenv("GEMINI_MAX_FETCH_ATTEMPTS", "1")
     items = [_item(0), _item(1)]

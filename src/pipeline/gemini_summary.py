@@ -105,6 +105,11 @@ _WS_RE = re.compile(r"\s+")
 _SENTENCE_END_RE = re.compile(r"[.!?。](?:\s|$)")
 # 줄 끝의 종결부호(뒤따르는 닫는 따옴표/괄호 포함) — "한 줄 = 한 문장" 검증에 쓴다.
 _SENTENCE_TAIL_RE = re.compile(r"[.!?。][\"'’”』」\)\]]*$")
+# 문장 경계가 아닌 마침표. 프롬프트가 "날짜·고유명사는 기사 표기 그대로"를 요구하므로
+# `2026. 8. 4.`(국문 날짜 표기)나 `U.S.` 같은 약어가 그대로 들어온다 — 이걸 문장 경계로
+# 세면 정상 요약이 거부되어 복구 요청만 낭비하고 결국 추출요약으로 떨어진다.
+_DOTTED_DATE_RE = re.compile(r"\d{1,4}\s*\.(?:\s*\d{1,2}\s*\.){1,2}")
+_DOTTED_ABBREV_RE = re.compile(r"(?:[A-Za-z]\s*\.){2,}")
 
 # 기사 제목·본문은 신뢰할 수 없는 외부 입력이다. 프롬프트의 <article> 경계를 기사
 # 내용으로 위조할 수 없도록 꺾쇠를 전각 문자로 치환한다. 길이가 보존되므로
@@ -436,17 +441,29 @@ def _normalize_for_compare(text: str) -> str:
     return _WS_RE.sub(" ", (text or "")).strip().strip(".!?").lower()
 
 
+def _mask_non_sentence_dots(text: str) -> str:
+    """날짜(`2026. 8. 4.`)·약어(`U.S.`)의 마침표를 문장 경계 검사에서 가린다(길이 보존)."""
+
+    def _mask(match: re.Match[str]) -> str:
+        return match.group().replace(".", "·")
+
+    return _DOTTED_ABBREV_RE.sub(_mask, _DOTTED_DATE_RE.sub(_mask, text))
+
+
 def is_single_sentence(line: str) -> bool:
     """줄이 "완결된 한 문장"인지 — 종결부호로 끝나고 중간에 문장 경계가 없어야 한다.
 
     3줄 계약은 세 문장이다. 한 줄에 두 문장을 넣거나("A했다. B했다.") 종결부호 없는
     조각("금융위, 개편안 발표")을 주면 화면의 '3줄'이 3문장이 아니게 되므로 거부한다.
-    소수점·약어(`8.4%`, `1.5조원`)는 종결부호 뒤에 공백이 없어 문장 경계로 세지 않는다.
+    소수점·약어(`8.4%`, `1.5조원`)는 종결부호 뒤에 공백이 없어 문장 경계로 세지 않고,
+    국문 날짜 표기(`2026. 8. 4.`)와 `U.S.` 같은 약어는 검사 전에 가린다.
     """
     if not _SENTENCE_TAIL_RE.search(line):
         return False
+    # 끝의 종결부호를 먼저 떼어낸다 — 날짜로 끝나는 줄(`… 2026. 8. 4.`)에서 마지막
+    # 마침표가 날짜 표기와 문장 끝을 겸하기 때문이다.
     head = _SENTENCE_TAIL_RE.sub("", line)
-    return not _SENTENCE_END_RE.search(head)
+    return not _SENTENCE_END_RE.search(_mask_non_sentence_dots(head))
 
 
 def validate_lines(
@@ -496,7 +513,9 @@ def validate_lines(
             return None
         if len(line) > max_line_chars:
             return None
-        if _BULLET_PREFIX_RE.search(line):
+        # 번호 목록 검사는 날짜를 가린 뒤에 한다 — `2026. 8. 4. 기준 …`처럼 국문 날짜로
+        # 시작하는 정상 문장이 "1." 같은 번호 접두사로 오인되는 것을 막는다.
+        if _BULLET_PREFIX_RE.search(_mask_non_sentence_dots(line)):
             return None
         if _MARKDOWN_INLINE_RE.search(line):
             return None
