@@ -187,6 +187,18 @@ def test_applied_and_rejected_cover_everything_sent_passes(tmp_path):
 # --- 명시적 skip -------------------------------------------------------------
 
 
+def test_cache_hit_with_remaining_no_body_targets_is_a_skip(tmp_path, capsys):
+    """캐시 1건 + 나머지 본문 부족 = 라이브 경로를 한 번도 안 거쳤다 — 초록으로 넘기지 않는다."""
+    summary = _summary(targets=50, cache_hits=1, skipped_no_body=49, gemini_applied=1)
+    status, reason = evaluate(summary)
+    assert status == STATUS_SKIPPED
+    assert "API path not exercised" in reason
+    assert _run(tmp_path, summary) == EXIT_OK
+    out = capsys.readouterr().out
+    assert "::warning::" in out
+    assert "::error::" not in out
+
+
 def test_all_targets_without_a_body_is_an_explicit_skip(tmp_path, capsys):
     """API를 아예 안 불렀으므로 검증한 것이 없다 — 조용히 통과시키지 않는다."""
     summary = _summary(targets=40, cache_miss=40, skipped_no_body=40)

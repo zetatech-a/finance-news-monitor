@@ -40,6 +40,7 @@ from src.pipeline.summary_cache import load_cache, save_cache
 # ✅ (선택) Gemini 기반 표시용 3줄 요약 — 실패해도 추출요약으로 계속 진행한다
 from src.pipeline.gemini_cache import (
     cache_key as gemini_cache_key,
+    content_fingerprint,
     get_cached_lines,
     load_gemini_cache,
     put_cached_lines,
@@ -48,11 +49,15 @@ from src.pipeline.gemini_cache import (
 from src.pipeline.gemini_summary import (
     PROMPT_VERSION,
     SCHEMA_VERSION,
+    BatchCapacityPlanner,
     BatchItem,
     GeminiBatchSummarizer,
     GeminiProgrammingError,
-    iter_batch_items,
+    build_batch_item,
+    estimate_item_chars,
+    fit_item_to_budget,
     load_gemini_config,
+    make_article_id,
     safe_host,
     validate_lines,
 )
@@ -668,22 +673,33 @@ def apply_gemini_summaries(
     skipped_over_capacity = 0
     cache_dirty = False
 
-    # 이번 실행에서 실제로 전송 가능한 기사 수의 상한. 요청 상한이 낮으면(예: 요청 1회)
-    # 25건만 보낼 수 있는데도 300건을 크롤링해 12초짜리 fetch를 낭비하고 그 본문을
-    # 그대로 버리게 된다. 배치는 문자 예산 때문에 더 일찍 닫힐 수 있고 복구 요청도
-    # 예산을 나눠 쓰므로 이 값은 상한(upper bound)이다 — 준비를 덜 하지는 않는다.
-    sendable_cap = config.max_requests_per_run * config.batch_max_articles
+    # 이번 실행에서 실제로 전송 가능한 분량을 배치 계획과 **같은 규칙으로** 추적한다.
+    # 요청 상한이 낮으면(예: 요청 1회) 25건만 보낼 수 있는데도 300건을 크롤링해
+    # 12초짜리 fetch를 낭비하고 그 본문을 그대로 버리게 된다. 기사 수만으로 계산하면
+    # (요청 수 × 배치 크기) 문자 예산 때문에 배치가 일찍 닫히는 설정에서 여전히
+    # 과잉 크롤링이 난다 — 그래서 문자 예산까지 함께 본다.
+    capacity = BatchCapacityPlanner.for_config(config)
 
     # 1) 캐시 우선 — hit한 기사는 배치 대상에서 완전히 빠진다.
-    pending: list[tuple[object, str, str, str]] = []  # (article, cache_key, url, body)
+    pending: list[tuple[object, str, str, BatchItem]] = []  # (article, cache_key, url, item)
+    now = now_kst()
     for item in targets:
         article = getattr(item, "article", item)
         fetch_url = article_fetch_url(article)
         if not fetch_url:
             continue
 
-        key = gemini_cache_key(fetch_url, config.model, PROMPT_VERSION, SCHEMA_VERSION)
-        cached = get_cached_lines(cache, key)
+        title = getattr(article, "title", "") or ""
+        # 캐시 키에 제목 fingerprint를 넣어, 같은 URL에서 기사가 정정되면 자동으로
+        # cache miss가 나게 한다. 본문만 고친 정정은 gemini_cache의 신선도 상한이 막는다.
+        key = gemini_cache_key(
+            fetch_url,
+            config.model,
+            PROMPT_VERSION,
+            SCHEMA_VERSION,
+            fingerprint=content_fingerprint(title),
+        )
+        cached = get_cached_lines(cache, key, now=now)
         # 캐시 키에는 GEMINI_MAX_LINE_CHARS가 들어가지 않는다 — 한도를 낮춘 뒤에도
         # 예전 한도로 저장된 긴 줄이 그대로 표시되면 "같은 응답이 지금은 거부되는데
         # 캐시만 통과"하는 상태가 된다. 현재 설정으로 다시 검증하고, 실패하면
@@ -700,7 +716,7 @@ def apply_gemini_summaries(
             cache_hits += 1
             continue
 
-        if len(pending) >= sendable_cap:
+        if not capacity.has_room():
             # 보낼 수 없는 기사다 — 본문 크롤링을 시작조차 하지 않는다.
             # (캐시 hit은 위에서 이미 처리되므로 남은 기사도 계속 확인한다)
             skipped_over_capacity += 1
@@ -712,14 +728,30 @@ def apply_gemini_summaries(
         if not body:
             skipped_no_body += 1
             continue
-        pending.append((article, key, fetch_url, body))
+
+        batch_item = build_batch_item(
+            make_article_id(len(pending)),
+            title,
+            body,
+            article_max_chars=config.article_max_chars,
+        )
+        # 단독으로도 입력 예산을 넘는 기사는 여기서 잘라 맞춘다(맞출 수 없으면 보내지 않는다).
+        batch_item = fit_item_to_budget(
+            batch_item, max_input_chars=config.batch_max_input_chars
+        )
+        if batch_item is None:
+            skipped_over_capacity += 1
+            continue
+        capacity.add(estimate_item_chars(batch_item))
+        pending.append((article, key, fetch_url, batch_item))
 
     if skipped_over_capacity:
         logger.info(
-            "Gemini request capacity reached (%s requests × %s articles); "
+            "Gemini send capacity reached (%s requests, %s articles/batch, %s input chars); "
             "%s article(s) skipped without fetching",
             config.max_requests_per_run,
             config.batch_max_articles,
+            config.batch_max_input_chars,
             skipped_over_capacity,
         )
 
@@ -733,14 +765,11 @@ def apply_gemini_summaries(
         skipped_over_capacity,
     )
 
-    # 2) cache miss 기사만 불투명 ID를 붙여 마이크로배치로 보낸다.
-    items = iter_batch_items(
-        ((getattr(article, "title", "") or "", body) for article, _key, _url, body in pending),
-        article_max_chars=config.article_max_chars,
-    )
+    # 2) cache miss 기사만 (이미 불투명 ID가 붙은) 배치 항목으로 보낸다.
+    items = [batch_item for _article, _key, _url, batch_item in pending]
     by_id = {
-        item.id: (article, key, url)
-        for item, (article, key, url, _body) in zip(items, pending)
+        batch_item.id: (article, key, url)
+        for article, key, url, batch_item in pending
     }
 
     def _on_result(item: BatchItem, lines: list[str]) -> None:

@@ -61,6 +61,10 @@ PROMPT_TARGET_LINE_CHARS = 80
 # 배치 입력 크기 추정용 — 기사 1건이 프롬프트에서 차지하는 라벨/델리미터 오버헤드.
 PER_ITEM_OVERHEAD_CHARS = 64
 
+# 입력 예산에 맞추려고 본문을 더 자를 때 최소한 남겨야 하는 분량.
+# 이보다 짧으면 요약할 근거가 없으므로 아예 보내지 않는다(추출요약 fallback).
+MIN_FITTED_BODY_CHARS = 200
+
 ARTICLE_ID_PREFIX = "article-"
 
 # 항목별 판정 사유. usable=true는 REASON_OK, false는 나머지 셋 중 하나여야 한다.
@@ -305,6 +309,25 @@ def prompt_overhead_chars() -> int:
     return len(build_batch_prompt([]))
 
 
+def fit_item_to_budget(
+    item: BatchItem, *, max_input_chars: int, overhead: int | None = None
+) -> BatchItem | None:
+    """기사 1건이 단독으로도 입력 예산을 넘으면 본문을 더 잘라 예산 안에 맞춘다.
+
+    배치의 첫 항목은 크기와 무관하게 담기므로, 이 보정이 없으면 문서화된 요청당 입력
+    상한이 무력화된다(예: 예산 1,000자 설정 + 본문 3,000자 → 약 4,200자 요청).
+    그런 요청은 400을 받아도 크기 1까지 분할된 상태라 복구할 방법이 없다.
+    본문을 남길 자리가 없으면 None — 해당 기사는 보내지 않고 추출요약을 쓴다.
+    """
+    budget = max_input_chars - (prompt_overhead_chars() if overhead is None else overhead)
+    if estimate_item_chars(item) <= budget:
+        return item
+    room = budget - (len(item.id) + len(item.title) + PER_ITEM_OVERHEAD_CHARS)
+    if room < MIN_FITTED_BODY_CHARS:
+        return None
+    return BatchItem(id=item.id, title=item.title, body=truncate_body(item.body, room))
+
+
 def plan_batches(
     items: Sequence[BatchItem], *, max_articles: int, max_input_chars: int
 ) -> list[list[BatchItem]]:
@@ -316,8 +339,15 @@ def plan_batches(
     batches: list[list[BatchItem]] = []
     current: list[BatchItem] = []
     current_chars = overhead
+    dropped = 0
 
-    for item in items:
+    for raw_item in items:
+        # 단독으로도 예산을 넘는 기사는 여기서 잘라낸다 — 첫 항목이라는 이유로
+        # 예산을 무시하고 담으면 안 된다.
+        item = fit_item_to_budget(raw_item, max_input_chars=max_input_chars, overhead=overhead)
+        if item is None:
+            dropped += 1
+            continue
         item_chars = estimate_item_chars(item)
         exceeds_count = len(current) >= max_articles
         exceeds_chars = current and (current_chars + item_chars) > max_input_chars
@@ -330,7 +360,78 @@ def plan_batches(
 
     if current:
         batches.append(current)
+    if dropped:
+        logger.warning(
+            "Gemini input budget (%s) leaves no room for %s article(s); using extractive summaries",
+            max_input_chars,
+            dropped,
+        )
     return batches
+
+
+class BatchCapacityPlanner:
+    """`plan_batches`와 같은 규칙으로 "한 건 더 보낼 수 있는가"를 추적한다.
+
+    본문을 크롤링하기 **전에** 판단해야 하므로, 아직 크기를 모르는 다음 기사는 보낼 수
+    있는 최소 크기로 가정한다 — 보낼 수 있는데 준비하지 않는 일이 없도록 하기 위함이다.
+    기사 수만으로 계산하면(요청 수 × 배치 크기) 문자 예산 때문에 배치가 일찍 닫히는
+    설정에서 실제로 보낼 수 있는 양을 크게 넘겨 잡는다.
+    """
+
+    def __init__(
+        self,
+        *,
+        max_articles: int,
+        max_input_chars: int,
+        max_requests: int,
+        min_item_chars: int,
+    ) -> None:
+        self._max_articles = max(1, max_articles)
+        self._max_input_chars = max_input_chars
+        self._max_requests = max_requests
+        self._min_item_chars = max(1, min_item_chars)
+        self._overhead = prompt_overhead_chars()
+        self._batches = 0
+        self._count = 0
+        self._chars = 0
+
+    @classmethod
+    def for_config(cls, config: GeminiConfig) -> "BatchCapacityPlanner":
+        return cls(
+            max_articles=config.batch_max_articles,
+            max_input_chars=config.batch_max_input_chars,
+            max_requests=config.max_requests_per_run,
+            # 제목 길이는 모르므로 0으로 본다(최소 가정).
+            min_item_chars=len(make_article_id(0))
+            + PER_ITEM_OVERHEAD_CHARS
+            + config.input_min_chars,
+        )
+
+    @property
+    def planned_batches(self) -> int:
+        return self._batches
+
+    def _fits(self, item_chars: int) -> bool:
+        return (
+            self._count < self._max_articles
+            and self._chars + item_chars <= self._max_input_chars
+        )
+
+    def has_room(self) -> bool:
+        """지금 기사 1건을 더 준비하면 이번 실행에서 전송될 수 있는가."""
+        if self._batches == 0:
+            return self._max_requests >= 1
+        if self._fits(self._min_item_chars):
+            return True
+        return self._batches < self._max_requests
+
+    def add(self, item_chars: int) -> None:
+        if self._batches == 0 or not self._fits(item_chars):
+            self._batches += 1
+            self._count = 0
+            self._chars = self._overhead
+        self._count += 1
+        self._chars += item_chars
 
 
 def chunk_items(items: Sequence[BatchItem], size: int) -> list[list[BatchItem]]:

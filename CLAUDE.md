@@ -252,6 +252,9 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   **Google의 비동기 Batch API는 쓰지 않는다.**
 - 배치는 `GEMINI_BATCH_MAX_ARTICLES`(기사 수)와 `GEMINI_BATCH_MAX_INPUT_CHARS`(입력 문자
   예산) 중 **먼저 걸리는 쪽**에서 닫힌다. `plan_batches()`가 이 두 제한을 함께 적용한다.
+- 단독으로도 입력 예산을 넘는 기사는 `fit_item_to_budget()`이 본문을 더 잘라 맞춘다.
+  배치의 첫 항목이라고 예산을 무시하고 담으면 요청당 상한이 무력화되고, 그 요청은 400을
+  받아도 이미 크기 1이라 분할로 복구할 수 없다. 자리가 없으면 보내지 않는다(추출요약).
 - `GEMINI_BATCH_MAX_ARTICLES`가 `GEMINI_BATCH_HARD_MAX_ARTICLES`를 넘으면 hard cap으로 낮춘다.
 - 기본 배치는 **25건**이다. 실 API에서 50건 요청은 `400 INVALID_ARGUMENT`를 받았고
   분할된 25건 2개는 200이었다. 50 이상은 실험적 설정이며, **실패가 알려진 요청을 먼저
@@ -355,8 +358,11 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
 - `reports/_cache/gemini_summary_cache.json` **별도 파일**이다. 기존 `summary_cache.json`
   (평면 `{url: str}`, 상한 5000으로 이미 포화)은 건드리지 않는다.
 - **기사별로 저장한다** — 배치 전체를 하나의 entry로 저장하지 않는다.
-- 키는 `sha256(canonical_url|model|prompt_version|schema_version)`이라 모델/프롬프트/
-  스키마가 바뀌면 자동 cache miss가 난다. `GEMINI_MAX_LINE_CHARS`는 키에 없으므로
+- 키는 `sha256(canonical_url|model|prompt_version|schema_version|fingerprint)`이라
+  모델/프롬프트/스키마가 바뀌거나 **기사 제목이 정정되면** 자동 cache miss가 난다.
+  fingerprint는 본문을 다시 받지 않고 얻을 수 있는 값(제목)만 쓴다 — 본문 해시를 쓰면
+  캐시의 존재 이유(재크롤링 회피)가 사라진다. 제목 그대로 본문만 고친 정정은 잡히지
+  않으므로 `MAX_AGE_DAYS`(14일) 신선도 상한으로 staleness를 제한한다. `GEMINI_MAX_LINE_CHARS`는 키에 없으므로
   캐시 hit도 `validate_lines(..., max_line_chars=config.max_line_chars)`로 **현재 설정에
   다시 검증**한 뒤 쓴다 — 한도를 낮췄을 때 캐시만 통과하는 상태를 막는다. 본문·프롬프트·응답 원문은 저장하지 않으며,
   손상된 항목은 개별적으로 버리고 나머지는 계속 쓴다. 쓰기는 tmp + `os.replace`로 원자적이다.
@@ -365,10 +371,12 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
 **본문 수집**
 - 추출요약 단계가 `body_sink`에 담아둔 본문을 재사용한다 — 같은 URL을 다시 fetch하지 않는다.
 - 없는 기사만 `GEMINI_MAX_FETCH_ATTEMPTS`(기본 300, 추출요약 예산과 별개) 안에서 추가 fetch한다.
-- **이번 실행에서 보낼 수 없는 기사는 fetch하지 않는다.** 전송 가능 상한은
-  `max_requests_per_run × batch_max_articles`이고, 이를 넘으면 `skipped_over_capacity`로
-  세고 본문 수집을 건너뛴다(캐시 hit은 이 상한과 무관하게 계속 적용된다). 이 가드가 없으면
-  요청 1회 설정에서도 300건을 크롤링해 버리고 그 본문을 그대로 버린다.
+- **이번 실행에서 보낼 수 없는 기사는 fetch하지 않는다.** 전송 가능량은
+  `BatchCapacityPlanner`가 `plan_batches()`와 **같은 규칙**(기사 수 + 입력 문자 예산)으로
+  추적하고, 넘으면 `skipped_over_capacity`로 세고 본문 수집을 건너뛴다(캐시 hit은 이 상한과
+  무관하게 계속 적용된다). 이 가드가 없으면 요청 1회 설정에서도 300건을 크롤링해 버리고 그
+  본문을 그대로 버린다. `요청 수 × 배치 크기`로만 잡으면 문자 예산 때문에 배치가 일찍 닫히는
+  설정(예: 예산 5,000자 + 본문 3,000자 → 배치당 1건)에서 여전히 과잉 크롤링이 난다.
 - fetch가 실패하면 현재 `description`(추출요약)을 입력 후보로 쓰고, 그마저
   `GEMINI_INPUT_MIN_CHARS` 미만이면 호출 없이 기존 fallback을 그대로 둔다.
 
@@ -392,8 +400,9 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   `gemini_applied`에 캐시 hit이 포함되므로 그대로 쓰면 라이브 요청 전량 실패가 통과한다.
 - 전송 대상이 1건 이상인데 신규 적용 0 + 내용 거부 0이면 **실패**. 내용 거부만 있는 경우는
   거부 건수가 보낸 기사(cache_miss) 전부를 설명할 때만 성공이다 — 일부만 거부이고 나머지가
-  구조 위반/누락이면 API 경로가 반쯤 죽은 것이므로 실패. 전부 캐시 hit이면 성공.
-  전부 본문 부족이면 명시적 skip(경고).
+  구조 위반/누락이면 API 경로가 반쯤 죽은 것이므로 실패. 전송 0인 경우는 **캐시 hit이 대상
+  전부를 덮을 때만** 성공이다 — 캐시 1건 + 나머지 본문 부족을 성공으로 보면 라이브 경로를
+  한 번도 거치지 않고 초록이 된다. 그 외 전송 0은 명시적 skip(경고).
 - `disabled_reason`은 두 갈래다. 요청 전에 꺼진 사유(`no_api_key` / `disabled_by_env` /
   `max_summaries_zero` / `max_requests_zero`)만 skip이고, 호출을 시도한 뒤 런타임에 꺼진
   사유(`auth` / `bad_model` / `consecutive_failures` / `programming_error`)는 **실패**다 —

@@ -234,6 +234,38 @@ def test_bodies_are_not_fetched_beyond_the_request_capacity(tmp_path, monkeypatc
     assert applied == 2
 
 
+def test_fetch_cap_respects_the_input_char_budget(tmp_path, monkeypatch):
+    """기사 수만으로 상한을 잡으면 문자 예산 때문에 배치가 일찍 닫히는 설정에서
+    여전히 과잉 크롤링이 난다 — 요청 1회 × 배치 25건이라도 문자 예산상 1건뿐이면
+    1건만 크롤링해야 한다."""
+    from src.pipeline.gemini_summary import (
+        estimate_item_chars,
+        iter_batch_items,
+        prompt_overhead_chars,
+    )
+
+    one_item_chars = estimate_item_chars(
+        iter_batch_items([("대부업 감독 규정 개정 0", BODY)], article_max_chars=3000)[0]
+    )
+    monkeypatch.setenv("GEMINI_MAX_REQUESTS_PER_RUN", "1")
+    monkeypatch.setenv("GEMINI_BATCH_MAX_ARTICLES", "25")
+    monkeypatch.setenv(
+        "GEMINI_BATCH_MAX_INPUT_CHARS", str(prompt_overhead_chars() + one_item_chars)
+    )
+
+    items = [_item(i) for i in range(10)]
+    fetched: list[str] = []
+    monkeypatch.setattr(
+        run_daily, "fetch_html", lambda url, timeout=12: fetched.append(url) or "<html/>"
+    )
+    monkeypatch.setattr(run_daily, "extract_main_text", lambda url, html: BODY)
+
+    applied = _apply(items, tmp_path, _summarizer(), {})
+
+    assert len(fetched) == 1  # 배치 25건 설정이어도 문자 예산상 1건만 보낼 수 있다
+    assert applied == 1
+
+
 def test_cached_articles_still_apply_past_the_request_capacity(tmp_path, monkeypatch):
     """용량 초과로 건너뛰는 것은 '본문 수집'뿐이다 — 캐시 hit은 그대로 적용된다."""
     warm = [_item(5)]
@@ -353,6 +385,41 @@ def test_cache_hit_is_reused_when_the_line_limit_still_allows_it(tmp_path, monke
     assert applied == 1
     assert calls == []
     assert fresh[0].article.summary_lines == GOOD_LINES
+
+
+def test_corrected_title_at_the_same_url_causes_a_cache_miss(tmp_path):
+    """같은 URL에서 기사가 정정되면 옛 요약을 그대로 쓰면 안 된다."""
+    items = [_item(0)]
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(), body_cache)
+
+    corrected = _item(0)
+    corrected.article.title = "[정정] " + corrected.article.title
+    calls: list[str] = []
+    _apply([corrected], tmp_path, _summarizer(calls=calls), body_cache)
+    assert len(calls) == 1  # 제목이 바뀌었으니 다시 요약한다
+
+
+def test_stale_cache_entries_are_not_reused(tmp_path, monkeypatch):
+    """제목 그대로 본문만 정정된 기사는 fingerprint로 못 잡는다 — 신선도로 막는다."""
+    from src.pipeline import gemini_cache
+
+    items = [_item(0)]
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(), body_cache)
+
+    # 저장 시각을 신선도 상한보다 오래된 것으로 바꾼다.
+    path = tmp_path / "gemini_summary_cache.json"
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    stale = (datetime(2026, 8, 1, tzinfo=KST) - timedelta(days=gemini_cache.MAX_AGE_DAYS + 1))
+    for entry in payload["entries"].values():
+        entry["created_at"] = stale.isoformat()
+    path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+
+    monkeypatch.setattr(run_daily, "now_kst", lambda: datetime(2026, 8, 1, tzinfo=KST))
+    calls: list[str] = []
+    _apply([_item(0)], tmp_path, _summarizer(calls=calls), body_cache)
+    assert len(calls) == 1  # 오래된 요약은 버리고 다시 만든다
 
 
 def test_cache_never_stores_article_body_or_prompt(tmp_path):

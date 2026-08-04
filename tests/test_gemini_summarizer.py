@@ -205,10 +205,59 @@ def test_plan_batches_respects_both_limits():
     assert [len(b) for b in by_chars] == [2, 2, 2, 2, 2]
 
 
-def test_oversized_single_article_is_still_included_alone():
+def test_oversized_single_article_is_truncated_to_fit_the_budget():
+    """단독으로도 예산을 넘는 기사는 더 잘라서 보낸다 — 예산을 무시하고 담지 않는다.
+
+    첫 항목이라는 이유로 그냥 담으면 요청당 입력 상한이 무력화되고, 그렇게 만든
+    요청은 400을 받아도 이미 크기 1이라 분할로 복구할 수 없다.
+    """
     items = _items(2, body_chars=3000)
-    batches = plan_batches(items, max_articles=50, max_input_chars=100)
+    budget = prompt_overhead_chars() + 1200
+    batches = plan_batches(items, max_articles=50, max_input_chars=budget)
+
     assert [len(b) for b in batches] == [1, 1]
+    for batch in batches:
+        assert prompt_overhead_chars() + estimate_item_chars(batch[0]) <= budget
+        assert len(batch[0].body) < 3000  # 예산에 맞춰 더 잘렸다
+
+
+def test_article_that_cannot_fit_the_budget_at_all_is_dropped(caplog):
+    """본문을 남길 자리조차 없으면 보내지 않는다(추출요약 fallback)."""
+    items = _items(2, body_chars=3000)
+    with caplog.at_level(logging.WARNING):
+        assert plan_batches(items, max_articles=50, max_input_chars=100) == []
+    assert any("input budget" in record.message for record in caplog.records)
+
+
+def test_capacity_planner_accounts_for_the_char_budget():
+    """전송 가능량은 '요청 수 × 배치 크기'가 아니다 — 문자 예산이 먼저 걸리면 더 적다."""
+    from src.pipeline.gemini_summary import BatchCapacityPlanner
+
+    item_chars = estimate_item_chars(_items(1, body_chars=3000)[0])
+    # 요청 1회 / 배치 25건이지만 문자 예산상 요청 1건에 1기사만 들어간다.
+    planner = BatchCapacityPlanner(
+        max_articles=25,
+        max_input_chars=prompt_overhead_chars() + item_chars,
+        max_requests=1,
+        min_item_chars=200,
+    )
+    assert planner.has_room()
+    planner.add(item_chars)
+    assert not planner.has_room()  # 두 번째 기사는 새 요청이 필요한데 예산이 없다
+    assert planner.planned_batches == 1
+
+
+def test_capacity_planner_counts_articles_when_chars_are_generous():
+    from src.pipeline.gemini_summary import BatchCapacityPlanner
+
+    planner = BatchCapacityPlanner(
+        max_articles=2, max_input_chars=10**9, max_requests=2, min_item_chars=100
+    )
+    for _ in range(4):  # 2건 × 2요청 = 4건까지는 여유가 있다
+        assert planner.has_room()
+        planner.add(100)
+    assert not planner.has_room()
+    assert planner.planned_batches == 2
 
 
 def test_article_max_chars_truncates_each_article():

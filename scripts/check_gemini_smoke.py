@@ -86,13 +86,13 @@ def evaluate(summary: dict[str, Any]) -> tuple[str, str]:
 
     if sent <= 0:
         # 아무것도 보내지 않았다면 왜 안 보냈는지로 갈린다.
+        # **캐시 hit이 대상 전부를 덮을 때만** 성공이다 — 캐시 1건 + 나머지 본문 부족을
+        # "호출할 이유가 없었다"로 넘기면, 라이브 경로를 한 번도 안 거치고 초록이 된다.
         if cache_hits >= targets:
             return STATUS_OK, "every target served from cache"
         if skipped_no_body >= targets:
             return STATUS_SKIPPED, "every target lacked a usable body; API path not exercised"
-        if cache_hits > 0:
-            return STATUS_OK, "no article needed an API call"
-        return STATUS_SKIPPED, "nothing was sent to the API"
+        return STATUS_SKIPPED, "no request was sent; API path not exercised"
 
     if newly_applied > 0:
         return STATUS_OK, "gemini summaries applied"
