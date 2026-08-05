@@ -38,7 +38,7 @@ def _chromium_path() -> str | None:
     return str(matches[-1]) if matches else None
 
 
-def _article(idx: int, *, ai: bool, long_title: bool) -> Article:
+def _article(idx: int, *, ai: bool, long_title: bool, rejected: bool = False, related: int = 0) -> Article:
     title = (
         "금융위원회·금융감독원 합동 점검에서 드러난 대부업권 최고금리 산정 방식의 구조적 문제와 "
         "저축은행·상호금융권으로 번지는 연체율 상승 흐름 종합 분석"
@@ -58,16 +58,40 @@ def _article(idx: int, *, ai: bool, long_title: bool) -> Article:
         query="대부업",
     )
     article.relevance_score = 9.5 - idx * 0.01
+    article.source_description = (
+        "네이버 원본 스니펫 — 내용 거부 기사에서 표시 요약으로 되돌아가는 문장입니다."
+    )
     if ai:
         article.summary_lines = list(AI_LINES)
+    if rejected:
+        article.summary_rejection_reason = "title_body_mismatch"
+    if related:
+        article.cluster_id = f"cluster-{idx}"
+        article.cluster_size = related + 1
+        article.related_articles = [
+            {
+                "title": f"같은 이슈를 다룬 관련 보도 {n}",
+                "link": f"https://related{n}.example.com/{idx}",
+                "press": f"press{n}.co.kr",
+            }
+            for n in range(related)
+        ]
     return article
 
 
 @pytest.fixture(scope="module")
 def report_file(tmp_path_factory) -> Path:
+    # 세 요약 상태(ai / content_rejected / preview)와 관련 기사 목록이 모두 렌더되도록
+    # 구성한다 — 대비·구조 검증이 조용히 건너뛰지 않게 하기 위한 것이다.
     items = [
         TaggedArticle(
-            _article(i, ai=(i % 2 == 0), long_title=(i % 5 == 0)),
+            _article(
+                i,
+                ai=(i % 3 == 0),
+                long_title=(i % 5 == 0),
+                rejected=(i % 3 == 1),
+                related=(3 if i % 4 == 0 else 0),
+            ),
             [SECTORS[i % len(SECTORS)]],
             ["연체·부실", "정책·제도개선"],
             [],
@@ -181,6 +205,113 @@ def test_top_controls_never_overlap(browser, report_file, viewport):
     assert _measure(browser, report_file, *viewport)["controlsOverlap"] is False
 
 
+# 본문 텍스트를 담는 selector 전부 — 배경이 흰 카드가 아니라 연회색 chip인 경우
+# muted 토큰이 4.5:1 아래로 떨어지므로 실제 렌더 색으로 확인한다.
+TEXT_SELECTORS = (
+    ".title a",
+    ".summary-panel__text",
+    ".summary-panel__title",
+    ".summary-panel--ai .summary-panel__list li",
+    ".meta-row__time",
+    # `.meta-row__press`는 제외한다 — 파이프라인이 Article에 press를 채우지 않아
+    # 실제 리포트에 렌더되지 않는 방어적 경로다(dict 소비자용).
+    ".summary-panel__status",
+    ".input__icon",
+    ".badge--sector",
+    ".badge--soft",
+    ".badge--topic",
+    ".pill:not(.active)",
+    ".pill:not(.active) strong",
+    ".pill.active strong",
+    ".status-chip",
+    ".filter-group__label",
+    ".note",
+    ".count",
+    ".kchip",
+    ".kchip .n",
+    ".footer",
+    ".related a",
+)
+
+CONTRAST_SCRIPT = """
+(selectors) => {
+  // color-mix()/oklab 계산값을 실제 픽셀로 환산하기 위해 canvas에 칠해서 읽는다.
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = 1;
+  const ctx = canvas.getContext('2d', {willReadFrequently: true});
+  const paintOver = (css, base) => {
+    ctx.fillStyle = base; ctx.fillRect(0, 0, 1, 1);
+    ctx.fillStyle = css; ctx.fillRect(0, 0, 1, 1);
+    const d = ctx.getImageData(0, 0, 1, 1).data; return [d[0], d[1], d[2]];
+  };
+  // 같은 색을 흰색·검은색 위에 칠해 알파와 premultiplied 색을 역산한다.
+  // (반투명 배경을 부모 위에 합성하지 않으면 대비가 실제보다 훨씬 낮게 나온다)
+  const decompose = css => {
+    const onWhite = paintOver(css, '#fff'), onBlack = paintOver(css, '#000');
+    return {alpha: 1 - (onWhite[0] - onBlack[0]) / 255, premultiplied: onBlack};
+  };
+  const composite = (css, baseRGB) => {
+    const {alpha, premultiplied} = decompose(css);
+    return premultiplied.map((v, i) => v + baseRGB[i] * (1 - alpha));
+  };
+  const effectiveBackground = el => {
+    const layers = [];
+    let node = el;
+    while (node) {
+      const css = getComputedStyle(node).backgroundColor;
+      const {alpha} = decompose(css);
+      if (alpha > 0.001) layers.push(css);
+      if (alpha > 0.999) break;
+      node = node.parentElement;
+    }
+    let base = [255, 255, 255];
+    layers.reverse().forEach(layer => { base = composite(layer, base); });
+    return base;
+  };
+  const luminance = rgb => {
+    const [r, g, b] = rgb.map(v => {
+      v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const out = {};
+  selectors.forEach(sel => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    const style = getComputedStyle(el);
+    const background = effectiveBackground(el);
+    const l1 = luminance(composite(style.color, background)), l2 = luminance(background);
+    const ratio = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+    // opacity를 텍스트에 걸면 실제 대비가 이 계산보다 낮아지므로 함께 본다.
+    out[sel] = {ratio: Math.round(ratio * 100) / 100, opacity: Number(style.opacity)};
+  });
+  return out;
+}
+"""
+
+
+@pytest.mark.parametrize("theme", ["light", "dark"])
+def test_small_text_meets_the_contrast_minimum(browser, report_file, theme):
+    """카드·chip의 11~12px 텍스트가 4.5:1 아래로 내려가지 않는다."""
+    page = browser.new_page(viewport={"width": 1440, "height": 900})
+    page.goto(report_file.as_uri())
+    page.evaluate("t => localStorage.setItem('reportTheme', t)", theme)
+    page.reload()
+    page.wait_for_timeout(150)
+    measured = page.evaluate(CONTRAST_SCRIPT, list(TEXT_SELECTORS))
+    page.close()
+
+    # 클래스명이 바뀌어 측정 대상에서 조용히 빠지는 것도 회귀다.
+    missing = [sel for sel in TEXT_SELECTORS if sel not in measured]
+    assert not missing, missing
+
+    failures = {
+        sel: data for sel, data in measured.items()
+        if data["ratio"] < 4.5 or data["opacity"] < 1
+    }
+    assert not failures, failures
+
+
 def test_titles_are_not_clamped_on_touch_devices(browser, report_file):
     """터치 기기에서는 `title` 툴팁을 쓸 수 없으므로 제목을 자르지 않는다."""
     results = {}
@@ -282,6 +413,9 @@ def test_filters_search_sort_favorites_and_theme_still_work(browser, report_file
     page.click("[data-clip]")
     page.wait_for_timeout(80)
     assert page.evaluate("() => localStorage.getItem('reportFavs_v1')")
+    # 토글 상태는 aria-pressed만 바뀌고 접근성 이름은 그대로다.
+    assert page.get_attribute("[data-clip]", "aria-pressed") == "true"
+    assert page.get_attribute("[data-clip]", "aria-label") == "기사 저장"
     page.check("#favOnly")
     page.wait_for_timeout(80)
     assert page.evaluate(shown) > 0
@@ -295,7 +429,9 @@ def test_filters_search_sort_favorites_and_theme_still_work(browser, report_file
     page.click("#themeBtn")
     page.wait_for_timeout(80)
     assert page.evaluate("() => document.documentElement.dataset.theme") == "dark"
-    assert page.get_attribute("#themeBtn", "aria-pressed") == "true"
+    # 이름이 다음 동작을 설명하는 버튼이므로 aria-pressed를 붙이지 않는다.
+    assert page.get_attribute("#themeBtn", "aria-pressed") is None
+    assert page.get_attribute("#themeBtn", "aria-label") == "라이트 모드로 전환"
 
     # 네이버·원문·관련 기사 링크는 그대로 남는다.
     assert page.evaluate("() => document.querySelectorAll(\"a.btn.primary\").length") > 0

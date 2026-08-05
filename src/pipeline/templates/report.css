@@ -147,7 +147,7 @@ h1{ margin:0; font-size:20px; font-weight:800; letter-spacing:-0.3px; }
   /* 데스크톱에서 남는 폭을 검색이 가져간다. */
   flex:1 1 280px; min-width:220px;
 }
-.input__icon{ color:var(--text-muted); font-size:12px; line-height:1; }
+.input__icon{ color:var(--text-secondary); font-size:12px; line-height:1; }
 .input input{ border:none; outline:none; background:transparent; color:var(--text-primary); font-size:13.5px; width:100%; min-width:0; }
 .input:focus-within{ box-shadow:var(--ring); border-color:var(--accent); }
 
@@ -402,7 +402,9 @@ mark{ background: color-mix(in srgb, var(--accent) 18%, transparent); color: inh
 .footer{ margin-top:18px; padding-top:14px; border-top:1px solid var(--border); color:var(--text-muted); font-size:12px; text-align:center; }
 .kchips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
 .kchip{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--surface-subtle); color:var(--text-primary); font-size:12px; }
-.kchip .n{ color:var(--text-muted); font-size:12px; }
+/* chip 배경(--surface-subtle) 위에 얹히므로 muted가 아니라 secondary를 쓴다.
+   (흰 배경 기준 4.6:1인 muted도 연회색 배경에서는 4.4:1로 떨어진다) */
+.kchip .n{ color:var(--text-secondary); font-size:12px; }
 
 /* --- 반응형 열 수: 640/960/1280/1600 기준으로 1→2→3→4→5열 ------------------- */
 @media (min-width:640px){

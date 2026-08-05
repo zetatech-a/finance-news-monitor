@@ -78,9 +78,10 @@
   function applyThemeLabel(theme){
     if(!themeBtn) return;
     const dark = theme === "dark";
+    // 버튼의 보이는 라벨과 접근성 이름은 **다음 동작**을 가리킨다("다크" → 다크로 전환).
+    // 이런 버튼에 aria-pressed를 붙이면 다크 상태에서 "라이트 모드로 전환, pressed"로
+    // 읽혀 현재 상태를 거꾸로 알려준다 — 이름이 동작을 설명하므로 상태 속성을 두지 않는다.
     themeBtn.textContent = dark ? "라이트" : "다크";
-    // 상태를 색상이 아니라 라벨과 aria-pressed로도 알린다.
-    themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
     themeBtn.setAttribute("aria-label", dark ? "라이트 모드로 전환" : "다크 모드로 전환");
   }
   function loadTheme(){ const saved = localStorage.getItem(LS_THEME); root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light"; applyThemeLabel(root.dataset.theme); }
@@ -238,10 +239,10 @@
   function paintFavButton(btn, on){
     btn.classList.toggle("on", on);
     btn.textContent = on ? "★" : "☆";
-    // 저장 여부를 아이콘 모양과 aria-pressed로 함께 알린다(색상만으로 표현하지 않는다).
+    // 토글 버튼이므로 **이름은 고정**("기사 저장")하고 상태는 aria-pressed로만 알린다.
+    // 이름까지 "저장 해제"로 바꾸면 "저장 해제, pressed"가 되어 상태가 뒤집혀 읽힌다.
+    // 시각적으로는 ☆/★ 모양이 상태를 알려주므로 색상 단독 표현도 아니다.
     btn.setAttribute("aria-pressed", on ? "true" : "false");
-    btn.setAttribute("aria-label", on ? "저장 해제" : "이 기사 저장");
-    btn.setAttribute("title", on ? "저장 해제" : "저장");
   }
 
   function initFavButtons(){

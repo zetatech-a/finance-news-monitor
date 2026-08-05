@@ -847,7 +847,8 @@ def render_html(
             f"    <h3 class='title'>"
             f"      <a href='{_h(primary)}' target='_blank' rel='noopener noreferrer' title='{_h(title)}' data-title>{_h(title)}</a>"
             f"    </h3>"
-            f"    <button class='clip' type='button' title='저장' aria-label='이 기사 저장' aria-pressed='false' data-clip>☆</button>"
+            # 토글 버튼 — 이름은 고정하고 저장 여부는 aria-pressed로만 바뀐다.
+            f"    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>"
             f"  </div>"
             f"  <div class='meta-row meta-row--primary'>"
             f"    <span class='meta-row__time'>{_h(pub)}</span>"
@@ -917,7 +918,7 @@ def render_html(
       </div>
       <div class="report-header__actions">
         <span id="savedCount" class="status-chip" role="status" aria-live="polite">저장 0건</span>
-        <button id="themeBtn" class="btn" type="button" aria-pressed="false">다크</button>
+        <button id="themeBtn" class="btn" type="button" aria-label="다크 모드로 전환">다크</button>
       </div>
     </header>
 

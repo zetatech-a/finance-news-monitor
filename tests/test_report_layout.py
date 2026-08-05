@@ -130,6 +130,7 @@ def test_js_uses_stable_selectors_not_dom_position(js: str):
 
 
 def test_pill_selection_state_is_not_colour_only(html: str, js: str, css: str):
+    # chip은 이름(업권/주제명)이 고정되므로 aria-pressed로 선택 상태를 알리는 게 맞다.
     assert "aria-pressed='false'" in html and "aria-pressed='true'" in html
     assert 'setAttribute("aria-pressed"' in js
     # 선택된 chip에는 체크 표시가 함께 붙는다.
@@ -253,11 +254,28 @@ def test_article_text_stays_html_escaped(html: str):
     assert "기사 1 <b>제목</b>" not in html
 
 
-def test_favorite_button_keeps_accessible_semantics(html: str, js: str):
+def test_toggle_buttons_keep_stable_accessible_names(html: str, js: str):
+    """`aria-pressed` 토글은 이름을 고정하고 상태만 속성으로 알린다.
+
+    이름까지 다음 동작으로 바꾸면 스크린리더가 "저장 해제, pressed"처럼 상태를
+    거꾸로 읽는다. 반대로 이름이 동작을 설명하는 버튼(다크 모드)에는 aria-pressed를
+    붙이지 않는다.
+    """
     card = _first_card(html)
     assert "<button class='clip' type='button'" in card
-    assert "aria-label='이 기사 저장'" in card
-    assert 'setAttribute("aria-label", on ? "저장 해제" : "이 기사 저장")' in js
+    assert "aria-label='기사 저장'" in card and "aria-pressed='false'" in card
+
+    # 설명 주석에는 속성명이 나올 수 있으므로 실제 호출 형태로 검사한다.
+    fav_fn = js.split("function paintFavButton(btn, on){")[1].split("\n  }")[0]
+    assert 'setAttribute("aria-pressed"' in fav_fn
+    assert 'setAttribute("aria-label"' not in fav_fn, fav_fn  # 이름은 렌더 시점에 고정된다
+
+    # 다크 모드 버튼은 라벨이 '다음 동작'이므로 상태 속성을 두지 않는다.
+    theme_btn_tag = html.split('id="themeBtn"')[1].split(">")[0]
+    assert "aria-pressed" not in theme_btn_tag, theme_btn_tag
+    theme_fn = js.split("function applyThemeLabel(theme){")[1].split("\n  }")[0]
+    assert 'setAttribute("aria-pressed"' not in theme_fn, theme_fn
+    assert 'setAttribute("aria-label"' in theme_fn
 
 
 # --- 색상 토큰 / 다크 모드 -------------------------------------------------------
