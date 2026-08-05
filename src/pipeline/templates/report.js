@@ -2,17 +2,14 @@
 (function(){
   const NO_TOPIC_TOKEN = "__NO_TOPIC__";
   const root = document.documentElement;
-  const body = document.body;
   const themeBtn = document.getElementById("themeBtn");
   const search = document.getElementById("searchInput");
   const topOnly = document.getElementById("topOnly");
   const favOnly = document.getElementById("favOnly");
   const sortSel = document.getElementById("sortSel");
   const emptyState = document.getElementById("emptyState");
-  const sidebar = document.getElementById("filterSidebar");
-  const mobileFilterBtn = document.getElementById("mobileFilterBtn");
-  const mobileSearchBtn = document.getElementById("mobileSearchBtn");
-  const mobileTopBtn = document.getElementById("mobileTopBtn");
+  const resultCount = document.getElementById("resultCount");
+  const savedCount = document.getElementById("savedCount");
   const navElements = Array.from(document.querySelectorAll(".nav-wrap[data-scroll-hint] .nav"));
 
   const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
@@ -67,40 +64,45 @@
   });
   groupMetas.forEach(g => { g.orderedCards = g.cards.slice(); g.lastOrder = g.cards.slice(); });
 
+  // 결과 개수 표시는 카드가 아니라 기사 단위 — Top 섹션 사본이 두 번 세지 않게 한다.
+  function cardKey(meta){ return meta.url || ("card-" + meta.id); }
+  const totalArticleCount = new Set(cardMetas.map(cardKey)).size;
+
   let renderRafId = 0;
   let pendingRender = { recomputeMatch: true, recomputeSort: true, resetPagination: true };
 
-  function loadTheme(){ const saved = localStorage.getItem(LS_THEME); root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light"; if(themeBtn) themeBtn.textContent = (root.dataset.theme === "dark") ? "라이트" : "다크"; }
-  function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); if(themeBtn) themeBtn.textContent = (next === "dark") ? "라이트" : "다크"; }
+  function applyThemeLabel(theme){
+    if(!themeBtn) return;
+    const dark = theme === "dark";
+    themeBtn.textContent = dark ? "라이트" : "다크";
+    // 상태를 색상이 아니라 라벨과 aria-pressed로도 알린다.
+    themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+    themeBtn.setAttribute("aria-label", dark ? "라이트 모드로 전환" : "다크 모드로 전환");
+  }
+  function loadTheme(){ const saved = localStorage.getItem(LS_THEME); root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light"; applyThemeLabel(root.dataset.theme); }
+  function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); applyThemeLabel(next); }
   function getFavs(){ try{ const raw = localStorage.getItem(LS_FAVS); const arr = raw ? JSON.parse(raw) : []; return new Set(Array.isArray(arr) ? arr : []);}catch(e){ return new Set(); }}
   function saveFavs(set){ localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set))); }
+  function updateSavedCount(count){ if(savedCount) savedCount.textContent = "저장 " + count + "건"; }
   function setActivePill(sector){
     const resolvedSector = pills.some(p => p.dataset.sector === sector) ? sector : "ALL";
     activeSector = resolvedSector;
-    pills.forEach(p => p.classList.toggle("active", p.dataset.sector === resolvedSector));
+    pills.forEach(p => {
+      const on = p.dataset.sector === resolvedSector;
+      p.classList.toggle("active", on);
+      p.setAttribute("aria-pressed", on ? "true" : "false");
+    });
   }
   function setActiveTopicPill(topic){
     const resolvedTopic = topicPills.some(p => p.dataset.topic === topic) ? topic : "ALL";
     activeTopic = resolvedTopic;
-    topicPills.forEach(p => p.classList.toggle("active", p.dataset.topic === resolvedTopic));
+    topicPills.forEach(p => {
+      const on = p.dataset.topic === resolvedTopic;
+      p.classList.toggle("active", on);
+      p.setAttribute("aria-pressed", on ? "true" : "false");
+    });
   }
   function debounce(fn, waitMs){ let timer = 0; return (...args) => { clearTimeout(timer); timer = window.setTimeout(() => fn(...args), waitMs); }; }
-  function setFilterSheetOpen(nextOpen, options){
-    const focusSearch = !!options?.focusSearch;
-    const isMobile = window.innerWidth < 768;
-    const open = !!nextOpen && isMobile;
-    if(sidebar){
-      sidebar.classList.toggle("open", open);
-      sidebar.setAttribute("aria-hidden", open ? "false" : "true");
-    }
-    body.classList.toggle("no-scroll", open);
-    if(mobileFilterBtn){
-      mobileFilterBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      mobileFilterBtn.setAttribute("aria-label", open ? "필터 닫기" : "필터 열기");
-      mobileFilterBtn.textContent = "필터";
-    }
-    if(open && focusSearch) setTimeout(() => search?.focus(), 120);
-  }
 
   function updateNavScrollHints(){
     navElements.forEach(nav => {
@@ -173,6 +175,13 @@
       if((g.el.style.display !== "none") !== showGroup) g.el.style.display = showGroup ? "" : "none";
     });
     if (emptyState) emptyState.style.display = totalMatched > 0 ? "none" : "";
+    if (resultCount){
+      // 같은 기사가 Top 섹션과 업권 섹션에 각각 렌더되므로 기사 단위로 센다.
+      const matched = new Set();
+      cardMetas.forEach(meta => { if(meta.isMatch) matched.add(cardKey(meta)); });
+      const label = (matched.size === totalArticleCount) ? "전체 " : "검색 결과 ";
+      resultCount.textContent = label + matched.size + "건";
+    }
   }
 
   function runRender(){
@@ -217,18 +226,39 @@
     scheduleRender({ recomputeMatch: true, resetPagination: true });
   }
 
+  function paintFavButton(btn, on){
+    btn.classList.toggle("on", on);
+    btn.textContent = on ? "★" : "☆";
+    // 저장 여부를 아이콘 모양과 aria-pressed로 함께 알린다(색상만으로 표현하지 않는다).
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    btn.setAttribute("aria-label", on ? "저장 해제" : "이 기사 저장");
+    btn.setAttribute("title", on ? "저장 해제" : "저장");
+  }
+
   function initFavButtons(){
     const favs = getFavs();
+    // 같은 기사가 Top/업권 섹션에 두 번 렌더되므로 URL이 같은 버튼은 함께 갱신한다.
+    const buttonsByUrl = new Map();
     cards.forEach(card => {
       const btn = card.querySelector("[data-clip]"); const url = card.dataset.url || ""; if(!btn || !url) return;
-      const on = favs.has(url); btn.classList.toggle("on", on); btn.textContent = on ? "★" : "☆";
-      btn.addEventListener("click", () => { const set = getFavs(); const nowOn = set.has(url) ? (set.delete(url), false) : (set.add(url), true); saveFavs(set); btn.classList.toggle("on", nowOn); btn.textContent = nowOn ? "★" : "☆"; if(favOnly && favOnly.checked) applyFilter(); });
+      if(!buttonsByUrl.has(url)) buttonsByUrl.set(url, []);
+      buttonsByUrl.get(url).push(btn);
+      paintFavButton(btn, favs.has(url));
+      btn.addEventListener("click", () => {
+        const set = getFavs();
+        const nowOn = set.has(url) ? (set.delete(url), false) : (set.add(url), true);
+        saveFavs(set);
+        (buttonsByUrl.get(url) || [btn]).forEach(other => paintFavButton(other, nowOn));
+        updateSavedCount(set.size);
+        if(favOnly && favOnly.checked) applyFilter();
+      });
     });
+    updateSavedCount(getFavs().size);
   }
 
   function bindEvents(){
-    pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); if(window.innerWidth < 768) setFilterSheetOpen(false); }));
-    topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); if(window.innerWidth < 768) setFilterSheetOpen(false); }));
+    pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); }));
+    topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); }));
     groupMetas.forEach(g => { const btn = g.loadMoreBtn; if(!btn) return; btn.addEventListener("click", ()=>{ g.visibleLimit += PAGE_SIZE; scheduleRender({ resetPagination: false }); }); });
     const debouncedSearch = debounce(()=>{ applyFilter(); }, SEARCH_DEBOUNCE_MS);
     search?.addEventListener("input", debouncedSearch);
@@ -237,14 +267,8 @@
     sortSel?.addEventListener("change", ()=>{ applySort(); applyFilter(); });
     themeBtn?.addEventListener("click", toggleTheme);
 
-    mobileFilterBtn?.addEventListener("click", () => setFilterSheetOpen(!sidebar?.classList.contains("open")));
-    mobileSearchBtn?.addEventListener("click", () => setFilterSheetOpen(true, { focusSearch: true }));
-    sidebar?.addEventListener("click", (e)=>{ if(e.target.closest("[data-sheet-close]")) setFilterSheetOpen(false); });
-    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") setFilterSheetOpen(false); });
-    mobileTopBtn?.addEventListener("click", ()=>{ if(!topOnly) return; topOnly.checked = !topOnly.checked; mobileTopBtn.classList.toggle("active", topOnly.checked); applyFilter(); });
-    topOnly?.addEventListener("change", ()=> mobileTopBtn?.classList.toggle("active", topOnly.checked));
     navElements.forEach(nav => nav.addEventListener("scroll", updateNavScrollHints, { passive: true }));
-    window.addEventListener("resize", ()=>{ setFilterSheetOpen(false); updateNavScrollHints(); });
+    window.addEventListener("resize", updateNavScrollHints);
   }
 
   loadTheme();
@@ -254,7 +278,5 @@
   initFavButtons();
   bindEvents();
   applyFilter();
-  setFilterSheetOpen(false);
   updateNavScrollHints();
-  mobileTopBtn?.classList.toggle("active", !!topOnly?.checked);
 })();
