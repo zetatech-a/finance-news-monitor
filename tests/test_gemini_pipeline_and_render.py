@@ -19,6 +19,7 @@ from src.pipeline.gemini_cache import (
 )
 from src.pipeline.gemini_summary import GeminiBatchSummarizer, load_gemini_config
 from src.pipeline.normalize import Article
+from src.pipeline import report as report_module
 from src.pipeline.report import (
     ai_summary_lines,
     display_summary_text,
@@ -816,16 +817,28 @@ def _cards(html: str) -> list[str]:
     ]
 
 
-def test_html_renders_three_separate_sentences():
+def _ai_items(html: str) -> list[str]:
+    """AI 요약 패널의 <li> 내용."""
+    block = html.split("class='summary-panel__list' data-summary>")[1].split("</ul>")[0]
+    return [chunk.split("</li>")[0] for chunk in block.split("<li>")[1:]]
+
+
+def test_html_renders_three_separate_list_items():
     item = _item(0)
     item.article.summary_lines = list(GOOD_LINES)
     html = _render([item])
 
     for line in GOOD_LINES:
         assert line in html
-    summary_block = html.split("class='summary ai' data-summary>")[1].split("</p>")[0]
-    assert summary_block.count("<br>") == 2
-    assert summary_block.split("<br>") == GOOD_LINES
+    # 세 문장은 실제 <ul><li> 구조로 렌더된다(<br> 연결 아님).
+    assert _ai_items(html) == GOOD_LINES
+    for card in _cards(html):
+        assert card.count("<li>") == 3
+        assert "summary-panel--ai" in card
+        assert "summary-panel--preview" not in card
+        assert "AI 핵심 요약" in card
+        # 세 문장에 clamp가 붙지 않도록 미리보기용 클래스를 재사용하지 않는다.
+        assert "class='summary summary-panel__text'" not in card
 
 
 def test_html_falls_back_to_description_without_ai_lines():
@@ -833,22 +846,49 @@ def test_html_falls_back_to_description_without_ai_lines():
     cards = _cards(_render([item]))
     assert cards
     for card in cards:
-        assert "class='summary' data-summary>추출요약 문장입니다.</p>" in card
-        assert "summary ai" not in card
+        # 기존 clamp 정책을 그대로 쓰도록 'summary' 클래스가 유지된다.
+        assert (
+            "class='summary summary-panel__text' data-summary>추출요약 문장입니다.</p>" in card
+        )
+        assert "summary-panel--preview" in card
+        assert "summary-panel--ai" not in card
+        assert "기사 미리보기" in card
+        assert "AI 요약 제외" not in card
         assert "AI 3줄" not in card
+        assert "AI 핵심 요약" not in card
 
 
-def test_html_shows_ai_badge_only_for_ai_summaries():
+def test_html_uses_the_ai_panel_only_for_ai_summaries():
     plain, ai = _item(0), _item(1)
     ai.article.summary_lines = list(GOOD_LINES)
     cards = _cards(_render([plain, ai]))
 
     # 같은 기사가 TOP 섹션과 업권 섹션에 각각 렌더되므로 카드 단위로 검사한다.
-    ai_cards = [c for c in cards if "AI 3줄" in c]
-    plain_cards = [c for c in cards if "AI 3줄" not in c]
+    ai_cards = [c for c in cards if "AI 핵심 요약" in c]
+    plain_cards = [c for c in cards if "AI 핵심 요약" not in c]
     assert ai_cards and plain_cards
-    assert all("summary ai" in c for c in ai_cards)
-    assert all("summary ai" not in c for c in plain_cards)
+    assert all("summary-panel--ai" in c and "summary-panel--preview" not in c for c in ai_cards)
+    assert all(
+        "summary-panel--preview" in c and "summary-panel--ai" not in c for c in plain_cards
+    )
+    # Top 10 카드와 업권별 카드가 같은 helper로 렌더된다.
+    assert len(ai_cards) == 2 and len(plain_cards) == 2
+
+
+def test_ai_meta_badge_is_removed_in_favor_of_the_panel_title():
+    item = _item(0)
+    item.article.summary_lines = list(GOOD_LINES)
+    for card in _cards(_render([item])):
+        assert "<span class='badge'>AI 3줄</span>" not in card
+        assert "AI 핵심 요약" in card
+
+
+def test_cache_badge_is_preserved():
+    item = _item(0)
+    item.article.summary_lines = list(GOOD_LINES)
+    item.article.summary_cached = True
+    for card in _cards(_render([item])):
+        assert "⚡ 캐시" in card
 
 
 def test_html_escapes_model_output():
@@ -859,20 +899,66 @@ def test_html_escapes_model_output():
         "브레이크<br>태그도 이스케이프되어야 한다.",
     ]
     html = _render([item])
-    summary_block = html.split("class='summary ai' data-summary>")[1].split("</p>")[0]
+    items = _ai_items(html)
+    assert len(items) == 3
+    summary_block = "".join(items)
 
     # 카드 마크업 안에는 모델이 만든 태그가 절대 살아있지 않아야 한다.
     # (페이지 전체에는 인라인된 report.js의 <script>가 정상적으로 존재한다)
     for card in _cards(html):
         assert "<script>" not in card
         assert "<b>" not in card
+        assert "<br>" not in card
     assert "alert(&quot;xss&quot;)" in summary_block
     assert "&lt;script&gt;" in summary_block
     assert "&amp;" in summary_block
     assert "&lt;b&gt;" in summary_block
-    # 우리가 넣은 구분자 <br>만 남고, 모델이 만든 <br>은 이스케이프된다.
-    assert summary_block.count("<br>") == 2
+    # 모델이 만든 <br>은 이스케이프되고, 줄 구분은 <li>가 담당한다.
     assert "&lt;br&gt;" in summary_block
+
+
+def test_content_rejected_card_shows_a_neutral_preview_panel(tmp_path):
+    items = [_polluted(0)]
+    body_cache = {items[0].article.link: BODY}
+    _apply(items, tmp_path, _summarizer(_gate({0: "title_body_mismatch"})), body_cache)
+
+    cards = [c for c in _cards(_render(items)) if "대부업 감독 규정 개정 0" in c]
+    assert cards
+    for card in cards:
+        assert "기사 미리보기" in card
+        assert "AI 요약 제외" in card
+        assert "summary-panel--preview" in card
+        assert "summary-panel--ai" not in card
+        assert "AI 핵심 요약" not in card
+        assert "<li>" not in card  # AI 목록이 없다
+        # 내부 사유 문자열은 절대 노출되지 않는다.
+        for reason in ("title_body_mismatch", "multi_topic", "insufficient_content"):
+            assert reason not in card
+        # 도움말은 native title + 스크린리더용 보조 텍스트로만 제공한다.
+        assert report_module.CONTENT_REJECTED_HELP in card
+        assert "sr-only" in card
+
+
+def test_general_fallback_card_has_no_rejection_status():
+    item = _item(0, description="추출요약 문장입니다.")
+    for card in _cards(_render([item])):
+        assert "기사 미리보기" in card
+        assert "AI 요약 제외" not in card
+        assert "summary-panel__status" not in card
+
+
+def test_summary_state_helper_covers_the_three_states():
+    plain = _item(0, description="추출요약 문장입니다.").article
+    assert report_module.summary_state(plain) == "preview"
+
+    rejected = _item(1, description="추출요약 문장입니다.").article
+    rejected.summary_rejection_reason = "multi_topic"
+    assert report_module.summary_state(rejected) == "content_rejected"
+
+    ai = _item(2).article
+    ai.summary_lines = list(GOOD_LINES)
+    ai.summary_rejection_reason = "multi_topic"  # AI 3줄이 있으면 ai가 이긴다
+    assert report_module.summary_state(ai) == "ai"
 
 
 def test_ai_lines_are_searchable_via_data_hay():
@@ -883,6 +969,9 @@ def test_ai_lines_are_searchable_via_data_hay():
     assert "900곳" in hay
     # 원본 description도 계속 검색된다.
     assert "네이버 스니펫 원본 설명" in hay
+    # 표시용 label은 검색 결과를 오염시키지 않는다.
+    for label in ("AI 핵심 요약", "기사 미리보기", "AI 요약 제외"):
+        assert label not in hay
 
 
 def test_card_links_and_controls_are_preserved():
@@ -937,6 +1026,53 @@ def test_markdown_falls_back_to_description():
     assert "추출요약 문장입니다." in md
 
 
+def test_markdown_labels_ai_summaries_with_a_nested_bullet_list():
+    item = _item(0)
+    item.article.summary_lines = list(GOOD_LINES)
+    md = render_markdown(datetime(2026, 8, 1, tzinfo=KST), [item], [])
+
+    assert "**AI 핵심 요약**" in md
+    for line in GOOD_LINES:
+        assert f"    - {line}" in md
+    assert "**기사 미리보기**" not in md
+
+
+def test_markdown_ai_bullets_stay_nested_when_converted_to_html():
+    """write_report의 마크다운→HTML fallback 경로에서 중첩 목록이 유지되는지."""
+    import markdown as markdown_lib
+
+    item = _item(0)
+    item.article.summary_lines = list(GOOD_LINES)
+    md = render_markdown(datetime(2026, 8, 1, tzinfo=KST), [item], [])
+    html = markdown_lib.markdown(md, extensions=["tables"], output_format="html5")
+
+    # 3문장이 기사 항목 안의 중첩 <ul>로 들어간다(형제 항목으로 펴지지 않는다).
+    assert "<strong>AI 핵심 요약</strong><ul>" in html
+    for line in GOOD_LINES:
+        assert f"<li>{line}</li>" in html
+
+
+def test_markdown_labels_content_rejection():
+    item = _item(0, description="추출요약 문장입니다. 충분히 긴 설명입니다.")
+    item.article.source_description = SOURCE_SNIPPET
+    item.article.summary_rejection_reason = "multi_topic"
+    md = render_markdown(datetime(2026, 8, 1, tzinfo=KST), [item], [])
+
+    assert f"**{'기사 미리보기'} · AI 요약 제외**" in md
+    assert SOURCE_SNIPPET in md
+    assert "multi_topic" not in md
+    assert "**AI 핵심 요약**" not in md
+
+
+def test_markdown_labels_the_general_fallback():
+    item = _item(0, description="추출요약 문장입니다.")
+    md = render_markdown(datetime(2026, 8, 1, tzinfo=KST), [item], [])
+
+    assert "**기사 미리보기** 추출요약 문장입니다." in md
+    assert "AI 요약 제외" not in md
+    assert "**AI 핵심 요약**" not in md
+
+
 def test_report_notice_describes_ai_summary_and_fallback():
     html = _render([_item(0)])
     assert "AI" in html and "추출식 요약" in html
@@ -950,22 +1086,54 @@ def test_renderer_rejects_malformed_summary_lines(bad_lines):
     item = _item(0)
     item.article.summary_lines = bad_lines
     assert ai_summary_lines(item.article) == []
-    assert "summary ai" not in _render([item])
+    cards = _cards(_render([item]))
+    assert cards
+    for card in cards:
+        assert "summary-panel--ai" not in card
+        assert "summary-panel--preview" in card
 
 
-def test_mobile_css_does_not_clamp_the_ai_summary():
+def _report_css() -> str:
     css = Path(gemini_summary.__file__).resolve().parent / "templates" / "report.css"
-    text = css.read_text(encoding="utf-8")
+    return css.read_text(encoding="utf-8")
 
+
+def test_css_never_clamps_the_ai_summary_list():
+    text = _report_css()
+
+    # AI 목록에는 어떤 뷰포트에서도 line-clamp가 걸리지 않는다.
+    for chunk in text.split(".summary-panel__list")[1:]:
+        rule = chunk.split("}")[0]
+        assert "line-clamp" not in rule
+
+    # 미리보기 문단의 기존 clamp 정책(데스크톱 3줄 / 모바일 2줄)은 유지된다.
+    assert ".summary{ -webkit-line-clamp:2;" in text.split("@media (max-width:767px){")[1]
+    desktop_summary = text.split("@media")[0].split(".summary{")[1].split("}")[0]
+    assert "-webkit-line-clamp:3" in desktop_summary
+
+
+def test_css_defines_summary_panel_variables_for_both_themes():
+    text = _report_css()
+    light = text.split(":root{")[1].split("}")[0]
+    dark = text.split('html[data-theme="dark"]{')[1].split("}")[0]
+    for name in (
+        "--summary-accent",
+        "--summary-ai-bg",
+        "--summary-ai-border",
+        "--summary-preview-bg",
+        "--summary-preview-border",
+    ):
+        assert name in light, name
+        assert name in dark, name
+
+
+def test_css_keeps_long_sentences_inside_the_card():
+    text = _report_css()
+    assert "overflow-wrap:anywhere" in text
     mobile_block = text.split("@media (max-width:767px){")[1]
-    assert ".summary{ -webkit-line-clamp:2;" in mobile_block  # 기존 동작 유지
-    ai_rule = mobile_block.split(".summary.ai{")[1].split("}")[0]
-    assert "-webkit-line-clamp:none" in ai_rule
-    assert "overflow:visible" in ai_rule
-
-    desktop_block = text.split("@media")[0]
-    desktop_ai = desktop_block.split(".summary.ai{")[1].split("}")[0]
-    assert "-webkit-line-clamp:none" in desktop_ai
+    # 모바일에서는 패널 padding과 목록 들여쓰기를 줄인다.
+    assert ".summary-panel{ padding:" in mobile_block
+    assert ".summary-panel__list{ padding-left:" in mobile_block
 
 
 # --- 내용 품질 게이트: 파이프라인 동작 ----------------------------------------
@@ -1045,8 +1213,8 @@ def test_html_falls_back_for_unusable_articles(tmp_path):
     unusable_cards = [c for c in cards if "대부업 감독 규정 개정 0" in c]
     assert unusable_cards
     for card in unusable_cards:
-        assert "summary ai" not in card
-        assert "AI 3줄" not in card
+        assert "summary-panel--ai" not in card
+        assert "AI 핵심 요약" not in card
         assert "추출요약으로 남는 문장입니다." in card
 
 
@@ -1115,8 +1283,8 @@ def test_content_rejection_shows_the_original_naver_snippet(tmp_path, reason):
     for card in cards:
         assert SOURCE_SNIPPET in card
         assert POLLUTED_EXTRACTIVE not in card
-        assert "AI 3줄" not in card
-        assert "summary ai" not in card
+        assert "AI 핵심 요약" not in card
+        assert "summary-panel--ai" not in card
 
 
 def test_content_rejection_without_source_description_keeps_description(tmp_path):

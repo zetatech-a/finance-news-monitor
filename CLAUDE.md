@@ -40,6 +40,8 @@ finance-news-monitor/
 │       ├── relevance_filter.py # Stage 2 relevance decision (authoritative/candidate_hybrid/rule_only)
 │       ├── relevance_score.py  # Heuristic scoring (hard/soft/negative weights, negative cap)
 │       ├── report.py           # Markdown + interactive HTML report, Top-10 ranking, index
+│                               # 요약 표시 상태(ai/content_rejected/preview)는 summary_state()
+│                               # 한 곳에서 판정하고 summary_panel_html()/md_summary_block()이 렌더한다
 │       ├── templates/          # report.css / report.js / light.css (HTML에 인라인 삽입됨)
 │       ├── source_quality.py   # Publisher/source quality classification for ranking
 │       ├── summary_cache.py    # JSON URL→summary cache (max 5000 items)

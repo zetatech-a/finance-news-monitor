@@ -108,6 +108,40 @@ def ai_summary_lines(article: Any) -> list[str]:
 MIN_SOURCE_DESCRIPTION_CHARS = 24
 
 
+# --- 요약 표시 상태 -----------------------------------------------------------
+#
+# 표시 상태는 세 가지뿐이고, 판정은 **여기 한 곳**에서만 한다.
+# 카드 템플릿(Top 10 / 업권별)과 마크다운이 모두 이 helper를 재사용한다.
+#
+#   ai               유효한 Gemini 3줄이 있다 → 강조된 3-bullet 패널
+#   content_rejected Gemini가 내용 부적합(usable=false)으로 거부했다 → 중립 미리보기 + 상태 표시
+#   preview          그 밖의 모든 fallback(API 장애 / 본문 부족 / 비활성화 / 대상 아님)
+#
+# preview와 content_rejected를 표시상 구분하는 것뿐이고, **어떤 문장을 보여줄지**는
+# 기존 `display_summary_text()` 계약(원본 스니펫 우선)을 그대로 따른다.
+SUMMARY_STATE_AI = "ai"
+SUMMARY_STATE_CONTENT_REJECTED = "content_rejected"
+SUMMARY_STATE_PREVIEW = "preview"
+
+AI_SUMMARY_TITLE = "AI 핵심 요약"
+PREVIEW_TITLE = "기사 미리보기"
+CONTENT_REJECTED_LABEL = "AI 요약 제외"
+# 내부 사유 문자열(title_body_mismatch 등)은 절대 노출하지 않는다 —
+# 사용자에게는 이 한 문장으로만 설명한다.
+CONTENT_REJECTED_HELP = (
+    "복합 기사이거나 제목과 본문의 일치도가 낮아 AI 요약 대신 기사 미리보기를 표시합니다."
+)
+
+
+def summary_state(article: Any) -> str:
+    """카드/마크다운이 공유하는 요약 표시 상태."""
+    if ai_summary_lines(article):
+        return SUMMARY_STATE_AI
+    if _field(article, "summary_rejection_reason"):
+        return SUMMARY_STATE_CONTENT_REJECTED
+    return SUMMARY_STATE_PREVIEW
+
+
 def display_summary_text(article: Any) -> str:
     """표시용 요약 한 줄.
 
@@ -141,6 +175,76 @@ def _md_summary_text(article: Any, default_limit: int) -> str:
     if ai_summary_lines(article):
         return text
     return _truncate(text, default_limit)
+
+
+def md_summary_block(article: Any, default_limit: int) -> list[str]:
+    """마크다운 기사 항목 한 건이 차지하는 줄들.
+
+    최상위 "기사 1건 = 불릿 1개" 구조는 그대로 두고(기존 소비자·테스트 호환),
+    AI 3줄만 중첩 목록으로 펼쳐 세 문장이 각각 bullet로 남게 한다.
+
+    중첩은 **4칸** 들여쓴다. Python-Markdown(write_report의 마크다운→HTML fallback 경로)은
+    2칸 들여쓰기를 중첩으로 보지 않고 형제 항목으로 펴버려서 어느 기사의 요약인지 사라진다.
+    """
+    prefix = f"- {md_link(article.title or '', _primary_link(article))} — "
+
+    state = summary_state(article)
+    if state == SUMMARY_STATE_AI:
+        block = [f"{prefix}**{AI_SUMMARY_TITLE}**"]
+        block.extend(f"    - {md_escape(line)}" for line in ai_summary_lines(article))
+        return block
+
+    label = PREVIEW_TITLE
+    if state == SUMMARY_STATE_CONTENT_REJECTED:
+        label = f"{PREVIEW_TITLE} · {CONTENT_REJECTED_LABEL}"
+    return [f"{prefix}**{label}** {md_escape(_md_summary_text(article, default_limit))}"]
+
+
+def summary_panel_html(article: Any) -> str:
+    """카드 안에 들어가는 요약 패널.
+
+    AI 문장·fallback 문장은 **먼저 escape한 뒤에만** 우리가 만든 구조에 넣는다.
+    모델 출력 안의 `<script>`/`<b>`/`<br>`은 HTML로 해석되지 않는다.
+    """
+    state = summary_state(article)
+
+    # 패널은 <div>다. <section>을 쓰면 리포트의 업권 섹션(<section data-group>)과
+    # 태그가 겹쳐 섹션 단위로 카드를 세는 쪽이 깨진다. 패널 제목은 화면에 보이는
+    # 텍스트로 제공하므로 별도의 aria-label은 필요 없다.
+    if state == SUMMARY_STATE_AI:
+        items = "".join(f"<li>{_h(line)}</li>" for line in ai_summary_lines(article))
+        return (
+            f"<div class='summary-panel summary-panel--ai'>"
+            f"<div class='summary-panel__header'>"
+            f"<span class='summary-panel__icon' aria-hidden='true'>✦</span>"
+            f"<span class='summary-panel__title'>{_h(AI_SUMMARY_TITLE)}</span>"
+            f"</div>"
+            # 실제 <ul><li> 구조라 CSS가 일부 제거되는 메일 클라이언트에서도 bullet이 남는다.
+            f"<ul class='summary-panel__list' data-summary>{items}</ul>"
+            f"</div>"
+        )
+
+    status_html = ""
+    if state == SUMMARY_STATE_CONTENT_REJECTED:
+        # 색상이 아니라 텍스트로 상태를 알린다. 도움말은 native title(마우스) +
+        # 시각적으로 숨긴 보조 텍스트(스크린리더)로 제공한다 — 새 JS 의존성은 없다.
+        status_html = (
+            f"<span class='summary-panel__status' title='{_h(CONTENT_REJECTED_HELP)}'>"
+            f"{_h(CONTENT_REJECTED_LABEL)}"
+            f"<span class='sr-only'> — {_h(CONTENT_REJECTED_HELP)}</span>"
+            f"</span>"
+        )
+
+    # 클래스 'summary'를 유지해 기존 미리보기 clamp 정책(데스크톱 3줄 / 모바일 2줄)을 그대로 쓴다.
+    return (
+        f"<div class='summary-panel summary-panel--preview'>"
+        f"<div class='summary-panel__header'>"
+        f"<span class='summary-panel__title'>{_h(PREVIEW_TITLE)}</span>"
+        f"{status_html}"
+        f"</div>"
+        f"<p class='summary summary-panel__text' data-summary>{_h(display_summary_text(article))}</p>"
+        f"</div>"
+    )
 
 
 def _numeric_field(article: Any, *keys: str) -> float | None:
@@ -517,11 +621,7 @@ def render_markdown(
     lines.append("## 오늘의 Top 이슈 10")
     if top_items:
         for item in top_items:
-            a = item.article
-            lines.append(
-                f"- {md_link(a.title or '', _primary_link(a))} — "
-                f"{md_escape(_md_summary_text(a, 180))}"
-            )
+            lines.extend(md_summary_block(item.article, 180))
     else:
         lines.append("- 해당 기간 기사 없음")
 
@@ -540,11 +640,7 @@ def render_markdown(
             key=lambda x: _ts_dt(getattr(x.article, "pub_date", None)),
             reverse=True,
         )[:10]:
-            a = item.article
-            lines.append(
-                f"- {md_link(a.title or '', _primary_link(a))} — "
-                f"{md_escape(_md_summary_text(a, 170))}"
-            )
+            lines.extend(md_summary_block(item.article, 170))
         lines.append("")
 
     lines.append("## 키워드 트렌드")
@@ -695,8 +791,7 @@ def render_html(
             badges.append(f"<span class='badge {rel_class}'>Rel {rel_label}</span>")
         if cached:
             badges.append("<span class='badge'>⚡ 캐시</span>")
-        if ai_lines:
-            badges.append("<span class='badge'>AI 3줄</span>")
+        # 'AI 3줄' 메타 배지는 요약 패널 제목(`AI 핵심 요약`)과 중복이라 제거했다.
         if cluster_size_int > 1:
             badges.append(f"<span class='badge'>관련 기사 {cluster_size_int}건</span>")
         topic_badges = (
@@ -726,14 +821,8 @@ def render_html(
             if related_items:
                 related_html = "<ul class='related' aria-label='관련 기사'>" + "".join(related_items) + "</ul>"
 
-        if ai_lines:
-            # 각 문장을 개별 escape한 뒤에만 <br>로 잇는다 — 모델 출력은 절대 HTML로
-            # 해석되지 않는다(응답 안의 <br>은 &lt;br&gt;로 표시된다).
-            summary_class = "summary ai"
-            summary_inner = "<br>".join(_h(line) for line in ai_lines)
-        else:
-            summary_class = "summary"
-            summary_inner = _h(summary)
+        # Top 10 카드와 업권별 카드가 같은 helper를 쓴다 — 상태 분기는 한 곳에만 있다.
+        summary_panel = summary_panel_html(a)
 
         return (
             f"<article class='card' data-card "
@@ -753,7 +842,7 @@ def render_html(
             f"    <span>·</span>{''.join(badges)}"
             f"  </div>"
             f"  <div class='meta-row'>{topic_badges}</div>"
-            f"  <p class='{summary_class}' data-summary>{summary_inner}</p>"
+            f"  {summary_panel}"
             f"  {related_html}"
             f"  <div class='actions'>{''.join(btns)}</div>"
             f"</article>"
@@ -851,7 +940,7 @@ def render_html(
         <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">전 금융권 주요 기사 중 대부·시장 영향도가 큰 이슈 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
         {''.join(sector_sections)}
         <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div>{chips_html}</section>
-        <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.<br>기사 요약은 AI가 본문을 3줄로 정리하며(AI 3줄), AI 처리가 실패하면 기존 추출식 요약을 표시합니다.</div>
+        <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.<br>기사 요약은 AI가 본문을 3줄로 정리해 <strong>AI 핵심 요약</strong>으로 표시하며, AI 처리가 실패하면 기존 추출식 요약을 <strong>기사 미리보기</strong>로 표시합니다.</div>
       </div>
     </div>
   </div>

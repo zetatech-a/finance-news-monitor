@@ -6,6 +6,12 @@
   --shadow:0 10px 30px rgba(17,24,39,0.08);
   --shadow2:0 6px 18px rgba(17,24,39,0.08);
   --ring: 0 0 0 3px rgba(37,99,235,0.15);
+  /* 요약 패널(의미 기반 변수) — 색상 값은 여기서만 정의하고 selector는 변수만 쓴다. */
+  --summary-accent: var(--link);
+  --summary-ai-bg: color-mix(in srgb, var(--link) 6%, var(--paper));
+  --summary-ai-border: color-mix(in srgb, var(--link) 26%, var(--border));
+  --summary-preview-bg: color-mix(in srgb, var(--muted) 7%, var(--paper));
+  --summary-preview-border: var(--border);
 }
 
 html[data-theme="dark"]{
@@ -15,6 +21,12 @@ html[data-theme="dark"]{
   --shadow:0 12px 30px rgba(0,0,0,0.45);
   --shadow2:0 10px 22px rgba(0,0,0,0.40);
   --ring: 0 0 0 3px rgba(96,165,250,0.20);
+  /* 다크에서는 accent를 텍스트 쪽으로 살짝 섞어 형광처럼 튀지 않게 한다. */
+  --summary-accent: color-mix(in srgb, var(--link) 82%, var(--text));
+  --summary-ai-bg: color-mix(in srgb, var(--link) 13%, var(--paper));
+  --summary-ai-border: color-mix(in srgb, var(--link) 34%, var(--border));
+  --summary-preview-bg: color-mix(in srgb, var(--bg) 55%, var(--paper));
+  --summary-preview-border: var(--border);
 }
 
 *{ box-sizing:border-box; }
@@ -150,9 +162,56 @@ h2{ margin:0; font-size:15px; }
   margin:0; color: color-mix(in srgb, var(--text) 82%, var(--muted)); font-size:12.5px;
   display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
 }
-/* AI 3줄 요약은 줄 수가 계약으로 고정(3문장 × 최대 90자)이라 clamp하지 않는다.
+
+/* 스크린리더 전용 보조 텍스트(상태 도움말) — 화면에는 보이지 않는다. */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* --- 요약 패널 --------------------------------------------------------------
+   세 상태(ai / content_rejected / preview)를 색상만이 아니라 제목 텍스트와
+   구조(<ul><li> vs 문단)로 구분한다. */
+.summary-panel{
+  margin:0; padding:8px 10px; border-radius:10px;
+  border:1px solid var(--summary-preview-border);
+  background: var(--summary-preview-bg);
+}
+.summary-panel__header{
+  display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:5px;
+}
+.summary-panel__title{
+  font-size:11.5px; font-weight:700; letter-spacing:-0.1px;
+  color: color-mix(in srgb, var(--text) 76%, var(--muted));
+}
+.summary-panel__icon{ color: var(--summary-accent); font-size:11px; line-height:1; }
+.summary-panel__status{
+  margin-left:auto; display:inline-flex; align-items:center;
+  padding:2px 7px; border-radius:999px; font-size:10.5px; white-space:nowrap;
+  border:1px solid var(--summary-preview-border);
+  background: color-mix(in srgb, var(--muted) 14%, transparent);
+  color: var(--muted);
+}
+.summary-panel--ai{
+  background: var(--summary-ai-bg);
+  border-color: var(--summary-ai-border);
+  border-left:3px solid var(--summary-accent);
+}
+.summary-panel--ai .summary-panel__title{
+  color: color-mix(in srgb, var(--summary-accent) 62%, var(--text));
+}
+/* AI 3줄은 줄 수가 계약으로 고정(3문장 × 최대 90자)이라 clamp하지 않는다.
    clamp를 걸면 세 번째 문장이 잘려 요약의 '영향/후속' 항목이 사라진다. */
-.summary.ai{ display:block; -webkit-line-clamp:none; overflow:visible; line-height:1.55; }
+.summary-panel__list{
+  margin:0; padding-left:16px; list-style:disc;
+  color: color-mix(in srgb, var(--text) 86%, var(--muted));
+  font-size:12.5px; line-height:1.6;
+}
+.summary-panel__list li{ margin:0 0 5px; }
+.summary-panel__list li:last-child{ margin-bottom:0; }
+.summary-panel__list li::marker{ color: var(--summary-accent); }
+/* 긴 한국어 문장이 카드 밖으로 넘치지 않게 한다. */
+.summary-panel__list li, .summary-panel__text{ overflow-wrap:anywhere; word-break:break-word; }
 .related{ margin:8px 0 0; padding-left:16px; color:var(--muted); font-size:12px; }
 .related li{ margin:2px 0; }
 .related a{ color:var(--muted); text-decoration:none; }
@@ -216,8 +275,11 @@ mark{ background: color-mix(in srgb, var(--link) 18%, transparent); color: inher
   .section-head{ margin:4px 0 8px; padding-top:10px; }
   .card{ padding:8px; border-radius:10px; }
   .summary{ -webkit-line-clamp:2; font-size:12px; }
-  /* 모바일에서도 세 번째 문장이 잘리지 않게 clamp를 해제한다. */
-  .summary.ai{ display:block; -webkit-line-clamp:none; overflow:visible; }
+  /* 모바일에서는 패널 padding과 목록 들여쓰기를 줄인다.
+     AI 목록에는 clamp가 없으므로 세 번째 문장이 그대로 남는다. */
+  .summary-panel{ padding:7px 8px; border-radius:9px; }
+  .summary-panel__header{ margin-bottom:4px; }
+  .summary-panel__list{ padding-left:14px; font-size:12px; }
   .meta-row{ margin-bottom:5px; gap:5px; }
   .actions{ margin-top:7px; gap:6px; }
 }
