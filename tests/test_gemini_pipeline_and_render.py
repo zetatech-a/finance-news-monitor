@@ -1168,7 +1168,9 @@ def test_css_never_clamps_the_ai_summary_list():
 
     # 미리보기 문단의 기존 clamp 정책(데스크톱 3줄 / 모바일 2줄)은 유지된다.
     assert ".summary{ -webkit-line-clamp:2;" in _mobile_css_block(text)
-    desktop_summary = text.split("@media")[0].split(".summary{")[1].split("}")[0]
+    # 좁은 화면 override 앞쪽(기본 규칙)에서 데스크톱 clamp를 찾는다.
+    # (다른 미디어 블록이 사이에 추가돼도 기본 규칙 판정이 흔들리지 않게 max-width만 잘라낸다)
+    desktop_summary = re.split(r"@media \(max-width", text)[0].split(".summary{")[1].split("}")[0]
     assert "-webkit-line-clamp:3" in desktop_summary
 
 

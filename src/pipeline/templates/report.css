@@ -293,9 +293,15 @@ section[data-group] + section[data-group]{ margin-top:26px; }
 .title{ margin:0 0 8px; font-size:15px; font-weight:800; line-height:1.38; letter-spacing:-0.2px; min-width:0; }
 .title a{
   color:var(--text-primary); text-decoration:none;
-  /* 긴 제목은 3줄까지만 — 전체 제목은 링크의 title 속성으로 확인한다. */
-  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
-  overflow-wrap:anywhere; word-break:break-word;
+  display:block; overflow-wrap:anywhere; word-break:break-word;
+}
+/* 제목 clamp는 잘린 부분을 `title` 툴팁으로 확인할 수 있는 환경에서만 건다.
+   터치 기기는 hover 툴팁이 뜨지 않으므로 제목을 자르지 않는다 — 자르면 기사를
+   열어보지 않고는 나머지 제목을 볼 방법이 없다. */
+@media (hover: hover){
+  .title a{
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+  }
 }
 .title a:hover{ color:var(--accent-hover); text-decoration:underline; }
 
@@ -314,11 +320,15 @@ section[data-group] + section[data-group]{ margin-top:26px; }
 /* 업권은 카드에서 가장 강한 메타 정보다. */
 .badge--sector{ background:var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 26%, var(--border)); color:var(--accent-strong-text); font-weight:700; }
 .badge--top{ background:var(--accent); border-color:var(--accent); color:var(--accent-contrast); font-weight:800; letter-spacing:0.4px; }
-.badge--soft{ color:var(--text-muted); }
+/* 11px 텍스트라 muted(연회색 배경 위 4.4:1)로는 부족해 secondary를 쓴다. */
+.badge--soft{ color:var(--text-secondary); }
 .badge--topic{ background:transparent; border-style:dashed; color:var(--text-secondary); }
-.badge.r-high{ font-weight:700; color:var(--text-secondary); }
-.badge.r-med{ opacity:0.95; }
-.badge.r-low{ opacity:0.85; }
+/* 관련도 단계는 opacity가 아니라 굵기로 구분한다 — opacity는 배지 전체(텍스트·테두리)를
+   흐리게 만들어 11px 텍스트의 대비를 기준 아래로 떨어뜨린다. 단계 자체는 라벨
+   (Rel High/Med/Low) 텍스트로 이미 읽을 수 있다. */
+.badge.r-high{ font-weight:700; }
+.badge.r-med{ font-weight:600; }
+.badge.r-low{ font-weight:500; }
 
 .summary{
   margin:0; color: color-mix(in srgb, var(--text-primary) 82%, var(--text-secondary)); font-size:12.5px;

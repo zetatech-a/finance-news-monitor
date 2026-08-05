@@ -67,6 +67,10 @@
   // 결과 개수 표시는 카드가 아니라 기사 단위 — Top 섹션 사본이 두 번 세지 않게 한다.
   function cardKey(meta){ return meta.url || ("card-" + meta.id); }
   const totalArticleCount = new Set(cardMetas.map(cardKey)).size;
+  // 이 리포트에 실제로 있는 기사 URL. 즐겨찾기는 날짜별 리포트가 같은 origin에서
+  // localStorage를 공유하므로, 저장 건수는 반드시 이 집합과 교집합으로 센다 —
+  // 어제 저장한 기사까지 세면 '저장 1건'인데 '저장만'은 0건인 상태가 된다.
+  const articleUrls = new Set(cardMetas.map(meta => meta.url).filter(Boolean));
 
   let renderRafId = 0;
   let pendingRender = { recomputeMatch: true, recomputeSort: true, resetPagination: true };
@@ -83,7 +87,12 @@
   function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); applyThemeLabel(next); }
   function getFavs(){ try{ const raw = localStorage.getItem(LS_FAVS); const arr = raw ? JSON.parse(raw) : []; return new Set(Array.isArray(arr) ? arr : []);}catch(e){ return new Set(); }}
   function saveFavs(set){ localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set))); }
-  function updateSavedCount(count){ if(savedCount) savedCount.textContent = "저장 " + count + "건"; }
+  function updateSavedCount(favs){
+    if(!savedCount) return;
+    let inReport = 0;
+    favs.forEach(url => { if(articleUrls.has(url)) inReport += 1; });
+    savedCount.textContent = "저장 " + inReport + "건";
+  }
   function setActivePill(sector){
     const resolvedSector = pills.some(p => p.dataset.sector === sector) ? sector : "ALL";
     activeSector = resolvedSector;
@@ -249,11 +258,11 @@
         const nowOn = set.has(url) ? (set.delete(url), false) : (set.add(url), true);
         saveFavs(set);
         (buttonsByUrl.get(url) || [btn]).forEach(other => paintFavButton(other, nowOn));
-        updateSavedCount(set.size);
+        updateSavedCount(set);
         if(favOnly && favOnly.checked) applyFilter();
       });
     });
-    updateSavedCount(getFavs().size);
+    updateSavedCount(getFavs());
   }
 
   function bindEvents(){

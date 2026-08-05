@@ -181,6 +181,63 @@ def test_top_controls_never_overlap(browser, report_file, viewport):
     assert _measure(browser, report_file, *viewport)["controlsOverlap"] is False
 
 
+def test_titles_are_not_clamped_on_touch_devices(browser, report_file):
+    """터치 기기에서는 `title` 툴팁을 쓸 수 없으므로 제목을 자르지 않는다."""
+    results = {}
+    for name, options in (("hover", {}), ("touch", {"has_touch": True, "is_mobile": True})):
+        context = browser.new_context(viewport={"width": 375, "height": 812}, **options)
+        page = context.new_page()
+        page.goto(report_file.as_uri())
+        page.wait_for_timeout(120)
+        results[name] = page.evaluate(
+            """() => {
+              const a = document.querySelector('.title a');
+              return {
+                hoverNone: matchMedia('(hover: none)').matches,
+                clamp: getComputedStyle(a).webkitLineClamp,
+                fullyVisible: a.scrollHeight <= a.clientHeight + 1,
+              };
+            }"""
+        )
+        context.close()
+
+    assert results["touch"]["hoverNone"] is True
+    assert results["touch"]["clamp"] in (None, "none")
+    assert results["touch"]["fullyVisible"] is True
+    # hover가 되는 환경에서는 clamp가 유지된다(툴팁으로 전체 제목 확인 가능).
+    assert results["hover"]["hoverNone"] is False
+    assert results["hover"]["clamp"] == "3"
+
+
+def test_saved_count_only_counts_articles_present_in_this_report(browser, report_file):
+    """날짜별 리포트가 localStorage를 공유하므로 저장 건수는 현재 리포트와 교집합이다."""
+    page = browser.new_page(viewport={"width": 1440, "height": 900})
+    page.goto(report_file.as_uri())
+    page.evaluate(
+        "() => localStorage.setItem('reportFavs_v1',"
+        " JSON.stringify(['https://other-report.example.com/older']))"
+    )
+    page.reload()
+    page.wait_for_timeout(150)
+    # 다른 리포트에서 저장한 기사만 있으면 0건 — '저장 1건'인데 '저장만'은 0건인 모순을 막는다.
+    assert page.text_content("#savedCount") == "저장 0건"
+
+    page.click("[data-clip]")
+    page.wait_for_timeout(120)
+    assert page.text_content("#savedCount") == "저장 1건"
+    # 다른 리포트의 즐겨찾기는 저장소에 그대로 남는다.
+    assert page.evaluate("() => JSON.parse(localStorage.getItem('reportFavs_v1')).length") == 2
+
+    page.check("#favOnly")
+    page.wait_for_timeout(120)
+    shown = page.evaluate(
+        "() => Array.from(document.querySelectorAll('[data-card]'))"
+        ".filter(c => c.style.display !== 'none').length"
+    )
+    assert shown > 0  # 표시된 저장 건수와 실제 필터 결과가 어긋나지 않는다
+    page.close()
+
+
 def test_filters_search_sort_favorites_and_theme_still_work(browser, report_file):
     page = browser.new_page(viewport={"width": 1440, "height": 900})
     page.goto(report_file.as_uri())

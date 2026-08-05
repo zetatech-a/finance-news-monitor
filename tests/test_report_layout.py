@@ -209,13 +209,23 @@ def test_card_actions_use_the_bottom_alignment_class(html: str, css: str):
     assert "flex-direction:column" in css.split(".card{")[1].split("}")[0]
 
 
-def test_card_title_is_clamped_but_recoverable(html: str, css: str):
-    title_rule = css.split(".title a{")[1].split("}")[0]
-    assert "-webkit-line-clamp:3" in title_rule
-    # clamp된 제목 전체는 title 속성으로 확인할 수 있어야 한다.
+def test_card_title_is_clamped_only_where_a_tooltip_can_reveal_it(html: str, css: str):
+    """터치 기기(hover 없음)에서는 제목을 자르지 않는다.
+
+    잘린 제목을 되살리는 수단이 링크의 `title` 툴팁뿐인데, 터치 브라우저는 hover
+    툴팁을 띄우지 않는다. clamp를 hover 환경으로 제한하지 않으면 모바일 사용자는
+    기사를 열지 않고는 나머지 제목을 볼 수 없다.
+    """
+    base_rule = css.split(".title a{")[1].split("}")[0]
+    assert "line-clamp" not in base_rule, base_rule
+    assert "overflow-wrap:anywhere" in base_rule
+
+    hover_block = css.split("@media (hover: hover){")[1].split("\n}")[0]
+    assert "-webkit-line-clamp:3" in hover_block.split(".title a{")[1].split("}")[0]
+
+    # clamp가 걸리는 환경에서는 전체 제목을 title 속성으로 확인할 수 있어야 한다.
     card = _first_card(html)
     assert re.search(r"<a href='[^']*'[^>]*title='[^']*기사 1[^']*'[^>]*data-title>", card), card
-    assert "overflow-wrap:anywhere" in title_rule
 
 
 def test_badges_have_distinct_visual_weights(html: str, css: str):
@@ -224,6 +234,18 @@ def test_badges_have_distinct_visual_weights(html: str, css: str):
     assert "badge badge--topic" in card
     for modifier in ("--sector", "--top", "--soft", "--topic"):
         assert f".badge{modifier}{{" in css.replace(" ", ""), modifier
+
+
+def test_soft_badges_keep_readable_contrast(css: str):
+    """11px 배지 텍스트는 muted(연회색 배경에서 4.5:1 미만)를 쓰지 않는다."""
+    soft_rule = css.split(".badge--soft{")[1].split("}")[0]
+    assert "var(--text-secondary)" in soft_rule
+    assert "var(--text-muted)" not in soft_rule
+    # 관련도 단계는 opacity로 흐리게 만들지 않는다 — 텍스트·테두리 대비가 함께 떨어진다.
+    for level in ("r-high", "r-med", "r-low"):
+        rule = css.split(f".badge.{level}{{")[1].split("}")[0]
+        assert "opacity" not in rule, level
+        assert "font-weight" in rule, level
 
 
 def test_article_text_stays_html_escaped(html: str):
