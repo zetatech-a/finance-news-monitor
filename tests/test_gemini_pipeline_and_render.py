@@ -903,6 +903,34 @@ def test_markdown_keeps_all_three_sentences():
         assert line.rstrip(".") in md
 
 
+def test_markdown_keeps_long_ai_summaries_intact():
+    """GEMINI_MAX_LINE_CHARS를 올리면 3줄 합계가 300자를 넘는다.
+
+    마크다운에만 고정 한도를 걸면 세 번째 문장이 사라진 채 저장되어 HTML 리포트와
+    내용이 어긋난다. AI 요약은 이미 계약(3줄 × 줄당 상한)으로 묶여 있으므로 자르지 않는다.
+    """
+    long_lines = [
+        "금융위원회가 대부업 감독 규정 개정안을 의결하며 최고금리 산정 방식과 등록 요건을 함께 손질했다고 " + "자세히 " * 12 + "밝혔다.",
+        "개정 규정은 2026년 9월 1일부터 시행되며 적용 대상은 등록 대부업체 900곳과 대부중개업체 " + "다수의 " * 12 + "1200곳이다.",
+        "금융위는 시행 후 6개월간 이행 실태를 점검하고 위반 업체에는 등록 취소를 포함한 " + "강력한 " * 12 + "제재를 예고했다.",
+    ]
+    assert sum(len(line) for line in long_lines) > 300
+    item = _item(0)
+    item.article.summary_lines = list(long_lines)
+
+    md = render_markdown(datetime(2026, 8, 1, tzinfo=KST), [item], [])
+    for line in long_lines:
+        assert line.rstrip(".") in md
+    assert "..." not in md
+
+
+def test_markdown_still_truncates_long_extractive_summaries():
+    """길이가 보장되지 않는 추출요약·스니펫은 그대로 잘라 쓴다."""
+    item = _item(0, description="추출요약 문장입니다. " * 40)
+    md = render_markdown(datetime(2026, 8, 1, tzinfo=KST), [item], [])
+    assert "..." in md
+
+
 def test_markdown_falls_back_to_description():
     item = _item(0, description="추출요약 문장입니다.")
     md = render_markdown(datetime(2026, 8, 1, tzinfo=KST), [item], [])

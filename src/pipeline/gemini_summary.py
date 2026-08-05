@@ -1239,12 +1239,19 @@ class GeminiBatchSummarizer:
                 if reason is not None and on_content_rejected is not None:
                     on_content_rejected(item, reason)
 
+            # 하나도 못 건진 배치는 실패로 세되, **분할 재요청을 예약하지 못했을 때만**
+            # 센다. 사다리를 쓰기도 전에 breaker가 열리면(임계값이 낮을 때) 문서화된
+            # 25 → 10 → 1 회복 경로가 통째로 무력화된다.
+            unresolved = not outcome.resolved_ids
+
             if not outcome.failed_ids:
                 continue
 
             # 이미 성공한 기사는 절대 다시 보내지 않는다.
             failed_items = [item for item in batch if item.id in set(outcome.failed_ids)]
             if not failed_items or not outcome.retryable_by_split:
+                if unresolved:
+                    self._record_failure()
                 continue
 
             if len(failed_items) < len(batch):
@@ -1255,7 +1262,11 @@ class GeminiBatchSummarizer:
                 # 전량 실패 = 배치 크기가 문제일 수 있다 → 사다리로 좁힌다.
                 split_size = next_split_size(len(batch))
             if split_size is None:
-                continue  # 크기 1까지 갔는데도 실패 → 기사별 extractive fallback
+                # 크기 1까지 갔는데도 실패 → 기사별 extractive fallback.
+                # 회복 수단을 다 썼으므로 이제 실패로 센다.
+                if unresolved:
+                    self._record_failure()
+                continue
             self._stats["splits"] += 1
             logger.warning(
                 "Gemini batch partially failed (%s/%s); splitting %s → %s (reasons=%s)",
@@ -1339,8 +1350,10 @@ class GeminiBatchSummarizer:
                     self._sleep(self._backoff_seconds(exc, category, attempts))
                     continue
 
-                self._record_failure()
                 # 400은 요청 자체 문제(크기 초과 등)일 수 있으므로 분할을 허용한다.
+                # 실패 집계(breaker)는 여기서 하지 않는다 — 분할 사다리를 예약하지
+                # 못했을 때만 호출부(summarize_many)가 한 번 센다. 양쪽에서 세면
+                # 배치 1회 실패가 2회로 잡혀 임계값이 절반으로 낮아진다.
                 return _all_failed(batch, retryable_by_split=(category == CATEGORY_BAD_REQUEST))
 
             outcome = validate_batch_response(raw, batch, max_line_chars=cfg.max_line_chars)
@@ -1354,10 +1367,11 @@ class GeminiBatchSummarizer:
 
             # 모델이 어떤 식으로든 답을 줬으면 API는 정상이다 — usable=false만 잔뜩
             # 돌아온 배치(뉴스 모음 기사 등)로 circuit breaker가 열리면 안 된다.
+            # 하나도 못 건진 경우의 실패 집계는 여기서 하지 않는다 — 분할 사다리를
+            # 아직 쓰지 않았는데 breaker가 먼저 열리면(예: 임계값 1) 그 회복 경로가
+            # 통째로 무력화된다. 사다리를 다 쓴 뒤 summarize_many가 센다.
             if outcome.resolved_ids:
                 self._consecutive_failures = 0
-            else:
-                self._record_failure()
 
             if outcome.content_rejected:
                 logger.info(

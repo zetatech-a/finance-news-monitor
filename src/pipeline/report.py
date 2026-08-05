@@ -129,12 +129,18 @@ def display_summary_text(article: Any) -> str:
     return description
 
 
-# AI 3줄(줄당 최대 90자)이 마크다운에서 잘리지 않도록 한도만 올린다.
-MD_AI_SUMMARY_LIMIT = 300
+def _md_summary_text(article: Any, default_limit: int) -> str:
+    """마크다운에 넣을 요약. 검증을 통과한 AI 3줄은 자르지 않는다.
 
-
-def _md_summary_limit(article: Any, default_limit: int) -> int:
-    return MD_AI_SUMMARY_LIMIT if ai_summary_lines(article) else default_limit
+    AI 요약은 이미 계약으로 길이가 묶여 있다(정확히 3줄, 줄당 `GEMINI_MAX_LINE_CHARS`).
+    여기서 고정 한도로 또 자르면 운영자가 그 값을 기본(90)보다 올렸을 때 **마크다운에만**
+    세 번째 문장이 사라진 채 저장되고 HTML 리포트와 내용이 어긋난다.
+    한도가 필요한 것은 길이가 보장되지 않는 추출요약·스니펫 쪽이다.
+    """
+    text = display_summary_text(article)
+    if ai_summary_lines(article):
+        return text
+    return _truncate(text, default_limit)
 
 
 def _numeric_field(article: Any, *keys: str) -> float | None:
@@ -514,7 +520,7 @@ def render_markdown(
             a = item.article
             lines.append(
                 f"- {md_link(a.title or '', _primary_link(a))} — "
-                f"{md_escape(_truncate(display_summary_text(a), _md_summary_limit(a, 180)))}"
+                f"{md_escape(_md_summary_text(a, 180))}"
             )
     else:
         lines.append("- 해당 기간 기사 없음")
@@ -537,7 +543,7 @@ def render_markdown(
             a = item.article
             lines.append(
                 f"- {md_link(a.title or '', _primary_link(a))} — "
-                f"{md_escape(_truncate(display_summary_text(a), _md_summary_limit(a, 170)))}"
+                f"{md_escape(_md_summary_text(a, 170))}"
             )
         lines.append("")
 

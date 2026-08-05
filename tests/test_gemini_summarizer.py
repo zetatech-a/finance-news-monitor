@@ -981,6 +981,63 @@ def test_transient_retry_also_respects_the_reserved_normal_capacity():
     assert set(results) == {item.id for item in items[25:]}
 
 
+def test_split_ladder_runs_before_the_breaker_trips():
+    """임계값이 1이어도 분할 사다리는 돌아야 한다.
+
+    응답을 하나도 못 건진 배치를 곧바로 실패로 세면, 25 → 10 → 1 회복 경로를
+    쓰기도 전에 breaker가 열려 문서화된 적응형 복구가 통째로 무력화된다.
+    """
+    items = _items(25)
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: "broken",
+        GEMINI_CIRCUIT_BREAKER_FAILURES=1,
+        GEMINI_MAX_REQUESTS_PER_RUN=30,
+        GEMINI_MAX_RECOVERY_REQUESTS=20,
+    )
+    assert summarizer.summarize_many(items) == {}
+
+    assert recorder.sizes[0] == 25
+    assert 10 in recorder.sizes  # 사다리 2단계
+    assert 1 in recorder.sizes  # 최종 복구 수단까지 도달
+    # 회복 수단을 다 쓴 뒤에는 정상적으로 breaker가 열린다.
+    assert summarizer.breaker_tripped
+
+
+def test_bad_request_splits_before_the_breaker_trips():
+    """400도 크기 문제일 수 있다 — 분할 전에 breaker가 열리면 안 된다."""
+    items = _items(25)
+
+    def responder(call_no, prompt, schema):
+        raise FakeAPIError(400)
+
+    summarizer, recorder = _make(
+        responder,
+        GEMINI_CIRCUIT_BREAKER_FAILURES=1,
+        GEMINI_MAX_REQUESTS_PER_RUN=30,
+        GEMINI_MAX_RECOVERY_REQUESTS=20,
+    )
+    summarizer.summarize_many(items)
+
+    assert recorder.sizes[0] == 25
+    assert 10 in recorder.sizes
+    assert summarizer.breaker_tripped
+
+
+def test_a_single_failed_batch_counts_once_toward_the_breaker():
+    """실패 집계는 한 곳에서만 한다 — 양쪽에서 세면 임계값이 절반이 된다."""
+    items = _items(50)
+    summarizer, recorder = _make(
+        lambda call_no, prompt, schema: (_ for _ in ()).throw(FakeAPIError(500)),
+        GEMINI_RETRY_ATTEMPTS=1,
+        GEMINI_CIRCUIT_BREAKER_FAILURES=2,
+        GEMINI_MAX_REQUESTS_PER_RUN=50,
+    )
+    summarizer.summarize_many(items)
+
+    assert recorder.count == 2  # 배치 2회 실패 후에 열린다(1회가 아니다)
+    assert summarizer.breaker_tripped
+
+
 def test_recovery_budget_zero_disables_splitting_only():
     items = _items(100)
     summarizer, _ = _make(_partial_failure_responder(), GEMINI_MAX_RECOVERY_REQUESTS=0)

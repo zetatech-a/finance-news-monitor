@@ -319,6 +319,10 @@ Gemini 결과를 `description`에 넣으면 매일 LLM 출력에 따라 분류�
   사다리(`SPLIT_LADDER` = 25 → 10 → 1)로 좁힌다. 1까지 가서도 실패하면 기사별 extractive fallback.
 - 429/5xx/timeout은 **분할하지 않고** 같은 배치로 제한 재시도한다(크기 문제가 아니다).
   400만 크기 문제일 수 있어 재시도 없이 곧장 분할한다.
+- 하나도 못 건진 배치의 **circuit breaker 집계는 분할 재요청을 예약하지 못했을 때만** 한다
+  (`summarize_many`가 단독으로 센다 — `_run_batch`에서 같이 세면 1회 실패가 2회로 잡혀
+  임계값이 절반이 된다). 응답 즉시 세면 `GEMINI_CIRCUIT_BREAKER_FAILURES=1`에서 사다리를
+  쓰기도 전에 breaker가 열려 25 → 10 → 1 회복 경로가 통째로 무력화된다.
 
 **모델 / thinking**
 - 모델 ID의 유일한 정의 지점은 `DEFAULT_MODEL` 상수다(기본 `gemini-3.6-flash`).
