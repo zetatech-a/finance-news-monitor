@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 40,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 55,
+  "candidate_hybrid_gray_rule_drop": 94,
+  "candidate_hybrid_gray_rule_keep": 55,
+  "candidate_hybrid_keep_overseas_global_reference": 7,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 358,
+  "candidate_hybrid_model_drop": 50,
+  "candidate_hybrid_model_keep": 172,
+  "candidate_hybrid_model_keep_with_domain_anchor": 172,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 358,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-05",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 40,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 5,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 94,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 55,
+    "candidate_hybrid_keep_overseas_global_reference": 7,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 358,
+    "candidate_hybrid_model_drop_prob_le_threshold": 50,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 172
+  },
+  "dropped_count": 201,
+  "input_count": 797,
+  "kept_count": 596,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 797,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 37,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "NH농협은행, 고령층 전용 중금리대출 출시…최대 100만원 지원",
+      "url": "https://www.todayeconomic.com/news/article.html?no=31602"
+    },
+    {
+      "title": "세무법인 HKL, 조사·재산세 전문가 임종수 세무사 영입",
+      "url": "https://www.taxwatch.co.kr/article/tax/2026/08/04/0005/naver"
+    },
+    {
+      "title": "생산적금융 외치지만… 지방銀, 가계·대기업대출 쏠림 여전",
+      "url": "http://www.fnnews.com/news/202608041824335278"
+    },
+    {
+      "title": "[MD포커스] 우리카드, '개인정보' 유출사고 제재수위 촉각...자진신고 감...",
+      "url": "https://www.mydaily.co.kr/page/view/2026080411311739191"
+    },
+    {
+      "title": "금리인상에 건설사 자금경색 주의",
+      "url": "https://www.naeil.com/news/read/597604?ref=naver"
+    },
+    {
+      "title": "[비즈 인사이트] AI가 가른 삼성 계열사 2분기 성적표…\"반도체 웃고 완...",
+      "url": "https://www.seoultimes.news/news/article.html?no=2000098393"
+    },
+    {
+      "title": "리딩뱅크 이끈 정상혁 행장, 통합 신한銀 첫 '3연임' 역사 쓸까",
+      "url": "https://news.tf.co.kr/read/economy/2349805.htm"
+    },
+    {
+      "title": "지자체 '공공기관 유치' 전략 변화…공공기관 '아연실색'",
+      "url": "https://www.asiatime.co.kr/article/20260804500113"
+    },
+    {
+      "title": "서천군의회–산림조합, 정책 간담회 개최",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3655055"
+    },
+    {
+      "title": "도수치료 치료횟수 제한에…실손보험 누수 줄여야 한다지만 반발 여전",
+      "url": "https://www.mk.co.kr/article/12116370"
+    }
+  ]
+}

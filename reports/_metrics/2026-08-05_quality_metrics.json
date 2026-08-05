@@ -1,0 +1,261 @@
+{
+  "clusters": {
+    "cluster_count": 270,
+    "cluster_size_max": 112,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 112,
+        "relevance_prob": 0.8872417700633549,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "[마켓+] 원·달러 환율 1300원대 진입하나···'일시적 언더슈팅' vs '추...",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=634894"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 805,
+    "displayed_articles": 178,
+    "final_tagged_representatives": 270,
+    "normalized_articles": 1085,
+    "raw_items": 1085,
+    "relevance_filtered_articles": 596,
+    "rule_filtered_articles": 797,
+    "tagged_before_cluster": 596
+  },
+  "date": "2026-08-05",
+  "generated_at": "2026-08-05T09:03:34.315191+09:00",
+  "publishers": {
+    "missing_publisher_count": 270,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 116,
+    "no_topic_ratio": 0.4296,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6992739740891966,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "檢·警 형소법 개정 후속 작업 돌입... 경찰은 \"조직 명운\", 검찰은 수뇌...",
+        "url": "https://www.lawtv.kr/news/articleView.html?idxno=60598"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5471523926938985,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "함영주 \"포용금융은 기본 책무\"…하나금융, 연간 목표 60% 이상 상반기 ...",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=209142"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.5660059474843234,
+        "relevance_score": 7,
+        "sector": "은행",
+        "title": "하나금융, 포용금융 실행력 높인다…상반기 목표 60% 집행, '체감형 금융...",
+        "url": "https://www.techm.kr/news/articleView.html?idxno=154005"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6897546422931036,
+        "relevance_score": 4,
+        "sector": "자산운용·연기금",
+        "title": "[크립토 브리핑] 비트코인 9100만원대 횡보…클래리티법 표류 속 ETF 자금...",
+        "url": "https://www.techm.kr/news/articleView.html?idxno=154004"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5569164564160226,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "하나금융, CIFO 신설로 포용금융 속도… 4대 중심축 실행력 강화",
+        "url": "https://www.pointe.co.kr/news/articleView.html?idxno=82804"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6309419315065921,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "함영주 하나금융 회장 “포용금융은 선택 아닌 기본 책무”…청년·소상...",
+        "url": "https://n.news.naver.com/mnews/article/029/0003040738?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5964692604355869,
+        "relevance_score": 12,
+        "sector": "감독·제재",
+        "title": "[이슈체크] 빅테크 첫 금융복합기업집단 된 토스…각종 운영논란 속 그...",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=313405"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5863216568955459,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "나이스abc, 중소기업 공급망 금융 2조···대출 98% 중소기업에 집중",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=702485"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5075355626613108,
+        "relevance_score": 10,
+        "sector": "IB·자본시장",
+        "title": "ABS 136조원 외형 성장 그늘···기업 단기조달·공적보증 의존 커져",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=702473"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6983299491282738,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "'희소성' 높아진 이더리움, 가격은 꿈쩍 없다…시장 관심은 비트코인으...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=474400"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 5,
+      "감독·제재": 11,
+      "거시·시장": 22,
+      "기타": 102,
+      "대부": 4,
+      "디지털자산": 45,
+      "보험": 9,
+      "상호금융": 7,
+      "여전": 6,
+      "은행": 29,
+      "입법·정책": 20,
+      "자산운용·연기금": 5,
+      "저축은행": 2,
+      "증권(브로커리지/리테일)": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 11,
+      "감독·제재": 14,
+      "건전성·자본규제": 8,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 20,
+      "기업금융·익스포저": 1,
+      "디지털자산": 48,
+      "부동산·PF": 11,
+      "불법사금융·불법추심·보이스피싱": 34,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 5,
+      "서민금융·대환·채무조정": 1,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 3,
+      "자금시장·유동성": 6,
+      "정책·제도개선": 2,
+      "증시·시장시황": 10,
+      "칼럼·오피니언": 4,
+      "해외·글로벌": 12,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7766346371956224,
+        "relevance_score": 31,
+        "sector": "감독·제재",
+        "title": "금감원, 297만 명 뚫린 롯데카드 해킹 대응에 \"미흡\"…가맹점 관리·탈회...",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=346772"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.814241175296443,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "불법사금융 대포폰 3일 내 무력화…금감원 ‘대포폰 제로’ 가동",
+        "url": "https://n.news.naver.com/mnews/article/662/0000101098?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9156280114270949,
+        "relevance_score": 33,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "[가상자산 품은 증권사] [한국투자증권] 코인원 손잡고 리테일 경쟁력 ...",
+        "url": "https://www.topdaily.kr/articles/111288"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.9564340430672081,
+        "relevance_score": 25,
+        "sector": "입법·정책",
+        "title": "보이스피싱 의심정보 한곳에…금융·통신·수사기관 공동 대응",
+        "url": "https://www.kbanker.co.kr/news/articleView.html?idxno=225588"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8213117890836915,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "금감원, 빗썸에 검사의견서 전달…오지급 사태 제재 절차 착수",
+        "url": "http://www.iminju.net/news/articleView.html?idxno=167531"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.925410982005032,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "은행이 잡은 보이스피싱, 통신사·경찰도 본다…'ASAP' 가동",
+        "url": "https://n.news.naver.com/mnews/article/008/0005395450?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7783246983790991,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "롯데, '해킹 제재' 롯데카드와 선 긋기…\"계열사 아니다\"",
+        "url": "http://www.newsprime.co.kr/news/article.html?no=742572"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9484501782583857,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "금융·통신·수사 정보, 플랫폼에 모아 보이스피싱 잡는다",
+        "url": "http://www.newsfc.co.kr/news/articleView.html?idxno=80309"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7959496803739742,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "‘2028년 코스닥 상장’ 업계 첫 사례 노리는 빗썸…목표 도달 가능할까",
+        "url": "https://www.kukinews.com/article/view/kuk202608040180"
+      },
+      {
+        "cluster_size": 45,
+        "relevance_prob": 0.8163328655096959,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "빗썸, 2028년 IPO 추진…내년 상장 예비심사 청구",
+        "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=849359"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 1,
+      "입법·정책": 3,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "감독·제재": 3,
+      "디지털자산": 4,
+      "불법사금융·불법추심·보이스피싱": 4,
+      "증시·시장시황": 1
+    }
+  }
+}
