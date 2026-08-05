@@ -128,8 +128,11 @@ PREVIEW_TITLE = "기사 미리보기"
 CONTENT_REJECTED_LABEL = "AI 요약 제외"
 # 내부 사유 문자열(title_body_mismatch 등)은 절대 노출하지 않는다 —
 # 사용자에게는 이 한 문장으로만 설명한다.
+# 사유는 세 가지(title_body_mismatch / multi_topic / insufficient_content)이므로
+# 특정 두 사유만 전제로 하는 문구를 쓰지 않는다 — 본문 품질(insufficient_content)까지
+# 포괄해야 한다.
 CONTENT_REJECTED_HELP = (
-    "복합 기사이거나 제목과 본문의 일치도가 낮아 AI 요약 대신 기사 미리보기를 표시합니다."
+    "기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다."
 )
 
 
@@ -940,7 +943,7 @@ def render_html(
         <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">전 금융권 주요 기사 중 대부·시장 영향도가 큰 이슈 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
         {''.join(sector_sections)}
         <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div>{chips_html}</section>
-        <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.<br>기사 요약은 AI가 본문을 3줄로 정리해 <strong>AI 핵심 요약</strong>으로 표시하며, AI 처리가 실패하면 기존 추출식 요약을 <strong>기사 미리보기</strong>로 표시합니다.</div>
+        <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.<br>AI가 기사 본문을 3줄로 정리한 경우 <strong>AI 핵심 요약</strong>으로 표시하며, AI 요약이 적용되지 않은 경우 <strong>기사 미리보기</strong>를 표시합니다.</div>
       </div>
     </div>
   </div>
@@ -1003,7 +1006,8 @@ def write_report(
         "        </div>\n"
         "      </div>\n"
         "      <div class='notice'>Tip: 기사 제목을 클릭하면 원문으로 이동합니다. "
-        "(AI가 기사 본문을 3줄로 요약하며, AI 처리가 실패하면 기존 추출식 요약을 표시합니다)</div>\n"
+        "(AI가 기사 본문을 3줄로 정리한 경우 AI 핵심 요약으로 표시하며, "
+        "AI 요약이 적용되지 않은 경우 기사 미리보기를 표시합니다)</div>\n"
         "    </div>\n"
         "    <div class='main'>\n"
         f"{html_content}\n"

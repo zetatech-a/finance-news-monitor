@@ -917,10 +917,13 @@ def test_html_escapes_model_output():
     assert "&lt;br&gt;" in summary_block
 
 
-def test_content_rejected_card_shows_a_neutral_preview_panel(tmp_path):
+@pytest.mark.parametrize(
+    "rejection_reason", ["title_body_mismatch", "multi_topic", "insufficient_content"]
+)
+def test_content_rejected_card_shows_a_neutral_preview_panel(tmp_path, rejection_reason):
     items = [_polluted(0)]
     body_cache = {items[0].article.link: BODY}
-    _apply(items, tmp_path, _summarizer(_gate({0: "title_body_mismatch"})), body_cache)
+    _apply(items, tmp_path, _summarizer(_gate({0: rejection_reason})), body_cache)
 
     cards = [c for c in _cards(_render(items)) if "대부업 감독 규정 개정 0" in c]
     assert cards
@@ -1073,9 +1076,54 @@ def test_markdown_labels_the_general_fallback():
     assert "**AI 핵심 요약**" not in md
 
 
+# --- 사용자 안내 문구의 정확성 ------------------------------------------------
+#
+# fallback 원천은 상태에 따라 다르다 — 내용 거부는 `source_description`(네이버 원본
+# 스니펫), 일반 API 실패는 `description`(추출요약일 수도, 스니펫일 수도 있다).
+# 안내 문구가 "AI 실패 시 기존 추출식 요약"이라고 단정하면 실제 동작과 어긋난다.
+
+# 특정 fallback 원천이나 실패 원인을 단정하는 표현들.
+INACCURATE_NOTICE_PHRASES = ("추출식 요약", "AI 처리가 실패하면", "AI 처리가 실패")
+
+
 def test_report_notice_describes_ai_summary_and_fallback():
     html = _render([_item(0)])
-    assert "AI" in html and "추출식 요약" in html
+    assert "AI 핵심 요약" in html
+    assert "기사 미리보기" in html
+    for phrase in INACCURATE_NOTICE_PHRASES:
+        assert phrase not in html, phrase
+
+
+def test_markdown_fallback_html_notice_matches_actual_behaviour(tmp_path):
+    """write_report의 마크다운→HTML fallback 경로(html_override 없음)도 같은 안내를 쓴다."""
+    from src.pipeline.report import write_report
+
+    report_date = datetime(2026, 8, 1, tzinfo=KST)
+    md = render_markdown(report_date, [_item(0)], [])
+    paths = write_report(report_date, md, tmp_path)
+    html = paths["html"].read_text(encoding="utf-8")
+
+    assert "AI 핵심 요약" in html
+    assert "기사 미리보기" in html
+    for phrase in INACCURATE_NOTICE_PHRASES:
+        assert phrase not in html, phrase
+
+
+def test_content_rejection_help_is_not_premised_on_specific_reasons():
+    """도움말은 세 사유를 모두 포괄해야 한다.
+
+    '복합 기사이거나 제목과 본문의 일치도가 낮아' 같은 문구는 multi_topic과
+    title_body_mismatch만 설명하고 insufficient_content(본문 품질 부족)를 빼놓는다.
+    """
+    help_text = report_module.CONTENT_REJECTED_HELP
+
+    assert "복합 기사" not in help_text
+    assert "일치도" not in help_text
+    # 기사 구조 문제와 본문 품질 문제를 함께 아우른다.
+    assert "구조" in help_text and "본문 품질" in help_text
+    # 내부 enum 이름은 도움말 자체에도 들어가지 않는다.
+    for reason in ("title_body_mismatch", "multi_topic", "insufficient_content"):
+        assert reason not in help_text
 
 
 @pytest.mark.parametrize(
