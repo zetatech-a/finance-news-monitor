@@ -150,6 +150,9 @@ h2{ margin:0; font-size:15px; }
   margin:0; color: color-mix(in srgb, var(--text) 82%, var(--muted)); font-size:12.5px;
   display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
 }
+/* AI 3줄 요약은 줄 수가 계약으로 고정(3문장 × 최대 90자)이라 clamp하지 않는다.
+   clamp를 걸면 세 번째 문장이 잘려 요약의 '영향/후속' 항목이 사라진다. */
+.summary.ai{ display:block; -webkit-line-clamp:none; overflow:visible; line-height:1.55; }
 .related{ margin:8px 0 0; padding-left:16px; color:var(--muted); font-size:12px; }
 .related li{ margin:2px 0; }
 .related a{ color:var(--muted); text-decoration:none; }
@@ -213,6 +216,8 @@ mark{ background: color-mix(in srgb, var(--link) 18%, transparent); color: inher
   .section-head{ margin:4px 0 8px; padding-top:10px; }
   .card{ padding:8px; border-radius:10px; }
   .summary{ -webkit-line-clamp:2; font-size:12px; }
+  /* 모바일에서도 세 번째 문장이 잘리지 않게 clamp를 해제한다. */
+  .summary.ai{ display:block; -webkit-line-clamp:none; overflow:visible; }
   .meta-row{ margin-bottom:5px; gap:5px; }
   .actions{ margin-top:7px; gap:6px; }
 }

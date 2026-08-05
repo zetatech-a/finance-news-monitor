@@ -89,6 +89,59 @@ def _primary_link(article: Any) -> str:
     return _link_naver(article) or _link_original(article) or _link_fallback(article)
 
 
+def ai_summary_lines(article: Any) -> list[str]:
+    """표시용 AI 3줄 요약. 계약(문자열 3개, 비어있지 않음)을 만족할 때만 반환한다.
+
+    검색/정렬/필터와 랭킹은 여전히 description을 쓴다 — 여기서 반환하는 값은
+    화면 표시와 검색 haystack 보강에만 쓰인다.
+    """
+    lines = _field(article, "summary_lines")
+    if not isinstance(lines, list) or len(lines) != 3:
+        return []
+    if not all(isinstance(line, str) and line.strip() for line in lines):
+        return []
+    return [line.strip() for line in lines]
+
+
+# 원본 스니펫이 이보다 짧으면 정보가 없다고 보고 현재 description을 쓴다.
+# (extractive_summary._is_quality_summary와 같은 기준)
+MIN_SOURCE_DESCRIPTION_CHARS = 24
+
+
+def display_summary_text(article: Any) -> str:
+    """표시용 요약 한 줄.
+
+    1) 유효한 Gemini 3줄
+    2) Gemini가 내용 부적합(usable=false)으로 거부했으면 **원본 네이버 스니펫**
+       — 이 경우 현재 description은 오염된 크롤링 본문에서 만든 추출요약일 수 있다
+    3) 원본 스니펫이 없거나 너무 짧으면 현재 description
+    4) 그 밖의 경우(일반 API 장애 포함)는 기존 description 그대로
+    """
+    lines = ai_summary_lines(article)
+    if lines:
+        return " ".join(lines)
+
+    description = (_field(article, "description") or "").strip()
+    if _field(article, "summary_rejection_reason"):
+        source = (_field(article, "source_description") or "").strip()
+        if len(source) >= MIN_SOURCE_DESCRIPTION_CHARS:
+            return source
+    return description
+
+
+def _md_summary_text(article: Any, default_limit: int) -> str:
+    """마크다운에 넣을 요약. 검증을 통과한 AI 3줄은 자르지 않는다.
+
+    AI 요약은 이미 계약으로 길이가 묶여 있다(정확히 3줄, 줄당 `GEMINI_MAX_LINE_CHARS`).
+    여기서 고정 한도로 또 자르면 운영자가 그 값을 기본(90)보다 올렸을 때 **마크다운에만**
+    세 번째 문장이 사라진 채 저장되고 HTML 리포트와 내용이 어긋난다.
+    한도가 필요한 것은 길이가 보장되지 않는 추출요약·스니펫 쪽이다.
+    """
+    text = display_summary_text(article)
+    if ai_summary_lines(article):
+        return text
+    return _truncate(text, default_limit)
+
 
 def _numeric_field(article: Any, *keys: str) -> float | None:
     for key in keys:
@@ -466,7 +519,8 @@ def render_markdown(
         for item in top_items:
             a = item.article
             lines.append(
-                f"- {md_link(a.title or '', _primary_link(a))} — {md_escape(_truncate(a.description, 180))}"
+                f"- {md_link(a.title or '', _primary_link(a))} — "
+                f"{md_escape(_md_summary_text(a, 180))}"
             )
     else:
         lines.append("- 해당 기간 기사 없음")
@@ -488,7 +542,8 @@ def render_markdown(
         )[:10]:
             a = item.article
             lines.append(
-                f"- {md_link(a.title or '', _primary_link(a))} — {md_escape(_truncate(a.description, 170))}"
+                f"- {md_link(a.title or '', _primary_link(a))} — "
+                f"{md_escape(_md_summary_text(a, 170))}"
             )
         lines.append("")
 
@@ -572,7 +627,9 @@ def render_html(
         topic_joined = "|".join(topics)
 
         title = a.title or ""
-        summary = a.description or ""
+        ai_lines = ai_summary_lines(a)
+        # AI 3줄이 없을 때 표시할 문장 — 내용 거부 기사는 원본 스니펫으로 되돌아간다.
+        summary = display_summary_text(a) if not ai_lines else (a.description or "")
         pub = _fmt_dt(getattr(a, "pub_date", None))
         ts = _ts_dt(getattr(a, "pub_date", None))
         press = _get_press(a)
@@ -599,7 +656,23 @@ def render_html(
             rel_label, rel_class = _relevance_label_for_article(a, rel)
 
         cached = bool(getattr(a, "summary_cached", False))
-        hay = " ".join([title, summary, sector, press, " ".join(topics)]).strip()
+        # AI 3줄이 있으면 검색 대상에 함께 넣는다(원본 요약도 계속 검색된다).
+        # 내용 거부 기사의 description은 오염된 본문에서 만든 추출요약이므로
+        # 검색 대상에서도 뺀다 — 넣어두면 무관한 키워드로 이 기사가 잡힌다.
+        searchable_description = (
+            "" if _field(a, "summary_rejection_reason") else (a.description or "")
+        )
+        hay = " ".join(
+            [
+                title,
+                summary,
+                searchable_description,
+                " ".join(ai_lines),
+                sector,
+                press,
+                " ".join(topics),
+            ]
+        ).strip()
 
         btns: list[str] = []
         if naver:
@@ -622,6 +695,8 @@ def render_html(
             badges.append(f"<span class='badge {rel_class}'>Rel {rel_label}</span>")
         if cached:
             badges.append("<span class='badge'>⚡ 캐시</span>")
+        if ai_lines:
+            badges.append("<span class='badge'>AI 3줄</span>")
         if cluster_size_int > 1:
             badges.append(f"<span class='badge'>관련 기사 {cluster_size_int}건</span>")
         topic_badges = (
@@ -651,6 +726,15 @@ def render_html(
             if related_items:
                 related_html = "<ul class='related' aria-label='관련 기사'>" + "".join(related_items) + "</ul>"
 
+        if ai_lines:
+            # 각 문장을 개별 escape한 뒤에만 <br>로 잇는다 — 모델 출력은 절대 HTML로
+            # 해석되지 않는다(응답 안의 <br>은 &lt;br&gt;로 표시된다).
+            summary_class = "summary ai"
+            summary_inner = "<br>".join(_h(line) for line in ai_lines)
+        else:
+            summary_class = "summary"
+            summary_inner = _h(summary)
+
         return (
             f"<article class='card' data-card "
             f"data-sector='{_h(sector)}' data-top={'1' if is_top else '0'} "
@@ -669,7 +753,7 @@ def render_html(
             f"    <span>·</span>{''.join(badges)}"
             f"  </div>"
             f"  <div class='meta-row'>{topic_badges}</div>"
-            f"  <p class='summary' data-summary>{_h(summary)}</p>"
+            f"  <p class='{summary_class}' data-summary>{summary_inner}</p>"
             f"  {related_html}"
             f"  <div class='actions'>{''.join(btns)}</div>"
             f"</article>"
@@ -767,7 +851,7 @@ def render_html(
         <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">전 금융권 주요 기사 중 대부·시장 영향도가 큰 이슈 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
         {''.join(sector_sections)}
         <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div>{chips_html}</section>
-        <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.</div>
+        <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.<br>기사 요약은 AI가 본문을 3줄로 정리하며(AI 3줄), AI 처리가 실패하면 기존 추출식 요약을 표시합니다.</div>
       </div>
     </div>
   </div>
@@ -829,7 +913,8 @@ def write_report(
         "          <div class='pill'>출처: Naver News Search API</div>\n"
         "        </div>\n"
         "      </div>\n"
-        "      <div class='notice'>Tip: 기사 제목을 클릭하면 원문으로 이동합니다. (요약은 170자 내외로 자동 축약)</div>\n"
+        "      <div class='notice'>Tip: 기사 제목을 클릭하면 원문으로 이동합니다. "
+        "(AI가 기사 본문을 3줄로 요약하며, AI 처리가 실패하면 기존 추출식 요약을 표시합니다)</div>\n"
         "    </div>\n"
         "    <div class='main'>\n"
         f"{html_content}\n"

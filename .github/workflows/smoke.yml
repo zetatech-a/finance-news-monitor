@@ -2,6 +2,29 @@ name: Smoke Test
 
 on:
   workflow_dispatch:
+    inputs:
+      # 스모크는 "동작하는지"만 보는 실행이다. Gemini 처리량은 여기서 명시적으로 묶어두고,
+      # 실수로 운영 기본값(300건)을 태우지 않게 한다. 필요하면 실행할 때 올려 쓴다.
+      gemini_max_summaries:
+        description: "Gemini로 요약할 최대 기사 수"
+        required: false
+        default: "50"
+        type: string
+      gemini_batch_max_articles:
+        description: "요청 1건에 담는 기사 수 (25가 실 API 검증값)"
+        required: false
+        default: "25"
+        type: string
+      gemini_max_requests:
+        description: "총 generate 요청 상한(재시도·분할 포함). 50건이면 정상 2회"
+        required: false
+        default: "4"
+        type: string
+      gemini_max_fetch_attempts:
+        description: "Gemini 전용 본문 크롤링 상한"
+        required: false
+        default: "50"
+        type: string
 
 jobs:
   run:
@@ -16,9 +39,92 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
+      - name: Mark run start
+        # 이번 실행에서 새로 생성·수정된 리포트만 고르기 위한 기준 시각.
+        # 이 마커가 없으면 실패한 실행에서 예전 날짜 리포트를 올려버릴 수 있다.
+        run: |
+          touch "$RUNNER_TEMP/smoke-start-marker"
+          echo "marker_utc=$(date -u --iso-8601=seconds)"
+
       - name: Run daily (naver)
         env:
           # NAVER API HUB (기존 Developers Center 키는 이관 후 무효)
           NCP_APIGW_API_KEY_ID: ${{ secrets.NCP_APIGW_API_KEY_ID }}
           NCP_APIGW_API_KEY: ${{ secrets.NCP_APIGW_API_KEY }}
-        run: python -m src.run_daily
+          # Gemini 3줄 요약(선택). 미설정이면 추출식 요약으로 정상 동작한다.
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # kill switch: daily와 같은 repository variable을 따른다(0이면 호출하지 않는다).
+          GEMINI_ENABLED: ${{ vars.GEMINI_ENABLED }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          # 처리량 4종은 dispatch input이 항상 값을 가지므로 repository variable보다 우선한다.
+          GEMINI_MAX_SUMMARIES: ${{ inputs.gemini_max_summaries }}
+          GEMINI_BATCH_MAX_ARTICLES: ${{ inputs.gemini_batch_max_articles }}
+          GEMINI_MAX_REQUESTS_PER_RUN: ${{ inputs.gemini_max_requests }}
+          GEMINI_MAX_FETCH_ATTEMPTS: ${{ inputs.gemini_max_fetch_attempts }}
+          # 나머지는 Repository Variables를 그대로 따른다(미설정 시 코드 기본값).
+          GEMINI_BATCH_MAX_INPUT_CHARS: ${{ vars.GEMINI_BATCH_MAX_INPUT_CHARS }}
+          GEMINI_MAX_RECOVERY_REQUESTS: ${{ vars.GEMINI_MAX_RECOVERY_REQUESTS }}
+          GEMINI_MIN_INTERVAL_SECONDS: ${{ vars.GEMINI_MIN_INTERVAL_SECONDS }}
+          GEMINI_BATCH_HARD_MAX_ARTICLES: ${{ vars.GEMINI_BATCH_HARD_MAX_ARTICLES }}
+          GEMINI_ARTICLE_MAX_CHARS: ${{ vars.GEMINI_ARTICLE_MAX_CHARS }}
+          GEMINI_INPUT_MIN_CHARS: ${{ vars.GEMINI_INPUT_MIN_CHARS }}
+          GEMINI_MAX_LINE_CHARS: ${{ vars.GEMINI_MAX_LINE_CHARS }}
+          GEMINI_REQUEST_TIMEOUT_SECONDS: ${{ vars.GEMINI_REQUEST_TIMEOUT_SECONDS }}
+          GEMINI_RETRY_ATTEMPTS: ${{ vars.GEMINI_RETRY_ATTEMPTS }}
+          GEMINI_CIRCUIT_BREAKER_FAILURES: ${{ vars.GEMINI_CIRCUIT_BREAKER_FAILURES }}
+          # 이 실행만 sanitized 집계를 JSON으로 남긴다 — smoke 판정용이며
+          # daily.yml은 이 변수를 설정하지 않아 동작이 달라지지 않는다.
+          GEMINI_RUN_SUMMARY_PATH: ${{ runner.temp }}/gemini-run-summary.json
+        run: |
+          echo "smoke gemini limits: max_summaries=$GEMINI_MAX_SUMMARIES" \
+               "batch_max_articles=$GEMINI_BATCH_MAX_ARTICLES" \
+               "max_requests=$GEMINI_MAX_REQUESTS_PER_RUN" \
+               "max_fetch_attempts=$GEMINI_MAX_FETCH_ATTEMPTS"
+          python -m src.run_daily
+
+      - name: Verify Gemini smoke result
+        # 수동 smoke에서만 하는 strict 검증이다. daily 파이프라인의 fail-open 동작은
+        # 전혀 건드리지 않는다. 자유 형식 로그를 grep하지 않고 집계 JSON만 읽는다.
+        run: |
+          python scripts/check_gemini_smoke.py \
+            --summary "$RUNNER_TEMP/gemini-run-summary.json"
+
+      - name: Collect smoke report
+        # 파이프라인이 실패해도 이번 실행이 남긴 리포트는 확인할 수 있어야 한다.
+        if: always()
+        run: |
+          set -uo pipefail
+          mkdir -p smoke-artifact
+
+          if [ ! -d reports ]; then
+            echo "collected_files=0 (reports/ 없음)"
+            exit 0
+          fi
+
+          # -maxdepth 1 로 reports/ 최상위 파일만 본다 → _cache/ _candidates/ _metrics/ 는
+          # 구조적으로 제외된다. 이름 패턴이 YYYY-MM-DD.{html,md}이라 index.html도 빠진다.
+          # -newer 마커로 이번 실행에서 생성·수정된 것만 남긴다(오래된 리포트 업로드 방지).
+          collected=0
+          while IFS= read -r -d '' report; do
+            cp "$report" smoke-artifact/
+            collected=$((collected + 1))
+          done < <(
+            find reports -maxdepth 1 -type f \
+              \( -name '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].html' \
+                 -o -name '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].md' \) \
+              -newer "$RUNNER_TEMP/smoke-start-marker" -print0
+          )
+
+          # 파일명(날짜)만 출력한다 — 리포트 내용이나 환경변수는 찍지 않는다.
+          echo "collected_files=$collected"
+          ls -1 smoke-artifact/ 2>/dev/null || true
+
+      - name: Upload smoke report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemini-smoke-report
+          path: smoke-artifact/
+          retention-days: 1
+          # 이번 실행이 리포트를 만들지 못했으면 조용히 넘어가지 않고 실패로 드러낸다.
+          if-no-files-found: error

@@ -8,3 +8,6 @@ beautifulsoup4==4.15.0
 lxml==6.1.1
 # fulltext_fetch.py가 직접 import하므로 명시 (requests의 전이 의존성에 기대지 않음)
 charset-normalizer==3.4.6
+# Gemini 3줄 요약(선택 기능). GEMINI_API_KEY가 없으면 호출 자체를 하지 않으며,
+# import도 실제 호출 직전까지 지연되므로 미설치 상태에서도 파이프라인은 동작한다.
+google-genai==2.16.0
