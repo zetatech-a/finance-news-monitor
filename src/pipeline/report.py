@@ -686,10 +686,10 @@ def render_html(
     top_items = _select_top_items(visible_items, limit=10)
     sector_counts = {s: len(by_sector.get(s, [])) for s in ordered_sectors}
     def pill_html(sector: str, count: int) -> str:
-        return f"<button class='pill' data-sector-pill data-sector='{_h(sector)}'><strong>{_h(sector)}</strong><span class='count'>{count}</span></button>"
+        return f"<button class='pill' type='button' aria-pressed='false' data-sector-pill data-sector='{_h(sector)}'><strong>{_h(sector)}</strong><span class='count'>{count}</span></button>"
 
     pills = [
-        "<button class='pill active' data-sector-pill data-sector='ALL'><strong>전체</strong><span class='count'>{}</span></button>".format(
+        "<button class='pill active' type='button' aria-pressed='true' data-sector-pill data-sector='ALL'><strong>전체</strong><span class='count'>{}</span></button>".format(
             len(visible_items)
         )
     ]
@@ -708,15 +708,15 @@ def render_html(
         for topic in topics:
             topic_counts[topic] += 1
     topic_pills = [
-        "<button class='pill active' data-topic-pill data-topic='ALL'><strong>전체 주제</strong></button>"
+        "<button class='pill active' type='button' aria-pressed='true' data-topic-pill data-topic='ALL'><strong>전체 주제</strong></button>"
     ]
     for topic, count in sorted(topic_counts.items(), key=lambda kv: (-kv[1], kv[0])):
         topic_pills.append(
-            f"<button class='pill' data-topic-pill data-topic='{_h(topic)}'><strong>{_h(topic)}</strong><span class='count'>{count}</span></button>"
+            f"<button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='{_h(topic)}'><strong>{_h(topic)}</strong><span class='count'>{count}</span></button>"
         )
     if no_topic_count > 0:
         topic_pills.append(
-            f"<button class='pill' data-topic-pill data-topic='__NO_TOPIC__'><strong>주제 없음</strong><span class='count'>{no_topic_count}</span></button>"
+            f"<button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='__NO_TOPIC__'><strong>주제 없음</strong><span class='count'>{no_topic_count}</span></button>"
         )
 
     def card_html(item: TaggedArticle, is_top: bool) -> str:
@@ -787,19 +787,21 @@ def render_html(
                 f"<a class='btn small primary' href='{_h(primary)}' target='_blank' rel='noopener noreferrer'>열기</a>"
             )
 
-        badges = [f"<span class='badge'>{_h(sector)}</span>"]
+        # 배지 위계: 업권(1차) > TOP(강조) > 관련도/캐시/클러스터(보조) > 주제(가장 약함).
+        # 모두 같은 `.badge` 기본형을 쓰고 수식 클래스로만 강도를 나눈다.
+        badges = [f"<span class='badge badge--sector'>{_h(sector)}</span>"]
         if is_top:
-            badges.append("<span class='badge'>TOP</span>")
+            badges.append("<span class='badge badge--top'>TOP</span>")
         if rel_label is not None:
-            badges.append(f"<span class='badge {rel_class}'>Rel {rel_label}</span>")
+            badges.append(f"<span class='badge badge--soft {rel_class}'>Rel {rel_label}</span>")
         if cached:
-            badges.append("<span class='badge'>⚡ 캐시</span>")
+            badges.append("<span class='badge badge--soft'>⚡ 캐시</span>")
         # 'AI 3줄' 메타 배지는 요약 패널 제목(`AI 핵심 요약`)과 중복이라 제거했다.
         if cluster_size_int > 1:
-            badges.append(f"<span class='badge'>관련 기사 {cluster_size_int}건</span>")
+            badges.append(f"<span class='badge badge--soft'>관련 기사 {cluster_size_int}건</span>")
         topic_badges = (
-            "".join(f"<span class='badge'>{_h(t)}</span>" for t in topics)
-            or "<span class='badge'>주제 없음</span>"
+            "".join(f"<span class='badge badge--topic'>{_h(t)}</span>" for t in topics)
+            or "<span class='badge badge--topic'>주제 없음</span>"
         )
         related_html = ""
         if cluster_size_int > 1 and related_articles:
@@ -827,6 +829,13 @@ def render_html(
         # Top 10 카드와 업권별 카드가 같은 helper를 쓴다 — 상태 분기는 한 곳에만 있다.
         summary_panel = summary_panel_html(a)
 
+        press_html = (
+            f"<span class='meta-row__sep' aria-hidden='true'>·</span>"
+            f"<span class='meta-row__press'>{_h(press)}</span>"
+            if press
+            else ""
+        )
+
         return (
             f"<article class='card' data-card "
             f"data-sector='{_h(sector)}' data-top={'1' if is_top else '0'} "
@@ -834,20 +843,23 @@ def render_html(
             f"data-cluster='{_h(str(cluster_id or ''))}' data-cluster-size='{cluster_size_int}' "
             f"data-url='{_h(primary)}'>"
             f"  <div class='card-head'>"
+            # 제목은 CSS로 3줄까지만 노출하므로 전체 제목을 title 속성으로도 확인할 수 있게 한다.
             f"    <h3 class='title'>"
-            f"      <a href='{_h(primary)}' target='_blank' rel='noopener noreferrer' data-title>{_h(title)}</a>"
+            f"      <a href='{_h(primary)}' target='_blank' rel='noopener noreferrer' title='{_h(title)}' data-title>{_h(title)}</a>"
             f"    </h3>"
-            f"    <button class='clip' type='button' title='저장' data-clip>☆</button>"
+            # 토글 버튼 — 이름은 고정하고 저장 여부는 aria-pressed로만 바뀐다.
+            f"    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>"
             f"  </div>"
-            f"  <div class='meta-row'>"
-            f"    <span>{_h(pub)}</span>"
-            f"    {f'<span>·</span><span>{_h(press)}</span>' if press else ''}"
-            f"    <span>·</span>{''.join(badges)}"
+            f"  <div class='meta-row meta-row--primary'>"
+            f"    <span class='meta-row__time'>{_h(pub)}</span>"
+            f"    {press_html}"
+            f"    {''.join(badges)}"
             f"  </div>"
-            f"  <div class='meta-row'>{topic_badges}</div>"
+            f"  <div class='meta-row meta-row--topics'>{topic_badges}</div>"
             f"  {summary_panel}"
             f"  {related_html}"
-            f"  <div class='actions'>{''.join(btns)}</div>"
+            # margin-top:auto로 카드 하단에 붙는 영역 — 카드 높이가 달라도 링크 줄이 정렬된다.
+            f"  <div class='actions card__actions'>{''.join(btns)}</div>"
             f"</article>"
         )
 
@@ -898,54 +910,48 @@ def render_html(
   <style>{_UI_CSS}</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="mobile-mini">
-      <div class="mobile-mini-head">
-        <div>
-          <h1>금융권 일일 언론동향</h1>
-          <div class="meta">{date_str}</div>
+  <div class="report-shell">
+    <header class="report-header">
+      <div class="report-header__identity">
+        <h1>금융권 일일 언론동향 <span class="report-header__date">({date_str})</span></h1>
+        <div class="meta">대부업권 우선 · 전 금융업권 주요 기사 요약</div>
+      </div>
+      <div class="report-header__actions">
+        <span id="savedCount" class="status-chip" role="status" aria-live="polite">저장 0건</span>
+        <button id="themeBtn" class="btn" type="button" aria-label="다크 모드로 전환">다크</button>
+      </div>
+    </header>
+
+    <section class="report-controls" aria-label="검색 및 필터">
+      <div class="report-controls__primary">
+        <div class="input" title="제목/요약/업권/주제에서 검색">
+          <span class="input__icon" aria-hidden="true">🔎</span>
+          <input id="searchInput" type="text" aria-label="기사 검색" placeholder="키워드로 검색 (예: 연체, PF, 국민연금)"/>
         </div>
-        <div class="mobile-mini-actions">
-          <button id="mobileSearchBtn" class="btn" type="button" aria-label="검색/필터 열기" aria-controls="filterSidebar">🔎</button>
-          <button id="mobileFilterBtn" class="btn" type="button" aria-label="필터 열기" aria-controls="filterSidebar" aria-expanded="false">필터</button>
-          <button id="mobileTopBtn" class="btn" type="button" aria-label="Top만 토글">Top만</button>
+        <span class="select"><label class="select__label" for="sortSel">정렬</label><select id="sortSel"><option value="new" selected>최신순</option><option value="rel">관련도순</option></select></span>
+        <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
+        <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
+        <span id="resultCount" class="status-chip" role="status" aria-live="polite">전체 {len(visible_items)}건</span>
+      </div>
+      <div class="report-controls__filters">
+        <div class="filter-group" role="group" aria-labelledby="sectorFilterLabel">
+          <span class="filter-group__label" id="sectorFilterLabel">업권 필터</span>
+          <div class="nav-wrap" data-scroll-hint><div class="nav">{''.join(pills)}</div><span class="nav-hint left" aria-hidden="true">‹</span><span class="nav-hint right" aria-hidden="true">›</span></div>
+        </div>
+        <div class="filter-group" role="group" aria-labelledby="topicFilterLabel">
+          <span class="filter-group__label" id="topicFilterLabel">주제 필터</span>
+          <div class="nav-wrap" data-scroll-hint><div class="nav">{''.join(topic_pills)}</div><span class="nav-hint left" aria-hidden="true">‹</span><span class="nav-hint right" aria-hidden="true">›</span></div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="layout">
-      <aside class="sidebar" id="filterSidebar" aria-label="필터 패널">
-        <div class="sheet-backdrop" data-sheet-close></div>
-        <div class="filter-shell">
-          <div class="header-top">
-            <div>
-              <h1>금융권 일일 언론동향 <span style="color:var(--muted);">({date_str})</span></h1>
-              <div class="meta">대부업권 우선 · 전 금융업권 주요 기사 요약</div>
-            </div>
-          </div>
-          <div class="controls">
-            <div class="input" title="제목/요약/업권/주제에서 검색">
-              <span style="color:var(--muted); font-size:12px;">🔎</span>
-              <input id="searchInput" type="text" placeholder="키워드로 검색 (예: 연체, PF, 국민연금)"/>
-            </div>
-            <span class="select" title="정렬"><span style="color:var(--muted); font-size:12px;">정렬</span><select id="sortSel"><option value="new" selected>최신순</option><option value="rel">관련도순</option></select></span>
-            <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
-            <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
-            <button id="themeBtn" class="btn">다크</button>
-          </div>
-          <div class="nav-wrap" data-scroll-hint><div class="nav">{''.join(pills)}</div><span class="nav-hint left">‹</span><span class="nav-hint right">›</span></div>
-          <div class="nav-wrap" data-scroll-hint><div class="nav">{''.join(topic_pills)}</div><span class="nav-hint left">‹</span><span class="nav-hint right">›</span></div>
-        </div>
-      </aside>
-
-      <div class="main">
-        <div id="emptyState" class="note" style="display:none; margin-bottom:12px;">필터 조건에 맞는 기사가 없습니다. 검색어/필터를 조정해 보세요.</div>
-        <section data-group id="sec-TOP"><div class="section-head"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">전 금융권 주요 기사 중 대부·시장 영향도가 큰 이슈 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
-        {''.join(sector_sections)}
-        <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div>{chips_html}</section>
-        <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.<br>AI가 기사 본문을 3줄로 정리한 경우 <strong>AI 핵심 요약</strong>으로 표시하며, AI 요약이 적용되지 않은 경우 <strong>기사 미리보기</strong>를 표시합니다.</div>
-      </div>
-    </div>
+    <main class="report-content">
+      <div id="emptyState" class="note empty-state" style="display:none;">필터 조건에 맞는 기사가 없습니다. 검색어/필터를 조정해 보세요.</div>
+      <section data-group id="sec-TOP"><div class="section-head section-head--top"><h2>오늘의 Top 이슈 10<span class="count">{len(top_items) if top_items else 0}</span></h2><div class="note">전 금융권 주요 기사 중 대부·시장 영향도가 큰 이슈 우선</div></div><div class="grid">{top_cards}</div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
+      {''.join(sector_sections)}
+      <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div>{chips_html}</section>
+      <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.<br>AI가 기사 본문을 3줄로 정리한 경우 <strong>AI 핵심 요약</strong>으로 표시하며, AI 요약이 적용되지 않은 경우 <strong>기사 미리보기</strong>를 표시합니다.</div>
+    </main>
   </div>
   <script>{_UI_JS}</script>
 </body>

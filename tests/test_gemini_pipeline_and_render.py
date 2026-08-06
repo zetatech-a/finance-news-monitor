@@ -1146,6 +1146,18 @@ def _report_css() -> str:
     return css.read_text(encoding="utf-8")
 
 
+def _mobile_css_block(text: str) -> str:
+    """모바일 전용 블록.
+
+    breakpoint 픽셀 값은 레이아웃 작업에서 바뀔 수 있으므로 리터럴로 찾지 않고
+    `max-width`가 가장 작은 미디어 블록(=모바일)을 고른다. 중첩 규칙은 들여쓰기된
+    닫는 괄호를 쓰므로 열 0의 `}`로 블록 끝을 잡는다.
+    """
+    blocks = re.findall(r"@media \(max-width:(\d+)px\)\s*\{(.*?)\n\}", text, re.S)
+    assert blocks, "모바일 미디어 쿼리 블록이 없다"
+    return min(blocks, key=lambda block: int(block[0]))[1]
+
+
 def test_css_never_clamps_the_ai_summary_list():
     text = _report_css()
 
@@ -1155,8 +1167,10 @@ def test_css_never_clamps_the_ai_summary_list():
         assert "line-clamp" not in rule
 
     # 미리보기 문단의 기존 clamp 정책(데스크톱 3줄 / 모바일 2줄)은 유지된다.
-    assert ".summary{ -webkit-line-clamp:2;" in text.split("@media (max-width:767px){")[1]
-    desktop_summary = text.split("@media")[0].split(".summary{")[1].split("}")[0]
+    assert ".summary{ -webkit-line-clamp:2;" in _mobile_css_block(text)
+    # 좁은 화면 override 앞쪽(기본 규칙)에서 데스크톱 clamp를 찾는다.
+    # (다른 미디어 블록이 사이에 추가돼도 기본 규칙 판정이 흔들리지 않게 max-width만 잘라낸다)
+    desktop_summary = re.split(r"@media \(max-width", text)[0].split(".summary{")[1].split("}")[0]
     assert "-webkit-line-clamp:3" in desktop_summary
 
 
@@ -1178,7 +1192,7 @@ def test_css_defines_summary_panel_variables_for_both_themes():
 def test_css_keeps_long_sentences_inside_the_card():
     text = _report_css()
     assert "overflow-wrap:anywhere" in text
-    mobile_block = text.split("@media (max-width:767px){")[1]
+    mobile_block = _mobile_css_block(text)
     # 모바일에서는 패널 padding과 목록 들여쓰기를 줄인다.
     assert ".summary-panel{ padding:" in mobile_block
     assert ".summary-panel__list{ padding-left:" in mobile_block
