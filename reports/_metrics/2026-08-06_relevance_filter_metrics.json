@@ -1,0 +1,93 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 24,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+  "candidate_hybrid_gray_keep_domain": 106,
+  "candidate_hybrid_gray_rule_drop": 128,
+  "candidate_hybrid_gray_rule_keep": 106,
+  "candidate_hybrid_keep_overseas_global_reference": 14,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 0,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 282,
+  "candidate_hybrid_model_drop": 119,
+  "candidate_hybrid_model_keep": 152,
+  "candidate_hybrid_model_keep_with_domain_anchor": 152,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 282,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-06",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 24,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 128,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 106,
+    "candidate_hybrid_keep_overseas_global_reference": 14,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 282,
+    "candidate_hybrid_model_drop_prob_le_threshold": 119,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 152
+  },
+  "dropped_count": 289,
+  "input_count": 843,
+  "kept_count": 554,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 843,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 90,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[Who Is ?] 강정훈 iM뱅크 행장",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=443730"
+    },
+    {
+      "title": "[사설] 가계‧기업 빚 줄이기에 나서야 한다",
+      "url": "https://m.skyedaily.com/news_view.html?ID=309197"
+    },
+    {
+      "title": "대출은 두 배, 순익은 29%↓…케이뱅크의 엇갈린 상반기 성적표",
+      "url": "https://news.tf.co.kr/read/economy/2350724.htm"
+    },
+    {
+      "title": "지방은행 대출에 '지방 中企'는 없다",
+      "url": "http://www.smedaily.co.kr/news/articleView.html?idxno=361275"
+    },
+    {
+      "title": "비올때 우산 뺏기는 자영업자…“연체기록 생기자 되레 금리 올려”",
+      "url": "https://www.donga.com/news/Economy/article/all/20260805/134424442/1"
+    },
+    {
+      "title": "문경시산림조합, 장학금 1천만원 기탁",
+      "url": "https://www.idaegu.co.kr/news/articleView.html?idxno=555926"
+    },
+    {
+      "title": "‘V자 반등’ 성공한 삼전닉스, 견조한 AI 수요 딛고 상승 지속할까",
+      "url": "https://weekly.donga.com/3/all/11/6335947/1"
+    },
+    {
+      "title": "[채권-마감] 외국인 10거래일째 순매수…국고 3년 7.1bp↓",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4428818"
+    },
+    {
+      "title": "국고 10년 4.2%·3년 3.7% 하회…\"금리 인상 속도 늦춰지나\"",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4428751"
+    },
+    {
+      "title": "동양생명, 매수청구 2000억 넘어 자본 부담 커졌다",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=702575"
+    }
+  ]
+}

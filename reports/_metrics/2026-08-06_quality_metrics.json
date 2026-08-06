@@ -1,0 +1,261 @@
+{
+  "clusters": {
+    "cluster_count": 301,
+    "cluster_size_max": 68,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 68,
+        "relevance_prob": 0.9457219313895884,
+        "relevance_score": 18,
+        "sector": "거시·시장",
+        "title": "[금융家] 신현송 한국은행 총재 ④ㅣ 환율·금리 변수 겹쳤다…긴축 기...",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=594543"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 847,
+    "displayed_articles": 177,
+    "final_tagged_representatives": 301,
+    "normalized_articles": 1237,
+    "raw_items": 1237,
+    "relevance_filtered_articles": 554,
+    "rule_filtered_articles": 843,
+    "tagged_before_cluster": 554
+  },
+  "date": "2026-08-06",
+  "generated_at": "2026-08-06T09:22:54.743515+09:00",
+  "publishers": {
+    "missing_publisher_count": 301,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 132,
+    "no_topic_ratio": 0.4385,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6601400228072831,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[오늘의 비트코인] 클래리티법 통과 난항…6만4000달러 '숨고르기'",
+        "url": "https://news.dealsitetv.com/articles/174339"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6324849825821792,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "'신의 직장' 옛말, 금감원 77명 퇴사…\"업무량 대비 처우 낮아\"",
+        "url": "https://n.news.naver.com/mnews/article/437/0000504792?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7078761641229081,
+        "relevance_score": 9,
+        "sector": "디지털자산",
+        "title": "오픈USD 한달···서클 주가 제자리",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=854630"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7213859811135358,
+        "relevance_score": 9,
+        "sector": "디지털자산",
+        "title": "호르무즈 기대·클래리티 난항…시장 혼조세[코인 모닝콜]",
+        "url": "https://n.news.naver.com/mnews/article/018/0006345513?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7173253519823777,
+        "relevance_score": 14,
+        "sector": "기타",
+        "title": "6월 경상수지 흑자 497.3억달러… 두 달 연속 역대 최대",
+        "url": "https://n.news.naver.com/mnews/article/366/0001184590?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7248803544261184,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[전국 주요 신문 톱뉴스](6일 조간)",
+        "url": "https://n.news.naver.com/mnews/article/001/0016236326?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7079387173749129,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "[더벨][디벨로퍼 분양 인사이드] 디벨로퍼 경복, 방배동 복합개발 연내...",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202608031433548480106122"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.76392217235583,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "검은 봉투 꺼내 옷 바꾸며 이동…익산역서 체포",
+        "url": "https://n.news.naver.com/mnews/article/055/0001378464?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8115938779671744,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "8월 6일 굿모닝 MBN 이 시각 주요뉴스",
+        "url": "https://n.news.naver.com/mnews/article/057/0001962252?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6474909036703982,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "[크립토핫이슈] 표류하는 클래리티법...비트코인 '8월의 저주' 경계",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=690211"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 6,
+      "거시·시장": 13,
+      "기타": 134,
+      "대부": 5,
+      "디지털자산": 36,
+      "보험": 4,
+      "상호금융": 7,
+      "여전": 10,
+      "은행": 49,
+      "입법·정책": 22,
+      "자산운용·연기금": 6,
+      "저축은행": 8,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 14,
+      "감독·제재": 14,
+      "건전성·자본규제": 11,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 16,
+      "기업금융·익스포저": 16,
+      "디지털자산": 35,
+      "부동산·PF": 6,
+      "불법사금융·불법추심·보이스피싱": 33,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 7,
+      "서민금융·대환·채무조정": 3,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 22,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 4,
+      "정책·제도개선": 8,
+      "증시·시장시황": 3,
+      "칼럼·오피니언": 3,
+      "해외·글로벌": 10,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 15,
+        "relevance_prob": 0.8218458461006521,
+        "relevance_score": 28,
+        "sector": "대부",
+        "title": "등록되지 않은 불법사금융 처벌 강화, 대부업법 위반 판단 기준",
+        "url": "http://www.beyondpost.co.kr/view.php?ud=2026080410274715289aeda69934_30"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9050432182816035,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "국내 가상자산 거래량, 6년만에 최저…투심 '꽁꽁'",
+        "url": "https://n.news.naver.com/mnews/article/648/0000049569?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.861783095402786,
+        "relevance_score": 26,
+        "sector": "입법·정책",
+        "title": "카카오·네이버, 원화 스테이블코인 속도전 … 발행 넘어 '유통 경쟁'",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/08/05/2026080500112.html"
+      },
+      {
+        "cluster_size": 12,
+        "relevance_prob": 0.8669156653356883,
+        "relevance_score": 26,
+        "sector": "디지털자산",
+        "title": "“발행·유통 두 토끼 잡는다”…신원근號 카카오페이, 스테이블코인 사...",
+        "url": "https://n.news.naver.com/mnews/article/138/0002236674?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7830972914202604,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "[이슈]신한카드 정보유출 '박창훈 내부통제 시험대'…연말 연임 변수 되...",
+        "url": "https://www.the-today.com/news/articleView.html?idxno=88136"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7285358242560934,
+        "relevance_score": 21,
+        "sector": "상호금융",
+        "title": "[기획] 중앙회장 선출권 쥔 이사장단…신협 감독 독립성 '시험대' (중)",
+        "url": "http://www.rightknow.co.kr/news/articleView.html?idxno=34527"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5687296837706324,
+        "relevance_score": 22,
+        "sector": "은행",
+        "title": "대형 PF부터 소상공인까지…은행권, ‘기업 성장 전주기’로 영토 넓힌...",
+        "url": "https://www.viva100.com/article/20260805500725"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8462838543561771,
+        "relevance_score": 15,
+        "sector": "감독·제재",
+        "title": "부산경찰청, 카자흐스탄 보이스피싱 조직 검거…14명 중 4명 부산 호송 ...",
+        "url": "http://www.lawissue.co.kr/view.php?ud=202608051216086489a8c8bf58f_12"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5121758898602605,
+        "relevance_score": 22,
+        "sector": "상호금융",
+        "title": "\"지방 이전 절대 안 돼\"···산은·기은·수은·농협, 11일 '공동 총투쟁...",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=142228"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6736083043537014,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "같이 가는 빗썸-KB…업비트-케이뱅크 동행도 '이상 無'(종합)",
+        "url": "https://n.news.naver.com/mnews/article/003/0014109248?sid=101"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 2,
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 2,
+      "은행": 2,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 4,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "정책·제도개선": 1
+    }
+  }
+}
