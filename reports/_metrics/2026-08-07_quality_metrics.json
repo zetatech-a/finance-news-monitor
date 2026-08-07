@@ -1,0 +1,265 @@
+{
+  "clusters": {
+    "cluster_count": 251,
+    "cluster_size_max": 54,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 54,
+        "relevance_prob": 0.9710786685583297,
+        "relevance_score": 25,
+        "sector": "거시·시장",
+        "title": "한은 기준금리 인상에 예·적금 금리 '3%대' 진입…5대 은행 줄인상",
+        "url": "http://www.issuenbiz.com/news/articleView.html?idxno=78485"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 606,
+    "displayed_articles": 160,
+    "final_tagged_representatives": 251,
+    "normalized_articles": 820,
+    "raw_items": 820,
+    "relevance_filtered_articles": 422,
+    "rule_filtered_articles": 602,
+    "tagged_before_cluster": 422
+  },
+  "date": "2026-08-07",
+  "generated_at": "2026-08-07T09:07:31.211828+09:00",
+  "publishers": {
+    "missing_publisher_count": 251,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 97,
+    "no_topic_ratio": 0.3865,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5215495300824092,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "[오늘의 신문] 폭염은 농업 흔들고, 증시는 급락…미중 갈등도 다시 격...",
+        "url": "http://kor.theasian.asia/archives/412408"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.84021601692766,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "BNK경남은행, 합천서 고령층 대상 금융사기 예방·디지털 교육 진행",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=314090"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7717717815584111,
+        "relevance_score": 9,
+        "sector": "자산운용·연기금",
+        "title": "레버리지 상품 난리에도 KRX, 장마감 후 ETF 거래 강행. 왜?",
+        "url": "https://n.news.naver.com/mnews/article/023/0003991796?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7396813447287847,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "‘월 9900원’ 상당 도서 혜택…LG헬로비전, ‘교보문고 요금제’ 출시",
+        "url": "https://n.news.naver.com/mnews/article/016/0002680696?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.577846761205713,
+        "relevance_score": 8,
+        "sector": "보험",
+        "title": "'매각 7수' KDB생명 본입찰…삼성·흥국생명 '양강구도' 형성되나",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4429050"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7225417823456215,
+        "relevance_score": 8,
+        "sector": "저축은행",
+        "title": "\"저축은행 살아나고 WM 터졌다\"…한국금융지주, 1조급 서프라이즈",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=363201"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4795347750689683,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "[정정·반론보도 분석] 기업·자동차·공공사업 보도 잇단 정정·반론.....",
+        "url": "https://www.banronbodo.com/news/articleView.html?idxno=32765"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4576681319043457,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "우리카드, 상반기 할부결제액 증가폭 업계 1위",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=854953"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5829118128267631,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "카드사 고객 유입 창구 된 '트래블카드'…휴가철 넘어 장기 고객 묶는다",
+        "url": "https://www.newspim.com/news/view/20260806001152"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7059857356085891,
+        "relevance_score": 10,
+        "sector": "입법·정책",
+        "title": "롯데손보 매각 ‘안갯속’…1조원대 거래도 쉽지 않을 듯",
+        "url": "https://n.news.naver.com/mnews/article/277/0005800032?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 6,
+      "거시·시장": 21,
+      "기타": 101,
+      "대부": 9,
+      "디지털자산": 32,
+      "보험": 5,
+      "상호금융": 4,
+      "여전": 5,
+      "은행": 40,
+      "입법·정책": 18,
+      "자산운용·연기금": 1,
+      "저축은행": 6,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 11,
+      "감독·제재": 11,
+      "건전성·자본규제": 9,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 17,
+      "기업금융·익스포저": 4,
+      "디지털자산": 41,
+      "부동산·PF": 8,
+      "불법사금융·불법추심·보이스피싱": 24,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 2,
+      "서민금융·대환·채무조정": 7,
+      "업계동정·사회공헌": 7,
+      "연체·부실": 10,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 6,
+      "증시·시장시황": 12,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 19,
+      "환율·외환": 11
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 12,
+        "relevance_prob": 0.866145405739696,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "\"거래소 지분 대신 펀드로\"…KB금융, 1000억 디지털자산 우회 베팅",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=346980"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8068726996945511,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "거래량 반토막난 가상자산 거래소… 과세 시행에 '긴장'",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092167431"
+      },
+      {
+        "cluster_size": 54,
+        "relevance_prob": 0.9710786685583297,
+        "relevance_score": 25,
+        "sector": "거시·시장",
+        "title": "한은 기준금리 인상에 예·적금 금리 '3%대' 진입…5대 은행 줄인상",
+        "url": "http://www.issuenbiz.com/news/articleView.html?idxno=78485"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.8009763462372628,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "불법사금융 범죄 300% 폭증…신종 수법에 청년·외국인까지 노린다",
+        "url": "http://www.dailypop.kr/news/articleView.html?idxno=101307"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.71819573736141,
+        "relevance_score": 19,
+        "sector": "감독·제재",
+        "title": "금감원 제재 많이 받은 증권사는 KB・신한・한투",
+        "url": "https://www.kbanker.co.kr/news/articleView.html?idxno=225608"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.701790610987722,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "\"인허가 나도 삽 못 뜬다\"…자금줄 죄는 건전성 규제 [주택공급 또다른...",
+        "url": "https://www.etoday.co.kr/news/view/2610818"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8668247492817446,
+        "relevance_score": 15,
+        "sector": "감독·제재",
+        "title": "재외동포 상대로 123억 가로챈 보이스피싱 조직원 10명 구속",
+        "url": "https://n.news.naver.com/mnews/article/079/0004176343?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6756917116361661,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "정부, 금융지주 지배구조 손질 '제자리'…개선안 발표 또 늦어지나",
+        "url": "http://www.opinionnews.co.kr/news/articleView.html?idxno=142711"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6972870255787683,
+        "relevance_score": 16,
+        "sector": "감독·제재",
+        "title": "홈플러스 전단채 피해구제 속도…금감원 '선배상 후정산' 검토",
+        "url": "https://n.news.naver.com/mnews/article/003/0014111913?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9460658721294752,
+        "relevance_score": 15,
+        "sector": "은행",
+        "title": "기업은행, 소비자피해보상 부실심사·보이스피싱 공시 위반",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1309433&inflow=N"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 2,
+      "대부": 1,
+      "디지털자산": 2,
+      "은행": 1,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "정책·제도개선": 1,
+      "증시·시장시황": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}

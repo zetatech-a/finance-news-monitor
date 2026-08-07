@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 32,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 47,
+  "candidate_hybrid_gray_rule_drop": 97,
+  "candidate_hybrid_gray_rule_keep": 47,
+  "candidate_hybrid_keep_overseas_global_reference": 22,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 219,
+  "candidate_hybrid_model_drop": 34,
+  "candidate_hybrid_model_keep": 131,
+  "candidate_hybrid_model_keep_with_domain_anchor": 131,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 219,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-07",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 32,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 97,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 47,
+    "candidate_hybrid_keep_overseas_global_reference": 22,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 219,
+    "candidate_hybrid_model_drop_prob_le_threshold": 34,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 131
+  },
+  "dropped_count": 180,
+  "input_count": 602,
+  "kept_count": 422,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 602,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 31,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "1년간 5억8천만원 불법 대출…20대 남성, 불법 추심 혐의로 송치",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3658197"
+    },
+    {
+      "title": "상품권 판다더니 불법 대출…구미서 드러난 악성 사채 수법",
+      "url": "https://www.kyongbuk.co.kr/news/articleView.html?idxno=4080538"
+    },
+    {
+      "title": "[더벨]바로운용 품은 신안캐피탈…금융계열, 박지호 중심 재편",
+      "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202608041507224320106767"
+    },
+    {
+      "title": "구미경찰, 최고 4,866% 고금리 불법 대부업자 송치",
+      "url": "https://www.idaegu.co.kr/news/articleView.html?idxno=556002"
+    },
+    {
+      "title": "'실장님 돈 안 갚으면 가족에게 알린다' 협박 일삼은 불법 대부업자",
+      "url": "https://imnews.imbc.com/news/2026/society/article/6842871_36918.html"
+    },
+    {
+      "title": "순이익 희비, 카카오뱅크 역대 최대·케이뱅크 감소…왜?",
+      "url": "https://www.sisaon.co.kr/news/articleView.html?idxno=203308"
+    },
+    {
+      "title": "빚 감당 못 하는 청년·중저신용자…금리인상기 취약차주 '경고음'",
+      "url": "https://www.news1.kr/finance/general-finance/6251078"
+    },
+    {
+      "title": "‘이은미 2기’ 토스뱅크 첫 주담대…총량규제 벽 넘을까",
+      "url": "https://www.ddaily.co.kr/page/view/2026080612122807631"
+    },
+    {
+      "title": "[라이벌戰] 카뱅·케뱅, 상반기 고객 유치전 '팽팽'…순익은 2679억 차",
+      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=849575"
+    },
+    {
+      "title": "부산우유농협 강래수 조합장 \"금융은 탄탄하게, 경제사업은 혁신\"",
+      "url": "https://www.fntoday.co.kr/news/articleView.html?idxno=389854"
+    }
+  ]
+}
