@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 5,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 36,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 23,
+  "candidate_hybrid_gray_rule_drop": 110,
+  "candidate_hybrid_gray_rule_keep": 23,
+  "candidate_hybrid_keep_overseas_global_reference": 13,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 171,
+  "candidate_hybrid_model_drop": 71,
+  "candidate_hybrid_model_keep": 74,
+  "candidate_hybrid_model_keep_with_domain_anchor": 74,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 171,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-08",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 5,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 36,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 1,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 110,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 23,
+    "candidate_hybrid_keep_overseas_global_reference": 13,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 171,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 71,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 74
+  },
+  "dropped_count": 236,
+  "input_count": 520,
+  "kept_count": 284,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 520,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 79,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "당근도 채찍도 평행선…대부업계 \"새도약기금 핵심은 사후정산\"",
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1719548"
+    },
+    {
+      "title": "강남·초고가 1주택 ‘세금 폭탄’ 직격탄…오세훈 정면 비판",
+      "url": "https://www.sedaily.com/article/20076811?ref=naver"
+    },
+    {
+      "title": "임종룡 우리금융 회장, 밸류업 결실 맺었다...체력 키워 주주환원",
+      "url": "https://www.insightkorea.co.kr/news/articleView.html?idxno=251966"
+    },
+    {
+      "title": "국고채 금리 전반 상승…미국 고용지표 대기 속 관망 장세",
+      "url": "https://www.dailysportshankook.co.kr/news/articleView.html?idxno=432315"
+    },
+    {
+      "title": "미 고용지표 앞두고 국고채 금리 상승",
+      "url": "http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005896463"
+    },
+    {
+      "title": "美지표 주시하며 국고채 금리 상승…3년물 연 3.746%(종합)",
+      "url": "https://www.yna.co.kr/view/AKR20260807126951008?input=1195m"
+    },
+    {
+      "title": "[김의석의 단상] 왜 지금 ‘윤종규 리더십’인가",
+      "url": "https://www.fntimes.com/html/view.php?ud=20260807170542403c1c16452b0_18"
+    },
+    {
+      "title": "배달의민족·쿠팡이츠 '무료배달' 체계 흔들리나, 정치권의 '비용 15% 상...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=444171"
+    },
+    {
+      "title": "[다음주 경제] 7월 가계대출 얼마나 늘었나…고용동향 발표도",
+      "url": "https://www.yna.co.kr/view/AKR20260808013100002?input=1195m"
+    },
+    {
+      "title": "하나은행, 변동금리 주담대 판매 중단…마통 한도 5000만원 제한",
+      "url": "https://www.newsinside.kr/news/articleView.html?idxno=4903479"
+    }
+  ]
+}
