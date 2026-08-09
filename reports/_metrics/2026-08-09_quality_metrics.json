@@ -1,0 +1,250 @@
+{
+  "clusters": {
+    "cluster_count": 68,
+    "cluster_size_max": 11,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 157,
+    "displayed_articles": 43,
+    "final_tagged_representatives": 68,
+    "normalized_articles": 214,
+    "raw_items": 214,
+    "relevance_filtered_articles": 93,
+    "rule_filtered_articles": 156,
+    "tagged_before_cluster": 93
+  },
+  "date": "2026-08-09",
+  "generated_at": "2026-08-09T09:04:24.646322+09:00",
+  "publishers": {
+    "missing_publisher_count": 68,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 24,
+    "no_topic_ratio": 0.3529,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6726606858788803,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[크립토리뷰] 에이엠매니지먼트, 부산 '블록체인 특화 클러스터 조성 지...",
+        "url": "https://www.theguru.co.kr/news/article.html?no=105552"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.45939625705107234,
+        "relevance_score": 8,
+        "sector": "상호금융",
+        "title": "아파트 잔금대출 규제 완화?…상호금융, 기대감 솔솔",
+        "url": "http://www.metroseoul.co.kr/article/20260809500011"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7691546889721301,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "경찰관 가족 사건, 상피도 회피 노력도 '0수렴'...조국혁신당, 통제구멍...",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=269628"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6753108352842234,
+        "relevance_score": 11,
+        "sector": "기타",
+        "title": "황준호 다올투자증권 대표의 '흑자 전환'이 남긴 신뢰의 청구서",
+        "url": "http://www.newslock.co.kr/news/articleView.html?idxno=134105"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.6797482098503826,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "'경찰 가족'이 피의자·피혐의자 사건 45건...관리체계 없어",
+        "url": "https://n.news.naver.com/mnews/article/660/0000114809?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5990191789340457,
+        "relevance_score": 15,
+        "sector": "여전",
+        "title": "[카드사 실적 점검] [신한카드] 법인카드로 외형 1위 지킨다…경비카드...",
+        "url": "https://news.dealsitetv.com/articles/174326"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5941289621817574,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "해외카드 사용률 증가에...카드업계 ‘트래블카드’ 혜택 강화",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=224807"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5999983325382111,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "전남광주투자공사 설립 난항… 제도·금융 규제에 재검토",
+        "url": "https://n.news.naver.com/mnews/article/001/0016240516?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7134222711964966,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "경찰 가족 연루 사건 117건…'장윤기 사건' 터지자 뒤늦게 전수조사",
+        "url": "https://n.news.naver.com/mnews/article/088/0001022692?sid=102"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.7608762777204061,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "경찰 가족 피의자 사건 전국 45건…관리 체계 부실 논란",
+        "url": "https://www.jnilbo.com/news/articleView.html?idxno=90000055375"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 9,
+      "기타": 29,
+      "대부": 2,
+      "디지털자산": 8,
+      "보험": 1,
+      "상호금융": 3,
+      "여전": 2,
+      "은행": 8,
+      "입법·정책": 4,
+      "자산운용·연기금": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 6,
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 10,
+      "디지털자산": 7,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "상품·영업·예금금리": 7,
+      "서민금융·대환·채무조정": 3,
+      "연체·부실": 6,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 1,
+      "증시·시장시황": 5,
+      "칼럼·오피니언": 1,
+      "해외·글로벌": 10,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7081560454395202,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "은행 포용금융 평가제 대출확대 일변도 우려… 전문가 \"이자 감면·부실...",
+        "url": "https://www.g-enews.com/view.php?ud=202608061510243658cd0bfacc1c_1"
+      },
+      {
+        "cluster_size": 11,
+        "relevance_prob": 0.8953787283946398,
+        "relevance_score": 26,
+        "sector": "거시·시장",
+        "title": "美·日 금리 동결, 환율 공조 착시…한은에 던져진 ‘긴축’ 과제",
+        "url": "https://n.news.naver.com/mnews/article/243/0000101398?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7932743918895533,
+        "relevance_score": 21,
+        "sector": "상호금융",
+        "title": "PF 막힌 상호금융…\"서민금융 확대하려면 비수도권 규제 완화해야\"",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=691081"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9082451452750052,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "디지털자산 주도권 경쟁… 금융권, 플랫폼 확보 사활 [거래소 판도변화...",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092167339"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.9449000576246701,
+        "relevance_score": 21,
+        "sector": "기타",
+        "title": "저축은행 예금금리 '주춤'…수신 경쟁 일단락되나",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=142493"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8267491463266954,
+        "relevance_score": 17,
+        "sector": "거시·시장",
+        "title": "금융위기급 환율 롤러코스터…\"1,400원 깨지면 1,300원대 안착도 가능\"",
+        "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=62606"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.719054190462064,
+        "relevance_score": 16,
+        "sector": "은행",
+        "title": "청년·고령층 신용대출 연체율 급증, 금융당국 긴장",
+        "url": "https://www.tokenpost.kr/news/economy/387069"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5389129773214457,
+        "relevance_score": 16,
+        "sector": "대부",
+        "title": "[금쪽상식] 연 20% 넘는 이자 냈다면···돌려받을 수 있을까?",
+        "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2457172"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7489846683823285,
+        "relevance_score": 11,
+        "sector": "대부",
+        "title": "\"은행 문턱은 높고 사채 유혹은 가까워\"…불법사금융 내몰리는 20대",
+        "url": "https://www.the-today.com/news/articleView.html?idxno=88222"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.9095512143940775,
+        "relevance_score": 15,
+        "sector": "은행",
+        "title": "5대 시중은행, 정기예금 990조 돌파…일주일 새 6.5조↑",
+        "url": "https://n.news.naver.com/mnews/article/003/0014115336?sid=101"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "거시·시장": 2,
+      "기타": 1,
+      "대부": 2,
+      "디지털자산": 1,
+      "상호금융": 1,
+      "은행": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "금리·수수료·최고금리": 4,
+      "디지털자산": 1,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 2,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 2,
+      "해외·글로벌": 2,
+      "환율·외환": 2
+    }
+  }
+}

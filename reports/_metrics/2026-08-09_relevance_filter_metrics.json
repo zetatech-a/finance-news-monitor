@@ -1,0 +1,91 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 0,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 14,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 0,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 9,
+  "candidate_hybrid_gray_rule_drop": 33,
+  "candidate_hybrid_gray_rule_keep": 9,
+  "candidate_hybrid_keep_overseas_global_reference": 5,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 53,
+  "candidate_hybrid_model_drop": 14,
+  "candidate_hybrid_model_keep": 24,
+  "candidate_hybrid_model_keep_with_domain_anchor": 24,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 53,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-09",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 14,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 1,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 33,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 9,
+    "candidate_hybrid_keep_overseas_global_reference": 5,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 53,
+    "candidate_hybrid_model_drop_prob_le_threshold": 14,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 24
+  },
+  "dropped_count": 63,
+  "input_count": 156,
+  "kept_count": 93,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 156,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 14,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "편법적인 사금융, 셀러 파이낸싱과 법률(9)[정보근 변호사의 부동산 법...",
+      "url": "https://www.sedaily.com/article/20077212?ref=naver"
+    },
+    {
+      "title": "KB국민·신한·하나·우리·NH농협은행 청년·고령층 마이너스통장 연체...",
+      "url": "https://www.lecturernews.com/news/articleView.html?idxno=208107"
+    },
+    {
+      "title": "역대 최대 카카오뱅크 vs 역성장 케이뱅크…벌어지는 인뱅 격차",
+      "url": "https://www.mydaily.co.kr/page/view/2026080716040555770"
+    },
+    {
+      "title": "[8월 첫째 주 세계경제동향 브리핑] 코스피 6,200선 후퇴…코스닥은 10%...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3031089"
+    },
+    {
+      "title": "실수요 피해 차단 나선 금융당국…가계대출 총량 확대 검토",
+      "url": "https://www.news1.kr/finance/general-finance/6252715"
+    },
+    {
+      "title": "[N위크] 수도권 5만호 추가 공급안 발표...‘청년 첫 경력 국가책임제’...",
+      "url": "https://www.tfmedia.co.kr/news/article.html?no=206319"
+    },
+    {
+      "title": "“거래 줄고 매물 는다…무주택자 선별 매수 기회 올 것” [머니 트레이...",
+      "url": "https://www.sedaily.com/article/20077206?ref=naver"
+    },
+    {
+      "title": "가계대출 얼마나 늘었나…7월 금융동향·고용지표 공개 예정",
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1719654"
+    },
+    {
+      "title": "다음주 7월 가계대출·고용 동향 발표",
+      "url": "https://biz.sbs.co.kr/article_hub/20000327463?division=NAVER"
+    },
+    {
+      "title": "하나은행, 변동금리·비대면 주담대 한시 중단-마이너스통장 한도도 축...",
+      "url": "https://www.mediafine.co.kr/news/articleView.html?idxno=86021"
+    }
+  ]
+}
