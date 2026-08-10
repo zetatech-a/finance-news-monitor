@@ -1,0 +1,93 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 30,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 0,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 32,
+  "candidate_hybrid_gray_rule_drop": 73,
+  "candidate_hybrid_gray_rule_keep": 32,
+  "candidate_hybrid_keep_overseas_global_reference": 3,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 192,
+  "candidate_hybrid_model_drop": 15,
+  "candidate_hybrid_model_keep": 103,
+  "candidate_hybrid_model_keep_with_domain_anchor": 103,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 192,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-10",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 30,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 3,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 73,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 32,
+    "candidate_hybrid_keep_overseas_global_reference": 3,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 192,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 2,
+    "candidate_hybrid_model_drop_prob_le_threshold": 15,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 103
+  },
+  "dropped_count": 126,
+  "input_count": 461,
+  "kept_count": 335,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 461,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 31,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[코스피 시대, 미국서 TK경제의 길을 묻다 ②] “개인재무 필수과목 지...",
+      "url": "https://www.yeongnam.com/web/view.php?key=20260809028379630"
+    },
+    {
+      "title": "고창군산림조합, 추석맞이 벌초도우미",
+      "url": "https://sjbnews.com/news/news.php?number=884804"
+    },
+    {
+      "title": "도수치료 4만원대로 내렸지만…실손 세대따라 체감 혜택 ‘극과 극’",
+      "url": "https://www.viva100.com/article/20260808500196"
+    },
+    {
+      "title": "CIFO 첫 주자 하나금융…KB·신한·우리 '신중'",
+      "url": "https://dealsite.co.kr/articles/166730"
+    },
+    {
+      "title": "NH농협카드, VVIP 전용 '디 오리진스' 출시",
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=209491"
+    },
+    {
+      "title": "네이버페이 결제액 25조인데 파이낸셜 이익률은 하락···수익보다는 데...",
+      "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=257056"
+    },
+    {
+      "title": "대출 목표 1조 초과…실수요 규제 완화 '딜레마'",
+      "url": "https://news.tvchosun.com/site/data/html_dir/2026/08/10/2026081090036.html"
+    },
+    {
+      "title": "집주인은 은행으로, 세입자는 중개업소로…세제개편에 ‘입주 전쟁’ [...",
+      "url": "https://www.sedaily.com/article/20077413?ref=naver"
+    },
+    {
+      "title": "'매교역 팰루시드' 잔금대출 공급 늘렸지만 '조기마감'…래미안 트리니...",
+      "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202608082233292900267"
+    },
+    {
+      "title": "[사설] 오락가락, 아무말… 청년 정책, 내 아들딸 일로 고민하는가",
+      "url": "https://www.seoul.co.kr/news/editOpinion/editorial/2026/08/10/20260810027004?wlog_tag3=naver"
+    }
+  ]
+}
