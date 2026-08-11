@@ -423,8 +423,9 @@ python scripts/validate_relevance_labels.py \
 
 ## Cloudflare Workers 외부 스케줄러 (`cloudflare-scheduler/`)
 
-GitHub Actions의 cron 트리거는 지연이 잦아, 장기적으로 예약 실행을 Cloudflare
-Workers Cron으로 옮기기 위한 스케줄러입니다.
+GitHub Actions의 cron 트리거는 지연이 잦아, 예약 실행을 Cloudflare Workers Cron으로
+옮긴 스케줄러입니다. **`daily.yml`에는 `schedule:` 블록이 없으며, 이 Worker가 유일한
+스케줄러입니다.**
 
 ```text
 Cloudflare Cron Trigger
@@ -438,22 +439,168 @@ Cloudflare는 **실행 요청만** 담당합니다. 뉴스 수집·리포트 생
 기존 파이프라인에서 그대로 수행됩니다. Worker에는 공개 `fetch()` 핸들러가 없고
 cron으로만 실행됩니다.
 
-### Cron (KST/UTC)
-- Worker cron: `59 23 * * *` (UTC 23:59 = **KST 08:59**)
-- 09:03(KST) 전후 메일 도착을 목표로 기존 GitHub schedule보다 조금 앞당긴 값입니다.
-- Cloudflare Cron Trigger는 UTC 기준입니다.
+### Cron 구성 (KST/UTC)
 
-### Canary → 운영 전환
-- 초기 canary는 `DISPATCH_SEND_EMAIL=false`로 배포합니다. 워크플로는 실행되지만
-  이메일은 발송되지 않아 기존 GitHub schedule 발송과 충돌하지 않습니다.
-- 검증이 끝나면 `wrangler.jsonc`의 `DISPATCH_SEND_EMAIL`을 `"true"`로 바꿔
-  재배포합니다. dispatch는 `force_send=false`로 보내므로 날짜별 sent marker가
-  중복 발송을 계속 막아줍니다.
+Cloudflare Cron Trigger는 UTC 기준입니다.
+
+| Slot | UTC | KST |
+|------|-----|-----|
+| primary | `59 23 * * *` | 08:59 |
+| retry-1 | `14 0 * * *` | 09:14 |
+| retry-2 | `29 0 * * *` | 09:29 |
+| retry-3 | `44 0 * * *` | 09:44 |
+
+- primary는 정상적인 첫 실행 시도입니다.
+- retry-1/2/3은 **독립적인 recovery Cron**입니다. primary의 재시도가 아니라,
+  각자 같은 판단 로직을 처음부터 수행하는 별도 invocation입니다.
+- 네 개 모두 같은 `scheduled()` 핸들러를 호출하고, `controller.cron`으로 slot을
+  구분해 로그에 남깁니다.
+- **위 4개는 승인된 전체 계약이며, 그 밖의 cron 표현식은 fail closed입니다.** 알 수 없는
+  표현식으로 invocation이 들어오면 `cron_rejected` 로그를 남기고 `SchedulerError`로
+  종료하며, **GitHub API 요청을 한 건도 보내지 않습니다**(marker GET / runs GET /
+  workflow_dispatch 모두 0회). 배포된 trigger와 코드가 어긋났다는 신호이므로, 검토되지
+  않은 시각에 일일 파이프라인을 실행하는 대신 즉시 드러나게 합니다.
+- 따라서 Cron을 추가·변경할 때는 `wrangler.jsonc`의 `triggers.crons`와
+  `cloudflare-scheduler/src/index.ts`의 `CRON_SLOTS`를 **반드시 함께** 수정해야 합니다.
+  테스트가 두 곳의 일치를 검증합니다.
+
+**복구 계층을 혼동하지 마세요.**
+15분 간격은 *Cron invocation 자체가 누락된 경우*를 위한 것이고,
+한 invocation 내부의 GitHub API 일시 오류는 초 단위의 짧은 bounded retry가 담당합니다.
+invocation 내부에서 15분을 기다리는 코드는 없습니다.
+
+### 한 invocation의 의사결정 순서
+
+1. `controller.noRetry()` 호출
+2. 환경변수 검증 (실패 시 GitHub 호출 없이 종료)
+3. `controller.scheduledTime` 기준 KST report date 계산 (`Date.now()`·서버 타임존 미사용)
+4. cron → slot 계산, `cron_received` 로그
+5. **오늘 sent-marker 확인** — `reports/_sent/{날짜}_email_sent.json` 존재 여부
+   (Contents API, HTTP status만 사용, 본문은 내려받지 않음)
+6. marker가 **없을 때만** daily 워크플로의 active run 확인
+7. marker와 active run이 **모두 없을 때만** `workflow_dispatch` 호출
+
+즉 marker가 있으면 workflow runs API조차 호출하지 않고, active run이 있으면
+dispatch하지 않습니다.
+
+### 재시도 정책
+
+**preflight GET (sent-marker / active run) — 최초 포함 최대 2회**
+
+| 응답 | 처리 |
+|------|------|
+| marker 200 | 오늘 발송 완료 → dispatch 생략 |
+| marker 404 | 없음 → active run 확인으로 진행 |
+| active run 존재 (`queued`/`in_progress`/`requested`/`waiting`/`pending`) | dispatch 생략 |
+| `completed`만 있거나 빈 목록 | dispatch 진행 |
+| 400 / 401 / 일반 권한 403 / 422 (runs는 404 포함) | 명시적 실패, dispatch 금지 |
+| network / timeout / 408 / 5xx | bounded backoff 후 1회 재시도 |
+| 위 일시 오류가 2회 모두 실패 | 경고 로그 후 **degraded mode로 dispatch 진행** |
+| workflow runs 응답이 malformed | 경고 로그 후 degraded mode로 dispatch 진행 |
+| **rate limit (429 또는 rate-limit 403)** | 아래 "rate limit" 참고 — degraded dispatch **하지 않음** |
+
+preflight guard는 중복 실행을 줄이기 위한 장치이지 absolute gate가 아닙니다.
+일시적 조회 실패 때문에 그날 실행 자체가 영구 누락되지 않도록 degraded mode를 허용합니다.
+
+**workflow_dispatch POST — 최초 포함 최대 3회**
+
+| 응답 | 처리 |
+|------|------|
+| 2xx (200 + run details, 204, 본문 파싱 실패 포함) | 성공 |
+| 400 / 401 / 일반 권한 403 / 404 / 422 | 즉시 실패, 재시도 금지 |
+| network / timeout / 408 / 5xx | backoff 후 **reconciliation을 거쳐** 재시도 |
+| rate limit | 아래 "rate limit" 참고 |
+
+**ambiguous dispatch 이후 reconciliation**
+
+POST가 network error나 timeout으로 끝나면 GitHub가 이미 요청을 접수했을 수 있습니다
+(ambiguous outcome). 이때 다시 POST하면 중복 run이 생길 수 있으므로, backoff 후
+active run을 **먼저 재확인**합니다.
+
+| reconciliation 결과 | 처리 |
+|---------------------|------|
+| active run 발견 | 첫 POST가 접수된 것으로 보고 **추가 POST 없이 성공 종료** |
+| 정상 응답 + active run 없음, 시도 여유 있음 | 다음 POST 허용 |
+| 정상 응답 + active run 없음, 마지막 시도였음 | 추가 POST 없이 실패 처리 |
+| transient 오류로 판정 불가 | **blind POST 금지**, 명확한 오류로 실패, 다음 Cron slot에 위임 |
+| malformed 응답으로 판정 불가 | **blind POST 금지**, 명확한 오류로 실패, 다음 Cron slot에 위임 |
+
+마지막(3번째) POST가 ambiguous하게 실패한 경우에도 backoff 후 reconciliation을 1회
+수행합니다. 이는 **접수 여부를 관찰하기 위한 것**이며 POST 횟수를 3회 이상으로
+늘리지 않습니다.
+
+initial preflight에서는 "일일 실행 누락 방지"를 우선해 degraded dispatch를 허용하지만,
+**이미 POST를 보낸 뒤의 ambiguous 상태에서는 중복 방지를 우선**합니다. 뒤에 독립적인
+Cron slot이 아직 남아 있기 때문입니다.
+
+**rate limit (429 / rate-limit 403)**
+
+GitHub는 rate limit을 429뿐 아니라 403으로도 반환합니다. 그래서 403을 무조건 권한
+오류로 보지 않고, `Retry-After` 헤더 / `X-RateLimit-Remaining: 0` /
+(길이 제한된) 오류 메시지로 rate limit 여부를 판정합니다. 그 신호가 없는 403은
+평소대로 권한 오류(재시도 금지)입니다.
+
+- `Retry-After`가 유효하고 **15초 이하**면 그 시간만큼 기다린 뒤 진행합니다.
+  서버가 요구한 시간보다 **더 짧게 줄여서 재시도하지 않습니다.**
+- `Retry-After`가 **15초를 넘으면** 이번 invocation에서는 추가 GitHub 요청을 보내지 않고
+  즉시 defer합니다(다음 Cron slot이 복구).
+- `Retry-After`가 없을 때 `X-RateLimit-Reset`은 **`X-RateLimit-Remaining`이 정확히 `0`인
+  경우에만** 사용합니다. secondary rate limit처럼 quota가 남아 있는 상태에서는 최소 1분
+  이상 대기가 필요해 이 Worker의 15초 예산으로 감당할 수 없으므로 곧바로 defer합니다.
+- **rate limit으로 인한 실패는 일반 transient 실패와 달리 degraded dispatch로 이어지지
+  않습니다.** rate limit을 받은 직후 곧바로 POST를 보내면 GitHub가 줄이라고 요청한 부하를
+  오히려 늘리게 됩니다.
+
+**`controller.noRetry()`를 유지하는 이유**
+
+Cloudflare 런타임의 자동 replay는 실행 시점·횟수를 우리가 통제할 수 없어, 이미 접수된
+dispatch를 중복 생성할 수 있습니다. 복구는 15분 뒤의 **독립 Cron slot**이 담당하는 편이
+관찰 가능하고 예측 가능합니다. 그래서 런타임 자동 재시도를 끄고, 실패한 invocation은
+명확한 오류로 남긴 뒤 다음 slot에 맡깁니다.
+
+**GitHub Actions backup schedule은 사용하지 않습니다.** 예약 실행은 Cloudflare로
+일원화되어 있으며, `daily.yml`에 `schedule:` 블록을 다시 추가하면 안 됩니다
+(테스트가 이를 강제합니다).
+
+### 운영 시나리오
+
+**첫 실행이 오래 걸리는 경우**
+- 08:59 실행이 09:14에도 여전히 실행 중이면, retry-1이 active run을 발견합니다.
+- dispatch하지 않고 skip합니다. 09:29, 09:44도 마찬가지입니다.
+
+**첫 Cron invocation 자체가 누락된 경우**
+- primary가 아예 실행되지 않아도 09:14의 retry-1이 독립적으로 실행됩니다.
+- marker와 active run이 모두 없으면 그때 dispatch합니다.
+- 같은 방식으로 retry-2, retry-3도 복구할 수 있습니다.
+
+**이미 오늘 이메일이 나간 경우**
+- sent-marker가 존재하므로 후속 slot은 workflow runs 조회도 없이 즉시 종료합니다.
+
+**Cloudflare 전체 장애**
+- 4개 Cron invocation이 모두 누락되는 Cloudflare 전체 장애는 **이 설계로 복구할 수
+  없습니다.** 그 경우 수동 `workflow_dispatch`로 실행해야 합니다.
+- 이를 이유로 GitHub Actions backup cron을 추가하지는 않습니다.
+
+**worst-case 중복 실행**
+- GitHub API의 eventual consistency(접수 직후 workflow runs API에 아직 안 보이는 구간)
+  때문에 중복 run 가능성을 완전히 0으로 만들 수는 없습니다.
+- 기존 GitHub Actions `concurrency`(`cancel-in-progress: false`)가 동시 실행을 제한하고,
+  워크플로 내부의 sent-marker precheck/recheck와 `force_send=false`가 중복 **이메일**을
+  추가로 방어합니다.
+
+**실제 이메일 도착 시각**
+- Cron 시각과 같지 않습니다. 기사량, 뉴스 수집 시간, 분류 시간, Gemini 처리 시간,
+  이메일 전송 시간에 따라 달라집니다.
 
 ### PAT 최소 권한
 - fine-grained PAT, 대상 저장소 `zetatech-a/finance-news-monitor` 하나만 선택
-- 권한은 **Actions: Read and write** 만 부여 (workflow_dispatch 호출에 필요)
+- **Actions: Read and write** — `workflow_dispatch` 호출 및 workflow runs 조회
+- **Contents: Read-only** — `reports/_sent/{날짜}_email_sent.json` 존재 확인
 - 토큰은 반드시 secret으로 저장합니다. `wrangler.jsonc`의 `vars`에 넣지 않습니다.
+- README에는 실제 PAT 값이나 secret을 기록하지 않습니다.
+
+> ⚠️ Contents 권한이 없으면 sent-marker 조회가 403으로 실패하고, Worker는
+> **dispatch하지 않고 명시적으로 실패**합니다. 권한 추가 후 토큰을 갱신하세요.
 
 `wrangler.jsonc`의 `secrets.required`가 `GITHUB_TOKEN`을 필수로 선언하므로,
 토큰 없이 배포하면 wrangler가 배포를 **거부**합니다(조용히 성공한 뒤 다음 cron에서
@@ -502,25 +649,40 @@ npm run deploy  # 배포 (wrangler deploy)
 로컬에서 scheduled 핸들러를 직접 실행하려면 `npm run dev` 상태에서:
 
 ```bash
+# slot별로 cron 값을 바꿔 가며 확인할 수 있습니다.
 curl "http://localhost:8787/cdn-cgi/handler/scheduled?cron=59+23+*+*+*&format=json"
+curl "http://localhost:8787/cdn-cgi/handler/scheduled?cron=14+0+*+*+*&format=json"
 ```
 
 > ⚠️ 실제 Secret(PAT, Account ID 등)은 저장소에 커밋하지 않습니다.
 > 로컬 값은 `.dev.vars`(git-ignored)에만 두고, `.dev.vars.example`에는
 > 자리표시자만 유지합니다.
 
-### 기존 GitHub schedule 제거 절차
-1차 PR에서는 기존 GitHub schedule 5개를 **그대로 유지**합니다. Cloudflare Cron이
-안정적으로 동작하는 것을 확인한 뒤(요청 성공률, 실행 시각, 메일 도착 시각),
-별도의 2차 PR에서 `daily.yml`의 `schedule:` 블록을 제거하고 예약 실행을 Cloudflare로
-일원화합니다.
+### 배포 (merge만으로는 배포되지 않습니다)
+
+이 저장소에는 Worker를 자동 배포하는 워크플로가 없습니다. **PR을 merge해도 Cloudflare
+Worker는 갱신되지 않으며**, Cron Trigger 변경도 반영되지 않습니다. 아래를 운영자가 직접
+수행해야 합니다.
+
+1. fine-grained PAT에 **Contents: Read-only** 권한 추가 (필요하면 새 PAT 발급)
+2. `npx wrangler secret put GITHUB_TOKEN`으로 Worker secret 갱신
+3. `cd cloudflare-scheduler && npm run deploy` (또는 `npx wrangler deploy`)
+4. Cron Trigger 변경 전파를 잠시 기다린 뒤,
+   Cloudflare Dashboard에서 **Cron Trigger 4개**가 보이는지 확인
+5. 다음 운영일에 Cron Events와 Worker Logs 확인
+   (`cron_received` / `skip_marker_exists` / `skip_workflow_active` /
+   `workflow_dispatch_accepted` 등의 구조화 로그)
+6. GitHub Actions에서 중복 실행이나 예상치 못한 skip이 없는지 확인
+7. sent-marker(`reports/_sent/`)와 실제 이메일 발송 결과 확인
 
 ## 참고
 - 운영 기준(프로덕션 스케줄)은 전일 08:55 ~ 당일 08:55 (KST) 수집, 매일 09:00 전후(KST) 발송을 목표로 합니다.
 - 운영 실행 파라미터는 `--window_hours 24 --end_hhmm 0855 --overlap_minutes 15`이며, 오버랩 15분을 적용하면 실제 수집 시작은 전일 08:40(KST)입니다.
-- 운영 예약 실행은 Cloudflare Workers Cron을 사용합니다.
-- Cloudflare Cron `59 23 * * *`는 UTC 기준이며 KST 매일 08:59에 GitHub `workflow_dispatch`를 요청합니다.
-- 실제 뉴스 수집과 이메일 발송은 GitHub-hosted runner에서 실행됩니다.
+- 운영 예약 실행은 Cloudflare Workers Cron을 사용하며, GitHub Actions schedule은 사용하지 않습니다.
+- Cloudflare Cron은 UTC 기준 `59 23`/`14 0`/`29 0`/`44 0`(= KST 08:59/09:14/09:29/09:44) 4개이며,
+  09:14 이후 slot은 sent-marker나 실행 중인 daily 워크플로가 있으면 dispatch하지 않습니다.
+- 실제 뉴스 수집과 이메일 발송은 GitHub-hosted runner에서 실행되며, 이메일 도착 시각은
+  기사량·수집/분류 시간·Gemini 처리 시간·SMTP 전송 시간에 따라 Cron 시각과 달라집니다.
 - 이메일 발송 입력은 `send_email=true`, 중복 발송 방지는 날짜별 sent marker가 담당합니다.
 - 수동 실행(`workflow_dispatch`)의 기본값은 메일 미발송이며, 필요할 때만 `send_email=true`로 발송합니다. 이미 sent-marker가 있으면 `force_send=true`를 지정해야 수동 재발송합니다.
 - 기본값(`--end_hhmm 0730`)은 로컬/하위호환 용도로 유지되어 기존 07:30 마감 기준 실행도 가능합니다.

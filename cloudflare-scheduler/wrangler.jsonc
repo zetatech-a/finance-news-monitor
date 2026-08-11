@@ -8,9 +8,18 @@
   "workers_dev": false,
   "preview_urls": false,
 
+  // Cron Trigger는 UTC 기준이다. 4개 slot은 15분 간격의 독립 실행이며,
+  // "누락된 invocation" 복구 계층이다(invocation 내부 재시도는 초 단위로 따로 있다).
+  //   59 23 * * *  = KST 08:59  primary
+  //   14  0 * * *  = KST 09:14  retry-1
+  //   29  0 * * *  = KST 09:29  retry-2
+  //   44  0 * * *  = KST 09:44  retry-3
+  // 후속 slot은 오늘 sent-marker가 있거나 daily 워크플로가 아직 실행 중이면
+  // dispatch하지 않는다. 실제 이메일 도착 시각은 기사량·수집/분류 시간·Gemini
+  // 처리량·SMTP에 따라 달라지므로 cron 시각과 같지 않다.
+  // 이 목록은 src/index.ts의 CRON_SLOTS와 일치해야 한다(테스트가 검증한다).
   "triggers": {
-    // UTC 23:59 = KST 08:59. GitHub workflow를 호출해 09:03 전후 이메일 도착을 목표로 한다.
-    "crons": ["59 23 * * *"]
+    "crons": ["59 23 * * *", "14 0 * * *", "29 0 * * *", "44 0 * * *"]
   },
 
   "vars": {
