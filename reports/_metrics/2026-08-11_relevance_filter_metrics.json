@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 44,
+  "candidate_hybrid_gray_rule_drop": 170,
+  "candidate_hybrid_gray_rule_keep": 44,
+  "candidate_hybrid_keep_overseas_global_reference": 12,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 9,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 263,
+  "candidate_hybrid_model_drop": 68,
+  "candidate_hybrid_model_keep": 124,
+  "candidate_hybrid_model_keep_with_domain_anchor": 124,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 263,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-11",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 4,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 170,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 44,
+    "candidate_hybrid_keep_overseas_global_reference": 12,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 9,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 263,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 2,
+    "candidate_hybrid_model_drop_prob_le_threshold": 68,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 124
+  },
+  "dropped_count": 296,
+  "input_count": 750,
+  "kept_count": 454,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 750,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 62,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "BNK금융 지분 늘리는 OK금융···최대주주 '우군' 될까",
+      "url": "https://www.sisajournal-e.com/news/articleView.html?idxno=422994"
+    },
+    {
+      "title": "세무법인HKL '稅相 읽기'(46) 세무조사 이후 장기간 해명자료 요구, '적...",
+      "url": "http://www.intn.co.kr/news/articleView.html?idxno=2052431"
+    },
+    {
+      "title": "빚 못 갚는 중저신용자 4년 만에 최고…경남은행도 4% 육박",
+      "url": "https://www.idomin.com/news/articleView.html?idxno=2012042"
+    },
+    {
+      "title": "빚 줄었는데 이자 못 낸다? 가짜 디레버리징의 덫",
+      "url": "https://www.fortunekorea.co.kr/news/articleView.html?idxno=53551"
+    },
+    {
+      "title": "주식은 반토막, 월세는 뛰고...빈부격차 키우는 증시·부동산",
+      "url": "https://www.sedaily.com/article/20077607?ref=naver"
+    },
+    {
+      "title": "[원화대출 리밸런싱]⑥ 카카오뱅크, 상반기 2.8%↑…목표치까지 안간힘",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=670456"
+    },
+    {
+      "title": "\"아파트 계약금을 주식에 넣었다?\"…국장 '폭락'에 날아간 주택자금, 청...",
+      "url": "https://www.thepublic.kr/news/articleView.html?idxno=314349"
+    },
+    {
+      "title": "주담대 막고 스탁론 조이자…온투업, '중금리 신용'으로 체질 바꾼다",
+      "url": "https://www.the-today.com/news/articleView.html?idxno=88268"
+    },
+    {
+      "title": "한화생명, 잇단 대형 M&A 추진…자본 건전성 관리 관건",
+      "url": "https://www.sentv.co.kr/article/view/sentv202608100098"
+    },
+    {
+      "title": "[인터뷰] “폭염은 물류·에너지·농업·노동 영향 주는 ‘시스템 리스...",
+      "url": "https://biz.chosun.com/science-chosun/nature-environment/2026/08/10/YI5RSFP3ZRESDB4L4YCQ7P5STM/?utm_source=naver&utm_medium=original&utm_campaign=biz"
+    }
+  ]
+}
