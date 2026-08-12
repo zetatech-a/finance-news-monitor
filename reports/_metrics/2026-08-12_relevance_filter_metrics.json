@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 34,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 7,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 51,
+  "candidate_hybrid_gray_rule_drop": 189,
+  "candidate_hybrid_gray_rule_keep": 51,
+  "candidate_hybrid_keep_overseas_global_reference": 17,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 502,
+  "candidate_hybrid_model_drop": 51,
+  "candidate_hybrid_model_keep": 164,
+  "candidate_hybrid_model_keep_with_domain_anchor": 164,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 502,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-12",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 34,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 7,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 7,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 189,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 51,
+    "candidate_hybrid_keep_overseas_global_reference": 17,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 502,
+    "candidate_hybrid_model_drop_prob_le_threshold": 51,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 164
+  },
+  "dropped_count": 299,
+  "input_count": 1035,
+  "kept_count": 736,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1035,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 63,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[이슈] 자금 풀어야 하는데 부실은 늘고…지방銀, 기업대출 확대 '딜레...",
+      "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=809359"
+    },
+    {
+      "title": "리딩뱅크 오른 신한은행…건전성은 '옥의 티'",
+      "url": "https://news.tf.co.kr/read/economy/2352770.htm"
+    },
+    {
+      "title": "대형 오피스·서울 호텔만 팔렸다… 상업용 부동산 '회복 착시'",
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=726011"
+    },
+    {
+      "title": "[테크M 피플] JB금융 수익성 중심 경영, 김기홍 리더십이 더 빛나는 이유",
+      "url": "https://www.techm.kr/news/articleView.html?idxno=154188"
+    },
+    {
+      "title": "함안군 폭염·가뭄 대응체계 총력가동",
+      "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=662229"
+    },
+    {
+      "title": "신한 '20년 수성' vs 하나 '청라 도전'…인천시금고 전략은?",
+      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=849950"
+    },
+    {
+      "title": "[금융권 소식] 하나금융그룹ㆍNH농협은행ㆍBNK부산은행(8.11)",
+      "url": "http://www.weeklytoday.com/news/articleView.html?idxno=789838"
+    },
+    {
+      "title": "[마켓인사이드] 2026년 미국 부동산, 4년 만의 해빙 조짐",
+      "url": "https://www.news2day.co.kr/article/20260811500292"
+    },
+    {
+      "title": "캐피털 이어 KDB생명 노린다…한화생명, M&A 성공시 업계 2위",
+      "url": "https://www.sidae.com/article/2026081113253755995"
+    },
+    {
+      "title": "5세대 실손 출시 3개월째 '잠잠'…11월 할인, 전환 불붙일까",
+      "url": "http://www.fins.co.kr/news/articleView.html?idxno=109572"
+    }
+  ]
+}
