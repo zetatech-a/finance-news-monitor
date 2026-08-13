@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 39,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 8,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 9,
+  "candidate_hybrid_gray_keep_domain": 74,
+  "candidate_hybrid_gray_rule_drop": 169,
+  "candidate_hybrid_gray_rule_keep": 74,
+  "candidate_hybrid_keep_overseas_global_reference": 22,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 426,
+  "candidate_hybrid_model_drop": 48,
+  "candidate_hybrid_model_keep": 127,
+  "candidate_hybrid_model_keep_with_domain_anchor": 127,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 426,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-13",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 39,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 8,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 16,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 9,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 169,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 74,
+    "candidate_hybrid_keep_overseas_global_reference": 22,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 426,
+    "candidate_hybrid_model_drop_prob_le_threshold": 48,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 127
+  },
+  "dropped_count": 301,
+  "input_count": 952,
+  "kept_count": 651,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 952,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 41,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[EBN 오늘(12일) 이슈 종합] 삼성전자 7% 뛰어도 '팔자'…SK하이닉스는 ...",
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1720178"
+    },
+    {
+      "title": "내실 성장 다진 KB카드… 수익성 개선에 3위 ‘수성’",
+      "url": "https://www.dt.co.kr/article/12077897?ref=naver"
+    },
+    {
+      "title": "교보생명 전방위 확대, 악사손보 인수 추진...토스와는 디지털 자산 손...",
+      "url": "http://www.dailypop.kr/news/articleView.html?idxno=101492"
+    },
+    {
+      "title": "[오늘의 창] 조합장선거 ‘6·3·3 재판’ 도입 시급",
+      "url": "https://www.kyeongin.com/article/1768920"
+    },
+    {
+      "title": "[채권-마감] 美 CPI 대기 속 금리 소폭 하락…30년 금리 한때 급등",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4429847"
+    },
+    {
+      "title": "국고채 금리 혼조세…3년물 1.7bp 내린 3.791%",
+      "url": "http://www.issuenbiz.com/news/articleView.html?idxno=78691"
+    },
+    {
+      "title": "한화생명 상반기 순익 9045억원, 전년 比 96% 증가… 별도·자회사 '동반...",
+      "url": "https://www.insnews.co.kr/news/articleView.html?idxno=92274"
+    },
+    {
+      "title": "한화생명, 상반기 순익 9045억…'이익 체력' 한층 커졌다",
+      "url": "https://www.econovill.com/news/articleView.html?idxno=747835"
+    },
+    {
+      "title": "[컨콜] [2026] 한화생명, 여신 기능 강화 핵심 '애큐온캐피탈'",
+      "url": "https://news.dealsitetv.com/articles/174664"
+    },
+    {
+      "title": "2분기 순이익 5583억원 메리츠화재, 투자손익이 견인",
+      "url": "https://www.tokenpost.kr/news/cryptocurrency/389230"
+    }
+  ]
+}

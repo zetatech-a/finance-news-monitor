@@ -1,0 +1,274 @@
+{
+  "clusters": {
+    "cluster_count": 300,
+    "cluster_size_max": 134,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 134,
+        "relevance_prob": 0.9238035700754731,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "STO·디지털기본법 앞두고 가상자산 ‘열공’ 나선 금감원",
+        "url": "https://n.news.naver.com/mnews/article/018/0006350497?sid=101"
+      },
+      {
+        "cluster_size": 55,
+        "relevance_prob": 0.8902365460087037,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "[오늘의 이슈] 기준금리 올렸는데, 대출은 잡혔나",
+        "url": "http://www.newskr.kr/news/articleView.html?idxno=105588"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 959,
+    "displayed_articles": 223,
+    "final_tagged_representatives": 300,
+    "normalized_articles": 1255,
+    "raw_items": 1255,
+    "relevance_filtered_articles": 651,
+    "rule_filtered_articles": 952,
+    "tagged_before_cluster": 651
+  },
+  "date": "2026-08-13",
+  "generated_at": "2026-08-13T09:11:35.033560+09:00",
+  "publishers": {
+    "missing_publisher_count": 300,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 102,
+    "no_topic_ratio": 0.34,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.674354513193714,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "KB국민카드, 기업정보조회업 진출 속도…8월 중 본허가 신청",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4429894"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7271789021779013,
+        "relevance_score": 4,
+        "sector": "상호금융",
+        "title": "농협상호금융, 경주 외동읍 '가뭄 피해' 현장 점검",
+        "url": "http://www.sisafocus.co.kr/news/articleView.html?idxno=363752"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6098837701041091,
+        "relevance_score": 8,
+        "sector": "디지털자산",
+        "title": "기관들 몰래 쓸어담았다... 880만 달러 몰린 솔라나, 폭들 랠리 전조인가",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=476858"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7042023470026516,
+        "relevance_score": 8,
+        "sector": "보험",
+        "title": "[보험사 M&A] [KDB생명] 외형 확장 나선 한투, 'IB·장기자금 결합' 밑그...",
+        "url": "https://www.topdaily.kr/articles/111444"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6334395438062351,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[Invest]與 전당대회에 재계 '촉각'…당정 주도권 따라 자본시장 규제도...",
+        "url": "https://www.investchosun.com/site/data/html_dir/2026/08/12/2026081280111.html"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9229308929234907,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "코인 글로벌 거래량 절반 줄때…한국은 3분의 1 토막",
+        "url": "https://n.news.naver.com/mnews/article/015/0005320330?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.4376750453054317,
+        "relevance_score": 6,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "\"은행 안 부럽네\" 5대 증권사 돈 쓸어담았다…상반기 순익 7.8조",
+        "url": "https://n.news.naver.com/mnews/article/008/0005399354?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5789287535913882,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[Who Is ?] 최문규 한신공영 대표이사 부회장",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=443569"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8022895001996778,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "“1.3억원 사라졌어요” 89세 노인, 휴대전화 넘겨줬다가… 범인은 친하...",
+        "url": "https://n.news.naver.com/mnews/article/081/0003669991?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6815223867737655,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "앱 막히더니 송금도 까다로워졌다…해외 거래소 이용 '빨간불'",
+        "url": "https://n.news.naver.com/mnews/article/421/0009111214?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 6,
+      "감독·제재": 4,
+      "거시·시장": 26,
+      "기타": 87,
+      "대부": 3,
+      "디지털자산": 64,
+      "보험": 14,
+      "상호금융": 12,
+      "여전": 7,
+      "은행": 49,
+      "입법·정책": 13,
+      "자산운용·연기금": 6,
+      "저축은행": 6,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 31,
+      "감독·제재": 2,
+      "건전성·자본규제": 20,
+      "규제·가계부채": 9,
+      "금리·수수료·최고금리": 25,
+      "기업금융·익스포저": 13,
+      "디지털자산": 66,
+      "물가·경기지표": 6,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 11,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 15,
+      "서민금융·대환·채무조정": 3,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 18,
+      "일정·브리핑": 3,
+      "자금시장·유동성": 6,
+      "정책·제도개선": 1,
+      "증시·시장시황": 3,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 12,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.788318043801967,
+        "relevance_score": 30,
+        "sector": "감독·제재",
+        "title": "금융위-금감원, \"금융행정 쇄신방안의 내용은 확정된 바 없습니다.\"",
+        "url": "http://www.intn.co.kr/news/articleView.html?idxno=2052523"
+      },
+      {
+        "cluster_size": 134,
+        "relevance_prob": 0.9238035700754731,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "STO·디지털기본법 앞두고 가상자산 ‘열공’ 나선 금감원",
+        "url": "https://n.news.naver.com/mnews/article/018/0006350497?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8639858251142187,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "비트플래닛 “디지털 자산 기본법 지연에 가상 자산 업계 환경은 악화”",
+        "url": "https://n.news.naver.com/mnews/article/366/0001185839?sid=101"
+      },
+      {
+        "cluster_size": 55,
+        "relevance_prob": 0.8902365460087037,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "[오늘의 이슈] 기준금리 올렸는데, 대출은 잡혔나",
+        "url": "http://www.newskr.kr/news/articleView.html?idxno=105588"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8011479767202524,
+        "relevance_score": 28,
+        "sector": "은행",
+        "title": "삼성월렛 스테이블코인으로 보폭 확대, 우리은행장 정진완 '삼성월렛 동...",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=444596"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.66946541142326,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "AI 시대에도 ‘컴활’ 1위…취업 자격증 판도 그대로",
+        "url": "https://n.news.naver.com/mnews/article/011/0004650933?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7404868677820258,
+        "relevance_score": 20,
+        "sector": "대부",
+        "title": "국수본부장 \"새 수사체계 불법 사금융 범죄도 영향…중심축 역할해야\"",
+        "url": "https://n.news.naver.com/mnews/article/421/0009109846?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.812128448995573,
+        "relevance_score": 22,
+        "sector": "감독·제재",
+        "title": "다올금융그룹, 증권 제재 이어 이병철 회장 경찰 조사",
+        "url": "http://www.biztribune.co.kr/news/articleView.html?idxno=357367"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.7869867410137846,
+        "relevance_score": 20,
+        "sector": "저축은행",
+        "title": "경찰, '다올저축은행 3000억 우회지원 의혹' 이병철 회장 첫 소환",
+        "url": "https://n.news.naver.com/mnews/article/014/0005560705?sid=102"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.6851269220975797,
+        "relevance_score": 25,
+        "sector": "핀테크·플랫폼",
+        "title": "금융위, 스크래핑 차단 대응방안 논의...\"공공 마이데이터 연계 검토\"",
+        "url": "http://www.bizwnews.com/news/articleView.html?idxno=143175"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 1,
+      "대부": 2,
+      "디지털자산": 2,
+      "은행": 1,
+      "저축은행": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 3,
+      "부동산·PF": 1,
+      "자금시장·유동성": 1
+    }
+  }
+}
