@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 32,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 9,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 46,
+  "candidate_hybrid_gray_keep_domain": 58,
+  "candidate_hybrid_gray_rule_drop": 135,
+  "candidate_hybrid_gray_rule_keep": 58,
+  "candidate_hybrid_keep_overseas_global_reference": 22,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 537,
+  "candidate_hybrid_model_drop": 144,
+  "candidate_hybrid_model_keep": 143,
+  "candidate_hybrid_model_keep_with_domain_anchor": 143,
+  "candidate_hybrid_negative_drop": 6,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 537,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-14",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 32,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 13,
+    "candidate_hybrid_drop_negative_signal": 6,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 9,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 46,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 135,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 58,
+    "candidate_hybrid_keep_overseas_global_reference": 22,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 537,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 144,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 143
+  },
+  "dropped_count": 390,
+  "input_count": 1158,
+  "kept_count": 768,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1158,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 86,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "장동혁 “국민이 마귀인가, 대통령이 마귀인가…대출도 오픈런하는 선착...",
+      "url": "https://www.kyeonggi.com/article/20260813580163"
+    },
+    {
+      "title": "“장관에게 ‘기어다니라’ 낄낄? 李가 마귀인가 국민이 마귀인가” 장...",
+      "url": "https://www.munhwa.com/article/11609418?ref=naver"
+    },
+    {
+      "title": "[속보] \"국민이 마귀인가, 대통령이 마귀인가\"… 장동혁, 대출 난민 사태...",
+      "url": "https://www.cjb.co.kr/home/sub.php?menukey=61&mod=view&P_NO=260813511&PRO_CODE=99"
+    },
+    {
+      "title": "빚은 8% 늘었는데 연체는 33% 급증···'빚투 청구서' 현실로",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2459133"
+    },
+    {
+      "title": "[브릿지 칼럼] ‘온렌딩형 포용금융’ 안착하려면",
+      "url": "https://www.viva100.com/article/20260813500456"
+    },
+    {
+      "title": "'고속성장' GA에…한화손보, 신계약 CSM '분기 최대'",
+      "url": "https://www.kbanker.co.kr/news/articleView.html?idxno=225672"
+    },
+    {
+      "title": "삼성화재 “주주환원 전략 다양성 검토…ROE 목표도 여전해”",
+      "url": "https://www.ekn.kr/web/view.php?key=20260813027082566"
+    },
+    {
+      "title": "\"신계약 CSM 6892억 폭발…한화생명, 고마진 구조 고착화 단계 진입\"",
+      "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=271740"
+    },
+    {
+      "title": "'투자 성과' 삼성생명, 상반기 호실적…\"본업 반등 계기 마련할 것\"",
+      "url": "https://www.newsway.co.kr/news/view?ud=2026081316240991661"
+    },
+    {
+      "title": "보험·투자 웃었다… 삼성家 보험 형제, 상반기 실적 ‘미소’",
+      "url": "https://www.dt.co.kr/article/12078166?ref=naver"
+    }
+  ]
+}

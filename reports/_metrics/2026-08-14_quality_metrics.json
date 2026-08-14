@@ -1,0 +1,267 @@
+{
+  "clusters": {
+    "cluster_count": 424,
+    "cluster_size_max": 62,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 62,
+        "relevance_prob": 0.8959749651208753,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "바이낸스 인수 3년… 고팍스, 정상화까지 첩첩산중 [거래소 판도변화⑥...",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092167026"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1168,
+    "displayed_articles": 251,
+    "final_tagged_representatives": 424,
+    "normalized_articles": 1576,
+    "raw_items": 1576,
+    "relevance_filtered_articles": 768,
+    "rule_filtered_articles": 1158,
+    "tagged_before_cluster": 768
+  },
+  "date": "2026-08-14",
+  "generated_at": "2026-08-14T09:10:38.120065+09:00",
+  "publishers": {
+    "missing_publisher_count": 424,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 125,
+    "no_topic_ratio": 0.2948,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8002643213818524,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "서울우유·파주경찰서, 우유 포장 활용 피싱 범죄 예방 나선다",
+        "url": "https://www.thefairnews.co.kr/news/articleView.html?idxno=85042"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8114274802002116,
+        "relevance_score": 22,
+        "sector": "상호금융",
+        "title": "예금·대출 많이 해야 대의원?…새마을금고중앙회 '감독책임'도 수술대",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=347650"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8268887001259847,
+        "relevance_score": 5,
+        "sector": "은행",
+        "title": "산업은행 감사원 적발후 또 583억 금융사고 '내부통제 의문'",
+        "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=244899"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7900213660191427,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "클래리티법 이어 ‘SEC 토큰화 혁신안’ 연기…비트코인 약세[코인 모닝...",
+        "url": "https://n.news.naver.com/mnews/article/018/0006351537?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.55201725572217,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[8·13 주택공급]\"물량전 아닌 속도전 좋지만\"…현실성 반신반의",
+        "url": "https://n.news.naver.com/mnews/article/648/0000049832?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7200509683869746,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[리포트]\"같은 사람, 다른 계좌?\"⋯금은방 사장 '촉'에 덜미",
+        "url": "https://tjmbc.co.kr/NewsArticle/856661"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6823285548641764,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "리플, 5천만 XRP 익명 지갑 이동... 바이낸스로 100만 개 송금 포착",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=477262"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5860676812805939,
+        "relevance_score": 6,
+        "sector": "자산운용·연기금",
+        "title": "[국민연금 CIO 숏리스트] 두번째 도전 박천석…삼성-ING-공무원연금-새...",
+        "url": "https://dealsite.co.kr/articles/167029"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4364091260200705,
+        "relevance_score": 13,
+        "sector": "상호금융",
+        "title": "총량 늘었지만…집단대출 묶인 상호금융은 '시큰둥' [8·13 부동산대책]",
+        "url": "https://n.news.naver.com/mnews/article/119/0003121693?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7231697213752762,
+        "relevance_score": 10,
+        "sector": "입법·정책",
+        "title": "코인시장 신뢰 높인다…중소업체는 ‘체질 개선’ 과제",
+        "url": "https://n.news.naver.com/mnews/article/119/0003121692?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 12,
+      "거시·시장": 21,
+      "기타": 183,
+      "대부": 4,
+      "디지털자산": 47,
+      "보험": 22,
+      "상호금융": 16,
+      "여전": 6,
+      "은행": 55,
+      "입법·정책": 47,
+      "자산운용·연기금": 5,
+      "저축은행": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 132,
+      "감독·제재": 4,
+      "건전성·자본규제": 28,
+      "규제·가계부채": 91,
+      "금리·수수료·최고금리": 18,
+      "기업금융·익스포저": 2,
+      "디지털자산": 48,
+      "물가·경기지표": 2,
+      "부동산·PF": 32,
+      "불법사금융·불법추심·보이스피싱": 22,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 20,
+      "서민금융·대환·채무조정": 11,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 4,
+      "자금시장·유동성": 7,
+      "정책·제도개선": 21,
+      "증시·시장시황": 7,
+      "칼럼·오피니언": 10,
+      "해외·글로벌": 14,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8043558443365818,
+        "relevance_score": 33,
+        "sector": "감독·제재",
+        "title": "금감원 은행 ETF 수수료 검사…보험사기 의심 병원도 조사",
+        "url": "https://n.news.naver.com/mnews/article/016/0002683672?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8087504750341201,
+        "relevance_score": 28,
+        "sector": "감독·제재",
+        "title": "이찬진 금감원장 1년…투자자 보호 전면, 지배구조·금감원 거취는 안갯...",
+        "url": "http://www.metroseoul.co.kr/article/20260813500578"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8090969984078841,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "“부채비율 200% 넘으면 퇴출”…가상자산사업자 옥석가리기 본격화",
+        "url": "https://n.news.naver.com/mnews/article/009/0005720622?sid=101"
+      },
+      {
+        "cluster_size": 21,
+        "relevance_prob": 0.8359357808445061,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "가상자산사업자 진입 문턱 높인다…대주주까지 범죄·신용 심사",
+        "url": "https://n.news.naver.com/mnews/article/138/0002237745?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6078999830932252,
+        "relevance_score": 31,
+        "sector": "은행",
+        "title": "'대출 오픈런'에 결국 총량 두 배로…은행 대출 여력 60조 안팎 확대",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=692905"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.541023323878484,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "[8·13 대책] PF 지원 47조 8000억원+α로 확대…가계대출은 ‘핀셋 관리...",
+        "url": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065589058989272"
+      },
+      {
+        "cluster_size": 32,
+        "relevance_prob": 0.9069429892538993,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "美 물가 둔화에 환율 숨통…한은 8월 '백투백' 셈법 복잡",
+        "url": "https://n.news.naver.com/mnews/article/421/0009113096?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.5434757106067268,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "[8·13 부동산 대책] 투기 대출 관리하고 공급 금융 확대…정부, PF 47.8조...",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=143075"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.900762799164611,
+        "relevance_score": 21,
+        "sector": "감독·제재",
+        "title": "피해자 유인 뒤 “구속 전 신체검사” 성착취…금감원 사칭 보이스피싱...",
+        "url": "https://n.news.naver.com/mnews/article/028/0002818358?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7915749508450624,
+        "relevance_score": 22,
+        "sector": "저축은행",
+        "title": "\"저축은행 3400억 우회 지원\"...이병철 다올금융 회장 피의자 소환",
+        "url": "http://www.niceeconomy.co.kr/news/articleView.html?idxno=90526"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 1,
+      "디지털자산": 2,
+      "은행": 1,
+      "입법·정책": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 3,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 2,
+      "부동산·PF": 3,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 2,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
