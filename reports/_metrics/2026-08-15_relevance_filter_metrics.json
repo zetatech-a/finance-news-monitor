@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 39,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 9,
+  "candidate_hybrid_gray_keep_domain": 43,
+  "candidate_hybrid_gray_rule_drop": 149,
+  "candidate_hybrid_gray_rule_keep": 43,
+  "candidate_hybrid_keep_overseas_global_reference": 3,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 415,
+  "candidate_hybrid_model_drop": 56,
+  "candidate_hybrid_model_keep": 136,
+  "candidate_hybrid_model_keep_with_domain_anchor": 136,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 415,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-15",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 39,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 9,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 149,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 43,
+    "candidate_hybrid_keep_overseas_global_reference": 3,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 415,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 56,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 136
+  },
+  "dropped_count": 270,
+  "input_count": 869,
+  "kept_count": 599,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 869,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 42,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "무기 쇼핑몰 '머더헬프'…세금부터 통관까지 현실의 벽",
+      "url": "https://www.taxwatch.co.kr/article/tax/2026/08/14/0001/naver"
+    },
+    {
+      "title": "최민희 \"'5·18 재조명' 이진숙 제명 추진…鄭 평택 재선거 대처 의문\"",
+      "url": "https://www.mt.co.kr/politics/2026/08/14/2026081408483789257"
+    },
+    {
+      "title": "영암군산림조합, 소통경영으로 지속가능한 임업 성장 이끈다",
+      "url": "http://www.youngnong.co.kr/news/articleView.html?idxno=61590"
+    },
+    {
+      "title": "수출 62.8% 급증 및 생산·소비·투자 개선…민생 부담은 ‘여전’",
+      "url": "https://kidd.co.kr/news/247031"
+    },
+    {
+      "title": "초장기물 강세폭 대거 반납…국고채 금리 일제히 낙폭 축소",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4430196"
+    },
+    {
+      "title": "현대해상, 상반기 순익 36.4%↑…장기보험 손익 105.7% 증가",
+      "url": "https://www.s-journal.co.kr/news/articleView.html?idxno=43048"
+    },
+    {
+      "title": "\"올해 순이익만 '2조4000억' 전망…거침없는 삼성화재, 하반기도 쾌속 질...",
+      "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=271806"
+    },
+    {
+      "title": "\"시장 기대치 하회한 삼성생명, 믿을 건 '압도적 CSM'과 '삼성전자 특별...",
+      "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=271805"
+    },
+    {
+      "title": "본업 잘한 현대해상…상반기 순익 36% 증가",
+      "url": "https://news.dealsitetv.com/articles/174753"
+    },
+    {
+      "title": "현대해상, 상반기 순익 36.4% ↑…장기보험 이익 2배",
+      "url": "https://dealsite.co.kr/articles/167243"
+    }
+  ]
+}

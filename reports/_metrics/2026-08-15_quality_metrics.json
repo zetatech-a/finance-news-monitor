@@ -1,0 +1,256 @@
+{
+  "clusters": {
+    "cluster_count": 298,
+    "cluster_size_max": 46,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 881,
+    "displayed_articles": 190,
+    "final_tagged_representatives": 298,
+    "normalized_articles": 1207,
+    "raw_items": 1207,
+    "relevance_filtered_articles": 599,
+    "rule_filtered_articles": 869,
+    "tagged_before_cluster": 599
+  },
+  "date": "2026-08-15",
+  "generated_at": "2026-08-15T09:07:52.435658+09:00",
+  "publishers": {
+    "missing_publisher_count": 298,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 91,
+    "no_topic_ratio": 0.3054,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7442239630800409,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "“키오스크 미설치하면 과태료 낸다고요? 그거 사기입니다”",
+        "url": "https://n.news.naver.com/mnews/article/016/0002684291?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6686062942048442,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "[통일로 미래로] “낯선 세상 적응 도와요”…기부로 시작된 ‘연결의 ...",
+        "url": "https://n.news.naver.com/mnews/article/056/0012238424?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5637452110114957,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "\"카드론 더 받을 수 있을까?\"… 총량 완화에 2금융권 기대감↑",
+        "url": "https://n.news.naver.com/mnews/article/008/0005400525?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7867774693955057,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "트럼프 가문 가상 자산회사 신탁은행 가승인",
+        "url": "https://n.news.naver.com/mnews/article/003/0014129197?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7112026457802049,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "XRP 거래소 인출 급증…7년 만에 최대 비중, 바닥 다지기 신호인가",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=477663"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6905378761780673,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "회삿돈 수백억 가로채는 딥페이크부터 변태안경까지…'AI 날개 단 범죄'",
+        "url": "https://n.news.naver.com/mnews/article/421/0009115403?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7016906307761623,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "유니트리 공모 흥행 대박, 실용성 의구심 번져",
+        "url": "https://www.g-enews.com/view.php?ud=202608150636219042bd56fbc3c_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6470436525753601,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "캐피탈사 렌털 규제 완화에… 중소 렌터카업계 “시장 잠식 우려”",
+        "url": "https://n.news.naver.com/mnews/article/366/0001186489?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5963435934168778,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "주식·주택·코인 고민되시죠...알아두면 유용한 ‘3가지 꿀팁’",
+        "url": "https://n.news.naver.com/mnews/article/023/0003993172?sid=004"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6254491315864485,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "[Digital Asset In-Depth] AI가 매매하는 시대",
+        "url": "https://www.lawtimes.co.kr/news/articleView.html?idxno=224687"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 6,
+      "거시·시장": 17,
+      "기타": 118,
+      "대부": 7,
+      "디지털자산": 48,
+      "보험": 14,
+      "상호금융": 6,
+      "여전": 13,
+      "은행": 41,
+      "입법·정책": 23,
+      "자산운용·연기금": 3,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 77,
+      "감독·제재": 8,
+      "건전성·자본규제": 16,
+      "규제·가계부채": 17,
+      "금리·수수료·최고금리": 9,
+      "기업금융·익스포저": 4,
+      "디지털자산": 47,
+      "부동산·PF": 15,
+      "불법사금융·불법추심·보이스피싱": 16,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 10,
+      "서민금융·대환·채무조정": 9,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 9,
+      "연체·부실": 3,
+      "일정·브리핑": 4,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 8,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 2,
+      "해외·글로벌": 5,
+      "환율·외환": 3
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 19,
+        "relevance_prob": 0.8757129198039697,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "코빗 인수하자마자 500억 수혈…미래에셋, 디지털금융 판 키운다",
+        "url": "https://www.techm.kr/news/articleView.html?idxno=154305"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8260919996478351,
+        "relevance_score": 25,
+        "sector": "감독·제재",
+        "title": "금융위·금감원 세종행 가닥…금융노조, 내달 총파업",
+        "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5051348"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8786987856914075,
+        "relevance_score": 26,
+        "sector": "입법·정책",
+        "title": "이억원 금융위원장 \"실수요자 자금 지원에 총력\" 주문",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=748042"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6898840641482813,
+        "relevance_score": 26,
+        "sector": "여전",
+        "title": "실수요 대출 확 푼다더니…\"새벽부터 광클\" 카뱅 오픈런 여전, 왜?",
+        "url": "https://n.news.naver.com/mnews/article/008/0005400323?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.738721411184538,
+        "relevance_score": 23,
+        "sector": "감독·제재",
+        "title": "이찬진號 금감원 1년 어땠나",
+        "url": "http://www.00news.co.kr/news/articleView.html?idxno=105882"
+      },
+      {
+        "cluster_size": 23,
+        "relevance_prob": 0.6805632716210108,
+        "relevance_score": 22,
+        "sector": "대부",
+        "title": "연 6000%대 고리·불법추심…싱글맘 죽음 내몬 사채업자 2심서 감형",
+        "url": "https://n.news.naver.com/mnews/article/654/0000195352?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8025242501388843,
+        "relevance_score": 22,
+        "sector": "상호금융",
+        "title": "예금·대출 많이 해야 대의원?…새마을금고중앙회 '감독책임'도 수술대",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=347650"
+      },
+      {
+        "cluster_size": 35,
+        "relevance_prob": 0.8440027721400325,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "두나무 2Q 영업이익 235억원…전년비 85%↓",
+        "url": "https://n.news.naver.com/mnews/article/648/0000049855?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7186210555679207,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "금감원, 은행 대출총량 재조정 착수…'8.13 대책' 후속 조치 속도",
+        "url": "https://n.news.naver.com/mnews/article/003/0014129180?sid=101"
+      },
+      {
+        "cluster_size": 46,
+        "relevance_prob": 0.8005672113782284,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "“기준금리 인상 사이클 진입”…주담대 자본규제 겹쳐 더 오를 듯",
+        "url": "https://n.news.naver.com/mnews/article/011/0004651927?sid=101"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "여전": 1,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 2,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "정책·제도개선": 1,
+      "해외·글로벌": 1
+    }
+  }
+}

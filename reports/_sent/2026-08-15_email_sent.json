@@ -1,0 +1,11 @@
+{
+  "report_date": "2026-08-15",
+  "sent_at_utc": "2026-08-15T00:07:55.785467Z",
+  "sent_at_kst": "2026-08-15T09:07:55.785467+09:00",
+  "workflow_run_id": "31852204798",
+  "workflow_attempt": "1",
+  "github_sha": "7b48c59e1fb8a9ea565f2abafd3254dff8b23abd",
+  "trigger_event": "workflow_dispatch",
+  "collection_end_hhmm": "0855",
+  "report_path": "reports/2026-08-15.html"
+}
