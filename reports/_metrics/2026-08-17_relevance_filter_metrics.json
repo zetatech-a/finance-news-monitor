@@ -1,0 +1,92 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 0,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 4,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 0,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 17,
+  "candidate_hybrid_gray_rule_drop": 50,
+  "candidate_hybrid_gray_rule_keep": 17,
+  "candidate_hybrid_keep_overseas_global_reference": 3,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 91,
+  "candidate_hybrid_model_drop": 34,
+  "candidate_hybrid_model_keep": 31,
+  "candidate_hybrid_model_keep_with_domain_anchor": 31,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 91,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-17",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 4,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 7,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 50,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 17,
+    "candidate_hybrid_keep_overseas_global_reference": 3,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 91,
+    "candidate_hybrid_model_drop_prob_le_threshold": 34,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 31
+  },
+  "dropped_count": 97,
+  "input_count": 242,
+  "kept_count": 145,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 242,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 20,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "R&D·투자 세액공제 지방은 최대 1.5배…지방銀 기업대출 '새 먹거리' 되...",
+      "url": "https://news.tf.co.kr/read/economy/2354268.htm"
+    },
+    {
+      "title": "반도체 착시 뒤 가려진 2000조 가계빚",
+      "url": "https://www.pennmike.com/news/articleView.html?idxno=125784"
+    },
+    {
+      "title": "[이종범의 60+Life story] 병이 아니라 '생활의 붕괴'가 노후를 무너뜨린...",
+      "url": "https://www.insnews.co.kr/news/articleView.html?idxno=92307"
+    },
+    {
+      "title": "[시론] 소비자지향적 보험상품설명서, 무엇이 달라져야 하나",
+      "url": "https://www.insnews.co.kr/news/articleView.html?idxno=92232"
+    },
+    {
+      "title": "30조 더 풀지만…5대銀 '추가 한도'가 가계대출 영업 가른다",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=671061"
+    },
+    {
+      "title": "\"꼼수 부르는 모호한 정책\"…부랴부랴 세부기분 마련하는 정부",
+      "url": "https://www.nocutnews.co.kr/news/6563551?utm_source=naver&utm_medium=article&utm_campaign=20260817050103"
+    },
+    {
+      "title": "주담대 지켜라… 마통부터 잠그는 은행들",
+      "url": "https://www.seoul.co.kr/news/economy/2026/08/17/20260817008002?wlog_tag3=naver"
+    },
+    {
+      "title": "주식 ‘빚투’ 급증… 가계 빚 2000조원 넘었다",
+      "url": "https://www.chosun.com/economy/economy_general/2026/08/17/FCTDRIVGVNHS3KRBEM3XOOSCWQ/?utm_source=naver&utm_medium=referral&utm_campaign=naver-news"
+    },
+    {
+      "title": "신규 대출여력 30조 금융권 배분 본격 착수…대출 오픈런 숨통 트일까?",
+      "url": "https://www.econovill.com/news/articleView.html?idxno=748131"
+    },
+    {
+      "title": "30조 풀면 '대출 오픈런' 끝날까…은행별 배분이 관건",
+      "url": "https://www.daejonilbo.com/news/articleView.html?idxno=2294743"
+    }
+  ]
+}

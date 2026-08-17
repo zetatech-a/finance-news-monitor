@@ -1,0 +1,258 @@
+{
+  "clusters": {
+    "cluster_count": 108,
+    "cluster_size_max": 21,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 243,
+    "displayed_articles": 63,
+    "final_tagged_representatives": 108,
+    "normalized_articles": 371,
+    "raw_items": 371,
+    "relevance_filtered_articles": 145,
+    "rule_filtered_articles": 242,
+    "tagged_before_cluster": 145
+  },
+  "date": "2026-08-17",
+  "generated_at": "2026-08-17T09:03:41.694332+09:00",
+  "publishers": {
+    "missing_publisher_count": 108,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 42,
+    "no_topic_ratio": 0.3889,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6861023042742205,
+        "relevance_score": 0,
+        "sector": "기타",
+        "title": "[AI 부채의 함정(하)] 英 금융당국, AWS·구글·MS·오라클 직접감독…금...",
+        "url": "https://www.the-today.com/news/articleView.html?idxno=88548"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5783236382196613,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "KT, 비실명 가입자 회선 정리…26일부터 발신 정지",
+        "url": "https://n.news.naver.com/mnews/article/031/0001050123?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5626246844024831,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "광복절 대체공휴일 17일 은행·택배·병원·약국 영업 여부는?",
+        "url": "https://www.gukjenews.com/news/articleView.html?idxno=3666258"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6124801853055971,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "롯데카드 해킹사고 후 1년…남은 과제는 '신뢰 회복'",
+        "url": "https://www.asiatime.co.kr/article/20260813500362"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7075068064555936,
+        "relevance_score": 8,
+        "sector": "보험",
+        "title": "[보험사 M&A] [KDB생명] 한투의 보험사 인수 승부수, ‘십년지대계’",
+        "url": "https://www.topdaily.kr/articles/111492"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6960208051442458,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "부동산 세제개편, ‘덜 똘똘한 한 채’는 어찌할 것인가",
+        "url": "https://n.news.naver.com/mnews/article/308/0000038639?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6115155594246767,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "필름 끊긴 그날 밤, 성추행범 나락 위기…女 사장의 모함 탐정이 찾았다...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002684601?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6737222123761615,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "카우프로토콜 급락·디라이브 급등·리플XRP 보합…비트코인 저항에 관...",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16165069"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7330921068089636,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "17조 인천시금고 잡아라…5대 은행들, 지자체 금고에 '군침'",
+        "url": "https://www.lcnews.co.kr/news/articleView.html?idxno=206597"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7466721578621479,
+        "relevance_score": 4,
+        "sector": "입법·정책",
+        "title": "리플 CEO, 와이오밍 블록체인 심포지엄 '출격'…XRP 커뮤니티 촉각",
+        "url": "https://www.g-enews.com/view.php?ud=202608170632491175e250e8e188_1"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 1,
+      "거시·시장": 11,
+      "기타": 53,
+      "대부": 1,
+      "디지털자산": 11,
+      "보험": 3,
+      "상호금융": 9,
+      "여전": 4,
+      "은행": 8,
+      "입법·정책": 5,
+      "자산운용·연기금": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 24,
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 7,
+      "금리·수수료·최고금리": 8,
+      "기업금융·익스포저": 2,
+      "디지털자산": 11,
+      "물가·경기지표": 1,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 6,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 9,
+      "서민금융·대환·채무조정": 2,
+      "소비자보호·민원·불완전판매": 1,
+      "연체·부실": 6,
+      "일정·브리핑": 3,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 2,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 3,
+      "해외·글로벌": 3,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 21,
+        "relevance_prob": 0.8656574530312826,
+        "relevance_score": 39,
+        "sector": "거시·시장",
+        "title": "영끌·빚투에 가계빚 사상 첫 2000조…기준금리 인상땐 치명타",
+        "url": "https://n.news.naver.com/mnews/article/009/0005721802?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8609160655533479,
+        "relevance_score": 36,
+        "sector": "기타",
+        "title": "가계부채 증가분 78% 주담대가 차지",
+        "url": "https://n.news.naver.com/mnews/article/009/0005721742?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5444946841738554,
+        "relevance_score": 25,
+        "sector": "여전",
+        "title": "[27주년 창간 특집] 2026 카드사 리스크… 순익 줄고 연체 늘었다",
+        "url": "http://www.economytalk.kr/news/articleView.html?idxno=423326"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.5348192122383192,
+        "relevance_score": 20,
+        "sector": "은행",
+        "title": "가계빚 첫 2000조 눈앞…‘대출 오픈런’에 금융권 총량 재배분",
+        "url": "https://n.news.naver.com/mnews/article/025/0003544668?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8809838902820664,
+        "relevance_score": 15,
+        "sector": "여전",
+        "title": "조달비용·연체율 상승 우려에 카드사 중금리대출 공급 ‘속도 조절’",
+        "url": "https://www.mediapen.com/news/view/1116770"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.687279920665538,
+        "relevance_score": 18,
+        "sector": "여전",
+        "title": "1금융서 밀린 저신용자, 카드론 의존…고금리 비중 늘었다",
+        "url": "https://n.news.naver.com/mnews/article/421/0009116633?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7818638071860939,
+        "relevance_score": 16,
+        "sector": "상호금융",
+        "title": "집단대출 별도 관리에…상호금융 여력 생기나",
+        "url": "https://n.news.naver.com/mnews/article/374/0000527753?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7250584537929049,
+        "relevance_score": 17,
+        "sector": "거시·시장",
+        "title": "10년물 4.694%, 미 장기금리 이번 주 시험대",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/391625"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6311035557254401,
+        "relevance_score": 14,
+        "sector": "IB·자본시장",
+        "title": "이번 주 채권 4.7조 발행 예정…롯데건설 등 수요예측",
+        "url": "https://n.news.naver.com/mnews/article/001/0016254099?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5497522217787284,
+        "relevance_score": 12,
+        "sector": "감독·제재",
+        "title": "64조원 몰린 은행 ETF 신탁…금감원, 본격 판매 실태 검사",
+        "url": "https://www.newstnt.com/news/articleView.html?idxno=714094"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 1,
+      "거시·시장": 2,
+      "기타": 1,
+      "상호금융": 1,
+      "여전": 3,
+      "은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 3,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 3,
+      "기업금융·익스포저": 1,
+      "상품·영업·예금금리": 3,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 2,
+      "자금시장·유동성": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
