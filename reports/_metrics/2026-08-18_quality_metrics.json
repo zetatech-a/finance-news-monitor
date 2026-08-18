@@ -1,0 +1,257 @@
+{
+  "clusters": {
+    "cluster_count": 171,
+    "cluster_size_max": 29,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 501,
+    "displayed_articles": 112,
+    "final_tagged_representatives": 171,
+    "normalized_articles": 847,
+    "raw_items": 847,
+    "relevance_filtered_articles": 288,
+    "rule_filtered_articles": 498,
+    "tagged_before_cluster": 288
+  },
+  "date": "2026-08-18",
+  "generated_at": "2026-08-18T09:05:43.386491+09:00",
+  "publishers": {
+    "missing_publisher_count": 171,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 67,
+    "no_topic_ratio": 0.3918,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7317237460476483,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[오늘의 비트코인] 금리인상 기대 약화…6만4000달러 반등",
+        "url": "https://news.dealsitetv.com/articles/174840"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7115587026463304,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "현대해상, 2분기 '깜짝 실적'…증권가 목표가 줄상향[애널리스트의 시각...",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026081808120173374"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7679984666954446,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코인원, 브랜드 캠페인 본격화",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=748171"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6270615322347176,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[아주경제 코이너스 브리핑] 비트코인 6만4000달러대 회복…美달러 약세...",
+        "url": "https://www.ajunews.com/view/20260818081806303"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7612827192844259,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코인원, ‘주식투자 바로가기’ 앞세운 브랜드 캠페인 본격화",
+        "url": "https://www.etoday.co.kr/news/view/2615252"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5918682765420228,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "순이익 3.7배 SK증권···IB는 적자",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=704361"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7050004658852935,
+        "relevance_score": 5,
+        "sector": "대부",
+        "title": "KDB생명 매각 성공…JKL 1.5조원 고수·최윤 회장 대부업 이력 걸림돌",
+        "url": "https://www.nspna.com/news/?mode=view&newsid=824353"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7365582179359224,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코인원, 핵심 서비스 알린다..2026 브랜드 캠페인 메인 영상 공개",
+        "url": "https://kpenews.com/View.aspx?No=4189065"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6429303920517263,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "(투자계약의 그림자)② 김종민 '연대책임 제한' 입법…신기사 규제 공백...",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1310502&inflow=N"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.597891257737564,
+        "relevance_score": 14,
+        "sector": "기타",
+        "title": "가계빚 2000조 시대, 아파트값을 떠받친 힘은 오래가지 못한다",
+        "url": "https://www.betanews.net/article/view/beta202608170028"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 2,
+      "거시·시장": 18,
+      "기타": 64,
+      "대부": 4,
+      "디지털자산": 28,
+      "보험": 2,
+      "상호금융": 10,
+      "여전": 2,
+      "은행": 23,
+      "입법·정책": 11,
+      "자산운용·연기금": 4,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 22,
+      "감독·제재": 2,
+      "건전성·자본규제": 2,
+      "규제·가계부채": 6,
+      "금리·수수료·최고금리": 25,
+      "기업금융·익스포저": 3,
+      "디지털자산": 20,
+      "부동산·PF": 10,
+      "불법사금융·불법추심·보이스피싱": 7,
+      "상품·영업·예금금리": 12,
+      "서민금융·대환·채무조정": 8,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 12,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 1,
+      "증시·시장시황": 5,
+      "칼럼·오피니언": 9,
+      "해외·글로벌": 13,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7831907535534507,
+        "relevance_score": 29,
+        "sector": "대부",
+        "title": "상호금융, PF 규제에 '삼중고'…부실채권 정리 조직 키운다",
+        "url": "https://www.m-i.kr/news/articleView.html?idxno=1402414"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7539246435694527,
+        "relevance_score": 26,
+        "sector": "상호금융",
+        "title": "고영철 신협중앙회장, 자산관리 투트랙으로 건전성 제고 [상호금융 경영...",
+        "url": "https://www.fntimes.com/html/view.php?ud=202608142152131124dd55077bc2_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7372547577300471,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "[DQN] 신한 RWA 10.3%↑·우리 연체율 0.62%…PF 확대 앞둔 은행권 '선별...",
+        "url": "https://www.fntimes.com/html/view.php?ud=2026081316000645925e6e69892f_18"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.8320682654488522,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "두나무·빗썸, 상반기 매출 절반 줄어…거래 위축에 실적 급감",
+        "url": "http://www.paxetv.com/news/articleView.html?idxno=279570"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8179325893119939,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "‘싱글맘 죽음 내몬’ 불법추심 사채업자, 2심서 감형…징역 3년 6개월",
+        "url": "https://n.news.naver.com/mnews/article/011/0004652278?sid=102"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.6900712584397722,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "[社告] AI 금융, 엄청난 기회와 위험의 공존…20일 ‘ 금융 AX 리스크 & ...",
+        "url": "https://n.news.naver.com/mnews/article/138/0002238035?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7553687598163995,
+        "relevance_score": 24,
+        "sector": "자산운용·연기금",
+        "title": "널뛰는 증시에 ‘분산 ETF’ 뜬다…채권·금·배당으로 방어",
+        "url": "https://n.news.naver.com/mnews/article/011/0004652351?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6601388738747983,
+        "relevance_score": 21,
+        "sector": "은행",
+        "title": "가계빚 2000조원 시대 눈앞…주담대·신용대출 동반 증가",
+        "url": "https://www.polinews.co.kr/news/articleView.html?idxno=740378"
+      },
+      {
+        "cluster_size": 29,
+        "relevance_prob": 0.8681245107410485,
+        "relevance_score": 20,
+        "sector": "거시·시장",
+        "title": "강남 그린벨트 푼다…수서차량기지 등 7만 가구 공급",
+        "url": "https://n.news.naver.com/mnews/article/011/0004652349?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8707209841227274,
+        "relevance_score": 20,
+        "sector": "디지털자산",
+        "title": "코인거래 급감에 두나무·빗썸 실적 ‘반토막’",
+        "url": "https://n.news.naver.com/mnews/article/648/0000049899?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "거시·시장": 1,
+      "대부": 2,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "은행": 2,
+      "입법·정책": 1,
+      "자산운용·연기금": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 2,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 2,
+      "기업금융·익스포저": 1,
+      "디지털자산": 2,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 1,
+      "연체·부실": 2
+    }
+  }
+}

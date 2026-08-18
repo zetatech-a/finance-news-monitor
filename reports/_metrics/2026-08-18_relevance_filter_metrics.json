@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 58,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 24,
+  "candidate_hybrid_gray_rule_drop": 67,
+  "candidate_hybrid_gray_rule_keep": 24,
+  "candidate_hybrid_keep_overseas_global_reference": 17,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 185,
+  "candidate_hybrid_model_drop": 51,
+  "candidate_hybrid_model_keep": 59,
+  "candidate_hybrid_model_keep_with_domain_anchor": 59,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 185,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-18",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 58,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 21,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 67,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 24,
+    "candidate_hybrid_keep_overseas_global_reference": 17,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 185,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 51,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 59
+  },
+  "dropped_count": 210,
+  "input_count": 498,
+  "kept_count": 288,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 498,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 25,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[AI 부채의 함정(하)] 英 금융당국, AWS·구글·MS·오라클 직접감독…금...",
+      "url": "https://www.the-today.com/news/articleView.html?idxno=88548"
+    },
+    {
+      "title": "재난 예산으로 메운 '속 빈 흑자'… 영양군산림조합, 특수 끝나면 거대...",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2459925"
+    },
+    {
+      "title": "현대해상, 실손 ‘1.3조 부담’ 줄어드나… 순익 36% 늘고 ‘배당’ 청신...",
+      "url": "https://m.skyedaily.com/news_view.html?ID=309886"
+    },
+    {
+      "title": "실손·車보험 누수 막는다…병원·정비업체까지 '정조준'",
+      "url": "https://www.ntoday.co.kr/news/articleView.html?idxno=128792"
+    },
+    {
+      "title": "비트코인 8931만 원대 횡보, 가상화폐 활용성 놓고 회의론 제기",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=444900"
+    },
+    {
+      "title": "[더벨][thebell interview] 정진호 케이뱅크 의장 \"이사회는 실패를 본다...",
+      "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202608110919368240107178"
+    },
+    {
+      "title": "[핀테크핫이슈] 대출 숨통 트이나...스크래핑 순차 축소 가닥",
+      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=693535"
+    },
+    {
+      "title": "가계대출 총량 늘어난다…증가율 0.5%인 국민·신한, 잔액 확대되나",
+      "url": "https://www.ceoscoredaily.com/page/view/2026081415233783016"
+    },
+    {
+      "title": "정진완 우리은행장 연임 적신호…'행장 잔혹사' 끊을 수 있을까",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5051403"
+    },
+    {
+      "title": "하반기 주담대 한도 푼다…가계대출 30조 숨통",
+      "url": "https://www.ziksir.com/news/articleView.html?idxno=143237"
+    }
+  ]
+}
