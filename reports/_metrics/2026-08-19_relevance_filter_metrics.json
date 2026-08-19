@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 10,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 104,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 37,
+  "candidate_hybrid_gray_rule_drop": 172,
+  "candidate_hybrid_gray_rule_keep": 37,
+  "candidate_hybrid_keep_overseas_global_reference": 45,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 255,
+  "candidate_hybrid_model_drop": 32,
+  "candidate_hybrid_model_keep": 76,
+  "candidate_hybrid_model_keep_with_domain_anchor": 76,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 255,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-19",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 10,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 104,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 9,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 172,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 37,
+    "candidate_hybrid_keep_overseas_global_reference": 45,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 255,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 32,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 76
+  },
+  "dropped_count": 348,
+  "input_count": 765,
+  "kept_count": 417,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 765,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 36,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "주담대 금리 또 오른다···최저 신한 4.23%·최고 농협 7.01% (종합)",
+      "url": "https://www.seoulfn.com/news/articleView.html?idxno=635894"
+    },
+    {
+      "title": "반도체로 번 돈 全국민에 44만원씩 쏜다…대만 ‘AI보너스’",
+      "url": "https://www.dt.co.kr/article/12078715?ref=naver"
+    },
+    {
+      "title": "[금융톡톡] 농협은행 아시안게임 출정식·신한은행 슈퍼SOL 콘텐츠 수상...",
+      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=850670"
+    },
+    {
+      "title": "부울경 산림조합장들, 국비 확보·산림조합법 개정 등 현안 공유",
+      "url": "https://www.aflnews.co.kr/news/articleView.html?idxno=326485"
+    },
+    {
+      "title": "[데스크의 눈] 관치금융이 빚어낸 레버리지 참사",
+      "url": "https://www.segye.com/newsView/20260818519199?OutUrl=naver"
+    },
+    {
+      "title": "\"7월 관리급여 도입 수혜…현대해상, 도수치료 보험금 월 70억 절감 효과...",
+      "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=271927"
+    },
+    {
+      "title": "덜 팔아야 더 번다…보험주 반격의 조건[클릭e산업]",
+      "url": "https://view.asiae.co.kr/article/2026081816435247861"
+    },
+    {
+      "title": "내부통제 인력 늘린 우리銀…실효성은 '글쎄'",
+      "url": "https://www.kbanker.co.kr/news/articleView.html?idxno=225689"
+    },
+    {
+      "title": "\"큰 위험 확실히 관리\"...단일 레버리지 사태로 드러난 금투협회장의 공...",
+      "url": "https://news.bizwatch.co.kr/article/market/2026/08/12/0025"
+    },
+    {
+      "title": "롯데카드 매각 본격화···'살 능력' 충분한 금융지주가 머뭇거리는 이...",
+      "url": "https://www.sisajournal-e.com/news/articleView.html?idxno=423135"
+    }
+  ]
+}

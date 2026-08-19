@@ -1,0 +1,260 @@
+{
+  "clusters": {
+    "cluster_count": 258,
+    "cluster_size_max": 52,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.7451073222178618,
+        "relevance_score": 16,
+        "sector": "거시·시장",
+        "title": "치솟는 美 국채금리에 원·달러 오를까…1410원대 등락",
+        "url": "https://n.news.naver.com/mnews/article/003/0014132099?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 775,
+    "displayed_articles": 177,
+    "final_tagged_representatives": 258,
+    "normalized_articles": 1055,
+    "raw_items": 1055,
+    "relevance_filtered_articles": 417,
+    "rule_filtered_articles": 765,
+    "tagged_before_cluster": 417
+  },
+  "date": "2026-08-19",
+  "generated_at": "2026-08-19T09:07:45.729555+09:00",
+  "publishers": {
+    "missing_publisher_count": 258,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 94,
+    "no_topic_ratio": 0.3643,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5785407511186295,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[현장] 창동 다우아트리체 채권단, MG신용정보 본사 앞 집회 \"위탁자 권...",
+        "url": "http://www.financialreview.co.kr/news/articleView.html?idxno=44260"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7968279218793481,
+        "relevance_score": 17,
+        "sector": "기타",
+        "title": "[5대 금융 대해부③]'국(KB)·신·하·우·농' 회장 리더십은?",
+        "url": "https://n.news.naver.com/mnews/article/050/0000109849?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7228444401810548,
+        "relevance_score": 15,
+        "sector": "감독·제재",
+        "title": "차파트너스자산운용, 금융당국 수시검사 결과 '수정의결'",
+        "url": "http://www.newslock.co.kr/news/articleView.html?idxno=134497"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7365053446154434,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "버뮤다 총리·OKX 창업자 서울 온다…KBW2026 연사 공개",
+        "url": "https://n.news.naver.com/mnews/article/008/0005401641?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7658198993088843,
+        "relevance_score": 5,
+        "sector": "보험",
+        "title": "한화손보, 성장세 키워드 '여성보험·GA영업'",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=857479"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7652783514742403,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "SEC \"증권 등록없이도 최대 1000억원 토큰 펀딩\"(종합)",
+        "url": "https://n.news.naver.com/mnews/article/018/0006353844?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8123010965102722,
+        "relevance_score": 10,
+        "sector": "디지털자산",
+        "title": "비트코인 약세에 거래소 자산가치 '뚝'",
+        "url": "https://www.jnilbo.com/news/articleView.html?idxno=90000057709"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6434929043830364,
+        "relevance_score": 16,
+        "sector": "은행",
+        "title": "공공기관 지방이전 '안갯속'…금융권 총파업 초읽기",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=363800"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6856767532012132,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "[연합뉴스 이 시각 헤드라인] - 07:30",
+        "url": "https://n.news.naver.com/mnews/article/001/0016257489?sid=102"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.5667575744786227,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"12년생이다. 네 부모 건드릴까\" 경찰에 욕설…영상까지 찍은 '촉법소년...",
+        "url": "https://n.news.naver.com/mnews/article/448/0000634260?sid=102"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 9,
+      "거시·시장": 32,
+      "기타": 91,
+      "대부": 6,
+      "디지털자산": 26,
+      "보험": 16,
+      "상호금융": 13,
+      "여전": 4,
+      "은행": 37,
+      "입법·정책": 14,
+      "자산운용·연기금": 2,
+      "저축은행": 5
+    },
+    "topic_counts": {
+      "가계대출·부채": 28,
+      "감독·제재": 4,
+      "건전성·자본규제": 19,
+      "규제·가계부채": 5,
+      "금리·수수료·최고금리": 27,
+      "기업금융·익스포저": 5,
+      "디지털자산": 30,
+      "부동산·PF": 9,
+      "불법사금융·불법추심·보이스피싱": 13,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 17,
+      "서민금융·대환·채무조정": 13,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 12,
+      "자금시장·유동성": 7,
+      "정책·제도개선": 1,
+      "증시·시장시황": 11,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 24,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7902378893810696,
+        "relevance_score": 28,
+        "sector": "입법·정책",
+        "title": "금융사 91% 서울에 있는데…금감원 지방이전설 '시끌'",
+        "url": "https://n.news.naver.com/mnews/article/417/0001155674?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6020588702917734,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "지방 이전설에 금감원 노조 반발…\"파업·집회 등 집단행동도 검토\"",
+        "url": "http://www.newsian.co.kr/news/articleView.html?idxno=93855"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.6350591371083386,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "장기연체채권의 족쇄를 풀자",
+        "url": "https://n.news.naver.com/mnews/article/047/0002525834?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7089408249670097,
+        "relevance_score": 19,
+        "sector": "IB·자본시장",
+        "title": "보험 M&A 철수 신한·하나금융…\"회사는 탐나지만 자본이 아깝다\"",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1720691"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.64602702225196,
+        "relevance_score": 21,
+        "sector": "입법·정책",
+        "title": "2차 공공기관 이전 발표 임박···'세종行' 가닥에 금융위·금감원 노조...",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=635863"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8005892061062498,
+        "relevance_score": 20,
+        "sector": "감독·제재",
+        "title": "금융사 검사 하려 1년 내내 2만8000명 '서울 출장' 대이동 할판",
+        "url": "https://n.news.naver.com/mnews/article/008/0005401410?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6645289835102292,
+        "relevance_score": 19,
+        "sector": "감독·제재",
+        "title": "금감원 노조, 지방 이전 파업·집회 검토… 사측에 논의 요청",
+        "url": "https://n.news.naver.com/mnews/article/366/0001186792?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.886859132370039,
+        "relevance_score": 17,
+        "sector": "상호금융",
+        "title": "충청 상호금융 부실 PF 사업장 정리 '장기전'…매각 난항",
+        "url": "https://n.news.naver.com/mnews/article/656/0000184332?sid=101"
+      },
+      {
+        "cluster_size": 14,
+        "relevance_prob": 0.8937600696151264,
+        "relevance_score": 20,
+        "sector": "디지털자산",
+        "title": "[더벨]신한운용, 신사업총괄 영입…디지털자산 사업 속도",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202608130918050780109623"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7239325678323332,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "금감원, 2027년도 종합직원 5급  95명 채용…19일 접수",
+        "url": "http://www.4th.kr/news/articleView.html?idxno=2116532"
+      }
+    ],
+    "no_topic_count": 6,
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 3,
+      "대부": 1,
+      "디지털자산": 1,
+      "상호금융": 1,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "건전성·자본규제": 1,
+      "디지털자산": 1,
+      "부동산·PF": 1,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 1
+    }
+  }
+}
