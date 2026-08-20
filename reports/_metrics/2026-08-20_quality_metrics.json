@@ -1,0 +1,269 @@
+{
+  "clusters": {
+    "cluster_count": 375,
+    "cluster_size_max": 93,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 93,
+        "relevance_prob": 0.8016603644973713,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "환율 1300원대 진입에도…美국채·유가 상승 속 한은 '고심'",
+        "url": "https://n.news.naver.com/mnews/article/119/0003123116?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1184,
+    "displayed_articles": 276,
+    "final_tagged_representatives": 375,
+    "normalized_articles": 1540,
+    "raw_items": 1540,
+    "relevance_filtered_articles": 660,
+    "rule_filtered_articles": 1178,
+    "tagged_before_cluster": 660
+  },
+  "date": "2026-08-20",
+  "generated_at": "2026-08-20T09:13:55.584974+09:00",
+  "publishers": {
+    "missing_publisher_count": 375,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 123,
+    "no_topic_ratio": 0.328,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6966041145470345,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "대체불가능회사, 내달 12일 코넛코인 서울 밋업…RWA 비전 공개",
+        "url": "https://n.news.naver.com/mnews/article/018/0006354607?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6614005063651013,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "[더벨][Company Watch] 아톤, '리밸런싱 효과'…이익률 18% 확대",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202608191447155040104144"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7415464385460079,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "바이낸스, 11월 방콕서 블록체인 위크 개최",
+        "url": "https://www.etoday.co.kr/news/view/2616190"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.548462958687129,
+        "relevance_score": 14,
+        "sector": "은행",
+        "title": "지방 가는 데 수천억 쓰고도 서울 출장 교통비까지…금융기관 이전, ‘...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002685915?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6886460666806737,
+        "relevance_score": 11,
+        "sector": "여전",
+        "title": "카드사, 경남 수해 고객 지원…카드대금 최대 6개월 유예",
+        "url": "https://thetracker.co.kr/View.aspx?No=4192235"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6325634929364428,
+        "relevance_score": 8,
+        "sector": "여전",
+        "title": "카드업계, 경남 집중호우 극복에 최장 6개월 청구유예",
+        "url": "https://n.news.naver.com/mnews/article/016/0002685901?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6943002341253056,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "애플페이 약발 줄고, PLCC 경쟁 격화에도…현대카드, 독자 브랜드로 성...",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=225306"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7981680003698309,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "거래대금 한파에 갈라진 거래소 전략…업비트는 투자, 빗썸은 긴축, 코...",
+        "url": "http://coinreaders.com/253684"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6501915443101707,
+        "relevance_score": 4,
+        "sector": "입법·정책",
+        "title": "트럼프 \"역외서 운영되는 하이퍼리퀴드 미국 내 합법화 추진\"",
+        "url": "https://n.news.naver.com/mnews/article/018/0006354537?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5851614105969443,
+        "relevance_score": 8,
+        "sector": "대부",
+        "title": "[보험사 M&A 점검①] KDB생명·예별손보 우협 선정 완료…남은 관문은 제...",
+        "url": "https://www.news2day.co.kr/article/20260819500295"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 6,
+      "감독·제재": 5,
+      "거시·시장": 61,
+      "기타": 109,
+      "대부": 7,
+      "디지털자산": 63,
+      "보험": 14,
+      "상호금융": 14,
+      "여전": 12,
+      "은행": 52,
+      "입법·정책": 22,
+      "자산운용·연기금": 3,
+      "저축은행": 5,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 52,
+      "감독·제재": 2,
+      "건전성·자본규제": 14,
+      "규제·가계부채": 20,
+      "금리·수수료·최고금리": 47,
+      "기업금융·익스포저": 9,
+      "디지털자산": 69,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 16,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 17,
+      "서민금융·대환·채무조정": 5,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 11,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 18,
+      "정책·제도개선": 5,
+      "증시·시장시황": 18,
+      "칼럼·오피니언": 13,
+      "해외·글로벌": 50,
+      "환율·외환": 15
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8178923457819024,
+        "relevance_score": 31,
+        "sector": "은행",
+        "title": "금융수도 ‘서울’ 쪼개지나…당국은 세종·국책은행은 지방으로?",
+        "url": "https://n.news.naver.com/mnews/article/123/0002388617?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9416535222882589,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "FIU, 가상자산 거래소 '법인 계좌 현금 보유 현황' 자료 요청",
+        "url": "https://n.news.naver.com/mnews/article/001/0016259318?sid=101"
+      },
+      {
+        "cluster_size": 93,
+        "relevance_prob": 0.8016603644973713,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "환율 1300원대 진입에도…美국채·유가 상승 속 한은 '고심'",
+        "url": "https://n.news.naver.com/mnews/article/119/0003123116?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7294453045776037,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "금감원 지방이전 논란…해외 사례 보니 \"금융중심지와 밀착\"",
+        "url": "https://n.news.naver.com/mnews/article/421/0009122420?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8963069042088666,
+        "relevance_score": 21,
+        "sector": "감독·제재",
+        "title": "검사·금감원 직원 사칭…70대에 3억5천만원 가로챈 피싱조직원 검거",
+        "url": "https://n.news.naver.com/mnews/article/003/0014136550?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7339655823882729,
+        "relevance_score": 20,
+        "sector": "보험",
+        "title": "한화생명, 금리 50bp 상승 때 킥스 160%",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/393140"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8078730810927147,
+        "relevance_score": 22,
+        "sector": "여전",
+        "title": "카드사, 수수료·카드론 양쪽 막혔다… 상반기 순익 늘어도 수익성 '고...",
+        "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=726424"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7441817515106057,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "[금융人사이트] 오경석, '업비트 다음' 그린다…두나무 온체인 금융 승...",
+        "url": "https://www.techm.kr/news/articleView.html?idxno=154428"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7110860089444399,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "NH농협은행, 변동형 주담대 20일부터 재개",
+        "url": "http://www.4th.kr/news/articleView.html?idxno=2116582"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8788601999849015,
+        "relevance_score": 25,
+        "sector": "보험",
+        "title": "\"금융인의 꿈 한자리에\" 2026 금융권 공동채용 박람회 개막",
+        "url": "http://www.newsprime.co.kr/news/article.html?no=744287"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 1,
+      "디지털자산": 2,
+      "보험": 2,
+      "여전": 1,
+      "은행": 2,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 3,
+      "디지털자산": 2,
+      "상품·영업·예금금리": 1,
+      "업계동정·사회공헌": 1,
+      "자금시장·유동성": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 8,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 126,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 25,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 35,
+  "candidate_hybrid_gray_rule_drop": 263,
+  "candidate_hybrid_gray_rule_keep": 35,
+  "candidate_hybrid_keep_overseas_global_reference": 61,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 8,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 403,
+  "candidate_hybrid_model_drop": 71,
+  "candidate_hybrid_model_keep": 153,
+  "candidate_hybrid_model_keep_with_domain_anchor": 153,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 403,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-20",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 8,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 126,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 16,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 25,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 263,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 35,
+    "candidate_hybrid_keep_overseas_global_reference": 61,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 8,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 403,
+    "candidate_hybrid_model_drop_prob_le_threshold": 71,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 153
+  },
+  "dropped_count": 518,
+  "input_count": 1178,
+  "kept_count": 660,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1178,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 91,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[현장스케치] KB·현대캐피탈 등 캐피탈사도 신입 채용…\"스펙보다 경험...",
+      "url": "https://www.fntimes.com/html/view.php?ud=2026081917332162778a55064dd1_18"
+    },
+    {
+      "title": "불법 대출 전단지 찍어준 인쇄소… “불법인줄 몰랐다” 발뺌하면 처벌...",
+      "url": "https://www.munhwa.com/article/11610438?ref=naver"
+    },
+    {
+      "title": "“장사해봐야 빚” 벼랑 끝 자영업자",
+      "url": "https://magazine.hankyung.com/business/article/202608190123b"
+    },
+    {
+      "title": "케이뱅크, 소송관리 시스템 구축 본격화…\"부실 채권관리 표준화\"",
+      "url": "https://www.sisaon.co.kr/news/articleView.html?idxno=203634"
+    },
+    {
+      "title": "신한금융, 역대 최대 실적 업고 '손보 퍼즐' 채운다",
+      "url": "https://www.pressman.kr/news/articleView.html?idxno=103246"
+    },
+    {
+      "title": "‘C레벨’ 하나로 풀릴까...KB·신한·우리, CIFO ‘저울질’",
+      "url": "https://www.ekn.kr/web/view.php?key=20260819021094068"
+    },
+    {
+      "title": "카카오뱅크, 주가부양 총력…케이뱅크는 상장 후 '감감무소식'",
+      "url": "https://www.joongangenews.com/news/articleView.html?idxno=540930"
+    },
+    {
+      "title": "[금융그룹/삼성⑥] 대주주 출자 110조...'전자'에 '올인'",
+      "url": "https://www.dailybrief.co.kr/news/articleView.html?idxno=6535"
+    },
+    {
+      "title": "美 재무부, 장기금리 급등에 바이백 2배 확대…30년물 금리 급락",
+      "url": "https://www.ajunews.com/view/20260820063935720"
+    },
+    {
+      "title": "주가 급락·외국인 선물 매매에 변동성…국고 3년 1.0bp↓",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4430774"
+    }
+  ]
+}
