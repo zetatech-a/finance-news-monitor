@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 7,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 100,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 9,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 78,
+  "candidate_hybrid_gray_rule_drop": 148,
+  "candidate_hybrid_gray_rule_keep": 78,
+  "candidate_hybrid_keep_overseas_global_reference": 40,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 590,
+  "candidate_hybrid_model_drop": 33,
+  "candidate_hybrid_model_keep": 215,
+  "candidate_hybrid_model_keep_with_domain_anchor": 215,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 590,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-21",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 7,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 100,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 18,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 9,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 148,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 78,
+    "candidate_hybrid_keep_overseas_global_reference": 40,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 590,
+    "candidate_hybrid_model_drop_prob_le_threshold": 33,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 215
+  },
+  "dropped_count": 323,
+  "input_count": 1252,
+  "kept_count": 929,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1252,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 42,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "캠코, 새출발기금 21만명 신청 중개형 계좌 67.9% 부동의",
+      "url": "http://www.newstown.co.kr/news/articleView.html?idxno=713117"
+    },
+    {
+      "title": "캠코 새출발기금에 33조원 몰렸다…21만명 신청",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=858162"
+    },
+    {
+      "title": "케어링·신한은행, 요양보호사 대상 '보이스 피싱 예방 교육' 실시",
+      "url": "https://www.datanet.co.kr/news/articleView.html?idxno=213925"
+    },
+    {
+      "title": "케어링, 신한은행과 요양보호사 대상 보이스 피싱 예방 교육 실시",
+      "url": "https://www.betanews.net/article/view/beta202608200010"
+    },
+    {
+      "title": "연체율은 올라가고 외국인은 주식 팔고",
+      "url": "https://www.straightnews.co.kr/news/articleView.html?idxno=309378"
+    },
+    {
+      "title": "가계빚 2000조로 '껑충'? 서민 돈줄은 말랐다",
+      "url": "https://www.sidae.com/article/2026082012092767576"
+    },
+    {
+      "title": "증시 급등락에 P2P 부상…에잇퍼센트, 누적 투자 2000만건 돌파",
+      "url": "https://www.mk.co.kr/article/12131957"
+    },
+    {
+      "title": "[채권-마감] 장단기 온도차 뚜렷…국고 3년 1.3bp↑·30년 4.6bp↓",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431061"
+    },
+    {
+      "title": "오래된 실손보험 '보험료 환급' 결론 나오나",
+      "url": "http://www.fnnews.com/news/202608201831519481"
+    },
+    {
+      "title": "민간 바람 속 '관료' 출신 택한 보험개발원…공윤위 심사가 분수령",
+      "url": "https://www.widedaily.com/news/articleView.html?idxno=299718"
+    }
+  ]
+}

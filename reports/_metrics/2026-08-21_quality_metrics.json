@@ -1,0 +1,278 @@
+{
+  "clusters": {
+    "cluster_count": 409,
+    "cluster_size_max": 62,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 8,
+    "mega_cluster_count": 3,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 62,
+        "relevance_prob": 0.9275286001331395,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "코빗 품은 박현주, 전 직원 직접 만난다…‘미래에셋 3.0’ 디지털자산...",
+        "url": "https://n.news.naver.com/mnews/article/138/0002238453?sid=101"
+      },
+      {
+        "cluster_size": 59,
+        "relevance_prob": 0.9149288358777053,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "여전채 뛰고 기준금리도 오르나···카드사 조달 부담 '첩첩산중'",
+        "url": "https://www.sisajournal-e.com/news/articleView.html?idxno=423189"
+      },
+      {
+        "cluster_size": 58,
+        "relevance_prob": 0.9138515731502994,
+        "relevance_score": 33,
+        "sector": "상호금융",
+        "title": "새마을금고, 부실채권 3.5조 정리…체질개선 속도",
+        "url": "https://www.news2day.co.kr/article/20260820500066"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1333,
+    "displayed_articles": 287,
+    "final_tagged_representatives": 409,
+    "normalized_articles": 2291,
+    "raw_items": 2291,
+    "relevance_filtered_articles": 929,
+    "rule_filtered_articles": 1252,
+    "tagged_before_cluster": 929
+  },
+  "date": "2026-08-21",
+  "generated_at": "2026-08-21T09:11:20.625356+09:00",
+  "publishers": {
+    "missing_publisher_count": 409,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 141,
+    "no_topic_ratio": 0.3447,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7948210258622601,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"보완수사권 폐지 강경파에 묻고파, 피해자 목소리 들어는 보셨나\"",
+        "url": "https://www.m-joongang.com/news/articleView.html?idxno=402924"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7251309452645801,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "84억원 하이브 주가 탈취까지…BTS 정국도 '해킹' 당했다",
+        "url": "https://n.news.naver.com/mnews/article/243/0000101946?sid=101"
+      },
+      {
+        "cluster_size": 14,
+        "relevance_prob": 0.6952148947164504,
+        "relevance_score": 16,
+        "sector": "기타",
+        "title": "독립리서치 아리스 \"갤럭시아머니트리, 올해 최대 실적 전망\"",
+        "url": "https://daily.hankooki.com/news/articleView.html?idxno=1397814"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6183774569009222,
+        "relevance_score": 12,
+        "sector": "감독·제재",
+        "title": "[이슈]\"기관경고 이어 또 금감원 지적\"…고경모 유진證, 내부통제 실효...",
+        "url": "https://www.the-today.com/news/articleView.html?idxno=88713"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5641826748333568,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "BTS 정국·대기업 회장 노려 380억 해킹...총책 1심서 징역 20년",
+        "url": "https://n.news.naver.com/mnews/article/052/0002396134?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6206279888574859,
+        "relevance_score": 16,
+        "sector": "핀테크·플랫폼",
+        "title": "신한證 “NHN KCP, PG 넘어 AI 결제 인프라로⋯목표가 2만2000원”",
+        "url": "https://www.etoday.co.kr/news/view/2616650"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6263912675742898,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "워시, 28일 밤 잭슨홀 기조연설 나선다",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/394510"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7322216731380702,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[취재수첩]-산사태 위험지역, 정작 관리지역에선 빠져?",
+        "url": "https://news.knn.co.kr/news/article/191516"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8742443098285476,
+        "relevance_score": 18,
+        "sector": "보험",
+        "title": "한국금융지주, 보험사 품고 증권 경쟁력 강화 전망-NH",
+        "url": "https://n.news.naver.com/mnews/article/018/0006355396?sid=101"
+      },
+      {
+        "cluster_size": 26,
+        "relevance_prob": 0.6141225964363604,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "BTS 정국, 군 복무 중 '84억 주식' 털릴 뻔…중국인 해킹 총책, 결국",
+        "url": "https://n.news.naver.com/mnews/article/417/0001155945?sid=102"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 7,
+      "거시·시장": 39,
+      "기타": 132,
+      "대부": 8,
+      "디지털자산": 69,
+      "보험": 9,
+      "상호금융": 21,
+      "여전": 18,
+      "은행": 69,
+      "입법·정책": 25,
+      "자산운용·연기금": 4,
+      "저축은행": 5,
+      "증권(브로커리지/리테일)": 2,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 31,
+      "감독·제재": 9,
+      "건전성·자본규제": 11,
+      "규제·가계부채": 8,
+      "금리·수수료·최고금리": 26,
+      "기업금융·익스포저": 7,
+      "디지털자산": 76,
+      "부동산·PF": 9,
+      "불법사금융·불법추심·보이스피싱": 41,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 10,
+      "서민금융·대환·채무조정": 13,
+      "소비자보호·민원·불완전판매": 4,
+      "업계동정·사회공헌": 8,
+      "연체·부실": 26,
+      "일정·브리핑": 3,
+      "자금시장·유동성": 11,
+      "정책·제도개선": 3,
+      "증시·시장시황": 16,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 39,
+      "환율·외환": 13
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.9039919430073385,
+        "relevance_score": 42,
+        "sector": "입법·정책",
+        "title": "스테이블코인법 통합안 주목…오늘 민주당 토론회",
+        "url": "https://n.news.naver.com/mnews/article/018/0006355381?sid=101"
+      },
+      {
+        "cluster_size": 58,
+        "relevance_prob": 0.9138515731502994,
+        "relevance_score": 33,
+        "sector": "상호금융",
+        "title": "새마을금고, 부실채권 3.5조 정리…체질개선 속도",
+        "url": "https://www.news2day.co.kr/article/20260820500066"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7711549604262693,
+        "relevance_score": 39,
+        "sector": "보험",
+        "title": "[EZ 현장] \"면접 잘 봐야 하는데\"...DDP 몰린 금융권 취준생들, 긴장감 '...",
+        "url": "https://www.ezyeconomy.com/news/articleView.html?idxno=238912"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8176723941925174,
+        "relevance_score": 35,
+        "sector": "기타",
+        "title": "\"세종 가면 이직할 것\"...금융위·금감원·예보도 '인력 대이동' 반발",
+        "url": "https://n.news.naver.com/mnews/article/123/0002388742?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9714173230714384,
+        "relevance_score": 33,
+        "sector": "디지털자산",
+        "title": "FIU, 가상자산 거래소 법인계좌 현황 점검",
+        "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=245031"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8249887802172591,
+        "relevance_score": 30,
+        "sector": "은행",
+        "title": "[위클리오늘] 금융위·금감원·국책은행 지방이전 논란",
+        "url": "http://www.weeklytoday.com/news/articleView.html?idxno=790962"
+      },
+      {
+        "cluster_size": 62,
+        "relevance_prob": 0.9275286001331395,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "코빗 품은 박현주, 전 직원 직접 만난다…‘미래에셋 3.0’ 디지털자산...",
+        "url": "https://n.news.naver.com/mnews/article/138/0002238453?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7484757769529286,
+        "relevance_score": 28,
+        "sector": "상호금융",
+        "title": "2금융권도 가계대출 총량 숨통 틔나",
+        "url": "https://n.news.naver.com/mnews/article/014/0005564312?sid=101"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.49723226735741305,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "시중은행, '디에이치 방배' 잔금대출 한도 일제히 확대",
+        "url": "https://n.news.naver.com/mnews/article/277/0005805490?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7582903450886673,
+        "relevance_score": 24,
+        "sector": "상호금융",
+        "title": "대출총량 완화에 2금융권 희비···상호금융 '숨통', 저축銀·카드 '한...",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=636092"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "기타": 1,
+      "디지털자산": 2,
+      "보험": 1,
+      "상호금융": 3,
+      "은행": 2,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "건전성·자본규제": 1,
+      "디지털자산": 3,
+      "연체·부실": 2
+    }
+  }
+}
