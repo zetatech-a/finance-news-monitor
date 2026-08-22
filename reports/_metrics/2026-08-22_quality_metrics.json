@@ -1,0 +1,263 @@
+{
+  "clusters": {
+    "cluster_count": 303,
+    "cluster_size_max": 92,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 7,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 92,
+        "relevance_prob": 0.8701620997267889,
+        "relevance_score": 27,
+        "sector": "거시·시장",
+        "title": "가계빚 첫 2000조…금리 올리는 한은, 총량 푸는 금융위",
+        "url": "https://www.sentv.co.kr/article/view/sentv202608210129"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1060,
+    "displayed_articles": 200,
+    "final_tagged_representatives": 303,
+    "normalized_articles": 1613,
+    "raw_items": 1613,
+    "relevance_filtered_articles": 670,
+    "rule_filtered_articles": 1046,
+    "tagged_before_cluster": 670
+  },
+  "date": "2026-08-22",
+  "generated_at": "2026-08-22T09:10:30.103206+09:00",
+  "publishers": {
+    "missing_publisher_count": 303,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 126,
+    "no_topic_ratio": 0.4158,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.43679451711035555,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "연 10%대 1000만원 대출, 인기터지네… 캐피탈 \"우리도 하자\"",
+        "url": "https://n.news.naver.com/mnews/article/008/0005403239?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8648851103093097,
+        "relevance_score": 17,
+        "sector": "저축은행",
+        "title": "저축은행 ‘새 주인’ 찾기…10년 M&A 뜯어보니",
+        "url": "https://n.news.naver.com/mnews/article/243/0000101997?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6625666234468692,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "중소기업들 ‘빚 못갚는 비율’ 10년來 최고, 수출 채산성 문제도 ‘경...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002686945?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8627025449550793,
+        "relevance_score": 13,
+        "sector": "여전",
+        "title": "급전 필요한데…저신용자 카드론 15%대 실종됐다",
+        "url": "https://n.news.naver.com/mnews/article/374/0000528803?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.46552424895422523,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "농협중앙회 강호동, 쇄신 논란 뒤 실행 국면…개혁과제 75% 완료·착수",
+        "url": "https://sateconomy.co.kr/news/view/1065566715900985"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4617114204989477,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "경북 곳곳서 정치·ESG·농업·관광 경쟁력 강화",
+        "url": "https://www.ekn.kr/web/view.php?key=20260822029515358"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7034338072627252,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "하이퍼리퀴드의 미국 진출…무기한선물, 제도권 편입 신호탄",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026082111173571935"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6841359615318876,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "지금 탑승하면 늦나... XRP 39% 급등에 다시 시작된 개미들의 FOMO 공포",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=479509"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6801906310249086,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "비트코인 8만달러 눈앞까지 폭등…일주일 새 20%↑, 그런데 연말 전망은...",
+        "url": "https://www.kbmaeil.com/article/20260822500010"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7466260199112329,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[베스트&워스트] 북미 회담 기대감에 '개성공단주' 들썩…퇴출·규제 리...",
+        "url": "https://www.etoday.co.kr/news/view/2616990"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 5,
+      "거시·시장": 33,
+      "기타": 113,
+      "대부": 3,
+      "디지털자산": 47,
+      "보험": 6,
+      "상호금융": 16,
+      "여전": 10,
+      "은행": 35,
+      "입법·정책": 15,
+      "자산운용·연기금": 9,
+      "저축은행": 9
+    },
+    "topic_counts": {
+      "가계대출·부채": 15,
+      "건전성·자본규제": 9,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 18,
+      "기업금융·익스포저": 7,
+      "디지털자산": 58,
+      "부동산·PF": 6,
+      "불법사금융·불법추심·보이스피싱": 13,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 6,
+      "서민금융·대환·채무조정": 13,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 23,
+      "일정·브리핑": 5,
+      "자금시장·유동성": 10,
+      "정책·제도개선": 2,
+      "증시·시장시황": 10,
+      "칼럼·오피니언": 3,
+      "해외·글로벌": 29,
+      "환율·외환": 13
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7630597764967313,
+        "relevance_score": 31,
+        "sector": "감독·제재",
+        "title": "지도 위 130㎞, 금융권이 치르는 '이전 정치'의 비용 [취재수첩]",
+        "url": "https://www.newdaily.co.kr/site/data/html/2026/08/21/2026082100104.html"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8795320903821316,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "하나금융, 코인 '금고지기' 된다…비트고코리아 VASP 신고 수리",
+        "url": "https://www.ppss.kr/news/articleView.html?idxno=306625"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8966182311413586,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "\"원화 스테이블코인 성공, 실사용·유통망에 달렸다\"",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=694671"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6801087930050966,
+        "relevance_score": 26,
+        "sector": "감독·제재",
+        "title": "국책 금융기관 지방이전 곳곳에 '암초'...노조 반발 이어 국회 '지역구 ...",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=348124"
+      },
+      {
+        "cluster_size": 92,
+        "relevance_prob": 0.8701620997267889,
+        "relevance_score": 27,
+        "sector": "거시·시장",
+        "title": "가계빚 첫 2000조…금리 올리는 한은, 총량 푸는 금융위",
+        "url": "https://www.sentv.co.kr/article/view/sentv202608210129"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8928025354220476,
+        "relevance_score": 28,
+        "sector": "저축은행",
+        "title": "2금융권 중금리대출, 총량관리서 전액 제외 … 저축은행·상호금융 등 대...",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/08/21/2026082100261.html"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.7888237975347725,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "美·日 장기금리 수십년來 최고…구윤철 \"취약차주 지원책 조속 발표\"",
+        "url": "https://n.news.naver.com/mnews/article/421/0009125405?sid=101"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.8887375630531459,
+        "relevance_score": 20,
+        "sector": "상호금융",
+        "title": "새마을금고 김인 2기 체제...부실채권 털고 금고 합병 가속",
+        "url": "http://www.niceeconomy.co.kr/news/articleView.html?idxno=90629"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7314340838547049,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "[신윤우의 외환분석] 약속의 금요일…하락공식 깨질까",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431152"
+      },
+      {
+        "cluster_size": 16,
+        "relevance_prob": 0.8054435714044682,
+        "relevance_score": 22,
+        "sector": "은행",
+        "title": "IBK기업은행, 94억원 금융사고 발생…산은 583억원 사건과 동일",
+        "url": "https://www.nspna.com/news/?mode=view&newsid=825016"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 2,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "은행": 1,
+      "입법·정책": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "기업금융·익스포저": 1,
+      "디지털자산": 2,
+      "서민금융·대환·채무조정": 2,
+      "연체·부실": 1,
+      "환율·외환": 1
+    }
+  }
+}

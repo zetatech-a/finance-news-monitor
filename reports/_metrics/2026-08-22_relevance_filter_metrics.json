@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 6,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 81,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 7,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 10,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 71,
+  "candidate_hybrid_gray_rule_drop": 236,
+  "candidate_hybrid_gray_rule_keep": 71,
+  "candidate_hybrid_keep_overseas_global_reference": 29,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 414,
+  "candidate_hybrid_model_drop": 25,
+  "candidate_hybrid_model_keep": 153,
+  "candidate_hybrid_model_keep_with_domain_anchor": 153,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 414,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-22",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 6,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 81,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 7,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 10,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 236,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 71,
+    "candidate_hybrid_keep_overseas_global_reference": 29,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 414,
+    "candidate_hybrid_model_drop_prob_le_threshold": 25,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 153
+  },
+  "dropped_count": 376,
+  "input_count": 1046,
+  "kept_count": 670,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1046,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 58,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "햇살론·미소금융 사칭한 불법 광고 기승",
+      "url": "https://www.munhwa.com/article/11611003?ref=naver"
+    },
+    {
+      "title": "온라인 대출 활성화에...대부중개업자 급감",
+      "url": "https://www.sedaily.com/article/20081743?ref=naver"
+    },
+    {
+      "title": "'캐피탈맨' 박춘원 전북은행장, '주담대맨' 되나…기업대출 부진 여전",
+      "url": "https://www.topdaily.kr/articles/111576"
+    },
+    {
+      "title": "美금리 영향 속 부총재 발언 주시…국고 10년 4.6bp↑·30년 1.8bp↑",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431232"
+    },
+    {
+      "title": "美 안전·위험자산 '활짝'..국제금값·은값 '뛰고', 비트코인 '점프'",
+      "url": "http://www.choicenews.co.kr/news/articleView.html?idxno=170282"
+    },
+    {
+      "title": "비트코인, 다시 1억원 뚫어",
+      "url": "https://www.chosun.com/economy/stock-finance/2026/08/22/H4DAJWEPMNB4HCLKMLB6XUEZNE/?utm_source=naver&utm_medium=referral&utm_campaign=naver-news"
+    },
+    {
+      "title": "신한카드, 카카오뱅크와 두 번째 PLCC 상품 출시",
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=210568"
+    },
+    {
+      "title": "\"잔금대출 출시하니, 규제까지 완화\"…최대 수혜자는 카카오뱅크?",
+      "url": "https://www.mt.co.kr/finance/2026/08/22/2026082111562559068"
+    },
+    {
+      "title": "'주담대 재개' 포문 연 농협은행…다른 은행으로 이어지나[풀리는 대출...",
+      "url": "https://www.newsis.com/view/NISX20260821_0003757883"
+    },
+    {
+      "title": "4대 금융, 경남 수해 복구에 20억 성금…계열사별 금융지원",
+      "url": "http://www.worktoday.co.kr/news/articleView.html?idxno=88233"
+    }
+  ]
+}
