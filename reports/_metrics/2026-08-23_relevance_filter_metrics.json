@@ -1,0 +1,72 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 0,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 16,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 8,
+  "candidate_hybrid_gray_rule_drop": 34,
+  "candidate_hybrid_gray_rule_keep": 8,
+  "candidate_hybrid_keep_overseas_global_reference": 15,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 91,
+  "candidate_hybrid_model_drop": 5,
+  "candidate_hybrid_model_keep": 35,
+  "candidate_hybrid_model_keep_with_domain_anchor": 35,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 91,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-23",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 16,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 34,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 8,
+    "candidate_hybrid_keep_overseas_global_reference": 15,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 91,
+    "candidate_hybrid_model_drop_prob_le_threshold": 5,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 35
+  },
+  "dropped_count": 63,
+  "input_count": 214,
+  "kept_count": 151,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 214,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 5,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "하루 1시간씩 5일…‘레버리지’ 투자 전 반드시 해볼 세 가지 [송현주...",
+      "url": "https://economist.co.kr/article/view/ecn202608210050"
+    },
+    {
+      "title": "비은행 영토 넓히는 신학기號 수협…종합금융사 도약 ‘속도’",
+      "url": "https://economist.co.kr/article/view/ecn202608180067"
+    },
+    {
+      "title": "금융당국, '공격적 집단대출 공급' 주문 동시에…\"8~9월 집중 모니터링...",
+      "url": "https://www.news1.kr/finance/general-finance/6265455"
+    },
+    {
+      "title": "“대출부터 카드값까지 미뤄준다”...4대 금융, 수해지역 ‘전방위 지원...",
+      "url": "https://www.ekn.kr/web/view.php?key=20260822022235141"
+    },
+    {
+      "title": "'30조' 규모 대출여력 확대···실수요자 숨통 트이나",
+      "url": "https://www.todaykorea.co.kr/news/articleView.html?idxno=405221"
+    }
+  ]
+}
