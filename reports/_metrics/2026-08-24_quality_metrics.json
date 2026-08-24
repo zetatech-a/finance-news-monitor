@@ -1,0 +1,269 @@
+{
+  "clusters": {
+    "cluster_count": 183,
+    "cluster_size_max": 63,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 63,
+        "relevance_prob": 0.8600589187416499,
+        "relevance_score": 20,
+        "sector": "거시·시장",
+        "title": "코스피 2차 반등 이어질까…엔비디아·미 국채금리에 쏠린 눈",
+        "url": "https://n.news.naver.com/mnews/article/009/0005724701?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 558,
+    "displayed_articles": 119,
+    "final_tagged_representatives": 183,
+    "normalized_articles": 795,
+    "raw_items": 795,
+    "relevance_filtered_articles": 347,
+    "rule_filtered_articles": 548,
+    "tagged_before_cluster": 347
+  },
+  "date": "2026-08-24",
+  "generated_at": "2026-08-24T09:05:31.245230+09:00",
+  "publishers": {
+    "missing_publisher_count": 183,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 69,
+    "no_topic_ratio": 0.377,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7141738008995873,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "박용진 \"주식 결제주기 이어 개인정보도\"... 규제합리화委 제안 연타석...",
+        "url": "https://n.news.naver.com/mnews/article/031/0001051739?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4776829821208815,
+        "relevance_score": 7,
+        "sector": "은행",
+        "title": "9월 전국 아파트 1만여세대 입주…지방 급감에 전월비 30% 축소",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431392"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6879833352942561,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "'지방이전 여파?' 금감원 퇴직 러시... 5년간 481명, 올해 이탈자 절반은...",
+        "url": "https://www.insight.co.kr/news/569638"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8101039746939217,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "이름·주민번호 바꾸셨어요? 금융사 1곳만 방문하면 OK",
+        "url": "https://n.news.naver.com/mnews/article/079/0004181369?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6707842560938757,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 비트코인 7만7000달러대 안착…알트코인도...",
+        "url": "https://www.ajunews.com/view/20260824082058471"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.678676579604243,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "디지털엑스, 24일부터 거래수수료 무료…\"미래에셋 손잡고 서비스 혁신...",
+        "url": "http://www.newsdream.kr/news/articleView.html?idxno=116700"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7917564044312558,
+        "relevance_score": 5,
+        "sector": "은행",
+        "title": "833억원 떼일 때까지 몰랐다…기업은행 중국법인 내부통제 '구멍'",
+        "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=272234"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8260100773636805,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "성북구, 어르신 맞춤형 건강·금융사기 예방 프로그램 운영",
+        "url": "https://n.news.naver.com/mnews/article/021/0002813241?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5312250736680655,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "[CEO와칭]강정훈 iM뱅크 은행장…'가장 지역적인 시중은행' 목표",
+        "url": "http://www.metroseoul.co.kr/article/20260824500011"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7051971602689433,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "'문자·음성' 늘려 노인 디지털 격차 해소 못해 [통신 소외 고령층③]",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092168608"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 5,
+      "거시·시장": 15,
+      "기타": 74,
+      "대부": 1,
+      "디지털자산": 31,
+      "보험": 3,
+      "상호금융": 5,
+      "여전": 3,
+      "은행": 26,
+      "입법·정책": 11,
+      "자산운용·연기금": 3,
+      "저축은행": 1,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 14,
+      "감독·제재": 2,
+      "건전성·자본규제": 6,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 19,
+      "기업금융·익스포저": 3,
+      "디지털자산": 27,
+      "물가·경기지표": 4,
+      "부동산·PF": 3,
+      "불법사금융·불법추심·보이스피싱": 12,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 6,
+      "서민금융·대환·채무조정": 7,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 7,
+      "일정·브리핑": 5,
+      "자금시장·유동성": 4,
+      "정책·제도개선": 1,
+      "증시·시장시황": 3,
+      "칼럼·오피니언": 8,
+      "해외·글로벌": 14,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9372796650358325,
+        "relevance_score": 48,
+        "sector": "입법·정책",
+        "title": "스테이블코인법 통합안 임박…오늘 금융위원장 국회 출석",
+        "url": "https://n.news.naver.com/mnews/article/018/0006356723?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7723426780607631,
+        "relevance_score": 33,
+        "sector": "입법·정책",
+        "title": "[기획] 공공기관 지방 이전 발표 초읽기…미리 짐 싸는 ‘신의 직장인들...",
+        "url": "https://n.news.naver.com/mnews/article/029/0003043733?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9064400553027475,
+        "relevance_score": 27,
+        "sector": "감독·제재",
+        "title": "[진화하는 보이스피싱③] \"검사 지시입니다, 아무에게도 말하지 마세요...",
+        "url": "http://www.incheonnews.com/news/articleView.html?idxno=439509"
+      },
+      {
+        "cluster_size": 11,
+        "relevance_prob": 0.8591974815196216,
+        "relevance_score": 28,
+        "sector": "감독·제재",
+        "title": "금감원, 5년간 481명 떠났다…올해 퇴직자 절반이 20~40대",
+        "url": "https://n.news.naver.com/mnews/article/029/0003043660?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7996154264406913,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "‘역대급 가계빚’ 한은 금리 인상 명분 강화…서민 대출 ‘한파’",
+        "url": "https://n.news.naver.com/mnews/article/119/0003124359?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8255894810982962,
+        "relevance_score": 25,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "레고랜드發 구조조정 끝난 부동산PF…증권사 IB 수익원 재부상",
+        "url": "https://n.news.naver.com/mnews/article/008/0005403360?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6699204641732039,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "이호성 하나은행장, 조달효율 ‘성과ʼ…RWA 관리 ‘과제ʼ [2027 은행장 ...",
+        "url": "https://www.fntimes.com/html/view.php?ud=202608220003581022dd55077bc2_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8189513721448088,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "韓 가상자산 법인 계정 6500개, 외국인 56만명인데…활성화 사실상 '0%' ...",
+        "url": "https://n.news.naver.com/mnews/article/014/0005565044?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.69659872553716,
+        "relevance_score": 23,
+        "sector": "디지털자산",
+        "title": "업비트·빗썸, 소송충당금 750억...규제 리스크↑",
+        "url": "https://www.decenter.kr/article/20082237?ref=naverdc"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6504687957776641,
+        "relevance_score": 21,
+        "sector": "은행",
+        "title": "가계대출 '숨통'에도 은행 셈법 '복잡' … 건전성 우려에 연체 취약차주...",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/08/23/2026082300023.html"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 1,
+      "디지털자산": 2,
+      "은행": 2,
+      "입법·정책": 2,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 1,
+      "기업금융·익스포저": 1,
+      "디지털자산": 4,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 1,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 1
+    }
+  }
+}

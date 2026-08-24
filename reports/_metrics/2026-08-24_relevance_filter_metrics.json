@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 10,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 47,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 11,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 19,
+  "candidate_hybrid_gray_rule_drop": 101,
+  "candidate_hybrid_gray_rule_keep": 19,
+  "candidate_hybrid_keep_overseas_global_reference": 14,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 214,
+  "candidate_hybrid_model_drop": 19,
+  "candidate_hybrid_model_keep": 98,
+  "candidate_hybrid_model_keep_with_domain_anchor": 98,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 214,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-24",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 10,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 47,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 11,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 9,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 101,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 19,
+    "candidate_hybrid_keep_overseas_global_reference": 14,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 214,
+    "candidate_hybrid_model_drop_prob_le_threshold": 19,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 98
+  },
+  "dropped_count": 201,
+  "input_count": 548,
+  "kept_count": 347,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 548,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 24,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "“노후자금 투자했는데”…소득 끊긴 은퇴자, 삼전닉스로 ‘연체’ 부메...",
+      "url": "https://economist.co.kr/article/view/ecn202608180054"
+    },
+    {
+      "title": "현대해상, 보험손익 90% 급증…배당주 매력 다시 살아나나",
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=479680"
+    },
+    {
+      "title": "5년간 500명 줄퇴사…'신의 직장' 금감원에 무슨 일이",
+      "url": "https://www.hankyung.com/article/2026082369507"
+    },
+    {
+      "title": "해킹 공격에 '샌드박스' 위조 가상화폐 발행돼",
+      "url": "https://www.khgames.co.kr/news/articleView.html?idxno=307602"
+    },
+    {
+      "title": "KB금융·신한금융·농협·현대차, 경남지역 집중호우 피해복구 위해 긴...",
+      "url": "http://www.wsobi.com/news/articleView.html?idxno=316872"
+    },
+    {
+      "title": "사상 첫 장기 총파업 앞둔 카카오뱅크, 윤호영 리더십 시험대",
+      "url": "https://www.topdaily.kr/articles/111579"
+    },
+    {
+      "title": "KB금융지주, 경남 집중호우 피해 복구에 5억 지원",
+      "url": "http://www.press9.kr/news/articleView.html?idxno=81522"
+    },
+    {
+      "title": "키맞추는 강북아파트, 중위값 10억 찍었다",
+      "url": "https://www.mt.co.kr/estate/2026/08/24/2026082319481033179"
+    },
+    {
+      "title": "KB금융, 경남 수해 복구에 5억원…그룹 차원 긴급지원",
+      "url": "https://www.thedailypost.kr/news/articleView.html?idxno=115114"
+    },
+    {
+      "title": "울산 아파트값 상승률, 지방 광역시 '1위'",
+      "url": "http://www.ujeil.com/news/articleView.html?idxno=390752"
+    }
+  ]
+}
