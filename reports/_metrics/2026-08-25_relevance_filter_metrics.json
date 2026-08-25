@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 65,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 17,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 10,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+  "candidate_hybrid_gray_keep_domain": 36,
+  "candidate_hybrid_gray_rule_drop": 144,
+  "candidate_hybrid_gray_rule_keep": 36,
+  "candidate_hybrid_keep_overseas_global_reference": 20,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 448,
+  "candidate_hybrid_model_drop": 27,
+  "candidate_hybrid_model_keep": 182,
+  "candidate_hybrid_model_keep_with_domain_anchor": 182,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 448,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-25",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 65,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 17,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 10,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 144,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 36,
+    "candidate_hybrid_keep_overseas_global_reference": 20,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 448,
+    "candidate_hybrid_model_drop_prob_le_threshold": 27,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 182
+  },
+  "dropped_count": 281,
+  "input_count": 969,
+  "kept_count": 688,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 969,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 42,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "강남구, 근로자 급여서 세금 떼고도 안낸 사업주 고발 사전예고",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3673523"
+    },
+    {
+      "title": "강남구, 세금은 직원 월급서 떼고 납부는 '깜깜', 사업주 1365명 고발 예...",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2462550"
+    },
+    {
+      "title": "강남구, 지방소득세 체납 사업주 1천365명에 '고발 사전예고'",
+      "url": "https://www.yna.co.kr/view/AKR20260825019600004?input=1195m"
+    },
+    {
+      "title": "'진옥동표' 땡겨요, 배달 넘어 데이터로 소상공인 금융지원",
+      "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=316552"
+    },
+    {
+      "title": "보험사보다 잘 버네… 우리카드 인도네시아 법인, 여전사 중 최고",
+      "url": "https://www.mt.co.kr/finance/2026/08/25/2026082414413562995"
+    },
+    {
+      "title": "[청원 언박싱] 농협 본사 강제이전 추진 중단과 협동조합 자율성 보장에...",
+      "url": "http://www.sisunnews.co.kr/news/articleView.html?idxno=244733"
+    },
+    {
+      "title": "미 30년물 금리 19년 만에 최고…손실 커지는 장기채 ETF",
+      "url": "https://www.mt.co.kr/stock/2026/08/24/2026082415370191738"
+    },
+    {
+      "title": "'롤러코스피'에 안전자산으로 자금 이동…정기예금 1000조원 육박",
+      "url": "https://www.polinews.co.kr/news/articleView.html?idxno=741051"
+    },
+    {
+      "title": "외국인 순매수·국고 5년 선매출 스플릿…국고 3년 0.2bp↑",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431481"
+    },
+    {
+      "title": "조근호 신임 정신건강의학과의사회장 \"비의료 상담 난립 막을 것\"",
+      "url": "http://www.doctorsnews.co.kr/news/articleView.html?idxno=165952"
+    }
+  ]
+}
