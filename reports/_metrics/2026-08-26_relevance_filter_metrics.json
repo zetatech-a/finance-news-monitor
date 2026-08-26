@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 6,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 56,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 17,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 12,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 78,
+  "candidate_hybrid_gray_rule_drop": 108,
+  "candidate_hybrid_gray_rule_keep": 78,
+  "candidate_hybrid_keep_overseas_global_reference": 27,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 11,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 485,
+  "candidate_hybrid_model_drop": 61,
+  "candidate_hybrid_model_keep": 154,
+  "candidate_hybrid_model_keep_with_domain_anchor": 154,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 485,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-26",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 6,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 56,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 17,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 8,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 12,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 108,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 78,
+    "candidate_hybrid_keep_overseas_global_reference": 27,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 11,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 485,
+    "candidate_hybrid_model_drop_prob_le_threshold": 61,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 154
+  },
+  "dropped_count": 273,
+  "input_count": 1028,
+  "kept_count": 755,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1028,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 49,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "강남구, 직원 월급서 세금 떼고도 안 낸 사업주 1365명 고발 예고",
+      "url": "https://weeklytrade.co.kr/news/view.html?section=1&category=160&item=&no=101150"
+    },
+    {
+      "title": "강남구, 근로자의 급여 등에서 지방소득세 미리 떼고도 정당한 사유 없...",
+      "url": "https://www.cnbizm.com/news/articleView.html?idxno=312630"
+    },
+    {
+      "title": "최윤 OK금융 회장 제2 빅픽처 \"금융에서 번 돈, 다시 금융으로\"",
+      "url": "https://www.insightkorea.co.kr/news/articleView.html?idxno=253127"
+    },
+    {
+      "title": "직원 월급서 세금 떼고 '미납'…강남구, 사업주 1365명 고발 사전예고",
+      "url": "https://www.job-post.co.kr/news/articleView.html?idxno=224946"
+    },
+    {
+      "title": "강남구, 원천징수 세금 미납 사업주 '단죄'",
+      "url": "https://www.jeonmae.co.kr/news/articleView.html?idxno=1286714"
+    },
+    {
+      "title": "조세형평 바로잡는 강남구... \"탈세 사업주 1365명 고발\"",
+      "url": "https://www.public25.com/news/articleView.html?idxno=53266"
+    },
+    {
+      "title": "'급여서 세금 미리 떼고도 미납'... 강남구, 사업주 1365명 고발 사전예...",
+      "url": "https://www.hg-times.com/news/articleView.html?idxno=304672"
+    },
+    {
+      "title": "강남구, 근로자 급여서 세금 떼고도 안낸 사업주 고발 사전예고",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3673523"
+    },
+    {
+      "title": "부산·광주銀 합쳐야…지방은행 딜레마[김보형의 뷰파인더]",
+      "url": "https://magazine.hankyung.com/business/article/202608186510b"
+    },
+    {
+      "title": "[DQN] 정진완號 우리은행, 우량-취약차주 금리격차 33%↓···'건전성' 관...",
+      "url": "https://www.fntimes.com/html/view.php?ud=202608251927296409b4a7c6999c_18"
+    }
+  ]
+}

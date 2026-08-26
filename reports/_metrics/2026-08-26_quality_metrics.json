@@ -1,0 +1,282 @@
+{
+  "clusters": {
+    "cluster_count": 349,
+    "cluster_size_max": 120,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 3,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 120,
+        "relevance_prob": 0.6550582851871289,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "변동형 주담대 금리 연 6% 눈앞",
+        "url": "https://n.news.naver.com/mnews/article/015/0005324566?sid=101"
+      },
+      {
+        "cluster_size": 76,
+        "relevance_prob": 0.7719668498072789,
+        "relevance_score": 13,
+        "sector": "은행",
+        "title": "기업은행 833억 중국법인 사고…책무구조도 1호 나오나",
+        "url": "https://n.news.naver.com/mnews/article/648/0000050114?sid=101"
+      },
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.33014812641637536,
+        "relevance_score": 11,
+        "sector": "기타",
+        "title": "[고강도 대출규제] 차주당 2분기 신규 가계대출 3414만 원... 13분기만에...",
+        "url": "https://www.g-enews.com/view.php?ud=202608251216013112bb91c46fcd_1"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1049,
+    "displayed_articles": 225,
+    "final_tagged_representatives": 349,
+    "normalized_articles": 1406,
+    "raw_items": 1406,
+    "relevance_filtered_articles": 755,
+    "rule_filtered_articles": 1028,
+    "tagged_before_cluster": 755
+  },
+  "date": "2026-08-26",
+  "generated_at": "2026-08-26T09:12:12.033362+09:00",
+  "publishers": {
+    "missing_publisher_count": 349,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 125,
+    "no_topic_ratio": 0.3582,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7367161388631435,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[오늘의 비트코인] 7만8000달러선 숨고르기…한때 8만달러 돌파",
+        "url": "https://news.dealsitetv.com/articles/175196"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.593425890355397,
+        "relevance_score": 8,
+        "sector": "보험",
+        "title": "푸본현대생명, 후순위채 950억 조기상환…'이자부담 덜기'",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431789"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5974124230952947,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "기업들, 회사채로 빌리기보다 갚았다…올해 들어 10조 순상환",
+        "url": "https://www.raonnews.com/news/article.html?no=60571"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7408522277057469,
+        "relevance_score": 12,
+        "sector": "입법·정책",
+        "title": "업비트는 케뱅·코인원은 카뱅…8년 공식 깨질까",
+        "url": "https://n.news.naver.com/mnews/article/018/0006358038?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7637914679916873,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[D-피플라운지] 코인 규제가 키운 ‘탈한국’…“산업 상실 시작”",
+        "url": "https://n.news.naver.com/mnews/article/119/0003125380?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.47088812045455497,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "IBK기업은행, 장기연체 채권 1200억원 소각-5000여 명 재기 지원",
+        "url": "https://www.mediafine.co.kr/news/articleView.html?idxno=87918"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.782117784431638,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "소문 듣고 몰려든 개미들 패닉 ... 무락업 이더리움 상품, 세력들의 공포...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=480494"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8498353654356416,
+        "relevance_score": 7,
+        "sector": "입법·정책",
+        "title": "일본, 블록체인 활용한 주식·채권 'T+0' 실시간 결제·정산 추진",
+        "url": "https://n.news.naver.com/mnews/article/018/0006358010?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7555113129483287,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "50조원 넘어선 토큰화주식…자동 포트폴리오 생성 서비스도 등장",
+        "url": "https://n.news.naver.com/mnews/article/018/0006358004?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6982181067494316,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "신종 차환해도 기본자본 빠진다…교보생명 '자본관리 숙제'",
+        "url": "https://n.news.naver.com/mnews/article/119/0003125370?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 4,
+      "감독·제재": 13,
+      "거시·시장": 27,
+      "기타": 134,
+      "대부": 12,
+      "디지털자산": 46,
+      "보험": 6,
+      "상호금융": 8,
+      "여전": 17,
+      "은행": 35,
+      "입법·정책": 26,
+      "자산운용·연기금": 5,
+      "저축은행": 2,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 13
+    },
+    "topic_counts": {
+      "가계대출·부채": 38,
+      "감독·제재": 7,
+      "건전성·자본규제": 5,
+      "규제·가계부채": 5,
+      "금리·수수료·최고금리": 37,
+      "기업금융·익스포저": 4,
+      "디지털자산": 49,
+      "부동산·PF": 5,
+      "불법사금융·불법추심·보이스피싱": 29,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 5,
+      "서민금융·대환·채무조정": 24,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 11,
+      "연체·부실": 14,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 9,
+      "정책·제도개선": 1,
+      "증시·시장시황": 10,
+      "칼럼·오피니언": 9,
+      "해외·글로벌": 22,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7626677092045465,
+        "relevance_score": 41,
+        "sector": "감독·제재",
+        "title": "파트너 서울에 몰렸는데 정책은 지방가서 하라니…이래서 ‘K-금융’ 키...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002687974?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8340846953501001,
+        "relevance_score": 34,
+        "sector": "입법·정책",
+        "title": "금감원 지방이전설에 노조 '강경 대응'…전문인력 이탈 우려",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=316207"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7983257111313558,
+        "relevance_score": 34,
+        "sector": "거시·시장",
+        "title": "3월엔 중동전쟁, 그 뒤엔 증시·부동산…디지털자산기본법 '표류'",
+        "url": "https://n.news.naver.com/mnews/article/421/0009132504?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7612363380257604,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "[단독] \"부실 터지면 서울로 뛰어와야\"...예보·금감원이 지방이전 막는...",
+        "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=810810"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8264239686606998,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "국책은행 이어 금감원·예보까지…지방行 앞두고 금융권 총파업 전운",
+        "url": "https://www.widedaily.com/news/articleView.html?idxno=299960"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7272968015347384,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "상반기만 47조 코인 자금 해외로…\"수수료 공짜 안 통해\"",
+        "url": "https://n.news.naver.com/mnews/article/417/0001156320?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8887038167234216,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "충청권 시중은행 중소기업 대출 감소로 전환... 연체율 상승에 은행문턱...",
+        "url": "https://www.joongdo.co.kr/web/view.php?key=20260825010007549"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6409725457391633,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "AI가 내 금리 깎고 대환대출까지…마이데이터, ‘조회’ 넘어 ‘실행’...",
+        "url": "https://n.news.naver.com/mnews/article/123/0002388992?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8087730038201328,
+        "relevance_score": 29,
+        "sector": "은행",
+        "title": "[기자수첩] 금융 공백 낳는 지방이전",
+        "url": "https://n.news.naver.com/mnews/article/014/0005566348?sid=110"
+      },
+      {
+        "cluster_size": 15,
+        "relevance_prob": 0.49615577368357233,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "[CEO 직썰] 윤호영 카카오뱅크 대표 \"불법사금융 피해는 우리 사회가 함...",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=144167"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 1,
+      "대부": 2,
+      "디지털자산": 1,
+      "은행": 2,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 4,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 1,
+      "증시·시장시황": 1,
+      "칼럼·오피니언": 1
+    }
+  }
+}
