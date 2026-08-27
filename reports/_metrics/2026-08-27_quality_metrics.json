@@ -1,0 +1,288 @@
+{
+  "clusters": {
+    "cluster_count": 325,
+    "cluster_size_max": 101,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 3,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 101,
+        "relevance_prob": 0.7525395838829919,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "코빗 이어 코인원도 '거래 수수료 무료' [크립토브리핑]",
+        "url": "https://n.news.naver.com/mnews/article/014/0005566479?sid=105"
+      },
+      {
+        "cluster_size": 83,
+        "relevance_prob": 0.8823036069736464,
+        "relevance_score": 20,
+        "sector": "거시·시장",
+        "title": "한은, 오늘 기준금리 결정…‘연속 인상’이냐 ‘10월 인상’이냐",
+        "url": "https://n.news.naver.com/mnews/article/029/0003044558?sid=101"
+      },
+      {
+        "cluster_size": 66,
+        "relevance_prob": 0.5688973308067327,
+        "relevance_score": 18,
+        "sector": "저축은행",
+        "title": "7월 가계대출 금리 4.64%로 석 달째 상승…주담대 고정금리 비중 12년 만...",
+        "url": "https://n.news.naver.com/mnews/article/030/0003460556?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1113,
+    "displayed_articles": 238,
+    "final_tagged_representatives": 325,
+    "normalized_articles": 1706,
+    "raw_items": 1706,
+    "relevance_filtered_articles": 713,
+    "rule_filtered_articles": 1104,
+    "tagged_before_cluster": 713
+  },
+  "date": "2026-08-27",
+  "generated_at": "2026-08-27T09:10:49.689859+09:00",
+  "publishers": {
+    "missing_publisher_count": 325,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 107,
+    "no_topic_ratio": 0.3292,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5734347245280358,
+        "relevance_score": 7,
+        "sector": "은행",
+        "title": "인터넷은행, 사업자대출 넓힌다…선택지 넓히고 대상 확대",
+        "url": "https://www.businessplus.kr/news/articleView.html?idxno=115817"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7503282791627474,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "경기연구원, AI 기본사회 필요성 66.8％ 공감",
+        "url": "https://www.discoverynews.kr/news/articleView.html?idxno=1099773"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6860332241756026,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "박현주, 삼전닉스 주주환원 요구에 \"배당 없이 자본 축적으로 과감히 키...",
+        "url": "https://n.news.naver.com/mnews/article/422/0000899861?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7813337068001059,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "경기연 “경기도민 10명 중 9명, ‘AI 기본사회’ 개념 사실상 몰라”",
+        "url": "https://www.kukinews.com/article/view/kuk202608270018"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7899137655259838,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "한국렌터카사업조합연합회 \"금융위, 렌탈 규제 간담회 전면 재검토해야...",
+        "url": "http://www.newsian.co.kr/news/articleView.html?idxno=94306"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7032200352029592,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "카드사 회원경쟁 희비...\"삼성 웃고, 하나 울고\"",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=859672"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.784682562111558,
+        "relevance_score": 7,
+        "sector": "은행",
+        "title": "IBK기업은행, 올해 금융사고 1110억…'리스크 전문가' 장민영 시험대",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=718151"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6290439829072434,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "워시 의장, 첫 잭슨홀 시험대…\"허니문은 끝났다\" 통화정책 시선 집중",
+        "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=63434"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6903692853529404,
+        "relevance_score": 11,
+        "sector": "은행",
+        "title": "'중금리 생활안정대출' 2금융권 중심 확산…시중은행은 '아직'",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=695774"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.532545704872331,
+        "relevance_score": 8,
+        "sector": "여전",
+        "title": "1조2934억 순익 카드사, 연체율도 1.54%",
+        "url": "https://www.tokenpost.kr/news/economy/398543"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 3,
+      "거시·시장": 29,
+      "기타": 97,
+      "대부": 10,
+      "디지털자산": 62,
+      "보험": 5,
+      "상호금융": 18,
+      "여전": 19,
+      "은행": 47,
+      "입법·정책": 21,
+      "자산운용·연기금": 4,
+      "저축은행": 7,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 37,
+      "감독·제재": 7,
+      "건전성·자본규제": 6,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 51,
+      "기업금융·익스포저": 3,
+      "디지털자산": 68,
+      "물가·경기지표": 2,
+      "부동산·PF": 6,
+      "불법사금융·불법추심·보이스피싱": 21,
+      "사고·사기·횡령": 5,
+      "상품·영업·예금금리": 19,
+      "서민금융·대환·채무조정": 11,
+      "소비자보호·민원·불완전판매": 7,
+      "업계동정·사회공헌": 10,
+      "연체·부실": 6,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 6,
+      "정책·제도개선": 5,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 1,
+      "해외·글로벌": 18,
+      "환율·외환": 6
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7857400106767631,
+        "relevance_score": 39,
+        "sector": "대부",
+        "title": "채권추심도 수사… ‘금융 특사경’ 권한 세진다 [힘실린 민생금융 특사...",
+        "url": "https://n.news.naver.com/mnews/article/014/0005566957?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8492229209856245,
+        "relevance_score": 39,
+        "sector": "여전",
+        "title": "\"몸은 지방, 일은 서울서\"⋯금융기관 이전 땐 '역출장' 파행 우려 [금융...",
+        "url": "https://www.etoday.co.kr/news/view/2618461"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9168566975414364,
+        "relevance_score": 29,
+        "sector": "상호금융",
+        "title": "사고 줄이기 나선 새마을금고…외부 상근감사 실효성 주목",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=210896"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.9014782512162234,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "81조 몰린 스테이블코인, 수수료무료에 점유율 '출렁'",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=859747"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7314221576213294,
+        "relevance_score": 26,
+        "sector": "입법·정책",
+        "title": "일본, 블록체인 활용 주식·국채 24시간 즉시 결제 추진...한국도 10월 로...",
+        "url": "https://www.livebiz.today/news/articleView.html?idxno=204408"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6623912851829807,
+        "relevance_score": 26,
+        "sector": "상호금융",
+        "title": "PF·부실 충당금 직격탄…신협·수협·산림 상반기 적자, 농협도 성장률...",
+        "url": "https://www.viva100.com/article/20260826500788"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.7942995643685197,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "[단독] 디지털자산기본법, 내달 초 정부안 제출…점유율 차등없이 대주...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002688540?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7825878515607592,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "“제4인뱅, 개인사업자 여신 비중 50% 이상 의무화해야”",
+        "url": "https://n.news.naver.com/mnews/article/016/0002688615?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7952813924102383,
+        "relevance_score": 21,
+        "sector": "저축은행",
+        "title": "태왕 법정관리에 영남 금융권 '초긴장'…저축은행·신협 등 사천IC PF 수...",
+        "url": "http://www.newslock.co.kr/news/articleView.html?idxno=134843"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7824521360288026,
+        "relevance_score": 20,
+        "sector": "입법·정책",
+        "title": "금융위, 고LTV·고DSR 주담대 '고위험' 분류…자본규제 강화 예고",
+        "url": "http://www.dailypop.kr/news/articleView.html?idxno=101937"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 2,
+      "여전": 1,
+      "은행": 1,
+      "입법·정책": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 1,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 1,
+      "기업금융·익스포저": 1,
+      "디지털자산": 3,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "사고·사기·횡령": 1,
+      "연체·부실": 1
+    }
+  }
+}
