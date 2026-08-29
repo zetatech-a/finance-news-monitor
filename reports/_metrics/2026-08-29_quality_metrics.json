@@ -1,0 +1,270 @@
+{
+  "clusters": {
+    "cluster_count": 303,
+    "cluster_size_max": 234,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 6,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 234,
+        "relevance_prob": 0.7611367848084821,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "환율, 수출업체 네고 물량·한은 금리 인상에 1370원 초반대 마감…13개...",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=144689"
+      },
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.902822867646273,
+        "relevance_score": 19,
+        "sector": "저축은행",
+        "title": "저축은행·상호금융 상반기 순이익 '점프'...연체율은 '하락'",
+        "url": "https://www.mdtoday.co.kr/news/articleView.html?idxno=610046"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1095,
+    "displayed_articles": 223,
+    "final_tagged_representatives": 303,
+    "normalized_articles": 2001,
+    "raw_items": 2001,
+    "relevance_filtered_articles": 826,
+    "rule_filtered_articles": 1088,
+    "tagged_before_cluster": 826
+  },
+  "date": "2026-08-29",
+  "generated_at": "2026-08-29T09:11:40.268455+09:00",
+  "publishers": {
+    "missing_publisher_count": 303,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 111,
+    "no_topic_ratio": 0.3663,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7327251120922679,
+        "relevance_score": 4,
+        "sector": "자산운용·연기금",
+        "title": "국내선 거래 안되는 '다크코인'…미국선 ETF 상장한 '지캐시'[코인현미...",
+        "url": "https://n.news.naver.com/mnews/article/421/0009139006?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5960238876500233,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "카드사의 수익 다변화, 소비자 혜택을 지키는 안전판이다 [서지용의 금...",
+        "url": "https://n.news.naver.com/mnews/article/119/0003126773?sid=110"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.34795431574381464,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "대출 사각지대 좁히기 나선 은행권, 정책상품 잇따라 선봬",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092169044"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7699214692445953,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "전산장애 많았던 토스증권에 금감원 '현장 컨설팅'…IT 분야 첫 시도",
+        "url": "https://n.news.naver.com/mnews/article/003/0014155814?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4979065515661684,
+        "relevance_score": 1,
+        "sector": "기타",
+        "title": "[탐사경] \"달러가 떨어질 수도 있다\"…1천억달러 달러예금 시대, 이제는...",
+        "url": "https://www.moneystorm.kr/news/articleView.html?idxno=6071"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8054567062226895,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "[김의석의 단상] 금융위 세종행(行), 청사보다 사람이다",
+        "url": "https://www.fntimes.com/html/view.php?ud=202608281027369249fa40c35055_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.766233164089041,
+        "relevance_score": 23,
+        "sector": "여전",
+        "title": "상반기 카드론 수치 혼선…금감원·여신협회 착시 논란",
+        "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=317191"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7346219672924935,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "[시사천국] 성장률 3.3%인데 왜 힘들까…'K자 성장'의 그늘",
+        "url": "https://news.cpbc.co.kr/article/1175387?division=NAVER"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5928541429794645,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "쏠퀴즈 정답 8월 29일",
+        "url": "https://www.bntnews.co.kr/article/view/bnt202608280286"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7396933658905477,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "마라홀딩스 6.23% 하락, 미 크립토주 약세",
+        "url": "https://www.tokenpost.kr/news/market/399942"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 5,
+      "거시·시장": 24,
+      "기타": 90,
+      "대부": 10,
+      "디지털자산": 39,
+      "보험": 9,
+      "상호금융": 21,
+      "여전": 9,
+      "은행": 28,
+      "입법·정책": 33,
+      "자산운용·연기금": 6,
+      "저축은행": 22,
+      "증권(브로커리지/리테일)": 4,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 15,
+      "감독·제재": 7,
+      "건전성·자본규제": 12,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 34,
+      "기업금융·익스포저": 11,
+      "디지털자산": 50,
+      "부동산·PF": 16,
+      "불법사금융·불법추심·보이스피싱": 13,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 11,
+      "서민금융·대환·채무조정": 11,
+      "소비자보호·민원·불완전판매": 7,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 29,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 8,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 15,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8516204341837816,
+        "relevance_score": 39,
+        "sector": "대부",
+        "title": "신협, 부실채권 전담회사 통해 정리…금융위, 채권 매입 허용 추진",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=272397"
+      },
+      {
+        "cluster_size": 47,
+        "relevance_prob": 0.9046680463468981,
+        "relevance_score": 28,
+        "sector": "상호금융",
+        "title": "새마을금고 상반기 순손실 6768억으로 적자 규모 50% 줄어, \"부실금고 합...",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=445905"
+      },
+      {
+        "cluster_size": 24,
+        "relevance_prob": 0.9520912718271404,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "두나무-비자 손잡았다…스테이블코인 결제·송금 서비스 발굴",
+        "url": "https://n.news.naver.com/mnews/article/020/0003744072?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.903859784130615,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "내달 1일 정기국회 개회…종부세 개편·용산공원법·디지털자산법 심사...",
+        "url": "https://www.etoday.co.kr/news/view/2619488"
+      },
+      {
+        "cluster_size": 20,
+        "relevance_prob": 0.43845829879216136,
+        "relevance_score": 27,
+        "sector": "상호금융",
+        "title": "신협중앙회, 매년 1조원 포용금융 공급…'포용금융 리더' 도약",
+        "url": "https://www.delighti.co.kr/news/articleView.html?idxno=120956"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8072080959711643,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "주택공급 ‘돈맥경화’에 금융 동원 … 은행·증권 PF 자금지원 확대",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/08/28/2026082800125.html"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8583755514240318,
+        "relevance_score": 24,
+        "sector": "상호금융",
+        "title": "NPL 정리 나선 신협·새마을금고…'외부 수혈' vs '내부 발탁' 엇갈린 전...",
+        "url": "https://n.news.naver.com/mnews/article/629/0000528497?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7215817043191508,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "\"양지로 끌어내려다 음지로\"…추심업 허가제 곳곳에 허점",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1722061"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8221413709288462,
+        "relevance_score": 23,
+        "sector": "감독·제재",
+        "title": "30여명 투입, 서울보증 정기검사 9월14일 시작",
+        "url": "https://www.tokenpost.kr/news/policy/399364"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8941760748279556,
+        "relevance_score": 21,
+        "sector": "감독·제재",
+        "title": "원격제어 앱으로 검찰·금감원 번호 위장··· 보이스피싱 조직 7명 구...",
+        "url": "https://www.dkilbo.com/news/articleView.html?idxno=552615"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "감독·제재": 2,
+      "대부": 2,
+      "디지털자산": 2,
+      "상호금융": 3,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "디지털자산": 2,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "연체·부실": 2
+    }
+  }
+}

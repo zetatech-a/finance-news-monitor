@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 56,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 20,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 27,
+  "candidate_hybrid_gray_rule_drop": 139,
+  "candidate_hybrid_gray_rule_keep": 27,
+  "candidate_hybrid_keep_overseas_global_reference": 17,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 8,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 642,
+  "candidate_hybrid_model_drop": 22,
+  "candidate_hybrid_model_keep": 132,
+  "candidate_hybrid_model_keep_with_domain_anchor": 132,
+  "candidate_hybrid_negative_drop": 6,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 642,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-29",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 56,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 20,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 9,
+    "candidate_hybrid_drop_negative_signal": 6,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 139,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 27,
+    "candidate_hybrid_keep_overseas_global_reference": 17,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 8,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 642,
+    "candidate_hybrid_model_drop_prob_le_threshold": 22,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 132
+  },
+  "dropped_count": 262,
+  "input_count": 1088,
+  "kept_count": 826,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1088,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 50,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "5000만원 이하·7년 이상 채권 소각·조정… 20년 넘은 빚은 일괄 소각",
+      "url": "https://www.segye.com/newsView/20260828504751?OutUrl=naver"
+    },
+    {
+      "title": "코로나 때 진 빚 6조~7조원 채무조정 검토…20년 묵은 연체채권 소각",
+      "url": "https://www.kukinews.com/article/view/kuk202608280122"
+    },
+    {
+      "title": "코로나 대출 154조...정부, 장기연체부터 소각해준다",
+      "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202608281431058290721"
+    },
+    {
+      "title": "정부, 코로나 피해 소상공인 채무조정…중기·서민 금융지원도 확대",
+      "url": "https://www.etnews.com/20260828000232"
+    },
+    {
+      "title": "코로나 피해 소상공인 부채부담 던다…취약차주 지원 확대",
+      "url": "https://www.korea.kr/news/policyNewsView.do?newsId=148970816&call_from=naver_news"
+    },
+    {
+      "title": "‘코로나 피해’ 자영업자, 연체 3년 넘은 빚 줄여준다···부채 성실 상...",
+      "url": "https://www.khan.co.kr/article/202608281440001"
+    },
+    {
+      "title": "구윤철 “자영업자·소상공인 ‘코로나 채무’ 부담 조정하겠다”",
+      "url": "https://www.naeil.com/news/read/600329?ref=naver"
+    },
+    {
+      "title": "정부, 20년 이상 장기 연체채권 일괄 소각…취약차주 지원",
+      "url": "https://www.taxtimes.co.kr/news/article.html?no=276575"
+    },
+    {
+      "title": "정부, 금리 상승기 취약차주 지원... 장기연체채권 최대 5.6조 정리",
+      "url": "https://vop.co.kr/A00001696412.html"
+    },
+    {
+      "title": "결국 코로나 빚, 없애주나…154조 남고 6조 3,000억 원 장기연체",
+      "url": "https://www.jibs.co.kr/news/articles/articlesDetail/64936?feed=na"
+    }
+  ]
+}
