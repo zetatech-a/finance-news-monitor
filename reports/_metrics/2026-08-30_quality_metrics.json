@@ -1,0 +1,261 @@
+{
+  "clusters": {
+    "cluster_count": 71,
+    "cluster_size_max": 61,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 2,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 61,
+        "relevance_prob": 0.867760139766759,
+        "relevance_score": 20,
+        "sector": "거시·시장",
+        "title": "[크레딧 시그널] 한은 '백투백' 인상에도 회사채시장 잠잠…선반영에 안...",
+        "url": "https://n.news.naver.com/mnews/article/018/0006360024?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 210,
+    "displayed_articles": 56,
+    "final_tagged_representatives": 71,
+    "normalized_articles": 307,
+    "raw_items": 307,
+    "relevance_filtered_articles": 145,
+    "rule_filtered_articles": 209,
+    "tagged_before_cluster": 145
+  },
+  "date": "2026-08-30",
+  "generated_at": "2026-08-30T09:03:43.655493+09:00",
+  "publishers": {
+    "missing_publisher_count": 71,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 25,
+    "no_topic_ratio": 0.3521,
+    "no_topic_samples": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6477997927886001,
+        "relevance_score": 23,
+        "sector": "기타",
+        "title": "정부, 단일종목 레버리지 '배율 하향' 적기 대응…자본시장법 긴급조치...",
+        "url": "https://n.news.naver.com/mnews/article/030/0003461479?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5986960087651676,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "파산한 FTX 출신·오픈AI서 퇴출...41조 날린 'AI 예언자'의 민낯",
+        "url": "https://n.news.naver.com/mnews/article/008/0005406601?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6873304782599,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "金·비트코인이 동시에?…안전-위험 극단에 몰리는 '바벨 머니'",
+        "url": "https://n.news.naver.com/mnews/article/003/0014156490?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5828816670516277,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "고유가에도 반도체 활황…개카 사용 줄고 법카는 늘었다",
+        "url": "https://n.news.naver.com/mnews/article/053/0000061090?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6982493511875975,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "정부 암표·바가지요금 등 민생침해 합동 대응…9월 ‘의식주 담합’ 조...",
+        "url": "https://n.news.naver.com/mnews/article/022/0004154747?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8113731288902948,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "“유증 할꺼면 보고서 똑바로 써라”...금감원, 미흡하면 공개망신 준다",
+        "url": "https://n.news.naver.com/mnews/article/009/0005727541?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7307679928682889,
+        "relevance_score": 12,
+        "sector": "대부",
+        "title": "“급전 필요하시죠?” 연 4만1192% 이자에 가족 협박까지…613명 당했다",
+        "url": "https://n.news.naver.com/mnews/article/011/0004656474?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5871263495597795,
+        "relevance_score": 14,
+        "sector": "보험",
+        "title": "[내년 보험규제] iM라이프·ABL·한화생명… 보험사 9곳 기본자본 부족 ...",
+        "url": "https://www.g-enews.com/view.php?ud=20260828145732302a6e8311f64_1"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.678464165803752,
+        "relevance_score": 16,
+        "sector": "상호금융",
+        "title": "금융 사각지대 메우는 신협…매년 1조원 포용금융 공급",
+        "url": "https://news.mtn.co.kr/news-detail/2026082920331637411"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8368022478833593,
+        "relevance_score": 12,
+        "sector": "입법·정책",
+        "title": "139건 추정치로 본 바젤Ⅲ 은행 규제 효과",
+        "url": "https://www.tokenpost.kr/news/policy/400401"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 10,
+      "기타": 22,
+      "대부": 1,
+      "디지털자산": 14,
+      "보험": 2,
+      "상호금융": 8,
+      "여전": 3,
+      "은행": 2,
+      "입법·정책": 4,
+      "자산운용·연기금": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 7,
+      "감독·제재": 1,
+      "건전성·자본규제": 3,
+      "금리·수수료·최고금리": 9,
+      "기업금융·익스포저": 4,
+      "디지털자산": 14,
+      "물가·경기지표": 1,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 3,
+      "서민금융·대환·채무조정": 6,
+      "연체·부실": 4,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 1,
+      "증시·시장시황": 1,
+      "칼럼·오피니언": 2,
+      "해외·글로벌": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9088756034672876,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "금융위, 내달 디지털자산기본법 정부안 제시…국회 의원입법 유력",
+        "url": "https://www.sentv.co.kr/article/view/sentv202608280165"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9090039283992747,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "디지털자산기본법 내달 발의할 듯… 연내 처리는 '글쎄'",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092169008"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8252297450479072,
+        "relevance_score": 20,
+        "sector": "기타",
+        "title": "주택공급 막힌 돈줄 푼다…PF·건설사 금융애로센터 내달 가동",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=364417"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9428074550795842,
+        "relevance_score": 16,
+        "sector": "감독·제재",
+        "title": "검찰·금감원 번호까지 띄웠다…보이스피싱 11억 세탁",
+        "url": "https://www.kyongbuk.co.kr/news/articleView.html?idxno=4082457"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6240255256536501,
+        "relevance_score": 22,
+        "sector": "상호금융",
+        "title": "신협, 중저신용자·저소득층에 매년 포용금융 1조 지원",
+        "url": "https://n.news.naver.com/mnews/article/016/0002690021?sid=101"
+      },
+      {
+        "cluster_size": 61,
+        "relevance_prob": 0.867760139766759,
+        "relevance_score": 20,
+        "sector": "거시·시장",
+        "title": "[크레딧 시그널] 한은 '백투백' 인상에도 회사채시장 잠잠…선반영에 안...",
+        "url": "https://n.news.naver.com/mnews/article/018/0006360024?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8206186876561335,
+        "relevance_score": 16,
+        "sector": "거시·시장",
+        "title": "[주간브리핑] 한은 기준금리 3.0%로 인상…SK하이닉스, 美 HBM 생산기지 ...",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=211092"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5871263495597795,
+        "relevance_score": 14,
+        "sector": "보험",
+        "title": "[내년 보험규제] iM라이프·ABL·한화생명… 보험사 9곳 기본자본 부족 ...",
+        "url": "https://www.g-enews.com/view.php?ud=20260828145732302a6e8311f64_1"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9377558215699039,
+        "relevance_score": 15,
+        "sector": "여전",
+        "title": "‘금리 인상’ 금융권 희비…은행 호재, 증권·카드사 수익성엔 부담",
+        "url": "https://www.ceoscoredaily.com/page/view/2026082816251780741"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6967870061153018,
+        "relevance_score": 12,
+        "sector": "상호금융",
+        "title": "'매년 1조원 공급'…신협, 포용금융 확대 선언",
+        "url": "https://www.ppss.kr/news/articleView.html?idxno=307882"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 2,
+      "기타": 1,
+      "디지털자산": 2,
+      "보험": 1,
+      "상호금융": 2,
+      "여전": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 2,
+      "기업금융·익스포저": 1,
+      "디지털자산": 2,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 1,
+      "자금시장·유동성": 1,
+      "해외·글로벌": 1
+    }
+  }
+}

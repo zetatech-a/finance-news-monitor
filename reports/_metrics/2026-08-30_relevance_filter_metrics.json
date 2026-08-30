@@ -1,0 +1,73 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 19,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 5,
+  "candidate_hybrid_gray_rule_drop": 27,
+  "candidate_hybrid_gray_rule_keep": 5,
+  "candidate_hybrid_keep_overseas_global_reference": 7,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 0,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 119,
+  "candidate_hybrid_model_drop": 9,
+  "candidate_hybrid_model_keep": 14,
+  "candidate_hybrid_model_keep_with_domain_anchor": 14,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 119,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-30",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 19,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 1,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 27,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 5,
+    "candidate_hybrid_keep_overseas_global_reference": 7,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 119,
+    "candidate_hybrid_model_drop_prob_le_threshold": 9,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 14
+  },
+  "dropped_count": 64,
+  "input_count": 209,
+  "kept_count": 145,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 209,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 5,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "인뱅 3사, 2Q 중·저신용자 대출 비중 목표 초과 달성",
+      "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=663414"
+    },
+    {
+      "title": "코로나 대출 장기연체 자영업자 소상공인 채무조정 확대…고금리 대출...",
+      "url": "https://www.cbci.co.kr/news/articleView.html?idxno=602174"
+    },
+    {
+      "title": "포고 재단, 지갑 해킹으로 FOGO 토큰 4억 개 도난…가격 18~20% 급락",
+      "url": "https://www.wikitree.co.kr/articles/1155877"
+    },
+    {
+      "title": "막혔던 잔금 숨통 트이나…총량 풀리자 집단대출 한 달 새 1조↑",
+      "url": "https://www.newsis.com/view/NISX20260828_0003767651"
+    },
+    {
+      "title": "[데스크 칼럼] 만기친람식 국정운영과 금융",
+      "url": "https://www.seoulfn.com/news/articleView.html?idxno=636635"
+    }
+  ]
+}
