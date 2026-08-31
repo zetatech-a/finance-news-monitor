@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 30,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 6,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 15,
+  "candidate_hybrid_gray_rule_drop": 69,
+  "candidate_hybrid_gray_rule_keep": 15,
+  "candidate_hybrid_keep_overseas_global_reference": 10,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 352,
+  "candidate_hybrid_model_drop": 25,
+  "candidate_hybrid_model_keep": 78,
+  "candidate_hybrid_model_keep_with_domain_anchor": 78,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 352,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-08-31",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 30,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 6,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 9,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 69,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 15,
+    "candidate_hybrid_keep_overseas_global_reference": 10,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 352,
+    "candidate_hybrid_model_drop_prob_le_threshold": 25,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 78
+  },
+  "dropped_count": 147,
+  "input_count": 612,
+  "kept_count": 465,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 612,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 23,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "본업 참치로 25억 벌 때 대부업으로 108억 번 사조씨푸드 '배보다 큰 배...",
+      "url": "http://www.consumernews.co.kr/news/articleView.html?idxno=762315"
+    },
+    {
+      "title": "성매매 단속하랬더니 도리어 '성접대' 받은 경찰…법원 \"영화에서나 볼...",
+      "url": "https://lawtalknews.co.kr/article/YFU7LXX96D1I"
+    },
+    {
+      "title": "[숫자로 본 카뱅·BNK]체격·체력 다 따라잡힐라",
+      "url": "https://news.bizwatch.co.kr/article/finance/2026/08/18/0031"
+    },
+    {
+      "title": "사회연대경제기본법 탄생…향후 과제는",
+      "url": "http://www.ikpnews.net/news/articleView.html?idxno=71310"
+    },
+    {
+      "title": "비트코인 1억839만 원대에서 상승 흐름, 솔라나 기반 가상화폐 결제 인...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=445933"
+    },
+    {
+      "title": "신한카드 해외법인서 189억 벌었다…베트남 급성장",
+      "url": "http://www.datanews.co.kr/news/article.html?no=146213"
+    },
+    {
+      "title": "[DQN] 김성주號 부산은행, 중저신용 금리↓·공급↑···전북銀 '고금리...",
+      "url": "https://www.fntimes.com/html/view.php?ud=202608302347162869b4a7c6999c_18"
+    },
+    {
+      "title": "주담대 절벽에 실수요자 '비명'...금리는 연일 올라",
+      "url": "https://www.ytn.co.kr/_ln/0102_202608310521377685"
+    },
+    {
+      "title": "정진완 우리은행장, 자본·포용금융 성과…수익성 과제 [2027 은행장 레이...",
+      "url": "https://www.fntimes.com/html/view.php?ud=202608282242493705dd55077bc2_18"
+    },
+    {
+      "title": "가계대출 30조 푼다는데…변함없는 ‘주담대 오픈런’ 왜",
+      "url": "https://www.joongang.co.kr/article/25457464"
+    }
+  ]
+}

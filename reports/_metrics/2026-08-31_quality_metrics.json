@@ -1,0 +1,264 @@
+{
+  "clusters": {
+    "cluster_count": 208,
+    "cluster_size_max": 206,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 206,
+        "relevance_prob": 0.8491511354134464,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "금융취약성지수 급등...한국은행 수장 “골든타임 놓치면 못 막는다” ...",
+        "url": "https://www.m-economynews.com/news/article.html?no=70245"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 640,
+    "displayed_articles": 142,
+    "final_tagged_representatives": 208,
+    "normalized_articles": 991,
+    "raw_items": 991,
+    "relevance_filtered_articles": 465,
+    "rule_filtered_articles": 612,
+    "tagged_before_cluster": 465
+  },
+  "date": "2026-08-31",
+  "generated_at": "2026-08-31T09:08:39.514675+09:00",
+  "publishers": {
+    "missing_publisher_count": 208,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 74,
+    "no_topic_ratio": 0.3558,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7543004621144572,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "시바이누 ‘0 삭제’ 분수령… 비트코인 10만 달러 관건",
+        "url": "https://www.g-enews.com/view.php?ud=202608310324429363e7e8286d56_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7633480520476836,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "韓 올해 성장률 '3.5% 이상' 전망하는 기관 많아져",
+        "url": "https://www.straightnews.co.kr/news/articleView.html?idxno=310026"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6718286810661263,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "반도체·내수 회복에 성장 눈높이 '껑충'…韓 올해 3.5% 전망 14곳",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=226013"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6809314012918032,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "이재명 대통령 \"부동산 투기 부추기는 불공정·불합리한 조세제도 반드...",
+        "url": "https://www.taxtimes.co.kr/news/article.html?no=276604"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.709813732983928,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[오늘의 비트코인] 워시 연준의장 \"물가 낮춰야\"…8만달러 아래로",
+        "url": "https://news.dealsitetv.com/articles/175382"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6561846816929832,
+        "relevance_score": 3,
+        "sector": "보험",
+        "title": "[이윤구의 프리킥스] 공개 매각 밟는 롯데손보…서로 다른 눈높이",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4432553"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6864338838348579,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "거래소로 현물 입금 쏟아진다…XRP 대규모 매도 물량 대기 속 시장 '덜덜...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=481954"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.781342154662499,
+        "relevance_score": 8,
+        "sector": "보험",
+        "title": "DB손해보험, 신계약 경쟁 대신 ‘균형 성장’..배당 여력 키운다",
+        "url": "https://kpenews.com/View.aspx?No=4205150"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7360172838654491,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "'자산형성' 대신 '미래지원'…새 청년금융정책 핵심 내용은?",
+        "url": "http://www.metroseoul.co.kr/article/20260831500006"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6679205365955495,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "'정상여신'에 숨은 외부인 금융사기 잇따라…은행은 속수무책?",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=696417"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 5,
+      "거시·시장": 28,
+      "기타": 76,
+      "대부": 4,
+      "디지털자산": 34,
+      "보험": 9,
+      "상호금융": 8,
+      "여전": 6,
+      "은행": 15,
+      "입법·정책": 13,
+      "자산운용·연기금": 2,
+      "저축은행": 6,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 14,
+      "감독·제재": 4,
+      "건전성·자본규제": 8,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 30,
+      "기업금융·익스포저": 1,
+      "디지털자산": 35,
+      "부동산·PF": 6,
+      "불법사금융·불법추심·보이스피싱": 9,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 7,
+      "서민금융·대환·채무조정": 9,
+      "소비자보호·민원·불완전판매": 5,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 10,
+      "일정·브리핑": 5,
+      "자금시장·유동성": 4,
+      "정책·제도개선": 5,
+      "증시·시장시황": 1,
+      "칼럼·오피니언": 13,
+      "해외·글로벌": 15,
+      "환율·외환": 9
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 7,
+        "relevance_prob": 0.9137988172284243,
+        "relevance_score": 38,
+        "sector": "디지털자산",
+        "title": "미래에셋 박현주의 디지털자산 승부수 정부 정책과 나란히(人포커스)",
+        "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3073603"
+      },
+      {
+        "cluster_size": 11,
+        "relevance_prob": 0.8660450020455818,
+        "relevance_score": 31,
+        "sector": "은행",
+        "title": "금리는 올리고 PF는 풀라…5대 은행 딜레마",
+        "url": "https://sateconomy.co.kr/news/view/1065613451538756"
+      },
+      {
+        "cluster_size": 206,
+        "relevance_prob": 0.8491511354134464,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "금융취약성지수 급등...한국은행 수장 “골든타임 놓치면 못 막는다” ...",
+        "url": "https://www.m-economynews.com/news/article.html?no=70245"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.847621662353997,
+        "relevance_score": 32,
+        "sector": "기타",
+        "title": "[양준서의 정조준] 지니어스법에서 클래러티법까지...미국은 '디지털 달...",
+        "url": "https://www.pennmike.com/news/articleView.html?idxno=126722"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8847443414947912,
+        "relevance_score": 27,
+        "sector": "대부",
+        "title": "금융당국, 위기시 투자상품 직접 손본다…긴급조치권 확대 추진",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=749292"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7677505744442855,
+        "relevance_score": 27,
+        "sector": "감독·제재",
+        "title": "금감원 KB금융 검사, 회장 인사 개입 우려일까",
+        "url": "http://sateconomy.co.kr/news/view/1065610840799353"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8626539807991983,
+        "relevance_score": 26,
+        "sector": "디지털자산",
+        "title": "거래소는 줄고 '코인 보관업체'는 두 배…달라진 VASP 5년",
+        "url": "https://n.news.naver.com/mnews/article/030/0003461580?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8469585806071483,
+        "relevance_score": 21,
+        "sector": "입법·정책",
+        "title": "주거사업장 PF 규제 2년 유예 … 방심은 금물 [바른 컴플라이언스리포트...",
+        "url": "https://n.news.naver.com/mnews/article/009/0005727857?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8545363001042826,
+        "relevance_score": 21,
+        "sector": "입법·정책",
+        "title": "“간편결제 뚫리고, 보험사기 판치고”…금감원, 금융소비자 피해 관행...",
+        "url": "https://n.news.naver.com/mnews/article/138/0002239485?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8008741891366805,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "은행권, '코인 자금세탁' 막는다…AI로 의심거래까지 추적",
+        "url": "https://n.news.naver.com/mnews/article/030/0003461611?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "은행": 2,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 5,
+      "부동산·PF": 2,
+      "소비자보호·민원·불완전판매": 1,
+      "정책·제도개선": 1
+    }
+  }
+}
