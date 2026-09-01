@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 72,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+  "candidate_hybrid_gray_keep_domain": 46,
+  "candidate_hybrid_gray_rule_drop": 203,
+  "candidate_hybrid_gray_rule_keep": 46,
+  "candidate_hybrid_keep_overseas_global_reference": 36,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 9,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 397,
+  "candidate_hybrid_model_drop": 39,
+  "candidate_hybrid_model_keep": 182,
+  "candidate_hybrid_model_keep_with_domain_anchor": 182,
+  "candidate_hybrid_negative_drop": 6,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 397,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-01",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 72,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 18,
+    "candidate_hybrid_drop_negative_signal": 6,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 203,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 46,
+    "candidate_hybrid_keep_overseas_global_reference": 36,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 9,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 397,
+    "candidate_hybrid_model_drop_prob_le_threshold": 39,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 182
+  },
+  "dropped_count": 353,
+  "input_count": 1023,
+  "kept_count": 670,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1023,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 64,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "부산시, 9~10월 '불법 대부 광고 번호' 집중 차단",
+      "url": "https://www.newsis.com/view/NISX20260901_0003770491"
+    },
+    {
+      "title": "‘빚의 늪’ 빠진 청년들…‘반도체 훈풍’에 설비투자 ↑ [한강로 경제...",
+      "url": "https://www.segye.com/newsView/20260831518043?OutUrl=naver"
+    },
+    {
+      "title": "소상공인, 보험료 '0원'⋯질병·사고 때 대출상환·휴업손실 보장",
+      "url": "http://www.inews24.com/view/2000236"
+    },
+    {
+      "title": "[언주로 칼럼] 정책 기조가 없다",
+      "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202608311601176260037"
+    },
+    {
+      "title": "70조원 포용금융, '리스크 청구서'는 누가 받나 [줌인IT]",
+      "url": "https://it.chosun.com/news/articleView.html?idxno=2023092169158"
+    },
+    {
+      "title": "[사설] 상반기에만 채무조정 10만명, 재기 지원 늘려야",
+      "url": "https://www.hani.co.kr/arti/opinion/editorial/1275554.html"
+    },
+    {
+      "title": "'포용금융' 확대 압박에도 5대銀 사잇돌대출 비중 3% 밑돌아",
+      "url": "https://www.ajunews.com/view/20260831133632666"
+    },
+    {
+      "title": "우리카드, 인니법인 순익 26% 늘려 선두로…'후발' 약점 극복했다",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=672251"
+    },
+    {
+      "title": "순익은 뛰었는데···2금융권 기업대출 '부실 경고등'",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2464837"
+    },
+    {
+      "title": "연임 ‘오디션’ 다가오는 캐피탈업계, 성과 내도 불안한 까닭",
+      "url": "https://www.ekn.kr/web/view.php?key=20260831021318200"
+    }
+  ]
+}

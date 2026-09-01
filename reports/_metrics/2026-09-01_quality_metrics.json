@@ -1,0 +1,266 @@
+{
+  "clusters": {
+    "cluster_count": 286,
+    "cluster_size_max": 179,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 6,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 179,
+        "relevance_prob": 0.8664863547739474,
+        "relevance_score": 26,
+        "sector": "거시·시장",
+        "title": "달러·원 환율 13개월 만에 1360원대 마감…수출기업 환전 영향(종합)",
+        "url": "https://n.news.naver.com/mnews/article/421/0009142151?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1048,
+    "displayed_articles": 208,
+    "final_tagged_representatives": 286,
+    "normalized_articles": 1480,
+    "raw_items": 1480,
+    "relevance_filtered_articles": 670,
+    "rule_filtered_articles": 1023,
+    "tagged_before_cluster": 670
+  },
+  "date": "2026-09-01",
+  "generated_at": "2026-09-01T09:09:53.811786+09:00",
+  "publishers": {
+    "missing_publisher_count": 286,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 103,
+    "no_topic_ratio": 0.3601,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6551174823616744,
+        "relevance_score": 3,
+        "sector": "기타",
+        "title": "주유비 폭등, 국채값 폭락을 남이 해결하라니 [트럼프 스톡커]",
+        "url": "https://n.news.naver.com/mnews/article/011/0004657207?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7460945917137746,
+        "relevance_score": 19,
+        "sector": "상호금융",
+        "title": "신협, 금융위에 '판정승'? 국회 업고 규제 개선 가속도",
+        "url": "https://www.topdaily.kr/articles/111728"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5740357358506072,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "고금리에 차주 허리 휘는데...은행, 상반기 금리인하요구 5명 중 4명에 ...",
+        "url": "https://n.news.naver.com/mnews/article/023/0003996009?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7953878449299202,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코인원, 스크린골프 게임비 쏜다..골프존과 제휴",
+        "url": "https://kpenews.com/View.aspx?No=4207059"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6674723106311763,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "\"체인 되돌렸지만 자산은 증발\"... 크로노스 텍토닉 익스플로잇 뒤에 숨...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=482392"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.679676854235633,
+        "relevance_score": 8,
+        "sector": "여전",
+        "title": "애큐온캐피탈, 기업금융 확대로 상반기 순익 456억…전년比 30.3%↑",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=211294"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.531111027403007,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "병장 월급 150만원으로 올려줬더니 ‘주식·코인에 도박까지’…빚더미...",
+        "url": "https://n.news.naver.com/mnews/article/011/0004657188?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5527531516640957,
+        "relevance_score": 8,
+        "sector": "상호금융",
+        "title": "[단독] 지역농협 무더기 경영난···46곳 '부실우려' 지정",
+        "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2465086"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6611066847493734,
+        "relevance_score": 8,
+        "sector": "보험",
+        "title": "[보험사 진단] [흥국화재] 장기 수익성 좋아졌지만 기본자본 여전히 취...",
+        "url": "https://www.topdaily.kr/articles/111726"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.778214277822296,
+        "relevance_score": 16,
+        "sector": "여전",
+        "title": "상반기 카드사 순익 5.6%↑...실질 이익 26%↓",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=860711"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 4,
+      "거시·시장": 36,
+      "기타": 88,
+      "대부": 18,
+      "디지털자산": 53,
+      "보험": 6,
+      "상호금융": 14,
+      "여전": 12,
+      "은행": 25,
+      "입법·정책": 12,
+      "자산운용·연기금": 6,
+      "저축은행": 7,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 12,
+      "감독·제재": 7,
+      "건전성·자본규제": 10,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 36,
+      "기업금융·익스포저": 11,
+      "디지털자산": 55,
+      "물가·경기지표": 2,
+      "부동산·PF": 5,
+      "불법사금융·불법추심·보이스피싱": 11,
+      "상품·영업·예금금리": 8,
+      "서민금융·대환·채무조정": 13,
+      "소비자보호·민원·불완전판매": 5,
+      "업계동정·사회공헌": 3,
+      "연체·부실": 12,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 10,
+      "정책·제도개선": 2,
+      "증시·시장시황": 10,
+      "칼럼·오피니언": 15,
+      "해외·글로벌": 23,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9127018328886839,
+        "relevance_score": 34,
+        "sector": "디지털자산",
+        "title": "네이버·두나무 결합 변수된 디지털자산법…코빗·고팍스도 영향권",
+        "url": "https://www.thelec.kr/news/articleView.html?idxno=61550"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9306987095472381,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "가상자산 복수은행 제휴, 2단계법 입법 시계에 달렸다",
+        "url": "http://www.dailypop.kr/news/articleView.html?idxno=102078"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9375174466009373,
+        "relevance_score": 21,
+        "sector": "상호금융",
+        "title": "새마을금고, 부실 털었는데 또 쌓여…연체율 다시 6%대",
+        "url": "https://www.newstopkorea.com/news/articleView.html?idxno=47364"
+      },
+      {
+        "cluster_size": 179,
+        "relevance_prob": 0.8664863547739474,
+        "relevance_score": 26,
+        "sector": "거시·시장",
+        "title": "달러·원 환율 13개월 만에 1360원대 마감…수출기업 환전 영향(종합)",
+        "url": "https://n.news.naver.com/mnews/article/421/0009142151?sid=101"
+      },
+      {
+        "cluster_size": 14,
+        "relevance_prob": 0.8105109523817751,
+        "relevance_score": 20,
+        "sector": "기타",
+        "title": "[이슈] 국내은행 BIS 총자본비율 15.77%로 상승…금감원 \"건전성 양호\"",
+        "url": "https://www.polinews.co.kr/news/articleView.html?idxno=741696"
+      },
+      {
+        "cluster_size": 21,
+        "relevance_prob": 0.8765084987353433,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "'나체사진 담보' 연 4만% 살인적 이자…불법사금융 조직 29명 검거",
+        "url": "https://n.news.naver.com/mnews/article/421/0009141239?sid=102"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8355337016697454,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "“불법사금융 막자”…장민영 기업은행장, ‘사람 살리는 금융’ 릴레이...",
+        "url": "https://n.news.naver.com/mnews/article/243/0000102425?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6510808423072773,
+        "relevance_score": 20,
+        "sector": "IB·자본시장",
+        "title": "신한금융 CET1 13.43%…생산적 금융·1.4조 자사주·M&A 선택지 넓혀",
+        "url": "https://sateconomy.co.kr/news/view/1065586100347847"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7460945917137746,
+        "relevance_score": 19,
+        "sector": "상호금융",
+        "title": "신협, 금융위에 '판정승'? 국회 업고 규제 개선 가속도",
+        "url": "https://www.topdaily.kr/articles/111728"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.531111027403007,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "병장 월급 150만원으로 올려줬더니 ‘주식·코인에 도박까지’…빚더미...",
+        "url": "https://n.news.naver.com/mnews/article/011/0004657188?sid=102"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 3,
+      "디지털자산": 2,
+      "상호금융": 2
+    },
+    "topic_counts": {
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 4,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "연체·부실": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
