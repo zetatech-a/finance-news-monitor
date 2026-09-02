@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 13,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 127,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 7,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 6,
+  "candidate_hybrid_gray_keep_domain": 44,
+  "candidate_hybrid_gray_rule_drop": 227,
+  "candidate_hybrid_gray_rule_keep": 44,
+  "candidate_hybrid_keep_overseas_global_reference": 78,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 433,
+  "candidate_hybrid_model_drop": 84,
+  "candidate_hybrid_model_keep": 130,
+  "candidate_hybrid_model_keep_with_domain_anchor": 130,
+  "candidate_hybrid_negative_drop": 10,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 433,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-02",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 13,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 127,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 7,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 14,
+    "candidate_hybrid_drop_negative_signal": 10,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 6,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 227,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 44,
+    "candidate_hybrid_keep_overseas_global_reference": 78,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 433,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 8,
+    "candidate_hybrid_model_drop_prob_le_threshold": 84,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 130
+  },
+  "dropped_count": 494,
+  "input_count": 1190,
+  "kept_count": 696,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1190,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 83,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "‘시사기획 창’ 100만원 급전의 대가…부모·친구까지 추심 전화 받았...",
+      "url": "https://www.wikitree.co.kr/articles/1156095"
+    },
+    {
+      "title": "소상공인 '빚 부담' 보험으로 던다…무료 상생보험 본격화",
+      "url": "https://www.ntoday.co.kr/news/articleView.html?idxno=129101"
+    },
+    {
+      "title": "펜타곤 법률세무회계, 서울국세청 출신 전승환 변호사 영입",
+      "url": "https://biz.chosun.com/topics/law_firm/2026/09/01/EXXUC6BDMFGVJNLHFMH64VEJKI/?utm_source=naver&utm_medium=original&utm_campaign=biz"
+    },
+    {
+      "title": "보험업권, 7개 지자체와 소상공인 대상 무상 상생보험 선보여",
+      "url": "http://www.intn.co.kr/news/articleView.html?idxno=2052951"
+    },
+    {
+      "title": "보험료 ‘0원’인데 대출까지 갚아준다…소상공인 상생보험 출시",
+      "url": "https://www.tfmedia.co.kr/news/article.html?no=206892"
+    },
+    {
+      "title": "펜타곤 법률세무회계, 서울지방국세청 출신 전승환 변호사 영입",
+      "url": "https://www.mt.co.kr/society/2026/09/01/2026090109034070350"
+    },
+    {
+      "title": "부산시, 불법 대부 광고 전화전호 집중 차단…신고 접수",
+      "url": "https://www.nocutnews.co.kr/news/6571069?utm_source=naver&utm_medium=article&utm_campaign=20260901093715"
+    },
+    {
+      "title": "불법 대부 전단·문자 신고하면 번호 막는다…부산시 2개월 집중 차단",
+      "url": "https://www.mhns.co.kr/news/articleView.html?idxno=758449"
+    },
+    {
+      "title": "케이뱅크 잡은 토스뱅크, 인뱅 '2위 판도' 뒤흔든다",
+      "url": "https://www.newsway.co.kr/news/view?ud=2026090113582941586"
+    },
+    {
+      "title": "가계대출 막히자 '사장님·전월세'로…인뱅 3사 성장축 달라졌다",
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=482750"
+    }
+  ]
+}
