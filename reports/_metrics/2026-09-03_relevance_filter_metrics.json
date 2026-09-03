@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 13,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 146,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 9,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 10,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 33,
+  "candidate_hybrid_gray_rule_drop": 144,
+  "candidate_hybrid_gray_rule_keep": 33,
+  "candidate_hybrid_keep_overseas_global_reference": 87,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 468,
+  "candidate_hybrid_model_drop": 74,
+  "candidate_hybrid_model_keep": 134,
+  "candidate_hybrid_model_keep_with_domain_anchor": 134,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 468,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-03",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 13,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 146,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 9,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 11,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 10,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 144,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 33,
+    "candidate_hybrid_keep_overseas_global_reference": 87,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 468,
+    "candidate_hybrid_model_drop_prob_le_threshold": 74,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 134
+  },
+  "dropped_count": 415,
+  "input_count": 1143,
+  "kept_count": 728,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1143,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 88,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "대부업권 대상채권 4.8조원 중 매각은 15%뿐…절반은 가입 안 해",
+      "url": "https://www.greened.kr/news/articleView.html?idxno=349123"
+    },
+    {
+      "title": "보험 사각지대 소상공인 100만명…‘상생보험’ 실질 안전망 될까",
+      "url": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065606170623559"
+    },
+    {
+      "title": "7개 지자체 상생보험…지역별 대상·보장 달라",
+      "url": "https://www.vegannews.co.kr/news/article.html?no=385679"
+    },
+    {
+      "title": "새도약기금 매입가율, 목표 5%의 절반 수준…최근 회차는 1.8%까지 뚝",
+      "url": "https://www.greened.kr/news/articleView.html?idxno=349016"
+    },
+    {
+      "title": "박정현 의원, 불법 사금융 3년 새 3배 급증",
+      "url": "http://www.financialreview.co.kr/news/articleView.html?idxno=44540"
+    },
+    {
+      "title": "부산시, 불법 대부 광고 전화 집중 차단",
+      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8652385&ref=A"
+    },
+    {
+      "title": "케이뱅크 최우형 책임론 커진 이유...시총 1.1조 증발(1부)",
+      "url": "https://www.the-today.com/news/articleView.html?idxno=89367"
+    },
+    {
+      "title": "먼저 뛴 토스 '주춤… 카뱅·케뱅, '사장님대출' 역전",
+      "url": "https://www.mt.co.kr/finance/2026/09/03/2026090220044686736"
+    },
+    {
+      "title": "인뱅 자영업자 대출 셈법 갈렸다…카뱅·케뱅 '확대'-토뱅 '관리'",
+      "url": "https://www.mt.co.kr/finance/2026/09/03/2026090215552852184"
+    },
+    {
+      "title": "농협銀, 강태영표 ‘디지털·선제적 리스크 관리’ 결실…안방선 실적 ...",
+      "url": "http://www.segyebiz.com/newsView/20260902514249?OutUrl=naver"
+    }
+  ]
+}

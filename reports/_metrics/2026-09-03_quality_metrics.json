@@ -1,0 +1,266 @@
+{
+  "clusters": {
+    "cluster_count": 386,
+    "cluster_size_max": 133,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 133,
+        "relevance_prob": 0.8479519066967797,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "\"연준 올리면 한은 더 올려야\" 국내 채권시장도 금리 충격",
+        "url": "https://n.news.naver.com/mnews/article/008/0005408577?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1155,
+    "displayed_articles": 290,
+    "final_tagged_representatives": 386,
+    "normalized_articles": 1545,
+    "raw_items": 1545,
+    "relevance_filtered_articles": 728,
+    "rule_filtered_articles": 1143,
+    "tagged_before_cluster": 728
+  },
+  "date": "2026-09-03",
+  "generated_at": "2026-09-03T09:14:04.982757+09:00",
+  "publishers": {
+    "missing_publisher_count": 386,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 118,
+    "no_topic_ratio": 0.3057,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5681015126267097,
+        "relevance_score": 12,
+        "sector": "은행",
+        "title": "5대 은행 0.4% 늘 때… 카카오·케이 ‘사장님 대출’ 70% 급증",
+        "url": "https://n.news.naver.com/mnews/article/023/0003996439?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7714266146555095,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"스마트폰부터 AI까지\" LG유플러스, 다문화·1인 가구 디지털 격차 없앤...",
+        "url": "https://www.smarttoday.co.kr/ko-kr/articles/111109"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7279202610289294,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "李정부 두 번째 국감 내달 6일 돌입...금융권 주요 현안 키워드는?",
+        "url": "https://www.joongangenews.com/news/articleView.html?idxno=545126"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7664600348296545,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "디지털엑스, 오세진 CEO 체제 당분간 유지",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/401984"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.661221354675712,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "잘나가는 '원 메리츠'의 아픈 손가락…김용범, 캐피탈 체질 바꾼다",
+        "url": "https://dealsite.co.kr/articles/168260"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.662017454559745,
+        "relevance_score": 11,
+        "sector": "여전",
+        "title": "\"카드론 막자 리볼빙으로\"...급전수요 '풍선효과'",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=861474"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6853894043596385,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "리플 RLUSD 시총 20억달러 돌파…XRP레저 발행량만 10억달러 넘어",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=603357"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.41197179338364665,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "은행권 소상공인 대출 '계산법' 들여다보니...SCB 활용 제각각",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=697750"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6943109087199351,
+        "relevance_score": 11,
+        "sector": "여전",
+        "title": "은행은 외면한 사잇돌대출…여전사 새 먹거리 될까",
+        "url": "https://n.news.naver.com/mnews/article/119/0003128459?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7308121307303335,
+        "relevance_score": 13,
+        "sector": "보험",
+        "title": "\"돈은 있는데\" M&A '큰 장' 앞에 작아진다...보험사 규제 '족쇄' 풀릴까",
+        "url": "https://n.news.naver.com/mnews/article/008/0005408730?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 5,
+      "거시·시장": 63,
+      "기타": 106,
+      "대부": 9,
+      "디지털자산": 66,
+      "보험": 9,
+      "상호금융": 21,
+      "여전": 12,
+      "은행": 40,
+      "입법·정책": 24,
+      "자산운용·연기금": 8,
+      "저축은행": 18,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 23,
+      "감독·제재": 10,
+      "건전성·자본규제": 16,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 50,
+      "기업금융·익스포저": 17,
+      "디지털자산": 77,
+      "부동산·PF": 12,
+      "불법사금융·불법추심·보이스피싱": 24,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 12,
+      "서민금융·대환·채무조정": 8,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 6,
+      "연체·부실": 37,
+      "자금시장·유동성": 14,
+      "정책·제도개선": 2,
+      "증시·시장시황": 14,
+      "칼럼·오피니언": 15,
+      "해외·글로벌": 43,
+      "환율·외환": 9
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 15,
+        "relevance_prob": 0.9310310612411969,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "가상자산 외환범죄 1년 새 2배…두나무, 수사 지원 공로로 관세청장 표...",
+        "url": "https://www.news2day.co.kr/article/20260902500071"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8934229192201649,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "\"보이스피싱 뿌리 뽑는다\"…범정부 TF, 지난 1년간 피싱범 3만 8천여 명...",
+        "url": "http://www.tjb.co.kr/sub0301/bodo/view/id/103123"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8221912570310655,
+        "relevance_score": 29,
+        "sector": "상호금융",
+        "title": "부실채권 시장 호황 속 '빈익빈 부익부'",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1312294&inflow=N"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8837291558092684,
+        "relevance_score": 28,
+        "sector": "상호금융",
+        "title": "신협 연체율 재상승 … 부실채권 매각보다 신규 부실 유입 빨랐다",
+        "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=245328"
+      },
+      {
+        "cluster_size": 17,
+        "relevance_prob": 0.9496828281979975,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "\"스테이블코인 규제, 상환능력 확보가 핵심\"",
+        "url": "https://n.news.naver.com/mnews/article/009/0005729528?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7777732626702641,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "생산적금융 하라더니, \"PF 자금 빨리 공급하라\"...은행권 '딜레마'",
+        "url": "https://n.news.naver.com/mnews/article/008/0005408557?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.737344963667656,
+        "relevance_score": 26,
+        "sector": "상호금융",
+        "title": "가계대출 총량 확대에 상호금융 '숨통'…신규 대출 '빠듯'",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=719043"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8001894901216061,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "금융위원회 '세종 이전' 가시화되나…금융노조는 4일 총파업 예고",
+        "url": "https://n.news.naver.com/mnews/article/421/0009147744?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.908842999491868,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "\"계좌 풀어줘\"...간 큰 보이스피싱범, 변호사 끼고 금감원 민원",
+        "url": "https://n.news.naver.com/mnews/article/008/0005408539?sid=101"
+      },
+      {
+        "cluster_size": 133,
+        "relevance_prob": 0.8479519066967797,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "\"연준 올리면 한은 더 올려야\" 국내 채권시장도 금리 충격",
+        "url": "https://n.news.naver.com/mnews/article/008/0005408577?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "거시·시장": 1,
+      "디지털자산": 2,
+      "상호금융": 3,
+      "은행": 1,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 3,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "소비자보호·민원·불완전판매": 1,
+      "연체·부실": 2,
+      "자금시장·유동성": 1,
+      "해외·글로벌": 1
+    }
+  }
+}
