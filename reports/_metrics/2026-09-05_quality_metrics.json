@@ -1,0 +1,269 @@
+{
+  "clusters": {
+    "cluster_count": 260,
+    "cluster_size_max": 51,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 6,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 51,
+        "relevance_prob": 0.8946791961617612,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "신한라이프, 보이스피싱 선제 대응 '신규 FDS' 론칭… 고객자산 보호 강...",
+        "url": "http://www.biztribune.co.kr/news/articleView.html?idxno=358503"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 811,
+    "displayed_articles": 201,
+    "final_tagged_representatives": 260,
+    "normalized_articles": 994,
+    "raw_items": 994,
+    "relevance_filtered_articles": 619,
+    "rule_filtered_articles": 801,
+    "tagged_before_cluster": 619
+  },
+  "date": "2026-09-05",
+  "generated_at": "2026-09-05T09:08:48.161158+09:00",
+  "publishers": {
+    "missing_publisher_count": 260,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 85,
+    "no_topic_ratio": 0.3269,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.68749722928744,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "\"바이낸스서만 10조 터졌다\"… XRP 폭풍 매수세에 개미들 비상",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=484094"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.714982081412813,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "비트코인 '해빙 신호' 뚜렷…'겨울 끝'은 글쎄",
+        "url": "http://www.newsian.co.kr/news/articleView.html?idxno=94835"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.6701864423368248,
+        "relevance_score": 12,
+        "sector": "은행",
+        "title": "[금융픽] BNK부산은행, 부산자유도매시장과 '장금이 결연' 外",
+        "url": "http://www.newsian.co.kr/news/articleView.html?idxno=94823"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6225399918901074,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "\"비밀번호 기억해뒀다가\"…청소하러 간 집 돌며 6000만원 훔친 30대 징역...",
+        "url": "https://n.news.naver.com/mnews/article/277/0005812259?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6931207491331077,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "개강 맞은 대학가, 익명 커뮤니티 타고 '불건전 만남' 기승",
+        "url": "https://www.newspim.com/news/view/20260904000644"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7399378266396992,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "리플XRP·비트코인·플록, 거래 몰리고 가격 엇갈려",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16183706"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4958946558933359,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[영상] 젊은 男에게 할머니가 봉투를? 3000만원 지킨 택배기사 ‘촉’",
+        "url": "https://n.news.naver.com/mnews/article/005/0001871037?sid=103"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.747442407052932,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "개인정보 유출 가능성 발견…기업은 언제 알려야 할까 [수사와 재판]",
+        "url": "https://www.etoday.co.kr/news/view/2622006"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7793061286539421,
+        "relevance_score": 12,
+        "sector": "입법·정책",
+        "title": "\"이번엔 넘어갔지만 안심 못한다\"...불씨 남은 금융위·금감원 '세종행...",
+        "url": "https://n.news.naver.com/mnews/article/123/0002389653?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7067723635119856,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "6만7994계약 순숏, 원유 12만3449계약 순롱",
+        "url": "https://www.tokenpost.kr/news/economy/402759"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 8,
+      "거시·시장": 47,
+      "기타": 68,
+      "대부": 4,
+      "디지털자산": 54,
+      "보험": 9,
+      "상호금융": 16,
+      "여전": 4,
+      "은행": 27,
+      "입법·정책": 15,
+      "자산운용·연기금": 2,
+      "저축은행": 5,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 9,
+      "감독·제재": 2,
+      "건전성·자본규제": 8,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 25,
+      "기업금융·익스포저": 4,
+      "디지털자산": 63,
+      "물가·경기지표": 1,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 19,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 3,
+      "서민금융·대환·채무조정": 4,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 6,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 11,
+      "정책·제도개선": 4,
+      "증시·시장시황": 26,
+      "칼럼·오피니언": 8,
+      "평판·사회이슈": 1,
+      "해외·글로벌": 29,
+      "환율·외환": 12
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8322888753733502,
+        "relevance_score": 29,
+        "sector": "대부",
+        "title": "4조원대 부실채권 정리 추진한 신협…연체율 다시 6%대, 또 'AMC 카드'로...",
+        "url": "http://www.newslock.co.kr/news/articleView.html?idxno=135541"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8117764614721442,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "[단독] 금감원에 불법사금융 수사권 부여…국회, 개정안 첫 발의",
+        "url": "https://n.news.naver.com/mnews/article/018/0006363938?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9454484928680159,
+        "relevance_score": 30,
+        "sector": "감독·제재",
+        "title": "금융당국, 가상자산 이원화 규제 검토",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1312607&inflow=N"
+      },
+      {
+        "cluster_size": 14,
+        "relevance_prob": 0.7893023703826642,
+        "relevance_score": 33,
+        "sector": "디지털자산",
+        "title": "빗썸, 금감원·이화여대 주관 '청년 채용설명회' 참여…\"차세대 금융 인...",
+        "url": "https://www.getnews.co.kr/news/articleView.html?idxno=879818"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.8377129330243556,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "빗썸, 금감원·이화여대 주관 '청년 채용설명회' 참여",
+        "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7182547"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.894679792391704,
+        "relevance_score": 28,
+        "sector": "기타",
+        "title": "[특징주] 아톤, 금융위 주식·채권·펀드 토큰 허용 소식에 상승세",
+        "url": "https://www.etoday.co.kr/news/view/2621925"
+      },
+      {
+        "cluster_size": 7,
+        "relevance_prob": 0.7629882439001863,
+        "relevance_score": 26,
+        "sector": "감독·제재",
+        "title": "내년 2월 토큰증권 시대 열린다…주식·채권·펀드까지 대상 확대",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=145401"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.8850110658164019,
+        "relevance_score": 25,
+        "sector": "입법·정책",
+        "title": "금융위, 토큰증권 정책 방향 공개...주식·채권·펀드 토큰화",
+        "url": "https://www.mdtoday.co.kr/news/articleView.html?idxno=610886"
+      },
+      {
+        "cluster_size": 47,
+        "relevance_prob": 0.7485181396093783,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "우리기술투자 주가, 급등세... 왜?",
+        "url": "https://www.ggilbo.com/news/articleView.html?idxno=1179692"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7741634291688108,
+        "relevance_score": 23,
+        "sector": "저축은행",
+        "title": "김희상 애큐온저축은행 대표, 포트폴리오 조정에 이자이익 감소…외형...",
+        "url": "https://www.fntimes.com/html/view.php?ud=2026090405331219337c96e79780_18"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 2,
+      "디지털자산": 2,
+      "입법·정책": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "기업금융·익스포저": 1,
+      "디지털자산": 6,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "연체·부실": 2,
+      "정책·제도개선": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 66,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 6,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 34,
+  "candidate_hybrid_gray_rule_drop": 68,
+  "candidate_hybrid_gray_rule_keep": 34,
+  "candidate_hybrid_keep_overseas_global_reference": 62,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 337,
+  "candidate_hybrid_model_drop": 23,
+  "candidate_hybrid_model_keep": 183,
+  "candidate_hybrid_model_keep_with_domain_anchor": 183,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 337,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-05",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 66,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 6,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 68,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 34,
+    "candidate_hybrid_keep_overseas_global_reference": 62,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 337,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 23,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 183
+  },
+  "dropped_count": 182,
+  "input_count": 801,
+  "kept_count": 619,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 801,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 15,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "\"100만명 혜택이라는데\"…7개 지자체 무료 상생보험 출시",
+      "url": "http://www.issuenbiz.com/news/articleView.html?idxno=79442"
+    },
+    {
+      "title": "정제마진 개선 기대감… S-Oil·GS 등 정유 대형주 랠리",
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=483773"
+    },
+    {
+      "title": "국고채 금리, 美 고용 앞두고 하락…외국인 10년물 '사자'",
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1723102"
+    },
+    {
+      "title": "국고채 금리 대체로 하락…美 고용지표 대기(종합)",
+      "url": "https://www.yna.co.kr/view/AKR20260904142751008?input=1195m"
+    },
+    {
+      "title": "첫 정기검사부터 ‘기관주의’…토스뱅크, 성장 속도 못 따라간 내부통...",
+      "url": "https://www.geconomy.co.kr/news/article.html?no=323364"
+    },
+    {
+      "title": "\"무조건 지방 가라니, 이런 나라가 어디 있나\"…금융노조 광화문 총파업...",
+      "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7182543"
+    },
+    {
+      "title": "비트코인 1억1073만 원대 상승, 미국 금리동결 기대감·ETF 자금유입 영...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=446385"
+    },
+    {
+      "title": "비트코인, 美 금리 인상 우려 완화에 급등... 3개월 만에 8만1000달러 돌...",
+      "url": "https://www.chosun.com/economy/money/2026/09/04/7FHDBQJZONDG7KNPDAXZFF45D4/?utm_source=naver&utm_medium=referral&utm_campaign=naver-news"
+    },
+    {
+      "title": "[금융家] 신한은행 ②ㅣ 가계대출 문턱 높아도 상생금융은 확대…中企·...",
+      "url": "https://www.cbci.co.kr/news/articleView.html?idxno=603840"
+    },
+    {
+      "title": "“어제는 된다더니 오늘은 끝” 반차 내도 헛걸음…피 말리는 ‘대출 셔...",
+      "url": "https://www.dt.co.kr/article/12082117?ref=naver"
+    }
+  ]
+}
