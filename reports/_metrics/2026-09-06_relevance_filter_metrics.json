@@ -1,0 +1,93 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 16,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 7,
+  "candidate_hybrid_gray_rule_drop": 55,
+  "candidate_hybrid_gray_rule_keep": 7,
+  "candidate_hybrid_keep_overseas_global_reference": 19,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 68,
+  "candidate_hybrid_model_drop": 5,
+  "candidate_hybrid_model_keep": 30,
+  "candidate_hybrid_model_keep_with_domain_anchor": 30,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 68,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-06",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 16,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 7,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 55,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 7,
+    "candidate_hybrid_keep_overseas_global_reference": 19,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 68,
+    "candidate_hybrid_model_drop_prob_le_threshold": 5,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 30
+  },
+  "dropped_count": 88,
+  "input_count": 219,
+  "kept_count": 131,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 219,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 13,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "\"거리두기 탓에 생긴 부채\" vs \"갚은 사람만 바보\"[코로나 빚 탕감③]",
+      "url": "https://www.newsis.com/view/NISX20260903_0003775353"
+    },
+    {
+      "title": "버티면 정부가 알아서 해결해 준다?…반복된 논란[코로나 빚 탕감②]",
+      "url": "https://www.newsis.com/view/NISX20260903_0003775706"
+    },
+    {
+      "title": "\"빌린 돈 아직도 갚는중\"…엎친데 덮친 '금리인상'[코로나 빚 탕감①]",
+      "url": "https://www.newsis.com/view/NISX20260904_0003776760"
+    },
+    {
+      "title": "[금상소] 투자 쉬어갈 때 적금⋯연 12%까지 챙겨볼까",
+      "url": "https://www.etoday.co.kr/news/view/2622017"
+    },
+    {
+      "title": "[9월 첫째 주 세계경제동향 브리핑] 코스피 6,600선 후퇴…美 증시는 혼...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3033619"
+    },
+    {
+      "title": "가계대출·5세대 실손·레버리지 ETF…금융권 흔들 국감 핵심 쟁점",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5058612"
+    },
+    {
+      "title": "[신학기 수협은행장 성과평가] ③'6조 생산적금융' 해양수산으로 차별화",
+      "url": "https://www.fetv.co.kr/news/articleView.html?idxno=309649"
+    },
+    {
+      "title": "강남은 대출 의존도 20% 안팎, 노도강은 50%대…자금력에 갈린 서울",
+      "url": "https://www.news1.kr/realestate/general/6280638"
+    },
+    {
+      "title": "“공공임대주택으로 주거 안정화…국내 금융권 정책적 지원 필요”",
+      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8655571&ref=A"
+    },
+    {
+      "title": "\"주택금융, 자가 마련 넘어 공공임대로 확대해야…빈 모델 주목\"",
+      "url": "http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005915909"
+    }
+  ]
+}

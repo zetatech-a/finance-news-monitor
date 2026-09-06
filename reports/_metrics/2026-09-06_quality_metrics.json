@@ -1,0 +1,254 @@
+{
+  "clusters": {
+    "cluster_count": 84,
+    "cluster_size_max": 32,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 222,
+    "displayed_articles": 60,
+    "final_tagged_representatives": 84,
+    "normalized_articles": 289,
+    "raw_items": 289,
+    "relevance_filtered_articles": 131,
+    "rule_filtered_articles": 219,
+    "tagged_before_cluster": 131
+  },
+  "date": "2026-09-06",
+  "generated_at": "2026-09-06T09:05:55.927635+09:00",
+  "publishers": {
+    "missing_publisher_count": 84,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 38,
+    "no_topic_ratio": 0.4524,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6923772186719431,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "\"주식 대신 보험\"…부자들의 달라진 목돈 운용법",
+        "url": "https://n.news.naver.com/mnews/article/417/0001157468?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6800186402640659,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "공효진 정체 알게 된 정준원, \"나 사랑한 건 맞아?\" 절규",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16184286"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8560975666580912,
+        "relevance_score": 7,
+        "sector": "저축은행",
+        "title": "핀다, 저축은행 인수 '인력 확보' 돌입…당국 적격성 심사 변수",
+        "url": "https://n.news.naver.com/mnews/article/293/0000090064?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6579803923729606,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "한 달 만에 51% 폭등한 하이퍼리퀴드(HYPE), 연말 100달러 돌파 가능할까",
+        "url": "http://coinreaders.com/256747"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5053908937972591,
+        "relevance_score": 15,
+        "sector": "기타",
+        "title": "[2026 국감 미리보기③] \"집 더 짓겠다\"면서 대출은 조인다…주택정책,...",
+        "url": "http://www.newsian.co.kr/news/articleView.html?idxno=94852"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6482228604038438,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "'오물 테러' 사주한 스토커, 피해자 주소 넘긴 '현직 경찰'",
+        "url": "https://n.news.naver.com/mnews/article/437/0000509694?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5838380695335486,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "2분기 카드사 레버리지 배율 ‘5.6배’ 안정세…롯데·현대·우리 순 높...",
+        "url": "https://www.ceoscoredaily.com/page/view/2026090115583676007"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7617722819411484,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "“내 딸 위험에 빠뜨린 사람이 나였다니”…한가인도 결사반대 ‘셰어...",
+        "url": "https://n.news.naver.com/mnews/article/009/0005730875?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4731555046807435,
+        "relevance_score": 12,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "IPO 전부터 유망기업 찾는다···증권사, 모험자본 투자 보폭 확대",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=637294"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6324482519440753,
+        "relevance_score": 19,
+        "sector": "기타",
+        "title": "금융기관 지방이전 재점화⋯효과ㆍ비용 논쟁 속 선별론도 [공공기관 빅...",
+        "url": "https://www.etoday.co.kr/news/view/2622119"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 2,
+      "거시·시장": 13,
+      "기타": 32,
+      "대부": 1,
+      "디지털자산": 15,
+      "여전": 6,
+      "은행": 5,
+      "입법·정책": 4,
+      "자산운용·연기금": 2,
+      "저축은행": 2,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 4,
+      "감독·제재": 2,
+      "건전성·자본규제": 2,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 14,
+      "기업금융·익스포저": 2,
+      "디지털자산": 12,
+      "물가·경기지표": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 1,
+      "서민금융·대환·채무조정": 3,
+      "연체·부실": 1,
+      "일정·브리핑": 4,
+      "자금시장·유동성": 1,
+      "증시·시장시황": 4,
+      "해외·글로벌": 13,
+      "환율·외환": 8
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8961745443937026,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "한은, 달러 스테이블코인에 브라질 헤알화 0.12% 절하…원화는 직거래 ...",
+        "url": "https://www.wikitree.co.kr/articles/1157508"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8184992936937217,
+        "relevance_score": 26,
+        "sector": "기타",
+        "title": "내주 경제지표 잇달아 공개…고용·성장률·가계부채 흐름 주목",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=226481"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8749543547338585,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "금융위는 '글로벌 온체인', 예탁원은 '폐쇄형 프라이빗'…STO 엇박자 우...",
+        "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202609051409576830765"
+      },
+      {
+        "cluster_size": 32,
+        "relevance_prob": 0.8833301712336575,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "환율 끌어내린 기업발 달러 공급…원·달러 추가 하락에 무게",
+        "url": "https://www.ekn.kr/web/view.php?key=20260904022550867"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8671881878028136,
+        "relevance_score": 19,
+        "sector": "자산운용·연기금",
+        "title": "[원화 강세 이면①] 환헤지 ETF 수익률 웃어도…개미는 환노출 선호",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433604"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7026867127636104,
+        "relevance_score": 19,
+        "sector": "저축은행",
+        "title": "[MD포커스] OK저축은행, ‘유가증권’ 덕에 순익 1위…짙어진 투자 의존",
+        "url": "https://n.news.naver.com/mnews/article/117/0004102153?sid=103"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8750190934900826,
+        "relevance_score": 16,
+        "sector": "입법·정책",
+        "title": "금융위 토큰증권 정책, 문은 열고 통로는 막았다",
+        "url": "https://n.news.naver.com/mnews/article/018/0006364137?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.605191103692934,
+        "relevance_score": 15,
+        "sector": "감독·제재",
+        "title": "[비즈토크<하>] 수사는 법원서 '삐끗', 포상금은 80배…주가조작 근절 묘...",
+        "url": "https://n.news.naver.com/mnews/article/629/0000531026?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8744117181029938,
+        "relevance_score": 16,
+        "sector": "여전",
+        "title": "중금리대출 규제 완화했지만… 카드사 조달비용·최고금리 상한 이중고",
+        "url": "https://www.g-enews.com/view.php?ud=202609031529342723a6e8311f64_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5110564862092241,
+        "relevance_score": 15,
+        "sector": "은행",
+        "title": "5대 은행 기업대출 신성장축… 건전성 관리 생산적 금융 '질적 전환' 과...",
+        "url": "https://www.g-enews.com/view.php?ud=202609031449027008cd0bfacc1c_1"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 2,
+      "기타": 1,
+      "디지털자산": 1,
+      "여전": 1,
+      "은행": 1,
+      "입법·정책": 1,
+      "자산운용·연기금": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 3,
+      "기업금융·익스포저": 1,
+      "디지털자산": 3,
+      "서민금융·대환·채무조정": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 2
+    }
+  }
+}
