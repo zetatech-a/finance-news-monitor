@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 26,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 27,
+  "candidate_hybrid_gray_rule_drop": 79,
+  "candidate_hybrid_gray_rule_keep": 27,
+  "candidate_hybrid_keep_overseas_global_reference": 20,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 5,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 190,
+  "candidate_hybrid_model_drop": 16,
+  "candidate_hybrid_model_keep": 56,
+  "candidate_hybrid_model_keep_with_domain_anchor": 56,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 190,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-07",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 26,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 3,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 79,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 27,
+    "candidate_hybrid_keep_overseas_global_reference": 20,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 5,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 190,
+    "candidate_hybrid_model_drop_prob_le_threshold": 16,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 56
+  },
+  "dropped_count": 135,
+  "input_count": 433,
+  "kept_count": 298,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 433,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 16,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "청소년 1777명 사이버도박 '평균 10개월-300만원'…자진신고",
+      "url": "https://www.newsis.com/view/NISX20260904_0003777157"
+    },
+    {
+      "title": "지역 따라 화재·휴업·피싱 보장… 7개 지자체 '상생보험' 이용법",
+      "url": "https://www.insnews.co.kr/news/articleView.html?idxno=92615"
+    },
+    {
+      "title": "[Who Is ?] 빈대인 BNK금융지주 대표이사 회장",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=446045"
+    },
+    {
+      "title": "[보험·카드 라운지] 달리고 쇼핑하고 여행하고 돌본다…금융권, '생활...",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5058953"
+    },
+    {
+      "title": "5세대 실손 초기실적 부진… 이대로 가면 '유명무실' 우려",
+      "url": "https://www.insnews.co.kr/news/articleView.html?idxno=92544"
+    },
+    {
+      "title": "해외여행 필수품 ‘트래블월렛’ 그 전자지갑, 해외서도 뜹니다 [월요인...",
+      "url": "https://www.seoul.co.kr/news/plan/monday-interview/2026/09/07/20260907013001?wlog_tag3=naver"
+    },
+    {
+      "title": "가계대출 총량 넘긴 지방銀…전북銀 1.1조 초과",
+      "url": "https://www.sedaily.com/article/20087625?ref=naver"
+    },
+    {
+      "title": "손대진 BNK캐피탈 대표, 기업금융 확대로 이자이익 제고…리테일 대출 ...",
+      "url": "https://www.fntimes.com/html/view.php?ud=2026090616443957558a55064dd1_18"
+    },
+    {
+      "title": "[단독]당국 얕보나…전북銀, 가계대출 한도 상습초과",
+      "url": "https://www.sedaily.com/article/20087613?ref=naver"
+    },
+    {
+      "title": "서민금융 출연 10년 연장에…금융권 '고정비 부담' 장기화",
+      "url": "https://www.ajunews.com/view/20260906143736065"
+    }
+  ]
+}
