@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 7,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 74,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 12,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 15,
+  "candidate_hybrid_gray_keep_domain": 72,
+  "candidate_hybrid_gray_rule_drop": 183,
+  "candidate_hybrid_gray_rule_keep": 72,
+  "candidate_hybrid_keep_overseas_global_reference": 22,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 487,
+  "candidate_hybrid_model_drop": 42,
+  "candidate_hybrid_model_keep": 127,
+  "candidate_hybrid_model_keep_with_domain_anchor": 127,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 487,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-08",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 7,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 74,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 10,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 12,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 15,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 183,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 72,
+    "candidate_hybrid_keep_overseas_global_reference": 22,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 487,
+    "candidate_hybrid_model_drop_prob_le_threshold": 42,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 127
+  },
+  "dropped_count": 347,
+  "input_count": 1065,
+  "kept_count": 718,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1065,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 42,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "\"투자하면 고수익\"...100억 사기 식당 주인 구속",
+      "url": "https://www.ytn.co.kr/_ln/0103_202609071913328296"
+    },
+    {
+      "title": "\"사채로 돌려 고수익\"…무려 100억 챙긴 식당 주인 구속",
+      "url": "http://mbn.mk.co.kr/pages/news/newsView.php?category=mbn00009&news_seq_no=5217543"
+    },
+    {
+      "title": "청소년 사이버도박 자진신고 1777명…평균 10개월·도박금액 300만원",
+      "url": "https://www.ekoreanews.co.kr/news/articleView.html?idxno=87929"
+    },
+    {
+      "title": "청소년 사이버도박 1700명 자진신고... 1인당 평균 300만원 탕진했다",
+      "url": "https://www.insight.co.kr/news/572169"
+    },
+    {
+      "title": "임기 두 달 남기고 '2000억 딜'…수협銀 신학기 행장 '치적 쌓기' 잡음",
+      "url": "https://www.newsway.co.kr/news/view?ud=2026090711194454962"
+    },
+    {
+      "title": "[기자수첩] 편리한 대출 뒤에 가려진 '빚의 무게'",
+      "url": "http://www.inews24.com/view/2002572"
+    },
+    {
+      "title": "케이뱅크, 상장 무색한 ROE 4%대…자본효율 뒷걸음에 주주도 '싸늘'",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=672878"
+    },
+    {
+      "title": "신한카드 현금서비스 '50대 이상' 66.9% … 8개사 중 최고",
+      "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=245516"
+    },
+    {
+      "title": "유통·식품가, 추석 앞두고 물가 안정·협력사 자금 지원… 민생 안심 대...",
+      "url": "https://www.polinews.co.kr/news/articleView.html?idxno=742405"
+    },
+    {
+      "title": "ABP자산운용, 주식운용본부 신설하고 성상현 영입",
+      "url": "https://www.tokenpost.kr/news/market/403614"
+    }
+  ]
+}

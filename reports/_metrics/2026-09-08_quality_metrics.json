@@ -1,0 +1,271 @@
+{
+  "clusters": {
+    "cluster_count": 386,
+    "cluster_size_max": 82,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 82,
+        "relevance_prob": 0.846226925640459,
+        "relevance_score": 40,
+        "sector": "거시·시장",
+        "title": "다시 주목받는 연준(Fed)…지난해 워싱턴서 한·미 금융 교류 [더 나은 ...",
+        "url": "https://n.news.naver.com/mnews/article/022/0004156915?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1077,
+    "displayed_articles": 265,
+    "final_tagged_representatives": 386,
+    "normalized_articles": 1576,
+    "raw_items": 1576,
+    "relevance_filtered_articles": 718,
+    "rule_filtered_articles": 1065,
+    "tagged_before_cluster": 718
+  },
+  "date": "2026-09-08",
+  "generated_at": "2026-09-08T09:11:41.194099+09:00",
+  "publishers": {
+    "missing_publisher_count": 386,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 147,
+    "no_topic_ratio": 0.3808,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4722313946181869,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "5대 은행 대출 여력 2000억…연말 '대출 절벽' 경고등",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=719768"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6354159396502362,
+        "relevance_score": 7,
+        "sector": "디지털자산",
+        "title": "헌터 바이든 'LAPTOP' 밈코인 뿌린다…\"트럼프 코인 물려 5조 날린 개미...",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=698853"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.448640562343446,
+        "relevance_score": 1,
+        "sector": "기타",
+        "title": "NDF, 1,344.70/ 1,345.10원…4.85원↑",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433819"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7007866057973414,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "‘앙숙’ 바이든·트럼프, 이번엔 밈코인서 맞붙는다",
+        "url": "https://n.news.naver.com/mnews/article/018/0006365327?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.653816909041029,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "1430억원어치 비트코인 털렸다…콜드카드 해킹 최악의 2차 피해 시작",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=484791"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7471462770489624,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "'유부녀 킬러' 공효진, 종영 앞두고 킹피셔 유보나 서사 재조명",
+        "url": "https://www.stardailynews.co.kr/news/articleView.html?idxno=549259"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4820977155571843,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "소상공인, 빛 좋은 개살구?…매출 늘고도 이익률 감소",
+        "url": "https://www.koreareport.co.kr/news/articleView.html?idxno=52706"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5772043300595747,
+        "relevance_score": 8,
+        "sector": "여전",
+        "title": "[더벨]한화생명, 애큐온캐피탈 인수 총력…풋옵션 카드 꺼낸다",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202609031455586400106747"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.4775117339558696,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "팔아도 남는 게 없다···소상공인 매출 증가했지만 이익률은 오히려 ...",
+        "url": "https://n.news.naver.com/mnews/article/032/0003469041?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5713937774712153,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"떼인 돈 받아드립니다\"는 옛말…떼이기 전부터 지켜주는 이 기업",
+        "url": "https://n.news.naver.com/mnews/article/008/0005410661?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 5,
+      "거시·시장": 39,
+      "기타": 131,
+      "대부": 11,
+      "디지털자산": 56,
+      "보험": 16,
+      "상호금융": 8,
+      "여전": 19,
+      "은행": 56,
+      "입법·정책": 18,
+      "자산운용·연기금": 10,
+      "저축은행": 11,
+      "증권(브로커리지/리테일)": 2,
+      "핀테크·플랫폼": 4
+    },
+    "topic_counts": {
+      "가계대출·부채": 53,
+      "감독·제재": 10,
+      "건전성·자본규제": 14,
+      "규제·가계부채": 16,
+      "금리·수수료·최고금리": 39,
+      "기업금융·익스포저": 13,
+      "디지털자산": 55,
+      "물가·경기지표": 2,
+      "부동산·PF": 9,
+      "불법사금융·불법추심·보이스피싱": 30,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 11,
+      "서민금융·대환·채무조정": 5,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 7,
+      "연체·부실": 34,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 4,
+      "정책·제도개선": 5,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 8,
+      "해외·글로벌": 16,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 82,
+        "relevance_prob": 0.846226925640459,
+        "relevance_score": 40,
+        "sector": "거시·시장",
+        "title": "다시 주목받는 연준(Fed)…지난해 워싱턴서 한·미 금융 교류 [더 나은 ...",
+        "url": "https://n.news.naver.com/mnews/article/022/0004156915?sid=101"
+      },
+      {
+        "cluster_size": 12,
+        "relevance_prob": 0.8478946783585498,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "검찰청 폐지 앞두고 금융위·금감원 특사경 수사절차 정비",
+        "url": "https://www.ajunews.com/view/20260907151718067"
+      },
+      {
+        "cluster_size": 15,
+        "relevance_prob": 0.9725097656477123,
+        "relevance_score": 25,
+        "sector": "입법·정책",
+        "title": "금감원, 보이스피싱 피해예방 우수 금융사ㆍ직원 포상⋯12월 첫 시상",
+        "url": "https://www.etoday.co.kr/news/view/2622575"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6725082621997197,
+        "relevance_score": 34,
+        "sector": "보험",
+        "title": "[사고] ‘서울 상생금융대상’ 주인공을 찾습니다",
+        "url": "https://n.news.naver.com/mnews/article/081/0003677495?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9673265149496821,
+        "relevance_score": 25,
+        "sector": "상호금융",
+        "title": "금감원, 은행·상호금융 보이스피싱 대응 우수사례 포상",
+        "url": "https://n.news.naver.com/mnews/article/001/0016294184?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6392486751898978,
+        "relevance_score": 22,
+        "sector": "대부",
+        "title": "신협 NPL 전담 자회사 10월 '시동'…건전성 개선 속도 붙나",
+        "url": "https://n.news.naver.com/mnews/article/119/0003129939?sid=101"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.6372800740384426,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "생산적 금융 기조 속 가계대출 대신 기업대출 늘리는 은행…건전성 관리...",
+        "url": "https://www.m-i.kr/news/articleView.html?idxno=1410870"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7665261591952517,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "기업에 돈 더 풀라는데 부실은 19조…은행권 '생산적 금융' 딜레마",
+        "url": "https://n.news.naver.com/mnews/article/629/0000531287?sid=101"
+      },
+      {
+        "cluster_size": 22,
+        "relevance_prob": 0.8428511936393249,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "조각투자 넘어 채권·펀드로…증권업계 STO 사업 본격화",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=698756"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7809460515064757,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "[아주경제 오늘의 뉴스 종합] 티빙 사고로 드러난 CI 사후대책 공백 外",
+        "url": "https://www.ajunews.com/view/20260907211457021"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "거시·시장": 1,
+      "대부": 2,
+      "디지털자산": 1,
+      "보험": 1,
+      "상호금융": 1,
+      "은행": 2,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "건전성·자본규제": 2,
+      "금리·수수료·최고금리": 2,
+      "기업금융·익스포저": 1,
+      "디지털자산": 1,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "사고·사기·횡령": 1,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 2,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
