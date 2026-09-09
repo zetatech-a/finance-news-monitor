@@ -1,0 +1,258 @@
+{
+  "clusters": {
+    "cluster_count": 305,
+    "cluster_size_max": 65,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 65,
+        "relevance_prob": 0.9158689863694942,
+        "relevance_score": 20,
+        "sector": "거시·시장",
+        "title": "한은 \"금리 1%p 오르면 연체율 0.81%p 상승\"...'영끌족' 직격·가족까지 ...",
+        "url": "http://www.opinionnews.co.kr/news/articleView.html?idxno=144117"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 873,
+    "displayed_articles": 196,
+    "final_tagged_representatives": 305,
+    "normalized_articles": 1261,
+    "raw_items": 1261,
+    "relevance_filtered_articles": 550,
+    "rule_filtered_articles": 847,
+    "tagged_before_cluster": 550
+  },
+  "date": "2026-09-09",
+  "generated_at": "2026-09-09T09:09:12.038742+09:00",
+  "publishers": {
+    "missing_publisher_count": 305,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 104,
+    "no_topic_ratio": 0.341,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6312267590762926,
+        "relevance_score": 11,
+        "sector": "은행",
+        "title": "[시험대 오른 AIBK] 자리 지킨 박필희…금융사고 쇄신 대상 될까",
+        "url": "https://news.dealsitetv.com/articles/175635"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6893913249142873,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "IBK 기업은행, 경찰 영장 받고도 금융사고 몰랐다…대출사기 '눈뜨고 당...",
+        "url": "http://www.intn.co.kr/news/articleView.html?idxno=2053169"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7522656733666204,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "'나사빠진' 기업은행…금융사고 뒤 또 대출",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=719923"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.793047908793318,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "[시사금융용어] 클래리티법(CLARITY Act)",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433983"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8122544651775057,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "경성대, 연구 및 지역사회 기여에 잇단 성과",
+        "url": "https://www.industrynews.co.kr/news/articleView.html?idxno=85721"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7814178399312421,
+        "relevance_score": 29,
+        "sector": "은행",
+        "title": "‘830억 털리고 몰랐다’ 기업은행이 불붙인 ‘책무구조도’ 유명무실 ...",
+        "url": "https://n.news.naver.com/mnews/article/005/0001871818?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7641231258980087,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "리플XRP·소폰·비트코인에 거래 집중…소폰 23% 급등",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16187290"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8065651722118061,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "코인거래 '역대최대' 23%가 탈중앙화거래소…韓거래소 '속수무책'",
+        "url": "https://n.news.naver.com/mnews/article/018/0006365919?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5485032313324976,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "상호금융 23조, 은행권 대출 문턱 넘을 차주였다",
+        "url": "https://n.news.naver.com/mnews/article/011/0004659899?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5390910143402392,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "특정금전신탁은 마법 그릇? 은행 맘대로 담아 팔다 ‘금 간’ 신뢰[경제...",
+        "url": "https://n.news.naver.com/mnews/article/032/0003469284?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 8,
+      "거시·시장": 25,
+      "기타": 119,
+      "대부": 6,
+      "디지털자산": 43,
+      "보험": 1,
+      "상호금융": 4,
+      "여전": 10,
+      "은행": 51,
+      "입법·정책": 22,
+      "자산운용·연기금": 5,
+      "저축은행": 9,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 37,
+      "감독·제재": 6,
+      "건전성·자본규제": 8,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 24,
+      "기업금융·익스포저": 6,
+      "디지털자산": 56,
+      "부동산·PF": 13,
+      "불법사금융·불법추심·보이스피싱": 19,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 20,
+      "서민금융·대환·채무조정": 9,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 40,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 9,
+      "정책·제도개선": 4,
+      "증시·시장시황": 10,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 21,
+      "환율·외환": 11
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.7768735603481937,
+        "relevance_score": 34,
+        "sector": "감독·제재",
+        "title": "화우, 금융위 서기관 출신 마순 변호사 영입",
+        "url": "https://n.news.naver.com/mnews/article/421/0009158165?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8303669808305435,
+        "relevance_score": 30,
+        "sector": "대부",
+        "title": "[주목 e-금융] '장기 연체 채권' 대규모 소각, 국책·시중·상호금융…\"...",
+        "url": "http://www.economytalk.kr/news/articleView.html?idxno=423986"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8472370743275373,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "부실 털고 손실 줄이고 … 새마을금고·신협, NPL 정리 속도전",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/09/08/2026090800109.html"
+      },
+      {
+        "cluster_size": 26,
+        "relevance_prob": 0.8316790446212772,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "'조각투자' 넘어 주식·채권까지…증권사, 토큰증권 수혜 기대감 UP",
+        "url": "https://www.g-enews.com/view.php?ud=202609081054095529923c501012_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5497318409139356,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "[Who Is ?] 노동진 수협중앙회 회장",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=445939"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7100752072382875,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "[가상화폐 소식] 코인원·두나무·빗썸",
+        "url": "https://sateconomy.co.kr/news/view/1065598866965078"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.6745940550944276,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "[로펌라운지] 화우, 前 금융위 서기관 마순 변호사 영입…규제 정책·조...",
+        "url": "https://www.ajunews.com/view/20260908141633670"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8821949981155174,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "빗썸 '큰손 10명'이 거래 70%…금감원 조사 착수",
+        "url": "https://www.mdtoday.co.kr/news/articleView.html?idxno=611248"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6509909464226444,
+        "relevance_score": 22,
+        "sector": "은행",
+        "title": "(정책금융 1년 성적표)⑤금융위·국책은행 '수백조 행선지' 빈칸…주택...",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1312875&inflow=N"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7814178399312421,
+        "relevance_score": 29,
+        "sector": "은행",
+        "title": "‘830억 털리고 몰랐다’ 기업은행이 불붙인 ‘책무구조도’ 유명무실 ...",
+        "url": "https://n.news.naver.com/mnews/article/005/0001871818?sid=101"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 2,
+      "대부": 3,
+      "디지털자산": 2,
+      "은행": 2,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "디지털자산": 4,
+      "연체·부실": 3
+    }
+  }
+}
