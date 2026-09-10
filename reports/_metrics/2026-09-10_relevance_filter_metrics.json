@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 78,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 48,
+  "candidate_hybrid_gray_rule_drop": 159,
+  "candidate_hybrid_gray_rule_keep": 48,
+  "candidate_hybrid_keep_overseas_global_reference": 24,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 439,
+  "candidate_hybrid_model_drop": 34,
+  "candidate_hybrid_model_keep": 115,
+  "candidate_hybrid_model_keep_with_domain_anchor": 115,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 439,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-10",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 78,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 8,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 159,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 48,
+    "candidate_hybrid_keep_overseas_global_reference": 24,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 439,
+    "candidate_hybrid_model_drop_prob_le_threshold": 34,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 115
+  },
+  "dropped_count": 300,
+  "input_count": 927,
+  "kept_count": 627,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 927,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 20,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "정부 주도 빚탕감 반복에…해외선 사례 없어 ‘갸우뚱’",
+      "url": "https://www.sedaily.com/article/20089065?ref=naver"
+    },
+    {
+      "title": "[단독] “살면서 대부업에 손벌리게 될 줄은”…고신용·고소득자도 내...",
+      "url": "https://www.mk.co.kr/article/12148407"
+    },
+    {
+      "title": "4대 은행장 선임 절차 돌입 … 실적·내부통제 함께 본다",
+      "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=245578"
+    },
+    {
+      "title": "산림조합장 한자리에…임가소득·사유림 경영 활성화 방안 논의",
+      "url": "https://www.youngnong.co.kr/news/articleView.html?idxno=70135"
+    },
+    {
+      "title": "농협중앙회·산림조합중앙회, 준법경영 실천·청렴문화 확산...'2026년 전...",
+      "url": "http://www.wsobi.com/news/articleView.html?idxno=317879"
+    },
+    {
+      "title": "산림조합중앙회, ‘2026년 전국 산림조합장 워크숍’ 개최",
+      "url": "https://www.sedaily.com/article/20088905?ref=naver"
+    },
+    {
+      "title": "임업 경영개선 ‘산림 규제 합리화’ 추진",
+      "url": "https://www.kwnews.co.kr/article/20260909500110"
+    },
+    {
+      "title": "이완섭 서산시장 이번엔 꽹과리 잡는다…기관장들과 사물놀이 ‘한판’",
+      "url": "https://www.news1.kr/local/daejeon-chungnam/6284461"
+    },
+    {
+      "title": "국내 1위의 '행복한 고민'…삼성화재, 36조 자본 업고 해외로",
+      "url": "https://dealsite.co.kr/articles/168602"
+    },
+    {
+      "title": "잘나가던 토스뱅크, 잇단 악재…'이은미 2기' 리더십 시험대",
+      "url": "https://www.cstimes.com/news/articleView.html?idxno=720014"
+    }
+  ]
+}
