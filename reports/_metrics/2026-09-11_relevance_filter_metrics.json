@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 6,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 82,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 13,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+  "candidate_hybrid_gray_keep_domain": 33,
+  "candidate_hybrid_gray_rule_drop": 123,
+  "candidate_hybrid_gray_rule_keep": 33,
+  "candidate_hybrid_keep_overseas_global_reference": 38,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 503,
+  "candidate_hybrid_model_drop": 8,
+  "candidate_hybrid_model_keep": 149,
+  "candidate_hybrid_model_keep_with_domain_anchor": 149,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 503,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-11",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 6,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 82,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 13,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 9,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 123,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 33,
+    "candidate_hybrid_keep_overseas_global_reference": 38,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 503,
+    "candidate_hybrid_model_drop_prob_le_threshold": 8,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 149
+  },
+  "dropped_count": 254,
+  "input_count": 979,
+  "kept_count": 725,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 979,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 34,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[재미로 보는 오늘의 운세] 9월 11일 (금요일) 67년생, 문서나 서류가 잘...",
+      "url": "https://www.segye.com/newsView/20260910516195?OutUrl=naver"
+    },
+    {
+      "title": "“조직원 허위 증언으로 불송치”…檢, 보완 수사로 불법 대부업체 총책...",
+      "url": "https://www.sedaily.com/article/20089430?ref=naver"
+    },
+    {
+      "title": "전세대출 연말정산 소득공제 조건과 한도 총정리",
+      "url": "https://lawtalknews.co.kr/article/EF0WBM5L7X15"
+    },
+    {
+      "title": "자살은 ‘사회적 재난’…채무·돌봄부담 덜고 생계비 우선 지원",
+      "url": "https://www.edaily.co.kr/News/Read?newsId=03155366645578808&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article"
+    },
+    {
+      "title": "[기획] 이환주 KB국민은행장, 수익·성장 다 잡았다···연임 청신호",
+      "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=664309"
+    },
+    {
+      "title": "코로나 피해 소상공인 '1억 미만 빚' 탕감",
+      "url": "https://www.mk.co.kr/article/12149642"
+    },
+    {
+      "title": "[단독] “빚 천천히 갚을걸”…코로나 피해 소상공인 빚 1억 탕감",
+      "url": "https://www.mk.co.kr/article/12149585"
+    },
+    {
+      "title": "금리 3% 시대, 2금융권 조달 비상",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1412521"
+    },
+    {
+      "title": "[금융★들의 궤적] 신한카드 박창훈, 고객·신판 1위 이끈 '본업'",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=673297"
+    },
+    {
+      "title": "시장금리 3번 더 오르면 여신업권 이자비용만 순이익 '27%' 차지",
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=485828"
+    }
+  ]
+}

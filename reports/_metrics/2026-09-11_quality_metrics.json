@@ -1,0 +1,268 @@
+{
+  "clusters": {
+    "cluster_count": 318,
+    "cluster_size_max": 209,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 209,
+        "relevance_prob": 0.9265017402652563,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "美, 60억弗 바이백에도 국채금리 급등…“장난감 총들고 탱크전”",
+        "url": "https://n.news.naver.com/mnews/article/011/0004660685?sid=104"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 987,
+    "displayed_articles": 220,
+    "final_tagged_representatives": 318,
+    "normalized_articles": 1354,
+    "raw_items": 1354,
+    "relevance_filtered_articles": 725,
+    "rule_filtered_articles": 979,
+    "tagged_before_cluster": 725
+  },
+  "date": "2026-09-11",
+  "generated_at": "2026-09-11T09:12:25.420531+09:00",
+  "publishers": {
+    "missing_publisher_count": 318,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 120,
+    "no_topic_ratio": 0.3774,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7791075364463208,
+        "relevance_score": 17,
+        "sector": "기타",
+        "title": "한국 딜로이트 그룹, 기업지배기구발전센터 자문위원단에 박종성·임정...",
+        "url": "https://www.etoday.co.kr/news/view/2624328"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6901116802475827,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[오늘의 비트코인] PPI 상승에 인플레 우려…7만6000달러대 급락",
+        "url": "https://news.dealsitetv.com/articles/175882"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7573161625019333,
+        "relevance_score": 4,
+        "sector": "핀테크·플랫폼",
+        "title": "3500억 유로 메가 프로젝트 족쇄…EU 핀테크 규제 폭망 위기",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=486031"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8028002871209432,
+        "relevance_score": 5,
+        "sector": "은행",
+        "title": "기업은행, 부동산 대출사기 대응 논란…자체점검 두 차례 '특이사항 없...",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=318176"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7446017997202894,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "빗썸이 연대 축제 달구다",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=750512"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6762428900930378,
+        "relevance_score": 14,
+        "sector": "자산운용·연기금",
+        "title": "[VC·PE 20년의 헌사] 에이티넘, 원펀드에 다 건다",
+        "url": "https://n.news.naver.com/mnews/article/293/0000090321?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.48110492428381674,
+        "relevance_score": 16,
+        "sector": "은행",
+        "title": "[줌인] 토스, 결제정보 유출에 소상공인 반발까지 '사면초가'",
+        "url": "https://www.dailybrief.co.kr/news/articleView.html?idxno=6716"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7715328444272567,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "클럽서 '에르메스백' 뿌리던 20대…3300억대 비트코인 절도 자백",
+        "url": "https://n.news.naver.com/mnews/article/014/0005574286?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5184597896937728,
+        "relevance_score": 3,
+        "sector": "자산운용·연기금",
+        "title": "비트코인 ETF 1.4억달러 탈출… 100달러 유가 쇼크",
+        "url": "https://www.g-enews.com/view.php?ud=202609110731589423e7e8286d56_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8398956965583018,
+        "relevance_score": 17,
+        "sector": "저축은행",
+        "title": "매각 앞두고 CEO·CFO 붙잡은 애큐온저축은행…'몸값 방어' 승부수",
+        "url": "https://dealsite.co.kr/articles/168667"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 8,
+      "거시·시장": 35,
+      "기타": 108,
+      "대부": 16,
+      "디지털자산": 70,
+      "보험": 5,
+      "상호금융": 12,
+      "여전": 10,
+      "은행": 23,
+      "입법·정책": 17,
+      "자산운용·연기금": 6,
+      "저축은행": 3,
+      "증권(브로커리지/리테일)": 3,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 11,
+      "감독·제재": 12,
+      "건전성·자본규제": 9,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 29,
+      "기업금융·익스포저": 6,
+      "디지털자산": 72,
+      "물가·경기지표": 1,
+      "부동산·PF": 14,
+      "불법사금융·불법추심·보이스피싱": 23,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 4,
+      "서민금융·대환·채무조정": 5,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 6,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 4,
+      "정책·제도개선": 4,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 21,
+      "환율·외환": 10
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7701338598910914,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "[경제 동향] 금융위, 주택담보대출 증가...금융사별 총량관리 노력 지속",
+        "url": "http://www.sisacast.kr/news/articleView.html?idxno=99841"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.8069850252559475,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "\"금융사기 꼼짝마\"···경북신용보증재단, 포항 소상공인 피해 예방 나...",
+        "url": "http://www.newsprime.co.kr/news/article.html?no=747213"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.7219909082636924,
+        "relevance_score": 21,
+        "sector": "입법·정책",
+        "title": "PF보증 6000억이 2700세대 사업으로…이억원, 김포 현장 점검",
+        "url": "https://n.news.naver.com/mnews/article/123/0002389931?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9274625434732696,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "기술은 실전 배치 끝냈는데… 스테이블코인, '규제 족쇄'에 갇혔다",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026091011152808733"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8970734681567614,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "B2C2·넥스트블록 맞손…국내 기관 디지털자산 시장 공략",
+        "url": "http://www.kbiznews.co.kr/news/articleView.html?idxno=114805"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7870606385115925,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "금융위, 내년 착공·준공 수도권 PF 325곳 밀착관리",
+        "url": "https://www.smarttoday.co.kr/ko-kr/articles/111435"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8366559528691254,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "한은·금감원, 외환 공동검사 ‘빈손’",
+        "url": "https://n.news.naver.com/mnews/article/011/0004660605?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8000418615289331,
+        "relevance_score": 19,
+        "sector": "감독·제재",
+        "title": "홍콩ELS 과징금 6000억? 2년 만에 결론 임박… 은행권“소송 불사”",
+        "url": "https://n.news.naver.com/mnews/article/005/0001872247?sid=101"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.7215418837905853,
+        "relevance_score": 22,
+        "sector": "상호금융",
+        "title": "사업자대출 받아 부동산 매매…용도 외 유용 5년간 1167건 적발",
+        "url": "https://n.news.naver.com/mnews/article/277/0005814333?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6915632078558234,
+        "relevance_score": 18,
+        "sector": "상호금융",
+        "title": "[신협 지역이사 성적표②] \"건전성 양호? 낙관 일러\"…자본·유동성 부담...",
+        "url": "https://n.news.naver.com/mnews/article/629/0000532427?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 2,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 1,
+      "디지털자산": 2,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "자금시장·유동성": 1
+    }
+  }
+}
