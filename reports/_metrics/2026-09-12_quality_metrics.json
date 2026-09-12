@@ -1,0 +1,266 @@
+{
+  "clusters": {
+    "cluster_count": 239,
+    "cluster_size_max": 52,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.9022402823709172,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "한은 금리 올려도 저축은행 예금금리는 '역행'···수신 경쟁 소강",
+        "url": "https://www.smartbizn.com/news/articleView.html?idxno=153635"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 668,
+    "displayed_articles": 157,
+    "final_tagged_representatives": 239,
+    "normalized_articles": 842,
+    "raw_items": 842,
+    "relevance_filtered_articles": 429,
+    "rule_filtered_articles": 661,
+    "tagged_before_cluster": 429
+  },
+  "date": "2026-09-12",
+  "generated_at": "2026-09-12T09:08:08.537088+09:00",
+  "publishers": {
+    "missing_publisher_count": 239,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 79,
+    "no_topic_ratio": 0.3305,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7728175641096503,
+        "relevance_score": 11,
+        "sector": "입법·정책",
+        "title": "'스통크펀 효과' 레이디움, 일주일새 90%↑…11개월래 최고가[코인현미...",
+        "url": "https://n.news.naver.com/mnews/article/421/0009166049?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7476278984561502,
+        "relevance_score": 12,
+        "sector": "대부",
+        "title": "저축은행 파고든 일본계 자본…한국에 자리 잡은 배경 [금융 히스토리]",
+        "url": "https://news.mtn.co.kr/news-detail/2026091115221715453"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6578831089475605,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "테더, DOJ 요청에 스캠마켓 신비개런티 자금 5200만달러 동결…USDT 통제...",
+        "url": "https://www.wikitree.co.kr/articles/1158988"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.704456446424279,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "NH농협은행, 파크골프대회서 고령층 '피싱 무표 보상보험' 홍보",
+        "url": "http://www.jeonmin.co.kr/news/articleView.html?idxno=446834"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8211519069856181,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "합천·산청·함양·거창군, SKT와 어르신 찾아가는 서비스 '맞손'",
+        "url": "https://www.cnbnews.com/news/articleView.html?idxno=1015513"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6135735111532592,
+        "relevance_score": 12,
+        "sector": "여전",
+        "title": "혜택만으론 안 된다...포켓몬·티니핑 꺼내든 은행·카드사",
+        "url": "https://www.wolyo.co.kr/news/articleView.html?idxno=317668"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.6924808215954528,
+        "relevance_score": 11,
+        "sector": "상호금융",
+        "title": "농협상호금융, AI 돌봄인형 '효돌'로 농촌 고령층 금융접근성 높인다",
+        "url": "http://www.worktoday.co.kr/news/articleView.html?idxno=89144"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6928834507172978,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"승객이 이상해요\"…택시기사 눈썰미로 6900만원 골드바 수거책 체포",
+        "url": "https://n.news.naver.com/mnews/article/008/0005412706?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7300809603026558,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "\"규제 완화냐, 골목상권 보호냐\"...캐피탈-렌터카 업계 '본업비율' 격돌",
+        "url": "https://www.gukjenews.com/news/articleView.html?idxno=3692612"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6407540713831751,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "광주지방국세청, 14명 사무관 승진…9급공채 7명, 여성 4명",
+        "url": "https://www.taxtimes.co.kr/news/article.html?no=276828"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 6,
+      "거시·시장": 26,
+      "기타": 92,
+      "대부": 4,
+      "디지털자산": 39,
+      "보험": 13,
+      "상호금융": 9,
+      "여전": 6,
+      "은행": 18,
+      "입법·정책": 19,
+      "자산운용·연기금": 4,
+      "저축은행": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 3,
+      "감독·제재": 6,
+      "건전성·자본규제": 9,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 29,
+      "기업금융·익스포저": 3,
+      "디지털자산": 59,
+      "물가·경기지표": 5,
+      "부동산·PF": 11,
+      "불법사금융·불법추심·보이스피싱": 14,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 5,
+      "서민금융·대환·채무조정": 2,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 6,
+      "일정·브리핑": 5,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 3,
+      "증시·시장시황": 9,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 26,
+      "환율·외환": 6
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8183413323513685,
+        "relevance_score": 36,
+        "sector": "디지털자산",
+        "title": "빗썸 이어 코인원도 FIU 재판 연기",
+        "url": "https://n.news.naver.com/mnews/article/648/0000050701?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8898753382913093,
+        "relevance_score": 30,
+        "sector": "입법·정책",
+        "title": "K스테이블코인 입법 지연, 기업이 달릴 ‘운동장’이 없다",
+        "url": "https://n.news.naver.com/mnews/article/353/0000056643?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8858600981423232,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "내년부터 가상자산 소득에 22% 과세 강행하나…세 차례 유예에도 논란 ...",
+        "url": "https://bizhankook.com/articles/crypto-tax-next-year-controversy.html"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9126137159071752,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "[다음주 한국은행 및 금융위·금감원 일정]",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434550"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.5590209890950145,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "\"당일 대출·무서류\" 추석 급전 노린 불법사금융입니다",
+        "url": "http://www.intn.co.kr/news/articleView.html?idxno=2053292"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.827301073355771,
+        "relevance_score": 21,
+        "sector": "보험",
+        "title": "금융위, 보험업감독규정 개정...GA 불완전판매율 따라 K-ICS 비율 조정",
+        "url": "https://www.joongangenews.com/news/articleView.html?idxno=547424"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.5690752300914166,
+        "relevance_score": 19,
+        "sector": "보험",
+        "title": "보험사 계리가정 관리 깐깐해진다…이력·검증결과 금감원 보고",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=275162"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5355156600377031,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "보험부채 계리가정, 매년 금감원 보고서로 낸다…GA·PF 리스크도 정조...",
+        "url": "https://www.news2day.co.kr/article/20260911500161"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8349302399036614,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "[정책포커스] 이억원 금융위원장, 김포 PF 사업장 방문...PF보증 성공사...",
+        "url": "http://www.sisacast.kr/news/articleView.html?idxno=99844"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8032178716031582,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "\"고정금리라더니 5년만?\"…은행권 '만기까지 고정' 늘린다",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1723884"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "보험": 2,
+      "은행": 1,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 1,
+      "디지털자산": 3,
+      "부동산·PF": 3,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 1,
+      "소비자보호·민원·불완전판매": 1,
+      "일정·브리핑": 1
+    }
+  }
+}

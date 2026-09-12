@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 69,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 33,
+  "candidate_hybrid_gray_rule_drop": 104,
+  "candidate_hybrid_gray_rule_keep": 33,
+  "candidate_hybrid_keep_overseas_global_reference": 56,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 248,
+  "candidate_hybrid_model_drop": 36,
+  "candidate_hybrid_model_keep": 83,
+  "candidate_hybrid_model_keep_with_domain_anchor": 83,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 248,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-12",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 69,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 104,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 33,
+    "candidate_hybrid_keep_overseas_global_reference": 56,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 248,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 3,
+    "candidate_hybrid_model_drop_prob_le_threshold": 36,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 83
+  },
+  "dropped_count": 232,
+  "input_count": 661,
+  "kept_count": 429,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 661,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 57,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[재미로 보는 오늘의 운세] 9월 12일 (토요일) 68년생, 가족의 금전 일로...",
+      "url": "https://www.segye.com/newsView/20260910516097?OutUrl=naver"
+    },
+    {
+      "title": "[기획] 정상혁 신한은행장, '세 번째 임기' 새 역사 쓸까",
+      "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=664392"
+    },
+    {
+      "title": "KB금융 차기 회장 이재근⋯연말 계열사 CEO '인사 태풍' 부나",
+      "url": "http://www.inews24.com/view/2004831"
+    },
+    {
+      "title": "개점 하루 만에 예금 10억..당진시산림조합 수청지점 개소",
+      "url": "https://www.idjnews.kr/news/articleView.html?idxno=302663"
+    },
+    {
+      "title": "서부경남 4군, 양봉특구 지정 힘 모은다",
+      "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=664360"
+    },
+    {
+      "title": "전국 산림조합장 모였다...사유림 경영활성화 논의",
+      "url": "https://www.aflnews.co.kr/news/articleView.html?idxno=327960"
+    },
+    {
+      "title": "[사설] 지역목재자원공사, 이제 국가정책으로 실행할 때다",
+      "url": "https://www.woodkorea.co.kr/news/articleView.html?idxno=91313"
+    },
+    {
+      "title": "정부 “한국 경제 견조한 회복”…중동전쟁·관세 경계 수위 높여",
+      "url": "https://www.seoul.co.kr/news/economy/2026/09/11/20260911500119?wlog_tag3=naver"
+    },
+    {
+      "title": "[출근길포인트] SMR 특별법 시행…정부, 2035년 전 경수형 상용화 추진",
+      "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=318926"
+    },
+    {
+      "title": "정부 \"수출 큰 폭 증가·내수 개선세...견조한 경기 회복 흐름\"",
+      "url": "https://www.joongangenews.com/news/articleView.html?idxno=547412"
+    }
+  ]
+}
