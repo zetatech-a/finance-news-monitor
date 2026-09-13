@@ -1,0 +1,90 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 8,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 0,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 4,
+  "candidate_hybrid_gray_rule_drop": 28,
+  "candidate_hybrid_gray_rule_keep": 4,
+  "candidate_hybrid_keep_overseas_global_reference": 9,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 5,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 57,
+  "candidate_hybrid_model_drop": 0,
+  "candidate_hybrid_model_keep": 24,
+  "candidate_hybrid_model_keep_with_domain_anchor": 24,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 57,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-13",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 8,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 28,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 4,
+    "candidate_hybrid_keep_overseas_global_reference": 9,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 5,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 57,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 24
+  },
+  "dropped_count": 43,
+  "input_count": 142,
+  "kept_count": 99,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 142,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 11,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "KB금융 회장 인선 이변에… 계열사 CEO 10명 거취 촉각",
+      "url": "https://it.chosun.com/news/articleView.html?idxno=2023092169972"
+    },
+    {
+      "title": "[KB금융 세대교체] 계열사 11곳 중 8곳 CEO 연말 임기만료…이재근 첫 인...",
+      "url": "https://www.g-enews.com/view.php?ud=202609111641255074e30fcb1ba8_1"
+    },
+    {
+      "title": "[박근종 칼럼] 주택담보대출 연체 120% 폭증, 벼랑 끝 취약 차주 구출할...",
+      "url": "https://www.mhns.co.kr/news/articleView.html?idxno=760109"
+    },
+    {
+      "title": "[마운자로 열풍의 명암②] 마운자로값 아끼려다 보험사기?…빈틈 노린 ...",
+      "url": "https://www.ntoday.co.kr/news/articleView.html?idxno=129329"
+    },
+    {
+      "title": "역대급 실적에도…KB는 왜 ‘회장 연임’ 아닌 ‘세대 교체’ 택했나",
+      "url": "https://biz.heraldcorp.com/article/10871386?ref=naver"
+    },
+    {
+      "title": "금융사고 2.4일에 한 번 터지는데 … 책무구조도 임원 제재는 '0'",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/09/11/2026091100102.html"
+    },
+    {
+      "title": "[긁기 전에] 챗GPT도 이젠 '고정비'…AI 구독료, 카드로 아껴볼까",
+      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=853102"
+    },
+    {
+      "title": "[포커스] 수협銀, 바다에서 키운 성장동력…해양수산금융 13조 눈앞에",
+      "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=812720"
+    },
+    {
+      "title": "KB금융, 이재근 회장 선임 '글로벌·WM·SME'에 무게",
+      "url": "https://www.fetv.co.kr/news/articleView.html?idxno=310088"
+    },
+    {
+      "title": "\"지금 집 사기엔 좀...\" 수요자 움츠리자 공급 발목 잡혔다 [자막뉴스]",
+      "url": "https://www.ytn.co.kr/_ln/0134_202609121023382735"
+    }
+  ]
+}
