@@ -1,0 +1,264 @@
+{
+  "clusters": {
+    "cluster_count": 176,
+    "cluster_size_max": 87,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 6,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 87,
+        "relevance_prob": 0.8381120660370125,
+        "relevance_score": 31,
+        "sector": "거시·시장",
+        "title": "[N2 포커스] 美 연준, 이번 주 금리 올리나...'동결'서 '인상'으로 기운...",
+        "url": "https://www.news2day.co.kr/article/20260913500018"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 542,
+    "displayed_articles": 119,
+    "final_tagged_representatives": 176,
+    "normalized_articles": 755,
+    "raw_items": 755,
+    "relevance_filtered_articles": 397,
+    "rule_filtered_articles": 534,
+    "tagged_before_cluster": 397
+  },
+  "date": "2026-09-14",
+  "generated_at": "2026-09-14T09:07:08.372507+09:00",
+  "publishers": {
+    "missing_publisher_count": 176,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 71,
+    "no_topic_ratio": 0.4034,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5656629384243569,
+        "relevance_score": 10,
+        "sector": "자산운용·연기금",
+        "title": "신한자산운용, 글로벌 블록체인 ‘캔톤 네트워크’ 슈퍼 밸리데이터 승...",
+        "url": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065570212572162"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5810541516716802,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "업무정지 해제 앞둔 롯데카드…지점 신설 등 영업 정상화 '시동'",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434636"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.16541213780674907,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "인천시, 추석 앞두고 소상공인에 505억원 규모 융자 지원",
+        "url": "https://n.news.naver.com/mnews/article/081/0003679832?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.677355056146466,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "\"거래량 홀더수 많아도 안심 금물\"…바이낸스, '러그풀' 사전 점검 가이...",
+        "url": "https://www.etoday.co.kr/news/view/2624969"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.42951430158386916,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "[모닝 리포트] \"은행 NIM 하락에도 대출 성장으로 상쇄\"",
+        "url": "https://www.newspim.com/news/view/20260914000114"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6133123575506685,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "통신3사, 경남 4개군과 '찾아가는 서비스' 업무협약 체결...추석 보이스...",
+        "url": "http://www.wsobi.com/news/articleView.html?idxno=318083"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6960112372030821,
+        "relevance_score": 18,
+        "sector": "기타",
+        "title": "[각자도생 제이알리츠]③ 운용 한계, 제도 공백 드러난 상장리츠 회생",
+        "url": "https://n.news.naver.com/mnews/article/277/0005815643?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.38596535533859605,
+        "relevance_score": 8,
+        "sector": "보험",
+        "title": "보험업계, 국감 촉각...5세대 실손·1200%룰 점검",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=864389"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4526351066307467,
+        "relevance_score": 11,
+        "sector": "기타",
+        "title": "하나증권 “은행, 순이자마진 하락 예상되지만 대출성장률 확대가 상쇄...",
+        "url": "https://kpenews.com/View.aspx?No=4225034"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7688706637706131,
+        "relevance_score": 9,
+        "sector": "디지털자산",
+        "title": "리플XRP·리스크·시빅, 거래 알트코인에 몰렸다",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16192134"
+      }
+    ],
+    "sector_counts": {
+      "거시·시장": 27,
+      "기타": 67,
+      "대부": 1,
+      "디지털자산": 17,
+      "보험": 6,
+      "상호금융": 6,
+      "여전": 4,
+      "은행": 20,
+      "입법·정책": 15,
+      "자산운용·연기금": 6,
+      "저축은행": 6,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 10,
+      "건전성·자본규제": 6,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 22,
+      "기업금융·익스포저": 1,
+      "디지털자산": 23,
+      "물가·경기지표": 1,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 12,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 11,
+      "서민금융·대환·채무조정": 7,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 1,
+      "일정·브리핑": 4,
+      "자금시장·유동성": 6,
+      "정책·제도개선": 2,
+      "증시·시장시황": 8,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 17,
+      "환율·외환": 3
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6783335825147294,
+        "relevance_score": 41,
+        "sector": "은행",
+        "title": "103조원 풀린다… 추석 연휴 '명절 특별 자금'",
+        "url": "https://www.wikitree.co.kr/articles/1159192"
+      },
+      {
+        "cluster_size": 15,
+        "relevance_prob": 0.7846377698854721,
+        "relevance_score": 32,
+        "sector": "대부",
+        "title": "금융위, 추석 연휴 중소기업·소상공인에 103조원 자금 공급",
+        "url": "https://n.news.naver.com/mnews/article/018/0006368406?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.581894339838876,
+        "relevance_score": 37,
+        "sector": "은행",
+        "title": "추석 전후 중소기업·소상공인에 103조원 공급…신규 자금 40조원",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434585"
+      },
+      {
+        "cluster_size": 87,
+        "relevance_prob": 0.8381120660370125,
+        "relevance_score": 31,
+        "sector": "거시·시장",
+        "title": "[N2 포커스] 美 연준, 이번 주 금리 올리나...'동결'서 '인상'으로 기운...",
+        "url": "https://www.news2day.co.kr/article/20260913500018"
+      },
+      {
+        "cluster_size": 25,
+        "relevance_prob": 0.4676326940039964,
+        "relevance_score": 27,
+        "sector": "은행",
+        "title": "추석 명절 소상공인·중소기업에 ‘103조원’ 풀린다…정책금융 특별대...",
+        "url": "https://n.news.naver.com/mnews/article/666/0000123124?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9120611540685066,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "[이번주 한국은행 및 금융위·금감원 일정]",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434613"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.945493769510209,
+        "relevance_score": 21,
+        "sector": "저축은행",
+        "title": "상호금융은 금리 인상, 저축은행은 하락세...어디에 돈을 맡기시겠습니...",
+        "url": "https://www.gokorea.kr/news/articleView.html?idxno=878175"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.7895042441726392,
+        "relevance_score": 21,
+        "sector": "디지털자산",
+        "title": "[크립토리뷰] 카이아, 日서 '지갑'과 '결제망' 동시 확보…스테이블코인...",
+        "url": "https://www.theguru.co.kr/news/article.html?no=107011"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.3805074768669874,
+        "relevance_score": 17,
+        "sector": "입법·정책",
+        "title": "\"아파텔도 집단대출 풀어달라\"…금융위, 가계대출 총량 관리서 제외 검...",
+        "url": "https://n.news.naver.com/mnews/article/014/0005575050?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6986436248362806,
+        "relevance_score": 16,
+        "sector": "입법·정책",
+        "title": "[이윤구의 프리킥스] 소비자보호 전방위 '압박'하는 금감원",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434579"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "거시·시장": 2,
+      "대부": 1,
+      "디지털자산": 1,
+      "은행": 3,
+      "입법·정책": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 1,
+      "소비자보호·민원·불완전판매": 1,
+      "일정·브리핑": 1,
+      "해외·글로벌": 1
+    }
+  }
+}
