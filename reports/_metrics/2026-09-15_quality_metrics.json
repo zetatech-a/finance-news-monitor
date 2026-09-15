@@ -1,0 +1,277 @@
+{
+  "clusters": {
+    "cluster_count": 326,
+    "cluster_size_max": 99,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 99,
+        "relevance_prob": 0.9233189621214111,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "하나증권-업비트 글로벌, 디지털자산 금융 협력…싱가포르서 운용·STO ...",
+        "url": "https://www.e-science.co.kr/news/articleView.html?idxno=135401"
+      },
+      {
+        "cluster_size": 87,
+        "relevance_prob": 0.8642091917234299,
+        "relevance_score": 25,
+        "sector": "거시·시장",
+        "title": "美 연준, 9월 '깜짝 인상' 초읽기…한은, 10월 금리카드 다시 꺼내나",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=146307"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1024,
+    "displayed_articles": 208,
+    "final_tagged_representatives": 326,
+    "normalized_articles": 1291,
+    "raw_items": 1291,
+    "relevance_filtered_articles": 652,
+    "rule_filtered_articles": 985,
+    "tagged_before_cluster": 652
+  },
+  "date": "2026-09-15",
+  "generated_at": "2026-09-15T09:09:22.028702+09:00",
+  "publishers": {
+    "missing_publisher_count": 326,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 130,
+    "no_topic_ratio": 0.3988,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6222484999365674,
+        "relevance_score": 17,
+        "sector": "기타",
+        "title": "신한은 현장 발굴, 우리는 목표 상향, iM뱅크는 보증 협업…생산적 금융...",
+        "url": "https://www.raonnews.com/news/article.html?no=61114"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8092342768748378,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "1.43달러 저항선 앞둔 불안한 침묵… 언제 터질지 모르는 대규모 청산 폭...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=487032"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7516137662267023,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[오늘의 비트코인] 클래리티 표결 하루 앞…7만8000달러 회복",
+        "url": "https://news.dealsitetv.com/articles/175984"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.6749457876506904,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "KT스카이라이프, 인터넷 보안부터 금융사기·TV 파손까지 '토탈케어'",
+        "url": "https://n.news.naver.com/mnews/article/421/0009170003?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6518253281877119,
+        "relevance_score": 4,
+        "sector": "입법·정책",
+        "title": "[원자재 시황] 커지는 긴축 우려에 시장 위축",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1724236"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8102716839787054,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "박성훈 국민의힘 수석대변인 “이재명 정부, 민생 외면·사법 질서 파괴...",
+        "url": "http://www.breaknews.com/1236578"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7405289863144027,
+        "relevance_score": 11,
+        "sector": "상호금융",
+        "title": "농협 '청년농부 상생 직거래장터' 개최...'도농상생장터 활성화 선포식...",
+        "url": "http://www.wsobi.com/news/articleView.html?idxno=318170"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7474877267169328,
+        "relevance_score": 18,
+        "sector": "기타",
+        "title": "AI 음성 복제 피싱 주의보…\"엄마 폰 고장\" 50만원 노린다",
+        "url": "https://n.news.naver.com/mnews/article/088/0001028467?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6859966725153833,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "‘탐정들의 영업비밀’ 사이비목사 성착취",
+        "url": "https://www.bntnews.co.kr/article/view/bnt202609150049"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8609683178402923,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "인천노인종합문화회관, 어르신 '디지털 벽' 허문다",
+        "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2470444"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 8,
+      "거시·시장": 22,
+      "기타": 128,
+      "대부": 2,
+      "디지털자산": 76,
+      "보험": 1,
+      "상호금융": 9,
+      "여전": 10,
+      "은행": 26,
+      "입법·정책": 25,
+      "자산운용·연기금": 3,
+      "저축은행": 14,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 18,
+      "감독·제재": 4,
+      "건전성·자본규제": 4,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 25,
+      "기업금융·익스포저": 3,
+      "디지털자산": 63,
+      "물가·경기지표": 2,
+      "부동산·PF": 6,
+      "불법사금융·불법추심·보이스피싱": 27,
+      "사고·사기·횡령": 5,
+      "상품·영업·예금금리": 21,
+      "서민금융·대환·채무조정": 4,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 8,
+      "연체·부실": 7,
+      "일정·브리핑": 3,
+      "자금시장·유동성": 9,
+      "정책·제도개선": 6,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 18,
+      "환율·외환": 9
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8345292280494447,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "금융위원회, 제5차 '금융업권 생산적 금융협의체' 개최",
+        "url": "http://www.intn.co.kr/news/articleView.html?idxno=2053318"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6210120146835956,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "현대카드 '단종카드 임의발급' 논란...금융당국, 가이드라인 마련",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1313561&inflow=N"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7612123385266037,
+        "relevance_score": 30,
+        "sector": "은행",
+        "title": "금융권 생산적 금융 5년간 1560조 공급…7월까지 272조 집행",
+        "url": "https://www.etoday.co.kr/news/view/2625265"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8375284924262237,
+        "relevance_score": 28,
+        "sector": "기타",
+        "title": "장동혁 “CBDC 거래추적·지출제한 우려”…한은은 은행 9곳·지갑 50만개...",
+        "url": "https://www.wikitree.co.kr/articles/1159469"
+      },
+      {
+        "cluster_size": 99,
+        "relevance_prob": 0.9233189621214111,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "하나증권-업비트 글로벌, 디지털자산 금융 협력…싱가포르서 운용·STO ...",
+        "url": "https://www.e-science.co.kr/news/articleView.html?idxno=135401"
+      },
+      {
+        "cluster_size": 87,
+        "relevance_prob": 0.8642091917234299,
+        "relevance_score": 25,
+        "sector": "거시·시장",
+        "title": "美 연준, 9월 '깜짝 인상' 초읽기…한은, 10월 금리카드 다시 꺼내나",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=146307"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9521793651093814,
+        "relevance_score": 24,
+        "sector": "저축은행",
+        "title": "상호금융 4%대 예금 등장…저축은행은 수신금리 ‘뒷걸음’",
+        "url": "https://sateconomy.co.kr/news/view/1065618072632243"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6410022146446238,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "[중금리대출 딜레마] 공급 늘리자니 부실 걱정…금융사 ‘건전성 시험대...",
+        "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202609141413335920933"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.7549957406635586,
+        "relevance_score": 18,
+        "sector": "대부",
+        "title": "제도권 막히자 사채의 덫… 불법사금융 범죄 2년 새 2.6배[‘금융절벽’...",
+        "url": "https://www.etoday.co.kr/news/view/2625304"
+      },
+      {
+        "cluster_size": 24,
+        "relevance_prob": 0.8075048121577171,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "美·日 금리 결정 ‘슈퍼위크’…연준 인상·BOJ 추가 인상 주목",
+        "url": "https://n.news.naver.com/mnews/article/011/0004661519?sid=101"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "거시·시장": 2,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 1,
+      "은행": 2,
+      "입법·정책": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 3,
+      "디지털자산": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 1,
+      "서민금융·대환·채무조정": 1,
+      "정책·제도개선": 1,
+      "해외·글로벌": 2,
+      "환율·외환": 2
+    }
+  }
+}
