@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 6,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 128,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 9,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 29,
+  "candidate_hybrid_gray_rule_drop": 137,
+  "candidate_hybrid_gray_rule_keep": 29,
+  "candidate_hybrid_keep_overseas_global_reference": 77,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 27,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 358,
+  "candidate_hybrid_model_drop": 52,
+  "candidate_hybrid_model_keep": 171,
+  "candidate_hybrid_model_keep_with_domain_anchor": 171,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 358,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-16",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 6,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 128,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 39,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 9,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 137,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 29,
+    "candidate_hybrid_keep_overseas_global_reference": 77,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 27,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 358,
+    "candidate_hybrid_model_drop_prob_le_threshold": 52,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 171
+  },
+  "dropped_count": 379,
+  "input_count": 1041,
+  "kept_count": 662,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1041,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 45,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[단독]대출 조이자… 대부업체 신규 이용 14만명 늘었다",
+      "url": "https://www.donga.com/news/Economy/article/all/20260915/134675384/2"
+    },
+    {
+      "title": "[단독]대출 죄자 대부업체 노크…상반기 신규 이용자 14만명 증가",
+      "url": "https://www.donga.com/news/Economy/article/all/20260915/134674472/1"
+    },
+    {
+      "title": "강승준 신보 이사장, '취약계층 보호'... 사람 살리는 금융 릴레이 동참",
+      "url": "https://www.newsworker.co.kr/news/articleView.html?idxno=504344"
+    },
+    {
+      "title": "BNK부산은행, 소상공인 특별 민생금융지원… 152억원 출연·최대 2100억원...",
+      "url": "http://www.ttlnews.com/news/articleView.html?idxno=3143825"
+    },
+    {
+      "title": "중·저신용자 외면했는데 '부실'은 늘었다···케이뱅크의 이상한 성적...",
+      "url": "https://www.sisajournal-e.com/news/articleView.html?idxno=423708"
+    },
+    {
+      "title": "수협은행 신학기 행장 연임 도전···상상인증권 인수 향방은?",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2470725"
+    },
+    {
+      "title": "이재근, 나이보다 '역량' 강조…KB금융 계열사 CEO 인사 시험대",
+      "url": "https://www.ngetnews.com/news/articleView.html?idxno=553290"
+    },
+    {
+      "title": "임업인 든든한 뿌리 ‘산림조합’…64년째 임산물 판로 확대·사유림 지...",
+      "url": "https://www.nongmin.com/article/20260914500768"
+    },
+    {
+      "title": "고창군산림조합, 산림조합중앙회 금융업적평가 '금상' 수상… 업무용 차...",
+      "url": "https://www.pressian.com/pages/articles/2026091516483260714?utm_source=naver&utm_medium=search"
+    },
+    {
+      "title": "산림조합중앙회, 전국 산림조합장 워크숍 개최",
+      "url": "http://www.newsfarm.co.kr/news/articleView.html?idxno=102319"
+    }
+  ]
+}

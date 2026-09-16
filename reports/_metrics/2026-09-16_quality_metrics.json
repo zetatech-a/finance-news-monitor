@@ -1,0 +1,264 @@
+{
+  "clusters": {
+    "cluster_count": 320,
+    "cluster_size_max": 118,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 118,
+        "relevance_prob": 0.8877349745098265,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "19년래 최고 찍은 미 국채금리, 한국 영향은… 금감원, ‘폐쇄적 CEO 선...",
+        "url": "https://n.news.naver.com/mnews/article/022/0004159390?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1061,
+    "displayed_articles": 219,
+    "final_tagged_representatives": 320,
+    "normalized_articles": 1401,
+    "raw_items": 1401,
+    "relevance_filtered_articles": 662,
+    "rule_filtered_articles": 1041,
+    "tagged_before_cluster": 662
+  },
+  "date": "2026-09-16",
+  "generated_at": "2026-09-16T09:10:01.446084+09:00",
+  "publishers": {
+    "missing_publisher_count": 320,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 100,
+    "no_topic_ratio": 0.3125,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7034791390191348,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "\"일상속 세심한 주의가 범죄 막았다\"…KB국민은행, 'KB국민 지키미상' 개...",
+        "url": "https://www.thefairnews.co.kr/news/articleView.html?idxno=88178"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7752343579942942,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "[오늘의 브릿지경제 1면] 물가 안정 vs 정유사 손실⋯ 정부, 10차 석유 최...",
+        "url": "https://www.viva100.com/article/20260915501325"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.669087649895286,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "비트코인 잡아먹는 이더리움의 반란… 3억 5천만 달러 대이동 속 개미들...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=487366"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.727066894862268,
+        "relevance_score": 4,
+        "sector": "입법·정책",
+        "title": "中기업, 바이낸스 통해 이란 원유 대금 세탁…총 2조 추산",
+        "url": "https://n.news.naver.com/mnews/article/018/0006370082?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8633488268276189,
+        "relevance_score": 4,
+        "sector": "입법·정책",
+        "title": "크립토 이익단체 \"클래리티법 불발, 중간선거서 대가 따를 것\"",
+        "url": "https://n.news.naver.com/mnews/article/018/0006370073?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6822928482582575,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "[이슈] 금고 1조 적자, 김인 보수 6억3158만원…1년 새 15.9%↑ \"감독 책...",
+        "url": "https://www.the-today.com/news/articleView.html?idxno=90192"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5966564046422048,
+        "relevance_score": 10,
+        "sector": "저축은행",
+        "title": "대출 브랜드평판 순위 공개… SBI저축은행·아이엠뱅크·농협은행 톱3",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=487354"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5045075355517118,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "집단대출 풀자 '방배'로…같은 서초도 11억 격차 [누더기 대출 규제③]",
+        "url": "https://n.news.naver.com/mnews/article/119/0003133128?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8537843477687246,
+        "relevance_score": 15,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "연 5%까지 나왔다…증권사, 발행어음 ‘쩐의 전쟁’ 뛰어드나",
+        "url": "https://n.news.naver.com/mnews/article/119/0003133124?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7215422335856451,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "생활 밀착형 신용카드 똑똑하게 쓰는 법",
+        "url": "https://woman.donga.com/3/all/12/6387733/1"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 4,
+      "감독·제재": 2,
+      "거시·시장": 39,
+      "기타": 111,
+      "대부": 6,
+      "디지털자산": 61,
+      "보험": 9,
+      "상호금융": 4,
+      "여전": 13,
+      "은행": 35,
+      "입법·정책": 30,
+      "자산운용·연기금": 2,
+      "저축은행": 2,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 16,
+      "감독·제재": 2,
+      "건전성·자본규제": 10,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 32,
+      "기업금융·익스포저": 5,
+      "디지털자산": 67,
+      "물가·경기지표": 1,
+      "부동산·PF": 9,
+      "불법사금융·불법추심·보이스피싱": 42,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 13,
+      "서민금융·대환·채무조정": 2,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 12,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 17,
+      "정책·제도개선": 9,
+      "증시·시장시황": 13,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 42,
+      "환율·외환": 11
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8233940526277999,
+        "relevance_score": 37,
+        "sector": "입법·정책",
+        "title": "\"손실 나도 고의 없으면 면책\"…금융위, '생산적 금융' 1560조원 푼다",
+        "url": "https://www.widedaily.com/news/articleView.html?idxno=301083"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7881240691707294,
+        "relevance_score": 30,
+        "sector": "감독·제재",
+        "title": "금융위, 금감원 특사경 권한 오남용 막는다…수사심의위 대면 의결 의무...",
+        "url": "http://www.fins.co.kr/news/articleView.html?idxno=109977"
+      },
+      {
+        "cluster_size": 33,
+        "relevance_prob": 0.7906327918163412,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "[美 금리 쇼크] 韓기업 연내 18조 만기 차환 부담 가중…유동성 양극화...",
+        "url": "https://www.ajunews.com/view/20260915141241795"
+      },
+      {
+        "cluster_size": 118,
+        "relevance_prob": 0.8877349745098265,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "19년래 최고 찍은 미 국채금리, 한국 영향은… 금감원, ‘폐쇄적 CEO 선...",
+        "url": "https://n.news.naver.com/mnews/article/022/0004159390?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7955660507389773,
+        "relevance_score": 27,
+        "sector": "은행",
+        "title": "디지털엑스, 신한은행과 신종 피싱 공동 대응…AML·FDS 협력 강화",
+        "url": "https://n.news.naver.com/mnews/article/003/0014192155?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7375529044238659,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "한화투자증권, PF 줄였더니 두나무에 '올인'···자기자본 66% 쏠렸다",
+        "url": "https://www.smartbizn.com/news/articleView.html?idxno=153936"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9501968512337815,
+        "relevance_score": 21,
+        "sector": "입법·정책",
+        "title": "\"카드로 결제하세요\" 교묘해진 보이스피싱…금감원, 피해 예방 강화",
+        "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5062277"
+      },
+      {
+        "cluster_size": 13,
+        "relevance_prob": 0.8895274891387783,
+        "relevance_score": 26,
+        "sector": "디지털자산",
+        "title": "하나금융, 디지털자산 사업 다각화… 송금·STO·수탁 잇단 확장",
+        "url": "https://www.g-enews.com/view.php?ud=202609151437401698cd0bfacc1c_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.840605282178785,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "고개 드는 ‘PF 관리 인프라’ 구축",
+        "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202609151342403390119"
+      },
+      {
+        "cluster_size": 19,
+        "relevance_prob": 0.8583178056658357,
+        "relevance_score": 21,
+        "sector": "은행",
+        "title": "韓 부동산PF·2금융권...“약한고리 깨질까” 우려",
+        "url": "https://n.news.naver.com/mnews/article/011/0004662079?sid=101"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 2,
+      "디지털자산": 2,
+      "은행": 2,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 3,
+      "부동산·PF": 3,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "자금시장·유동성": 1,
+      "해외·글로벌": 2
+    }
+  }
+}
