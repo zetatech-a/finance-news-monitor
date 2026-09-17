@@ -1,0 +1,281 @@
+{
+  "clusters": {
+    "cluster_count": 400,
+    "cluster_size_max": 164,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 3,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 164,
+        "relevance_prob": 0.9213288690188104,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "코스피 일평균 거래대금 20조로 반토막…연중 최저",
+        "url": "https://n.news.naver.com/mnews/article/448/0000639784?sid=101"
+      },
+      {
+        "cluster_size": 75,
+        "relevance_prob": 0.9523968546416459,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "두나무, 카자흐스탄과 디지털금융 협력...글로벌 진출 확대",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=701057"
+      },
+      {
+        "cluster_size": 73,
+        "relevance_prob": 0.9204766104178704,
+        "relevance_score": 15,
+        "sector": "은행",
+        "title": "KB국민은행, 경찰청과 보이스피싱 예방 '지키미상' 시상",
+        "url": "http://www.whitepaper.co.kr/news/articleView.html?idxno=266886"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1318,
+    "displayed_articles": 280,
+    "final_tagged_representatives": 400,
+    "normalized_articles": 1746,
+    "raw_items": 1746,
+    "relevance_filtered_articles": 972,
+    "rule_filtered_articles": 1301,
+    "tagged_before_cluster": 972
+  },
+  "date": "2026-09-17",
+  "generated_at": "2026-09-17T09:13:07.056087+09:00",
+  "publishers": {
+    "missing_publisher_count": 400,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 123,
+    "no_topic_ratio": 0.3075,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6596289081863776,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "\"알고도 당하는 상장 트랩\"... 크라켄 상장 소식에 미친 듯이 몰려든 개...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=487801"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7160998807835792,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "임기만료 앞둔 강태영 농협은행장, AX·내부통제 합격점",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=865734"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6499977209054832,
+        "relevance_score": 9,
+        "sector": "보험",
+        "title": "CSM 늘어도 보험이익 둔화…보험사 신용도 가르는 '질'",
+        "url": "https://dealsite.co.kr/articles/169172"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5228006035085968,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "보험사기·부당청구 요양기관 잡는다…심평원-금감원 정보공유",
+        "url": "https://www.medipana.com/news/articleView.html?idxno=417781"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7601629178807205,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "그노랜드 GNOT, 쿠코인·크라켄 상장…글로벌 거래 기반 확대 '주목'",
+        "url": "https://www.public25.com/news/articleView.html?idxno=54939"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6091273141125974,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "렌터카 시장 ‘빅플레이어’ 전쟁에…중소업체 설 자리 “위태”",
+        "url": "https://www.ekn.kr/web/view.php?key=20260917023105675"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6192821995920332,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "[증시전략] 워시 의장-트럼프 갈등, 중간선거 앞두고 격화 전망",
+        "url": "https://n.news.naver.com/mnews/article/374/0000533374?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6827308735437008,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "지배구조 '폭풍전야'…금융지주 회장들 국감 증인대 서나",
+        "url": "https://n.news.naver.com/mnews/article/119/0003133595?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5958917217890104,
+        "relevance_score": 14,
+        "sector": "저축은행",
+        "title": "[기획] 상반기 '긴축 경영' 페퍼저축은행, 하반기 적자 탈출할까",
+        "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=664716"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8532863320086351,
+        "relevance_score": 15,
+        "sector": "기타",
+        "title": "저축銀 개인예금 ‘썰물’…영업기반 약화 우려",
+        "url": "https://n.news.naver.com/mnews/article/011/0004662727?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 18,
+      "거시·시장": 46,
+      "기타": 130,
+      "대부": 1,
+      "디지털자산": 75,
+      "보험": 31,
+      "상호금융": 7,
+      "여전": 10,
+      "은행": 36,
+      "입법·정책": 24,
+      "자산운용·연기금": 3,
+      "저축은행": 8,
+      "증권(브로커리지/리테일)": 2,
+      "핀테크·플랫폼": 8
+    },
+    "topic_counts": {
+      "가계대출·부채": 17,
+      "감독·제재": 19,
+      "건전성·자본규제": 26,
+      "규제·가계부채": 11,
+      "금리·수수료·최고금리": 41,
+      "기업금융·익스포저": 6,
+      "디지털자산": 90,
+      "부동산·PF": 10,
+      "불법사금융·불법추심·보이스피싱": 38,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 3,
+      "서민금융·대환·채무조정": 4,
+      "소비자보호·민원·불완전판매": 8,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 11,
+      "자금시장·유동성": 15,
+      "정책·제도개선": 10,
+      "증시·시장시황": 17,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 42,
+      "환율·외환": 9
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9447532120538968,
+        "relevance_score": 40,
+        "sector": "입법·정책",
+        "title": "美 디지털자산 법안 제동...한국 기본법 논의에 변수",
+        "url": "https://www.thelec.kr/news/articleView.html?idxno=62356"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7600605672432683,
+        "relevance_score": 39,
+        "sector": "감독·제재",
+        "title": "신용정보법 과징금 부과 체계 개편…비례성·투명성 강화",
+        "url": "http://www.intn.co.kr/news/articleView.html?idxno=2053397"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6919379393036165,
+        "relevance_score": 39,
+        "sector": "감독·제재",
+        "title": "1400억원 과징금이 70억원으로···‘과잉제재’ 논란 신용정보법, 과징...",
+        "url": "https://n.news.naver.com/mnews/article/032/0003470777?sid=101"
+      },
+      {
+        "cluster_size": 7,
+        "relevance_prob": 0.8297286951166346,
+        "relevance_score": 33,
+        "sector": "감독·제재",
+        "title": "금융권 신용정보법 과징금 손본다…정보 유출 규모·소비자 피해 반영",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=275875"
+      },
+      {
+        "cluster_size": 18,
+        "relevance_prob": 0.7245218713833484,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "한국TI인권시민연대, 불법사금융 근절 위한 ‘15대 정책 대안’ 발표",
+        "url": "https://n.news.naver.com/mnews/article/018/0006370350?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8412918428887519,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "금융위, PG사에 철저한 보안 관리 주문…\"제도개선 검토\"",
+        "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7184560"
+      },
+      {
+        "cluster_size": 75,
+        "relevance_prob": 0.9523968546416459,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "두나무, 카자흐스탄과 디지털금융 협력...글로벌 진출 확대",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=701057"
+      },
+      {
+        "cluster_size": 21,
+        "relevance_prob": 0.7910894046654752,
+        "relevance_score": 28,
+        "sector": "핀테크·플랫폼",
+        "title": "금융위, PG사 보안 리스크 긴급 점검…가맹점 통한 우회공격도 살핀다",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=701066"
+      },
+      {
+        "cluster_size": 164,
+        "relevance_prob": 0.9213288690188104,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "코스피 일평균 거래대금 20조로 반토막…연중 최저",
+        "url": "https://n.news.naver.com/mnews/article/448/0000639784?sid=101"
+      },
+      {
+        "cluster_size": 21,
+        "relevance_prob": 0.6568783025985961,
+        "relevance_score": 22,
+        "sector": "보험",
+        "title": "보험사 킥스 비율 215.2%로 전분기 比 0.8%p↓…손보사 상승·생보사 하...",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=212609"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 1,
+      "보험": 1,
+      "입법·정책": 2,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "정책·제도개선": 3,
+      "증시·시장시황": 1
+    }
+  }
+}
