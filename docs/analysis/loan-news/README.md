@@ -95,3 +95,11 @@ Windows 초기 전체 실행은 718 passed / 1 skipped / 3 failed였다. 실패�
 `git diff --check`도 통과했다.
 
 API 키를 사용한 Naver/Gemini production 실행과 실제 메일 발송은 수행하지 않았다. 실시간 broad-query 표본, 과거 모델 원본, raw fetch provenance 및 추출요약 후 재태깅의 재현은 이번 결정론적 검증 범위 밖이다.
+
+## PR #85 review follow-up
+
+The original `before.json` / `after.json` are historical evidence for the first
+implementation, not the final implementation. See [review.md](review.md),
+[review-replay.json](review-replay.json), and [review-top10.md](review-top10.md)
+for the four reproduced review bugs, revised scope of cluster compatibility,
+three-day pair/sector comparison and the 162→176 investigation.

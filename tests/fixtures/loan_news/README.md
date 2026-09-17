@@ -36,3 +36,20 @@ event cluster. It also requires visible, independently represented loan supply,
 credit access, fund purchases and civil policy. The newly recovered court
 stories still have conservative splits; the evaluator reports pair recall so
 that purity alone cannot conceal fragmentation.
+
+## Review follow-up sample
+
+`other_sectors_review.json` contains 18 additional manually checked candidates,
+6 per event, from the same base revision: Jeju Bank's call-time transfer
+protection launch (09-15), Kyobo Life's Lifeplanet absorption merger (09-16),
+and the fourth KB citizen anti-phishing awards (09-17). Headlines/snippets,
+URLs and recorded fields are unchanged. Selection takes the first six kept
+rows mentioning the named actor/event, excluding the KB news-roundup headline.
+These provide a small independent fragmentation check, not representative
+precision estimates for the whole three-day corpus. Publication dates are
+unavailable; the dates identify candidate files, not inferred event dates.
+
+`scripts/evaluate_cluster_review.py` evaluates both the original 33 relevant
+labelled articles and this 18-row sample with identical retained cohorts at
+base, first-PR and revised versions. No production keep decision is used as an
+event label. Synthetic review tests are in `test_issue_cluster_review.py`.

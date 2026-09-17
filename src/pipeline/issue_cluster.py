@@ -16,9 +16,15 @@ _BRACKET_LABEL_RE = re.compile(r"\[[^\]]*(?:속보|단독|종합|사진|영상)[
 _TAG_RE = re.compile(r"<[^>]+>")
 _TOKEN_RE = re.compile(r"[가-힣A-Za-z0-9]+")
 _NUMBER_RE = re.compile(r"\d+(?:[.,]\d+)?\s*(?:분기|월|일|년|조|억|만|%|bp|兆|億)?")
-_LOCAL_AUTHORITY_RE = re.compile(r"(?<![가-힣])[가-힣]{2,8}(?:시|경찰청)(?=[^가-힣]|[은는이가의에]|$)")
+# A bare Korean word ending in 시 is not evidence of a place (e.g. 필요시).
+# Recognize metropolitan names and explicit city-hall/police agency suffixes;
+# unrecognized abbreviated city names fall back to ordinary title similarity.
+_LOCAL_AUTHORITY_RE = re.compile(
+    r"(?<![가-힣])(?:서울(?:특별)?시|(?:부산|대구|인천|광주|대전|울산)(?:광역)?시|"
+    r"세종(?:특별자치)?시|[가-힣]{2,8}(?:시청|경찰청))(?=[^가-힣]|[은는이가의에]|$)"
+)
 _REPORTED_METRIC_RE = re.compile(
-    r"(킥스(?:비율)?|k[- ]ics|지급여력\s*비율|연체율|예대\s*금리차)"
+    r"((?:킥스|k[- ]ics)(?:\s*비율)?|지급여력\s*비율|연체율|예대\s*금리차)"
     r"\s*(?:은|는|이|가)?\s*(\d+(?:\.\d+)?)\s*%(?!p)", re.IGNORECASE,
 )
 
@@ -277,17 +283,25 @@ def _rule_issue_fingerprint(item: TaggedArticle) -> str | None:
     return None
 
 
-def _targeted_enforcement_fingerprint(text: str) -> str | None:
+def _is_enforcement_headline(title: str) -> bool:
+    return (_contains_any(title, ("불법사금융", "불법 사금융", "불법대부", "불법 대부"))
+            and _contains_any(title, ("단속", "수사", "잡는다")))
+
+
+def _targeted_enforcement_fingerprint(title: str, text: str) -> str | None:
     """Local enforcement needs an actor and a specific target, not just a domain.
 
     This also joins wire variants with different headline wording. Ambiguous
     multi-authority/target roundups intentionally receive no shortcut.
     """
-    if not _contains_any(text, ("불법사금융", "불법 사금융", "불법대부", "불법 대부")):
+    if not _is_enforcement_headline(title):
         return None
-    if not _contains_any(text, ("단속", "수사", "잡는다")):
-        return None
-    authorities = set(_LOCAL_AUTHORITY_RE.findall(text))
+    # The snippet may fill a missing actor/target, but cannot supply the event.
+    authorities = {
+        authority.replace("특별자치", "").replace("특별", "").replace("광역", "").removesuffix("청")
+        if authority.endswith(("시", "시청")) else authority
+        for authority in _LOCAL_AUTHORITY_RE.findall(text)
+    }
     targets = {
         target for target, aliases in (
             ("small_business", ("전통시장", "소상공인")),
@@ -308,7 +322,7 @@ def _issue_fingerprint(item: TaggedArticle) -> str | None:
     ):
         # A background reference in a policy/crime snippet is not its main event.
         finance = None
-    return _targeted_enforcement_fingerprint(text) or _rule_issue_fingerprint(item) or _digital_asset_fingerprint(text) or _macro_market_fingerprint(text) or finance
+    return _targeted_enforcement_fingerprint(_normalize_issue_text(_article_title(item)), text) or _rule_issue_fingerprint(item) or _digital_asset_fingerprint(text) or _macro_market_fingerprint(text) or finance
 
 
 def _jaccard(a: set[str], b: set[str]) -> float:
@@ -333,6 +347,33 @@ def _reported_metrics(title: str) -> set[tuple[str, str]]:
     return facts
 
 
+def _metric_subjects(title: str) -> set[str]:
+    """Positive headline evidence of the measured entity, not its regulator.
+
+    Keep this local to reported metrics: changing general entity extraction
+    would alter unrelated earnings/market clustering. Missing subjects never
+    authorize the measurement shortcut.
+    """
+    measurement = _REPORTED_METRIC_RE.search(title)
+    if not measurement:
+        return set()
+    # The subject precedes the measurement. Later comparisons may mention
+    # other companies or subsectors and must not redefine whose value it is.
+    title = title[:measurement.start()]
+    subjects = _extract_entities(title) - {"금융감독원", "금융위원회", "한국은행"}
+    subjects.update(re.findall(
+        r"(?<![가-힣a-z0-9])[가-힣a-z0-9]+(?:생명|손보|화재|라이프|보험|은행|카드|캐피탈)"
+        r"(?=[^가-힣a-z0-9]|[은는이가의]|$)", title,
+    ))
+    if subjects:
+        return subjects
+    # Explicit industry-wide statistics have subjects too. Do not infer these
+    # merely from the sector tag or a background snippet.
+    return set(re.findall(
+        r"(?<![가-힣])(?:보험사|보험회사|생보사|손보사|은행권|저축은행권|카드사)(?=[^가-힣]|들|의|는|가|$)", title,
+    ))
+
+
 @dataclass
 class _ClusterFeatures:
     """페어 비교(O(n²))마다 재계산하지 않도록 기사당 1회만 뽑아두는 피처."""
@@ -347,6 +388,7 @@ class _ClusterFeatures:
     numbers: set[str]
     issue_terms: set[str]
     reported_metrics: set[tuple[str, str]]
+    metric_subjects: set[str]
 
 
 def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
@@ -363,6 +405,14 @@ def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
         numbers=_extract_numbers(title),
         issue_terms=_extract_issue_terms(item),
         reported_metrics=_reported_metrics(norm_title),
+        metric_subjects=_metric_subjects(norm_title),
+    )
+
+
+def _conflicting_metric_subjects(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
+    return bool(
+        {metric for metric, _ in a.reported_metrics} & {metric for metric, _ in b.reported_metrics}
+        and a.metric_subjects and b.metric_subjects and not (a.metric_subjects & b.metric_subjects)
     )
 
 
@@ -378,6 +428,14 @@ def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
         named_overlap = a.low_value_named_terms & b.low_value_named_terms
         sim = SequenceMatcher(None, a.norm_title, b.norm_title).ratio()
         return sim >= 0.88 or (bool(named_overlap) and sim >= 0.72)
+
+    if any((feature.fingerprint or "").startswith("enforcement:") for feature in (a, b)):
+        if not (_is_enforcement_headline(a.norm_title) and _is_enforcement_headline(b.norm_title)):
+            return False
+
+    # Explicit conflicting subjects veto even fingerprint/similarity shortcuts.
+    if _conflicting_metric_subjects(a, b):
+        return False
 
     same_sector = a.sector == b.sector
     if a.fingerprint and a.fingerprint == b.fingerprint:
@@ -401,11 +459,10 @@ def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
         (b.tokens | b.issue_terms) - _GENERIC_TOKENS,
     )
 
-    # A named measurement plus its exact percentage identifies statistical
-    # wire variants even when their headlines emphasize different comparisons.
-    # Require the measurement in both titles; snippet background is insufficient.
+    # Same subject + measurement + percentage supports statistical wire
+    # variants. Neither missing subjects nor snippet background authorize it.
     if a.reported_metrics & b.reported_metrics:
-        if not (a.entities and b.entities and not shared_entities):
+        if len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects:
             return True
 
     if not shared_issue_terms and not shared_entities and not shared_numbers:
@@ -465,19 +522,36 @@ def _cluster_id(members: list[TaggedArticle]) -> str:
     return "issue-" + hashlib.sha1(seed).hexdigest()[:12]
 
 
+def _requires_complete_compatibility(feature: _ClusterFeatures) -> bool:
+    """Prevent lending bridges without changing unrelated sectors' admission."""
+    return (feature.sector == "대부"
+            or bool(feature.issue_terms & {"illegal_private_lending", "illegal_collection", "loan_ad"})
+            or feature.fingerprint == "finance:delinquent_debt_purchase")
+
+
 def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
     features = [_build_cluster_features(item) for item in tagged]
     index_clusters: list[list[int]] = []
-    # Stable ordering makes complete-link admission independent of fetch order.
-    # All members must agree: A~B and B~C do not imply A~C.
-    order = sorted(range(len(tagged)), key=lambda idx: (
+    # Limit changed admission/order semantics to lending. Reordering every
+    # sector redistributes existing broad macro fingerprints into larger groups.
+    strict = [_requires_complete_compatibility(feature) for feature in features]
+    order = list(range(len(tagged)))
+    loan_slots = [idx for idx in order if strict[idx]]
+    loan_order = sorted(loan_slots, key=lambda idx: (
         features[idx].norm_title, _link_value(tagged[idx]),
         str(_article_field(tagged[idx].article, "description") or ""),
     ))
+    for slot, idx in zip(loan_slots, loan_order):
+        order[slot] = idx
     for idx in order:
         target: list[int] | None = None
         for cluster in index_clusters:
-            if all(_should_cluster_features(features[idx], features[member]) for member in cluster):
+            # Explicit subject conflicts cannot be bypassed through a bridge
+            # even in sectors retaining their original single-link behavior.
+            if any(_conflicting_metric_subjects(features[idx], features[member]) for member in cluster):
+                continue
+            compatibility = all if strict[idx] or any(strict[member] for member in cluster) else any
+            if compatibility(_should_cluster_features(features[idx], features[member]) for member in cluster):
                 target = cluster
                 break
         if target is None:
