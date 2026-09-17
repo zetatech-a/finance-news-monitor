@@ -16,6 +16,11 @@ _BRACKET_LABEL_RE = re.compile(r"\[[^\]]*(?:속보|단독|종합|사진|영상)[
 _TAG_RE = re.compile(r"<[^>]+>")
 _TOKEN_RE = re.compile(r"[가-힣A-Za-z0-9]+")
 _NUMBER_RE = re.compile(r"\d+(?:[.,]\d+)?\s*(?:분기|월|일|년|조|억|만|%|bp|兆|億)?")
+_LOCAL_AUTHORITY_RE = re.compile(r"(?<![가-힣])[가-힣]{2,8}(?:시|경찰청)(?=[^가-힣]|[은는이가의에]|$)")
+_REPORTED_METRIC_RE = re.compile(
+    r"(킥스(?:비율)?|k[- ]ics|지급여력\s*비율|연체율|예대\s*금리차)"
+    r"\s*(?:은|는|이|가)?\s*(\d+(?:\.\d+)?)\s*%(?!p)", re.IGNORECASE,
+)
 
 _ALIASES: tuple[tuple[str, str], ...] = (
     ("카뱅", "카카오뱅크"),
@@ -45,6 +50,7 @@ _DISTINCTIVE_TERM_ALIASES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("voice_phishing", ("보이스피싱",)),
     ("loan_ad", ("대출광고", "대출 광고", "대부광고", "대부 광고")),
     ("delinquency_rate", ("연체율",)),
+    ("capital_adequacy_ratio", ("킥스", "k-ics", "k ics", "지급여력비율", "지급여력 비율")),
     ("bad_loan", ("부실채권", "부실 채권")),
     ("real_estate_pf", ("부동산 pf", "부동산pf")),
     ("pf", ("pf",)),
@@ -89,7 +95,7 @@ _ENTITY_PATTERNS = (
 )
 _ENTITY_SUFFIXES = ("은행", "증권", "보험", "카드", "캐피탈", "저축은행", "자산운용", "거래소")
 
-_CROSS_SECTOR_SAFE_PREFIXES = ("finance:securities_liquidity", "finance:loan_relief")
+_CROSS_SECTOR_SAFE_PREFIXES = ("finance:securities_liquidity", "finance:delinquent_debt_purchase")
 
 
 def _article_title(item: TaggedArticle) -> str:
@@ -213,8 +219,14 @@ def _finance_policy_fingerprint(text: str) -> str | None:
         return "finance:securities_liquidity"
     if _contains_any(text, ("여전채", "카드채", "캐피탈채")) and _contains_any(text, ("조달", "조달금리", "만기", "차환", "부담", "금리")):
         return "finance:credit_funding"
-    if (_contains_any(text, ("새도약기금", "장기연체채권")) and _contains_any(text, ("대부업권", "대부업계", "대부업체"))) or _contains_any(text, ("상품권 사채", "불법사금융", "내구제대출")):
-        return "finance:loan_relief"
+    # A named debt-relief programme + transaction/participation is an issue.
+    # Illegal lending and loan-business sector words alone are only domains.
+    if (
+        _contains_any(text, ("새도약기금", "장기연체채권"))
+        and _contains_any(text, ("매입", "매각", "소각", "참여", "협상"))
+        and _contains_any(text, ("대부업권", "대부업계", "대부업체"))
+    ):
+        return "finance:delinquent_debt_purchase"
     return None
 
 
@@ -264,9 +276,39 @@ def _rule_issue_fingerprint(item: TaggedArticle) -> str | None:
         return "rule:card_loan_delinquency_rate"
     return None
 
+
+def _targeted_enforcement_fingerprint(text: str) -> str | None:
+    """Local enforcement needs an actor and a specific target, not just a domain.
+
+    This also joins wire variants with different headline wording. Ambiguous
+    multi-authority/target roundups intentionally receive no shortcut.
+    """
+    if not _contains_any(text, ("불법사금융", "불법 사금융", "불법대부", "불법 대부")):
+        return None
+    if not _contains_any(text, ("단속", "수사", "잡는다")):
+        return None
+    authorities = set(_LOCAL_AUTHORITY_RE.findall(text))
+    targets = {
+        target for target, aliases in (
+            ("small_business", ("전통시장", "소상공인")),
+            ("youth", ("청소년",)), ("military", ("군인",)),
+            ("university", ("대학생",)),
+        ) if _contains_any(text, aliases)
+    }
+    if len(authorities) == len(targets) == 1:
+        return f"enforcement:{next(iter(authorities))}:{next(iter(targets))}"
+    return None
+
+
 def _issue_fingerprint(item: TaggedArticle) -> str | None:
     text = _normalize_issue_text(f"{_article_title(item)} {_article_field(item.article, 'description') or ''}")
-    return _rule_issue_fingerprint(item) or _digital_asset_fingerprint(text) or _macro_market_fingerprint(text) or _finance_policy_fingerprint(text)
+    finance = _finance_policy_fingerprint(text)
+    if finance == "finance:delinquent_debt_purchase" and not _contains_any(
+        _normalize_issue_text(_article_title(item)), ("새도약기금", "장기연체채권"),
+    ):
+        # A background reference in a policy/crime snippet is not its main event.
+        finance = None
+    return _targeted_enforcement_fingerprint(text) or _rule_issue_fingerprint(item) or _digital_asset_fingerprint(text) or _macro_market_fingerprint(text) or finance
 
 
 def _jaccard(a: set[str], b: set[str]) -> float:
@@ -278,6 +320,17 @@ def _jaccard(a: set[str], b: set[str]) -> float:
 def _meaningful_overlap(a_tokens: set[str], b_tokens: set[str]) -> bool:
     shared = (a_tokens & b_tokens) - _GENERIC_TOKENS - _STOPWORDS
     return len(shared) >= 2 or bool(shared & (_extract_entities(" ".join(a_tokens)) | _extract_entities(" ".join(b_tokens))))
+
+
+def _reported_metrics(title: str) -> set[tuple[str, str]]:
+    facts = set()
+    for label, value in _REPORTED_METRIC_RE.findall(title):
+        metric = next(iter(_important_issue_terms(label) & {
+            "capital_adequacy_ratio", "delinquency_rate", "loan_deposit_spread",
+        }), None)
+        if metric:
+            facts.add((metric, value))
+    return facts
 
 
 @dataclass
@@ -293,6 +346,7 @@ class _ClusterFeatures:
     entities: set[str]
     numbers: set[str]
     issue_terms: set[str]
+    reported_metrics: set[tuple[str, str]]
 
 
 def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
@@ -308,6 +362,7 @@ def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
         entities=_extract_entities(title),
         numbers=_extract_numbers(title),
         issue_terms=_extract_issue_terms(item),
+        reported_metrics=_reported_metrics(norm_title),
     )
 
 
@@ -345,6 +400,13 @@ def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
         (a.tokens | a.issue_terms) - _GENERIC_TOKENS,
         (b.tokens | b.issue_terms) - _GENERIC_TOKENS,
     )
+
+    # A named measurement plus its exact percentage identifies statistical
+    # wire variants even when their headlines emphasize different comparisons.
+    # Require the measurement in both titles; snippet background is insufficient.
+    if a.reported_metrics & b.reported_metrics:
+        if not (a.entities and b.entities and not shared_entities):
+            return True
 
     if not shared_issue_terms and not shared_entities and not shared_numbers:
         return False
@@ -406,10 +468,16 @@ def _cluster_id(members: list[TaggedArticle]) -> str:
 def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
     features = [_build_cluster_features(item) for item in tagged]
     index_clusters: list[list[int]] = []
-    for idx in range(len(tagged)):
+    # Stable ordering makes complete-link admission independent of fetch order.
+    # All members must agree: A~B and B~C do not imply A~C.
+    order = sorted(range(len(tagged)), key=lambda idx: (
+        features[idx].norm_title, _link_value(tagged[idx]),
+        str(_article_field(tagged[idx].article, "description") or ""),
+    ))
+    for idx in order:
         target: list[int] | None = None
         for cluster in index_clusters:
-            if any(_should_cluster_features(features[idx], features[member]) for member in cluster):
+            if all(_should_cluster_features(features[idx], features[member]) for member in cluster):
                 target = cluster
                 break
         if target is None:

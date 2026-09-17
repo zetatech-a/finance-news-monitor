@@ -29,7 +29,11 @@ DOMAIN_SPECIFIC_ANCHORS: tuple[str, ...] = (
     # existing domain anchors
 
     "대부업",
+    "대부업법",
     "불법사금융",
+    "불법사채",
+    "불법대부",
+    "불법추심",
     "미등록대부",
     "채권추심",
     "최고금리",

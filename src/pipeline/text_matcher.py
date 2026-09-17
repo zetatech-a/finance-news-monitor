@@ -30,6 +30,14 @@ _DEFAULT_EXCLUDES: dict[str, tuple[str, ...]] = {
 _TERM_ALIASES: dict[str, tuple[str, ...]] = {
     "cp": ("기업어음",),
     "킥스": ("k-ics", "kics"),
+    # Explicit financial compounds, not unrestricted substring matching of 대부.
+    # Canonical matching counts each weighted anchor once, even with variants.
+    "대부업": ("대부업체", "대부업권", "대부업계", "대부업자", "대부중개업"),
+    "불법사금융": ("불법 사금융",),
+    "불법사채": ("불법 사채",),
+    "불법대부": ("불법 대부",),
+    "미등록대부": ("미등록 대부",),
+    "불법추심": ("불법 추심",),
 }
 
 
