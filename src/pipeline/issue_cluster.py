@@ -25,7 +25,7 @@ _LOCAL_AUTHORITY_RE = re.compile(
 )
 _REPORTED_METRIC_RE = re.compile(
     r"((?:킥스|k[- ]ics)(?:\s*비율)?|지급여력\s*비율|연체율|예대\s*금리차)"
-    r"\s*(?:은|는|이|가)?\s*(\d+(?:\.\d+)?)\s*%(?!p)", re.IGNORECASE,
+    r"\s*(?:은|는|이|가)?\s*(\d+(?:\.\d+)?)\s*%(?!\s*(?:p|포인트))", re.IGNORECASE,
 )
 
 _ALIASES: tuple[tuple[str, str], ...] = (
@@ -350,6 +350,8 @@ def _reported_metrics(title: str) -> set[tuple[str, str]]:
 # Exact company identities observed in the September 15–17 candidate corpus.
 # Local to metrics: a suffix-wide 손보 replacement would equate unverified names.
 _METRIC_SUBJECT_ALIASES = {"kb손보": "kb손해보험", "db손보": "db손해보험"}
+# Aggregate synonyms only; life/non-life, banks/savings banks remain distinct.
+_METRIC_INDUSTRY_SUBJECT_ALIASES = {"보험회사": "보험사"}
 
 
 def _metric_subjects(title: str) -> set[str]:
@@ -374,9 +376,10 @@ def _metric_subjects(title: str) -> set[str]:
         return {_METRIC_SUBJECT_ALIASES.get(subject, subject) for subject in subjects}
     # Explicit industry-wide statistics have subjects too. Do not infer these
     # merely from the sector tag or a background snippet.
-    return set(re.findall(
+    industry_subjects = re.findall(
         r"(?<![가-힣])(?:보험사|보험회사|생보사|손보사|은행권|저축은행권|카드사)(?=[^가-힣]|들|의|는|가|$)", title,
-    ))
+    )
+    return {_METRIC_INDUSTRY_SUBJECT_ALIASES.get(subject, subject) for subject in industry_subjects}
 
 
 @dataclass

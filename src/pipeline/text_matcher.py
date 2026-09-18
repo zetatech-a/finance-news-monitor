@@ -35,10 +35,15 @@ _TERM_ALIASES: dict[str, tuple[str, ...]] = {
     "대부업": ("대부업체", "대부업권", "대부업계", "대부업자", "대부중개업"),
     "불법사금융": ("불법 사금융",),
     "불법사채": ("불법 사채",),
-    "불법대부": ("불법 대부",),
-    "미등록대부": ("미등록 대부",),
+    "불법대부": ("불법 대부", "불법 대부업", "불법 대부중개업"),
+    "미등록대부": ("미등록 대부", "미등록 대부업", "미등록 대부중개업"),
     "불법추심": ("불법 추심",),
 }
+
+# Bound ambiguous spaced 대부 aliases, without changing other phrase aliases.
+# Explicit 업/중개업 compounds above preserve finance anchors (including 업자
+# and Korean particles); the short aliases must not match 대부도/대부abc/대부123.
+_ALIAS_MATCH_MODES = {"불법 대부": "right_token", "미등록 대부": "right_token"}
 
 
 # \uac19\uc740 \uae30\uc0ac \ud14d\uc2a4\ud2b8\uc5d0 \ub300\ud574 \uc6a9\uc5b4 \uc218\ub9cc\ud07c(\uc218\ubc31 \ud68c) \ubc18\ubcf5 \ud638\ucd9c\ub418\ubbc0\ub85c \uce90\uc2dc\ud55c\ub2e4.
@@ -82,6 +87,8 @@ def _auto_mode(term: str) -> str:
 def _compiled_pattern(term: str, mode: str) -> re.Pattern[str]:
     if mode == "phrase":
         pattern = re.escape(term)
+    elif mode == "right_token":
+        pattern = rf"{re.escape(term)}(?![가-힣a-z0-9])"
     elif mode == "english_token":
         pattern = rf"(?<![a-z0-9]){re.escape(term)}(?![a-z0-9])"
     elif mode == "token":
@@ -144,7 +151,10 @@ def contains_term(
     chosen_mode = _auto_mode(normalized_term) if mode == "auto" else mode
     if _contains_normalized(normalized_text, normalized_term, chosen_mode, excludes):
         return True
-    return any(_contains_normalized(normalized_text, normalize_text(alias), "phrase") for alias in aliases)
+    return any(
+        _contains_normalized(normalized_text, normalize_text(alias), _ALIAS_MATCH_MODES.get(alias, "phrase"))
+        for alias in aliases
+    )
 
 
 def find_terms(

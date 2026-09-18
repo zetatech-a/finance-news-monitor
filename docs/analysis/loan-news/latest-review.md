@@ -153,3 +153,132 @@ this change removes snippet-only issue-term scope switching, not upstream
 sector tagging. No production API-equivalent run or collection-recall estimate
 is claimed. Human review should confirm these narrow choices and the linked
 regressions; review threads remain unresolved for that review.
+
+
+## Follow-up: three correctness findings on b81261c
+
+Baseline: `b81261c4fb579e006fdc51af61ccec92c806bac0`. This section records the
+next review round; the earlier sections and `latest-review-replay.json` remain
+historical results for the review of 3de826a. No historical artifact is overwritten.
+The interrupted session's two source edits and new test file were preserved;
+continuation confirmed local and PR HEAD still matched the baseline. Production
+code did not need further edits during continuation.
+
+### Findings and fixes
+
+1. [Percentage-point suffix](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4042942207): reproduced.
+   The old negative lookahead rejected only directly adjacent Latin `p`.
+   `%포인트`, `% 포인트` and `% p` yielded a false level and could trigger the
+   same-subject metric shortcut. The regex now rejects optional whitespace
+   followed by `p` or `포인트`; `%p` remains rejected. Actual `20%`, `K-ICS 비율
+   215.2%` and `킥스 비율 215.2%` still parse, including a headline containing
+   both a real level and a separate change. The clustering fixture explicitly
+   verifies that removing its metric evidence prevents merging, so independent
+   title similarity cannot mask the bug.
+2. [Aggregate subjects](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4042942211): reproduced.
+   Raw `보험사`/`보험회사` sets incorrectly activated the subject-conflict veto;
+   the supplied same-event pair formed two clusters. A separate metric-only
+   aggregate mapping canonicalizes **only `보험회사 → 보험사`**. Life/non-life,
+   banks/savings banks, named companies/industry aggregates and different
+   insurers remain distinct. Existing KB/DB company mappings are unchanged.
+3. [Spaced loan alias boundary](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4042942215): reproduced through relevance.
+   `불법 대부도 토지거래` and `미등록 대부도 숙박업체` each gained 6 hard-anchor
+   points, a domain anchor and a keep decision at candidate probability 0.8.
+   Only aliases `불법 대부` and `미등록 대부` now use a right token boundary:
+   an immediately following Korean syllable, Latin letter or digit prevents
+   that alias match. Spaces, punctuation and end of text remain valid. Other
+   phrase/canonical-term semantics are unchanged; no string-specific excludes.
+
+The first boundary-only patch exposed a real recall regression: three golden
+court-case articles lost `미등록대부`, fell from score 11 to 5 and missed the
+existing gray-zone threshold 6. Merely retaining the separate `대부업` anchor
+was insufficient. Explicit `불법 대부업`, `미등록 대부업`, `불법 대부중개업` and
+`미등록 대부중개업` aliases preserve the financial compounds, their 업자/업체
+forms and Korean particles without reopening the ambiguous short 대부 prefix.
+The three-day corpus contains 업/업자/업체 forms. Tests cover both prefixes
+with 업, 업체, 업권, 업계, 업자 and 중개업 at probability 0.5. Final golden
+recall is restored; public-lease/island noise and 대부abc/대부123 remain rejected.
+
+### Regression validation
+
+- 51 new parameterized cases in `tests/test_metric_alias_review.py`.
+  Initial 39-case run against unmodified production code: **14 failed, 25 passed**.
+  Final 51-case matrix against the original b81261c modules: **14 failed, 37 passed**.
+  Thus the fixes address failing behaviors, not tests that already passed.
+- New review plus loan golden: **64 passed**. Continuation reran the broader
+  issue-cluster/text-matcher/relevance/prefilter/golden/replay-reproducibility
+  selection: **468 passed, 1 skipped**, 10 NumPy/joblib deprecation warnings.
+- Continuation reran `python -m pytest tests/ -q -p no:cacheprovider` in the
+  existing Linux/Python 3.11 Docker image, network disabled and source/Git
+  mounted read-only: **821 passed, 1 skipped** (18.88 seconds).
+- `git diff --check` passed. No thresholds, rankings, query/fetch, ML, Gemini,
+  report/email, general entity extraction or clustering architecture changed.
+
+### Full before/after comparison
+
+The prior session captured candidate relevance/tagging/clustering before and after in ignored
+`.venv/round3-before.json` and `.venv/round3-after.json`, using
+`.venv/capture_round3.py`. Continuation parsed and compared both full objects:
+**identical**, including golden and other-sector fixtures. The capture's
+`revision` field denotes the baseline in both files, not the after source hash.
+These temporary multi-megabyte files are not committed.
+
+All 3,327 candidate rows (985 / 1,041 / 1,301) have unchanged relevance scores,
+hard/soft/negative matched-term lists and domain-anchor booleans. Fixed and
+rescored retained URL sequences, sectors, complete cluster memberships and
+pair sets are identical. New merge/split counts are **0 / 0** in all six runs.
+To cover representatives beyond the stored top ten, continuation re-prepared
+both cohorts, verified their retained URL order/sector tags against the captures,
+and applied each revision's actual `_representative_score` to every stored
+cluster. Every representative title and URL is identical (333/320/401 fixed;
+333/322/407 rescored). No changed pair or relevance evidence needs attribution.
+
+Every cell below is **before = after**, not a comparison between fixed and
+rescored policies. Fixed uses recorded keep/score; rescored reuses recorded
+probabilities but recalculates rules. Publication times/query provenance are
+absent from candidates; this is offline candidate replay, not a live API run.
+
+| Date | Fixed kept / clusters | Rescored kept / clusters | Largest (both) | >=50 (both) | Loan reps fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 2026-09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 2026-09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 2026-09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+Fixed sector representative counts, unchanged before/after (rescored differs
+only in the loan counts shown above):
+
+| Sector | 09-15 | 09-16 | 09-17 |
+| --- | ---: | ---: | ---: |
+| IB·자본시장 | 1 | 4 | 1 |
+| 감독·제재 | 8 | 2 | 18 |
+| 거시·시장 | 22 | 41 | 45 |
+| 기타 | 122 | 108 | 129 |
+| 대부 | 10 | 6 | 4 |
+| 디지털자산 | 79 | 63 | 77 |
+| 보험 | 2 | 9 | 30 |
+| 상호금융 | 9 | 4 | 6 |
+| 여전 | 10 | 13 | 10 |
+| 은행 | 28 | 36 | 35 |
+| 입법·정책 | 23 | 27 | 26 |
+| 자산운용·연기금 | 4 | 3 | 3 |
+| 저축은행 | 14 | 2 | 8 |
+| 증권(브로커리지/리테일) | 1 | 1 | 1 |
+| 핀테크·플랫폼 | 0 | 1 | 8 |
+
+Golden fixed-relevant pair precision/recall stays **1.0000 / 0.922414**
+(107 correct / 107 predicted / 116 expected); other-sector labels stay
+**1.0000 / 0.888889** (40 / 40 / 45). End-to-end golden keeps all 33 relevant
+articles and rejects all four noise articles. The three corrections affect
+new edge-case fixtures while preserving every measured existing corpus result.
+
+### Remaining limits
+
+The prior broad macro/digital fingerprints and conservative court/Jeju splits
+remain out of scope. Metric aliases deliberately remain small; this is not a
+general entity or numeric parser. Explicit financial compound aliases retain
+existing phrase semantics; the boundary change is limited to the two ambiguous
+short spaced aliases. Human review should check these narrow semantics and the
+new regression matrix before merging. No review threads were resolved and no
+merge was performed. Default replay still requires no unsquashed PR object;
+this follow-up's b81261c comparison is historical audit provenance, not a new
+executable default dependency.
