@@ -1,5 +1,10 @@
 # PR #85 automated-review follow-up
 
+Historical analysis for commit `3de826a`. The ablations and numbers below are
+frozen observations, not the output contract of today's replay tool. See
+[latest-review.md](latest-review.md) for the current executable comparison and
+fresh-clone validation. Do not overwrite `review-replay.json` with a new run.
+
 This supersedes the implementation design in the original analysis. Baseline:
 `e67e3a740b0004e56a0087aa34edfeaffc6264ae`; reviewed first implementation:
 `1b4b732c0f4005a7fab80ced58a7fbc9ff658e9e`. No generated reports, query lists,

@@ -1,0 +1,554 @@
+{
+  "base_revision": "e67e3a740b0004e56a0087aa34edfeaffc6264ae",
+  "days": {
+    "2026-09-15": {
+      "base": {
+        "kept_count": 652,
+        "cluster_count": 326,
+        "largest_cluster": 90,
+        "clusters_ge_50": 2,
+        "sector_representatives": {
+          "IB·자본시장": 1,
+          "감독·제재": 8,
+          "거시·시장": 22,
+          "기타": 123,
+          "대부": 2,
+          "디지털자산": 79,
+          "보험": 2,
+          "상호금융": 9,
+          "여전": 10,
+          "은행": 28,
+          "입법·정책": 23,
+          "자산운용·연기금": 4,
+          "저축은행": 14,
+          "증권(브로커리지/리테일)": 1
+        }
+      },
+      "revised": {
+        "kept_count": 652,
+        "cluster_count": 333,
+        "largest_cluster": 90,
+        "clusters_ge_50": 2,
+        "sector_representatives": {
+          "IB·자본시장": 1,
+          "감독·제재": 8,
+          "거시·시장": 22,
+          "기타": 122,
+          "대부": 10,
+          "디지털자산": 79,
+          "보험": 2,
+          "상호금융": 9,
+          "여전": 10,
+          "은행": 28,
+          "입법·정책": 23,
+          "자산운용·연기금": 4,
+          "저축은행": 14,
+          "증권(브로커리지/리테일)": 1
+        }
+      },
+      "comparison": {
+        "kept_count": 652,
+        "cluster_count": 333,
+        "largest_cluster": 90,
+        "clusters_ge_50": 2,
+        "sector_representatives": {
+          "IB·자본시장": 1,
+          "감독·제재": 8,
+          "거시·시장": 22,
+          "기타": 122,
+          "대부": 10,
+          "디지털자산": 79,
+          "보험": 2,
+          "상호금융": 9,
+          "여전": 10,
+          "은행": 28,
+          "입법·정책": 23,
+          "자산운용·연기금": 4,
+          "저축은행": 14,
+          "증권(브로커리지/리테일)": 1
+        }
+      },
+      "base_to_revised": {
+        "newly_merged_pairs": 0,
+        "newly_split_pairs": 28,
+        "merged_pair_sample": [],
+        "split_pair_sample": [
+          [
+            "제도권 막히자 사채의 덫… 불법사금융 범죄 2년 새 2.6배[‘금융절벽’...",
+            "연휴 전 목돈 받으려면 22일까지 신청…퇴직연금은 18일이 기한"
+          ],
+          [
+            "제도권 막히자 사채의 덫… 불법사금융 범죄 2년 새 2.6배[‘금융절벽’...",
+            "짧은 추석, 치안수요 단기간 집중"
+          ],
+          [
+            "제도권 막히자 사채의 덫… 불법사금융 범죄 2년 새 2.6배[‘금융절벽’...",
+            "추석에 혼자 집에 있어도 안심하도록…경찰, 1인 가구 밀집지역 순찰 강..."
+          ],
+          [
+            "제도권 막히자 사채의 덫… 불법사금융 범죄 2년 새 2.6배[‘금융절벽’...",
+            "경찰청, 추석 종합 치안대책 추진...1인가구·관계성 범죄 대응 강화"
+          ],
+          [
+            "제도권 막히자 사채의 덫… 불법사금융 범죄 2년 새 2.6배[‘금융절벽’...",
+            "짧고 붐비는 추석...경찰 치안망 풀가동"
+          ],
+          [
+            "제도권 막히자 사채의 덫… 불법사금융 범죄 2년 새 2.6배[‘금융절벽’...",
+            "경북신보, 소상공인 금융사기 예방 교육···6개 기관 손잡고 지역 안전..."
+          ],
+          [
+            "제도권 막히자 사채의 덫… 불법사금융 범죄 2년 새 2.6배[‘금융절벽’...",
+            "금융당국, 추석 연휴 소상공인에 103조원 공급"
+          ],
+          [
+            "연휴 전 목돈 받으려면 22일까지 신청…퇴직연금은 18일이 기한",
+            "짧은 추석, 치안수요 단기간 집중"
+          ]
+        ],
+        "merged_pairs_by_sector": {},
+        "split_pairs_by_sector": {
+          "대부": 28
+        }
+      },
+      "comparison_to_revised": {
+        "newly_merged_pairs": 0,
+        "newly_split_pairs": 0,
+        "merged_pair_sample": [],
+        "split_pair_sample": [],
+        "merged_pairs_by_sector": {},
+        "split_pairs_by_sector": {}
+      },
+      "revised_rescored": {
+        "kept_count": 652,
+        "cluster_count": 333,
+        "largest_cluster": 90,
+        "clusters_ge_50": 2,
+        "sector_representatives": {
+          "IB·자본시장": 1,
+          "감독·제재": 8,
+          "거시·시장": 22,
+          "기타": 122,
+          "대부": 10,
+          "디지털자산": 79,
+          "보험": 2,
+          "상호금융": 9,
+          "여전": 10,
+          "은행": 28,
+          "입법·정책": 23,
+          "자산운용·연기금": 4,
+          "저축은행": 14,
+          "증권(브로커리지/리테일)": 1
+        }
+      }
+    },
+    "2026-09-16": {
+      "base": {
+        "kept_count": 662,
+        "cluster_count": 320,
+        "largest_cluster": 118,
+        "clusters_ge_50": 1,
+        "sector_representatives": {
+          "IB·자본시장": 4,
+          "감독·제재": 2,
+          "거시·시장": 41,
+          "기타": 108,
+          "대부": 6,
+          "디지털자산": 63,
+          "보험": 9,
+          "상호금융": 4,
+          "여전": 13,
+          "은행": 36,
+          "입법·정책": 27,
+          "자산운용·연기금": 3,
+          "저축은행": 2,
+          "증권(브로커리지/리테일)": 1,
+          "핀테크·플랫폼": 1
+        }
+      },
+      "revised": {
+        "kept_count": 662,
+        "cluster_count": 320,
+        "largest_cluster": 118,
+        "clusters_ge_50": 1,
+        "sector_representatives": {
+          "IB·자본시장": 4,
+          "감독·제재": 2,
+          "거시·시장": 41,
+          "기타": 108,
+          "대부": 6,
+          "디지털자산": 63,
+          "보험": 9,
+          "상호금융": 4,
+          "여전": 13,
+          "은행": 36,
+          "입법·정책": 27,
+          "자산운용·연기금": 3,
+          "저축은행": 2,
+          "증권(브로커리지/리테일)": 1,
+          "핀테크·플랫폼": 1
+        }
+      },
+      "comparison": {
+        "kept_count": 662,
+        "cluster_count": 320,
+        "largest_cluster": 118,
+        "clusters_ge_50": 1,
+        "sector_representatives": {
+          "IB·자본시장": 4,
+          "감독·제재": 2,
+          "거시·시장": 41,
+          "기타": 108,
+          "대부": 6,
+          "디지털자산": 63,
+          "보험": 9,
+          "상호금융": 4,
+          "여전": 13,
+          "은행": 36,
+          "입법·정책": 27,
+          "자산운용·연기금": 3,
+          "저축은행": 2,
+          "증권(브로커리지/리테일)": 1,
+          "핀테크·플랫폼": 1
+        }
+      },
+      "base_to_revised": {
+        "newly_merged_pairs": 0,
+        "newly_split_pairs": 0,
+        "merged_pair_sample": [],
+        "split_pair_sample": [],
+        "merged_pairs_by_sector": {},
+        "split_pairs_by_sector": {}
+      },
+      "comparison_to_revised": {
+        "newly_merged_pairs": 0,
+        "newly_split_pairs": 0,
+        "merged_pair_sample": [],
+        "split_pair_sample": [],
+        "merged_pairs_by_sector": {},
+        "split_pairs_by_sector": {}
+      },
+      "revised_rescored": {
+        "kept_count": 664,
+        "cluster_count": 322,
+        "largest_cluster": 118,
+        "clusters_ge_50": 1,
+        "sector_representatives": {
+          "IB·자본시장": 4,
+          "감독·제재": 2,
+          "거시·시장": 41,
+          "기타": 108,
+          "대부": 8,
+          "디지털자산": 63,
+          "보험": 9,
+          "상호금융": 4,
+          "여전": 13,
+          "은행": 36,
+          "입법·정책": 27,
+          "자산운용·연기금": 3,
+          "저축은행": 2,
+          "증권(브로커리지/리테일)": 1,
+          "핀테크·플랫폼": 1
+        }
+      }
+    },
+    "2026-09-17": {
+      "base": {
+        "kept_count": 972,
+        "cluster_count": 400,
+        "largest_cluster": 162,
+        "clusters_ge_50": 3,
+        "sector_representatives": {
+          "IB·자본시장": 1,
+          "감독·제재": 18,
+          "거시·시장": 45,
+          "기타": 129,
+          "대부": 2,
+          "디지털자산": 77,
+          "보험": 31,
+          "상호금융": 6,
+          "여전": 10,
+          "은행": 35,
+          "입법·정책": 26,
+          "자산운용·연기금": 3,
+          "저축은행": 8,
+          "증권(브로커리지/리테일)": 1,
+          "핀테크·플랫폼": 8
+        }
+      },
+      "revised": {
+        "kept_count": 972,
+        "cluster_count": 401,
+        "largest_cluster": 162,
+        "clusters_ge_50": 3,
+        "sector_representatives": {
+          "IB·자본시장": 1,
+          "감독·제재": 18,
+          "거시·시장": 45,
+          "기타": 129,
+          "대부": 4,
+          "디지털자산": 77,
+          "보험": 30,
+          "상호금융": 6,
+          "여전": 10,
+          "은행": 35,
+          "입법·정책": 26,
+          "자산운용·연기금": 3,
+          "저축은행": 8,
+          "증권(브로커리지/리테일)": 1,
+          "핀테크·플랫폼": 8
+        }
+      },
+      "comparison": {
+        "kept_count": 972,
+        "cluster_count": 401,
+        "largest_cluster": 162,
+        "clusters_ge_50": 3,
+        "sector_representatives": {
+          "IB·자본시장": 1,
+          "감독·제재": 18,
+          "거시·시장": 45,
+          "기타": 129,
+          "대부": 4,
+          "디지털자산": 77,
+          "보험": 30,
+          "상호금융": 6,
+          "여전": 10,
+          "은행": 35,
+          "입법·정책": 26,
+          "자산운용·연기금": 3,
+          "저축은행": 8,
+          "증권(브로커리지/리테일)": 1,
+          "핀테크·플랫폼": 8
+        }
+      },
+      "base_to_revised": {
+        "newly_merged_pairs": 43,
+        "newly_split_pairs": 60,
+        "merged_pair_sample": [
+          [
+            "국내 보험사 2분기 K-ICS 비율 215.2%… 전분기 比 0.8%p 하락",
+            "상반기 보험사 지급여력비율 215.2%…소폭 하락"
+          ],
+          [
+            "국내 보험사 2분기 K-ICS 비율 215.2%… 전분기 比 0.8%p 하락",
+            "보험사 지급여력비율 215.2%로 하락…생·손보 엇갈린 희비"
+          ],
+          [
+            "상반기 보험사 지급여력비율 215.2%…소폭 하락",
+            "보험사 지급여력비율 215.2%로 하락…생·손보 엇갈린 희비"
+          ],
+          [
+            "상반기 보험사 지급여력비율 215.2%…소폭 하락",
+            "2분기 보험사 지급여력비율 215.2%… 전기比 0.8%P 하락"
+          ],
+          [
+            "상반기 보험사 지급여력비율 215.2%…소폭 하락",
+            "보험사 지급여력비율 215.2%로 소폭 하락…주가 상승에 요구자본 증가"
+          ],
+          [
+            "상반기 보험사 지급여력비율 215.2%…소폭 하락",
+            "상반기 보험사 지급여력비율 215.2% … 전분기比 0.8%p 하락"
+          ],
+          [
+            "상반기 보험사 지급여력비율 215.2%…소폭 하락",
+            "보험사 6월말 킥스 215.2%…전 분기比 0.8%p↓"
+          ],
+          [
+            "상반기 보험사 지급여력비율 215.2%…소폭 하락",
+            "보험사 킥스 비율 215.2%로 전분기 比 0.8%p↓…손보사 상승·생보사 하..."
+          ]
+        ],
+        "split_pair_sample": [
+          [
+            "새도약기금 채권 72% 매입…대부업권은 16% 그쳐",
+            "추석 대목 노린 '고금리 일수' 잡는다… 서울시, 전통시장 불법사금융 ..."
+          ],
+          [
+            "새도약기금 채권 72% 매입…대부업권은 16% 그쳐",
+            "서울시, 추석 앞두고 전통시장 불법사금융·고금리 대출 집중 단속"
+          ],
+          [
+            "새도약기금 채권 72% 매입…대부업권은 16% 그쳐",
+            "한국TI인권시민연대, 불법사금융 근절 위한 ‘15대 정책 대안’ 발표"
+          ],
+          [
+            "새도약기금 채권 72% 매입…대부업권은 16% 그쳐",
+            "고금리 유혹하는 '추석대목'…서울시, 전통시장 불법사금융 집중 단속"
+          ],
+          [
+            "새도약기금 채권 72% 매입…대부업권은 16% 그쳐",
+            "서울시, 추석 앞둔 영세 소상공인 대상 ‘불법사금융’ 집중 단속"
+          ],
+          [
+            "새도약기금 채권 72% 매입…대부업권은 16% 그쳐",
+            "서울시, 추석 앞두고 전통시장 불법사금융·고금리대출 집중단속"
+          ],
+          [
+            "새도약기금 채권 72% 매입…대부업권은 16% 그쳐",
+            "서울시, 전통시장 불법사금융 집중 단속…\"제보자에 최대 2억 준다\""
+          ],
+          [
+            "새도약기금 채권 72% 매입…대부업권은 16% 그쳐",
+            "서울시, 전통시장 불법사금융 집중 단속"
+          ]
+        ],
+        "merged_pairs_by_sector": {
+          "보험": 43
+        },
+        "split_pairs_by_sector": {
+          "대부": 59,
+          "보험": 1
+        }
+      },
+      "comparison_to_revised": {
+        "newly_merged_pairs": 0,
+        "newly_split_pairs": 0,
+        "merged_pair_sample": [],
+        "split_pair_sample": [],
+        "merged_pairs_by_sector": {},
+        "split_pairs_by_sector": {}
+      },
+      "revised_rescored": {
+        "kept_count": 982,
+        "cluster_count": 407,
+        "largest_cluster": 162,
+        "clusters_ge_50": 3,
+        "sector_representatives": {
+          "IB·자본시장": 1,
+          "감독·제재": 18,
+          "거시·시장": 45,
+          "기타": 129,
+          "대부": 10,
+          "디지털자산": 77,
+          "보험": 30,
+          "상호금융": 6,
+          "여전": 10,
+          "은행": 35,
+          "입법·정책": 26,
+          "자산운용·연기금": 3,
+          "저축은행": 8,
+          "증권(브로커리지/리테일)": 1,
+          "핀테크·플랫폼": 8
+        }
+      }
+    }
+  },
+  "comparison_revision": "3de826ac4f7f31a53a6b19fa16e8eb8a8da8c715",
+  "golden_fixed_relevant_cohort": {
+    "base": {
+      "kept_count": 33,
+      "cluster_count": 10,
+      "largest_cluster": 16,
+      "clusters_ge_50": 0,
+      "sector_representatives": {
+        "기타": 1,
+        "대부": 7,
+        "보험": 1,
+        "핀테크·플랫폼": 1
+      },
+      "pair_precision": 0.556390977443609,
+      "pair_recall": 0.6379310344827587,
+      "true_pairs": 74,
+      "predicted_pairs": 133,
+      "expected_pairs": 116
+    },
+    "revised": {
+      "kept_count": 33,
+      "cluster_count": 11,
+      "largest_cluster": 14,
+      "clusters_ge_50": 0,
+      "sector_representatives": {
+        "대부": 9,
+        "보험": 1,
+        "핀테크·플랫폼": 1
+      },
+      "pair_precision": 1.0,
+      "pair_recall": 0.9224137931034483,
+      "true_pairs": 107,
+      "predicted_pairs": 107,
+      "expected_pairs": 116
+    },
+    "comparison": {
+      "kept_count": 33,
+      "cluster_count": 11,
+      "largest_cluster": 14,
+      "clusters_ge_50": 0,
+      "sector_representatives": {
+        "대부": 9,
+        "보험": 1,
+        "핀테크·플랫폼": 1
+      },
+      "pair_precision": 1.0,
+      "pair_recall": 0.9224137931034483,
+      "true_pairs": 107,
+      "predicted_pairs": 107,
+      "expected_pairs": 116
+    }
+  },
+  "other_sectors_labelled": {
+    "base": {
+      "kept_count": 18,
+      "cluster_count": 4,
+      "largest_cluster": 6,
+      "clusters_ge_50": 0,
+      "sector_representatives": {
+        "기타": 2,
+        "보험": 1,
+        "은행": 1
+      },
+      "pair_precision": 1.0,
+      "pair_recall": 0.8888888888888888,
+      "true_pairs": 40,
+      "predicted_pairs": 40,
+      "expected_pairs": 45
+    },
+    "revised": {
+      "kept_count": 18,
+      "cluster_count": 4,
+      "largest_cluster": 6,
+      "clusters_ge_50": 0,
+      "sector_representatives": {
+        "기타": 2,
+        "보험": 1,
+        "은행": 1
+      },
+      "pair_precision": 1.0,
+      "pair_recall": 0.8888888888888888,
+      "true_pairs": 40,
+      "predicted_pairs": 40,
+      "expected_pairs": 45
+    },
+    "comparison": {
+      "kept_count": 18,
+      "cluster_count": 4,
+      "largest_cluster": 6,
+      "clusters_ge_50": 0,
+      "sector_representatives": {
+        "기타": 2,
+        "보험": 1,
+        "은행": 1
+      },
+      "pair_precision": 1.0,
+      "pair_recall": 0.8888888888888888,
+      "true_pairs": 40,
+      "predicted_pairs": 40,
+      "expected_pairs": 45
+    }
+  },
+  "golden_revised_end_to_end": {
+    "input_count": 37,
+    "kept_count": 33,
+    "cluster_count": 11,
+    "largest_cluster": 14,
+    "suspicious_large_clusters_ge_50": 0,
+    "loan_representatives": 9,
+    "filter_precision": 1.0,
+    "candidate_recall": 1.0,
+    "cluster_purity": 1.0,
+    "pair_precision": 1.0,
+    "pair_recall_among_kept": 0.9224137931034483
+  },
+  "artifact_note": "Measured follow-up to 3de826a; top10 and golden title listings omitted. Original historical review-replay.json is unchanged.",
+  "issue_cluster_sha256": "2884ca6fe11007eb57c8903007401fffea6ec8a402f00d8cfa5fdd4fdc7918bd"
+}

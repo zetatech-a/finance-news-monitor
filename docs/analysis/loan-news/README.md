@@ -103,3 +103,12 @@ implementation, not the final implementation. See [review.md](review.md),
 [review-replay.json](review-replay.json), and [review-top10.md](review-top10.md)
 for the four reproduced review bugs, revised scope of cluster compatibility,
 three-day pair/sector comparison and the 162→176 investigation.
+
+## Latest correctness review (3de826a)
+
+See [latest-review.md](latest-review.md) and
+[latest-review-replay.json](latest-review-replay.json) for the four subsequent
+correctness/reproducibility fixes and the measured no-change three-day replay.
+The older review documents/JSON remain historical observations. The executable
+replay now defaults to durable main-baseline versus current code; it no longer
+loads unsquashed first-PR commits or reruns their historical ablations.

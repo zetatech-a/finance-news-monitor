@@ -51,5 +51,10 @@ unavailable; the dates identify candidate files, not inferred event dates.
 
 `scripts/evaluate_cluster_review.py` evaluates both the original 33 relevant
 labelled articles and this 18-row sample with identical retained cohorts at
-base, first-PR and revised versions. No production keep decision is used as an
-event label. Synthetic review tests are in `test_issue_cluster_review.py`.
+main baseline and current code by default. First-PR results in the historical
+review JSON are preserved observations, not a required Git revision in the
+executable tool. An optional `--compare-revision` supports local follow-up
+comparisons. No production keep decision is used as an event label. Synthetic
+review tests are in `test_issue_cluster_review.py` and
+`test_issue_cluster_latest_review.py`; fresh-clone smoke coverage is in
+`test_cluster_replay_reproducibility.py`.

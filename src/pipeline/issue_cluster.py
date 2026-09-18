@@ -347,6 +347,11 @@ def _reported_metrics(title: str) -> set[tuple[str, str]]:
     return facts
 
 
+# Exact company identities observed in the September 15–17 candidate corpus.
+# Local to metrics: a suffix-wide 손보 replacement would equate unverified names.
+_METRIC_SUBJECT_ALIASES = {"kb손보": "kb손해보험", "db손보": "db손해보험"}
+
+
 def _metric_subjects(title: str) -> set[str]:
     """Positive headline evidence of the measured entity, not its regulator.
 
@@ -366,7 +371,7 @@ def _metric_subjects(title: str) -> set[str]:
         r"(?=[^가-힣a-z0-9]|[은는이가의]|$)", title,
     ))
     if subjects:
-        return subjects
+        return {_METRIC_SUBJECT_ALIASES.get(subject, subject) for subject in subjects}
     # Explicit industry-wide statistics have subjects too. Do not infer these
     # merely from the sector tag or a background snippet.
     return set(re.findall(
@@ -422,13 +427,6 @@ def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
     if a.norm_title == b.norm_title:
         return True
 
-    if a.low_value or b.low_value:
-        if not (a.low_value and b.low_value):
-            return False
-        named_overlap = a.low_value_named_terms & b.low_value_named_terms
-        sim = SequenceMatcher(None, a.norm_title, b.norm_title).ratio()
-        return sim >= 0.88 or (bool(named_overlap) and sim >= 0.72)
-
     if any((feature.fingerprint or "").startswith("enforcement:") for feature in (a, b)):
         if not (_is_enforcement_headline(a.norm_title) and _is_enforcement_headline(b.norm_title)):
             return False
@@ -436,6 +434,13 @@ def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
     # Explicit conflicting subjects veto even fingerprint/similarity shortcuts.
     if _conflicting_metric_subjects(a, b):
         return False
+
+    if a.low_value or b.low_value:
+        if not (a.low_value and b.low_value):
+            return False
+        named_overlap = a.low_value_named_terms & b.low_value_named_terms
+        sim = SequenceMatcher(None, a.norm_title, b.norm_title).ratio()
+        return sim >= 0.88 or (bool(named_overlap) and sim >= 0.72)
 
     same_sector = a.sector == b.sector
     if a.fingerprint and a.fingerprint == b.fingerprint:
@@ -524,8 +529,11 @@ def _cluster_id(members: list[TaggedArticle]) -> str:
 
 def _requires_complete_compatibility(feature: _ClusterFeatures) -> bool:
     """Prevent lending bridges without changing unrelated sectors' admission."""
+    # Called once per article, not per pair. Preserve combined issue_terms for
+    # ordinary similarity; a background snippet cannot switch admission mode.
+    headline_terms = _important_issue_terms(feature.norm_title)
     return (feature.sector == "대부"
-            or bool(feature.issue_terms & {"illegal_private_lending", "illegal_collection", "loan_ad"})
+            or bool(headline_terms & {"illegal_private_lending", "illegal_collection", "loan_ad"})
             or feature.fingerprint == "finance:delinquent_debt_purchase")
 
 
