@@ -468,7 +468,11 @@ def _conflicting_metric_subjects(a: _ClusterFeatures, b: _ClusterFeatures) -> bo
 
 
 def _conflicting_metric_periods(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
-    if not (a.reported_metrics & b.reported_metrics
+    # Recurring reports can change value. Period safety needs the same metric
+    # identity; only the exact-match shortcut below also requires equal values.
+    shared_metrics = ({metric for metric, _ in a.reported_metrics}
+                      & {metric for metric, _ in b.reported_metrics})
+    if not (shared_metrics
             and len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects):
         return False
     return any(left is not None and right is not None and left != right

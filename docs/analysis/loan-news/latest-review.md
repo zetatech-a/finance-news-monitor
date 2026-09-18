@@ -532,3 +532,61 @@ candidate replay, not live collection/API/model equivalence. Humans should
 review the conservative shortcut choice and canonical-context policy before
 merge; no thresholds, rankings, query/fetch, ML/Gemini/report/email or replay
 configuration behavior was changed.
+
+## Follow-up: period safety independent of value on 3d8f531
+
+[Codex review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4044581830)
+was reproduced before production changes: the 14 new cases in
+`tests/test_metric_period_value_review.py` yielded **8 failed, 6 passed**.
+The continuation preserved that uncommitted test and reused the completed,
+parseable `.venv/round6-before.json` captured against 3d8f531.
+
+`_conflicting_metric_periods()` required an intersection of complete
+`(metric, canonical_value)` tuples. KB's Q1 200% and Q2 201% therefore bypassed
+period safety and merged through ordinary title similarity. Period safety asks
+whether the same subject reports the same measurement in conflicting periods;
+the measurement's value need not be equal. Only this helper's gate now uses
+metric-name intersection. The exact metric shortcut still requires the same
+subject AND equal `(metric, canonical_value)` tuples. Subject authority,
+period extraction/equivalence, missing-period policy and thresholds are unchanged.
+The existing cluster-member veto calls the same helper, protecting admission
+through a missing-period bridge without changing single-link architecture.
+
+Regression matrix: different quarter/value and year/value at helper, pair and
+final-cluster levels; same/equivalent period with different values; missing
+period; different metric identities (delinquency versus loan-deposit spread);
+exact shortcut rejecting 200/201 while retaining 200/200.00; same-quarter wire
+variants versus next quarter; and missing-period bridge, both three-article
+cases across all six input permutations. All **14 passed** after the fix.
+Related clustering/golden/prior-review/replay tests: **257 passed**.
+Full Linux/Python 3.11, network disabled, read-only source/Git mounts:
+**942 passed, 1 skipped**. The first Docker run's Git guard saw CRLF-only changes;
+matching the Windows checkout with process-local `core.autocrlf=true` fixed it,
+without disabling the guard or modifying files/configuration. Native Windows
+full run: **939 passed, 1 skipped, 3 failed** from a POSIX-path assertion and
+two unavailable WSL bash invocations, outside this patch. `git diff --check`
+passed. No unrelated production or test changes were made for these limitations.
+
+The completed before/after captures are entirely equal (including every
+representative title/URL and sector count). All values below are before = after:
+
+| Date | Fixed kept / clusters | Rescored kept / clusters | Largest | >=50 | Loan representatives fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+All six cohorts retain identical kept sets and membership; newly merged/split
+pairs: **0 / 0**. All 3,327 candidates retain identical relevance scores,
+hard/soft/negative terms and domain anchors. Golden pair precision/recall:
+**1.0000 / 0.922414** (107/107/116); other-sector labels:
+**1.0000 / 0.888889** (40/40/45), unchanged. No corpus pair needed correction
+in these cohorts. Temporary capture/comparison files stay ignored in `.venv`.
+
+Remaining limitation: the veto still requires an authoritative single subject
+and explicit conflicting period dimensions. Ambiguous multi-measurement or
+missing-period headlines do not acquire inferred period conflicts. This is
+fixed/rescored candidate replay, not live API/model equivalence. Before merge,
+humans should confirm the identity-versus-value role separation and review the
+synthetic recurring-report/bridge cases; prior out-of-scope clustering issues
+remain unchanged.
