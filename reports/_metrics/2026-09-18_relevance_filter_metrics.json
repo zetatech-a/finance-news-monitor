@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 99,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 8,
+  "candidate_hybrid_gray_keep_domain": 33,
+  "candidate_hybrid_gray_rule_drop": 177,
+  "candidate_hybrid_gray_rule_keep": 33,
+  "candidate_hybrid_keep_overseas_global_reference": 71,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 182,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 507,
+  "candidate_hybrid_model_drop": 52,
+  "candidate_hybrid_model_keep": 218,
+  "candidate_hybrid_model_keep_with_domain_anchor": 218,
+  "candidate_hybrid_negative_drop": 19,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 507,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-18",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 99,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 14,
+    "candidate_hybrid_drop_negative_signal": 19,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 8,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 177,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 33,
+    "candidate_hybrid_keep_overseas_global_reference": 71,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 182,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 507,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 2,
+    "candidate_hybrid_model_drop_prob_le_threshold": 52,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 218
+  },
+  "dropped_count": 379,
+  "input_count": 1392,
+  "kept_count": 1013,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1392,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 51,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[광화문에서/조은아]국민 절반이 신용 900점 이상… 변별력 잃은 신용평...",
+      "url": "https://www.donga.com/news/Opinion/article/all/20260917/134692468/2"
+    },
+    {
+      "title": "출범 1년 새도약기금 11.8조 매입…목표액의 71.9% 확보",
+      "url": "http://www.newsfc.co.kr/news/articleView.html?idxno=81210"
+    },
+    {
+      "title": "새도약기금 채권매입 달성률 72%…대부업권 협상이 변수",
+      "url": "http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005923302"
+    },
+    {
+      "title": "새도약기금 채권 매입 72% 완수…대부업권 협상 '막판 변수'",
+      "url": "https://www.youthdaily.co.kr/news/article.html?no=227212"
+    },
+    {
+      "title": "[단독]“텅 빈 상가 수두룩” 장사 얼마나 안되면…정부가 대신 갚아 준...",
+      "url": "https://biz.heraldcorp.com/article/10877328?ref=naver"
+    },
+    {
+      "title": "농협캐피탈, 관리자 윤리 리더십 강화…건강한 조직문화 조성",
+      "url": "https://www.nongmin.com/article/20260917500418"
+    },
+    {
+      "title": "NH농협캐피탈, 윤리 리더십으로 조직문화 혁신",
+      "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=319663"
+    },
+    {
+      "title": "관행 제동 건 당국… 차기 은행장 판도 흔들",
+      "url": "https://www.munhwa.com/article/11617742?ref=naver"
+    },
+    {
+      "title": "NH농협캐피탈, 관리자 60명 대상 윤리경영 교육",
+      "url": "https://www.newsinside.kr/news/articleView.html?idxno=5002436"
+    },
+    {
+      "title": "NH농협캐피탈, 관리자 대상 윤리 리더십 특강…신뢰받는 조직문화 구축",
+      "url": "https://www.pointe.co.kr/news/articleView.html?idxno=84873"
+    }
+  ]
+}

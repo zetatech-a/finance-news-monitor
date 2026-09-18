@@ -1,0 +1,265 @@
+{
+  "clusters": {
+    "cluster_count": 371,
+    "cluster_size_max": 362,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 362,
+        "relevance_prob": 0.8991724665568674,
+        "relevance_score": 34,
+        "sector": "거시·시장",
+        "title": "F4 \"국채 쏠림시 안정조치\"…美 금리 영향 제한적",
+        "url": "https://n.news.naver.com/mnews/article/448/0000639948?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1404,
+    "displayed_articles": 240,
+    "final_tagged_representatives": 371,
+    "normalized_articles": 2118,
+    "raw_items": 2118,
+    "relevance_filtered_articles": 1013,
+    "rule_filtered_articles": 1392,
+    "tagged_before_cluster": 1013
+  },
+  "date": "2026-09-18",
+  "generated_at": "2026-09-18T09:11:15.328994+09:00",
+  "publishers": {
+    "missing_publisher_count": 371,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 115,
+    "no_topic_ratio": 0.31,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7703779398700074,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "ABL생명, 추석 맞아 소외아동 먹거리 지원·고령층 금융교육",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=721225"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7131195104429093,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "美SEC, 5년간 토큰화주식 한시 허용…”24시간 거래 온다”(종합)",
+        "url": "https://n.news.naver.com/mnews/article/018/0006371676?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7915672603322335,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "'실세 원장'에 금감원 2인자 공식도 흔들리나…'금융위 몫' 주목",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4435522"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7750629388755987,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "범방 군산지구·전주지검 군산지청, 청소년 범죄예방 간담회 개최",
+        "url": "http://www.jeonmin.co.kr/news/articleView.html?idxno=447270"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7507273765023035,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "코인원·디지털엑스, 신규 상장 멈췄다…왜?",
+        "url": "https://n.news.naver.com/mnews/article/648/0000050887?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6277196479257359,
+        "relevance_score": 17,
+        "sector": "보험",
+        "title": "저성장 벽 넘는 보험사…'M&A·해외 진출·자본 확충' 새 활로",
+        "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7183628"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7940373585538991,
+        "relevance_score": 18,
+        "sector": "기타",
+        "title": "추석 '주소 불일치' 배송문자 링크 누르면 좀비폰…즉시 118 신고",
+        "url": "https://n.news.naver.com/mnews/article/088/0001029239?sid=102"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8015555636572086,
+        "relevance_score": 6,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "\"금소법에 예방책무 반영\"…미성년자 '빚투' 미수거래 제한 추진",
+        "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=64539"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6370202695742454,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "\"장례비 내려다 날벼락\"…은행 창구 덮친 '사망자 계좌 동결'",
+        "url": "https://n.news.naver.com/mnews/article/119/0003134084?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.870019271067971,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "성북구, 경찰과 손 잡고 어르신 건강·금융사기 예방 프로젝트",
+        "url": "https://n.news.naver.com/mnews/article/277/0005818148?sid=102"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 16,
+      "거시·시장": 62,
+      "기타": 141,
+      "대부": 7,
+      "디지털자산": 56,
+      "보험": 17,
+      "상호금융": 6,
+      "여전": 11,
+      "은행": 15,
+      "입법·정책": 25,
+      "자산운용·연기금": 4,
+      "저축은행": 8,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 10,
+      "감독·제재": 7,
+      "건전성·자본규제": 9,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 77,
+      "기업금융·익스포저": 4,
+      "디지털자산": 62,
+      "부동산·PF": 8,
+      "불법사금융·불법추심·보이스피싱": 29,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 11,
+      "서민금융·대환·채무조정": 7,
+      "소비자보호·민원·불완전판매": 34,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 7,
+      "자금시장·유동성": 7,
+      "정책·제도개선": 6,
+      "증시·시장시황": 7,
+      "칼럼·오피니언": 27,
+      "해외·글로벌": 59,
+      "환율·외환": 14
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 362,
+        "relevance_prob": 0.8991724665568674,
+        "relevance_score": 34,
+        "sector": "거시·시장",
+        "title": "F4 \"국채 쏠림시 안정조치\"…美 금리 영향 제한적",
+        "url": "https://n.news.naver.com/mnews/article/448/0000639948?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7482316803779123,
+        "relevance_score": 29,
+        "sector": "대부",
+        "title": "[금감원 보고대회] 빌릴 곳 넓히고 뺏길 돈 지킨다…금감원, 취약계층 ...",
+        "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5063291"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7694423686010884,
+        "relevance_score": 29,
+        "sector": "입법·정책",
+        "title": "[현장에서]금감원, 주택 PF 지원 안간힘…상담 부스는 '한산'",
+        "url": "https://n.news.naver.com/mnews/article/648/0000050858?sid=101"
+      },
+      {
+        "cluster_size": 39,
+        "relevance_prob": 0.8182266666406056,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "경제·금융당국 “美 금리인상, 시장 영향 제한적… 필요시 국채시장 안...",
+        "url": "https://n.news.naver.com/mnews/article/081/0003681122?sid=101"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.8518001966722567,
+        "relevance_score": 24,
+        "sector": "저축은행",
+        "title": "[금융zip] 카카오페이, SBI저축은행·KCB와 포용금융 확대 맞손 外",
+        "url": "https://www.getnews.co.kr/news/articleView.html?idxno=881073"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7595536831960793,
+        "relevance_score": 28,
+        "sector": "은행",
+        "title": "우리은행과 원화 스테이블코인 손잡은 문페이…고팍스 출신 최한결 영입",
+        "url": "https://n.news.naver.com/mnews/article/020/0003748940?sid=101"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.8962459496539052,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "업비트, 페이팔·엔화 스테이블코인 품었다…달러·유로 이어 3종 통화 ...",
+        "url": "https://www.techm.kr/news/articleView.html?idxno=155331"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7245154742984634,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "사감위, 군 장병 도박 대응망 구축…예방부터 빚·치유까지 묶는다",
+        "url": "https://www.g-enews.com/view.php?ud=202609171611115897f7ba87f45b_1"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8496240636890182,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "[현장] 금감원 소비자보호 결의 1년 성과로 방향성 짚어보니, 이찬진 \"아...",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=447483"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9179682205325376,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "금감원, 美 금리인상 대응 비상 가동…시장 충격 차단",
+        "url": "http://www.globalepic.co.kr/view.php?ud=2026091710483721097cc35ccc5c_29"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "거시·시장": 2,
+      "대부": 2,
+      "디지털자산": 1,
+      "은행": 1,
+      "입법·정책": 3,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 3,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 1,
+      "소비자보호·민원·불완전판매": 1,
+      "해외·글로벌": 2,
+      "환율·외환": 1
+    }
+  }
+}
