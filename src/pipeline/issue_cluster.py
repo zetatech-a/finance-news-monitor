@@ -351,7 +351,16 @@ def _reported_metrics(title: str) -> set[tuple[str, str]]:
 # Local to metrics: a suffix-wide 손보 replacement would equate unverified names.
 _METRIC_SUBJECT_ALIASES = {"kb손보": "kb손해보험", "db손보": "db손해보험"}
 # Aggregate synonyms only; life/non-life, banks/savings banks remain distinct.
-_METRIC_INDUSTRY_SUBJECT_ALIASES = {"보험회사": "보험사"}
+_METRIC_INDUSTRY_SUBJECT_ALIASES = {
+    "보험회사": "보험사", "생명보험": "생보사", "손해보험": "손보사",
+}
+
+
+def _canonical_metric_subject(subject: str) -> str:
+    # Exact generic labels only: 삼성생명/KB손해보험 must stay named companies.
+    return _METRIC_INDUSTRY_SUBJECT_ALIASES.get(
+        subject, _METRIC_SUBJECT_ALIASES.get(subject, subject),
+    )
 
 
 def _metric_subjects(title: str) -> set[str]:
@@ -373,13 +382,32 @@ def _metric_subjects(title: str) -> set[str]:
         r"(?=[^가-힣a-z0-9]|[은는이가의]|$)", title,
     ))
     if subjects:
-        return {_METRIC_SUBJECT_ALIASES.get(subject, subject) for subject in subjects}
+        return {_canonical_metric_subject(subject) for subject in subjects}
     # Explicit industry-wide statistics have subjects too. Do not infer these
     # merely from the sector tag or a background snippet.
     industry_subjects = re.findall(
         r"(?<![가-힣])(?:보험사|보험회사|생보사|손보사|은행권|저축은행권|카드사)(?=[^가-힣]|들|의|는|가|$)", title,
     )
-    return {_METRIC_INDUSTRY_SUBJECT_ALIASES.get(subject, subject) for subject in industry_subjects}
+    return {_canonical_metric_subject(subject) for subject in industry_subjects}
+
+
+def _metric_period(title: str) -> tuple[int | None, int | None]:
+    """Explicit year/as-of month preceding the first reported metric only.
+
+    Quarter/half-year labels describe the same ratio snapshot as their end
+    month (2분기 == 상반기 == 6월말). Missing or ambiguous dimensions stay unknown;
+    relative years and later background comparisons do not establish a period.
+    """
+    measurement = _REPORTED_METRIC_RE.search(title)
+    if not measurement:
+        return None, None
+    prefix = title[:measurement.start()]
+    years = {int(year) for year in re.findall(r"(?<![0-9])((?:19|20)[0-9]{2})년", prefix)}
+    months = {int(quarter) * 3 for quarter in re.findall(r"(?<![0-9])([1-4])분기", prefix)}
+    months.update(6 if half == "상" else 12 for half in re.findall(r"([상하])반기", prefix))
+    months.update(int(month) for month in re.findall(r"(?<![0-9])(1[0-2]|[1-9])월\s*말", prefix))
+    return (next(iter(years)) if len(years) == 1 else None,
+            next(iter(months)) if len(months) == 1 else None)
 
 
 @dataclass
@@ -397,6 +425,7 @@ class _ClusterFeatures:
     issue_terms: set[str]
     reported_metrics: set[tuple[str, str]]
     metric_subjects: set[str]
+    metric_period: tuple[int | None, int | None]
 
 
 def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
@@ -414,6 +443,7 @@ def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
         issue_terms=_extract_issue_terms(item),
         reported_metrics=_reported_metrics(norm_title),
         metric_subjects=_metric_subjects(norm_title),
+        metric_period=_metric_period(norm_title),
     )
 
 
@@ -422,6 +452,14 @@ def _conflicting_metric_subjects(a: _ClusterFeatures, b: _ClusterFeatures) -> bo
         {metric for metric, _ in a.reported_metrics} & {metric for metric, _ in b.reported_metrics}
         and a.metric_subjects and b.metric_subjects and not (a.metric_subjects & b.metric_subjects)
     )
+
+
+def _conflicting_metric_periods(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
+    if not (a.reported_metrics & b.reported_metrics
+            and len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects):
+        return False
+    return any(left is not None and right is not None and left != right
+               for left, right in zip(a.metric_period, b.metric_period))
 
 
 def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
@@ -434,8 +472,8 @@ def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
         if not (_is_enforcement_headline(a.norm_title) and _is_enforcement_headline(b.norm_title)):
             return False
 
-    # Explicit conflicting subjects veto even fingerprint/similarity shortcuts.
-    if _conflicting_metric_subjects(a, b):
+    # Explicit subject/period conflicts veto even fingerprint/similarity shortcuts.
+    if _conflicting_metric_subjects(a, b) or _conflicting_metric_periods(a, b):
         return False
 
     if a.low_value or b.low_value:
@@ -557,9 +595,10 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
     for idx in order:
         target: list[int] | None = None
         for cluster in index_clusters:
-            # Explicit subject conflicts cannot be bypassed through a bridge
+            # Explicit subject/period conflicts cannot be bypassed through a bridge
             # even in sectors retaining their original single-link behavior.
-            if any(_conflicting_metric_subjects(features[idx], features[member]) for member in cluster):
+            if any(_conflicting_metric_subjects(features[idx], features[member])
+                   or _conflicting_metric_periods(features[idx], features[member]) for member in cluster):
                 continue
             compatibility = all if strict[idx] or any(strict[member] for member in cluster) else any
             if compatibility(_should_cluster_features(features[idx], features[member]) for member in cluster):

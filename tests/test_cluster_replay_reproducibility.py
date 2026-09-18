@@ -32,6 +32,9 @@ def test_replay_runs_in_fresh_clone_without_unsquashed_pr_objects(tmp_path: Path
     # Preserve the real main implementation without copying its entire report history.
     baseline_file.write_text(subprocess.check_output(
         ["git", "show", f"{BASE}:src/pipeline/issue_cluster.py"], cwd=ROOT, encoding="utf-8"), encoding="utf-8")
+    baseline_matcher = seed / "src/pipeline/text_matcher.py"
+    baseline_matcher.write_text(subprocess.check_output(
+        ["git", "show", f"{BASE}:src/pipeline/text_matcher.py"], cwd=ROOT, encoding="utf-8"), encoding="utf-8")
     git("add", ".", cwd=seed)
     git("commit", "-m", "baseline", cwd=seed)
     baseline = git("rev-parse", "HEAD", cwd=seed)

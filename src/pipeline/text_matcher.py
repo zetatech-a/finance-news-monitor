@@ -43,7 +43,7 @@ _TERM_ALIASES: dict[str, tuple[str, ...]] = {
 # Bound ambiguous spaced 대부 aliases, without changing other phrase aliases.
 # Explicit 업/중개업 compounds above preserve finance anchors (including 업자
 # and Korean particles); the short aliases must not match 대부도/대부abc/대부123.
-_ALIAS_MATCH_MODES = {"불법 대부": "right_token", "미등록 대부": "right_token"}
+_ALIAS_MATCH_MODES = {"불법 대부": "korean_particle", "미등록 대부": "korean_particle"}
 
 
 # \uac19\uc740 \uae30\uc0ac \ud14d\uc2a4\ud2b8\uc5d0 \ub300\ud574 \uc6a9\uc5b4 \uc218\ub9cc\ud07c(\uc218\ubc31 \ud68c) \ubc18\ubcf5 \ud638\ucd9c\ub418\ubbc0\ub85c \uce90\uc2dc\ud55c\ub2e4.
@@ -87,6 +87,10 @@ def _auto_mode(term: str) -> str:
 def _compiled_pattern(term: str, mode: str) -> re.Pattern[str]:
     if mode == "phrase":
         pattern = re.escape(term)
+    elif mode == "korean_particle":
+        # Complete grammatical suffix plus a boundary, never just its first
+        # character (가 must not match 가능/가입). 도 remains ambiguous with 대부도.
+        pattern = rf"{re.escape(term)}(?:에서|으로|을|를|이|가|은|는|의|에|와|과|로)?(?![가-힣a-z0-9])"
     elif mode == "right_token":
         pattern = rf"{re.escape(term)}(?![가-힣a-z0-9])"
     elif mode == "english_token":

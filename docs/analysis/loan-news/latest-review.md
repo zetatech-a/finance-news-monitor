@@ -282,3 +282,128 @@ new regression matrix before merging. No review threads were resolved and no
 merge was performed. Default replay still requires no unsquashed PR object;
 this follow-up's b81261c comparison is historical audit provenance, not a new
 executable default dependency.
+
+
+## Follow-up: four correctness findings on 3b6e598
+
+Starting local/PR HEAD: `3b6e59867532833608725b1279073e5cdb1e05d7`, clean
+worktree on the same PR branch. All four actual GitHub comments were read;
+all reproduced before production edits: **14 failed, 28 passed** in the initial
+42-case regression run. Earlier sections/artifacts remain historical results.
+
+### Reporting-period conflict
+
+[Review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4043300554).
+Equal canonical company and metric/value previously bypassed conflicting
+quarters/years. The new metric-local period feature reads explicit year and
+ratio snapshot end-month from the headline prefix before its first reported
+metric. Observed forms include 1–4분기, 상/하반기 and month-end (with/without a
+space). The three-day corpus uses **2분기 / 상반기 / 6월말** for the same ratio
+release; these map to month 6, not conflicting periods. Relative years are not
+inferred. Missing or internally ambiguous dimensions are unknown, not conflicts.
+
+A narrow veto requires the same singleton subject, an intersecting exact
+metric/value and different known years or known end-months. It runs before
+low-value/fingerprint/similarity paths and at cluster admission, so a missing-
+period bridge cannot rejoin conflicting endpoints. Other-sector single-link
+ordering, representative ranking and thresholds are unchanged. Tests cover
+quarters, years, half-years, month-end, equivalent periods, one-sided missing
+years/periods, ambiguous periods, low-value formatting, later background
+comparisons and all six input orders of a missing-period bridge.
+
+### Particles after the two spaced lending aliases
+
+[Review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4043300565).
+The old `right_token` excluded every following Hangul character, including
+complete case/topic particles, losing the sole hard/domain anchor and dropping
+relevant candidates. Only `불법 대부` and `미등록 대부` now use `korean_particle`:
+optional **을/를, 이/가, 은/는, 의, 에/에서, 와/과, 로/으로**, followed by a token
+boundary. This finite grammatical set covers the review's required forms;
+no such attached-particle examples were found in the three-day candidate text.
+`도` stays excluded because of the 대부도 collision. 가입/가능, Latin/digit
+continuations and unsupported stacked suffixes are not accepted by partially
+matching a particle. Explicit 업/중개업 compound aliases stay intact. The old
+`right_token` mode remains available for faithful historical replay.
+
+Tests check the four supplied sentences through matcher, hard terms, domain
+anchor and candidate-hybrid keep at probability 0.8; every allowed suffix also
+has a full-boundary positive and Korean/Latin-continuation negative. Previous
+island/public-lease noise, financial compounds and golden recall tests pass.
+
+### Exact life/non-life industry synonyms
+
+[Review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4043300572).
+Entity extraction returned generic 생명보험/손해보험 before the aggregate alias
+fallback could run. Both extraction paths now use the same metric-local exact
+canonicalizer: 보험회사→보험사, 생명보험→생보사, 손해보험→손보사, alongside the
+unchanged KB/DB company aliases. No suffix-wide substitutions or general entity
+extraction changes. Tests retain distinctions between insurance/life/non-life,
+banks/savings banks, and named companies versus aggregate labels (including
+삼성생명, 교보생명, KB손해보험 and DB손해보험).
+
+### Revision-faithful matcher preparation
+
+[Review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4043300579).
+The bug was reproduced on the real 09-15 cohort: the same BASE clustering
+implementation yielded **2 vs 3 loan representatives**, depending on whether
+its entry was named `base` or `comparison` (326 clusters and 8,559 pairs in
+both). Entry names incorrectly selected old/current aliases.
+
+Preparation now accepts a revision and reads its `_TERM_ALIASES` and optional
+`_ALIAS_MATCH_MODES` with AST literal evaluation. Historical matcher source is
+not executed. Missing mode configuration means phrase semantics. Current runs
+use current configuration; all historical variants use their own configuration,
+not BASE's. Context-managed patches restore both dictionaries on success/error;
+regex caching includes the mode, so historical/current modes do not collide.
+
+This intentionally reconstructs matcher configuration plus clustering code,
+not an entire historical pipeline/environment. Tests cover BASE-vs-BASE tags,
+clusters/pairs and CLI dispatch, old aliases, old phrase/right-token modes,
+current particle mode, repeated runs and restoration after exceptions. The
+fresh-clone fixture now includes the real BASE matcher as well as clustering
+source. Default execution remains independent of transient PR objects and
+`--compare-revision` remains optional. The CLI with `--compare-revision BASE`
+was also run on all three actual candidate CSVs; BASE and comparison results
+are identical, including the corrected 09-15 **2 / 2** loan representatives.
+
+### Validation and fixed-cohort audit
+
+- **63 new cases** across `test_period_particle_review.py` (57) and
+  `test_replay_matcher_revision.py` (6); initial pre-fix matrix: 14 failures.
+- Related clustering/matcher/relevance/prefilter/golden/replay tests:
+  **531 passed, 1 skipped**, 10 existing NumPy/joblib deprecation warnings.
+- Full Linux/Python 3.11 suite, network disabled, read-only source/Git mounts:
+  **884 passed, 1 skipped** in 34.46 seconds.
+- `git diff --check`: passed; full source/tool/test/document diff reviewed.
+
+Fresh before/after captures against 3b6e598 were made using ignored
+`.venv/capture_round4.py` and `.venv/round4-{before,after}.json`. They include all
+representative titles/URLs, all memberships, both fixed and rescored cohorts,
+and per-candidate relevance evidence. Parsed JSON objects are **identical**.
+All 3,327 candidate rows have unchanged scores, hard/soft/negative terms and
+domain anchors. No retained URL, tagged sector, representative, membership or
+pair changed. This is candidate replay with recorded probabilities, not a live
+fetch or production-equivalent model run. No large replay artifact is committed.
+
+Every numeric cell below is **before = after**:
+
+| Date | Fixed kept / clusters | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored | New merged / split pairs (both) |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 | 0 / 0 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 | 0 / 0 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 | 0 / 0 |
+
+Every sector representative count remains exactly as listed in the preceding
+3b6e598 follow-up table. Golden pair precision/recall remains
+**1.0000 / 0.922414** (107/107/116); other-sector labels remain
+**1.0000 / 0.888889** (40/40/45). End-to-end golden keeps all 33 relevant items
+and rejects four noise items. No unexplained corpus movement needs attribution.
+
+Limits for human review: the period feature uses only explicit, unambiguous
+pre-metric evidence and treats ratios as snapshots; it is not a general Korean
+date parser. `도` and unlisted stacked particles remain intentionally ambiguous.
+Historical replay varies the two matcher configuration dictionaries, not all
+historical tagging/relevance code. Existing broad macro/digital fingerprints
+and conservative court/Jeju splits remain outside scope. No query, ranking,
+threshold, ML/Gemini/report/email changes, new dependencies, merge or thread
+resolution were performed.

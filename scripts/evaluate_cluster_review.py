@@ -9,7 +9,10 @@ No model inference or report writes. Pair identity uses retained CSV row index.
 from __future__ import annotations
 
 import argparse
+import ast
 from collections import Counter, defaultdict
+from collections.abc import Iterator
+from contextlib import contextmanager
 from itertools import combinations
 import json
 from pathlib import Path
@@ -34,12 +37,45 @@ def snapshot(revision: str) -> ModuleType:
     return module
 
 
-def prepare(rows, *, original_aliases=False, recorded=True):
-    aliases = {k: v for k, v in text_matcher._TERM_ALIASES.items()
-               if not original_aliases or k in {"cp", "킥스"}}
-    with patch.dict(text_matcher._TERM_ALIASES, aliases, clear=True), patch.object(
-        replay, "cluster_tagged_articles", lambda tagged: []
+def matcher_configuration(revision: str) -> dict[str, dict]:
+    """Read literal matcher configuration without executing historical source.
+
+    Replays retain the current pipeline/engine and vary only aliases and their
+    modes with the clustering revision. Missing modes mean historical phrase
+    semantics, not the current modes. Fail explicitly on non-literal config.
+    """
+    source = subprocess.check_output(
+        ["git", "show", f"{revision}:src/pipeline/text_matcher.py"], encoding="utf-8")
+    config = {"_ALIAS_MATCH_MODES": {}}
+    for node in ast.parse(source).body:
+        targets = node.targets if isinstance(node, ast.Assign) else (
+            [node.target] if isinstance(node, ast.AnnAssign) else [])
+        for target in targets:
+            if isinstance(target, ast.Name) and target.id in {"_TERM_ALIASES", "_ALIAS_MATCH_MODES"}:
+                value = ast.literal_eval(node.value)
+                if not isinstance(value, dict):
+                    raise ValueError(f"{target.id} must be a literal dictionary in {revision}")
+                config[target.id] = value
+    if "_TERM_ALIASES" not in config:
+        raise ValueError(f"Missing _TERM_ALIASES in {revision}")
+    return config
+
+
+@contextmanager
+def matcher_state(revision: str | None = None) -> Iterator[None]:
+    """Scope revision-specific aliases/modes; restore current state even on error."""
+    if revision is None:
+        yield
+        return
+    config = matcher_configuration(revision)
+    with patch.dict(text_matcher._TERM_ALIASES, config["_TERM_ALIASES"], clear=True), patch.dict(
+        text_matcher._ALIAS_MATCH_MODES, config["_ALIAS_MATCH_MODES"], clear=True,
     ):
+        yield
+
+
+def prepare(rows, *, revision: str | None = None, recorded=True):
+    with matcher_state(revision), patch.object(replay, "cluster_tagged_articles", lambda tagged: []):
         return replay.replay(rows, recorded=recorded)[0]
 
 
@@ -94,15 +130,17 @@ def main():
     parser.add_argument("--compare-revision", help="Optional locally available pre-edit revision; not needed after squash")
     args = parser.parse_args()
     modules = {"base": snapshot(BASE), "revised": current}
+    revisions = {"base": BASE, "revised": None}
     result = {"base_revision": BASE, "days": {}}
     if args.compare_revision:
         modules["comparison"] = snapshot(args.compare_revision)
+        revisions["comparison"] = args.compare_revision
         result["comparison_revision"] = args.compare_revision
     for date in ("2026-09-15", "2026-09-16", "2026-09-17"):
         rows = replay.load_rows(Path(f"reports/_candidates/{date}_candidates.csv"))
         day, measured = {}, {}
         for name, module in modules.items():
-            tagged = prepare(rows, original_aliases=name == "base")
+            tagged = prepare(rows, revision=revisions[name])
             measured[name] = measure(module, tagged)
             day[name] = measured[name][0]
         tagged = prepare(rows)
@@ -120,11 +158,11 @@ def main():
     # Compare all labelled relevant items, including ones base relevance dropped.
     rows = [dict(row, keep=1) for row in rows if row["relevant"]]
     for name, module in modules.items():
-        result["golden_fixed_relevant_cohort"][name] = measure(module, prepare(rows, original_aliases=name == "base"), labels)[0]
+        result["golden_fixed_relevant_cohort"][name] = measure(module, prepare(rows, revision=revisions[name]), labels)[0]
     other_rows = replay.load_rows(Path("tests/fixtures/loan_news/other_sectors_review.json"))
     labels = {row["url"]: row["event"] for row in other_rows}
     result["other_sectors_labelled"] = {
-        name: measure(module, prepare(other_rows, original_aliases=name == "base"), labels)[0]
+        name: measure(module, prepare(other_rows, revision=revisions[name]), labels)[0]
         for name, module in modules.items()
     }
     result["golden_revised_end_to_end"] = replay.evaluate(replay.load_rows(replay.FIXTURE))
