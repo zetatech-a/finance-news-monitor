@@ -285,7 +285,8 @@ def _rule_issue_fingerprint(item: TaggedArticle) -> str | None:
 
 def _is_enforcement_headline(title: str) -> bool:
     return (_contains_any(title, ("불법사금융", "불법 사금융", "불법대부", "불법 대부"))
-            and _contains_any(title, ("단속", "수사", "잡는다")))
+            and (_contains_any(title, ("단속", "수사"))
+                 or bool(re.search(r"(?<![가-힣a-z0-9])잡는다(?![가-힣a-z0-9])", title, re.IGNORECASE))))
 
 
 def _targeted_enforcement_fingerprint(title: str, text: str) -> str | None:
@@ -336,6 +337,14 @@ def _meaningful_overlap(a_tokens: set[str], b_tokens: set[str]) -> bool:
     return len(shared) >= 2 or bool(shared & (_extract_entities(" ".join(a_tokens)) | _extract_entities(" ".join(b_tokens))))
 
 
+def _canonical_metric_value(value: str) -> str:
+    # The metric regex accepts only unsigned decimal digits; no float rounding.
+    whole, _, fraction = value.partition(".")
+    whole = whole.lstrip("0") or "0"
+    fraction = fraction.rstrip("0")
+    return whole + ("." + fraction if fraction else "")
+
+
 def _reported_metrics(title: str) -> set[tuple[str, str]]:
     facts = set()
     for label, value in _REPORTED_METRIC_RE.findall(title):
@@ -343,7 +352,7 @@ def _reported_metrics(title: str) -> set[tuple[str, str]]:
             "capital_adequacy_ratio", "delinquency_rate", "loan_deposit_spread",
         }), None)
         if metric:
-            facts.add((metric, value))
+            facts.add((metric, _canonical_metric_value(value)))
     return facts
 
 
@@ -370,9 +379,13 @@ def _metric_subjects(title: str) -> set[str]:
     would alter unrelated earnings/market clustering. Missing subjects never
     authorize the measurement shortcut.
     """
-    measurement = _REPORTED_METRIC_RE.search(title)
-    if not measurement:
+    measurements = list(_REPORTED_METRIC_RE.finditer(title))
+    # All measured values cannot be attributed to the first subject. Keep
+    # ordinary similarity available, but authorize no metric shortcut/veto for
+    # multi-measurement headlines (even repeated equal values after rounding).
+    if len(measurements) != 1:
         return set()
+    measurement = measurements[0]
     # The subject precedes the measurement. Later comparisons may mention
     # other companies or subsectors and must not redefine whose value it is.
     title = title[:measurement.start()]

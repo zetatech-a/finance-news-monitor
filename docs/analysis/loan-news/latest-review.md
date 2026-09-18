@@ -407,3 +407,128 @@ historical tagging/relevance code. Existing broad macro/digital fingerprints
 and conservative court/Jeju splits remain outside scope. No query, ranking,
 threshold, ML/Gemini/report/email changes, new dependencies, merge or thread
 resolution were performed.
+
+
+## Follow-up: metric association and context parity on 676a722
+
+Starting local/PR HEAD: `676a7224815b5de4f063e6d4520094a552f1bd17`, clean
+worktree on the existing branch. All four latest comments were read directly.
+Initial 36-case tests before production edits: **25 failed, 11 passed**.
+Each finding reproduced; no new branch/PR or review-thread resolution.
+
+### Metric subject association and numeric identity (reviews 1 and 4)
+
+[Subject review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4043846838)
+and [value review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4043846847)
+were analyzed together. Previously every headline measurement was intersected
+against the first measurement's subject. Thus Samsung 200 + Hanwha 180 could
+supply a false Samsung 180 fact. Separately, raw `200` versus `200.0` prevented
+the period veto from recognizing equal levels, allowing similarity to merge
+conflicting quarters.
+
+Chosen bounded strategy: **disable authoritative metric association for any
+headline with multiple recognized measurement occurrences**. `_metric_subjects`
+returns no authoritative subject there; both the shortcut and subject/period
+vetoes therefore cannot misattribute those values. Count occurrences before
+numeric deduplication, including repeated equivalent values. Single measurement
+with one known subject remains the ordinary fast path; missing/multiple subjects
+remain conservative. Ordinary same-wire similarity is retained for multi-metric
+headlines. No occurrence parser or new finance fact architecture was needed.
+
+All extracted metric values now share deterministic string normalization:
+strip redundant leading integer zeros and trailing fractional zeros, dropping
+an empty decimal suffix. `200`, `200.0`, `200.00` become `200`; `215.20` becomes
+`215.2`. No floats/dependencies. Shortcut and period veto consume the same
+normalized extraction; percentage-point suffix guards remain unchanged.
+
+Tests include the exact false-merge pair through final clustering (removing
+metric evidence independently verifies no alternative similarity path), single
+subject/single measurement, single subject/multiple measurements, multiple
+subjects/measurements, aggregate/missing subjects, ordinary multi-metric wires,
+and three numeric format pairs through same-period and conflicting-period
+final clustering. Existing subject aliases and period-equivalence tests pass.
+
+### Standalone enforcement verb (review 2)
+
+[Review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4043846841).
+Substring `잡는다` inside `바로잡는다` created the same local-enforcement
+fingerprint as a crackdown. Only `잡는다` now requires both lexical boundaries
+(no adjoining Korean syllable, Latin letter or digit). Whitespace/punctuation
+and `불법사금융을 잡는다` remain valid. 단속/수사 semantics are unchanged.
+Tests reject 바로잡는다/붙잡는다/다잡는다/잡는다며 and check final fingerprint
+and cluster separation from 집중 단속, with positive quoted/punctuated verbs.
+
+### Alias/context semantic parity (review 3)
+
+[Review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4043846844).
+Hard matching was canonical but raw spaced 불법/미등록 triggered standalone risk
+signals. With only 여행 noise, compact 불법사금융 scored **4/drop**, spaced form
+**7/keep**. 불법대부/미등록대부/불법추심 changed **2/drop → 5/keep**. 불법사채
+changed **2/drop → 7/keep**, including a separate 2-point 사채 context bonus.
+
+Semantic source of truth is the existing conservative compact spelling. This
+matches the documented requirement for a strong anchor **and additional risk
+or regulatory signal** before reducing a capped-noise penalty. No blanket
+upgrade of illegal-lending anchors to risk signals was made.
+
+A relevance-local context helper compacts only supported aliases in those five
+families. It reuses the actual matcher alias configuration and match modes,
+preserving particles and explicit financial compounds while rejecting 대부도
+collisions. Global normalization, raw hard/soft/negative matching and stored
+article text are unchanged. Scoring's 사채/lease context checks and negative cap
+use that context view; filtering uses the same shared risk-signal function.
+Independent 피해/불법 영업 evidence remains available. Tests compare full matched
+terms, strong context, score, domain anchor, keep and reason across each family
+for 여행/맛집 and an independent-risk positive. Existing lease/island and golden
+recall tests also pass.
+
+### Validation and measured corpus effect
+
+44 new cases in `tests/test_metric_context_review.py`; first 36-case pre-fix
+matrix failed 25 cases as recorded above. Final related suite:
+**575 passed, 1 skipped** (10 existing NumPy/joblib warnings). Full Linux/Python
+3.11 suite with network disabled and read-only source/Git mounts:
+**928 passed, 1 skipped**. `git diff --check` passed; complete diff reviewed.
+
+Fresh captures `.venv/round5-before.json` / `round5-after.json` compare actual
+676a722 and revised execution. Temporary artifacts remain ignored. Both fixed
+(recorded keep/score) and rescored (recorded probability, current rules) replay
+preserve every retained URL, membership, representative title/URL and sector
+representative count. New merged/split pairs are **0 / 0** on all six runs.
+
+All table values are **before = after**:
+
+| Date | Fixed kept / clusters | Rescored kept / clusters | Largest | >=50 | Loan representatives fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+All sector counts remain the values tabulated in the prior follow-ups.
+Golden pair precision/recall: **1.0000 / 0.922414** (107/107/116);
+other-sector labels: **1.0000 / 0.888889** (40/40/45). All 33 relevant golden
+articles remain kept, all four noise fixtures dropped.
+
+Of 3,327 candidate rows, hard/soft/negative matches and domain anchors have
+**zero changes**. Exactly **one score** changes on 09-17 (zero-based CSV row 6):
+[YTN court report](https://www.ytn.co.kr/_ln/0103_202609161700525967),
+`'성착취 사채' 50대 1심에서 실형..."용서 못 받아"`. Its snippet contains
+`불법 사채업자`, supplying standalone 불법 to the title's 사채 and adding 2 points.
+The exact compact-snippet control scored **6 before and after**; original spaced
+snippet changes **8 → 6**. Hard match remains 불법사채, no soft/negative matches,
+domain anchor remains true. Recorded probability **0.5186**: rescored keep stays
+**true → true** at the existing gray threshold 6. Recorded CSV keep is 0, so the
+fixed cohort excludes it on both sides. It gains no extra cluster/representative
+change. A regression using the existing golden row fixes this real example.
+This is an intended alias-parity correction, with no observed valid-finance
+recall loss or unexplained broad movement.
+
+Remaining limits: multi-measurement shortcuts trade some potential recall for
+safe association; ordinary similarity can still join such headlines. The
+context helper is deliberately limited to five supported lending alias families,
+not general language normalization. Existing macro/digital fingerprints and
+conservative court/Jeju fragmentation remain outside scope. This is deterministic
+candidate replay, not live collection/API/model equivalence. Humans should
+review the conservative shortcut choice and canonical-context policy before
+merge; no thresholds, rankings, query/fetch, ML/Gemini/report/email or replay
+configuration behavior was changed.
