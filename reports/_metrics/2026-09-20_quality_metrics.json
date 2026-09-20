@@ -1,0 +1,248 @@
+{
+  "clusters": {
+    "cluster_count": 89,
+    "cluster_size_max": 31,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 186,
+    "displayed_articles": 52,
+    "final_tagged_representatives": 89,
+    "normalized_articles": 269,
+    "raw_items": 269,
+    "relevance_filtered_articles": 142,
+    "rule_filtered_articles": 186,
+    "tagged_before_cluster": 142
+  },
+  "date": "2026-09-20",
+  "generated_at": "2026-09-20T09:04:33.016571+09:00",
+  "publishers": {
+    "missing_publisher_count": 89,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 27,
+    "no_topic_ratio": 0.3034,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6534640451016045,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "리플XRP 거래 1위·디라이브 47% 급등…그래비티도 강세",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16200538"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5962059178941024,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "숨은 금융자산 18조4천억…예·적금 환급률은 8%뿐",
+        "url": "https://n.news.naver.com/mnews/article/088/0001029456?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6720858062436365,
+        "relevance_score": 6,
+        "sector": "보험",
+        "title": "운용자산 1년 새 97조 불어난 생보업계…삼성생명 빼면 21조↓",
+        "url": "https://www.ceoscoredaily.com/page/view/2026091422515553871"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6142109654883773,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "“통장 압류돼 아이 현장학습비도 밀렸는데…” 생계비 계좌, 반년 만에...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002699750?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6603263442989982,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "애플도 이제 코인처럼?…290조 몰린 서학개미들 '술렁' [김주완의 글로...",
+        "url": "https://n.news.naver.com/mnews/article/015/0005334202?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9057877402332891,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "5대 은행 정기예금 1000조원 육박… 개인 줄고 기업은 늘고",
+        "url": "https://n.news.naver.com/mnews/article/366/0001193417?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8474608348657842,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "성북구, 어르신 건강관리·금융사기 예방 '한번에'",
+        "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5063898"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7701139754266282,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "신분 위조해 외화 챙긴 北 IT 노동자, 글로벌 수사망에 '긴장'",
+        "url": "https://n.news.naver.com/mnews/article/138/0002242078?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7031176306202841,
+        "relevance_score": 11,
+        "sector": "기타",
+        "title": "[주간금융이슈] \"추석 용돈은 새 돈으로\"…신권 어디서 얼마나 바꿀 수...",
+        "url": "https://www.newspim.com/news/view/20260918000915"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7782297377504314,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[지방의회 24時] 김한울 용인시의원, 민생침해범죄 예방 용인시 역할 촉...",
+        "url": "https://www.joongangenews.com/news/articleView.html?idxno=549403"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 11,
+      "기타": 47,
+      "대부": 2,
+      "디지털자산": 9,
+      "보험": 2,
+      "상호금융": 4,
+      "여전": 2,
+      "은행": 3,
+      "입법·정책": 5,
+      "자산운용·연기금": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 3,
+      "건전성·자본규제": 4,
+      "금리·수수료·최고금리": 20,
+      "디지털자산": 10,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 11,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 2,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 9,
+      "일정·브리핑": 5,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 1,
+      "증시·시장시황": 4,
+      "해외·글로벌": 8,
+      "환율·외환": 1
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8840668958362398,
+        "relevance_score": 31,
+        "sector": "거시·시장",
+        "title": "다음주 ADB 한국 성장률 새 전망…한은 금융안정보고서도 발간",
+        "url": "http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005924453"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9549504650172352,
+        "relevance_score": 22,
+        "sector": "대부",
+        "title": "불법사금융부터 보이스피싱까지…금융권, 금융범죄 예방 총력",
+        "url": "https://www.ekn.kr/web/view.php?key=20260919024566817"
+      },
+      {
+        "cluster_size": 31,
+        "relevance_prob": 0.9559077353399736,
+        "relevance_score": 26,
+        "sector": "거시·시장",
+        "title": "미 기준금리 인상에 한은 추가 인상 불가피…코스피 어디로 [증시레이더...",
+        "url": "https://n.news.naver.com/mnews/article/138/0002242079?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.9480730862579416,
+        "relevance_score": 19,
+        "sector": "디지털자산",
+        "title": "“코인으로 빼돌린 피해금 잡는다” 디지털자산거래소, 보이스피싱 핫라...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002699629?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7202407002723034,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "[공개 질의]주주는 회사 이름도 모른다?…증선위 ‘익명 종목’ 4곳 언제...",
+        "url": "http://www.breaknews.com/1238011"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.9004083463511394,
+        "relevance_score": 20,
+        "sector": "디지털자산",
+        "title": "민병덕 의원 “달러 스테이블코인에 금융주권 뺏길라”…포스텍 특강서...",
+        "url": "https://www.asiatoday.co.kr/kn/view.php?key=20260919000905226"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8429218944211038,
+        "relevance_score": 23,
+        "sector": "자산운용·연기금",
+        "title": "하나금융, ADGM·한화자산운용과 MOU 체결…한국-아부다비 스테이블코인...",
+        "url": "https://www.wikitree.co.kr/articles/1160702"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8956011390940972,
+        "relevance_score": 18,
+        "sector": "기타",
+        "title": "“‘1엔=8.8원’짜리 스테이블코인이 37.6원에 거래”…비트 상장 첫날...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002699726?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7636242703889645,
+        "relevance_score": 12,
+        "sector": "감독·제재",
+        "title": "금융위 올해 소송 절반 패소에…홍콩 ELS 과징금 장고",
+        "url": "https://n.news.naver.com/mnews/article/001/0016322943?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6002438223920961,
+        "relevance_score": 16,
+        "sector": "입법·정책",
+        "title": "오피스텔 집단대출 규제 완화되나…분양시장 자금난 해소 '주목'",
+        "url": "https://daily.hankooki.com/news/articleView.html?idxno=1407882"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 2,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "입법·정책": 1,
+      "자산운용·연기금": 1
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 4,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "일정·브리핑": 1,
+      "증시·시장시황": 1
+    }
+  }
+}
