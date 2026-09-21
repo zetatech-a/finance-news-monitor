@@ -715,3 +715,94 @@ Missing/ambiguous subjects do not authorize metric shortcuts or inferred vetoes;
 ordinary similarity remains available. Prior unrelated clustering issues are
 out of scope. Humans should review identity/level separation and the explicit
 suffix contracts before merge; replay is offline, not live API/model equivalence.
+
+## Follow-up: insurer identity, complete 킥스 label and campaign years on 82522ab
+
+Read and reproduced all three latest Codex findings:
+[insurer aliases](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4058753158),
+[킥스 boundary](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4058753162),
+[campaign periods](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4058753166).
+Initial test-first matrix: **14 failed / 25 passed** on unmodified 82522ab.
+Final 44-case matrix re-executed against that Git revision in an isolated Python
+module: **16 failed / 28 passed**. Pair/final-cluster failures reproduce all three
+findings; two additional failures reference the new period-veto helper.
+
+### Exact insurer evidence and scope
+
+Counts below are case-insensitive literal occurrences in candidate title/summary
+fields, including repeated snapshots; they are not deduplicated article counts.
+
+| Full / abbreviated name | All stored candidates: full title/summary | Abbreviation title/summary | September 15–17: full / abbreviation totals | Canonical identity |
+| --- | ---: | ---: | ---: | --- |
+| NH농협손해보험 / NH농협손보 | 6 / 26 | 4 / 0 | 0 / 0 | nh농협손해보험 |
+| KB손해보험 / KB손보 | 9 / 60 | 20 / 10 | 5 / 6 | kb손해보험 |
+| DB손해보험 / DB손보 | 21 / 59 | 60 / 27 | 2 / 2 | db손해보험 |
+
+`2026-08-07_candidates.csv` directly pairs the title `[핀포인트] [NH농협손보]
+1년여 만에 킥스 200%대 회복…금리가 끌어올린...` with a summary naming
+NH농협손해보험 and its 226.47% ratio. The three-day scan found no additional
+full/short pair needing a new identity; tests/analysis contained no NH alias.
+Only exact `nh농협손보 -> nh농협손해보험` is added. 롯데/한화/하나/카카오페이
+abbreviations observed without corresponding full names in the three-day cohort
+are not added. No suffix-wide replacement or general entity change. Tests retain
+KB/DB equivalence, different insurers, industry scope and unverified-name vetoes.
+
+### Issue-term and campaign safety
+
+Unrestricted 킥스 substring matching gave unrelated 킥스타터 projects an extra
+shared issue term and merged them. Only this alias gets a complete-label matcher:
+킥스 plus optional spaced/unspaced 비율, bounded on the left and after an optional
+complete 은/는/이/가/의/도/과/와/을/를. Other distinctive aliases and numeric metric
+occurrence/value/subject/period parsing retain their existing semantics. The
+numeric occurrence regex cannot directly serve bare issue labels: it requires a
+percentage value. No generic issue-term refactor is introduced.
+
+The first boundary version dropped the legitimate issue term in four candidate
+snippets (09-16: 교보생명 교보라이프플래닛 합병…; iM라이프, 단기납 종신보험…;
+09-17: 계리감독 선진화가 가른 CSM…; 교보생명, 라이프플래닛 흡수합병…). Their
+킥스비율도/을/과 forms required complete grammatical suffix support. Three added
+corpus regressions failed before that correction; lexical 킥스비율도약/과정 remain
+negative. These changes do not alter the spaced lending alias contract.
+
+Recurring enforcement campaigns shared an authority/target fingerprint despite
+conflicting years. Keep that fingerprint unchanged and add a headline-only,
+unambiguous explicit 19xx/20xx년 feature. Same enforcement family + two different
+known years veto the pair before low-value/equal-fingerprint shortcuts and veto
+cluster admission against every existing member. Missing or multiple distinct
+years do not infer a conflict. All bridge input permutations, same-year/missing
+wires and description-only background dates are covered. The three-day campaign
+headlines use 추석/한가위 rather than comparable numeric periods; no month parser,
+publication-date inference or relative-date interpretation is added.
+
+Validation on final code: **44 new tests passed**; related suite **747 passed,
+1 skipped**, with 10 existing NumPy/joblib deprecations. An initial Windows
+subprocess encoding warning disappeared on UTF-8 rerun. Full Linux/Python 3.11,
+network disabled/read-only mounts: **1100 passed, 1 skipped**. `git diff --check`
+passed. Only issue_cluster.py changes production behavior.
+
+Final fresh fixed/rescored replay versus 82522ab is **entirely equal**, including
+all 3,327 candidates' relevance scores, hard/soft/negative terms, domain anchors,
+metric subjects, issue terms and fingerprints. The four provisional particle
+regressions above are fully restored. No actual NH alias correction, Kickstarter
+term removal or enforcement-year split occurs in these cohorts.
+
+| Date | Fixed kept / clusters | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+All six kept sets, cluster memberships, sector counts, representative titles/URLs
+are unchanged. Newly merged / split pairs: **0 / 0**. Loan golden precision/recall
+**1.0000 / 0.922414** (107/107/116); other-sector **1.0000 / 0.888889**
+(40/40/45), unchanged, as is golden end-to-end relevance.
+
+Limits: exact insurer aliases remain deliberately incomplete. The dedicated
+킥스 label guard supports bounded basic particles, not arbitrary compound words
+or stacked suffixes; other distinctive aliases are untouched. Campaign safety
+recognizes only one explicit headline year, not months or relative dates, and
+cannot resolve ambiguous/background-year roles with general NLP. Missing-year
+articles can join either compatible campaign but cannot bridge known conflicts.
+No architecture/threshold/ranking changes; offline replay does not establish live
+API/model equivalence. Human review should verify these narrow contracts before
+merge. Temporary evidence remains untracked under ignored `.venv`.

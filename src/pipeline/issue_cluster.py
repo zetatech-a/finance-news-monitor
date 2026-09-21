@@ -23,6 +23,10 @@ _LOCAL_AUTHORITY_RE = re.compile(
     r"(?<![가-힣])(?:서울(?:특별)?시|(?:부산|대구|인천|광주|대전|울산)(?:광역)?시|"
     r"세종(?:특별자치)?시|[가-힣]{2,8}(?:시청|경찰청))(?=[^가-힣]|[은는이가의에]|$)"
 )
+# Complete Korean metric label; unrelated continuations such as 킥스타터 fail.
+_KICS_ISSUE_LABEL_RE = re.compile(
+    r"(?<![가-힣a-z0-9])킥스(?:\s*비율)?(?=[은는이가의도과와을를]?(?![가-힣a-z0-9]))",
+)
 _METRIC_OCCURRENCE_PATTERN = (
     r"((?:킥스|k[- ]ics)(?:\s*비율)?|지급여력\s*비율|연체율|예대\s*금리차)"
     r"\s*(?:은|는|이|가)?\s*(\d+(?:\.\d+)?)\s*%"
@@ -246,7 +250,8 @@ def _important_issue_terms(text: str) -> set[str]:
     normalized = _normalize_issue_text(text)
     terms: set[str] = set()
     for canonical, aliases in _DISTINCTIVE_TERM_ALIASES:
-        if any(alias.lower() in normalized for alias in aliases):
+        if any((_KICS_ISSUE_LABEL_RE.search(normalized) if alias == "킥스"
+                else alias.lower() in normalized) for alias in aliases):
             terms.add(canonical)
     for token in _tokenize_title(normalized):
         if token not in _GENERIC_TOKENS and len(token) >= 3:
@@ -370,9 +375,11 @@ def _reported_metrics(title: str) -> set[tuple[str, str]]:
     return facts
 
 
-# Exact company identities observed in the September 15–17 candidate corpus.
+# Exact company identities observed in stored candidates (NH: August 7).
 # Local to metrics: a suffix-wide 손보 replacement would equate unverified names.
-_METRIC_SUBJECT_ALIASES = {"kb손보": "kb손해보험", "db손보": "db손해보험"}
+_METRIC_SUBJECT_ALIASES = {
+    "kb손보": "kb손해보험", "db손보": "db손해보험", "nh농협손보": "nh농협손해보험",
+}
 # Aggregate synonyms only; life/non-life, banks/savings banks remain distinct.
 _METRIC_INDUSTRY_SUBJECT_ALIASES = {
     "보험회사": "보험사", "생명보험": "생보사", "손해보험": "손보사",
@@ -447,6 +454,14 @@ def _metric_period(title: str) -> tuple[int | None, int | None]:
             next(iter(months)) if len(months) == 1 else None)
 
 
+def _enforcement_period(title: str) -> int | None:
+    """Only an unambiguous explicit headline year; never infer missing dates."""
+    if not _is_enforcement_headline(title):
+        return None
+    years = set(re.findall(r"(?<![0-9])((?:19|20)[0-9]{2})년", title))
+    return int(next(iter(years))) if len(years) == 1 else None
+
+
 @dataclass
 class _ClusterFeatures:
     """페어 비교(O(n²))마다 재계산하지 않도록 기사당 1회만 뽑아두는 피처."""
@@ -464,6 +479,7 @@ class _ClusterFeatures:
     reported_metrics: set[tuple[str, str]]
     metric_subjects: set[str]
     metric_period: tuple[int | None, int | None]
+    enforcement_period: int | None
 
 
 def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
@@ -483,6 +499,7 @@ def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
         reported_metrics=_reported_metrics(norm_title),
         metric_subjects=_metric_subjects(norm_title),
         metric_period=_metric_period(norm_title),
+        enforcement_period=_enforcement_period(norm_title),
     )
 
 
@@ -504,6 +521,17 @@ def _conflicting_metric_periods(a: _ClusterFeatures, b: _ClusterFeatures) -> boo
                for left, right in zip(a.metric_period, b.metric_period))
 
 
+def _conflicting_enforcement_periods(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
+    # Keep the family fingerprint stable for wires omitting the year. Only
+    # explicit conflicting periods of the same authority/target veto a pair.
+    return bool(
+        (a.fingerprint or "").startswith("enforcement:")
+        and a.fingerprint == b.fingerprint
+        and a.enforcement_period is not None and b.enforcement_period is not None
+        and a.enforcement_period != b.enforcement_period
+    )
+
+
 def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
     if not a.norm_title or not b.norm_title:
         return False
@@ -515,7 +543,8 @@ def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
             return False
 
     # Explicit subject/period conflicts veto even fingerprint/similarity shortcuts.
-    if _conflicting_metric_subjects(a, b) or _conflicting_metric_periods(a, b):
+    if (_conflicting_metric_subjects(a, b) or _conflicting_metric_periods(a, b)
+            or _conflicting_enforcement_periods(a, b)):
         return False
 
     if a.low_value or b.low_value:
@@ -640,7 +669,8 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
             # Explicit subject/period conflicts cannot be bypassed through a bridge
             # even in sectors retaining their original single-link behavior.
             if any(_conflicting_metric_subjects(features[idx], features[member])
-                   or _conflicting_metric_periods(features[idx], features[member]) for member in cluster):
+                   or _conflicting_metric_periods(features[idx], features[member])
+                   or _conflicting_enforcement_periods(features[idx], features[member]) for member in cluster):
                 continue
             compatibility = all if strict[idx] or any(strict[member] for member in cluster) else any
             if compatibility(_should_cluster_features(features[idx], features[member]) for member in cluster):
