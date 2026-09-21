@@ -395,6 +395,7 @@ def _reported_metrics(title: str) -> set[tuple[str, str]]:
 # Local to metrics: a suffix-wide 손보 replacement would equate unverified names.
 _METRIC_SUBJECT_ALIASES = {
     "kb손보": "kb손해보험", "db손보": "db손해보험", "nh농협손보": "nh농협손해보험",
+    "교보생명보험": "교보생명",
 }
 # Aggregate synonyms only; life/non-life, banks/savings banks remain distinct.
 _METRIC_INDUSTRY_SUBJECT_ALIASES = {
@@ -430,6 +431,16 @@ def _metric_subjects(title: str) -> set[str]:
     # The subject precedes the measurement. Later comparisons may mention
     # other companies or subsectors and must not redefine whose value it is.
     title = title[:measurement.start()]
+    # An explicit aggregate immediately governing the measurement owns it;
+    # example companies before "등/포함한" do not. "보험사 중 삼성생명" and
+    # bare company lists deliberately do not match this construction.
+    aggregate = re.search(
+        r"(?<![가-힣a-z0-9])(?:등|포함한|포함)\s+"
+        r"(보험사|보험회사|생보사|손보사|은행권|저축은행권|카드사)"
+        r"(?:들)?[은는이가의]?\s*$", title,
+    )
+    if aggregate:
+        return {_canonical_metric_subject(aggregate.group(1))}
     subjects = {
         entity for entity in _extract_entities(title) - {"금융감독원", "금융위원회", "한국은행"}
         if re.search(r"(?<![가-힣a-z0-9])" + re.escape(entity) + _METRIC_SUBJECT_END, title)
@@ -470,12 +481,14 @@ def _metric_period(title: str) -> tuple[int | None, int | None]:
             next(iter(months)) if len(months) == 1 else None)
 
 
-def _enforcement_period(title: str) -> int | None:
-    """Only an unambiguous explicit headline year; never infer missing dates."""
+def _enforcement_period(title: str) -> tuple[int | None, int | None]:
+    """Explicit headline year/month; missing or ambiguous dimensions stay unknown."""
     if not _is_enforcement_headline(title):
-        return None
-    years = set(re.findall(r"(?<![0-9])((?:19|20)[0-9]{2})년", title))
-    return int(next(iter(years))) if len(years) == 1 else None
+        return None, None
+    years = {int(year) for year in re.findall(r"(?<![0-9])((?:19|20)[0-9]{2})년", title)}
+    months = {int(month) for month in re.findall(r"(?<![0-9])(1[0-2]|[1-9])월", title)}
+    return (next(iter(years)) if len(years) == 1 else None,
+            next(iter(months)) if len(months) == 1 else None)
 
 
 @dataclass
@@ -495,7 +508,7 @@ class _ClusterFeatures:
     reported_metrics: set[tuple[str, str]]
     metric_subjects: set[str]
     metric_period: tuple[int | None, int | None]
-    enforcement_period: int | None
+    enforcement_period: tuple[int | None, int | None]
 
 
 def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
@@ -543,9 +556,44 @@ def _conflicting_enforcement_periods(a: _ClusterFeatures, b: _ClusterFeatures) -
     return bool(
         (a.fingerprint or "").startswith("enforcement:")
         and a.fingerprint == b.fingerprint
-        and a.enforcement_period is not None and b.enforcement_period is not None
-        and a.enforcement_period != b.enforcement_period
+        and any(left is not None and right is not None and left != right
+                for left, right in zip(a.enforcement_period, b.enforcement_period))
     )
+
+
+def _metric_event_tokens(feature: _ClusterFeatures) -> set[str]:
+    """Headline evidence left after removing the already-counted metric fact."""
+    text = _METRIC_OCCURRENCE_RE.sub(" ", feature.norm_title)
+    names = feature.metric_subjects | {
+        alias for alias in _METRIC_SUBJECT_ALIASES | _METRIC_INDUSTRY_SUBJECT_ALIASES
+        if _canonical_metric_subject(alias) in feature.metric_subjects
+    }
+    for name in sorted(names, key=len, reverse=True):
+        text = re.sub(r"(?<![가-힣a-z0-9])" + re.escape(name)
+                      + r"[은는이가의도과와을를]?(?![가-힣a-z0-9])", " ", text)
+    # A year alone is not an independent event identifier. These are the same
+    # explicit period forms understood by _metric_period, not publication dates.
+    text = re.sub(r"(?<![0-9])(?:[0-9]{4}년|[1-4]분기(?:말)?|[0-9]{1,2}월\s*말)|[상하]반기", " ", text)
+    return _tokenize_title(text)
+
+
+def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
+    if not (a.reported_metrics & b.reported_metrics
+            and len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects):
+        return False
+    # Do not turn a missing period into a conflict against a dated report.
+    # Such pairs still have to pass ordinary similarity without the shortcut.
+    if a.metric_period[1] is not None or b.metric_period[1] is not None:
+        return False
+    # Stored search headlines may end mid-word (e.g. 하...). Incomplete
+    # event wording cannot establish disjoint events; ordinary rules still apply.
+    if any(re.search(r"\.{2,}$", feature.norm_title) for feature in (a, b)):
+        return False
+    left, right = _metric_event_tokens(a), _metric_event_tokens(b)
+    # Bare statistical wire labels still use ordinary title similarity. Once
+    # both headlines name an event, the repeated fact cannot replace overlap
+    # in that event, including via a bare-statistic bridge in a cluster.
+    return bool(left and right) and not (left & right)
 
 
 def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
@@ -560,7 +608,8 @@ def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
 
     # Explicit subject/period conflicts veto even fingerprint/similarity shortcuts.
     if (_conflicting_metric_subjects(a, b) or _conflicting_metric_periods(a, b)
-            or _conflicting_enforcement_periods(a, b)):
+            or _conflicting_enforcement_periods(a, b)
+            or _metric_match_lacks_event_evidence(a, b)):
         return False
 
     if a.low_value or b.low_value:
@@ -592,10 +641,14 @@ def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
         (b.tokens | b.issue_terms) - _GENERIC_TOKENS,
     )
 
-    # Same subject + measurement + percentage supports statistical wire
-    # variants. Neither missing subjects nor snippet background authorize it.
+    # A rounded level is supporting evidence, not an event identifier. Only
+    # a shared explicit as-of month (quarter/half-year end included) authorizes
+    # statistical wire matching. A shared year alone is insufficient; missing
+    # periods fall through to ordinary similarity instead of becoming conflicts.
     if a.reported_metrics & b.reported_metrics:
-        if len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects:
+        if (len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects
+                and a.metric_period[1] is not None
+                and a.metric_period[1] == b.metric_period[1]):
             return True
 
     if not shared_issue_terms and not shared_entities and not shared_numbers:
@@ -686,7 +739,8 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
             # even in sectors retaining their original single-link behavior.
             if any(_conflicting_metric_subjects(features[idx], features[member])
                    or _conflicting_metric_periods(features[idx], features[member])
-                   or _conflicting_enforcement_periods(features[idx], features[member]) for member in cluster):
+                   or _conflicting_enforcement_periods(features[idx], features[member])
+                   or _metric_match_lacks_event_evidence(features[idx], features[member]) for member in cluster):
                 continue
             compatibility = all if strict[idx] or any(strict[member] for member in cluster) else any
             if compatibility(_should_cluster_features(features[idx], features[member]) for member in cluster):

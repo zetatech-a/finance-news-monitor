@@ -894,3 +894,173 @@ recognizer's coverage. Year-only campaign policy and exact insurer-alias coverag
 are unchanged. No registry/architecture/threshold/ranking work is included. Human
 review should confirm the compact baseline policy and labelled edge cases before
 merge; this is deterministic offline replay, not production API/model equivalence.
+
+## Cumulative review follow-up: event evidence, campaign months and metric owners
+
+Baseline: `d72a623ad663e9fb8e7207cbe73cfeb7ce14fc79`. Read Codex's actual
+[event-evidence](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4059927903),
+[campaign-month](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4059927908),
+[legal-name](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4059927909), and
+[aggregate-owner](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4059927911)
+comments. Initial 37-case regression matrix on that baseline: **15 failed / 22
+passed**, reproducing all four findings before production edits. Two subsequent
+stored-title regressions reproduced the overly strict intermediate policy
+(**2 failed / 37 passed**); final new matrix: **39 passed**.
+
+### Final contracts
+
+* Equal subject/metric/rounded value alone no longer returns True. The exact
+  shortcut additionally requires equal explicit as-of months (including existing
+  quarter/half-year equivalences); known conflicting years still veto first.
+  A year alone is insufficient. Without the shortcut, ordinary similarity decides.
+  Removing the shortcut alone was insufficient: existing entity/number/issue
+  overlap could still merge distinct announcements. A narrow pair and member-wide
+  check therefore removes the already-counted metric, subject and period from
+  headline evidence. For same-subject/equal-level articles without an as-of month,
+  two nonempty disjoint residual event-token sets cannot authorize merging or be
+  bridged by a bare statistic. Bare/unknown event text is not a conflict. Neither
+  missing/ambiguous periods against dated wires nor titles truncated with trailing
+  dots establish an event conflict. The guard is not a generic event parser.
+* Campaign period becomes `(year, month)` using only explicit YYYY년 and 1–12월
+  in enforcement headlines. Each dimension with several distinct values stays
+  unknown. Compare only dimensions known on both sides, preserving missing-year/
+  month wires and the existing fingerprint. Month/year vetoes run before equal
+  fingerprint/low-value shortcuts and against every existing cluster member.
+* Add only exact `교보생명보험 -> 교보생명` in the metric-local alias map. The July
+  30 stored [capital-security article](https://www.edaily.co.kr/news/newspath.asp?newsid=05717046645519440)
+  uses 교보생명 in the title and 교보생명보험 in its summary. The August 31
+  [financing preview](https://www.bloter.net/news/articleView.html?idxno=672131)
+  supplies another legal-name occurrence. No suffix-wide normalization or other
+  unverified legal alias is added; other insurers and industry aggregates remain
+  distinct.
+* `등/포함한/포함 + industry label` must immediately precede the metric occurrence
+  to establish aggregate ownership. Thus examples before 보험사/생보사/손보사 do
+  not own that statistic. `보험사 중 삼성생명`, plain named subjects, subsequent
+  comparisons and descriptions retain the existing policy. Multiple named owners
+  without an explicit governing aggregate are not reduced to an arbitrary one.
+
+Observed alias counts below are **candidate rows containing the name in title or
+summary**, with the short spelling excluding the full-name substring:
+
+| Candidate date | 교보생명 | 교보생명보험 | Canonical identity |
+| --- | ---: | ---: | --- |
+| 07-30 | 1 | 1 | 교보생명 (same row) |
+| 08-31 | 0 | 1 | 교보생명 |
+| 09-15 | 0 | 0 | 교보생명 |
+| 09-16 | 34 | 0 | 교보생명 |
+| 09-17 | 21 | 0 | 교보생명 |
+
+The existing period test now explicitly distinguishes "no period conflict" from
+"must merge": its missing-period 자본확충/후순위채 fixture no longer gets a free
+same-value shortcut. The ambiguous-period case continues to merge through its
+ordinary evidence and now separately asserts absence of a period conflict.
+Same-period wires, genuine no-period wires, and all event/campaign bridge
+permutations are tested. No relevance, thresholds, ranking or replay engine edits.
+
+### Validation and final replay
+
+New tests **39 passed**; new tests plus existing period tests **96 passed**.
+Related suite **853 passed, 1 skipped** (10 existing NumPy/joblib warnings).
+Full **Linux / Python 3.11 / network disabled: 1206 passed, 1 skipped**.
+`git diff --check` passed. The continuation preserved the original changes and
+baseline captures; after finding residual fragmentation, it added two failing
+stored-title tests and reran related/full suites and all six replay cohorts.
+
+The first strict policy (09-17 fixed 401 -> 404 clusters, 82 split pairs) was
+rejected. The intermediate policy still split 43 pairs: four no-period pairs had
+nonoverlapping residual wording, but each involved a stored headline truncated
+mid-word with trailing dots. Treating incomplete text as a definitive conflict
+blocked otherwise valid dated-wire links. Final policy abstains from that veto;
+it does not restore the unconditional metric shortcut or lower any threshold.
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+All six cohort dictionaries (kept sets, memberships, per-sector counts and exact
+representative titles/URLs) are identical. Newly merged/split pairs **0 / 0**.
+All 3,327 candidates' relevance scores, hard/soft/negative terms, domain anchors,
+metric identities/subjects/absolute values/periods, issue terms and fingerprints
+are unchanged. Campaign period comparison adapts baseline year to `(year, None)`
+only for schema comparison; no new month evidence occurs in these candidates.
+No article-level correction is claimed where none was measured.
+
+Of 82 former shortcut-only pairs in each 09-17 cohort, **46** still match directly
+through equivalent explicit periods. The remaining **36** now fail ordinary pair
+similarity (none is event-vetoed) but **all retain the same final cluster** through
+existing wire links. The table below identifies every rejected direct pair. Their
+subject/value/period and titles, not new labels or dates, drove this audit. Golden's
+one shortcut-only pair remains directly connected. Loan golden precision/recall
+**1.0000 / 0.922414** (107/116 recall); other-sector **1.0000 / 0.888889** (40/45),
+both unchanged; golden end-to-end evaluation also identical.
+
+Limits: exact residual-token overlap is a conservative local heuristic, not
+semantic event identity. Dated or incomplete headlines still rely on existing
+ordinary rules; different events sharing an explicit as-of month or generic
+wording can still require future review. Month/year extraction does not infer
+relative dates, publication dates, description dates, or day-level campaigns.
+Legal aliases are exact and corpus-verified, and aggregate grammar covers only
+the narrow immediate constructions above. No registry/query/threshold/ranking,
+ML/Gemini/report/email or unrelated macro/digital changes are included. Human
+review should confirm these precision/recall boundaries before merging; this is
+stored-cohort deterministic validation, not a production API/model rerun.
+
+### Shortcut-only pair inventory (stored cohort audit)
+
+All entries below are insurance-sector, canonical subject `보험사`, metric
+`capital_adequacy_ratio=215.2`. The 19 titles and stored snippets describe the
+September 16 release of June-end insurer capital adequacy (down 0.8 percentage
+points, required capital rising). Assessment: **82 same-event, 0 different-event,
+0 ambiguous** pairs in each September 17 cohort; this is an offline editorial
+assessment of titles/snippets, not a production label feed. One snippet omits the
+release date but shares the same required-capital cause and level. Neither
+September 15/16 nor other-sector fixtures has shortcut-only pairs. Loan golden
+has one (titles 7/8 below), preserved by explicit equivalent periods.
+
+| ID | Observed title | Headline period |
+| --- | --- | --- |
+| 1 | [2분기 보험사 지급여력비율 215.2%… 전기比 0.8%P 하락](https://biz.chosun.com/stock/finance/2026/09/16/BKPDYDNNOBAMBMDDW2XGPLC67Q/?utm_source=naver&utm_medium=original&utm_campaign=biz) | [None, 6] |
+| 2 | [6월 말 보험사 킥스비율 215.2%로 소폭 하락…손보는 상승](https://view.asiae.co.kr/article/2026091611191368572) | [None, 6] |
+| 3 | [6월말 보험사 지급여력비율 215.2%…전분기 대비 0.8%p 하락](https://biz.sbs.co.kr/article_hub/20000334973?division=NAVER) | [None, 6] |
+| 4 | [6월말 보험사 지급여력비율 215.2%…전분기 대비 0.8%p↓](https://www.newsis.com/view/NISX20260916_0003791785) | [None, 6] |
+| 5 | [“주가 오르자 위험액도 늘었다”…보험사 지급여력비율 215.2% ‘소폭 하...](https://www.ddaily.co.kr/page/view/2026091614203432260) | [None, None] |
+| 6 | [국내 보험사 2분기 K-ICS 비율 215.2%… 전분기 比 0.8%p 하락](https://www.insnews.co.kr/news/articleView.html?idxno=92866) | [None, 6] |
+| 7 | [보험사 2분기 킥스비율 215.2%···전분기比 0.8%p↓](https://www.seoulfn.com/news/articleView.html?idxno=638102) | [None, 6] |
+| 8 | [보험사 6월 말 킥스비율 215.2%...요구자본 증가](http://www.popcornnews.net/news/articleView.html?idxno=133153) | [None, 6] |
+| 9 | [보험사 6월 말 킥스비율 215.2%…3개월 새 0.8%p 하락](https://www.dailian.co.kr/news/view/1691080/?sc=Naver) | [None, 6] |
+| 10 | [보험사 6월말 킥스 215.2%…전 분기比 0.8%p↓](http://www.hansbiz.co.kr/news/articleView.html?idxno=865758) | [None, 6] |
+| 11 | [보험사 상반기 킥스 215.2%·0.8%p↓…상위사 최대 28%p 하락](https://news.einfomax.co.kr/news/articleView.html?idxno=4435184) | [None, 6] |
+| 12 | [보험사 지급여력비율 215.2%로 소폭 하락…주가 상승에 요구자본 증가](http://www.newsian.co.kr/news/articleView.html?idxno=95496) | [None, None] |
+| 13 | [보험사 지급여력비율 215.2%로 하락…생·손보 엇갈린 희비](https://www.mydaily.co.kr/page/view/2026091616173998396) | [None, None] |
+| 14 | [보험사 킥스 비율 215.2%로 전분기 比 0.8%p↓…손보사 상승·생보사 하...](http://www.srtimes.kr/news/articleView.html?idxno=212609) | [None, None] |
+| 15 | [상반기 보험사 K-ICS 비율 215.2%로 소폭↓… 손보 웃고 생보 울고](https://www.dt.co.kr/article/12084229?ref=naver) | [None, 6] |
+| 16 | [상반기 보험사 지급여력비율 215.2% … 전분기比 0.8%p 하락](https://biz.newdaily.co.kr/site/data/html/2026/09/16/2026091600263.html) | [None, 6] |
+| 17 | [상반기 보험사 지급여력비율 215.2%…0.8%p 하락](https://www.etnews.com/20260916000049) | [None, 6] |
+| 18 | [상반기 보험사 지급여력비율 215.2%…소폭 하락](http://www.segyebiz.com/newsView/20260916517510?OutUrl=naver) | [None, 6] |
+| 19 | [주가 뛰자 위험액도 껑충…보험사 2분기 킥스비율 215.2%로 '주춤'](https://www.widedaily.com/news/articleView.html?idxno=301155) | [None, 6] |
+
+Each row enumerates all right-hand partners with greater ID (82 unique pairs;
+fixed/rescored inventories are identical). This compact inventory preserves
+the inspected pair titles without duplicating large replay JSON artifacts.
+
+| Left ID | Right IDs | Direct pair now False (same final cluster) |
+| --- | --- | --- |
+| 1 | 2, 8, 11, 15, 19 | — |
+| 2 | 5, 6, 7, 8, 11, 16, 19 | 5 |
+| 3 | 5, 8, 11, 12, 15, 19 | 5, 12 |
+| 4 | 5, 8, 11, 12, 15, 19 | 5, 12 |
+| 5 | 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 | 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 |
+| 6 | 8, 11, 12, 13, 18, 19 | 12, 13 |
+| 7 | 8, 12, 13, 15, 18 | 12, 13 |
+| 8 | 11, 13, 14, 15, 16, 17, 18, 19 | 13, 14 |
+| 9 | 12, 13, 15, 18, 19 | 12, 13 |
+| 10 | 12, 13, 15, 18, 19 | 12, 13 |
+| 11 | 12, 13, 15, 16, 19 | 12, 13 |
+| 12 | 14, 15, 19 | 14, 15, 19 |
+| 13 | 14, 15, 19 | 14, 15, 19 |
+| 14 | 17, 18, 19 | 17, 18, 19 |
+| 15 | 16, 17, 19 | — |
+| 16 | 19 | — |
+| 17 | 19 | — |

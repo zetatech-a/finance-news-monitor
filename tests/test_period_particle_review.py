@@ -39,8 +39,12 @@ def test_explicit_metric_period_conflict_prevents_final_merge(left: str, right: 
 def test_same_or_missing_metric_period_retains_wire_recall(left: str, right: str) -> None:
     a = tagged(f'KB손보 {left} 킥스비율 200% 자본확충 완료')
     b = tagged(f'KB손해보험 {right} 지급여력비율 200% 후순위채 발행')
-    assert _should_cluster(a, b)
-    assert len(cluster_tagged_articles([a, b])) == 1
+    from src.pipeline.issue_cluster import _build_cluster_features, _conflicting_metric_periods
+    assert not _conflicting_metric_periods(_build_cluster_features(a), _build_cluster_features(b))
+    # Missing period is not a conflict, but no longer authorizes unrelated
+    # event phrases solely because their rounded metric levels happen to agree.
+    assert _should_cluster(a, b) == bool(right)
+    assert len(cluster_tagged_articles([a, b])) == (1 if right else 2)
 
 
 def test_conflicting_periods_cannot_bridge_through_missing_period() -> None:
@@ -126,5 +130,9 @@ def test_background_comparison_after_metric_does_not_set_period() -> None:
 
 
 def test_ambiguous_period_does_not_invent_conflict() -> None:
-    assert _should_cluster(tagged('KB손보 1분기 2분기 킥스비율 200% 유지'),
-                           tagged('KB손해보험 2분기 지급여력비율 200% 후순위채 발행'))
+    from src.pipeline.issue_cluster import _build_cluster_features, _conflicting_metric_periods
+    a = tagged('KB손보 1분기 2분기 킥스비율 200% 유지')
+    b = tagged('KB손해보험 2분기 지급여력비율 200% 후순위채 발행')
+    assert not _conflicting_metric_periods(_build_cluster_features(a), _build_cluster_features(b))
+    assert _should_cluster(a, b)
+    assert len(cluster_tagged_articles([a, b])) == 1
