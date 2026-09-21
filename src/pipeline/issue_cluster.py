@@ -23,9 +23,14 @@ _LOCAL_AUTHORITY_RE = re.compile(
     r"(?<![가-힣])(?:서울(?:특별)?시|(?:부산|대구|인천|광주|대전|울산)(?:광역)?시|"
     r"세종(?:특별자치)?시|[가-힣]{2,8}(?:시청|경찰청))(?=[^가-힣]|[은는이가의에]|$)"
 )
-_REPORTED_METRIC_RE = re.compile(
+_METRIC_OCCURRENCE_PATTERN = (
     r"((?:킥스|k[- ]ics)(?:\s*비율)?|지급여력\s*비율|연체율|예대\s*금리차)"
-    r"\s*(?:은|는|이|가)?\s*(\d+(?:\.\d+)?)\s*%(?!\s*(?:p|포인트))", re.IGNORECASE,
+    r"\s*(?:은|는|이|가)?\s*(\d+(?:\.\d+)?)\s*%"
+)
+# Level and percentage-point reports share identity/subject/period evidence.
+_METRIC_OCCURRENCE_RE = re.compile(_METRIC_OCCURRENCE_PATTERN, re.IGNORECASE)
+_REPORTED_METRIC_RE = re.compile(
+    _METRIC_OCCURRENCE_PATTERN + r"(?!\s*(?:p|포인트))", re.IGNORECASE,
 )
 
 _ALIASES: tuple[tuple[str, str], ...] = (
@@ -345,12 +350,21 @@ def _canonical_metric_value(value: str) -> str:
     return whole + ("." + fraction if fraction else "")
 
 
+def _metric_identity(label: str) -> str | None:
+    return next(iter(_important_issue_terms(label) & {
+        "capital_adequacy_ratio", "delinquency_rate", "loan_deposit_spread",
+    }), None)
+
+
+def _metric_identities(title: str) -> set[str]:
+    return {metric for label, _ in _METRIC_OCCURRENCE_RE.findall(title)
+            if (metric := _metric_identity(label)) is not None}
+
+
 def _reported_metrics(title: str) -> set[tuple[str, str]]:
     facts = set()
     for label, value in _REPORTED_METRIC_RE.findall(title):
-        metric = next(iter(_important_issue_terms(label) & {
-            "capital_adequacy_ratio", "delinquency_rate", "loan_deposit_spread",
-        }), None)
+        metric = _metric_identity(label)
         if metric:
             facts.add((metric, _canonical_metric_value(value)))
     return facts
@@ -372,6 +386,10 @@ def _canonical_metric_subject(subject: str) -> str:
     )
 
 
+# Metric-local contract: complete particles, not prefixes of words like 이익.
+_METRIC_SUBJECT_END = r"(?=[은는이가의도과와을를]?(?![가-힣a-z0-9]))"
+
+
 def _metric_subjects(title: str) -> set[str]:
     """Positive headline evidence of the measured entity, not its regulator.
 
@@ -379,7 +397,7 @@ def _metric_subjects(title: str) -> set[str]:
     would alter unrelated earnings/market clustering. Missing subjects never
     authorize the measurement shortcut.
     """
-    measurements = list(_REPORTED_METRIC_RE.finditer(title))
+    measurements = list(_METRIC_OCCURRENCE_RE.finditer(title))
     # All measured values cannot be attributed to the first subject. Keep
     # ordinary similarity available, but authorize no metric shortcut/veto for
     # multi-measurement headlines (even repeated equal values after rounding).
@@ -389,10 +407,13 @@ def _metric_subjects(title: str) -> set[str]:
     # The subject precedes the measurement. Later comparisons may mention
     # other companies or subsectors and must not redefine whose value it is.
     title = title[:measurement.start()]
-    subjects = _extract_entities(title) - {"금융감독원", "금융위원회", "한국은행"}
+    subjects = {
+        entity for entity in _extract_entities(title) - {"금융감독원", "금융위원회", "한국은행"}
+        if re.search(r"(?<![가-힣a-z0-9])" + re.escape(entity) + _METRIC_SUBJECT_END, title)
+    }
     subjects.update(re.findall(
         r"(?<![가-힣a-z0-9])[가-힣a-z0-9]+(?:생명|손보|화재|라이프|보험|은행|카드|캐피탈)"
-        r"(?=[^가-힣a-z0-9]|[은는이가의]|$)", title,
+        + _METRIC_SUBJECT_END, title,
     ))
     if subjects:
         return {_canonical_metric_subject(subject) for subject in subjects}
@@ -414,7 +435,7 @@ def _metric_period(title: str) -> tuple[int | None, int | None]:
     month (2분기 == 상반기 == 6월말). Missing or ambiguous dimensions stay unknown;
     relative years and later background comparisons do not establish a period.
     """
-    measurement = _REPORTED_METRIC_RE.search(title)
+    measurement = _METRIC_OCCURRENCE_RE.search(title)
     if not measurement:
         return None, None
     prefix = title[:measurement.start()]
@@ -439,6 +460,7 @@ class _ClusterFeatures:
     entities: set[str]
     numbers: set[str]
     issue_terms: set[str]
+    metric_identities: set[str]
     reported_metrics: set[tuple[str, str]]
     metric_subjects: set[str]
     metric_period: tuple[int | None, int | None]
@@ -457,6 +479,7 @@ def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
         entities=_extract_entities(title),
         numbers=_extract_numbers(title),
         issue_terms=_extract_issue_terms(item),
+        metric_identities=_metric_identities(norm_title),
         reported_metrics=_reported_metrics(norm_title),
         metric_subjects=_metric_subjects(norm_title),
         metric_period=_metric_period(norm_title),
@@ -465,7 +488,7 @@ def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
 
 def _conflicting_metric_subjects(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
     return bool(
-        {metric for metric, _ in a.reported_metrics} & {metric for metric, _ in b.reported_metrics}
+        a.metric_identities & b.metric_identities
         and a.metric_subjects and b.metric_subjects and not (a.metric_subjects & b.metric_subjects)
     )
 
@@ -473,8 +496,7 @@ def _conflicting_metric_subjects(a: _ClusterFeatures, b: _ClusterFeatures) -> bo
 def _conflicting_metric_periods(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
     # Recurring reports can change value. Period safety needs the same metric
     # identity; only the exact-match shortcut below also requires equal values.
-    shared_metrics = ({metric for metric, _ in a.reported_metrics}
-                      & {metric for metric, _ in b.reported_metrics})
+    shared_metrics = a.metric_identities & b.metric_identities
     if not (shared_metrics
             and len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects):
         return False

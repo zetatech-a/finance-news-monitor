@@ -642,3 +642,76 @@ and plural combination, not arbitrary suffixes such as 에서는/들에게. Gene
 company/entity suffix behavior is outside this finding. Missing/ambiguous
 metric subjects remain conservative, and existing unrelated clustering limits
 are unchanged. This validates offline candidate replay, not live collection.
+
+## Follow-up: named particles, lending suffixes and change-report safety on 26ec9fc
+
+Read and reproduced the three Codex comments:
+[named subjects](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4058575370),
+[lending suffixes](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4058575374),
+[percentage-point safety](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4058575377).
+The first 72-case pre-production matrix gave **48 failed, 24 passed**. The final
+79-case matrix was also executed against both original 26ec9fc production modules
+loaded from Git in an isolated process: **52 failed, 27 passed**. No working-tree
+reset or historical code snapshot was committed.
+
+Named metric subjects now accept complete 은/는/이/가/의/도/과/와/을/를 suffixes,
+with a Korean/Latin/digit boundary after the suffix. The metric-local general
+entity candidates receive the same boundary validation so known-bank substring
+matches cannot bypass it (e.g. 국민은행이익). General `_extract_entities()` and
+industry fallback/canonicalization remain unchanged. Tests cover company
+particles, lexical negatives, conflict/pair/final clustering and named versus
+industry scope through existing alias matrices. Comitative fixtures explicitly
+refer to the company's own ratio; this is not general grammatical role inference.
+
+Spaced 불법 대부/미등록 대부 aliases now support complete 까지/만/부터/조차 alongside
+the prior suffixes. A small explicit postposition tuple defines their contract;
+도 remains excluded due to 대부도, and 대부만기/ASCII/digit continuations fail.
+The two aliases use `korean_postposition`; the previous `korean_particle` mode
+is retained unchanged so revision-specific alias-mode replay preserves old
+semantics without needing unreachable commit objects or changing replay code.
+At candidate probability 0.8, all six requested synthetic phrases changed from
+**score 0 / no hard anchor / no domain / drop** to **score 6 / canonical hard
+anchor / domain / keep**. Existing compounds, particles and noise tests pass.
+
+Metric identity and absolute level now have separate roles. A shared regex
+component recognizes the existing metric+numeric-percentage occurrence syntax,
+including percentage-point changes. `_metric_identities`, subject extraction
+and period extraction use those occurrences. `_reported_metrics` still excludes
+%p/% p/%포인트/% 포인트 and retains numeric canonicalization. One additional local
+feature set feeds subject/period vetoes; exact shortcut logic continues to use
+only `(metric, absolute value)`. Multiple occurrences, including mixed level and
+change reports, provide no authoritative subject, preserving conservative
+association. Tests exercise all four change suffixes, different subjects,
+period conflicts/equivalence/missing periods, all supported metric identities,
+absolute shortcut positives, level/change negatives and bridge permutations.
+
+Validation: **79 new tests passed**; final related suite **703 passed, 1 skipped**
+(10 existing NumPy/joblib warnings); full Linux/Python 3.11, network disabled,
+read-only source/Git mounts, process-local core.autocrlf=true:
+**1056 passed, 1 skipped**. `git diff --check` passed. Production changes are
+limited to issue_cluster.py and text_matcher.py; no thresholds/ranking, queries,
+relevance policy, ML/Gemini/report/email or general normalization changes.
+
+Fresh fixed/rescored 26ec9fc before and revised after captures are entirely equal:
+
+| Date | Fixed kept / clusters | Rescored kept / clusters | Largest | >=50 | Loan representatives fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+All kept sets, membership, sector representatives and representative title/URL
+are unchanged; newly merged/split pairs **0 / 0** for all six cohorts. All 3,327
+candidate scores, hard/soft/negative terms, domain anchors and metric subject
+sets are unchanged. No actual candidate acquired a new keep from these suffixes.
+Golden precision/recall **1.0000 / 0.922414** (107/107/116); other-sector labels
+**1.0000 / 0.888889** (40/40/45), unchanged. Debug/replay artifacts stay ignored
+in `.venv`; only this note and regression tests accompany production changes.
+
+Limits: bounded suffix lists do not parse arbitrary stacked particles. Lending
+도 stays ambiguous and unsupported. Metric occurrence recognition remains the
+existing numeric percentage vocabulary, not bare-label/general financial NLP.
+Missing/ambiguous subjects do not authorize metric shortcuts or inferred vetoes;
+ordinary similarity remains available. Prior unrelated clustering issues are
+out of scope. Humans should review identity/level separation and the explicit
+suffix contracts before merge; replay is offline, not live API/model equivalence.
