@@ -398,8 +398,11 @@ def _metric_subjects(title: str) -> set[str]:
         return {_canonical_metric_subject(subject) for subject in subjects}
     # Explicit industry-wide statistics have subjects too. Do not infer these
     # merely from the sector tag or a background snippet.
+    # Accept complete particles/plural suffixes, not lexical continuations
+    # such as 은행권이익 or 저축은행권역.
     industry_subjects = re.findall(
-        r"(?<![가-힣])(?:보험사|보험회사|생보사|손보사|은행권|저축은행권|카드사)(?=[^가-힣]|들|의|는|가|$)", title,
+        r"(?<![가-힣])(?:보험사|보험회사|생보사|손보사|은행권|저축은행권|카드사)"
+        r"(?=(?:들)?[은는이가의]?(?![가-힣a-z0-9]))", title,
     )
     return {_canonical_metric_subject(subject) for subject in industry_subjects}
 

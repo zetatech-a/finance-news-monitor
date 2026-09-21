@@ -590,3 +590,55 @@ fixed/rescored candidate replay, not live API/model equivalence. Before merge,
 humans should confirm the identity-versus-value role separation and review the
 synthetic recurring-report/bridge cases; prior out-of-scope clustering issues
 remain unchanged.
+
+## Follow-up: bounded industry-subject particles on 71b930e
+
+[Codex review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4045018285)
+reproduced: the industry fallback accepted 는/가/의/들 but omitted 은/이.
+Both banking scopes consequently lost their metric subject and bypassed the
+subject veto, merging through ordinary similarity. The final pre-fix matrix
+in `tests/test_industry_subject_particle_review.py` gave **20 failed, 15 passed**,
+including helper, pair, final-cluster and missing-subject bridge failures.
+
+Only the industry fallback's right boundary changed: optional plural 들,
+optional basic particle 은/는/이/가/의, then a boundary excluding Korean letters,
+Latin letters and digits. Bare labels and punctuation/whitespace boundaries
+remain valid. A suffix must be complete; 은행권이익, 저축은행권역, 보험사가치,
+은행권들러리 and ASCII/digit continuations are rejected. Plural+particle forms
+such as 은행권들은 remain recognized. General entity extraction, company-name
+patterns and canonical identities are unchanged; this is not a tokenizer.
+
+All **35 new cases passed**, covering the four requested 은/이 subjects,
+existing 는/가/의/들, same-scope 10/10.0 wire recall, distinct banking scopes,
+lexical negatives and missing-subject bridges across all six input orders.
+Related metric/clustering/golden/other-sector/replay regression: **292 passed**.
+Full Linux/Python 3.11 suite, network disabled, read-only source/Git mounts,
+process-local core.autocrlf=true: **977 passed, 1 skipped**. Docker was initially
+off and was started for this validation. Native Windows full run:
+**974 passed, 1 skipped, 3 failed** (the existing POSIX-path assertion and two
+unavailable WSL bash invocations). No tests were disabled or changed to bypass
+these environment limitations. `git diff --check` passed.
+
+Fresh 71b930e before and revised after captures are entirely equal. All values
+below are before = after:
+
+| Date | Fixed kept / clusters | Rescored kept / clusters | Largest | >=50 | Loan representatives fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+All kept sets, memberships, sector representative counts and representative
+title/URLs are identical; new merged/split pairs **0 / 0** on all six cohorts.
+All 3,327 candidate titles retain identical extracted metric subjects; scores,
+hard/soft/negative terms and domain anchors also have zero changes. Thus corpus
+mentions of these particles do not affect this metric-extraction path in the
+three days. Golden pair precision/recall **1.0000 / 0.922414** (107/107/116);
+other sectors **1.0000 / 0.888889** (40/40/45), unchanged. Temporary captures,
+comparison scripts and logs stay ignored under `.venv`.
+
+Limits: industry fallback intentionally recognizes only the basic particle set
+and plural combination, not arbitrary suffixes such as 에서는/들에게. General
+company/entity suffix behavior is outside this finding. Missing/ambiguous
+metric subjects remain conservative, and existing unrelated clustering limits
+are unchanged. This validates offline candidate replay, not live collection.
