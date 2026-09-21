@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 14,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 48,
+  "candidate_hybrid_gray_rule_drop": 88,
+  "candidate_hybrid_gray_rule_keep": 48,
+  "candidate_hybrid_keep_overseas_global_reference": 11,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 13,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 217,
+  "candidate_hybrid_model_drop": 16,
+  "candidate_hybrid_model_keep": 92,
+  "candidate_hybrid_model_keep_with_domain_anchor": 92,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 217,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-21",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 14,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 88,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 48,
+    "candidate_hybrid_keep_overseas_global_reference": 11,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 13,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 217,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 16,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 92
+  },
+  "dropped_count": 134,
+  "input_count": 516,
+  "kept_count": 382,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 516,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 31,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "그들은 왜 제도권 금융에서 밀려났나… 다중채무청년 1432명의 현주소",
+      "url": "https://www.hankookilbo.com/news/article/A2026091709440005982?did=NA"
+    },
+    {
+      "title": "경기 전망 하락…“내수가 회복돼야”",
+      "url": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8668057&ref=A"
+    },
+    {
+      "title": "'빌린 돈, 이제는 갚을 걱정' 전북 주담대 부담 커진다",
+      "url": "http://www.domin.co.kr/news/articleView.html?idxno=1569550"
+    },
+    {
+      "title": "저신용 자영업자 ‘연체 경고등’…은행도 대출 문턱 높이나",
+      "url": "https://www.etoday.co.kr/news/view/2627617"
+    },
+    {
+      "title": "금리 충격도 ‘양극화’...자영업자·저소득자·다중채무자 ‘휘청’",
+      "url": "https://www.joongang.co.kr/article/25463396"
+    },
+    {
+      "title": "[기획] 원자재값 뛰는데 판가 못 올려… 중소 제조업 마진 쇼크·대출 부...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1415894"
+    },
+    {
+      "title": "[KDB생명 매각] KDB생명은 품고 정상화 비용은 산은에…한투 '1조' 요구",
+      "url": "https://dealsite.co.kr/articles/169318"
+    },
+    {
+      "title": "\"0.4%p 감면 약속, 급여 표시 안 해서 날렸다\"…금감원이 알려준 4가지",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=1416461"
+    },
+    {
+      "title": "주담대 조이는데…신한은행, 청년층에 5000억 특별 한도",
+      "url": "https://www.cstimes.com/news/articleView.html?idxno=721299"
+    },
+    {
+      "title": "월급 꼬박 이체했는데 우대금리 못 받았다?…\"급여정보 등록해야\"",
+      "url": "https://www.dailian.co.kr/news/view/1692681/?sc=Naver"
+    }
+  ]
+}
