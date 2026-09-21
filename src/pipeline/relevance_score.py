@@ -301,12 +301,13 @@ def _has_strong_finance_anchor(text: str) -> bool:
 
 
 def _lending_context_text(text: str) -> str:
-    """Use canonical spelling only for context guards, preserving their policy.
+    """Use canonical spelling for local context guards and hard-anchor evidence.
 
     A supported spaced lending anchor must not add standalone 불법/미등록/사채
     evidence absent from its compact spelling. Reuse actual alias modes so
     lexical collisions (대부도 etc.) are not canonicalized into finance anchors.
-    Hard/soft/negative term matching and global normalization stay unchanged.
+    This local spelling view also supplies hard-anchor ownership; global
+    normalization and soft/negative matching stay unchanged.
     """
     text = normalize_text(text)
     for term in ("불법사금융", "불법대부", "미등록대부", "불법사채", "불법추심"):
@@ -364,6 +365,17 @@ def _urls(article) -> list[str]:
     return [str(v).strip() for v in vals if v]
 
 
+def _matched_hard_terms(text: str) -> list[str]:
+    # Use the existing compact spelling as the hard-score contract. A space
+    # inside one supported lending phrase must not create another 대부업 anchor;
+    # independent mentions elsewhere remain in the text and still count.
+    text = _lending_context_text(text)
+    hard = find_terms(text, _WEIGHTS.hard)
+    if not has_finance_entity_context(text):
+        hard = [term for term in hard if term not in ENFORCEMENT_GENERIC_TERMS]
+    return hard
+
+
 def relevance_score(article) -> int:
     """Return a conservative finance relevance score.
 
@@ -387,14 +399,7 @@ def relevance_score(article) -> int:
     soft_score = 0
     neg_score = 0
 
-    # add hard anchors — 집행 일반어(검사/제재 등)는 금융 주체 문맥이 있을 때만 집계
-    finance_entity = has_finance_entity_context(text)
-    enforcement_generic = set(ENFORCEMENT_GENERIC_TERMS)
-    for k, w in _WEIGHTS.hard.items():
-        if k in enforcement_generic and not finance_entity:
-            continue
-        if contains_term(text, k):
-            hard_score += w
+    hard_score = sum(_WEIGHTS.hard[term] for term in _matched_hard_terms(text))
 
     # add soft signals
     for k, w in _WEIGHTS.soft.items():
@@ -431,11 +436,7 @@ def relevance_score(article) -> int:
 def matched_terms(article) -> dict[str, list[str]]:
     """Return safe matched relevance terms for observability/debugging."""
     text = normalize_text(_text(article))
-    hard = find_terms(text, _WEIGHTS.hard)
-    # 점수 집계와 동일하게, 금융 주체 문맥이 없으면 집행 일반어는 hard에서 제외
-    if not has_finance_entity_context(text):
-        enforcement_generic = set(ENFORCEMENT_GENERIC_TERMS)
-        hard = [term for term in hard if term not in enforcement_generic]
+    hard = _matched_hard_terms(text)
     return {
         "hard": hard,
         "soft": find_terms(text, _WEIGHTS.soft),

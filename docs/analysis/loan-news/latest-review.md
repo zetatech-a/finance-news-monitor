@@ -806,3 +806,91 @@ articles can join either compatible campaign but cannot bridge known conflicts.
 No architecture/threshold/ranking changes; offline replay does not establish live
 API/model equivalence. Human review should verify these narrow contracts before
 merge. Temporary evidence remains untracked under ignored `.venv`.
+
+## Follow-up: hard-anchor parity, metric labels and police agencies on ce5d635
+
+Read the actual Codex comments for [overlap](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4058922171),
+[particles](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4058922176),
+[police](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4058922180),
+and [KICS](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4058922182).
+Added 67 regression cases before production edits: **35 failed / 32 passed** on
+ce5d635. Each finding has observed final relevance/pair/cluster failures, not
+only missing-helper assertions. Final matrix: **67 passed**.
+
+### Contracts and fixes
+
+* Hard-anchor spelling parity: `불법 대부업 점검` scored 11 and kept at probability
+  0.1, while compact `불법대부업 점검` scored 6 and dropped. Reuse the existing
+  narrow lending-context canonical view for hard evidence, shared by score and
+  matched_terms. Spacing inside a supported lending phrase no longer introduces
+  a separate 대부업 anchor. Compact spelling is the source of truth, including its
+  finance-entity guard for generic enforcement terms. Independent 대부업 mentions
+  elsewhere and independent 금융위/보험사/연체율 evidence remain. Neither weights,
+  thresholds, matcher aliases, global text normalization nor domain guard change.
+  Both 불법/미등록 대부업 forms now score 6, drop at 0.1 and keep at 0.8 with strong
+  finance/domain anchors. An important pre-existing distinction is preserved:
+  compact **대부중개업** already matched 대부업 through its explicit phrase alias;
+  compact/spaced brokerage examples were and remain 11, rather than silently
+  introducing a broader scoring-policy change. Alias/compound recall is retained.
+* Metric particles and compact Latin are one parser contract. A private capital
+  adequacy label component serves issue terms, numeric occurrences and direct
+  identity conversion. It supports 킥스(+ optional spaced 비율), K-ICS/K ICS/KICS,
+  and 지급여력 비율. Occurrences add only 도/만 to existing 은/는/이/가 and require
+  the numeric percentage next, rejecting 도입/만기. Label starts have Korean/ASCII
+  boundaries; complete issue labels reject SKICS/KICSabc/myKICSvalue/킥스타터.
+  Direct full-match identity conversion prevents a regex-only KICS fix from
+  leaving empty identity sets. Value canonicalization and percentage-point
+  exclusion remain unchanged. Tests cover subject and period vetoes, same-company
+  shortcut, %p, and multiple-occurrence ambiguity. The corpus scan found existing
+  은/는 numeric labels, but no new 도/만 or compact KICS safety case in these days.
+* Police authorities: normalize jurisdiction suffix 시/특별시/광역시/특별자치시
+  before appending **경찰청**, separately from existing city/city-hall handling.
+  서울경찰청/서울시경찰청/서울특별시경찰청 now share 서울경찰청; 부산 variants are
+  separately tested. Police versus municipal government and different cities
+  remain distinct. Fingerprint equality, final wires, conflicting campaign years
+  and all missing-year bridge permutations are tested. No authority registry or
+  event-period expansion is introduced.
+
+### Validation and replay
+
+Related suite: **814 passed, 1 skipped**, 10 existing NumPy/joblib warnings.
+Full Linux/Python 3.11, network disabled, read-only source/Git mounts:
+**1167 passed, 1 skipped**. New tests + loan golden: **80 passed**.
+`git diff --check` passed. Production changes are limited to issue_cluster.py
+and relevance_score.py; replay engine/configuration contracts are untouched.
+
+Fresh before/after fixed and rescored replay against ce5d635:
+
+| Date | Fixed kept / clusters | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+All six kept sets, memberships, sector representative counts and representative
+URLs/titles are unchanged; newly merged/split pairs **0 / 0**. All 3,327 candidates'
+metric identities, reported values, subjects, periods, issue terms, fingerprints,
+domain anchors, soft terms and negative terms are unchanged. Four 09-17 rows lose
+only the duplicate 대부업 hard term from `미등록 대부업` in their summaries:
+
+| Article | Hard terms before -> after | Score | Fixed keep | Rescored keep |
+| --- | --- | --- | --- | --- |
+| [서울시, 한가위 앞두고 전통시장 불법 사금융 집중 단속](https://news.bbsi.co.kr/news/articleView.html?idxno=4107034) | 대부업, 미등록대부, 불법사금융 -> 미등록대부, 불법사금융 | 19 -> 14 | drop -> drop | keep -> keep |
+| [서울시, 추석 앞두고 전통시장 불법사금융·고금리 대출 집중 단속](https://news.sbs.co.kr/news/endPage.do?news_id=N1008756001) | 대부업, 미등록대부, 불법사금융 -> 미등록대부, 불법사금융 | 20 -> 15 | keep -> keep | keep -> keep |
+| [서울시, 추석 앞둔 영세 소상공인 대상 ‘불법사금융’ 집중 단속](https://www.etoday.co.kr/news/view/2626108) | 대부업, 미등록대부, 불법사금융, 불법대부 -> 미등록대부, 불법사금융, 불법대부 | 25 -> 20 | keep -> keep | keep -> keep |
+| [서울시, 추석 앞두고 전통시장 불법사금융·고금리대출 집중단속](https://www.yna.co.kr/view/AKR20260916047700004) | 대부업, 미등록대부, 불법사금융 -> 미등록대부, 불법사금융 | 19 -> 14 | keep -> keep | keep -> keep |
+
+This is the intended 5-point spelling correction; none loses relevant recall.
+Fixed replay preserves recorded production scores/decisions by design, while
+per-candidate score comparisons and rescored replay recompute current evidence.
+Loan golden precision/recall **1.0000 / 0.922414** (107/107/116); other-sector
+**1.0000 / 0.888889** (40/40/45), unchanged. Golden end-to-end output also identical.
+No additional metric recovery or police fingerprint change occurs in this cohort.
+
+Limits: bounded suffixes and explicit supported labels are not a morphological
+parser. Compact brokerage anchors retain existing weighting, not a global
+semantic-score dedupe policy. Police normalization retains the existing authority
+recognizer's coverage. Year-only campaign policy and exact insurer-alias coverage
+are unchanged. No registry/architecture/threshold/ranking work is included. Human
+review should confirm the compact baseline policy and labelled edge cases before
+merge; this is deterministic offline replay, not production API/model equivalence.

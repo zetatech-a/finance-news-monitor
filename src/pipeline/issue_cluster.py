@@ -23,13 +23,17 @@ _LOCAL_AUTHORITY_RE = re.compile(
     r"(?<![가-힣])(?:서울(?:특별)?시|(?:부산|대구|인천|광주|대전|울산)(?:광역)?시|"
     r"세종(?:특별자치)?시|[가-힣]{2,8}(?:시청|경찰청))(?=[^가-힣]|[은는이가의에]|$)"
 )
-# Complete Korean metric label; unrelated continuations such as 킥스타터 fail.
-_KICS_ISSUE_LABEL_RE = re.compile(
-    r"(?<![가-힣a-z0-9])킥스(?:\s*비율)?(?=[은는이가의도과와을를]?(?![가-힣a-z0-9]))",
+# Shared label vocabulary for issue evidence, occurrence parsing and identity.
+_CAPITAL_ADEQUACY_LABEL = r"(?:(?:킥스|k[- ]?ics)(?:\s*비율)?|지급여력\s*비율)"
+_CAPITAL_ADEQUACY_LABEL_RE = re.compile(_CAPITAL_ADEQUACY_LABEL, re.IGNORECASE)
+_CAPITAL_ADEQUACY_ISSUE_RE = re.compile(
+    r"(?<![가-힣a-z0-9])" + _CAPITAL_ADEQUACY_LABEL
+    + r"(?=[은는이가의도과와을를만]?(?![가-힣a-z0-9]))", re.IGNORECASE,
 )
 _METRIC_OCCURRENCE_PATTERN = (
-    r"((?:킥스|k[- ]ics)(?:\s*비율)?|지급여력\s*비율|연체율|예대\s*금리차)"
-    r"\s*(?:은|는|이|가)?\s*(\d+(?:\.\d+)?)\s*%"
+    r"(?<![가-힣a-z0-9])(" + _CAPITAL_ADEQUACY_LABEL + r"|연체율|예대\s*금리차)"
+    # Complete optional particle followed by a numeric percentage; 도입/만기 fail.
+    r"\s*(?:은|는|이|가|도|만)?\s*(\d+(?:\.\d+)?)\s*%"
 )
 # Level and percentage-point reports share identity/subject/period evidence.
 _METRIC_OCCURRENCE_RE = re.compile(_METRIC_OCCURRENCE_PATTERN, re.IGNORECASE)
@@ -65,7 +69,6 @@ _DISTINCTIVE_TERM_ALIASES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("voice_phishing", ("보이스피싱",)),
     ("loan_ad", ("대출광고", "대출 광고", "대부광고", "대부 광고")),
     ("delinquency_rate", ("연체율",)),
-    ("capital_adequacy_ratio", ("킥스", "k-ics", "k ics", "지급여력비율", "지급여력 비율")),
     ("bad_loan", ("부실채권", "부실 채권")),
     ("real_estate_pf", ("부동산 pf", "부동산pf")),
     ("pf", ("pf",)),
@@ -249,9 +252,10 @@ def _finance_policy_fingerprint(text: str) -> str | None:
 def _important_issue_terms(text: str) -> set[str]:
     normalized = _normalize_issue_text(text)
     terms: set[str] = set()
+    if _CAPITAL_ADEQUACY_ISSUE_RE.search(normalized):
+        terms.add("capital_adequacy_ratio")
     for canonical, aliases in _DISTINCTIVE_TERM_ALIASES:
-        if any((_KICS_ISSUE_LABEL_RE.search(normalized) if alias == "킥스"
-                else alias.lower() in normalized) for alias in aliases):
+        if any(alias.lower() in normalized for alias in aliases):
             terms.add(canonical)
     for token in _tokenize_title(normalized):
         if token not in _GENERIC_TOKENS and len(token) >= 3:
@@ -299,6 +303,17 @@ def _is_enforcement_headline(title: str) -> bool:
                  or bool(re.search(r"(?<![가-힣a-z0-9])잡는다(?![가-힣a-z0-9])", title, re.IGNORECASE))))
 
 
+def _canonical_local_authority(authority: str) -> str:
+    if authority.endswith("경찰청"):
+        jurisdiction = authority.removesuffix("경찰청")
+        # Normalize only metropolitan jurisdiction spelling, preserving agency.
+        jurisdiction = re.sub(r"(?:특별자치시|특별시|광역시|시)$", "", jurisdiction)
+        return jurisdiction + "경찰청"
+    if authority.endswith(("시", "시청")):
+        return authority.replace("특별자치", "").replace("특별", "").replace("광역", "").removesuffix("청")
+    return authority
+
+
 def _targeted_enforcement_fingerprint(title: str, text: str) -> str | None:
     """Local enforcement needs an actor and a specific target, not just a domain.
 
@@ -309,8 +324,7 @@ def _targeted_enforcement_fingerprint(title: str, text: str) -> str | None:
         return None
     # The snippet may fill a missing actor/target, but cannot supply the event.
     authorities = {
-        authority.replace("특별자치", "").replace("특별", "").replace("광역", "").removesuffix("청")
-        if authority.endswith(("시", "시청")) else authority
+        _canonical_local_authority(authority)
         for authority in _LOCAL_AUTHORITY_RE.findall(text)
     }
     targets = {
@@ -356,6 +370,8 @@ def _canonical_metric_value(value: str) -> str:
 
 
 def _metric_identity(label: str) -> str | None:
+    if _CAPITAL_ADEQUACY_LABEL_RE.fullmatch(label):
+        return "capital_adequacy_ratio"
     return next(iter(_important_issue_terms(label) & {
         "capital_adequacy_ratio", "delinquency_rate", "loan_deposit_spread",
     }), None)
