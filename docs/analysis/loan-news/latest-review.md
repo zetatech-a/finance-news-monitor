@@ -1405,3 +1405,110 @@ bounded vocabulary and actions, not exhaustive synonyms/morphology. The three
 explicitly deferred correctness/architecture gaps above remain relevant to human
 merge review. No registry, ordering, qualifier grammar, query, ranking, threshold,
 relevance, model or delivery policy was changed.
+
+## Metric event eligibility and signed values follow-up (5f40e1a)
+
+Started clean on local/PR HEAD `5f40e1ac7bd82efc663246316b63582fd7aa6982`,
+existing branch, PR OPEN. The latest review explicitly states **Reviewed commit:
+5f40e1ac7b**, with exactly the two findings below. Candidate ordering, metric
+qualifiers (약/평균/최대/최소), and deferred industry particles remain untouched.
+
+### Reproductions and minimal changes
+
+Added `tests/test_metric_value_event_review.py` before production changes.
+Final pre-fix matrix on untouched 5f40e1a: **47 cases, 23 failed / 24 passed**
+(initial 45-case run: 21 failed / 24 passed). Independent feature/pair inspection
+also confirmed both concrete review pairs merged before implementation.
+
+- [A: event checks across differing values](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4068923233):
+  `삼성생명 킥스비율 200% 자본확충 완료` versus
+  `삼성생명 지급여력비율 201% 후순위채 발행` had shared identity/삼성생명,
+  unknown periods, disjoint facts and residual event units, but event veto False,
+  pair True, 1 cluster. `_metric_match_lacks_event_evidence` now gates on shared
+  metric identity and the same singleton subject, not exact fact intersection.
+  It yields veto True, pair False, 2 clusters. Different values alone are not a
+  conflict: `201% 자본 확충 완료` and morphology/locative variants still merge
+  normally with the 200% wire. Stripped ordinary evidence does not gain a merge
+  shortcut. Existing dated, bare and truncated exceptions are unchanged; all
+  bare-bridge permutations keep the two disjoint events separate.
+- [B: signed values](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4068923235):
+  `롯데손보 1분기 킥스비율 -5.4% 자본여력 개선` versus
+  `롯데손보 3월 지급여력비율 5.4% 적기시정조치 우려` previously stored both
+  as `(capital_adequacy_ratio, 5.4)` after global hyphen removal. Both had period
+  `(None, 3)` and formed 1 cluster. Exact facts now read the raw HTML-cleaned title;
+  the metric regex accepts one adjacent ASCII +/- and string canonicalization
+  preserves minus (except numeric zero), discards plus and redundant decimal zeros.
+  Facts become -5.4 versus 5.4, disabling the erroneous exact shortcut; existing
+  ordinary rules reject the pair, producing 2 clusters. Dated event-veto policy
+  did not need changing. Global normalization, tokenization, numbers/entities,
+  cluster IDs and K-ICS punctuation handling remain unchanged.
+
+The exact synthetic review title is absent from stored reports/fixtures/analysis.
+Real evidence exists outside the three-day cohort: `reports/_candidates/2026-08-15_candidates.csv`
+contains [롯데손보, 2분기 흑자전환…기본자본 K-ICS도 -5.4%로 개선](https://news.mtn.co.kr/news-detail/2026081413122041059).
+This stored title's fact changes from 5.4 to -5.4, covered by a regression.
+Across candidate dates, -5.4 occurs in 11 rows on 08-15 (one title, otherwise
+summaries), two rows on 08-19 and one on 08-22. These are evidence, not an
+additional historical-date cluster replay. No live API calls were made.
+
+Tests preserve all eight supported labels, -5.40 == -5.400, +5.4 == 5.4,
+HTML/leading-zero handling, unrelated negative numbers and 킥스타터 exclusion.
+Positive/negative `%p`, `% p`, `%포인트`, `% 포인트` remain excluded from absolute
+facts while subject/period safeguards work. Opposite-sign undated disjoint events
+exercise both fixes together; same-event different positive values remain allowed.
+No existing assertions were modified.
+
+### Validation and fresh replay
+
+New tests: **47 passed**. Relevant metric/event/subject/clustering/loan/relevance/
+matcher/replay suites: **799 passed** (5 existing NumPy/joblib warnings).
+Full Linux/Python 3.11 Docker `--network none`: **1451 passed, 1 skipped**.
+`git diff --check` passed. Production diff is confined to metric fact parsing and
+the event-veto eligibility gate; ordering, qualifiers and industry particles are
+unchanged.
+
+Fresh BEFORE was captured from unmodified 5f40e1a; AFTER from this implementation.
+An initial capture hit a Windows stdout encoding error and was rerun successfully
+with UTF-8 before production edits. Both completed snapshots compare equal in
+full, including actual `_build_cluster_features().reported_metrics` (signed fact
+path) and event comparison units. Historical artifacts/reports were not rewritten.
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored | New merged / split pairs |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 | 0 / 0 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 | 0 / 0 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 | 0 / 0 |
+
+All 3,327 raw candidates retain scores, hard/soft/negative terms, domain anchors,
+metric identities/subjects/absolute values/periods, event tokens/comparison units,
+issue terms, fingerprints and enforcement periods. All six cohorts retain kept
+sets, memberships, sector counts and representative titles/URLs. Signed-value
+changes within these three days: **0**. New final merged/split pairs: **0 / 0**.
+Loan golden precision/recall: **1.0000 / 0.922414** (107/116); other-sector:
+**1.0000 / 0.888889** (40/45), unchanged; golden end-to-end output is identical.
+
+A separate event-veto audit found two unique 09-17 pairs (each in fixed/rescored)
+whose veto changes False -> True under A, with pair decision **False -> False**
+and final membership unchanged:
+
+1. [보험사 지급여력비율 215.2%로 하락…생·손보 엇갈린 희비](https://www.mydaily.co.kr/page/view/2026091616173998396)
+   versus [보험사 킥스 200% 웃돌지만…속살 보니 ‘재무체력’ 천차만별](https://www.edaily.co.kr/News/Read?newsId=04352566645580776&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article).
+2. The same 200% edaily article versus
+   [보험사 지급여력비율 215.2%로 소폭 하락…주가 상승에 요구자본 증가](http://www.newsian.co.kr/news/articleView.html?idxno=95496).
+
+Both use 보험사/capital_adequacy_ratio, unknown periods and 200 versus 215.2.
+The 200% headline has 재무체력/천차만별/속살 wording; the others describe 하락,
+생·손보 differences or 요구자본/주가 상승. Comparison units are disjoint, so the
+expanded safety gate applies as intended. They were already rejected by ordinary
+rules; this is not a new split or proven recall/precision gain. Whether their
+underlying source report is shared is unlabelled; no separate-event ground truth
+is invented. There are no unexplained final pair/article changes.
+
+Remaining limits: event comparison is a bounded headline heuristic with the
+existing dated/truncated/bare exceptions. Signed facts support adjacent ASCII
++/- decimal percentages in the existing label grammar, not a general numeric or
+qualifier parser. Deferred candidate assignment/order, qualifier semantics and
+industry-particle gaps remain material human-review debt. No registry, global
+normalization, ranking, threshold or delivery changes are included. Temporary
+proof/replay/audit files stay under ignored `.venv`; passing tests is not merge
+approval.

@@ -34,7 +34,7 @@ _CAPITAL_ADEQUACY_ISSUE_RE = re.compile(
 _METRIC_OCCURRENCE_PATTERN = (
     r"(?<![가-힣a-z0-9])(" + _CAPITAL_ADEQUACY_LABEL + r"|연체율|예대\s*금리차)"
     # Complete optional particle followed by a numeric percentage; 도입/만기 fail.
-    r"\s*(?:은|는|이|가|도|만)?\s*(\d+(?:\.\d+)?)\s*%"
+    r"\s*(?:은|는|이|가|도|만)?\s*([+-]?\d+(?:\.\d+)?)\s*%"
 )
 # Level and percentage-point reports share identity/subject/period evidence.
 _METRIC_OCCURRENCE_RE = re.compile(_METRIC_OCCURRENCE_PATTERN, re.IGNORECASE)
@@ -369,11 +369,13 @@ def _meaningful_overlap(a_tokens: set[str], b_tokens: set[str]) -> bool:
 
 
 def _canonical_metric_value(value: str) -> str:
-    # The metric regex accepts only unsigned decimal digits; no float rounding.
-    whole, _, fraction = value.partition(".")
+    # Preserve unary minus; explicit plus equals unsigned. No float rounding.
+    negative = value.startswith("-")
+    whole, _, fraction = value.lstrip("+-").partition(".")
     whole = whole.lstrip("0") or "0"
     fraction = fraction.rstrip("0")
-    return whole + ("." + fraction if fraction else "")
+    magnitude = whole + ("." + fraction if fraction else "")
+    return ("-" if negative and magnitude != "0" else "") + magnitude
 
 
 def _metric_identity(label: str) -> str | None:
@@ -547,7 +549,9 @@ def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
         numbers=_extract_numbers(title),
         issue_terms=_extract_issue_terms(item),
         metric_identities=_metric_identities(norm_title),
-        reported_metrics=_reported_metrics(norm_title),
+        # General normalization removes numeric signs along with label hyphens.
+        # Exact facts alone use the raw, HTML-cleaned title.
+        reported_metrics=_reported_metrics(html.unescape(_TAG_RE.sub(" ", title))),
         metric_subjects=_metric_subjects(norm_title),
         metric_period=_metric_period(norm_title),
         enforcement_period=_enforcement_period(norm_title),
@@ -640,7 +644,7 @@ def _metric_event_comparison_units(feature: _ClusterFeatures) -> set[str]:
 
 
 def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
-    if not (a.reported_metrics & b.reported_metrics
+    if not (a.metric_identities & b.metric_identities
             and len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects):
         return False
     # Do not turn a missing period into a conflict against a dated report.
