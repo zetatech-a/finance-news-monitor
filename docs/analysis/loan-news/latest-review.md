@@ -1064,3 +1064,80 @@ the inspected pair titles without duplicating large replay JSON artifacts.
 | 15 | 16, 17, 19 | — |
 | 16 | 19 | — |
 | 17 | 19 | — |
+
+## Metric-event inflection follow-up (b3e3b7a)
+
+Read the actual [Codex inflection finding](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4060642413).
+Local/PR HEAD was `b3e3b7a55558c1f6ee49eef62394dacde902c9d1`, branch clean and
+PR open. Added 30 regression cases before changing production: **20 failed /
+10 passed**. The exact reproduction had raw event tokens `{자본여력, 하락}`
+versus `{자본여력은, 하락했다}`; empty intersection incorrectly vetoed the same
+statistical wire and split the final cluster.
+
+### Narrow comparison contract
+
+`_metric_event_token_variants` is used only inside the metric-event veto.
+It preserves each raw token and offers a comparison alternative for:
+
+* One complete noun particle: 은/는, 이/가, 을/를, 과/와, 의. The remaining
+  stem must contain at least two Hangul syllables, with the appropriate
+  consonant/vowel allomorph. No recursive suffix removal; 도/만 are excluded.
+* Exact statistical predicates 하락/상승/감소/증가/개선/확대 with 했다/한다/
+  됐다/된다. Full-token matching rejects longer continuations such as 하락했다는.
+
+The reproduction now shares alternatives 자본여력 and 하락, so the veto is False;
+existing ordinary evidence returns True and produces one cluster. No normalization
+is injected into global title tokens, issue terms, meaningful overlap, relevance,
+metric identity/value/period extraction, or ranking. A test removes ordinary
+issue/entity/number evidence and proves equivalent morphology does **not** itself
+return True. P1's compatible-month shortcut, missing/ambiguous-period policy,
+truncated-title handling and member-wide bridge protection remain unchanged.
+
+The new matrix exercises nine natural noun-particle forms, nine predicate forms,
+the exact example, negative lexical/short-stem/unsupported suffix cases, no-global-
+mutation/no-shortcut behavior and all bare-metric bridge permutations. Existing
+cumulative tests retain 자본확충 versus 회계제도, KB 후순위채 versus 회계제도,
+dated/no-period genuine wires and truncated stored headlines.
+
+### Corpus audit and validation
+
+Audit every pair in the September 15/16/17 fixed and rescored cohorts with the
+baseline `_metric_match_lacks_event_evidence` and current implementation. In all
+six cohorts, **baseline veto pairs = 0, True-to-False changes = 0**. Consequently
+there are no changed article pairs/tokens/cluster decisions to classify:
+same-event corrections **0**, different-event regressions **0**, ambiguous **0**.
+This corpus does not measure the synthetic correction's frequency; no recall
+improvement is invented. The audit records raw and alternative event tokens,
+subjects, metric/value, periods and pair decisions for changes, if present.
+A headline scan found no occurrences of the supported finite predicate forms in
+these three stored dates; they are supported by the explicit review regressions.
+
+New matrix **30 passed**; new + cumulative + period tests **126 passed**.
+Related suite **883 passed, 1 skipped** (10 existing NumPy/joblib warnings).
+Full Linux/Python 3.11 with network disabled: **1236 passed, 1 skipped**.
+Docker was initially stopped; the failed connection was not counted as a test
+run. After starting the engine, the full suite ran successfully. `git diff --check`
+passed.
+
+Fresh b3e3b7a before and current after replays:
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+All kept sets, cluster memberships, sector representative counts and representative
+URLs/titles are unchanged; newly merged/split pairs **0/0**. All 3,327 candidates'
+relevance scores, hard/soft/negative terms, domain anchors, metric identities,
+subjects, absolute values, periods, raw event tokens, fingerprints and issue terms
+are unchanged. Loan golden precision/recall stays **1.0000 / 0.922414** (107/116);
+other-sector stays **1.0000 / 0.888889** (40/45), with identical end-to-end golden
+output. Temporary replay/audit JSON and scripts are not committed.
+
+Limits: this is bounded morphology tolerance, not a Korean morphological analyzer.
+Two-syllable/allomorph checks cannot resolve every lexical-versus-particle ambiguity;
+they only relax a veto, leaving ordinary clustering responsible for the final
+merge. Unsupported endings, compound particles and broader event semantics remain
+outside scope. No P1 policy redesign, registry, dependency, global tokenizer,
+relevance, threshold or unrelated architecture changes are included.

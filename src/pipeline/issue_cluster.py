@@ -577,6 +577,24 @@ def _metric_event_tokens(feature: _ClusterFeatures) -> set[str]:
     return _tokenize_title(text)
 
 
+def _metric_event_token_variants(token: str) -> set[str]:
+    """Comparison-only alternatives; never rewrite global tokens or add evidence."""
+    variants = {token}
+    # Only the statistical predicates used by this local event comparison.
+    predicate = re.fullmatch(r"(하락|상승|감소|증가|개선|확대)(?:했다|한다|됐다|된다)", token)
+    if predicate:
+        variants.add(predicate.group(1))
+    # One complete particle, at least two Hangul syllables in the stem, and
+    # the correct consonant/vowel allomorph. No recursive stripping, 도 or 만.
+    if len(token) >= 3 and re.fullmatch(r"[가-힣]+", token):
+        stem, particle = token[:-1], token[-1]
+        has_final_consonant = (ord(stem[-1]) - ord("가")) % 28 != 0
+        particles = "은이을과의" if has_final_consonant else "는가를와의"
+        if particle in particles:
+            variants.add(stem)
+    return variants
+
+
 def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
     if not (a.reported_metrics & b.reported_metrics
             and len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects):
@@ -593,7 +611,9 @@ def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures)
     # Bare statistical wire labels still use ordinary title similarity. Once
     # both headlines name an event, the repeated fact cannot replace overlap
     # in that event, including via a bare-statistic bridge in a cluster.
-    return bool(left and right) and not (left & right)
+    left_variants = {variant for token in left for variant in _metric_event_token_variants(token)}
+    right_variants = {variant for token in right for variant in _metric_event_token_variants(token)}
+    return bool(left and right) and not (left_variants & right_variants)
 
 
 def _should_cluster_features(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
