@@ -1141,3 +1141,89 @@ they only relax a veto, leaving ordinary clustering responsible for the final
 merge. Unsupported endings, compound particles and broader event semantics remain
 outside scope. No P1 policy redesign, registry, dependency, global tokenizer,
 relevance, threshold or unrelated architecture changes are included.
+
+## Compound-spacing and bare-month follow-up (ab92e030)
+
+Read the actual Codex findings for [compound spacing](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4067534623)
+and [bare months](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4067534629).
+Starting local/PR HEAD was `ab92e030699cc0bc09d6f39567d2624b08bc8485`, with
+PR open and a clean `fix/loan-news-clustering-recall` worktree. Added 63 tests
+before production edits: **40 failed / 23 passed**.
+
+### Two local corrections
+
+1. The exact spacing example yielded `{자본확충}` versus `{자본, 확충}`.
+   Single-token morphology could not equate these sets: event veto True,
+   pair False, two final clusters. `_metric_event_text` now preserves residual
+   order and marks removed subject/metric/period spans as adjacency barriers.
+   `_metric_event_comparison_units` adds only joins of two consecutive retained
+   Hangul tokens, each at least two syllables, separated solely by whitespace.
+   Existing morphology alternatives also apply to the joined unit, so
+   `자본 확충은` can compare with `자본확충`. No Cartesian concatenation,
+   single-syllable joins, filtered-token skipping or three-token generation.
+   The exact pair now has veto False, ordinary pair True and one final cluster.
+   A stripped-feature test confirms this is **not** a merge shortcut; global
+   tokens, issue terms, similarity, relevance and representative selection do
+   not receive the new units. Corpus vocabulary supports 자본확충 (one title
+   on 09-16) and 요구자본 (three on 09-17), used for spacing regressions.
+2. `_metric_period` additionally recognizes bounded `1월` through `12월` in
+   the existing measurement prefix. `3월 기준` works without special date
+   inference. Reject 월물/월호/월분기, ASCII/numeric continuations and 13월.
+   Existing 월말/월 말 parsing remains; set semantics prevent duplicate month
+   evidence. Quarter/half-year equivalence, year extraction, missing/ambiguous
+   dimensions and prefix-only ownership are unchanged. The exact 3월/6월,
+   200%/201% reproduction changes from unknown periods/pair True/one cluster
+   to months 3/6, period veto True/pair False/two clusters. Period safety still
+   precedes same-value shortcuts and compound equivalence.
+
+Tests retain disjoint 자본확충 versus 회계제도 and 후순위채 versus 회계제도
+announcements, bare-metric bridges in all six orders, existing noun/predicate
+morphology, truncated wires, same-month/statistical wires and missing-period
+recall. Added adjacency barriers, no-shortcut/no-global-token changes, all twelve
+months, quarter/half-year parity, multiple-month ambiguity, measurement-suffix
+isolation and conflicting-month bridge permutations.
+
+### Stored-cohort audits and replay
+
+Audit all pairs in all six fixed/rescored cohorts. Baseline metric-event veto
+pairs: **0**; compound-spacing True-to-False veto changes: **0**; matching
+compact-versus-adjacent-spaced event candidates with the same authoritative
+subject/value: **0**. No changed pair needs classification (same-event correction
+0, different-event regression 0, ambiguous 0). Five 09-17 pairs share newly
+joined comparison units on both sides, but both sides already had the same
+spaced tokens; they are not compact/spaced corrections and pair decisions stay
+True. This does not demonstrate a measured corpus recall gain.
+
+There are **0 new bare-month articles** among 3,327 candidate rows. A broad
+bounded-month scan also sees three existing `6월 말` headlines on 09-17; all
+already had `(None, 6)` before and retain it. No period/conflict/pair change.
+The audit keeps these existing month-end forms separate from new bare-month
+coverage. No publication dates, descriptions or relative dates are inferred.
+
+Fresh before/after replay JSONs compare equal in full:
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+Kept sets, memberships, sector representative counts and representative titles/
+URLs are identical; merged/split pairs **0/0**. All candidates retain relevance
+scores, hard/soft/negative terms, domain anchors, metric identities/subjects/
+absolute values/periods, raw event tokens, fingerprints and issue terms.
+Loan golden precision/recall: **1.0000 / 0.922414** (107/116); other-sector:
+**1.0000 / 0.888889** (40/45), unchanged, as is end-to-end golden output.
+
+New + inflection + cumulative + period targeted tests: **189 passed**, including
+all **63 new** cases. Related suite: **946 passed, 1 skipped** (ten existing
+NumPy/joblib warnings). Full Linux/Python 3.11, Docker network disabled:
+**1299 passed, 1 skipped**. `git diff --check` passed. Temporary capture/audit
+scripts and JSONs stay outside the commit.
+
+Limitations: two adjacent Hangul-token comparison only, with the existing bounded
+morphology vocabulary; no general compound segmentation or global whitespace
+normalization. Month parsing is explicit headline-prefix grammar, not an event
+calendar or date parser. P1 event-evidence policy, thresholds, unrelated sector
+semantics, registry/recall/query architecture and production dependencies are
+unchanged.

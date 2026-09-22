@@ -477,6 +477,11 @@ def _metric_period(title: str) -> tuple[int | None, int | None]:
     months = {int(quarter) * 3 for quarter in re.findall(r"(?<![0-9])([1-4])분기", prefix)}
     months.update(6 if half == "상" else 12 for half in re.findall(r"([상하])반기", prefix))
     months.update(int(month) for month in re.findall(r"(?<![0-9])(1[0-2]|[1-9])월\s*말", prefix))
+    # Bare months are explicit snapshots too, but 월물/월호 and out-of-range
+    # numbers are not. 월말 remains handled above, without a second bare match.
+    months.update(int(month) for month in re.findall(
+        r"(?<![0-9])(1[0-2]|[1-9])월(?![가-힣a-z0-9])", prefix,
+    ))
     return (next(iter(years)) if len(years) == 1 else None,
             next(iter(months)) if len(months) == 1 else None)
 
@@ -561,20 +566,25 @@ def _conflicting_enforcement_periods(a: _ClusterFeatures, b: _ClusterFeatures) -
     )
 
 
-def _metric_event_tokens(feature: _ClusterFeatures) -> set[str]:
-    """Headline evidence left after removing the already-counted metric fact."""
-    text = _METRIC_OCCURRENCE_RE.sub(" ", feature.norm_title)
+def _metric_event_text(feature: _ClusterFeatures) -> str:
+    """Ordered residual evidence; removed facts remain adjacency barriers."""
+    text = _METRIC_OCCURRENCE_RE.sub(" | ", feature.norm_title)
     names = feature.metric_subjects | {
         alias for alias in _METRIC_SUBJECT_ALIASES | _METRIC_INDUSTRY_SUBJECT_ALIASES
         if _canonical_metric_subject(alias) in feature.metric_subjects
     }
     for name in sorted(names, key=len, reverse=True):
         text = re.sub(r"(?<![가-힣a-z0-9])" + re.escape(name)
-                      + r"[은는이가의도과와을를]?(?![가-힣a-z0-9])", " ", text)
+                      + r"[은는이가의도과와을를]?(?![가-힣a-z0-9])", " | ", text)
     # A year alone is not an independent event identifier. These are the same
     # explicit period forms understood by _metric_period, not publication dates.
-    text = re.sub(r"(?<![0-9])(?:[0-9]{4}년|[1-4]분기(?:말)?|[0-9]{1,2}월\s*말)|[상하]반기", " ", text)
-    return _tokenize_title(text)
+    text = re.sub(r"(?<![0-9])(?:[0-9]{4}년|[1-4]분기(?:말)?|[0-9]{1,2}월\s*말)|[상하]반기", " | ", text)
+    return text
+
+
+def _metric_event_tokens(feature: _ClusterFeatures) -> set[str]:
+    """Headline evidence left after removing the already-counted metric fact."""
+    return _tokenize_title(_metric_event_text(feature))
 
 
 def _metric_event_token_variants(token: str) -> set[str]:
@@ -595,6 +605,23 @@ def _metric_event_token_variants(token: str) -> set[str]:
     return variants
 
 
+def _metric_event_comparison_units(feature: _ClusterFeatures) -> set[str]:
+    """Veto-only morphology/spacing alternatives, never ordinary merge evidence."""
+    text = _metric_event_text(feature)
+    tokens = _tokenize_title(text)
+    units = {variant for token in tokens for variant in _metric_event_token_variants(token)}
+    ordered = list(_TOKEN_RE.finditer(text))
+    for left, right in zip(ordered, ordered[1:]):
+        # Retain original adjacency: do not jump across removed facts, punctuation,
+        # filtered words or single syllables. Only two complete Hangul words join.
+        if (left.group() in tokens and right.group() in tokens
+                and re.fullmatch(r"[가-힣]{2,}", left.group())
+                and re.fullmatch(r"[가-힣]{2,}", right.group())
+                and text[left.end():right.start()].isspace()):
+            units.update(_metric_event_token_variants(left.group() + right.group()))
+    return units
+
+
 def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
     if not (a.reported_metrics & b.reported_metrics
             and len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects):
@@ -611,8 +638,8 @@ def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures)
     # Bare statistical wire labels still use ordinary title similarity. Once
     # both headlines name an event, the repeated fact cannot replace overlap
     # in that event, including via a bare-statistic bridge in a cluster.
-    left_variants = {variant for token in left for variant in _metric_event_token_variants(token)}
-    right_variants = {variant for token in right for variant in _metric_event_token_variants(token)}
+    left_variants = _metric_event_comparison_units(a)
+    right_variants = _metric_event_comparison_units(b)
     return bool(left and right) and not (left_variants & right_variants)
 
 
