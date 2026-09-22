@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 58,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 6,
+  "candidate_hybrid_gray_keep_domain": 89,
+  "candidate_hybrid_gray_rule_drop": 164,
+  "candidate_hybrid_gray_rule_keep": 89,
+  "candidate_hybrid_keep_overseas_global_reference": 35,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 13,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 440,
+  "candidate_hybrid_model_drop": 36,
+  "candidate_hybrid_model_keep": 160,
+  "candidate_hybrid_model_keep_with_domain_anchor": 160,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 440,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-22",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 58,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 11,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 6,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 164,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 89,
+    "candidate_hybrid_keep_overseas_global_reference": 35,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 13,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 440,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 36,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 160
+  },
+  "dropped_count": 286,
+  "input_count": 1024,
+  "kept_count": 738,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1024,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 34,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "국가산단 지식산업센터, 유령업체 사무실로 쓰였다",
+      "url": "http://www.inews24.com/view/2008006"
+    },
+    {
+      "title": "국가산단 지식산업센터 무단입주·불법행위 횡행",
+      "url": "https://www.ccdn.co.kr/news/articleView.html?idxno=1101292"
+    },
+    {
+      "title": "대출인 척 '휴대폰 깡'…허위분실로 이중 편취",
+      "url": "http://www.yonhapnewstv.co.kr/news/MYH20260921183206Uh6"
+    },
+    {
+      "title": "[2026국감] 국가산단 지식산업센터 불법임대 백태…공유오피스 쪼개 유...",
+      "url": "https://www.straightnews.co.kr/news/articleView.html?idxno=311715"
+    },
+    {
+      "title": "국가산단 지식산업센터 무단입주·불법임대 심각",
+      "url": "https://www.inews365.com/news/article.html?no=936820"
+    },
+    {
+      "title": "휴대폰 ‘내구제 대출’ 악용해 9억원 상당 단말기 챙긴 일당 136명 송치",
+      "url": "http://www.breaknews.com/1238266"
+    },
+    {
+      "title": "[단독] 국가산단에 불법행위 '무더기'…35건 고발·228건 과태료",
+      "url": "http://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202609210182&t=NN"
+    },
+    {
+      "title": "'휴대폰깡'으로 9억대 챙긴 업자 구속 송치",
+      "url": "http://www.yonhapnewstv.co.kr/news/MYH20260921125552gvd"
+    },
+    {
+      "title": "휴대폰 개통시켜 되팔고 허위분실까지…운영자 구속",
+      "url": "http://www.yonhapnewstv.co.kr/news/AKR20260921111629zyl"
+    },
+    {
+      "title": "기사의 적이 달팽이? 700년 째 풀리지 않는 중세의 수수께끼",
+      "url": "https://weekly.khan.co.kr/article/202609210933001"
+    }
+  ]
+}
