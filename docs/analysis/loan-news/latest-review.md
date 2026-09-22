@@ -1227,3 +1227,81 @@ normalization. Month parsing is explicit headline-prefix grammar, not an event
 calendar or date parser. P1 event-evidence policy, thresholds, unrelated sector
 semantics, registry/recall/query architecture and production dependencies are
 unchanged.
+
+## Four scoped blockers follow-up (a353a3c)
+
+Starting local/PR HEAD: `a353a3c5a170375b7e28497492de2e4a83f969d2`, clean existing
+branch, PR open. Read all five actual Codex comments, all against that revision.
+Only the four requested blockers below are changed. The [industry-particle
+coverage finding](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4067727430)
+(`은행권도`/`저축은행권도`, etc.) is explicitly deferred. Its fallback regex
+and empty-subject behavior remain unchanged; this known false-merge gap remains
+relevant to the human merge decision.
+
+### Reproductions and minimal fixes
+
+Added `tests/test_scoped_blockers_review.py` before any production edits:
+**52 cases, 14 failed / 38 passed** on a353a3c. No existing tests were weakened.
+
+| Blocker / actual review | Regression tests | Pre-fix failed / passed | Root cause and local fix | Exact pair final clusters before -> after |
+| --- | --- | --- | --- | --- |
+| [A: quantified aggregate](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4067727427) | `test_a_quantified_aggregate_wire`, modifier/scope controls | 3 / 9 | `등 10개 보험사` missed direct aggregate grammar and returned 삼성생명. Allow one optional positive decimal count plus `개` and required whitespace, immediately before the existing industry label. | 2 -> 1 |
+| [B: locative 에](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4067727434) | `test_b_locative_compound_wire`, bounded/recursive/P1 controls | 3 / 6 | 자본확충 and 자본 확충에 나선다 had disjoint comparison units. Add one final 에 to comparison-only particle alternatives, with the existing two-syllable stem rule. | 2 -> 1 |
+| [C: regulator fallback](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4067727437) | `test_c_regulator_fallback_wire`, exclusions/commercial banks | 2 / 6 | Generic company-suffix matches re-added 한국은행 after explicit entities excluded it. Apply the same exact three regulator exclusions after fallback extraction, allowing 은행권 to remain the measured subject. | 2 -> 1 |
+| [D: agency noun](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4067727441) | `test_d_agency_mention_not_action`, action/non-action controls | 6 / 17 | 수사기관/단속기관 substrings qualified as actions and shared the actual crackdown fingerprint. Bound complete action uses and the supported action compounds/endings. | 1 -> 2 |
+
+A supports only the demonstrated count construction, not arbitrary modifiers,
+`.*`, suffix-wide identities or nearest-token ownership. Named-company, whole/
+life/non-life insurance and bank/savings-bank scopes remain distinct. C excludes
+only 금융감독원/금융위원회/한국은행 locally; 국민/신한/우리/하나은행 and global
+entity extraction remain intact. No 한은 alias is added.
+
+B changes neither tokenization nor merge evidence. The stripped-feature regression
+still rejects a merge without ordinary evidence. No recursive suffix removal,
+extra industry particles or compound adjacency changes are introduced. Distinct
+P1 events and all bare-metric bridge permutations remain separate.
+
+For D, stored titles/fixtures include 집중단속, 단속에/단속이/단속을/수사의,
+단속해/단속한다 and 수사개시/수사의뢰; existing tests include 특별단속.
+The local matcher accepts bounded 단속/수사, optional 집중/특별/합동/보완/인지
+prefixes, one supported particle or 해/한다/했다/개시/의뢰 suffix, and standalone
+잡는다. Agency nouns and ASCII/numeric continuation fail. An agency mention does
+not hide a separate actual 단속 in the same headline. Authority/target spelling,
+campaign periods, title-only evidence and cluster admission rules are unchanged.
+
+### Validation and replay
+
+New tests: **52 passed**. Related clustering/metric/enforcement/relevance/loan/
+other-sector/replay suite: **998 passed, 1 skipped** (10 existing NumPy/joblib
+warnings). Full Linux/Python 3.11 Docker, network disabled: **1351 passed,
+1 skipped**. `git diff --check` passed. Full diff review found only issue-cluster
+production edits, the new tests and this analysis section; no existing assertion
+or unrelated source changed.
+
+Fresh a353a3c BEFORE and current AFTER captures are equal in full. The fresh
+baseline also equals the previous round's output except for its revision label;
+historical artifacts were not rewritten.
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored | Merged / split pairs |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 | 0 / 0 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 | 0 / 0 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 | 0 / 0 |
+
+All six cohorts retain identical kept sets, memberships, every sector's
+representative counts and representative titles/URLs. All 3,327 raw candidates
+retain relevance scores, hard/soft/negative terms, domain anchors, metric
+identities/subjects/absolute values/periods, raw event tokens, issue terms,
+fingerprints and enforcement periods. A separate raw-title scan confirms no
+metric-subject or enforcement-action classification changed in these dates.
+There are no changed final article/pairs to classify under A/B/C/D or unexplained
+changes. Loan golden precision/recall stays **1.0000 / 0.922414** (107/116),
+other-sector **1.0000 / 0.888889** (40/45); golden end-to-end output is identical.
+Temporary replay/proof artifacts remain untracked under ignored `.venv`.
+
+Remaining limits: aggregate grammar covers one decimal `N개` modifier, comparison
+morphology remains bounded, and enforcement action forms are an explicit local
+vocabulary, not a general Korean parser. The fifth review's industry particles
+are knowingly unresolved. No registry, query/recall architecture, threshold,
+ranking, relevance, ML/Gemini or delivery changes are included. Passing suites and
+unchanged stored cohorts are evidence, not an automatic merge recommendation.

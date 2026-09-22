@@ -299,8 +299,13 @@ def _rule_issue_fingerprint(item: TaggedArticle) -> str | None:
 
 def _is_enforcement_headline(title: str) -> bool:
     return (_contains_any(title, ("불법사금융", "불법 사금융", "불법대부", "불법 대부"))
-            and (_contains_any(title, ("단속", "수사"))
-                 or bool(re.search(r"(?<![가-힣a-z0-9])잡는다(?![가-힣a-z0-9])", title, re.IGNORECASE))))
+            and bool(re.search(
+                # Complete action uses, including established action compounds;
+                # agency nouns (수사기관/단속기관) are not headline event evidence.
+                r"(?<![가-힣a-z0-9])(?:(?:집중|특별|합동|보완|인지)?(?:단속|수사)"
+                r"(?:[은는이가의을를에]|해|한다|했다|개시|의뢰)?|잡는다)(?![가-힣a-z0-9])",
+                title, re.IGNORECASE,
+            )))
 
 
 def _canonical_local_authority(authority: str) -> str:
@@ -435,20 +440,23 @@ def _metric_subjects(title: str) -> set[str]:
     # example companies before "등/포함한" do not. "보험사 중 삼성생명" and
     # bare company lists deliberately do not match this construction.
     aggregate = re.search(
-        r"(?<![가-힣a-z0-9])(?:등|포함한|포함)\s+"
+        r"(?<![가-힣a-z0-9])(?:등|포함한|포함)\s+(?:[1-9][0-9]*개\s+)?"
         r"(보험사|보험회사|생보사|손보사|은행권|저축은행권|카드사)"
         r"(?:들)?[은는이가의]?\s*$", title,
     )
     if aggregate:
         return {_canonical_metric_subject(aggregate.group(1))}
+    excluded_regulators = {"금융감독원", "금융위원회", "한국은행"}
     subjects = {
-        entity for entity in _extract_entities(title) - {"금융감독원", "금융위원회", "한국은행"}
+        entity for entity in _extract_entities(title) - excluded_regulators
         if re.search(r"(?<![가-힣a-z0-9])" + re.escape(entity) + _METRIC_SUBJECT_END, title)
     }
     subjects.update(re.findall(
         r"(?<![가-힣a-z0-9])[가-힣a-z0-9]+(?:생명|손보|화재|라이프|보험|은행|카드|캐피탈)"
         + _METRIC_SUBJECT_END, title,
     ))
+    # The generic company-suffix path must not reintroduce excluded regulators.
+    subjects.difference_update(excluded_regulators)
     if subjects:
         return {_canonical_metric_subject(subject) for subject in subjects}
     # Explicit industry-wide statistics have subjects too. Do not infer these
@@ -599,7 +607,7 @@ def _metric_event_token_variants(token: str) -> set[str]:
     if len(token) >= 3 and re.fullmatch(r"[가-힣]+", token):
         stem, particle = token[:-1], token[-1]
         has_final_consonant = (ord(stem[-1]) - ord("가")) % 28 != 0
-        particles = "은이을과의" if has_final_consonant else "는가를와의"
+        particles = "은이을과의에" if has_final_consonant else "는가를와의에"
         if particle in particles:
             variants.add(stem)
     return variants
