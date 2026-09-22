@@ -11,6 +11,7 @@ from src.pipeline.fields import field_value as _article_field
 from src.pipeline.filtering import is_blocked_source_url
 from src.pipeline.source_quality import publisher_name
 from src.pipeline.tagger import TaggedArticle
+from src.pipeline.text_matcher import has_any_term
 
 _BRACKET_LABEL_RE = re.compile(r"\[[^\]]*(?:속보|단독|종합|사진|영상)[^\]]*\]|\([^)]*(?:종합|사진|영상)[^)]*\)")
 _TAG_RE = re.compile(r"<[^>]+>")
@@ -298,7 +299,8 @@ def _rule_issue_fingerprint(item: TaggedArticle) -> str | None:
 
 
 def _is_enforcement_headline(title: str) -> bool:
-    return (_contains_any(title, ("불법사금융", "불법 사금융", "불법대부", "불법 대부"))
+    return ((_contains_any(title, ("불법사금융", "불법 사금융", "불법대부", "불법 대부"))
+             or has_any_term(title, ("미등록대부", "불법사채")))
             and bool(re.search(
                 # Complete action uses, including established action compounds;
                 # agency nouns (수사기관/단속기관) are not headline event evidence.
@@ -481,6 +483,13 @@ def _metric_period(title: str) -> tuple[int | None, int | None]:
     if not measurement:
         return None, None
     prefix = title[:measurement.start()]
+    # Only an adjacent, complete comparison marker governs a baseline date.
+    # Mask that date expression locally, preserving other current snapshots.
+    subyear = r"(?:[1-4]분기(?:말)?|[상하]반기|(?:1[0-2]|[1-9])월(?:\s*말)?)"
+    prefix = re.sub(
+        r"(?<![가-힣a-z0-9])(?:(?:19|20)[0-9]{2}년(?:\s*" + subyear + r")?|"
+        + subyear + r")\s*(?:대비|보다)(?![가-힣a-z0-9])", " ", prefix,
+    )
     years = {int(year) for year in re.findall(r"(?<![0-9])((?:19|20)[0-9]{2})년", prefix)}
     months = {int(quarter) * 3 for quarter in re.findall(r"(?<![0-9])([1-4])분기", prefix)}
     months.update(6 if half == "상" else 12 for half in re.findall(r"([상하])반기", prefix))

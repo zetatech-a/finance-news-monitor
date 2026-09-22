@@ -1305,3 +1305,103 @@ vocabulary, not a general Korean parser. The fifth review's industry particles
 are knowingly unresolved. No registry, query/recall architecture, threshold,
 ranking, relevance, ML/Gemini or delivery changes are included. Passing suites and
 unchanged stored cohorts are evidence, not an automatic merge recommendation.
+
+## Comparison-baseline and enforcement-anchor follow-up (79afeea)
+
+Resumed the preserved implementation and tests after interruption; no production
+code or existing assertions were rewritten during continuation. Local/PR HEAD was
+`79afeea997d67fd24e4359cad365b326271fb42f`, PR OPEN, on the existing branch.
+The [latest four-comment review](https://github.com/zetatech-a/finance-news-monitor/pull/85#pullrequestreview-5273564055)
+explicitly says **Reviewed commit: 79afeea997**.
+
+Human triage fixes only findings 2/4. Finding 1 (global candidate ordering) remains
+clustering architecture debt: complete compatibility prevents an incompatible
+three-article collapse, but an ambiguous bridge can join a different compatible
+cluster depending on input order. Finding 3 (약/평균/최대/최소 qualifiers) remains
+metric-evidence grammar debt; exactness, aggregate and extremum semantics need
+separate treatment. Previously deferred industry particles such as 은행권도 and
+저축은행권도 remain untouched. None of these known gaps is claimed resolved.
+
+### Blocker A: comparison baseline versus current snapshot
+
+[Review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4067930493).
+`전년 3월 대비 킥스비율 200%` previously yielded `(None, 3)`, so the hard
+period veto split it from `6월 기준 지급여력비율 201%`: pair False / 2 clusters.
+It now yields `(None, None)`; ordinary evidence yields pair True / 1 cluster.
+
+Only inside `_metric_period`, a supported date immediately followed by the
+complete comparison marker 대비/보다 is masked in the pre-measurement prefix.
+The bounded expression covers explicit year, year plus supported subyear, quarter,
+half-year and bare/end-month forms. Mixed baselines retain the real snapshot:
+`3월 대비 6월 기준` -> `(None, 6)` and
+`2025년 3월 대비 2026년 6월 기준` -> `(2026, 6)`.
+Year, quarter and half-year masking is backed by failing regressions, not a generic
+date-parser expansion. `3월보다` already passed before the fix because the old
+bare-month boundary excluded the attached 보다; it is a preservation control.
+
+Real 기준/end-month/quarter/half-year snapshots, explicit conflicts independent
+of value, missing/ambiguous periods, post-metric isolation, `대비책`, and dates
+not adjacent to the comparison marker retain their contracts. No global text,
+enforcement periods, relative-date inference or new merge evidence is introduced.
+
+### Blocker B: supported illegal-lending domain parity
+
+[Review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4067930501).
+Repository evidence establishes both 미등록대부 and 불법사채 before implementation:
+`queries.yml` has 미등록대부 in retrieval/sector vocabulary and both in the illegal
+finance topic; `relevance_score.py` assigns both hard weight 6 and strong-anchor
+status; `relevance_filter.py` lists both domain anchors; `tagger.py` lists both loan
+sector overrides. `text_matcher.py` already supports 미등록 대부 and 불법 사채.
+불법사채 is not claimed to be a dedicated fetch query.
+
+Regression inputs reach clustering through actual query taxonomy/tagging, score
+at least 6, have domain anchors, pass candidate-hybrid at probability 0.8 and tag
+as 대부. Before the fix, each compact/spaced synonym headline had no fingerprint,
+while the 불법대부 wire had `enforcement:서울시:small_business`. Removing only
+fingerprints in a feature counterfactual made ordinary pair matching True,
+proving the asymmetric hard guard caused the false split (2 clusters).
+
+The title-only domain gate now reuses `has_any_term` for just these two existing
+concepts. Both wires receive the existing fingerprint and form 1 cluster.
+Action grammar is unchanged: 수사기관/단속기관 and 바로잡는다/붙잡는다 remain
+invalid actions, description-only evidence is insufficient, and bounded spaced
+대부도/대부abc negatives still fail. Existing action compounds, authority/target
+canonicalization, fingerprint format, campaign periods and bridge safety remain.
+
+### Validation and replay
+
+New `tests/test_baseline_anchor_review.py`: **53 cases**. Preserved pre-fix log
+on untouched 79afeea: **30 failed / 23 passed** (A: 12/13; B: 18/10).
+Final targeted: **53 passed**. Related suite from the interrupted session:
+**1051 passed, 1 skipped**, with 10 existing NumPy/joblib warnings.
+Final continuation rerun of full Linux/Python 3.11 Docker suite with
+`--network none`: **1404 passed, 1 skipped**. `git diff --check` passed.
+No existing tests were weakened and only issue clustering, new tests and this
+analysis section changed.
+
+Fresh 79afeea BEFORE and implemented AFTER captures both completed before
+interruption; continuation parsed and compared them in full: **JSON equality**.
+Historical snapshots and generated reports were not modified.
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored | Merged / split pairs |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 | 0 / 0 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 | 0 / 0 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 | 0 / 0 |
+
+All six kept sets, memberships, sector counts and representative titles/URLs are
+identical. Across all **3,327** raw candidates, relevance scores, hard/soft/negative
+terms, domain anchors, metric identities/subjects/absolute values/periods, event
+tokens, issue terms, fingerprints and enforcement periods are unchanged.
+The separate raw feature audit also returns `[]`. There are no changed final
+pairs/articles to classify and no unexplained changes. Loan golden precision /
+recall remains **1.0000 / 0.922414** (107/116); other-sector remains
+**1.0000 / 0.888889** (40/45); golden end-to-end output is identical.
+Temporary logs/replay helpers remain ignored under `.venv`.
+
+Limits: baseline recognition handles adjacent explicit supported dates plus
+대비/보다, not arbitrary comparative clauses. Enforcement parity reuses existing
+bounded vocabulary and actions, not exhaustive synonyms/morphology. The three
+explicitly deferred correctness/architecture gaps above remain relevant to human
+merge review. No registry, ordering, qualifier grammar, query, ranking, threshold,
+relevance, model or delivery policy was changed.
