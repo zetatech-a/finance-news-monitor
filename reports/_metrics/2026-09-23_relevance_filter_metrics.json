@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 44,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 13,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 64,
+  "candidate_hybrid_gray_rule_drop": 220,
+  "candidate_hybrid_gray_rule_keep": 64,
+  "candidate_hybrid_keep_overseas_global_reference": 27,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 565,
+  "candidate_hybrid_model_drop": 27,
+  "candidate_hybrid_model_keep": 176,
+  "candidate_hybrid_model_keep_with_domain_anchor": 176,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 565,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-23",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 44,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 11,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 13,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 220,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 64,
+    "candidate_hybrid_keep_overseas_global_reference": 27,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 565,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 27,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 176
+  },
+  "dropped_count": 325,
+  "input_count": 1164,
+  "kept_count": 839,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1164,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 51,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "\"사채로 고수익 보장\"…100억원대 투자사기 60대 구속 기소",
+      "url": "https://news.ifm.kr/news/articleView.html?idxno=480061"
+    },
+    {
+      "title": "“대부업에 투자하면 큰 돈 번다”…100억 사기친 60대 구속 기소",
+      "url": "https://www.kyeonggi.com/article/20260922580359"
+    },
+    {
+      "title": "검찰, 100억대 사기친 60대 구속 기소",
+      "url": "https://www.obsnews.co.kr/news/articleView.html?idxno=1538322"
+    },
+    {
+      "title": "가계대출 0.01%도 안되는 온투업…규제 완화로 '재도약' 기회 잡나",
+      "url": "https://www.news1.kr/finance/general-finance/6298763"
+    },
+    {
+      "title": "충남도의회, 고금리 취약계층 돕는 충남형 기본금융 연구모임 발족",
+      "url": "https://www.newsworker.co.kr/news/articleView.html?idxno=505589"
+    },
+    {
+      "title": "[사건사고] 안성 돌진 운전자 구속…\"피해자 많고 혐의 중대\" 外",
+      "url": "http://www.yonhapnewstv.co.kr/news/MYH20260922090543CSh"
+    },
+    {
+      "title": "[사설] 5곳 중 1곳이 '좀비 기업'…위험수위 도달한 K자 양극화",
+      "url": "https://www.hankyung.com/article/2026092218121"
+    },
+    {
+      "title": "[더나은미래 경제브리핑] AMD, 시총 1조 달러 돌파, 美 반도체 기업 사상...",
+      "url": "https://futurechosun.com/?p=161100"
+    },
+    {
+      "title": "[기획] 내년 봄 ‘금리 쓰나미’ 온다… 좀비기업·취약층 연체 시한폭...",
+      "url": "https://www.dt.co.kr/article/12085557?ref=naver"
+    },
+    {
+      "title": "신한금융 12개 자회사 CEO 임기 만료...진옥동 회장, 물갈이 폭은?",
+      "url": "https://www.insightkorea.co.kr/news/articleView.html?idxno=255210"
+    }
+  ]
+}

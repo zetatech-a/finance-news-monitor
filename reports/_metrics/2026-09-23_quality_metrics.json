@@ -1,0 +1,264 @@
+{
+  "clusters": {
+    "cluster_count": 429,
+    "cluster_size_max": 90,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 90,
+        "relevance_prob": 0.8274010238816886,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "석유공사 16억달러 글로벌본드·산은 30억위안 딤섬본드 발행 성공",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4436025"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1174,
+    "displayed_articles": 282,
+    "final_tagged_representatives": 429,
+    "normalized_articles": 2025,
+    "raw_items": 2025,
+    "relevance_filtered_articles": 839,
+    "rule_filtered_articles": 1164,
+    "tagged_before_cluster": 839
+  },
+  "date": "2026-09-23",
+  "generated_at": "2026-09-23T09:13:04.232150+09:00",
+  "publishers": {
+    "missing_publisher_count": 429,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 179,
+    "no_topic_ratio": 0.4172,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6469270210651586,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "Sh수협보험, 'Sh디지털안심공제' 무료 가입 이벤트",
+        "url": "https://www.hdhy.co.kr/news/articleView.html?idxno=35306"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8313812836670291,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "현대캐피탈, 시니어·격오지 어린이 금융교육 확대",
+        "url": "http://www.press9.kr/news/articleView.html?idxno=83221"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6217693268988219,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "“여행객 지갑 놓칠라”…카드사, 해외결제 혜택 쏟아낸다",
+        "url": "https://www.ekn.kr/web/view.php?key=20260923021118336"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6427135528543504,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "[모닝 리포트] \"은행권 해외법인 가치 재조명, 현지화 관건\"",
+        "url": "https://www.newspim.com/news/view/20260923000115"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7938954179870735,
+        "relevance_score": 16,
+        "sector": "기타",
+        "title": "저축銀 고금리 경쟁…예금 한달새 5조원↑",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=866521"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.632354574185032,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[정보보안 연재소설-로그아웃되지 않는 밤] 제41화 '사라지는 검'",
+        "url": "https://www.dailysecu.com/news/articleView.html?idxno=208586"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7302386373473523,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "SEC, 토큰화 주식 거래에 5년 조건부 면제…허가형 TSV 대상",
+        "url": "https://www.tokenpost.kr/news/policy/412465"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6729568733617363,
+        "relevance_score": 3,
+        "sector": "기타",
+        "title": "이찬진 “CEO 참호 구축 지양…계파·친소 아닌 능력으로 뽑아야”",
+        "url": "https://n.news.naver.com/mnews/article/123/0002390751?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7955388351915185,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "서클, 코인베이스 이어 바이낸스와 혈맹 구축…USDC확산 총력전",
+        "url": "https://n.news.naver.com/mnews/article/018/0006374712?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.709728124330284,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "병원 찾은 경찰 돌연…쫓아간 남성 '휴대전화' 놀란 이유",
+        "url": "https://n.news.naver.com/mnews/article/055/0001390509?sid=102"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 3,
+      "거시·시장": 64,
+      "기타": 157,
+      "대부": 16,
+      "디지털자산": 84,
+      "보험": 7,
+      "상호금융": 5,
+      "여전": 15,
+      "은행": 41,
+      "입법·정책": 24,
+      "자산운용·연기금": 3,
+      "저축은행": 3,
+      "증권(브로커리지/리테일)": 5
+    },
+    "topic_counts": {
+      "가계대출·부채": 30,
+      "감독·제재": 9,
+      "건전성·자본규제": 6,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 35,
+      "기업금융·익스포저": 12,
+      "디지털자산": 67,
+      "부동산·PF": 13,
+      "불법사금융·불법추심·보이스피싱": 29,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 12,
+      "서민금융·대환·채무조정": 22,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 46,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 14,
+      "정책·제도개선": 6,
+      "증시·시장시황": 10,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 24,
+      "환율·외환": 8
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8140552798566175,
+        "relevance_score": 32,
+        "sector": "입법·정책",
+        "title": "[금융당국동향] 금융위·금감원, 중저신용·소상공인 돈줄 넓힌다…은행...",
+        "url": "https://sateconomy.co.kr/news/view/1065591890568270"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8310283835730936,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "카드사 연체율 1%대로 떨어졌지만…한은 \"자산건전성 우려 커져\"",
+        "url": "https://n.news.naver.com/mnews/article/018/0006374237?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6270778992759286,
+        "relevance_score": 29,
+        "sector": "은행",
+        "title": "초기 스타트업 보증 문턱 낮추고 P-CBO 연대보증 없앤다",
+        "url": "https://platum.kr/archives/295034"
+      },
+      {
+        "cluster_size": 42,
+        "relevance_prob": 0.862894309011485,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "두나무, ‘업비트 인스티튜셔널 서밋(UIS)’ 29일 개최…글로벌 정책·기...",
+        "url": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065571253182379"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7792341506138155,
+        "relevance_score": 25,
+        "sector": "입법·정책",
+        "title": "국감 '단일종목 레버리지 때리기' 시작된다…당국·업계 모두 사정권",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4436126"
+      },
+      {
+        "cluster_size": 20,
+        "relevance_prob": 0.7200982469080879,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "한은 \"국내 금융시스템 안정적 ... 금융·외환시장 변동성 확대 우려\"",
+        "url": "http://www.efnews.co.kr/news/articleView.html?idxno=132614"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.9250512371952392,
+        "relevance_score": 28,
+        "sector": "은행",
+        "title": "하나은행·업비트 글로벌 맞손, 트래블룰 공조로 디지털자산 규제 선제...",
+        "url": "http://www.ttlnews.com/news/articleView.html?idxno=3146170"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7138086883139728,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "금융위, P2P 일반투자자 한도 4000만원→5000만원 상향",
+        "url": "https://www.nspna.com/news/?mode=view&newsid=829312"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6427695140914061,
+        "relevance_score": 20,
+        "sector": "여전",
+        "title": "[금융안정상황]③ 카드채 금리 4%대…카드사 '조달·건전성 부담' 이중고",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=277056"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8668591959118777,
+        "relevance_score": 28,
+        "sector": "디지털자산",
+        "title": "국힘 이어 민주당도 '코인과세 재검토' 주장…민병덕 \"기본법 통과가 먼...",
+        "url": "https://n.news.naver.com/mnews/article/421/0009185853?sid=101"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "거시·시장": 2,
+      "디지털자산": 2,
+      "여전": 1,
+      "은행": 2,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 3,
+      "부동산·PF": 1,
+      "연체·부실": 3,
+      "자금시장·유동성": 2,
+      "환율·외환": 1
+    }
+  }
+}
