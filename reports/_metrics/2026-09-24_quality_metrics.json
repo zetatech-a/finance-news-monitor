@@ -1,0 +1,264 @@
+{
+  "clusters": {
+    "cluster_count": 320,
+    "cluster_size_max": 70,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 70,
+        "relevance_prob": 0.7863924450416295,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "마이너스통장 금리 5% 돌파…생활비 빌린 서민들 '이자 폭탄'",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=490136"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 736,
+    "displayed_articles": 192,
+    "final_tagged_representatives": 320,
+    "normalized_articles": 960,
+    "raw_items": 960,
+    "relevance_filtered_articles": 515,
+    "rule_filtered_articles": 733,
+    "tagged_before_cluster": 515
+  },
+  "date": "2026-09-24",
+  "generated_at": "2026-09-24T09:08:13.209616+09:00",
+  "publishers": {
+    "missing_publisher_count": 320,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 151,
+    "no_topic_ratio": 0.4719,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7871703231096975,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "“추석 택배 왔습니다”…무심코 눌렀다간 금융정보 털린다",
+        "url": "https://www.ekn.kr/web/view.php?key=20260924024048727"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6210034004140689,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "[기획] 은행권, 저원가성 예금 감소…NIM 하락 부담↑",
+        "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=665235"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6317929988471497,
+        "relevance_score": 11,
+        "sector": "대부",
+        "title": "[판세] 분식회계로 꾸며 임직원들에게 지급한 성과급의 손금불산입 여부",
+        "url": "https://www.sejungilbo.com/news/articleView.html?idxno=60073"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5893570896858311,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "343조 긁었는데 얼마 남겼나…카드사 일시불 수익 '깜깜이'",
+        "url": "https://dealsite.co.kr/articles/169334"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.772326097613918,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "'배송 불가' '과태료 미납' 문자 조심…은행권, 추석 '금융사기 주의보...",
+        "url": "https://www.newspim.com/news/view/20260923000555"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7106579934508896,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[르포] 폐쇄된 캄보디아 범죄단지 가보니…딥페이크 장비·FBI배지까지",
+        "url": "https://n.news.naver.com/mnews/article/001/0016334314?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7258373448991701,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "고향 가는 길에 신권 교환…'은행 이동점포' 어디서 찾나",
+        "url": "https://n.news.naver.com/mnews/article/277/0005820679?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8626589736816634,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "바이낸스 토큰화 주식 거래량 37억달러…거래소 다중자산 경쟁",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/413163"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6436758312859007,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "비대면 금융사고 배상, 신청 10억에 지급 1억8029만원",
+        "url": "https://n.news.naver.com/mnews/article/088/0001030445?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7899242159240683,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "안심차단 318만명, 신청 5분·해제는 창구… 대출·통장 원천봉쇄",
+        "url": "https://n.news.naver.com/mnews/article/088/0001030444?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 4,
+      "감독·제재": 5,
+      "거시·시장": 15,
+      "기타": 138,
+      "대부": 8,
+      "디지털자산": 87,
+      "보험": 1,
+      "상호금융": 5,
+      "여전": 10,
+      "은행": 28,
+      "입법·정책": 10,
+      "자산운용·연기금": 3,
+      "저축은행": 3,
+      "증권(브로커리지/리테일)": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 4,
+      "감독·제재": 9,
+      "건전성·자본규제": 2,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 16,
+      "기업금융·익스포저": 2,
+      "디지털자산": 77,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 26,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 7,
+      "서민금융·대환·채무조정": 3,
+      "업계동정·사회공헌": 12,
+      "연체·부실": 8,
+      "자금시장·유동성": 4,
+      "정책·제도개선": 4,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 10,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9133603744134022,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "삼성카드, 두나무 1% 확보…모니모와 업비트 연결되나",
+        "url": "http://www.press9.kr/news/articleView.html?idxno=83250"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8499098379075939,
+        "relevance_score": 29,
+        "sector": "상호금융",
+        "title": "올해 51곳 합병한 새마을금고... 관건은 '합병' 후 건전성",
+        "url": "https://www.m-economynews.com/news/article.html?no=71022"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.8108980507085894,
+        "relevance_score": 27,
+        "sector": "대부",
+        "title": "[금융 게시판] 카카오뱅크, 원화 스테이블코인 '동맹' 넓힌다…토스뱅크...",
+        "url": "https://www.lcnews.co.kr/news/articleView.html?idxno=208801"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.8830352824349468,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "금융위·금감원, '가상자산 불공정거래' 고발·수사기관 통보",
+        "url": "https://www.mediapen.com/news/view/1125838"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8040694826363226,
+        "relevance_score": 23,
+        "sector": "감독·제재",
+        "title": "2년 반 끈 홍콩ELS 제재 … 6000억서 더 깎나, 금융위 '최종 수위' 장고",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/09/23/2026092300146.html"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7651598748494545,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "금융위, 신라운용·제니스 금융투자업 인가·등록 취소",
+        "url": "https://www.newspim.com/news/view/20260923000883"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8708543941167259,
+        "relevance_score": 24,
+        "sector": "기타",
+        "title": "추석 연휴, '혼자 사는 사람'일수록 보이스피싱에 더 취약한 이유",
+        "url": "http://www.dailypop.kr/news/articleView.html?idxno=102830"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7031580027866747,
+        "relevance_score": 21,
+        "sector": "감독·제재",
+        "title": "'공모주 청약 대행 사기' 신라운용·제니스투자 인가 취소…시장서 퇴출",
+        "url": "https://n.news.naver.com/mnews/article/003/0014211053?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.864965716018082,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "법제화 전 판부터 짜는 카카오…스테이블코인 동맹 동남아까지",
+        "url": "http://www.4th.kr/news/articleView.html?idxno=2118606"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7952787002948108,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "환율 1340원대까지 급락 후 반등…0.2원 오른 1358.4원 [김혜란의 FX]",
+        "url": "https://n.news.naver.com/mnews/article/011/0004665015?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "은행": 1
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "디지털자산": 4,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "사고·사기·횡령": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
