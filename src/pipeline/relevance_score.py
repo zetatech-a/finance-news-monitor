@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from src.pipeline.text_matcher import contains_term, find_terms, has_any_term, normalize_text
+from src.pipeline.text_matcher import (
+    _ALIAS_MATCH_MODES, _TERM_ALIASES, _compiled_pattern,
+    contains_term, find_terms, has_any_term, normalize_text,
+)
 
 
 # NOTE:
@@ -297,8 +300,25 @@ def _has_strong_finance_anchor(text: str) -> bool:
     return has_any_term(text, STRONG_FINANCE_ANCHORS)
 
 
-def _has_finance_risk_or_regulatory_signal(text: str) -> bool:
-    return has_any_term(text, FINANCE_RISK_OR_REGULATORY_SIGNALS)
+def _lending_context_text(text: str) -> str:
+    """Use canonical spelling for local context guards and hard-anchor evidence.
+
+    A supported spaced lending anchor must not add standalone 불법/미등록/사채
+    evidence absent from its compact spelling. Reuse actual alias modes so
+    lexical collisions (대부도 etc.) are not canonicalized into finance anchors.
+    This local spelling view also supplies hard-anchor ownership; global
+    normalization and soft/negative matching stay unchanged.
+    """
+    text = normalize_text(text)
+    for term in ("불법사금융", "불법대부", "미등록대부", "불법사채", "불법추심"):
+        for alias in sorted(_TERM_ALIASES.get(term, ()), key=len, reverse=True):
+            pattern = _compiled_pattern(normalize_text(alias), _ALIAS_MATCH_MODES.get(alias, "phrase"))
+            text = pattern.sub(lambda match: match.group().replace(" ", ""), text)
+    return text
+
+
+def has_finance_risk_or_regulatory_signal(text: str) -> bool:
+    return has_any_term(_lending_context_text(text), FINANCE_RISK_OR_REGULATORY_SIGNALS)
 
 
 def _cap_negative_for_strong_finance_context(text: str, neg_score: int) -> int:
@@ -308,7 +328,7 @@ def _cap_negative_for_strong_finance_context(text: str, neg_score: int) -> int:
         and matched_negative
         and set(matched_negative).issubset(set(CAPPED_NOISE_TERMS))
         and _has_strong_finance_anchor(text)
-        and _has_finance_risk_or_regulatory_signal(text)
+        and has_finance_risk_or_regulatory_signal(text)
     ):
         return _STRONG_CONTEXT_NEGATIVE_CAP
     return neg_score
@@ -345,6 +365,17 @@ def _urls(article) -> list[str]:
     return [str(v).strip() for v in vals if v]
 
 
+def _matched_hard_terms(text: str) -> list[str]:
+    # Use the existing compact spelling as the hard-score contract. A space
+    # inside one supported lending phrase must not create another 대부업 anchor;
+    # independent mentions elsewhere remain in the text and still count.
+    text = _lending_context_text(text)
+    hard = find_terms(text, _WEIGHTS.hard)
+    if not has_finance_entity_context(text):
+        hard = [term for term in hard if term not in ENFORCEMENT_GENERIC_TERMS]
+    return hard
+
+
 def relevance_score(article) -> int:
     """Return a conservative finance relevance score.
 
@@ -368,34 +399,29 @@ def relevance_score(article) -> int:
     soft_score = 0
     neg_score = 0
 
-    # add hard anchors — 집행 일반어(검사/제재 등)는 금융 주체 문맥이 있을 때만 집계
-    finance_entity = has_finance_entity_context(text)
-    enforcement_generic = set(ENFORCEMENT_GENERIC_TERMS)
-    for k, w in _WEIGHTS.hard.items():
-        if k in enforcement_generic and not finance_entity:
-            continue
-        if contains_term(text, k):
-            hard_score += w
+    hard_score = sum(_WEIGHTS.hard[term] for term in _matched_hard_terms(text))
 
     # add soft signals
     for k, w in _WEIGHTS.soft.items():
         if contains_term(text, k):
             soft_score += w
 
+    context_text = _lending_context_text(text)
+
     # special-case: '사채' is too ambiguous; count only with proper context
-    if contains_term(text, "사채") and has_any_term(text, ("불법", "대부업", "최고금리", "추심", "미등록", "금감원", "금융위")):
+    if contains_term(context_text, "사채") and has_any_term(context_text, ("불법", "대부업", "최고금리", "추심", "미등록", "금감원", "금융위")):
         soft_score += 2
 
     # special-case: '대부' used as lease context (공유재산 대부계약, 지명 등)
     # If '대부' appears but not '대부업', treat it as negative unless strong anchors exist.
-    if contains_term(text, "대부") and not contains_term(text, "대부업") and has_any_term(text, ("공유재산", "대부계약", "대부료", "대부리", "대부도", "태권도")):
+    if contains_term(context_text, "대부") and not contains_term(context_text, "대부업") and has_any_term(context_text, ("공유재산", "대부계약", "대부료", "대부리", "대부도", "태권도")):
         neg_score += 10
 
     # negatives
     for k, w in _WEIGHTS.neg.items():
         if contains_term(text, k):
             neg_score += w
-    neg_score = _cap_negative_for_strong_finance_context(text, neg_score)
+    neg_score = _cap_negative_for_strong_finance_context(context_text, neg_score)
 
     score = hard_score + soft_score - neg_score
 
@@ -410,11 +436,7 @@ def relevance_score(article) -> int:
 def matched_terms(article) -> dict[str, list[str]]:
     """Return safe matched relevance terms for observability/debugging."""
     text = normalize_text(_text(article))
-    hard = find_terms(text, _WEIGHTS.hard)
-    # 점수 집계와 동일하게, 금융 주체 문맥이 없으면 집행 일반어는 hard에서 제외
-    if not has_finance_entity_context(text):
-        enforcement_generic = set(ENFORCEMENT_GENERIC_TERMS)
-        hard = [term for term in hard if term not in enforcement_generic]
+    hard = _matched_hard_terms(text)
     return {
         "hard": hard,
         "soft": find_terms(text, _WEIGHTS.soft),
