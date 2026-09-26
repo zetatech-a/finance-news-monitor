@@ -1,0 +1,249 @@
+{
+  "clusters": {
+    "cluster_count": 120,
+    "cluster_size_max": 22,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 306,
+    "displayed_articles": 76,
+    "final_tagged_representatives": 120,
+    "normalized_articles": 426,
+    "raw_items": 426,
+    "relevance_filtered_articles": 185,
+    "rule_filtered_articles": 304,
+    "tagged_before_cluster": 185
+  },
+  "date": "2026-09-26",
+  "generated_at": "2026-09-26T09:04:27.020626+09:00",
+  "publishers": {
+    "missing_publisher_count": 120,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 56,
+    "no_topic_ratio": 0.4667,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6146844581973456,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "4대 지주, 은행서 배당으로만 7.4조 받았다…의존도 되레 높아져",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4436524"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5878434686482716,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"우편물 왔습니다\" 믿었다가 수천만원 피해…다시 기승 부리는 레터피싱",
+        "url": "https://n.news.naver.com/mnews/article/014/0005580908?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6521832806975796,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "디라이브, 일주일새 90% 급등…'V3 전환' 기대감에 매수세 집중[코인현미...",
+        "url": "https://n.news.naver.com/mnews/article/421/0009192030?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.837277735591415,
+        "relevance_score": 10,
+        "sector": "IB·자본시장",
+        "title": "주식 거래 넘어 공모주 청약까지…'금융 슈퍼앱'과 맞붙는 코인 거래소",
+        "url": "https://n.news.naver.com/mnews/article/421/0009192019?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7354961998172587,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "대통령이 된 검찰총장…검찰청 폐지의 씨앗이었다",
+        "url": "https://n.news.naver.com/mnews/article/018/0006375601?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.678156433468592,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "BC카드 제외한 8개사가 증가…리볼빙 잔액 7조원 육박, 5개월 연속 증가",
+        "url": "https://www.ceoscoredaily.com/page/view/2026092215082977206"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5459578133300066,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "성형 전 사진이 다크웹에 올라왔다 [해커들의 쇼핑몰]",
+        "url": "https://n.news.naver.com/mnews/article/005/0001875046?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8061231031947691,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "법무부, 한전케이디엔(KDN)과 MOU 체결...국내 거주 동포 디지털 자립 추...",
+        "url": "https://www.ajunews.com/view/20260926001900485"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5163059942699811,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "한때 뜨거웠던 트래블카드, 올해는 왜 잠잠할까",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1725582"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5981197949656241,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "\"거품·폭락·평탄화\"…부동산 시장 흔든 李 대통령의 말 [청와대는 지금...",
+        "url": "https://n.news.naver.com/mnews/article/015/0005336098?sid=100"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "거시·시장": 15,
+      "기타": 54,
+      "대부": 3,
+      "디지털자산": 25,
+      "상호금융": 3,
+      "여전": 3,
+      "은행": 7,
+      "입법·정책": 1,
+      "자산운용·연기금": 3,
+      "저축은행": 4,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 7,
+      "감독·제재": 1,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 13,
+      "기업금융·익스포저": 2,
+      "디지털자산": 22,
+      "불법사금융·불법추심·보이스피싱": 10,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 7,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 2,
+      "자금시장·유동성": 4,
+      "증시·시장시황": 5,
+      "칼럼·오피니언": 1,
+      "해외·글로벌": 14,
+      "환율·외환": 3
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.9356528224254339,
+        "relevance_score": 26,
+        "sector": "디지털자산",
+        "title": "美가 디지털자산 ‘바로미터’…韓 제도화도 ‘주목’",
+        "url": "https://www.fntimes.com/html/view.php?ud=20260923180110190f4390e77d_18"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9501747851520924,
+        "relevance_score": 24,
+        "sector": "기타",
+        "title": "‘택배 배송·과태료 사칭’…명절 전후 보이스피싱 피해 주의하세요",
+        "url": "https://n.news.naver.com/mnews/article/662/0000105090?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6620737244440753,
+        "relevance_score": 18,
+        "sector": "여전",
+        "title": "카드사, 카드채 금리 4.6% \"못 견디겠네\"…해외 조달 늘린다",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4436460"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.9478410147078604,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "국내 5대 시중은행 ‘줄줄이’ 정기예금 인상",
+        "url": "https://www.nspna.com/news/?mode=view&newsid=829067"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7489488343260601,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "주식할 여윳돈 있으면 은행 간다…“금리 13.5%, 지금이 기회”",
+        "url": "https://n.news.naver.com/mnews/article/030/0003469890?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7035609352363833,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "금감원·거래소는 민간기업?…지방이전설에 소환된 금융기관 ‘정체성...",
+        "url": "https://n.news.naver.com/mnews/article/022/0004161803?sid=101"
+      },
+      {
+        "cluster_size": 22,
+        "relevance_prob": 0.942710649985373,
+        "relevance_score": 18,
+        "sector": "거시·시장",
+        "title": "\"6억 영끌족, 매달 440만원 갚을 수도\"…'주담대 8% 시대' 온다는데 어쩌...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014213950?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8009927908587173,
+        "relevance_score": 17,
+        "sector": "거시·시장",
+        "title": "미 국채금리 20년 만 최고…연준 추가 인상 전망에 채권시장 '비상'",
+        "url": "https://www.mediapen.com/news/view/1126005"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8559228935249953,
+        "relevance_score": 15,
+        "sector": "저축은행",
+        "title": "저축은행 예금금리 상승세…수신 잔액 105조원 넘어",
+        "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5065770"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6697105667057904,
+        "relevance_score": 14,
+        "sector": "저축은행",
+        "title": "\"4년새 저축은행 자영업자 대출잔액 절반 되고 연체율은 3.6배\"",
+        "url": "https://n.news.naver.com/mnews/article/001/0016336635?sid=100"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "거시·시장": 2,
+      "기타": 1,
+      "디지털자산": 1,
+      "여전": 1,
+      "은행": 2,
+      "입법·정책": 1,
+      "저축은행": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "금리·수수료·최고금리": 4,
+      "디지털자산": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 2,
+      "자금시장·유동성": 2,
+      "해외·글로벌": 2
+    }
+  }
+}

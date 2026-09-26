@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 53,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 11,
+  "candidate_hybrid_gray_rule_drop": 44,
+  "candidate_hybrid_gray_rule_keep": 11,
+  "candidate_hybrid_keep_overseas_global_reference": 24,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 92,
+  "candidate_hybrid_model_drop": 6,
+  "candidate_hybrid_model_keep": 54,
+  "candidate_hybrid_model_keep_with_domain_anchor": 54,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 92,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-26",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 53,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 4,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 44,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 11,
+    "candidate_hybrid_keep_overseas_global_reference": 24,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 92,
+    "candidate_hybrid_model_drop_prob_le_threshold": 6,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 54
+  },
+  "dropped_count": 119,
+  "input_count": 304,
+  "kept_count": 185,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 304,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 15,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "대부업서 빌리는 돈 늘어…평균 대출액 한 달 새 20%↑",
+      "url": "https://www.sedaily.com/article/20094541?ref=naver"
+    },
+    {
+      "title": "[금융★들의 궤적] 황병우의 역발상…덩치보다 체질, 지방금융의 벽 넘...",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=674318"
+    },
+    {
+      "title": "[금융★들의 궤적] 76조 카카오뱅크 일군 윤호영, 다음은 AI·글로벌",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=674214"
+    },
+    {
+      "title": "\"연 12% 이자 준다고?\"···추석 연휴에 찾아볼 고금리 예·적금은",
+      "url": "https://www.greenpostkorea.co.kr/news/articleView.html?idxno=307497"
+    },
+    {
+      "title": "\"명절 잘 보내세요\"…곳곳에 걸린 현수막, 달아오르는 '조합장 선거' 예...",
+      "url": "https://www.kyeonggi.com/article/20260925580092"
+    },
+    {
+      "title": "'금융위기급' 5% 금리에도 증시 탄탄…AI 투자 시대 금리는 '조연'",
+      "url": "https://www.news1.kr/finance/general-stock/6301736"
+    },
+    {
+      "title": "'약 배송' 빗장 푸나…영리 플랫폼 영향 확대 '의료민영화' 논란",
+      "url": "https://news.tf.co.kr/read/economy/2369484.htm"
+    },
+    {
+      "title": "이찬진, 금융지주 회장 ‘이너서클 인사’ 경고… 尹정권 이복현 원장 ...",
+      "url": "https://www.dt.co.kr/article/12085793?ref=naver"
+    },
+    {
+      "title": "[오늘 일본은] 태풍 26호 오키나와 접근…수도권엔 다시 강한 비, 8천여...",
+      "url": "https://www.pointe.co.kr/news/articleView.html?idxno=85162"
+    },
+    {
+      "title": "연휴 이후 집값, 금리 부담에도 공급절벽 변수…\"지역별 차별화\"",
+      "url": "https://dealsite.co.kr/articles/169624"
+    }
+  ]
+}
