@@ -1,0 +1,246 @@
+{
+  "clusters": {
+    "cluster_count": 91,
+    "cluster_size_max": 21,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 2,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 200,
+    "displayed_articles": 57,
+    "final_tagged_representatives": 91,
+    "normalized_articles": 301,
+    "raw_items": 301,
+    "relevance_filtered_articles": 121,
+    "rule_filtered_articles": 195,
+    "tagged_before_cluster": 121
+  },
+  "date": "2026-09-27",
+  "generated_at": "2026-09-27T09:03:12.945529+09:00",
+  "publishers": {
+    "missing_publisher_count": 91,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 36,
+    "no_topic_ratio": 0.3956,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7712962995737421,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"추석 선물 배송됐습니다\" 건당 5100만원 털렸다…추석마다 진화하는 보...",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=320111"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.38760037832782707,
+        "relevance_score": 10,
+        "sector": "여전",
+        "title": "\"추석 연휴 뒤 환급액 꼭 확인요\"…신규 가맹점 15만9천곳에 615억원 환...",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=227585"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8289441683026633,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[주간금융이슈] 추석 이후 정기국회 본격화, 디지털기본법 향배는",
+        "url": "https://www.newspim.com/news/view/20260923000764"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5582654742897066,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "지난해엔 명륜당, 올해는 대형 금융사고…산은·기은 국감 '비상'",
+        "url": "https://n.news.naver.com/mnews/article/008/0005418589?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7243869503187863,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[자막뉴스] 사람 잡는 신종 피싱 수법...AI 접목하자 '대박'",
+        "url": "https://n.news.naver.com/mnews/article/052/0002411443?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7161703499976881,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[N2 포커스] 현실화된 대출 절벽…가계는 고금리에 발만 동동 구른다",
+        "url": "https://www.news2day.co.kr/article/20260923500290"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5939517302885856,
+        "relevance_score": 7,
+        "sector": "감독·제재",
+        "title": "삼전닉스 레버리지 ETF·대출 규제… 금융위 국감 난타전 예고",
+        "url": "https://n.news.naver.com/mnews/article/366/0001194515?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6551076717813622,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "강남·서초 소폭 하락, 중랑·성북 3%대 상승…서울 집값 '엇갈림'",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=277304"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7382760633863931,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "새벽 걸려온 구조 요청…243억 '노쇼사기' 조직 잡은 베테랑 경찰",
+        "url": "https://n.news.naver.com/mnews/article/008/0005418576?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7613538599952093,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "코인 과세 강행 시 거래대금 258兆 증발 우려…업계 \"취득가 산정·신고...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014215002?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 4,
+      "기타": 42,
+      "대부": 3,
+      "디지털자산": 17,
+      "보험": 2,
+      "여전": 2,
+      "은행": 14,
+      "입법·정책": 3,
+      "저축은행": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 6,
+      "감독·제재": 3,
+      "건전성·자본규제": 2,
+      "금리·수수료·최고금리": 5,
+      "기업금융·익스포저": 4,
+      "디지털자산": 14,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 6,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 7,
+      "서민금융·대환·채무조정": 4,
+      "연체·부실": 7,
+      "일정·브리핑": 1,
+      "증시·시장시황": 2,
+      "칼럼·오피니언": 2,
+      "해외·글로벌": 5,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.754222162601044,
+        "relevance_score": 18,
+        "sector": "은행",
+        "title": "가계 조이고 기업 늘린 은행권…여전히 대출 중심 생산적 금융",
+        "url": "https://www.ntoday.co.kr/news/articleView.html?idxno=129618"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7564528874379803,
+        "relevance_score": 16,
+        "sector": "은행",
+        "title": "당국, 정책금융 등 고정금리 확대 주력…금리인상기 위험 흡수",
+        "url": "https://n.news.naver.com/mnews/article/001/0016337714?sid=101"
+      },
+      {
+        "cluster_size": 21,
+        "relevance_prob": 0.930980612655767,
+        "relevance_score": 18,
+        "sector": "기타",
+        "title": "“매달 이자만 440만원 내라고?”...주담대 8% 시대, ‘영끌족’ 공포",
+        "url": "https://n.news.naver.com/mnews/article/024/0000108497?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7208614045758545,
+        "relevance_score": 14,
+        "sector": "디지털자산",
+        "title": "토큰증권 시대 개막, 판 커진다",
+        "url": "https://www.sisaon.co.kr/news/articleView.html?idxno=204607"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.3718778156589442,
+        "relevance_score": 12,
+        "sector": "보험",
+        "title": "보험금 심사 '의료 자문' 소비자가 고른다…불신 없앨까 [주간필담]",
+        "url": "https://www.sisaon.co.kr/news/articleView.html?idxno=204699"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.877278581049463,
+        "relevance_score": 15,
+        "sector": "은행",
+        "title": "은행권 수신 경쟁 달아올라...5대 은행 정기예금 1012조 넘었다",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026092611124337662"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6939466916565136,
+        "relevance_score": 14,
+        "sector": "디지털자산",
+        "title": "코인거래소 비트겟, 3억5000만 달러 해킹 배후로 북한 지목",
+        "url": "https://www.mediapen.com/news/view/1126104"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7380548816791735,
+        "relevance_score": 9,
+        "sector": "저축은행",
+        "title": "저축은행 자영업자 대출, 4년 사이 잔액 절반 줄고 연체율 3.6배",
+        "url": "https://n.news.naver.com/mnews/article/055/0001391157?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.41023573435982585,
+        "relevance_score": 10,
+        "sector": "대부",
+        "title": "‘이재명표 배드뱅크’ 새도약기금 도입 1년…11조원 매입, 빚 탕감은 과...",
+        "url": "https://n.news.naver.com/mnews/article/005/0001875096?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6645745455410733,
+        "relevance_score": 9,
+        "sector": "저축은행",
+        "title": "저축은행 개인사업자대출 3년 반 만에 48% 감소…연체율 3.6배 급등",
+        "url": "https://www.gukjenews.com/news/articleView.html?idxno=3705998"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "보험": 1,
+      "은행": 3,
+      "저축은행": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "금리·수수료·최고금리": 1,
+      "기업금융·익스포저": 1,
+      "디지털자산": 2,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 2
+    }
+  }
+}

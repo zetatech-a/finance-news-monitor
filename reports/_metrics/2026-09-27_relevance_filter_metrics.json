@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 13,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 11,
+  "candidate_hybrid_gray_rule_drop": 42,
+  "candidate_hybrid_gray_rule_keep": 11,
+  "candidate_hybrid_keep_overseas_global_reference": 5,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 67,
+  "candidate_hybrid_model_drop": 7,
+  "candidate_hybrid_model_keep": 36,
+  "candidate_hybrid_model_keep_with_domain_anchor": 36,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 67,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-27",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 13,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 2,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 42,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 11,
+    "candidate_hybrid_keep_overseas_global_reference": 5,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 67,
+    "candidate_hybrid_model_drop_prob_le_threshold": 7,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 36
+  },
+  "dropped_count": 74,
+  "input_count": 195,
+  "kept_count": 121,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 195,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 12,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[KB 이재근號 출범③]지배구조 개선안 속 수익해법은?",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=867860"
+    },
+    {
+      "title": "대출심사 파고드는 핀테크…2금융권과 잇달아 '동맹'",
+      "url": "https://www.hankyung.com/article/202609266145i"
+    },
+    {
+      "title": "이번엔 다를까...온투업, 6년 만에 '신뢰 회복' 시험대",
+      "url": "https://www.asiaa.co.kr/news/articleView.html?idxno=264148"
+    },
+    {
+      "title": "[분석] '토스·카뱅·지그재그' 손잡은 신한카드, 결제액 노림수 통할까",
+      "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=814102"
+    },
+    {
+      "title": "시민안전보험 벌·뱀 80만원 신설했는데 7개월 청구 0건",
+      "url": "https://www.imaeil.com/page/view/2026092615562627287"
+    },
+    {
+      "title": "KB국민카드, 일본 여행객 잡는다…스타벅스·돈키호테·면세점 혜택 강...",
+      "url": "https://www.thepublic.kr/news/articleView.html?idxno=320144"
+    },
+    {
+      "title": "“추석에 일시불로 긁었는데”⋯불어난 카드값, 나눠 낼 수 있을까",
+      "url": "https://www.etoday.co.kr/news/view/2629048"
+    },
+    {
+      "title": "반도체 생산·물가·대출금리 잇따라 발표…다음 주 경제지표 주목",
+      "url": "https://www.betanews.net/article/view/beta202609260016"
+    },
+    {
+      "title": "“대출상담 일 끊겨 상하차 알바”…총량규제에 대출모집인 청원까지 등...",
+      "url": "https://www.sedaily.com/article/20094417?ref=naver"
+    },
+    {
+      "title": "카뱅은 잔금·토뱅은 주담대·케뱅은 법인…인뱅, 대출 영토 넓힌다",
+      "url": "https://www.mt.co.kr/finance/2026/09/26/2026092315584054361"
+    }
+  ]
+}
