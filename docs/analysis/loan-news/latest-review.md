@@ -1618,3 +1618,106 @@ parsers. Human merge approval is separate from test success.
 Final stop rule: after this one validated commit/push, stop. Do not request
 another Codex review, wait for zero comments, process a later review, merge or
 resolve threads as part of this task.
+
+## Round18: bounded enforcement particles and metric reporters (60088cc)
+
+Started on local/PR HEAD `60088ccb3b494a23e5dd89bb24e6901933b8f612`,
+existing branch `fix/loan-news-clustering-recall`, PR OPEN, initially clean.
+Latest review explicitly states **Reviewed commit: 60088ccb3b**. Both findings
+are reproduced PR-induced production blockers:
+[enforcement particles](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4117727296)
+and [deposit-insurer reporter](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4117727297).
+Recovery preserved the existing source diff and new test file; no reimplementation
+or history rewrite occurred. Worktree-root AGENTS.md is absent; the main checkout's
+AGENTS.md and worktree CLAUDE.md were read. Only documentation remained to edit.
+
+### Test-first proof and minimal fixes
+
+`tests/test_particle_reporter_review.py`: **46 cases**, executed before production
+modification with **20 failed / 26 passed** (A: 12 failures, B: 8 failures).
+Existing tests/assertions were not modified.
+
+A: `서울시 소상공인 불법사금융 단속의 절차를 정한 조례 개정` and
+`서울시 소상공인 불법사금융 집중 단속` both received
+`enforcement:서울시:small_business`, pair True, 1 cluster. The analogous
+`수사는 인권보호 조례의 적용 대상` also merged. The optional particle-only
+branch treated a nominal policy reference as action evidence.
+
+All particle-only branches are removed. Particle-bearing matches now require
+bounded established context: 에 + 나선다/나섭니다/착수, 을/를 + 실시,
+이/가 + 시작/시작됐다, or 의 + 결과. Existing tests in
+`test_scoped_blockers_review.py` and `test_baseline_anchor_review.py` establish
+실시, 시작(됐다), and the result-report form `수사의 결과`; the latter is retained
+as result evidence, not a general 의 permission. The final lexical boundary
+rejects 실시계획, 시작점 and 결과론. Bare/prefixed actions, 한다/했다/해,
+개시/의뢰 and standalone 잡는다 remain supported. Agency nouns, 바로잡는다,
+붙잡는다 and description-only evidence remain negative. Afterward the ordinance
+fingerprint is None, pair False, 2 clusters. Authority, target, fingerprint format
+and campaign-period/bridge logic are untouched.
+
+Stored candidate-title inspection found no reason to add new predicate forms.
+Examples outside the replay dates include `수사의 영역은 구분돼야` (06-24),
+`수사의 역할과 책임 무거워` (07-01), and `단속이 주효` (08-11); these are
+observations, not new grammar additions. The 3-day scan found seven 예보/예금보험공사
+mentions (six on 09-15, one on 09-16), none with a metric measurement. The 09-17
+`수사의뢰...` occurrence is an existing action compound, not a particle-only use.
+
+B: `예금보험공사 보험사 킥스비율 200% 자본여력 감소` had subject
+`{예금보험공사}`, while `예보 보험사 지급여력비율 200% 자본여력 감소`
+had `{보험사}`. Both had capital_adequacy_ratio=200 and unknown periods; the
+subject-conflict veto produced pair False, 2 clusters. The durable ancestor
+`e67e3a740b0004e56a0087aa34edfeaffc6264ae` was separately executed: pair True,
+1 cluster. The named-entity path returned the reporting institution before the
+industry fallback could select the actual owner.
+
+Only `_metric_subjects()` changes: its local `excluded_metric_reporters` set adds
+exact `예금보험공사`, with the same exclusion after generic company fallback.
+Afterward both subjects are `{보험사}`, event veto False, pair True, 1 cluster.
+Global entity extraction still recognizes 예금보험공사; **no 예보 alias was needed**.
+No speculative institution exclusions or global entity/alias changes were added.
+Commercial-bank/company subjects, industry scope distinctions, explicit periods
+and distinct-event vetoes have positive/negative regression coverage.
+
+### Validation and fresh replay
+
+Targeted **46 passed**; related suite **878 passed**. The Windows related run had
+five existing NumPy/joblib warnings and one subprocess UTF-8 decoding warning;
+`test_cluster_replay_reproducibility.py` rerun with PYTHONUTF8/PYTHONIOENCODING
+passed **1 test** without that warning. Full Linux/Python 3.11 Docker
+`--network none`: **1530 passed, 1 skipped**. On recovery these completed logs
+were inspected, source/tests were unchanged, and the cheap targeted suite was
+rerun: **46 passed**. No full-suite rerun is claimed for documentation-only edits.
+`git diff --check` passed.
+
+Fresh BEFORE from 60088cc and AFTER were captured offline; **full captured JSON
+equality is True**. All six cohorts have identical kept sets, memberships,
+representative counts and representative titles/URLs.
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored | New merged / split |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 | 0 / 0 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 | 0 / 0 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 | 0 / 0 |
+
+All 3,327 raw candidates (985/1041/1301) have zero changes to relevance
+scores/terms/domain anchors, metric identities/subjects/signed absolute values/
+periods, event tokens/comparison units, issue terms, fingerprints and enforcement
+periods. A separate action/subject/fingerprint audit also returned `changed: []`.
+There are no changed article/pair deltas to explain and no measured replay recall
+gain. Golden precision/recall remains **1.0000 / 0.9224137931034483** (107/116);
+other-sector **1.0000 / 0.8888888888888888** (40/45). Golden end-to-end output is
+identical. Historical artifacts and generated reports were not edited; temporary
+proof/audit/replay logs remain ignored under `.venv`.
+
+### PR #85 ROUND18 STOP ASSESSMENT
+
+The two known blockers in this round are resolved by bounded local changes;
+validation/replay contains no unexplained delta. This does not claim exhaustive
+Korean-language coverage or automatic merge approval. Existing candidate-order/
+assignment architecture, metric qualifiers, industry particles, post-metric
+subjects and zero-positive evaluator robustness remain deferred. No registries,
+global normalization, ranking, threshold, relevance or delivery changes exist.
+
+After this single validated commit/push and clean local/origin/PR verification,
+stop. No new automated review is requested or processed, no threads are resolved,
+and PR #85 is not merged. The human decides the next step.

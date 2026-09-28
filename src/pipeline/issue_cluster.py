@@ -305,8 +305,9 @@ def _is_enforcement_headline(title: str) -> bool:
                 # Complete action uses, including established action compounds;
                 # agency nouns (수사기관/단속기관) are not headline event evidence.
                 r"(?<![가-힣a-z0-9])(?:(?:집중|특별|합동|보완|인지)?(?:단속|수사)"
-                # 에 must lead into an established action, not "에 관한 조례".
-                r"(?:에\s+(?:나선다|나섭니다|착수)|[은는이가의을를]|해|한다|했다|개시|의뢰)?"
+                # Particles need a bounded action/result, never nominal policy context.
+                r"(?:에\s+(?:나선다|나섭니다|착수)|[을를]\s+실시"
+                r"|[이가]\s+시작(?:됐다)?|의\s+결과|해|한다|했다|개시|의뢰)?"
                 r"|잡는다)(?![가-힣a-z0-9])",
                 title, re.IGNORECASE,
             )))
@@ -452,17 +453,17 @@ def _metric_subjects(title: str) -> set[str]:
     )
     if aggregate:
         return {_canonical_metric_subject(aggregate.group(1))}
-    excluded_regulators = {"금융감독원", "금융위원회", "한국은행"}
+    excluded_metric_reporters = {"금융감독원", "금융위원회", "한국은행", "예금보험공사"}
     subjects = {
-        entity for entity in _extract_entities(title) - excluded_regulators
+        entity for entity in _extract_entities(title) - excluded_metric_reporters
         if re.search(r"(?<![가-힣a-z0-9])" + re.escape(entity) + _METRIC_SUBJECT_END, title)
     }
     subjects.update(re.findall(
         r"(?<![가-힣a-z0-9])[가-힣a-z0-9]+(?:생명|손보|화재|라이프|보험|은행|카드|캐피탈)"
         + _METRIC_SUBJECT_END, title,
     ))
-    # The generic company-suffix path must not reintroduce excluded regulators.
-    subjects.difference_update(excluded_regulators)
+    # The generic company-suffix path must not reintroduce excluded reporters.
+    subjects.difference_update(excluded_metric_reporters)
     if subjects:
         return {_canonical_metric_subject(subject) for subject in subjects}
     # Explicit industry-wide statistics have subjects too. Do not infer these
