@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 38,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 13,
+  "candidate_hybrid_gray_rule_drop": 74,
+  "candidate_hybrid_gray_rule_keep": 13,
+  "candidate_hybrid_keep_overseas_global_reference": 10,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 154,
+  "candidate_hybrid_model_drop": 9,
+  "candidate_hybrid_model_keep": 58,
+  "candidate_hybrid_model_keep_with_domain_anchor": 58,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 154,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-28",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 38,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 9,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 74,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 13,
+    "candidate_hybrid_keep_overseas_global_reference": 10,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 154,
+    "candidate_hybrid_model_drop_prob_le_threshold": 9,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 58
+  },
+  "dropped_count": 143,
+  "input_count": 382,
+  "kept_count": 239,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 382,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 16,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "무등록 대부업으로 이자 19억 원 챙긴 2명 실형",
+      "url": "https://www.idomin.com/news/articleView.html?idxno=2015741"
+    },
+    {
+      "title": "연휴 끝 국감 시작…2금융권 도마 오를 쟁점은?",
+      "url": "http://www.metroseoul.co.kr/article/20260927500147"
+    },
+    {
+      "title": "‘카드빚 돌려막기’ 잔액 1.7조 육박...고금리 장기화에 올해 들어 23% ...",
+      "url": "https://www.chosun.com/economy/economy_general/2026/09/28/QECOKNKBP5EFZFJCV5YGRI23Z4/?utm_source=naver&utm_medium=referral&utm_campaign=naver-news"
+    },
+    {
+      "title": "[KB 이재근號 출범④]비은행 CEO 연임 분수령",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=867717"
+    },
+    {
+      "title": "가계빚 2000조 시대…무작정 '탕감' 대신 '자립' 사다리를 [기자수첩-금...",
+      "url": "https://www.dailian.co.kr/news/view/1694525/?sc=Naver"
+    },
+    {
+      "title": "[Who Is ?] 안와르 알 히즈아지 에쓰오일 대표이사",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=445463"
+    },
+    {
+      "title": "로우프로파일 판매 10배…푸마, 5년 적자 끊고 66억 흑자",
+      "url": "https://www.imaeil.com/page/view/2026092708483289498"
+    },
+    {
+      "title": "보험료 낮춘 5세대 실손보험…갈아타면 득일까?",
+      "url": "https://www.sisaon.co.kr/news/articleView.html?idxno=204711"
+    },
+    {
+      "title": "가계대출 총량관리·홍콩ELS…정무위 국감 쟁점은?",
+      "url": "http://www.metroseoul.co.kr/article/20260927500067"
+    },
+    {
+      "title": "카드업계 채용문 다시 열린다…AI·데이터 인재 확보 나서",
+      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1409353"
+    }
+  ]
+}
