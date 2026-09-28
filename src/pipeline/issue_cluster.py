@@ -597,7 +597,14 @@ def _conflicting_enforcement_periods(a: _ClusterFeatures, b: _ClusterFeatures) -
 
 def _metric_event_text(feature: _ClusterFeatures) -> str:
     """Ordered residual evidence; removed facts remain adjacency barriers."""
-    text = _METRIC_OCCURRENCE_RE.sub(" | ", feature.norm_title)
+    text = feature.norm_title
+    measurement = _METRIC_OCCURRENCE_RE.search(text)
+    if measurement:
+        # A bare reporting month is not an event; later background months stay.
+        prefix = re.sub(r"(?<![0-9])(1[0-2]|[1-9])월(?![가-힣a-z0-9])",
+                        " | ", text[:measurement.start()])
+        text = prefix + text[measurement.start():]
+    text = _METRIC_OCCURRENCE_RE.sub(" | ", text)
     names = feature.metric_subjects | {
         alias for alias in _METRIC_SUBJECT_ALIASES | _METRIC_INDUSTRY_SUBJECT_ALIASES
         if _canonical_metric_subject(alias) in feature.metric_subjects
@@ -657,13 +664,23 @@ def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures)
         return False
     # Do not turn a missing period into a conflict against a dated report.
     # Such pairs still have to pass ordinary similarity without the shortcut.
-    if a.metric_period[1] is not None or b.metric_period[1] is not None:
+    # Two dated reports must still establish compatible event wording.
+    if (a.metric_period[1] is not None) != (b.metric_period[1] is not None):
         return False
     # Stored search headlines may end mid-word (e.g. 하...). Incomplete
     # event wording cannot establish disjoint events; ordinary rules still apply.
     if any(feature.headline_is_truncated or re.search(r"\.{2,}$", feature.norm_title)
            for feature in (a, b)):
         return False
+    if a.metric_period[1] is not None and b.metric_period[1] is not None:
+        # Dated statistical releases can describe a level, movement or its cause.
+        # Disjoint framing alone is not a conflict: require explicit independent
+        # announcement/action assertions on BOTH sides before applying this veto.
+        if not all(re.search(
+            r"(?<![가-힣a-z0-9])(?:완료|발행|발표|계획|성공|입증)(?![가-힣a-z0-9])",
+            _metric_event_text(feature),
+        ) for feature in (a, b)):
+            return False
     left, right = _metric_event_tokens(a), _metric_event_tokens(b)
     # Bare statistical wire labels still use ordinary title similarity. Once
     # both headlines name an event, the repeated fact cannot replace overlap

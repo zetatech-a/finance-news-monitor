@@ -38,13 +38,12 @@ def test_explicit_metric_period_conflict_prevents_final_merge(left: str, right: 
 ])
 def test_same_or_missing_metric_period_retains_wire_recall(left: str, right: str) -> None:
     a = tagged(f'KB손보 {left} 킥스비율 200% 자본확충 완료')
-    b = tagged(f'KB손해보험 {right} 지급여력비율 200% 후순위채 발행')
+    b = tagged(f'KB손해보험 {right} 지급여력비율 200% 자본 확충 완료')
     from src.pipeline.issue_cluster import _build_cluster_features, _conflicting_metric_periods
     assert not _conflicting_metric_periods(_build_cluster_features(a), _build_cluster_features(b))
-    # Missing period is not a conflict, but no longer authorizes unrelated
-    # event phrases solely because their rounded metric levels happen to agree.
-    assert _should_cluster(a, b) == bool(right)
-    assert len(cluster_tagged_articles([a, b])) == (1 if right else 2)
+    # Same-event wording keeps this focused on period/missing-data semantics.
+    assert _should_cluster(a, b)
+    assert len(cluster_tagged_articles([a, b])) == 1
 
 
 def test_conflicting_periods_cannot_bridge_through_missing_period() -> None:

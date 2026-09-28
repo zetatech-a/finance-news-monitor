@@ -1721,3 +1721,140 @@ global normalization, ranking, threshold, relevance or delivery changes exist.
 After this single validated commit/push and clean local/origin/PR verification,
 stop. No new automated review is requested or processed, no threads are resolved,
 and PR #85 is not merged. The human decides the next step.
+
+## Round19 closure: dated metric-event veto (157c9ff)
+
+Started and recovered on local/origin/PR HEAD
+`157c9ff42f3160471b01130d5a490d455356269d`, PR OPEN, existing branch.
+Latest [single review](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4117837418)
+explicitly reviewed **157c9ff42f**: Keep event vetoes active for dated metric reports.
+Recovery preserved the uncommitted source, new `test_dated_event_review.py`, and
+three existing-test edits. No reset, report rewrite or new review round occurred.
+
+### Reproduction and rejected intermediate evidence
+
+Before production edits, the initial final 15-case matrix ran on untouched HEAD:
+**3 failed / 12 passed**. Earlier fixture exploration (7 failed / 6 passed) also
+exposed incorrect assumptions about ordinary alias similarity; controls were
+corrected before production edits, not counted as blocker failures. Additional
+residual-prefix and statistical-framing tests were executed red before their
+respective implementation changes. The final new file contains **25 cases**;
+there is no claim that all 25 were run before the first source edit.
+
+Exact review pair:
+
+- `KB손보 2분기 킥스비율 200% 자본확충 완료`
+- `KB손해보험 상반기 지급여력비율 200% 새 회계제도 대응 전략 발표`
+
+Both have `{kb손해보험}`, capital_adequacy_ratio=200, period `(None, 6)`.
+Residual units are `{완료, 자본확충, 자본확충완료}` versus
+`{대응, 대응전략, 전략, 회계제도, 회계제도대응}`. Before: period conflict False,
+event veto False, pair True, 1 cluster. The broad any-month return bypassed event
+comparison despite its comment describing only a one-sided missing-period exception.
+
+Simply changing OR to asymmetric month presence was **rejected**. The recovered
+prefix-scoped intermediate still had **1 failed / 1548 passed / 1 skipped** in
+Linux, with the unchanged insurance_capital golden assertion failing. Recovery
+reran the 19 targeted tests (pass) and that golden test (fail). Fresh intermediate
+replay had 09-17 fixed clusters **401 -> 407**, rescored **407 -> 413**, **0 merged /
+145 split pairs in each cohort**; golden recall **107/116 -> 101/116**. The focused
+same-month audit found **74 newly active vetoes per 09-17 cohort**. All intermediate
+snapshots and title/URL/feature/membership audit evidence remain ignored in `.venv`.
+
+### Exact golden topology and root cause
+
+All four labelled insurance_capital articles have subject 보험사, identity
+capital_adequacy_ratio, absolute value 215.2, period `(None, 6)`. In the isolated
+labelled cohort their baseline cluster was `issue-3eeb36c29318`; every one of the
+six pairwise event vetoes incorrectly became True in the intermediate patch.
+
+| Article | Residual tokens / extra joined units | Rejected intermediate cluster |
+| --- | --- | --- |
+| [보험사 6월말 킥스 215.2%…전 분기比 0.8%p↓](http://www.hansbiz.co.kr/news/articleView.html?idxno=865758) | 분기 | issue-eaf42e38afaf |
+| [보험사 6월 말 킥스비율 215.2%...요구자본 증가](http://www.popcornnews.net/news/articleView.html?idxno=133153) | 요구자본, 증가 / 요구자본증가 | issue-2c5d842fb5ea |
+| [보험사 6월 말 킥스비율 215.2%…3개월 새 0.8%p 하락](https://www.dailian.co.kr/news/view/1691080/?sc=Naver) | 3개월, 하락 | issue-f959da0a4e96 |
+| [보험사 2분기 킥스비율 215.2%···전분기比 0.8%p↓](https://www.seoulfn.com/news/articleView.html?idxno=638102) | 전분기 | issue-e6c9c38d0bc1 |
+
+These are different framings of one statistical release, not independent
+announcements. Non-empty disjoint residual sets alone cannot establish a dated
+report conflict. The user explicitly authorized re-examining conflicting old test
+contracts/residual periods, then the bounded statistical-framing distinction.
+Golden labels and `test_september_17_golden_events_survive_without_pollution`
+were never changed.
+
+### Final local policy and test review
+
+- Preserve the exception only when exactly one month is present.
+- For two dated reports, require BOTH residual texts to contain a bounded explicit
+  assertion marker from existing test vocabulary: 완료, 발행, 발표, 계획, 성공, 입증.
+  Only then apply the existing morphology/spacing-aware disjoint-event comparison.
+  발표자료/계획서 do not match. This is conservative veto eligibility, not a positive
+  merge rule or a general event taxonomy. Undated event comparison is unchanged.
+- Retain terminal truncation release and the existing earlier explicit period veto.
+- Remove bounded bare reporting months only before the first metric occurrence
+  from event residuals; later background months and metric-less titles are untouched.
+  This fixes the bare 6월 bridge residual without changing period extraction itself.
+
+The exact Codex pair is now event veto True, period conflict False, pair False,
+2 clusters. Same-period same-event spacing/morphology controls merge; dated
+200/201 explicit incompatible events split, while value differences alone do not
+veto. One-sided missing periods preserve their previous ordinary outcomes and
+cannot claim the exact-period shortcut. ASCII/Unicode truncation, real period
+conflicts and all six bare-bridge input permutations pass. Statistical framing
+releases only a veto: removing exact facts and ordinary evidence still prevents
+merging in the no-shortcut control.
+
+Each existing-test edit was reviewed against 157c9ff:
+
+| Test | Decision and justification |
+| --- | --- |
+| metric_context: same_period_numeric_spellings | Retain same-event fixture wording. Numeric formatting/alias equivalence is still asserted; its prior capital-completion vs debt-issuance forced merge conflicts with the new explicit-event invariant. New dated negatives cover the disjoint case. |
+| metric_period_value: different_value_does_not_authorize_exact_metric_shortcut | Retain an isolated feature test with ordinary evidence removed, so different facts cannot shortcut but identical facts with a compatible event can. The original success vs policy-proof negative is separately tested for BOTH 201 and 200.00 in the new file; its old same-value forced merge is superseded. |
+| period_particle: same_or_missing_metric_period | Retain same-event wire fixture so the test isolates period equivalence/missingness. Separate new tests retain dated disjoint-event splits and both one-sided ordinary outcomes. |
+| period_particle: background_comparison_after_metric | RESTORED the original fixture/assertion; the conservative dated assertion gate preserves it without changing period semantics. |
+
+No assertion was changed in the golden test. No changes to global ordering,
+entities/aliases, relevance, enforcement, signed values, metric grammar,
+thresholds, representative ranking or model/delivery behavior were made.
+
+### Final validation and fresh replay
+
+New tests: **25 passed**. Required targeted five-file suite: **187 passed**.
+Unchanged golden test separately: **1 passed**. Related cluster/metric/enforcement/
+loan/replay/relevance suite: **903 passed**, five existing NumPy/joblib warnings.
+Full Linux/Python 3.11 Docker `--network none`: **1555 passed, 1 skipped**.
+`git diff --check` passes. All results are executed results, not predicted totals.
+
+Final capture `round19-after-final.json` compared with fresh 157c9ff BEFORE is
+**fully equal**, including golden end-to-end output. The rejected intermediate
+files were not overwritten. All final memberships and representative titles/URLs
+match baseline; **0 newly merged / 0 newly split pairs** in every cohort.
+
+| Date | Fixed kept / clusters (before = final) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored |
+| --- | --- | --- | ---: | ---: | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 |
+
+All 3,327 candidates retain kept decisions, relevance scores/terms/domain anchors,
+metric identities/subjects/signed facts/periods, residual tokens/comparison units,
+issue terms, fingerprints and enforcement periods. Sector representative counts
+are unchanged. Final focused same-subject/identity/non-null-month audit finds
+**0 False -> True event-veto pairs** in all six stored cohorts, so there are no
+final article/pair deltas requiring attribution. The synthetic correction is not
+claimed as a measured corpus recall gain. Golden precision/recall is unchanged
+**1.0000 / 0.9224137931034483 (107/116)**; other-sector is unchanged
+**1.0000 / 0.8888888888888888 (40/45)**. Golden insurance_capital stays one cluster.
+
+### PR #85 ROUND19 FINAL CLOSURE ASSESSMENT
+
+The latest demonstrated dated-announcement false merge is fixed without the
+observed statistical-wire regression. No unexplained final replay changes remain.
+This bounded assertion vocabulary is deliberately incomplete; it does not prove
+all language semantics solved. Previously deferred candidate ordering/assignment,
+post-metric subjects, qualifiers, industry particles, zero-positive evaluator
+robustness and general architecture work remain deferred. No generic parser or
+registry was introduced. Human merge approval remains separate.
+
+After one validated commit/push and local/origin/PR clean-state verification,
+stop; do not request or process another automated review, merge or resolve threads.

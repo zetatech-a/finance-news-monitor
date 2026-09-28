@@ -63,13 +63,20 @@ def test_different_metric_identities_do_not_create_period_conflict() -> None:
 
 
 def test_different_value_does_not_authorize_exact_metric_shortcut() -> None:
+    from dataclasses import replace
+
     a = tagged("KB손보 2분기 킥스비율 200% 요구자본 확충 성공")
-    b = tagged("KB손해보험 6월말 지급여력비율 201% 새 회계제도 대응 여력 입증")
-    assert not ic._should_cluster(a, b)
-    assert len(ic.cluster_tagged_articles([a, b])) == 2
-    same_value = tagged(b.article.title.replace("201%", "200.00%"))
-    assert ic._should_cluster(a, same_value)
-    assert len(ic.cluster_tagged_articles([a, same_value])) == 1
+    b = tagged("KB손해보험 6월말 지급여력비율 201% 요구자본 확충 성공")
+    # Isolate the exact-fact shortcut from independent ordinary event evidence.
+    fa, fb = [replace(ic._build_cluster_features(t), issue_terms=set(), entities=set(), numbers=set())
+              for t in (a, b)]
+    assert not ic._metric_match_lacks_event_evidence(fa, fb)
+    assert not ic._should_cluster_features(fa, fb)
+    same_value = replace(fb, reported_metrics=fa.reported_metrics)
+    assert ic._should_cluster_features(fa, same_value)
+    # The real same-event pair can still merge through ordinary evidence.
+    assert ic._should_cluster(a, b)
+    assert len(ic.cluster_tagged_articles([a, b])) == 1
 
 
 def test_same_quarter_wires_stay_separate_from_next_quarter() -> None:

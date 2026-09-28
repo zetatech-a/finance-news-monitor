@@ -105,7 +105,7 @@ def test_numeric_metric_canonicalization_cannot_bypass_period_veto(left: str, ri
 @pytest.mark.parametrize('left,right', [('200', '200.0'), ('200', '200.00'), ('215.2', '215.20')])
 def test_same_period_numeric_spellings_retain_wire_shortcut(left: str, right: str) -> None:
     a = tagged(f'KB손해보험 2분기 킥스비율 {left}% 자본확충 완료')
-    b = tagged(f'KB손보 6월말 K-ICS 비율 {right}% 후순위채 발행')
+    b = tagged(f'KB손보 6월말 K-ICS 비율 {right}% 자본 확충 완료')
     assert ic._should_cluster(a, b)
     assert len(ic.cluster_tagged_articles([a, b])) == 1
 
