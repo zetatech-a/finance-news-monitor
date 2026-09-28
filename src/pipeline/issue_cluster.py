@@ -459,7 +459,7 @@ def _metric_subjects(title: str) -> set[str]:
         if re.search(r"(?<![가-힣a-z0-9])" + re.escape(entity) + _METRIC_SUBJECT_END, title)
     }
     subjects.update(re.findall(
-        r"(?<![가-힣a-z0-9])[가-힣a-z0-9]+(?:생명|손보|화재|라이프|보험|은행|카드|캐피탈)"
+        r"(?<![가-힣a-z0-9])[가-힣a-z0-9]+(?:생명|손보|해상|화재|라이프|보험|은행|카드|캐피탈)"
         + _METRIC_SUBJECT_END, title,
     ))
     # The generic company-suffix path must not reintroduce excluded reporters.
@@ -501,8 +501,10 @@ def _metric_period(title: str) -> tuple[int | None, int | None]:
     months.update(int(month) for month in re.findall(r"(?<![0-9])(1[0-2]|[1-9])월\s*말", prefix))
     # Bare months are explicit snapshots too, but 월물/월호 and out-of-range
     # numbers are not. 월말 remains handled above, without a second bare match.
+    # A following bounded day makes this a calendar date, not a monthly snapshot.
     months.update(int(month) for month in re.findall(
-        r"(?<![0-9])(1[0-2]|[1-9])월(?![가-힣a-z0-9])", prefix,
+        r"(?<![0-9])(1[0-2]|[1-9])월(?![가-힣a-z0-9])"
+        r"(?!\s+(?:3[01]|[12][0-9]|[1-9])일(?![가-힣a-z0-9]))", prefix,
     ))
     return (next(iter(years)) if len(years) == 1 else None,
             next(iter(months)) if len(months) == 1 else None)

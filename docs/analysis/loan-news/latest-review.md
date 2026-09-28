@@ -1858,3 +1858,79 @@ registry was introduced. Human merge approval remains separate.
 
 After one validated commit/push and local/origin/PR clean-state verification,
 stop; do not request or process another automated review, merge or resolve threads.
+
+## Calendar-date and marine-insurer follow-up (f5fa1d01fb)
+
+Starting local/origin/PR HEAD was `f5fa1d01fbec90830972b72772fb47ecc39b34d1`,
+with a clean worktree and PR #85 OPEN. Actual review `5334757778` states
+Reviewed commit `f5fa1d01fb`; comments `4119204520` and `4119204524` are the
+only findings addressed here.
+
+### Reproduction and bounded changes
+
+New `test_calendar_marine_review.py`: **30 cases**, executed before any production
+edit: **8 failed / 22 passed**. Independent feature/pair/cluster probes confirmed:
+
+- A: `9월 17일 삼성생명 킥스비율 200% 자본여력 감소` had period `(None, 9)`;
+  `삼성생명 6월말 지급여력비율 200% 자본여력 감소` had `(None, 6)`.
+  Shared identity, subject and value were correct, but period veto was true,
+  pair false, final clusters 2. Afterward the calendar month is unknown,
+  period veto false, pair true, final clusters 1.
+- B: `현대해상 킥스 20% 건전성 하락` had no metric subject, while
+  `한화생명 지급여력비율 20% 건전성 하락` had `{한화생명}`. Shared metric/value,
+  no subject veto, pair true, final clusters 1. Afterward `{현대해상}` restores
+  the subject veto, pair false, final clusters 2. Thus the review premise did
+  reproduce; no ancestor behavior is inferred.
+
+Production changes are confined to two existing metric-local regexes. Bare-month
+extraction now excludes a following whitespace-separated, complete `1일` through
+`31일` token. It does not erase the prefix or infer dates: an accompanying
+`6월말` still supplies month 6. Standalone months, quarter/half/year-end-month
+contracts, bounded comparison baselines, ambiguity and prefix-only ownership
+remain intact. Invalid day/lexical continuations do not trigger this exclusion.
+The existing pre-measurement company suffix alternative adds only `해상`, retaining
+its complete subject boundary. Same 현대해상 wires merge; `현대해상이익` and
+post-measurement mentions do not become measured subjects.
+
+No global entities, aliases, title tokens, enforcement periods, event-veto policy,
+ordering, relevance, thresholds or representative ranking changed. No existing
+test was weakened. Interaction and no-new-shortcut controls pass.
+
+### Validation and fresh replay
+
+New tests **30 passed**; combined new/dated-event/September 17 golden targeted
+run **56 passed** (including the unchanged golden regression).
+Related metric/enforcement/loan/replay/relevance suite **933 passed**, with five
+existing NumPy/joblib warnings. Linux/Python 3.11 Docker `--network none` full
+suite: **1585 passed, 1 skipped**. `git diff --check` passes.
+
+Fresh `round20-before.json` was captured from untouched f5fa1d; the final AFTER
+capture is **fully JSON-equal**, including golden end-to-end output. Historical
+round19 artifacts were not overwritten.
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored | New merged / split (both cohorts) |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 | 0 / 0 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 | 0 / 0 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 | 0 / 0 |
+
+All 3,327 raw candidates retain relevance scores/terms/domain anchors, metric
+identities/subjects/signed values/periods, event tokens/comparison units, issue
+terms, fingerprints and enforcement periods. All kept sets, memberships, sector
+representative counts and representative titles/URLs are unchanged. Focused raw
+candidate audit found **0** metric headlines with the spaced month/day prefix and
+**0** metric headlines mentioning 해상 across these dates. There are consequently
+no article-level feature or pair deltas to attribute, and no corpus recall gain
+is claimed from these synthetic corrections.
+
+Golden precision/recall remains **1.0000 / 0.9224137931034483 (107/116)**;
+other-sector remains **1.0000 / 0.8888888888888888 (40/45)**.
+
+### PR #85 FINAL SCOPE ASSESSMENT
+
+Neither demonstrated concrete regression remains; no unexplained replay/golden
+regression remains. The bounded day-token grammar is not a general date parser,
+and the added suffix is not a company registry. Candidate ordering/assignment,
+post-metric subjects, qualifiers, exhaustive industry particles, zero-positive
+evaluator robustness and other previously deferred architecture/coverage/tooling
+work remain deferred. These results do not replace human merge approval.
