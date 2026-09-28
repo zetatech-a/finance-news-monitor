@@ -305,7 +305,9 @@ def _is_enforcement_headline(title: str) -> bool:
                 # Complete action uses, including established action compounds;
                 # agency nouns (수사기관/단속기관) are not headline event evidence.
                 r"(?<![가-힣a-z0-9])(?:(?:집중|특별|합동|보완|인지)?(?:단속|수사)"
-                r"(?:[은는이가의을를에]|해|한다|했다|개시|의뢰)?|잡는다)(?![가-힣a-z0-9])",
+                # 에 must lead into an established action, not "에 관한 조례".
+                r"(?:에\s+(?:나선다|나섭니다|착수)|[은는이가의을를]|해|한다|했다|개시|의뢰)?"
+                r"|잡는다)(?![가-힣a-z0-9])",
                 title, re.IGNORECASE,
             )))
 
@@ -533,6 +535,7 @@ class _ClusterFeatures:
     metric_subjects: set[str]
     metric_period: tuple[int | None, int | None]
     enforcement_period: tuple[int | None, int | None]
+    headline_is_truncated: bool
 
 
 def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
@@ -555,6 +558,10 @@ def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
         metric_subjects=_metric_subjects(norm_title),
         metric_period=_metric_period(norm_title),
         enforcement_period=_enforcement_period(norm_title),
+        # Preserve terminal truncation before global punctuation normalization.
+        headline_is_truncated=bool(re.search(
+            r"(?:\.{2,}|…)\s*$", _TAG_RE.sub(" ", html.unescape(title)),
+        )),
     )
 
 
@@ -653,7 +660,8 @@ def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures)
         return False
     # Stored search headlines may end mid-word (e.g. 하...). Incomplete
     # event wording cannot establish disjoint events; ordinary rules still apply.
-    if any(re.search(r"\.{2,}$", feature.norm_title) for feature in (a, b)):
+    if any(feature.headline_is_truncated or re.search(r"\.{2,}$", feature.norm_title)
+           for feature in (a, b)):
         return False
     left, right = _metric_event_tokens(a), _metric_event_tokens(b)
     # Bare statistical wire labels still use ordinary title similarity. Once

@@ -1512,3 +1512,109 @@ industry-particle gaps remain material human-review debt. No registry, global
 normalization, ranking, threshold or delivery changes are included. Temporary
 proof/replay/audit files stay under ignored `.venv`; passing tests is not merge
 approval.
+
+## Final stabilization: nominal enforcement and Unicode truncation (ca7baca)
+
+Started clean on existing branch/PR HEAD
+`ca7bacaa1b0179344d9544229533c6ed005e4ef8`, PR OPEN. Latest review explicitly
+states **Reviewed commit: ca7bacaa1b**. Human triage is final for this task:
+
+| Finding | Disposition |
+| --- | --- |
+| [1: nominal enforcement references](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4069461775) | Reproduced production false merge; fixed locally |
+| [2: post-measurement subjects](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4069461783) | Deferred metric grammar; prefix-only ownership remains |
+| [3: zero-positive evaluator cohort](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4069461789) | Deferred tooling robustness; candidate_recall should be None for zero positives in a follow-up |
+| [4: Unicode ellipsis](https://github.com/zetatech-a/finance-news-monitor/pull/85#discussion_r4069461798) | Reproduced production false split; fixed locally |
+
+### Test-first proof and bounded fixes
+
+Added `tests/test_final_stabilization_review.py` before production edits:
+**33 cases, 8 failed / 25 passed** on untouched ca7baca (A: 5 failed;
+B: 3 failed). Existing tests/assertions are unchanged.
+
+A: `서울시 소상공인 불법사금융 단속에 관한 인권보호 조례 전면 개정`
+and `서울시 전통시장 불법대부 특별 수사` both received
+`enforcement:서울시:small_business`, pair True, 1 cluster. 수사에 관한 also
+reproduced. The optional 에 suffix accepted arbitrary nominal continuation.
+Only the 에 branch now requires whitespace plus a complete supported action:
+나선다, 나섭니다 or 착수. The final lexical boundary rejects 착수금; 에 관한
+cannot fall back to a bare 단속/수사 match. Other established action branches
+are untouched. Afterward the ordinance fingerprint is None, pair False,
+2 clusters. A separate actual action in the same headline is still recognized.
+
+Positive controls include 집중/특별/합동 단속, 단속한다/했다/해, 수사 개시/의뢰,
+잡는다, 단속에 나선다/나섭니다 and 수사에 착수. Existing tests already cover
+단속에 나선다; stored fixtures include 나섭니다 and 착수 action context. These
+are a bounded local list, not a general verbal parser. Agency nouns, compounds
+바로잡는다/붙잡는다, description-only references and supported domain synonyms
+retain their contracts. Authority/target format and campaign rules are unchanged.
+
+B: raw `삼성생명 킥스비율 200% 자본확…` normalized to
+`삼성생명 킥스비율 200% 자본확`; residual tokens and comparison units were
+`{자본확}`, disjoint from `{자본확충}` in the full 지급여력비율 wire. Before:
+event veto True, pair False, 2 clusters. The equivalent ASCII `자본확...`
+retained its dots, veto False, pair True, 1 cluster.
+
+A private `_ClusterFeatures.headline_is_truncated` flag now reads terminal
+`…` or two-or-more ASCII dots from the HTML-cleaned/unescaped raw title.
+Only metric-event veto checks use it; the previous normalized ASCII check is
+retained for compatibility. Unicode and ASCII now both release the false veto
+and form 1 cluster through ordinary evidence. Raw HTML and &hellip; cases pass.
+Global normalization/tokens/event units remain unchanged. Internal ellipses,
+terminal single dot/!/?, disjoint complete events, stripped ordinary-evidence
+pairs and explicit period conflicts demonstrate that this is not merge evidence.
+
+### Validation and fresh replay
+
+Targeted **33 passed**; related metric/enforcement/loan/replay/relevance suite
+**832 passed** (5 existing NumPy/joblib warnings). Full Linux/Python 3.11 Docker
+`--network none`: **1484 passed, 1 skipped**. Docker was initially stopped; the
+first attempt could not connect. Starting the installed Linux engine restored
+validation; the quoted result is from the successful run. `git diff --check`
+passed. No global normalization, ordering, subject grammar, evaluator denominator,
+qualifier, industry-particle, relevance, model, report or delivery changes exist.
+
+Fresh ca7baca BEFORE and implementation AFTER were captured for the exact three
+dates. Captured replay JSON is equal, including all existing article features,
+full memberships and representative titles/URLs; historical results were not
+rewritten. New raw truncation flag differences are separately audited below.
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored | New merged / split |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 | 0 / 0 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 | 0 / 0 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 | 0 / 0 |
+
+All 3,327 candidates retain relevance scores/terms/domain anchors, metric
+identities/subjects/signed values/periods, event tokens/comparison units, issue
+terms, fingerprints and enforcement periods. All kept sets, sector representative
+counts, memberships and representative titles/URLs are unchanged. Loan golden
+precision/recall remains **1.0000 / 0.922414** (107/116), other-sector
+**1.0000 / 0.888889** (40/45); golden end-to-end output is identical.
+
+Separate feature/pair audit: exactly three raw titles gain a Unicode terminal
+truncation signal, all titled `업비트 거래소에서 금일 가장 주목 받는 가상화폐는…`:
+[09-15](https://www.khgames.co.kr/news/articleView.html?idxno=308357),
+[09-16](https://www.khgames.co.kr/news/articleView.html?idxno=308405),
+[09-17](https://www.khgames.co.kr/news/articleView.html?idxno=308465).
+Their prior truncation detection was False, raw flag is True under B, but metric
+identities are empty and fingerprints remain None, so metric-event eligibility
+never activates. Final memberships stay identical. No metric-event pair veto
+changes in either cohort, no action/fingerprint changes, no new final merges or
+splits, and no unexplained deltas. Temporary proof/replay/audit files stay ignored
+under `.venv`; generated reports were not edited.
+
+### PR #85 STOP ASSESSMENT
+
+Both production regressions in this round reproduce before and are resolved by
+bounded local changes. Validation/replay reveals no unexplained regression.
+This does not establish that all possible production edge cases are solved.
+Postposed metric subjects and zero-positive evaluator recall are explicitly
+unimplemented follow-ups; candidate ordering, qualifiers, industry particles and
+all earlier deferred coverage/architecture work remain deferred. Bounded 에 action
+context and terminal truncation detection are intentionally not exhaustive Korean
+parsers. Human merge approval is separate from test success.
+
+Final stop rule: after this one validated commit/push, stop. Do not request
+another Codex review, wait for zero comments, process a later review, merge or
+resolve threads as part of this task.
