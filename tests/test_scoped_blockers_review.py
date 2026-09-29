@@ -121,7 +121,7 @@ def test_d_agency_mention_not_action(agency: str) -> None:
 
 
 @pytest.mark.parametrize('action',[
-    '단속','수사','집중단속','특별단속','단속에 나선다','단속을 실시',
+    '집중단속','특별단속','단속에 나선다','단속을 실시',
     '단속이 시작됐다','수사의 결과','단속해 적발','단속한다',
     '수사개시','수사의뢰','잡는다',
 ])
@@ -131,6 +131,18 @@ def test_d_existing_action_uses(action: str) -> None:
     assert ic._is_enforcement_headline(a.article.title)
     assert ic._issue_fingerprint(a) == ic._issue_fingerprint(b)
     pair(a,b,True)
+
+
+@pytest.mark.parametrize('action', ['단속', '수사'])
+def test_d_bare_enforcement_nouns_are_not_actions(action: str) -> None:
+    # Bare enforcement nouns are nominal references, not event evidence.
+    # They require a modifier or explicit action/result continuation.
+    b = item('서울시 소상공인 불법사금융 집중 단속', '대부')
+    for suffix in ('', ' 관련 인권보호 조례'):
+        a = item('서울시 소상공인 불법사금융 ' + action + suffix, '대부')
+        assert not ic._is_enforcement_headline(a.article.title)
+        assert ic._issue_fingerprint(a) is None
+        pair(a, b, False)
 
 
 @pytest.mark.parametrize('non_action',['바로잡는다','붙잡는다','다잡는다','수사abc','단속123'])

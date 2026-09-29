@@ -304,10 +304,12 @@ def _is_enforcement_headline(title: str) -> bool:
             and bool(re.search(
                 # Complete action uses, including established action compounds;
                 # agency nouns (수사기관/단속기관) are not headline event evidence.
-                r"(?<![가-힣a-z0-9])(?:(?:집중|특별|합동|보완|인지)?(?:단속|수사)"
-                # Particles need a bounded action/result, never nominal policy context.
+                # Qualified telegraphic actions may stand alone, including spaced forms.
+                r"(?<![가-힣a-z0-9])(?:(?:집중|특별|합동|보완|인지)\s*(?:단속|수사)"
+                # Unqualified nouns require an established action/result continuation.
+                r"|(?:집중|특별|합동|보완|인지)?\s*(?:단속|수사)"
                 r"(?:에\s+(?:나선다|나섭니다|착수)|[을를]\s+실시"
-                r"|[이가]\s+시작(?:됐다)?|의\s+결과|해|한다|했다|개시|의뢰)?"
+                r"|[이가]\s+시작(?:됐다)?|의\s+결과|해|한다|했다|\s*개시|\s*의뢰|\s+확대)"
                 r"|잡는다)(?![가-힣a-z0-9])",
                 title, re.IGNORECASE,
             )))
@@ -660,6 +662,20 @@ def _metric_event_comparison_units(feature: _ClusterFeatures) -> set[str]:
     return units
 
 
+def _has_explicit_metric_event_assertion(feature: _ClusterFeatures) -> bool:
+    """Bounded eligibility for a dated disjoint-event veto, never merge evidence.
+
+    Announcement markers may occur within the residual clause. Bare action
+    nouns need terminal assertion position: 상환 부담 / 매입 규모 are context.
+    This deliberately does not attempt general corporate-event recognition.
+    """
+    text = _metric_event_text(feature)
+    return bool(re.search(
+        r"(?<![가-힣a-z0-9])(?:완료|발행|발표|계획|성공|입증|결정|의결)(?![가-힣a-z0-9])"
+        r"|(?<![가-힣a-z0-9])(?:상환|매입)\s*$", text,
+    ))
+
+
 def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
     if not (a.metric_identities & b.metric_identities
             and len(a.metric_subjects) == 1 and a.metric_subjects == b.metric_subjects):
@@ -678,10 +694,7 @@ def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures)
         # Dated statistical releases can describe a level, movement or its cause.
         # Disjoint framing alone is not a conflict: require explicit independent
         # announcement/action assertions on BOTH sides before applying this veto.
-        if not all(re.search(
-            r"(?<![가-힣a-z0-9])(?:완료|발행|발표|계획|성공|입증)(?![가-힣a-z0-9])",
-            _metric_event_text(feature),
-        ) for feature in (a, b)):
+        if not all(_has_explicit_metric_event_assertion(feature) for feature in (a, b)):
             return False
     left, right = _metric_event_tokens(a), _metric_event_tokens(b)
     # Bare statistical wire labels still use ordinary title similarity. Once

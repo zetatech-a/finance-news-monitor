@@ -1934,3 +1934,97 @@ and the added suffix is not a company registry. Candidate ordering/assignment,
 post-metric subjects, qualifiers, exhaustive industry particles, zero-positive
 evaluator robustness and other previously deferred architecture/coverage/tooling
 work remain deferred. These results do not replace human merge approval.
+
+## Bare enforcement nouns and dated action assertions (f54c212234)
+
+Starting local/origin/PR HEAD and reviewed revision:
+`f54c212234f161b1d9b5f5df994f0f53522ecd94`. PR #85 remained OPEN.
+Review `5335385590`, comments `4119704473` / `4119704482`, reported:
+Require verbal evidence for bare enforcement nouns; Cover dated action predicates
+in the event veto. Both were reproduced before production changes.
+
+### Evidence and bounded implementation
+
+New `test_bounded_actions_review.py` has 59 cases; original HEAD execution was
+**15 failed / 44 passed**. Actual feature/pair probes also compared the durable
+main ancestor `e67e3a740b0004e56a0087aa34edfeaffc6264ae`:
+
+- `서울시 소상공인 불법사금융 단속 관련 인권보호 조례 전면 개정` and
+  `서울시 전통시장 불법대부 특별 수사 착수` both received
+  `enforcement:서울시:small_business`: current pair true / 1 cluster, ancestor
+  pair false / 2 clusters. After the fix the ordinance has no fingerprint,
+  pair false / 2 clusters. Bare 단속/수사 are insufficient: qualified
+  telegraphic forms or bounded action/result continuations are required.
+  Both compact/spaced qualified forms survive. Existing `수사 확대` is explicitly
+  retained as required by `test_local_enforcement_requires_same_authority_and_target`.
+  Authority, target, campaign periods, domain aliases and description policy do
+  not change; agency/nominal references are not actions.
+- `삼성생명 2분기 킥스비율 200% 대규모 자사주 매입 결정` and
+  `삼성생명 상반기 지급여력비율 200% 후순위채 조기 상환` shared subject,
+  capital_adequacy_ratio=200 and month 6 but disjoint event units. The old dated
+  gate disabled the veto: pair true / 1 cluster, versus ancestor false / 2.
+  `_has_explicit_metric_event_assertion` now isolates the bounded policy:
+  existing 완료/발행/발표/계획/성공/입증 plus complete 결정/의결 markers;
+  상환/매입 require terminal residual position. `상환 부담 증가`, `매입 규모 증가`
+  and lexical continuations do not qualify. The final pair vetoes / 2 clusters.
+  The helper only enables the existing disjoint-event veto, never authorizes
+  a merge. Statistical framing, morphology/spacing and bridge safeguards remain.
+
+### Human contract resolution and preserved interrupted state
+
+Work paused with the source implementation and new tests intact. Related tests
+then had **990 passed / 2 failed**, exactly the old bare `단속` / `수사` positives
+in `test_scoped_blockers_review.py::test_d_existing_action_uses`.
+
+**HUMAN CONTRACT DECISION:** those two old expectations directly encode the
+false-merge behavior and were explicitly superseded. Only these two entries were
+removed from the positive matrix and replaced with explicit negative cases for
+bare nouns AND nominal policy references, asserting helper, fingerprint, pair
+and final clustering. Every other positive entry/assertion remains unchanged.
+No golden labels were changed. On resumption no production code or new corporate
+vocabulary was added; the preserved source blob remains
+`b4f77d5a77893c65f111d552979720f1a922ebd1`.
+
+### Final validation
+
+Required scoped/bounded/loan three-file targeted run: **124 passed**.
+Same related suite after contract correction: **992 passed**, five existing
+NumPy/joblib deprecation warnings, zero failures. The unchanged September 17
+golden regression passes within those runs. Newly executed Linux/Python **3.11.16**
+Docker `--network none` full suite: **1644 passed, 1 skipped**, zero failures and
+no warnings reported. Docker initially was stopped; after starting the existing
+daemon the full test command completed successfully. `git diff --check` passes.
+
+### Replay reused after verification, not rerun
+
+The completed fresh BEFORE from f54c212 and final AFTER from the last source edit
+(`round21-before.json`, `round21-after-final.json`) were preserved, parsed and
+compared again. Because this continuation changed only tests/docs, the expensive
+replay was **reused**, not recaptured. Full JSON equality and golden end-to-end
+output equality are confirmed.
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored | New merged / split (each cohort) |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 | 0 / 0 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 | 0 / 0 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 | 0 / 0 |
+
+All 3,327 raw candidates retain relevance metadata, identities/subjects/signed
+facts/periods, event tokens/comparison units, fingerprints and enforcement periods.
+Kept sets, memberships, sector representatives and representative titles/URLs are
+unchanged. Focused audit inspected 15 standalone 단속/수사 title contexts (1/2/12
+by date); fingerprint, dated assertion eligibility, residual text, pair and
+membership changes were all zero. There are no changed articles/pairs to explain.
+Golden precision/recall remains **1.0000 / 0.9224137931034483 (107/116)**;
+other-sector remains **1.0000 / 0.8888888888888888 (40/45)**. No corpus recall gain
+is claimed from the synthetic corrections.
+
+### PR #85 CONTRACT-RESOLUTION ASSESSMENT
+
+The stale bare-noun positive contract is resolved. Both latest concrete blockers
+are addressed; no unexplained regression remains in the executed validation.
+The bounded action grammar remains incomplete by design. Previously deferred
+ordering, post-metric subjects, qualifiers, exhaustive particles, zero-positive
+evaluator robustness, generic parsers/registries and other architecture work stay
+deferred. No scope expansion or new review cycle is authorized by this result;
+merge approval remains with the human reviewer.
