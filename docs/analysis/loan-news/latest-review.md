@@ -2028,3 +2028,100 @@ ordering, post-metric subjects, qualifiers, exhaustive particles, zero-positive
 evaluator robustness, generic parsers/registries and other architecture work stay
 deferred. No scope expansion or new review cycle is authorized by this result;
 merge approval remains with the human reviewer.
+
+## Campaign dates, aggregate periods, actor provenance and year reports (7e72834e3c)
+
+Starting local/origin/PR HEAD and reviewed commit:
+`7e72834e3cdbf834d820c03e70b3962ce0979e51`, clean worktree, PR OPEN.
+Actual review `5347027225` contained exactly the four scoped findings, comments
+`4129044075`, `4129044084`, `4129044089`, `4129044095`.
+
+### Test-first reproductions and minimal fixes
+
+New `test_period_actor_review.py`: 35 cases. On untouched reviewed HEAD the
+executed result was **21 failed / 14 passed**. Separate probes recorded complete
+features and final pair/cluster decisions, also executing the durable main
+ancestor `e67e3a740b0004e56a0087aa34edfeaffc6264ae` (not an inferred parent result).
+All four concrete findings reproduced:
+
+| Finding | Reviewed HEAD | Final behavior | Durable main ancestor |
+| --- | --- | --- | --- |
+| A: `9월 17일 서울시 소상공인 불법사금융 특별 단속 착수` vs `10월 1일 서울시 소상공인 불법사금융 특별 단속 착수` | Same enforcement fingerprint, months 9/10, period veto, pair false / 2 clusters | Calendar months unknown, no period veto, pair true / 1 cluster | true / 1 |
+| B: `삼성생명 등 10개 보험사 2분기 킥스비율 215.2% 자본여력 감소` vs `10개 보험사 2분기 지급여력비율 215.2% 자본여력 감소` | 삼성생명 vs 보험사, subject veto, false / 2 | Both 보험사, false veto removed, true / 1 | true / 1 |
+| C: `금감원 소상공인 불법사금융 특별 단속` + description `서울시 피해지원 제도 사례를 소개했다` vs `서울시 전통시장 불법대부 특별 수사` | Background 서울시 supplies identical fingerprint, true / 1 | First fingerprint absent, false / 2 | false / 2 |
+| D: `삼성생명 2025년 킥스비율 200% 자본여력 감소` vs `삼성생명 2025년 지급여력비율 200% 건전성 하락` | Both (2025,None), no action assertion, but disjoint-event veto true, false / 2 | Conservative dated gate, no false veto, ordinary evidence yields true / 1 | true / 1 |
+
+A adds only the existing bounded spaced `1일`–`31일` exclusion to enforcement
+month extraction. Standalone/month-end campaign months and years remain;
+metric parsing is unchanged. B permits only optional existing explicit year and
+quarter/half/month/month-end syntax between an aggregate expression and metric.
+No arbitrary-text bridge, global entity change or post-metric subject expansion.
+C extracts title-local authorities first; existing normalized 금융감독원/금융위원회
+identities block borrowing a locality when title-local authority is absent.
+Ambiguous title authorities remain ambiguous. A genuinely missing actor can
+still use the description; target fallback and canonicalization are unchanged.
+D uses any known year OR month dimension for dated-event conservatism, including
+the one-sided missing-period exception. Explicit period conflicts and independent
+action vetoes remain; the exact-value shortcut still requires an as-of month.
+
+One existing calendar-round assertion explicitly expected enforcement month 9
+for `9월 17일` because enforcement was then out of scope. Finding A now expressly
+supersedes that expectation: it is updated to unknown with an explanatory comment,
+while title and metric prefix-only assertions remain. No unrelated old assertion
+or golden label was weakened. A newly written one-sided-year control initially
+assumed merge after veto release; execution showed ordinary evidence insufficient.
+Its final assertion preserves pair false / 2 clusters while requiring no invented
+event veto. This distinguishes false-veto release from positive merge evidence;
+the original red log is retained, not regenerated.
+
+### Validation
+
+Targeted new/dated/calendar/bounded-action/loan suite: **162 passed**.
+Related metric/enforcement/loan/replay/relevance suite: **1027 passed**, five
+existing NumPy/joblib warnings. Newly executed Linux/Python **3.11.16** Docker
+`--network none` full suite: **1679 passed, 1 skipped**, no failures or warnings
+reported. `git diff --check` passes. The unchanged September 17 golden test passes
+and insurance_capital retains its expected event. All previous subject/value,
+period, bounded-action, morphology and bridge contracts outside the explicitly
+superseded enforcement calendar expectation pass.
+
+### Fresh replay and focused audits
+
+Fresh `round22-before.json` captured untouched 7e72834e; fresh `round22-after.json`
+captured final production. Full replay JSON equality and golden end-to-end output
+equality are confirmed. No historical artifacts or generated reports were edited.
+
+| Date | Fixed kept / clusters (before = after) | Rescored kept / clusters | Largest | >=50 | Loan reps fixed / rescored | New merged / split (each cohort) |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 90 | 2 | 10 / 10 | 0 / 0 |
+| 09-16 | 662 / 320 | 664 / 322 | 118 | 1 | 6 / 8 | 0 / 0 |
+| 09-17 | 972 / 401 | 982 / 407 | 162 | 3 | 4 / 10 | 0 / 0 |
+
+All 3,327 candidates retain kept decisions, relevance scores/terms/domain anchors,
+metric identities/subjects/signed facts/periods, residual text/tokens/comparison
+units, issue terms, fingerprints and enforcement periods. Memberships and all
+sector representative counts/titles/URLs are unchanged. Thus there are no changed
+feature/article/pair deltas to attribute.
+
+Focused raw-candidate audit found A calendar-date enforcement headlines: **0**;
+B aggregate-followed-by-period headlines: **0**; D year-only metric headlines:
+**0**. The C broad screen found six September 17 enforcement articles with local
+names in both title and description, all the SAME 서울시 (BBS 4107034, SBS
+N1008756001, Yonhap AKR20260916047700004, SK Broadband 238076, HBN
+1065586582781472, News1 6292068). Different title/background actor cases: **0**;
+all six fingerprints and memberships unchanged. Full title/URL evidence is in
+the ignored round22 audit JSON/log. These synthetic fixes are not claimed as
+measured corpus recall gains.
+
+Golden precision/recall remains **1.0000 / 0.9224137931034483 (107/116)**;
+other-sector remains **1.0000 / 0.8888888888888888 (40/45)**.
+
+### PR #85 FINAL HUMAN-MERGE ASSESSMENT
+
+All four demonstrated regressions are addressed; no unexplained replay/golden
+change remains. Bounded date/aggregate grammar and two known non-local regulator
+identities are deliberately not general parsers or registries. Previously deferred
+ordering, post-metric subjects, qualifiers, exhaustive particles, evaluator
+robustness, query/registry/architecture and unrelated legacy work remain deferred.
+No additional review cycle, merge or thread resolution is part of this delivery;
+final merge approval remains with the human reviewer.

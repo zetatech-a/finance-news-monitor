@@ -59,7 +59,8 @@ def test_real_month_conflict_still_splits():
 
 def test_calendar_exclusion_is_metric_local_and_prefix_only():
     title = '9월 17일 서울시 소상공인 불법대부 집중 단속'
-    assert ic._enforcement_period(ic._normalize_title(title)) == (None, 9)
+    # Enforcement now independently excludes the same day-qualified calendar date.
+    assert ic._enforcement_period(ic._normalize_title(title)) == (None, None)
     assert '17일' in ic._normalize_title(title)
     assert ic._metric_period('삼성생명 킥스비율 200% 6월 전망') == (None, None)
 

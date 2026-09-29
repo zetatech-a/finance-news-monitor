@@ -334,11 +334,21 @@ def _targeted_enforcement_fingerprint(title: str, text: str) -> str | None:
     """
     if not _is_enforcement_headline(title):
         return None
-    # The snippet may fill a missing actor/target, but cannot supply the event.
+    # Headline actors take precedence; snippets only fill genuinely missing actors.
     authorities = {
         _canonical_local_authority(authority)
-        for authority in _LOCAL_AUTHORITY_RE.findall(text)
+        for authority in _LOCAL_AUTHORITY_RE.findall(title)
     }
+    if not authorities:
+        # Existing normalized regulator identities are not local authorities.
+        # Do not replace their explicit headline role with a background locality.
+        if _extract_entities(title) & {"금융감독원", "금융위원회"}:
+            return None
+        authorities = {
+            _canonical_local_authority(authority)
+            for authority in _LOCAL_AUTHORITY_RE.findall(text)
+        }
+    # Keep the existing snippet fallback for targets unchanged.
     targets = {
         target for target, aliases in (
             ("small_business", ("전통시장", "소상공인")),
@@ -451,7 +461,10 @@ def _metric_subjects(title: str) -> set[str]:
     aggregate = re.search(
         r"(?<![가-힣a-z0-9])(?:등|포함한|포함)\s+(?:[1-9][0-9]*개\s+)?"
         r"(보험사|보험회사|생보사|손보사|은행권|저축은행권|카드사)"
-        r"(?:들)?[은는이가의]?\s*$", title,
+        r"(?:들)?[은는이가의]?"
+        # Only recognized period syntax may intervene, never arbitrary wording.
+        r"(?:\s+(?:19|20)[0-9]{2}년)?"
+        r"(?:\s+(?:[1-4]분기(?:말)?|[상하]반기|(?:1[0-2]|[1-9])월(?:\s*말)?))?\s*$", title,
     )
     if aggregate:
         return {_canonical_metric_subject(aggregate.group(1))}
@@ -517,7 +530,12 @@ def _enforcement_period(title: str) -> tuple[int | None, int | None]:
     if not _is_enforcement_headline(title):
         return None, None
     years = {int(year) for year in re.findall(r"(?<![0-9])((?:19|20)[0-9]{2})년", title)}
-    months = {int(month) for month in re.findall(r"(?<![0-9])(1[0-2]|[1-9])월", title)}
+    # As with metric snapshots, a bounded day qualifies a calendar date,
+    # not a campaign month. Keep standalone/month-end campaign evidence.
+    months = {int(month) for month in re.findall(
+        r"(?<![0-9])(1[0-2]|[1-9])월"
+        r"(?!\s+(?:3[01]|[12][0-9]|[1-9])일(?![가-힣a-z0-9]))", title,
+    )}
     return (next(iter(years)) if len(years) == 1 else None,
             next(iter(months)) if len(months) == 1 else None)
 
@@ -683,14 +701,16 @@ def _metric_match_lacks_event_evidence(a: _ClusterFeatures, b: _ClusterFeatures)
     # Do not turn a missing period into a conflict against a dated report.
     # Such pairs still have to pass ordinary similarity without the shortcut.
     # Two dated reports must still establish compatible event wording.
-    if (a.metric_period[1] is not None) != (b.metric_period[1] is not None):
+    a_has_period = any(part is not None for part in a.metric_period)
+    b_has_period = any(part is not None for part in b.metric_period)
+    if a_has_period != b_has_period:
         return False
     # Stored search headlines may end mid-word (e.g. 하...). Incomplete
     # event wording cannot establish disjoint events; ordinary rules still apply.
     if any(feature.headline_is_truncated or re.search(r"\.{2,}$", feature.norm_title)
            for feature in (a, b)):
         return False
-    if a.metric_period[1] is not None and b.metric_period[1] is not None:
+    if a_has_period and b_has_period:
         # Dated statistical releases can describe a level, movement or its cause.
         # Disjoint framing alone is not a conflict: require explicit independent
         # announcement/action assertions on BOTH sides before applying this veto.
