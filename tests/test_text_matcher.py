@@ -33,3 +33,18 @@ def test_insurance_strong_terms_are_specific():
     assert find_terms("손해보험 생명보험 손보사 생보사", strong_terms)
     for text in ("건강보험", "고용보험", "산재보험", "운송·보험료 상승", "재보험"):
         assert not contains_term(text, "보험")
+
+
+def test_loan_aliases_preserve_safe_matching_and_canonical_score():
+    from src.pipeline.relevance_score import matched_terms, relevance_score
+
+    for text in ("대부업체", "대부업권", "대부업계", "대부업자", "대부중개업"):
+        assert contains_term(text, "대부업")
+    for text in ("대부도", "영화 대부", "대부분", "공유재산 대부계약"):
+        assert not contains_term(text, "대부업")
+    compact = {"title": "불법사금융 단속", "description": ""}
+    spaced = {"title": "불법 사금융 단속", "description": ""}
+    assert relevance_score(compact) == relevance_score(spaced)
+    assert matched_terms(spaced)["hard"] == ["불법사금융"]
+    both = {"title": "대부업 대부업체 대부업권", "description": ""}
+    assert relevance_score(both) == 5

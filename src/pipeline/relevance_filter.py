@@ -15,6 +15,7 @@ from src.pipeline.relevance_score import (
     FINANCE_RISK_OR_REGULATORY_SIGNALS,
     STRONG_FINANCE_ANCHORS,
     has_finance_entity_context,
+    has_finance_risk_or_regulatory_signal,
     matched_terms as score_matched_terms,
     relevance_score,
 )
@@ -29,7 +30,11 @@ DOMAIN_SPECIFIC_ANCHORS: tuple[str, ...] = (
     # existing domain anchors
 
     "대부업",
+    "대부업법",
     "불법사금융",
+    "불법사채",
+    "불법대부",
+    "불법추심",
     "미등록대부",
     "채권추심",
     "최고금리",
@@ -344,7 +349,7 @@ def _has_strong_finance_anchor(article_or_text: Any) -> bool:
 
 def _has_finance_risk_or_regulatory_signal(article_or_text: Any) -> bool:
     text = article_or_text if isinstance(article_or_text, str) else _text(article_or_text)
-    return has_any_term(text, FINANCE_RISK_OR_REGULATORY_SIGNALS)
+    return has_finance_risk_or_regulatory_signal(text)
 
 
 def _has_strong_finance_context(article_or_text: Any) -> bool:
