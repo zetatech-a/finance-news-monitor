@@ -2125,3 +2125,140 @@ ordering, post-metric subjects, qualifiers, exhaustive particles, evaluator
 robustness, query/registry/architecture and unrelated legacy work remain deferred.
 No additional review cycle, merge or thread resolution is part of this delivery;
 final merge approval remains with the human reviewer.
+
+## Real recall regression and bounded lending admission (D8) on 067dbfb
+
+Starting local/origin/PR HEAD: `067dbfb707d5f4d1b30397509643402651f460c8`, clean,
+PR OPEN. The latest automated review (F1 `보험업계`, F2 `1Q/2Q`, F3 fullwidth `％`)
+was reproduced only with synthetic titles; the stored 91-day candidate corpus has
+zero affected capital-ratio headlines. All three are intentionally deferred as
+parser coverage debt and are not changed here.
+
+### Real recall regression found in the stored corpus
+
+A 91-day replay of `reports/_candidates` (durable main ancestor versus 067dbfb)
+showed that 48 of 58 main clusters containing lending articles split into five or
+more HEAD cards. Article-level audit of the two largest cases:
+
+| Date | Main cluster | HEAD | Same-event wire | Main pollution | Uncertain |
+| --- | --- | --- | ---: | ---: | ---: |
+| 07-23 경찰청 불법사금융 종합대책 | 33 | 19 cards, largest 4 | 28 (15 cards) | 4 (새도약기금, column, 2 roundups) | 1 |
+| 08-21 강북경찰서 대포유심 4185개 | 18 | 13 cards, largest 2 | 12 (8 cards) | 6 (정성웅 campaign x3, opinion, trend, 서금원) | 0 |
+
+Root cause: main joined these wires only through the broad `finance:loan_relief`
+fingerprint (253/264 and 45/50 same-event pairs), which this PR removed to stop the
+09-17 hiding bug. Ordinary pair evidence covers few wire variants (47/378 and
+21/66), and lending complete-link multiplies the split (pair-rule components 3 and
+2 versus 15 and 8 actual cards). No subject/period/event/enforcement veto caused
+any cross-fragment failure.
+
+### Candidates and selection
+
+A labelled scratch benchmark (7 same-event groups, 83 articles, 13 pollution
+articles; 748 positive / 406 negative pairs) compared admission-only relaxation,
+snippet evidence under complete-link, hard-conflict-first transitivity and their
+combinations. Single-link, majority and hard-conflict-first transitivity variants
+break `test_bridge_cannot_merge_incompatible_endpoints_in_any_input_order`.
+D6 (two supporting members, snippet support allowed for both) passed tests but the
+91-day review found it hides the independent 06-30 포용금융 평가체계 announcement
+under the 김상훈 SNS bill card through snippet-only support (#13), and attaches a
+roundup and a series installment the same way. D6 is rejected.
+
+**Selected D8 semantic.** Existing cluster-wide vetoes run first, unchanged. A
+candidate joins a lending (strict) cluster only when at least `min(2, len(cluster))`
+DISTINCT members support it and at least one support is the unchanged production
+pair rule `_should_cluster_features`. A member supports once: by the pair rule or,
+between two lending articles, by `_description_corroborates` (same sector, neither
+low-value, an enforcement fingerprint on either side or two explicit fingerprints
+must agree, both snippets non-empty, snippet-token Jaccard >= 0.15, and a shared
+headline important issue term). Snippets never create fingerprints, actions,
+actors or targets and never admit alone, so a singleton accepts only a pair-rule
+match. Non-lending admission (`any`) and pairwise `_should_cluster` are unchanged.
+Production change: `src/pipeline/issue_cluster.py` +48/-2 lines, no new vocabulary,
+regex or parser.
+
+### Validation
+
+New `tests/test_lending_admission_review.py` (17 cases) with compact real rows in
+`tests/fixtures/loan_news/admission_events.json` (85 stored titles/snippets/URLs).
+Before the production change: 8 failed, 5 errors (missing helper), 4 passed
+(pollution controls); real wires measured largest 4/18 (07-02) and 2/15 (08-21).
+After: 17 passed. Contracts: snippet-only support cannot join a singleton; two
+snippet supports without a pair support are rejected; pair + distinct snippet
+support is admitted; one member never counts twice; fingerprint, enforcement,
+sector, low-value, roundup-headline and empty/low-overlap snippets never
+corroborate; non-lending single-link never consults snippets; 07-02 >= 15/18 and
+08-21 >= 12/15 in one card; the 포용금융 candidate reachable only by snippet
+support stays out of the SNS bill card; 새도약기금/roundup/column vs 경찰청,
+정성웅 campaign vs 대포유심, 저신용자 보고서 vs 윤준병 법안 and 금소연 vs
+시행령 stay separate.
+
+Related clustering/review/replay suites: 997 passed. Linux/Python 3.11.15 full
+suite with the network namespace removed (`unshare -rn`): 1696 passed, 1 skipped
+(pristine 067dbfb under the same conditions: 1679 passed, 1 skipped). The
+container's global git config enforces network-backed commit signing, which fails
+the temporary-repository commit in
+`test_replay_runs_in_fresh_clone_without_unsquashed_pr_objects` offline even on
+pristine 067dbfb; offline runs therefore used an empty `GIT_CONFIG_GLOBAL`. No test
+was modified. `git diff --check` passes.
+
+Golden fixed relevant cohort: precision/recall **1.0000 / 0.9224137931034483
+(107/116)**; other-sector **1.0000 / 0.8888888888888888 (40/45)**; golden
+end-to-end output identical.
+
+### Three-day replay
+
+BEFORE was captured from a 067dbfb worktree and AFTER from the implementation,
+for fixed and rescored cohorts of 09-15/16/17. The full per-article JSON (kept
+set, relevance score/probability, sectors/topics, fingerprints, metric
+identities/facts/subjects/periods, enforcement periods, issue terms, cluster
+membership/size/rank, representatives and related links) is identical:
+
+| Date | Fixed kept / clusters | Rescored kept / clusters | New merged / split |
+| --- | --- | --- | --- |
+| 09-15 | 652 / 333 | 652 / 333 | 0 / 0 |
+| 09-16 | 662 / 320 | 664 / 322 | 0 / 0 |
+| 09-17 | 972 / 401 | 982 / 407 | 0 / 0 |
+
+### 91-day audit
+
+Production memberships equal the scratch D8 memberships on all 91 dates.
+
+| Versus 067dbfb | Result |
+| --- | --- |
+| Clusters | 23,104 -> 23,032 |
+| Newly merged / split pairs | 1,195 / 76 |
+| Clusters joining >= 2 HEAD clusters | 45 (0 mixed-fingerprint, 0 mixed-sector) |
+| Main lending clusters split into >= 5 cards | 48 -> 40 |
+| Mean largest-fragment ratio (58 main lending clusters) | 0.309 -> 0.430 |
+
+All 45 merged clusters were read member by member: 44 SAME_EVENT_RECOVERY (for
+example 싱글맘 사채 항소심 6 -> 1, 대포폰 제로 9 -> 1, 부산 나체사진 29명 8 -> 1,
+공유오피스 시행령 7 -> 1, 강북 대포유심 6 -> 1, 새도약기금 2.6조, 서울시 상품권
+사채, 포용금융 평가체계) and one SAME_EVENT_RECOVERY carrying a LEGITIMATE_RELATED
+composite article (08-28 「카드론 28조원…불법 대출도 기승」, whose snippet reports
+the 인천 case; admitted by four pair-rule supports). FALSE_MERGE 0, UNCERTAIN 0.
+Re-checked: #13 SNS bill card equals HEAD (its two 포용금융 members were already
+pair-rule members in HEAD) and 포용금융 has its own card; 09-08 and 07-23 roundups
+and the 08-21 「[위기의 특사경]」 installments stay separate; 새도약기금 stays alone.
+The 76 split pairs are same-event wires regrouped by first-fit order (a few
+articles fall back to single cards) or HEAD roundup pollution being released.
+
+### Residual fragmentation and boundary
+
+Labelled benchmark: positive pair recall 0.067 -> 0.289 with 0/406 negative merges.
+07-02 recovers 15/18 in one card and 08-21 12/15, but 07-23 remains 15 cards
+(largest 6) and 07-28 stays 6 cards (largest 4); 40 main lending clusters still
+split into five or more cards, and once-formed clusters never merge (e.g. 09-09
+이호성 campaign 18 + 11). This remaining recall regression is architecture debt
+(greedy first-fit, cluster-to-cluster merging), not addressed by further
+vocabulary, regex, parser, threshold or admission tuning in this PR. The known
+deferred items (graph/union-find clustering, generic event/date parsing, entity and
+metric registries, F1-F3 coverage) remain follow-ups.
+
+### PR #85 FINAL D8 CLOSURE ASSESSMENT
+
+D8 mitigates the demonstrated real recall regression without a clear new false
+merge and without changing golden, other-sector, three-day replay or any existing
+test. It does not restore main-level recall. No further automated review/fix loop
+is part of this PR; the final merge decision remains with the human reviewer.

@@ -559,6 +559,9 @@ class _ClusterFeatures:
     metric_period: tuple[int | None, int | None]
     enforcement_period: tuple[int | None, int | None]
     headline_is_truncated: bool
+    # Lending admission corroboration only; never pair or fingerprint evidence.
+    description_tokens: set[str]
+    headline_issue_terms: set[str]
 
 
 def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
@@ -585,6 +588,9 @@ def _build_cluster_features(item: TaggedArticle) -> _ClusterFeatures:
         headline_is_truncated=bool(re.search(
             r"(?:\.{2,}|…)\s*$", _TAG_RE.sub(" ", html.unescape(title)),
         )),
+        description_tokens=_tokenize_title(
+            str(_article_field(item.article, "description") or "")) - _GENERIC_TOKENS,
+        headline_issue_terms=_important_issue_terms(norm_title),
     )
 
 
@@ -847,6 +853,43 @@ def _requires_complete_compatibility(feature: _ClusterFeatures) -> bool:
             or feature.fingerprint == "finance:delinquent_debt_purchase")
 
 
+def _description_corroborates(a: _ClusterFeatures, b: _ClusterFeatures) -> bool:
+    """Bounded snippet agreement between two lending articles, supporting evidence only."""
+    if a.sector != b.sector or a.low_value or b.low_value:
+        return False
+    # An enforcement fingerprint on either side, or two explicit issues, must agree.
+    enforcement = any((f.fingerprint or "").startswith("enforcement:") for f in (a, b))
+    if (enforcement or (a.fingerprint and b.fingerprint)) and a.fingerprint != b.fingerprint:
+        return False
+    if not (a.description_tokens and b.description_tokens
+            and a.headline_issue_terms & b.headline_issue_terms):
+        return False
+    shared = len(a.description_tokens & b.description_tokens)
+    return shared / len(a.description_tokens | b.description_tokens) >= 0.15
+
+
+def _admits_to_lending_cluster(
+    idx: int, cluster: list[int], features: list[_ClusterFeatures], strict: list[bool],
+) -> bool:
+    """Two distinct supporting members (one for a singleton), at least one by the pair rule.
+
+    A member supports once: by the production pair rule or, between lending
+    articles, by snippet corroboration. Snippet-only support never admits.
+    """
+    needed = min(2, len(cluster))
+    supporters = pair_supporters = 0
+    for member in cluster:
+        if _should_cluster_features(features[idx], features[member]):
+            pair_supporters += 1
+        elif not (strict[idx] and strict[member]
+                  and _description_corroborates(features[idx], features[member])):
+            continue
+        supporters += 1
+        if pair_supporters and supporters >= needed:
+            return True
+    return False
+
+
 def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
     features = [_build_cluster_features(item) for item in tagged]
     index_clusters: list[list[int]] = []
@@ -871,8 +914,11 @@ def cluster_tagged_articles(tagged: list[TaggedArticle]) -> list[TaggedArticle]:
                    or _conflicting_enforcement_periods(features[idx], features[member])
                    or _metric_match_lacks_event_evidence(features[idx], features[member]) for member in cluster):
                 continue
-            compatibility = all if strict[idx] or any(strict[member] for member in cluster) else any
-            if compatibility(_should_cluster_features(features[idx], features[member]) for member in cluster):
+            if strict[idx] or any(strict[member] for member in cluster):
+                admitted = _admits_to_lending_cluster(idx, cluster, features, strict)
+            else:
+                admitted = any(_should_cluster_features(features[idx], features[member]) for member in cluster)
+            if admitted:
                 target = cluster
                 break
         if target is None:
