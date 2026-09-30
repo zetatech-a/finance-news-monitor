@@ -2262,3 +2262,69 @@ D8 mitigates the demonstrated real recall regression without a clear new false
 merge and without changing golden, other-sector, three-day replay or any existing
 test. It does not restore main-level recall. No further automated review/fix loop
 is part of this PR; the final merge decision remains with the human reviewer.
+
+## Final pre-merge closure: plural subjects, compact 불법대부 and legacy police names (7450c0b)
+
+Starting local/origin/PR HEAD and reviewed commit: `7450c0bb952f754847afbb5d475f62eca288fc80`,
+clean, PR OPEN. Review `5360609491` contained exactly four findings. Human triage:
+F1 target provenance DEFER; F2 plural metric subjects FIX; F3 compact 불법대부 anchor
+FIX (merge blocker); F4 legacy metropolitan police names FIX. D8 admission is unchanged.
+
+**F1 (deferred).** Of 23 stored enforcement headlines, none has a headline target that
+differs from its snippet target. Two use the designed snippet fallback because the
+headline has no target; both are the same 09-17 서울시 전통시장 campaign. A general fix
+needs target vocabulary or parser changes and remains follow-up debt.
+
+**Pre-fix reproductions on 7450c0b** (`tests/test_final_closure_review.py`: 6 failed,
+22 passed before; 28 passed after):
+
+- F2: `보험사들 2분기 킥스비율 200% …이사회 의결` and `보험사들 상반기 지급여력비율 200%
+  후순위채 조기 상환` both kept residual token `보험사들`; the disjoint-event veto was off
+  and the same-month/value shortcut merged them (1 cluster).
+- F3: `불법대부도 토지거래` matched hard term `불법대부` (score 6), satisfied
+  `has_domain_anchor` and was kept at candidate probabilities 0.5 and 0.8.
+- F4: `부산지방경찰청 청소년 불법사금융 특별 단속` / `부산경찰청 청소년 불법대부 합동 수사`
+  produced `enforcement:부산지방경찰청:youth` / `enforcement:부산경찰청:youth` (2 clusters).
+
+**Bounded fixes.** F2: metric-event subject removal also consumes the optional plural
+`들` after an already recognized subject; recognition is unchanged. F3: `contains_term`
+uses the existing `korean_postposition` boundary for the compact canonical spelling,
+the same contract as the spaced alias, so relevance hard matching and
+`has_domain_anchor` share one boundary; compact `불법대부업`/`불법대부중개업` mirror the
+existing spaced compounds. F4: only the seven metropolitan former `…지방경찰청` names map
+to the current agency; provincial names (경기, 충북) and city governments are unchanged.
+Production diff: `issue_cluster.py` +5/-1, `text_matcher.py` +7/-3.
+
+**Corpus occurrences.** `불법대부도` 0; `대부도` 2 (company name + particle, unaffected);
+`지방경찰청` 2 (provincial or incidental, unaffected); metric headlines with `보험사들` 0
+(11 `보험사들` titles carry no metric). Among 169 `불법대부` rows, 9 compact compounds
+(`불법대부행위/일당/광고/계약`) lose the `불법대부` hard term, exactly like the spaced
+forms already did; all keep `불법사금융` or other anchors, so keep decisions and domain
+anchors are unchanged (score -6 each).
+
+**Validation.** Related suites 1082 passed; bridge test passes. Linux/Python 3.11.15 full
+suite without network (`unshare -rn`, empty `GIT_CONFIG_GLOBAL` for the signing-dependent
+temporary-repository test): 1724 passed, 1 skipped (1696 + 28 new). `git diff --check`
+passes. Golden 1.0000 / 0.9224137931034483 (107/116); other-sector 1.0000 /
+0.8888888888888888 (40/45); golden end-to-end identical.
+
+**Replay.** 09-15/16/17 fixed and rescored per-article JSON (kept set, score, matched
+hard/soft/negative, domain anchor, fingerprints, metric features, membership,
+representatives) is identical to 7450c0b. On the four dates containing the nine compact
+rows (06-30, 08-01, 08-03, 08-14) kept sets and memberships are unchanged; rescored ranks
+move, and one 08-14 cluster's representative switches between two same-event 이찬진
+anniversary headlines because one member's score dropped by 6.
+
+**Focused 91-day delta.** Fixed-cohort memberships equal 7450c0b on all 91 dates, so the
+D8 audit stands: 45 merged clusters (44 SAME_EVENT_RECOVERY, 1 LEGITIMATE_RELATED,
+0 FALSE_MERGE, 0 UNCERTAIN) and 40 main lending clusters still split into five or more
+cards. D8 helpers, thresholds and ranking are untouched.
+
+### PR #85 FINAL PRE-MERGE CLOSURE
+
+No known PR-induced production blocker remains. Deferred intentionally: F1 target
+provenance, 보험업계/1Q/fullwidth ％ coverage, post-measurement subjects, exhaustive
+particles, generic morphology/event/date parsing, registries, and the remaining lending
+fragmentation, which is architecture debt (greedy first-fit, no cluster-to-cluster merge).
+Later automated findings are follow-up debt unless they show a concrete regression from
+this diff or in the stored production corpus. The merge decision stays with the human.

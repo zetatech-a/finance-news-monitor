@@ -320,6 +320,9 @@ def _canonical_local_authority(authority: str) -> str:
         jurisdiction = authority.removesuffix("경찰청")
         # Normalize only metropolitan jurisdiction spelling, preserving agency.
         jurisdiction = re.sub(r"(?:특별자치시|특별시|광역시|시)$", "", jurisdiction)
+        # Former metropolitan 지방경찰청 names map 1:1 to the current agency;
+        # provincial ones (e.g. 경기, later split) are deliberately left as written.
+        jurisdiction = re.sub(r"^(서울|부산|대구|인천|광주|대전|울산)지방$", r"\1", jurisdiction)
         return jurisdiction + "경찰청"
     if authority.endswith(("시", "시청")):
         return authority.replace("특별자치", "").replace("특별", "").replace("광역", "").removesuffix("청")
@@ -638,8 +641,9 @@ def _metric_event_text(feature: _ClusterFeatures) -> str:
         if _canonical_metric_subject(alias) in feature.metric_subjects
     }
     for name in sorted(names, key=len, reverse=True):
+        # The supported plural marker (보험사들) belongs to the recognized subject.
         text = re.sub(r"(?<![가-힣a-z0-9])" + re.escape(name)
-                      + r"[은는이가의도과와을를]?(?![가-힣a-z0-9])", " | ", text)
+                      + r"(?:들)?[은는이가의도과와을를]?(?![가-힣a-z0-9])", " | ", text)
     # A year alone is not an independent event identifier. These are the same
     # explicit period forms understood by _metric_period, not publication dates.
     text = re.sub(r"(?<![0-9])(?:[0-9]{4}년|[1-4]분기(?:말)?|[0-9]{1,2}월\s*말)|[상하]반기", " | ", text)

@@ -35,7 +35,7 @@ _TERM_ALIASES: dict[str, tuple[str, ...]] = {
     "대부업": ("대부업체", "대부업권", "대부업계", "대부업자", "대부중개업"),
     "불법사금융": ("불법 사금융",),
     "불법사채": ("불법 사채",),
-    "불법대부": ("불법 대부", "불법 대부업", "불법 대부중개업"),
+    "불법대부": ("불법 대부", "불법 대부업", "불법 대부중개업", "불법대부업", "불법대부중개업"),
     "미등록대부": ("미등록 대부", "미등록 대부업", "미등록 대부중개업"),
     "불법추심": ("불법 추심",),
 }
@@ -43,7 +43,11 @@ _TERM_ALIASES: dict[str, tuple[str, ...]] = {
 # Bound ambiguous spaced 대부 aliases, without changing other phrase aliases.
 # Explicit 업/중개업 compounds above preserve finance anchors (including 업자
 # and Korean particles); the short aliases must not match 대부도/대부abc/대부123.
-_ALIAS_MATCH_MODES = {"불법 대부": "korean_postposition", "미등록 대부": "korean_postposition"}
+# The compact 불법대부 spelling uses the same boundary (불법대부도 is not an anchor).
+_ALIAS_MATCH_MODES = {
+    "불법 대부": "korean_postposition", "미등록 대부": "korean_postposition",
+    "불법대부": "korean_postposition",
+}
 # Complete, low-ambiguity suffixes for the two spaced lending aliases only.
 # 도 is deliberately excluded: 대부도 is also a place name.
 _LENDING_POSTPOSITIONS = (
@@ -162,7 +166,7 @@ def contains_term(
 
     excludes = _exclude_spans(normalized_text, normalized_term, exclude_terms)
     aliases = _TERM_ALIASES.get(normalized_term, ())
-    chosen_mode = _auto_mode(normalized_term) if mode == "auto" else mode
+    chosen_mode = _ALIAS_MATCH_MODES.get(normalized_term, _auto_mode(normalized_term)) if mode == "auto" else mode
     if _contains_normalized(normalized_text, normalized_term, chosen_mode, excludes):
         return True
     return any(
