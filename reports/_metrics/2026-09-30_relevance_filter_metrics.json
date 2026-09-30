@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 7,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 89,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 14,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 6,
+  "candidate_hybrid_gray_keep_domain": 34,
+  "candidate_hybrid_gray_rule_drop": 133,
+  "candidate_hybrid_gray_rule_keep": 34,
+  "candidate_hybrid_keep_overseas_global_reference": 41,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 376,
+  "candidate_hybrid_model_drop": 27,
+  "candidate_hybrid_model_keep": 179,
+  "candidate_hybrid_model_keep_with_domain_anchor": 179,
+  "candidate_hybrid_negative_drop": 5,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 376,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-09-30",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 7,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 89,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 24,
+    "candidate_hybrid_drop_negative_signal": 5,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 14,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 6,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 133,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 34,
+    "candidate_hybrid_keep_overseas_global_reference": 41,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 376,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 3,
+    "candidate_hybrid_model_drop_prob_le_threshold": 27,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 179
+  },
+  "dropped_count": 309,
+  "input_count": 952,
+  "kept_count": 643,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 952,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 48,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[톺아보기] 명륜당 이종근 회장 고발...무이자 '엔젤투자'는 어떻게 14개...",
+      "url": "http://www.dailypop.kr/news/articleView.html?idxno=102962"
+    },
+    {
+      "title": "급기야 이 대통령에게까지 공개적으로 찍힌 유명 음식점 회사",
+      "url": "https://www.wikitree.co.kr/articles/1162806"
+    },
+    {
+      "title": "명륜당, 오너 일가엔 2%대… 점주엔 18% '공정성 논란'",
+      "url": "https://www.ilyoseoul.co.kr/news/articleView.html?idxno=523090"
+    },
+    {
+      "title": "[창간 37주년 특별기획] [AI 대전환, 길을 묻다 ③안전/권리] 내 정보와...",
+      "url": "https://www.suwonilbo.kr/view.html?id=L26092918553500aa"
+    },
+    {
+      "title": "자영업 생태계 살릴 혁신적 조치 있어야",
+      "url": "http://www.inews365.com/news/article.html?no=937524"
+    },
+    {
+      "title": "제주 금융권 수신 9537억 원 '껑충'…대출은 1465억 원 늘어",
+      "url": "https://www.newsjeju.net/news/articleView.html?idxno=426413"
+    },
+    {
+      "title": "\"오픈런인데 잔액은 뚝?\" 규제 갇힌 카카오뱅크, '잔금대출'로 뚫는다",
+      "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=301687"
+    },
+    {
+      "title": "강태영 농협은행장 연임 심사가 이찬우 농협금융지주 회장 승계 절차와...",
+      "url": "https://www.huffingtonpost.kr/article/260839"
+    },
+    {
+      "title": "\"국내 금융권 넘어 글로벌로\"…에이젠글로벌, AI로 다시 쓰는 금융 혁신",
+      "url": "https://www.fntoday.co.kr/news/articleView.html?idxno=394072"
+    },
+    {
+      "title": "코웨이라이프솔루션·산림노동조합연합회 '메링'과 업무제휴·공식 출범...",
+      "url": "http://www.wsobi.com/news/articleView.html?idxno=318919"
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "clusters": {
+    "cluster_count": 364,
+    "cluster_size_max": 57,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 57,
+        "relevance_prob": 0.8511372673345377,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "불붙은 美국채금리 '6% 가시권'",
+        "url": "https://n.news.naver.com/mnews/article/018/0006377237?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 966,
+    "displayed_articles": 246,
+    "final_tagged_representatives": 364,
+    "normalized_articles": 1281,
+    "raw_items": 1281,
+    "relevance_filtered_articles": 643,
+    "rule_filtered_articles": 952,
+    "tagged_before_cluster": 643
+  },
+  "date": "2026-09-30",
+  "generated_at": "2026-09-30T09:11:04.839652+09:00",
+  "publishers": {
+    "missing_publisher_count": 364,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 149,
+    "no_topic_ratio": 0.4093,
+    "no_topic_samples": [
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8241257459361604,
+        "relevance_score": 18,
+        "sector": "저축은행",
+        "title": "SBI저축은행, 11월부터 '교보SBI저축은행'으로 새출발",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=277922"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7555226193745618,
+        "relevance_score": 9,
+        "sector": "감독·제재",
+        "title": "캠코선박운용 대표에 김병칠 전 금감원 부원장…재취업 성공",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4437007"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7007379497849732,
+        "relevance_score": 12,
+        "sector": "여전",
+        "title": "여전사 신용도 갈림길…'조달 비용'보다 '부실 관리'가 승패 가른다",
+        "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=301711"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6623940123269254,
+        "relevance_score": 7,
+        "sector": "거시·시장",
+        "title": "고금리에 개미들 '갈팡질팡'...\"배당 좋은 '이 주식' 주목\"",
+        "url": "https://n.news.naver.com/mnews/article/215/0001267650?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4646989340563193,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "7월 전북 여수신 증가 전환…가계 대출↓·기업 대출↑",
+        "url": "https://n.news.naver.com/mnews/article/056/0012265277?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.651506397037139,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "'비트코인 디파이' 제스트 프로토콜 \"韓시장은 큰 기회\"[인터뷰]",
+        "url": "https://n.news.naver.com/mnews/article/018/0006377350?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5215352640162886,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "안전한 대출은 시중은행 몫인데…\"알아서 살아남아라\" [지방은행의 비명...",
+        "url": "https://n.news.naver.com/mnews/article/119/0003137708?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7141299198389208,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "한투·OKX vs 미래에셋…코인원·디지털엑스 '0원 전쟁' 격화",
+        "url": "https://dealsite.co.kr/articles/169729"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7969309099730267,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "[더벨]문페이코리아 출범, VASP 취득 앞서 ISMS·시스템 구축 착수",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202609291400397680101064"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7809578835375923,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[더벨]보난자팩토리, 'IAAN기반' 수사기관·VASP 글로벌 공조 확대",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202609291452194960108059"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 10,
+      "거시·시장": 41,
+      "기타": 128,
+      "대부": 11,
+      "디지털자산": 60,
+      "보험": 15,
+      "상호금융": 3,
+      "여전": 16,
+      "은행": 38,
+      "입법·정책": 7,
+      "자산운용·연기금": 10,
+      "저축은행": 7,
+      "증권(브로커리지/리테일)": 15
+    },
+    "topic_counts": {
+      "가계대출·부채": 12,
+      "감독·제재": 9,
+      "건전성·자본규제": 11,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 38,
+      "기업금융·익스포저": 4,
+      "디지털자산": 57,
+      "물가·경기지표": 1,
+      "부동산·PF": 3,
+      "불법사금융·불법추심·보이스피싱": 30,
+      "사고·사기·횡령": 6,
+      "상품·영업·예금금리": 9,
+      "서민금융·대환·채무조정": 4,
+      "소비자보호·민원·불완전판매": 15,
+      "업계동정·사회공헌": 18,
+      "연체·부실": 10,
+      "자금시장·유동성": 11,
+      "정책·제도개선": 2,
+      "증시·시장시황": 12,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 36,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7473904056957158,
+        "relevance_score": 36,
+        "sector": "대부",
+        "title": "신협, 연체율 다시 6%대…NPL '두 축'으로 건전성 잡는다",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=277858"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9006287057402119,
+        "relevance_score": 33,
+        "sector": "디지털자산",
+        "title": "공청회 일정도 못잡은 가상자산기본법, 연내 법제화 불투명",
+        "url": "https://www.asiatoday.co.kr/kn/view.php?key=20260930010010378"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.6546204318259297,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "정책금융 국감, ‘공급보다 사후관리’ 쟁점…연체·구상권·가상자산 ...",
+        "url": "https://sateconomy.co.kr/news/view/1065599011536310"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.73736921349467,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "M&A 정보로 200억 챙겼다…명문대 동아리 출신 '정보카르텔' 적발",
+        "url": "https://n.news.naver.com/mnews/article/421/0009197304?sid=101"
+      },
+      {
+        "cluster_size": 30,
+        "relevance_prob": 0.9184142654666293,
+        "relevance_score": 26,
+        "sector": "디지털자산",
+        "title": "[AI시대, 권력 대이동-빗썸] 내부통제·IPO로 가상자산 새 지평 연다",
+        "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=320705"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8959807185797608,
+        "relevance_score": 22,
+        "sector": "보험",
+        "title": "보험사 K-ICS 5분기 만에 꺾여…금리 오르며 '자본의 질' 시험대",
+        "url": "https://www.news2day.co.kr/article/20260929500281"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.943447831160504,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "준비자산·자금세탁방지까지…은행권 디지털자산 경쟁 본격화",
+        "url": "https://www.wikitree.co.kr/articles/1162704"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7972289276176119,
+        "relevance_score": 18,
+        "sector": "대부",
+        "title": "금융감독원, 상반기 금융 민원 40% 증가...스페이스X 공모주 여파",
+        "url": "https://www.ppss.kr/news/articleView.html?idxno=312860"
+      },
+      {
+        "cluster_size": 57,
+        "relevance_prob": 0.8511372673345377,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "불붙은 美국채금리 '6% 가시권'",
+        "url": "https://n.news.naver.com/mnews/article/018/0006377237?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8205206009636962,
+        "relevance_score": 24,
+        "sector": "기타",
+        "title": "카카오·네이버·토스, 스테이블코인법 통과 겨냥 인프라 경쟁",
+        "url": "http://www.datanews.co.kr/news/article.html?no=146665"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 3,
+      "디지털자산": 2,
+      "보험": 1,
+      "은행": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "건전성·자본규제": 2,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 5,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "소비자보호·민원·불완전판매": 1,
+      "연체·부실": 2,
+      "해외·글로벌": 1
+    }
+  }
+}
