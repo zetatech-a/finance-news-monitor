@@ -2328,3 +2328,43 @@ particles, generic morphology/event/date parsing, registries, and the remaining 
 fragmentation, which is architecture debt (greedy first-fit, no cluster-to-cluster merge).
 Later automated findings are follow-up debt unless they show a concrete regression from
 this diff or in the stored production corpus. The merge decision stays with the human.
+
+## Single-blocker closure: compact 불법대부 compounds (547d095)
+
+Starting local/origin/PR HEAD and reviewed commit: `547d095619da05833da2c8b86ca3069777ac3192`.
+Review `5361153929` had three findings. G1 (`단속 나선다` without a particle) and G2
+(generic `계획` as metric-event overlap) behave identically on parent 7450c0b, were not
+created by the final diff, and have no stored-corpus split or pair impact: DEFER.
+
+G3 was a direct regression of 547d095. Forcing the postposition boundary onto the
+compact canonical `불법대부` removed the hard term and domain anchor from valid compounds:
+`불법대부광고 단속` score 4, `불법대부행위 근절`/`불법대부계약 피해`/`불법대부일당 검거` score 0,
+all dropped at model probability 0.8, while parent and main kept them. The 91-day
+corpus has nine such compact rows and zero `불법대부도` rows.
+
+Fix: `text_matcher.py` returns to the parent's phrase semantics (the compact aliases
+and canonical mode lookup added in 547d095 are removed), and the existing
+`_DEFAULT_EXCLUDES` mechanism excludes only the `불법대부도` span. Both relevance paths
+(`matched_hard` and `has_domain_anchor`) go through the shared `contains_term`; an
+independent `불법대부…` mention elsewhere in the text still matches. The file differs
+from 7450c0b by the two-line exclusion only.
+
+New `tests/test_compact_lending_compound_review.py`: 4 failed / 8 passed before, 12 passed
+after (compounds, `불법대부`/`업`/`업체`/`중개업`/`를`, `불법대부도` on compact and spaced forms,
+independent-mention control). Related suites 1094 passed; bridge test passes; offline
+Linux/Python 3.11.15 full suite 1736 passed, 1 skipped (1724 + 12); `git diff --check`
+passes. Golden 1.0000 / 0.9224 and other-sector 1.0000 / 0.8889 unchanged.
+
+All 169 stored `불법대부` rows (and the plural, police, 대부도 and target audit rows) are
+identical to 7450c0b; the nine compact rows regain `불법대부` (+6 each) with keep and
+anchors unchanged. 09-15/16/17 fixed and rescored replays are identical to 547d095 and
+to 7450c0b; the four affected dates equal 7450c0b exactly (the 08-14 이찬진 representative
+returns to the parent choice). 91-day fixed memberships equal both 547d095 and the D8
+baseline on all 91 dates. D8, F2 plural removal and F4 police canonicalization are
+untouched.
+
+### PR #85 FINAL SINGLE-BLOCKER CLOSURE
+
+Known PR-induced production blockers: 0. G1/G2 and the previously listed items remain
+deferred; the remaining lending fragmentation is architecture debt. No further automated
+review/fix loop is started; the merge decision stays with the human.
