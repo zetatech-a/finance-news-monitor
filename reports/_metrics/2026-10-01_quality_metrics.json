@@ -1,0 +1,274 @@
+{
+  "clusters": {
+    "cluster_count": 347,
+    "cluster_size_max": 85,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 85,
+        "relevance_prob": 0.6706392320194101,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "우리금융 최대 실적 '눈앞'···4분기 5000억 넘을까",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=711680"
+      },
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.8222930523404133,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "[가상자산 지각변동④] 한투·OKX 나란히 20%…코인원, 업비트·빗썸 양...",
+        "url": "https://n.news.naver.com/mnews/article/117/0004110550?sid=103"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1051,
+    "displayed_articles": 249,
+    "final_tagged_representatives": 347,
+    "normalized_articles": 1434,
+    "raw_items": 1434,
+    "relevance_filtered_articles": 686,
+    "rule_filtered_articles": 1007,
+    "tagged_before_cluster": 686
+  },
+  "date": "2026-10-01",
+  "generated_at": "2026-10-01T09:10:16.280282+09:00",
+  "publishers": {
+    "missing_publisher_count": 347,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 142,
+    "no_topic_ratio": 0.4092,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6932588994207008,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "콘크리트, 한국 진출 공식화·서울 밋업 성황 속 코인베이스 CT 상장 발...",
+        "url": "https://n.news.naver.com/mnews/article/029/0003050879?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6113005665433323,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "9월 30일 주식시장 주요공시",
+        "url": "https://www.catchnews.kr/news/articleView.html?idxno=128991"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6241218026611544,
+        "relevance_score": 7,
+        "sector": "여전",
+        "title": "[개장 전 주요 공시] LS·한화솔루션·한화투자증권·한화생명 등",
+        "url": "https://www.g-enews.com/view.php?ud=202610010830581232923c501012_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6529885042091192,
+        "relevance_score": 7,
+        "sector": "입법·정책",
+        "title": "금융사들, 핵심 업무에 AI 속속 도입…대출 심사보고서 초안부터 광고 ...",
+        "url": "https://www.raonnews.com/news/article.html?no=61539"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.682197804655224,
+        "relevance_score": 10,
+        "sector": "자산운용·연기금",
+        "title": "[단독] 신한카드, MDM자산운용에 본사 8000억원에 매각",
+        "url": "https://www.m-i.kr/news/articleView.html?idxno=2001366"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7703535744772719,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "“코인 계좌는 ‘눈팅용’?”…1160만 계좌, 3명 중 2명은 ‘미사용’",
+        "url": "https://n.news.naver.com/mnews/article/029/0003050873?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5003408234823233,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "한화생명, 종합금융 가속…4.6조 애큐온 품고 한화證엔 2500억 출자",
+        "url": "https://www.apnews.kr/news/articleView.html?idxno=3051643"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6255582266302675,
+        "relevance_score": 9,
+        "sector": "입법·정책",
+        "title": "[연합뉴스 이 시각 헤드라인] - 07:30",
+        "url": "https://n.news.naver.com/mnews/article/001/0016348843?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.720599968304815,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "XRP 자산 승계 족쇄 풀렸다…업홀드, 온체인 상속 시스템 '최초 적용'",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=491642"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8287186556727306,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "'코인 개미' 3명 중 2명, 실명계좌 있어도 미거래",
+        "url": "https://n.news.naver.com/mnews/article/374/0000535719?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 7,
+      "감독·제재": 9,
+      "거시·시장": 30,
+      "기타": 108,
+      "대부": 18,
+      "디지털자산": 64,
+      "보험": 4,
+      "상호금융": 2,
+      "여전": 21,
+      "은행": 43,
+      "입법·정책": 14,
+      "자산운용·연기금": 7,
+      "저축은행": 17,
+      "증권(브로커리지/리테일)": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 29,
+      "감독·제재": 8,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 38,
+      "기업금융·익스포저": 6,
+      "디지털자산": 62,
+      "물가·경기지표": 5,
+      "부동산·PF": 7,
+      "불법사금융·불법추심·보이스피싱": 33,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 32,
+      "서민금융·대환·채무조정": 6,
+      "소비자보호·민원·불완전판매": 5,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 8,
+      "자금시장·유동성": 10,
+      "정책·제도개선": 2,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 2,
+      "해외·글로벌": 20,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9045134844785315,
+        "relevance_score": 32,
+        "sector": "은행",
+        "title": "가상자산 동맹 줄줄이 연장… 10월 만료 케이뱅크·업비트 '동행' 이어갈...",
+        "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=728553"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8572492085918346,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "보완수사로 불법사금융 총책 적발…檢, 공판우수사례 발표",
+        "url": "https://n.news.naver.com/mnews/article/018/0006377904?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7006395202802763,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "[단독] 산업은행이 공모펀드 불완전판매...금감원 과태료 3.1억 제재",
+        "url": "https://www.dailybrief.co.kr/news/articleView.html?idxno=6871"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9142267278205116,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "[KBW 2026] '달러 쓰나미' 몰려온다…민병덕 \"원화 스테이블코인·기본법...",
+        "url": "https://dealsite.co.kr/articles/169932"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6101940491422374,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "금융위, 은행 부동산PF 신용공여 20% 제한 예고",
+        "url": "https://n.news.naver.com/mnews/article/277/0005822990?sid=101"
+      },
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.8222930523404133,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "[가상자산 지각변동④] 한투·OKX 나란히 20%…코인원, 업비트·빗썸 양...",
+        "url": "https://n.news.naver.com/mnews/article/117/0004110550?sid=103"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7868355180240854,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "“클릭 몇번에 즉시 대출”…청년층 노리는 ‘불법사금융’",
+        "url": "https://n.news.naver.com/mnews/article/662/0000105290?sid=102"
+      },
+      {
+        "cluster_size": 85,
+        "relevance_prob": 0.6706392320194101,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "우리금융 최대 실적 '눈앞'···4분기 5000억 넘을까",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=711680"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6348360493422416,
+        "relevance_score": 20,
+        "sector": "대부",
+        "title": "추심 전화 매일 와도 위법 아닐 수 있다…금감원, 채권추심 민원사례 공...",
+        "url": "https://www.news2day.co.kr/article/20260930500239"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.8706797203862892,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "금값 한 달 새 10% 하락…g당 18만원대",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=722535"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 2,
+      "대부": 3,
+      "디지털자산": 2,
+      "은행": 1,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 3,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "소비자보호·민원·불완전판매": 1,
+      "연체·부실": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}

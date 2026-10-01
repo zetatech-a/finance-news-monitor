@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 10,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 84,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 63,
+  "candidate_hybrid_gray_rule_drop": 177,
+  "candidate_hybrid_gray_rule_keep": 63,
+  "candidate_hybrid_keep_overseas_global_reference": 23,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 422,
+  "candidate_hybrid_model_drop": 23,
+  "candidate_hybrid_model_keep": 170,
+  "candidate_hybrid_model_keep_with_domain_anchor": 170,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 422,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-01",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 10,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 84,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 11,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 177,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 63,
+    "candidate_hybrid_keep_overseas_global_reference": 23,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 422,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 23,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 170
+  },
+  "dropped_count": 321,
+  "input_count": 1007,
+  "kept_count": 686,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1007,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 37,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "\"신용평가는 기회 잇는 도구\"",
+      "url": "https://www.sidae.com/article/2026090116283198718"
+    },
+    {
+      "title": "취약차주 소액신용대출 연체 확대… \"공급 제한보다 취약차주 상환 지원...",
+      "url": "https://www.g-enews.com/view.php?ud=202609301430346060cd0bfacc1c_1"
+    },
+    {
+      "title": "'수익성 악화' 케이카캐피탈, 반등 키는 'KG그룹 시너지'",
+      "url": "https://www.newsway.co.kr/news/view?ud=2026093011022305953"
+    },
+    {
+      "title": "주담대 없이 탄탄한 성장... 광폭 기대되는 이은미 토스뱅크 2기, 여신 ...",
+      "url": "https://www.meconomynews.com/news/articleView.html?idxno=202003"
+    },
+    {
+      "title": "[패트롤]포항시-청송군-영양군-울릉군-군위군-영덕군-안동교육청-예천교...",
+      "url": "https://www.ekn.kr/web/view.php?key=20260930027500591"
+    },
+    {
+      "title": "[인터뷰] 평생 공직의 길, 이제는 숲으로",
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3709488"
+    },
+    {
+      "title": "배성완 하나손보 대표 3연임 촉각…장기보험 성과 주목",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=868654"
+    },
+    {
+      "title": "2026 국정감사, 실손부터 IFRS17까지... '쟁점 산적'",
+      "url": "http://www.fins.co.kr/news/articleView.html?idxno=110118"
+    },
+    {
+      "title": "개인투자자 '피눈물' 속 증권사들 상반기만 8.6조 벌었다",
+      "url": "https://www.autodaily.co.kr/news/articleView.html?idxno=600806"
+    },
+    {
+      "title": "[토스, 증권을 품은 대가①] 몸집은 금융그룹, 내부통제는 따라왔나",
+      "url": "https://sports.hankooki.com/news/articleView.html?idxno=6940790"
+    }
+  ]
+}
