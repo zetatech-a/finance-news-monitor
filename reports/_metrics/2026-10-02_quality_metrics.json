@@ -1,0 +1,262 @@
+{
+  "clusters": {
+    "cluster_count": 420,
+    "cluster_size_max": 67,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 67,
+        "relevance_prob": 0.8024726962136332,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "[KBW2026] 미래·하나·신한證 \"토큰증권 승부처는 기관·정형증권...내년...",
+        "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7186924"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1202,
+    "displayed_articles": 312,
+    "final_tagged_representatives": 420,
+    "normalized_articles": 1574,
+    "raw_items": 1574,
+    "relevance_filtered_articles": 862,
+    "rule_filtered_articles": 1189,
+    "tagged_before_cluster": 862
+  },
+  "date": "2026-10-02",
+  "generated_at": "2026-10-02T09:09:08.922492+09:00",
+  "publishers": {
+    "missing_publisher_count": 420,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 148,
+    "no_topic_ratio": 0.3524,
+    "no_topic_samples": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7457065346819534,
+        "relevance_score": 11,
+        "sector": "대부",
+        "title": "정부 “9월 물가 2.9%…석유 최고가격제로 상승률 0.6%p 낮춰”",
+        "url": "https://www.sentv.co.kr/article/view/sentv202610020005"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.646972161666942,
+        "relevance_score": 8,
+        "sector": "대부",
+        "title": "9월 물가상승 2%대에 '농축산물 안정·석유최고가격제 효과'분석",
+        "url": "https://news.bbsi.co.kr/news/articleView.html?idxno=4109925"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6716648119609709,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "부안경찰서 서림지구대, 우편물 악용등 전화금융사기 홍보활동 펼쳐",
+        "url": "https://www.ibuan.com/news/articleView.html?idxno=56532"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.756576469264487,
+        "relevance_score": 11,
+        "sector": "대부",
+        "title": "정부 \"석유 최고가격제로 9월 물가상승률 0.6%p 억제\"",
+        "url": "https://www.tjb.co.kr/news05/bodo/view/id/104322"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8470246129824884,
+        "relevance_score": 10,
+        "sector": "저축은행",
+        "title": "애큐온캐피탈 품는 한화생명…저축은행까지 손자회사로",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1315376&inflow=N"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7314128406096566,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "애큐온저축銀 '쪼개기 인수'의 덫…한화생명, 풋옵션에 자본비율 하락 ...",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=227837"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6472717839701572,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "78년만의 검찰 해체, '전직' 검사와 검찰수사관 20명의 목소리",
+        "url": "https://monthly.chosun.com/news/articleView.html?idxno=71572"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5260034483112307,
+        "relevance_score": 6,
+        "sector": "보험",
+        "title": "[보험사 자본구조 진단] '변액보험 강자' 메트라이프, 킥스비율 100%p '뚝...",
+        "url": "https://dealsite.co.kr/articles/169739"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7471140973029371,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "코인거래 15.7% 감소…리플XRP 1886억·아이콘 급등",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16233505"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4541866896413622,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[Who Is ?] 배광수 NH투자증권 대표이사",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=448012"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 9,
+      "거시·시장": 38,
+      "기타": 118,
+      "대부": 22,
+      "디지털자산": 99,
+      "보험": 14,
+      "상호금융": 20,
+      "여전": 17,
+      "은행": 48,
+      "입법·정책": 11,
+      "자산운용·연기금": 8,
+      "저축은행": 10,
+      "증권(브로커리지/리테일)": 2,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 19,
+      "감독·제재": 6,
+      "건전성·자본규제": 10,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 34,
+      "기업금융·익스포저": 7,
+      "디지털자산": 101,
+      "물가·경기지표": 1,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 52,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 20,
+      "서민금융·대환·채무조정": 4,
+      "소비자보호·민원·불완전판매": 7,
+      "업계동정·사회공헌": 11,
+      "연체·부실": 4,
+      "자금시장·유동성": 24,
+      "정책·제도개선": 1,
+      "증시·시장시황": 11,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 30,
+      "환율·외환": 8
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 36,
+        "relevance_prob": 0.9184584046260007,
+        "relevance_score": 37,
+        "sector": "디지털자산",
+        "title": "코인 시장 한파 덮쳤다…상반기 가상자산 시총 33% 뚝, 거래소 이익은 ...",
+        "url": "https://www.widedaily.com/news/articleView.html?idxno=301641"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9040370917986698,
+        "relevance_score": 37,
+        "sector": "디지털자산",
+        "title": "상반기 가상자산거래소 영업익, 직전 반기 대비 78% 급감",
+        "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2476273"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9512387087903365,
+        "relevance_score": 28,
+        "sector": "입법·정책",
+        "title": "금감원·금융권, 고령층 금융교육 687건 실시…보이스피싱 예방 강화",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=278436"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8506557129318395,
+        "relevance_score": 33,
+        "sector": "은행",
+        "title": "[KBW 26] 은행권 웹3 선점 나선 하나금융…송금부터 STO·커스터디까지 ...",
+        "url": "https://www.techm.kr/news/articleView.html?idxno=155779"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8201135249604996,
+        "relevance_score": 29,
+        "sector": "입법·정책",
+        "title": "법무법인 광장, 금감원 출신 제옥평 변호사 영입…금융규제·분쟁 역량...",
+        "url": "https://n.news.naver.com/mnews/article/366/0001195526?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7899503423750921,
+        "relevance_score": 34,
+        "sector": "보험",
+        "title": "[알립니다] 긴축의 시대, 투자로 정면 돌파하라",
+        "url": "https://n.news.naver.com/mnews/article/009/0005742918?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7350798762422892,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "최고금리 20%에 막힌 서민대출…금감원, '일본식 보증' 꺼냈다",
+        "url": "https://news.mtn.co.kr/news-detail/2026100115101049737"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.7791921594636155,
+        "relevance_score": 22,
+        "sector": "대부",
+        "title": "이찬진 \"대부업, 저신용자 신용공급 늘려야…규제샌드박스 검토\"",
+        "url": "https://n.news.naver.com/mnews/article/001/0016350794?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6740929670260508,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "[현장] 대부금융협회 \"최고금리 위반 땐 책임…초과이자 반환 지원\"",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1726369"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8756918108976218,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "금감원·금융권, 고령층 집중 금융교육 실시…금융사기 예방 강화",
+        "url": "https://n.news.naver.com/mnews/article/119/0003138802?sid=101"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "대부": 3,
+      "디지털자산": 2,
+      "보험": 1,
+      "은행": 1,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 3,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "업계동정·사회공헌": 1
+    }
+  }
+}

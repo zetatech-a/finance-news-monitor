@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 5,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 108,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 16,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 71,
+  "candidate_hybrid_gray_rule_drop": 152,
+  "candidate_hybrid_gray_rule_keep": 71,
+  "candidate_hybrid_keep_overseas_global_reference": 32,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 568,
+  "candidate_hybrid_model_drop": 21,
+  "candidate_hybrid_model_keep": 188,
+  "candidate_hybrid_model_keep_with_domain_anchor": 188,
+  "candidate_hybrid_negative_drop": 5,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 568,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-02",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 5,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 108,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 15,
+    "candidate_hybrid_drop_negative_signal": 5,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 16,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 152,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 71,
+    "candidate_hybrid_keep_overseas_global_reference": 32,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 568,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 21,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 188
+  },
+  "dropped_count": 327,
+  "input_count": 1189,
+  "kept_count": 862,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1189,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 31,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "일한 기록은 어떻게 신용이 될 수 있을까?",
+      "url": "https://www.laborplus.co.kr/news/articleView.html?idxno=41579"
+    },
+    {
+      "title": "신한은행 정보유출, '대출조회 서비스' 지목…AI 활용 가능성",
+      "url": "http://www.newsian.co.kr/news/articleView.html?idxno=96396"
+    },
+    {
+      "title": "신한은행, 고객 2만5천명 정보 털렸다",
+      "url": "https://www.khan.co.kr/article/202610012202015"
+    },
+    {
+      "title": "대출 모집인 조회 사이트가 ‘취약고리’ 됐다 …신한은행 고객 2만5000...",
+      "url": "https://www.khan.co.kr/article/202610011759001"
+    },
+    {
+      "title": "‘고객 2만5000명’ 해킹 사고, 신한은행 “전액 보상” 대국민 사과",
+      "url": "https://www.khan.co.kr/article/202610011425011"
+    },
+    {
+      "title": "대출 고객 2만 5천명 정보 털린 신한은행 \"손해 전액 보상\"…보안망 '도...",
+      "url": "https://lawtalknews.co.kr/article/D8HFFVHO9HOT"
+    },
+    {
+      "title": "신한은행 “해킹으로 2만5000명 개인정보 유출” 연소득·대출정보 포함",
+      "url": "https://www.kmib.co.kr/article/view.asp?arcid=9000018925&cp=nv"
+    },
+    {
+      "title": "신한은행 주민번호 포함 2.5만명 정보 유출…\"피해 확인 시 전액 보상\"",
+      "url": "http://www.4th.kr/news/articleView.html?idxno=2119021"
+    },
+    {
+      "title": "신한은행, 개인정보 2만5000건 털렸다…주민등록번호·연소득·대출한도...",
+      "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=321014"
+    },
+    {
+      "title": "신한은행, 2만5000명 정보 유출…정상혁 \"피해 전액 보상\"",
+      "url": "http://www.inews24.com/view/2010888"
+    }
+  ]
+}
