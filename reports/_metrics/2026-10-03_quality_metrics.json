@@ -1,0 +1,255 @@
+{
+  "clusters": {
+    "cluster_count": 322,
+    "cluster_size_max": 38,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 787,
+    "displayed_articles": 244,
+    "final_tagged_representatives": 322,
+    "normalized_articles": 1133,
+    "raw_items": 1133,
+    "relevance_filtered_articles": 544,
+    "rule_filtered_articles": 770,
+    "tagged_before_cluster": 544
+  },
+  "date": "2026-10-03",
+  "generated_at": "2026-10-03T09:09:44.991451+09:00",
+  "publishers": {
+    "missing_publisher_count": 322,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 143,
+    "no_topic_ratio": 0.4441,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.706542247523959,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "[이슈체크] 검은 돈 판치는 코인시장, 신뢰 더 망가뜨리나…정치권은 또...",
+        "url": "https://www.tfmedia.co.kr/news/article.html?no=207686"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7309671599289354,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "중앙화 거래소 규제 피하나… ZEC, 토르체인 손잡고 DEX 영토 확장",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=492431"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6721269414596642,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "폭등이냐 대폭락이냐…10월 개막과 동시에 쏟아지는 XRP '운명의 날'",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=492427"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8309355071832348,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "지금 안 사면 끝난다?…거래소 떠나는 XRP 고래들, 매집 광풍 전말",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=492422"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.568633874300403,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "[경영분리 5년] 현대카드 조창현號 1년…PLCC경쟁 '효율'로 돌파",
+        "url": "https://news.dealsitetv.com/articles/176438"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4370251216017132,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "[4대 은행장, 누가 남나] ①'리딩뱅크' 탈환 이환주 KB국민은행장, '세대...",
+        "url": "https://www.newspim.com/news/view/20260916000764"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6770970815689823,
+        "relevance_score": 18,
+        "sector": "은행",
+        "title": "신한보다 먼저 뚫린 KB국민…해킹 시작 68시간 만에 알았다",
+        "url": "https://n.news.naver.com/mnews/article/005/0001876532?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.699604024935742,
+        "relevance_score": 8,
+        "sector": "상호금융",
+        "title": "새마을금고, 지자체 금고시장 진출 승부수…농협 아성 겨냥",
+        "url": "https://n.news.naver.com/mnews/article/001/0016354997?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7217529754727038,
+        "relevance_score": 15,
+        "sector": "기타",
+        "title": "보험왕좌 향한 2·3위 박빙 대결…한화 '애큐온' 품고 교보 'SBI' 삼켰다",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1726500"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8667854179917432,
+        "relevance_score": 38,
+        "sector": "저축은행",
+        "title": "은행·저축은행 고객정보 줄줄이 유출…AI 해킹 공포에 금융권 초비상",
+        "url": "https://n.news.naver.com/mnews/article/008/0005421775?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 4,
+      "감독·제재": 5,
+      "거시·시장": 30,
+      "기타": 88,
+      "대부": 31,
+      "디지털자산": 49,
+      "보험": 4,
+      "상호금융": 7,
+      "여전": 16,
+      "은행": 58,
+      "입법·정책": 19,
+      "자산운용·연기금": 7,
+      "저축은행": 4
+    },
+    "topic_counts": {
+      "가계대출·부채": 13,
+      "감독·제재": 8,
+      "건전성·자본규제": 6,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 20,
+      "기업금융·익스포저": 3,
+      "디지털자산": 57,
+      "물가·경기지표": 2,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 25,
+      "사고·사기·횡령": 7,
+      "상품·영업·예금금리": 10,
+      "서민금융·대환·채무조정": 9,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 10,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 11,
+      "정책·제도개선": 7,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 28,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8181191580629701,
+        "relevance_score": 35,
+        "sector": "감독·제재",
+        "title": "경찰, 은행권 해킹 내사 착수…신한·국민·하나·부산 4곳 조사",
+        "url": "http://www.newsian.co.kr/news/articleView.html?idxno=96467"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8667854179917432,
+        "relevance_score": 38,
+        "sector": "저축은행",
+        "title": "은행·저축은행 고객정보 줄줄이 유출…AI 해킹 공포에 금융권 초비상",
+        "url": "https://n.news.naver.com/mnews/article/008/0005421775?sid=101"
+      },
+      {
+        "cluster_size": 7,
+        "relevance_prob": 0.8960703102394204,
+        "relevance_score": 35,
+        "sector": "은행",
+        "title": "하나·부산은행도 고객 개인정보 유출…은행권 AI 해킹 피해 일파만파",
+        "url": "http://www.segyebiz.com/newsView/20261002514018?OutUrl=naver"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8905398176364929,
+        "relevance_score": 34,
+        "sector": "여전",
+        "title": "금융위, 은행·카드사 소집 '시스템 보안 점검' 주문",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=869876"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7871837013424373,
+        "relevance_score": 34,
+        "sector": "은행",
+        "title": "5대 은행 모두 해킹 공격…신한·국민·하나·부산은행 정보유출",
+        "url": "https://www.ngetnews.com/news/articleView.html?idxno=554061"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8380371669629155,
+        "relevance_score": 35,
+        "sector": "은행",
+        "title": "[아주경제 오늘의 뉴스 종합] 은행권 전방위 해킹 공격…고객정보 유출...",
+        "url": "https://www.ajunews.com/view/20261002212620003"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7220607052207981,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "온라인 대부광고 사전심의 확대…정부, 불법사금융 4대 추가대책 추진",
+        "url": "https://www.news2day.co.kr/article/20261002500254"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8523727605192772,
+        "relevance_score": 30,
+        "sector": "기타",
+        "title": "5대 은행 모두 노렸다··· 신한 2만5000명 털리고 국민·하나까지 '해...",
+        "url": "https://www.greenpostkorea.co.kr/news/articleView.html?idxno=307591"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8487387339256924,
+        "relevance_score": 28,
+        "sector": "IB·자본시장",
+        "title": "코스닥 중심 IPO 회복세…회사채 발행은 40% 줄어 [시그널]",
+        "url": "https://n.news.naver.com/mnews/article/011/0004667800?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7549990323942782,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "온라인 불법 대부광고 신고하면 포상금…불법사금융 '위장수사'도 검토",
+        "url": "http://www.newsprime.co.kr/news/article.html?no=749809"
+      }
+    ],
+    "no_topic_count": 7,
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 1,
+      "기타": 1,
+      "대부": 2,
+      "여전": 1,
+      "은행": 3,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 1,
+      "증시·시장시황": 1
+    }
+  }
+}

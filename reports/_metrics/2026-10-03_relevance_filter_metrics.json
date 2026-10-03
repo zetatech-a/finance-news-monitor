@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 70,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 49,
+  "candidate_hybrid_gray_rule_drop": 105,
+  "candidate_hybrid_gray_rule_keep": 49,
+  "candidate_hybrid_keep_overseas_global_reference": 29,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 13,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 354,
+  "candidate_hybrid_model_drop": 20,
+  "candidate_hybrid_model_keep": 96,
+  "candidate_hybrid_model_keep_with_domain_anchor": 96,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 354,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-03",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 70,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 15,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 105,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 49,
+    "candidate_hybrid_keep_overseas_global_reference": 29,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 13,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 354,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 3,
+    "candidate_hybrid_model_drop_prob_le_threshold": 20,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 96
+  },
+  "dropped_count": 226,
+  "input_count": 770,
+  "kept_count": 544,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 770,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 29,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[단독]애인도 당했다!… 믿는 도끼에 발등 ‘지인 사기’ 21% 급증",
+      "url": "https://www.munhwa.com/article/11621103?ref=naver"
+    },
+    {
+      "title": "한화생명 품에 안긴 애큐온…기업금융엔 시너지, 자회사 체력은 과제",
+      "url": "https://www.ekn.kr/web/view.php?key=20261002023151448"
+    },
+    {
+      "title": "이형일 부총리 \"시장 이상신호 조기 포착 중요…국고채 발행 5조원 축소...",
+      "url": "https://www.youthdaily.co.kr/news/article.html?no=227904"
+    },
+    {
+      "title": "[뉴스트라다무스] 검찰청 사라진 날, 박상용 검사 \"제도 허점 너무 많아...",
+      "url": "https://news.tvchosun.com/site/data/html_dir/2026/10/02/2026100290134.html"
+    },
+    {
+      "title": "신한은행 과태료 3150만원..\"펀드 위험등급 허위 설명·투자자 정보 미파...",
+      "url": "http://www.4th.kr/news/articleView.html?idxno=2119124"
+    },
+    {
+      "title": "신한 이어 KB국민은행도 해킹당해…119명 고객정보 유출",
+      "url": "https://news.bbsi.co.kr/news/articleView.html?idxno=4110082"
+    },
+    {
+      "title": "신한에 이어 국민은행도 정보유출…119명 고객정보 외부침입",
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=213892"
+    },
+    {
+      "title": "KB국민은행도 고객 119명 정보 유출…\"피해 발생시 전액 보상\"(종합)",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4437610"
+    },
+    {
+      "title": "[이슈] 국민銀, 개인정보보호법 강화 3주 만에 뚫려…이환주 체제 '안전...",
+      "url": "https://www.the-today.com/news/articleView.html?idxno=91103"
+    },
+    {
+      "title": "신한 이어 KB국민은행도 고객 150여명 정보 유출",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4437595"
+    }
+  ]
+}
