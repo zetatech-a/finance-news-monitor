@@ -1,0 +1,238 @@
+{
+  "clusters": {
+    "cluster_count": 96,
+    "cluster_size_max": 8,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 190,
+    "displayed_articles": 69,
+    "final_tagged_representatives": 96,
+    "normalized_articles": 268,
+    "raw_items": 268,
+    "relevance_filtered_articles": 141,
+    "rule_filtered_articles": 190,
+    "tagged_before_cluster": 141
+  },
+  "date": "2026-10-04",
+  "generated_at": "2026-10-04T09:04:14.051099+09:00",
+  "publishers": {
+    "missing_publisher_count": 96,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 63,
+    "no_topic_ratio": 0.6562,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6274798237725973,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[초점] 5대 은행 모두 해킹당했다…국감 앞 '보안 구멍' 책임론",
+        "url": "http://www.newsian.co.kr/news/articleView.html?idxno=96496"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6075122272900978,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "AI로 상호금융까지 광범위 공격…\"해킹 시도 훨씬 많을 수도\"",
+        "url": "https://news.bbsi.co.kr/news/articleView.html?idxno=4110227"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8227792617889089,
+        "relevance_score": 27,
+        "sector": "기타",
+        "title": "'정보유출 여파' 당국, 4일 금융업권 협회장·금융사 대표 긴급 소집",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=752673"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6278071347162636,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "금융권 광범위 AI 공격 “해킹 시도 더 많을 수도”",
+        "url": "https://n.news.naver.com/mnews/article/658/0000157380?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8125169068588565,
+        "relevance_score": 27,
+        "sector": "저축은행",
+        "title": "은행 넘어 저축은행·캐피탈까지…금융권 '해킹 비상'",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=704955"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6080728405153254,
+        "relevance_score": 7,
+        "sector": "저축은행",
+        "title": "저축은행 하반기 '새판짜기' 속도전…M&A·리브랜딩 잇따라",
+        "url": "https://n.news.naver.com/mnews/article/119/0003139325?sid=101"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.7323734805267683,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "은행 넘어 2금융까지...해킹 피해 확산",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=869992"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7505582342323195,
+        "relevance_score": 8,
+        "sector": "대부",
+        "title": "\"물가 2%대 유지\"…가공식품 오르고 농축수산물은 내렸다는데",
+        "url": "https://www.gukjenews.com/news/articleView.html?idxno=3712712"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7401390303014548,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코인거래 44.3% 급감…리플XRP 729억, 샌드박스 2285억",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16237555"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8156375768449653,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[SAFE-4-DAY] 범죄자는 당신의 개인정보를 얼마에 살까",
+        "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=246217"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "거시·시장": 10,
+      "기타": 37,
+      "대부": 1,
+      "디지털자산": 8,
+      "보험": 1,
+      "상호금융": 3,
+      "은행": 17,
+      "입법·정책": 5,
+      "자산운용·연기금": 3,
+      "저축은행": 9,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 8,
+      "디지털자산": 9,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 4,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 1,
+      "자금시장·유동성": 1,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 2,
+      "해외·글로벌": 10,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.819812297874852,
+        "relevance_score": 31,
+        "sector": "기타",
+        "title": "은행 해킹 사태에 금융권 보안 도마… 금융 보안체계, 국감 쟁점되나",
+        "url": "https://www.newscj.com/news/articleView.html?idxno=3437611"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8125169068588565,
+        "relevance_score": 27,
+        "sector": "저축은행",
+        "title": "은행 넘어 저축은행·캐피탈까지…금융권 '해킹 비상'",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=704955"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7538597257940091,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "금융위·금감원 투톱, 4일 전 금융업권 긴급소집…해킹 피해 2금융권 확...",
+        "url": "https://n.news.naver.com/mnews/article/088/0001032043?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8086256626559706,
+        "relevance_score": 29,
+        "sector": "저축은행",
+        "title": "금융권 해킹 제2금융으로 확산…저축은행·캐피탈도 뚫렸다",
+        "url": "https://n.news.naver.com/mnews/article/117/0004111924?sid=103"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.826688047256801,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "은행권 연쇄 해킹에 당국 조사 속도…제재 여부·국감 책임론 촉각",
+        "url": "https://n.news.naver.com/mnews/article/016/0002705185?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8223607244475755,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "금융권 해킹 '도미노'…금융위, 피해 금융사 CEO 긴급 소집",
+        "url": "https://www.thedailypost.kr/news/articleView.html?idxno=116004"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.7323734805267683,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "은행 넘어 2금융까지...해킹 피해 확산",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=869992"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7448820564559971,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "거래소 다음은 금융 인프라…두나무·LG CNS도 뛰어들었다 [도예리의 디...",
+        "url": "https://n.news.naver.com/mnews/article/011/0004667947?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.702454194221144,
+        "relevance_score": 22,
+        "sector": "은행",
+        "title": "은행권 AI 해킹에 경찰 내사 착수…금융당국 긴급 점검",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=752657"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7842593473866271,
+        "relevance_score": 21,
+        "sector": "저축은행",
+        "title": "예가람저축은행·현대캐피탈도 해킹…금융위, 내일 전 금융권 긴급 소집",
+        "url": "https://www.ngetnews.com/news/articleView.html?idxno=554063"
+      }
+    ],
+    "no_topic_count": 8,
+    "sector_counts": {
+      "기타": 1,
+      "디지털자산": 1,
+      "은행": 3,
+      "입법·정책": 2,
+      "저축은행": 3
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "디지털자산": 1
+    }
+  }
+}
