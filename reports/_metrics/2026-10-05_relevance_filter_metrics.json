@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 8,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 17,
+  "candidate_hybrid_gray_rule_drop": 44,
+  "candidate_hybrid_gray_rule_keep": 17,
+  "candidate_hybrid_keep_overseas_global_reference": 5,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 9,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 178,
+  "candidate_hybrid_model_drop": 5,
+  "candidate_hybrid_model_keep": 104,
+  "candidate_hybrid_model_keep_with_domain_anchor": 104,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 178,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-05",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 8,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 4,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 44,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 17,
+    "candidate_hybrid_keep_overseas_global_reference": 5,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 9,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 178,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 5,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 104
+  },
+  "dropped_count": 67,
+  "input_count": 381,
+  "kept_count": 314,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 381,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 11,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[양준서의 정조준] 중국산 AI 에이전트가 신한은행 해킹했나…이재명 정...",
+      "url": "https://www.pennmike.com/news/articleView.html?idxno=128946"
+    },
+    {
+      "title": "“빈틈없이 점검하라”는 말만 1년째…소 잃고 외양간 고치는 금융당국",
+      "url": "https://www.kmib.co.kr/article/view.asp?arcid=9000019653&cp=nv"
+    },
+    {
+      "title": "비트코인 1억1535만 원대 횡보, 미국 10월 금리 인상 가능성 낮아져 투심...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=448591"
+    },
+    {
+      "title": "\"에이전트 결제 실행·보안·대출 지원…XRPL로 싸고 빠르게\"[인터뷰]",
+      "url": "https://www.edaily.co.kr/News/Read?newsId=01587526645609640&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article"
+    },
+    {
+      "title": "[국감 2026] '땜질식 대출 규제', 예측 가능성 급락에 실수요자 눈물",
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=278705"
+    },
+    {
+      "title": "은행들 가계대출 기준 1년간 150회 바꿔…실수요층 혼란",
+      "url": "https://www.yna.co.kr/view/AKR20261003026000002?input=1195m"
+    },
+    {
+      "title": "국민·신한 여유 vs 우리·하나 초과…목표 상향에도 은행별 대출 여력...",
+      "url": "https://www.cbci.co.kr/news/articleView.html?idxno=612301"
+    },
+    {
+      "title": "全금융권 9월 가계대출 잔액 2026년 들어 첫 감소",
+      "url": "https://www.segye.com/newsView/20261004506925?OutUrl=naver"
+    },
+    {
+      "title": "9월 말 전금융권 가계대출 잔액 올해 첫 감소",
+      "url": "http://www.yonhapnewstv.co.kr/news/MYH20261004112112a2t"
+    },
+    {
+      "title": "금리인하요구권 찾는 차주 급증하는데…실제 이자 감면은 '찔끔'",
+      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1411792"
+    }
+  ]
+}

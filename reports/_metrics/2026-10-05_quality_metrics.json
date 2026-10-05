@@ -1,0 +1,259 @@
+{
+  "clusters": {
+    "cluster_count": 194,
+    "cluster_size_max": 55,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 55,
+        "relevance_prob": 0.9034639677471387,
+        "relevance_score": 27,
+        "sector": "기타",
+        "title": "이억원 금융위원장 \"'AI 해킹' 최고 경각심…보이스피싱 등 2차 피해 선...",
+        "url": "https://n.news.naver.com/mnews/article/660/0000118404?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 390,
+    "displayed_articles": 110,
+    "final_tagged_representatives": 194,
+    "normalized_articles": 555,
+    "raw_items": 555,
+    "relevance_filtered_articles": 314,
+    "rule_filtered_articles": 381,
+    "tagged_before_cluster": 314
+  },
+  "date": "2026-10-05",
+  "generated_at": "2026-10-05T09:06:05.166218+09:00",
+  "publishers": {
+    "missing_publisher_count": 194,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 135,
+    "no_topic_ratio": 0.6959,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7524085436685413,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "은행 해킹에 커지는 불안 \"내 돈은 안전한가\"…개인정보 유출에 보이스...",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16238322"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6569807528271083,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "[이시각헤드라인] 10월 5일 뉴스와이드 (08시)",
+        "url": "https://n.news.naver.com/mnews/article/422/0000912556?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7631724171563978,
+        "relevance_score": 14,
+        "sector": "기타",
+        "title": "코인거래 위축에도 리플XRP 858억 엑시인피니티 13% 급등",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16238318"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7301227430355715,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "단양관광공사 등 8개 기관, 천안흥타령춤축제서 청렴캠페인·윤리경영 ...",
+        "url": "https://www.gukjenews.com/news/articleView.html?idxno=3712958"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7916706252433541,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "전 금융권 덮친 AI 해킹… 정보보안 수준에 피해 엇갈렸다",
+        "url": "https://n.news.naver.com/mnews/article/014/0005584884?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8290049850132113,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "4만건 털릴 때 89명에 그쳤다…같은 해킹에도 갈린 금융사 '보안 체력'",
+        "url": "https://www.thepowernews.co.kr/view.php?ud=20261005082745224de3f0aa1be_7"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.797792692927728,
+        "relevance_score": 15,
+        "sector": "저축은행",
+        "title": "금고 대신 뒷문 노렸다…은행 이어 저축은행·캐피탈까지 금융사 7곳 털...",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=870052"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8102588976924082,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "연쇄 해킹에 은행·카드 6일까지 긴급 점검…인증 빠진 조회는 차단",
+        "url": "https://www.raonnews.com/news/article.html?no=61627"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6120353243552153,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "금융권 개인정보 줄줄이 샜다...해킹 '비상'",
+        "url": "http://www.newskr.kr/news/articleView.html?idxno=106899"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.3205448851062806,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "\"포용에서 성장으로, 금융에서 나눔으로\"...IBK의 동행 금융",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=227897"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 6,
+      "기타": 94,
+      "대부": 1,
+      "디지털자산": 14,
+      "보험": 4,
+      "상호금융": 5,
+      "여전": 5,
+      "은행": 35,
+      "입법·정책": 15,
+      "자산운용·연기금": 2,
+      "저축은행": 10
+    },
+    "topic_counts": {
+      "가계대출·부채": 9,
+      "감독·제재": 1,
+      "건전성·자본규제": 3,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 6,
+      "기업금융·익스포저": 1,
+      "디지털자산": 16,
+      "불법사금융·불법추심·보이스피싱": 5,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 2,
+      "업계동정·사회공헌": 1,
+      "자금시장·유동성": 2,
+      "정책·제도개선": 2,
+      "증시·시장시황": 1,
+      "칼럼·오피니언": 11,
+      "해외·글로벌": 6,
+      "환율·외환": 3
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.9177827244523934,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "코인 거래 식어도 '달러 코인'은 해외로…스테이블코인 지난해 10조 순유...",
+        "url": "http://www.metroseoul.co.kr/article/20261004500001"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8525563223747397,
+        "relevance_score": 33,
+        "sector": "입법·정책",
+        "title": "1·2금융권 무차별 AI 해킹에…금융당국 보안 대책 주목",
+        "url": "https://n.news.naver.com/mnews/article/003/0014232677?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6846852636128856,
+        "relevance_score": 29,
+        "sector": "입법·정책",
+        "title": "李대통령, 금융권 잇단 개인정보 유출에 “철저 조사·대책 마련” 지시",
+        "url": "https://www.m-economynews.com/news/article.html?no=71329"
+      },
+      {
+        "cluster_size": 18,
+        "relevance_prob": 0.9254004163866385,
+        "relevance_score": 31,
+        "sector": "거시·시장",
+        "title": "미 국채금리 발 국고채 4%대…가계·기업 '비상'",
+        "url": "https://n.news.naver.com/mnews/article/648/0000051305?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8740688351873221,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "등록 대부업체 늘어나는데…총자산 한도 위반 등 26곳 적발",
+        "url": "https://n.news.naver.com/mnews/article/001/0016357174?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8436071205791372,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "금융위·금감원 수장, 전 금융권 긴급소집",
+        "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=665843"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7769189226385897,
+        "relevance_score": 26,
+        "sector": "보험",
+        "title": "AI發 무차별 해킹 피해 확산…금융당국, 오늘 금융권 긴급 소집",
+        "url": "https://n.news.naver.com/mnews/article/421/0009208888?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8049655541343528,
+        "relevance_score": 23,
+        "sector": "저축은행",
+        "title": "은행·저축은행 이어 상호금융까지...금융권 전방위 해킹 '비상'[종합]",
+        "url": "https://n.news.naver.com/mnews/article/014/0005584674?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8129655825435899,
+        "relevance_score": 24,
+        "sector": "기타",
+        "title": "금융권 전방위 'AI 해킹'... 시중은행 넘어 저축은행·상호금융까지 노...",
+        "url": "https://www.lawtv.kr/news/articleView.html?idxno=61074"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7534430837188643,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "시중은행 이어 2금융권까지 ‘초유의 해킹’…금융당국, 오늘 긴급소집",
+        "url": "https://n.news.naver.com/mnews/article/138/0002243619?sid=101"
+      }
+    ],
+    "no_topic_count": 5,
+    "sector_counts": {
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 1,
+      "보험": 1,
+      "은행": 1,
+      "입법·정책": 3,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 1,
+      "정책·제도개선": 2,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
