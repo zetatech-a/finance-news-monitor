@@ -1,0 +1,252 @@
+{
+  "clusters": {
+    "cluster_count": 204,
+    "cluster_size_max": 16,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 2,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 465,
+    "displayed_articles": 128,
+    "final_tagged_representatives": 204,
+    "normalized_articles": 625,
+    "raw_items": 625,
+    "relevance_filtered_articles": 259,
+    "rule_filtered_articles": 458,
+    "tagged_before_cluster": 259
+  },
+  "date": "2026-10-06",
+  "generated_at": "2026-10-06T09:08:54.095568+09:00",
+  "publishers": {
+    "missing_publisher_count": 204,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 96,
+    "no_topic_ratio": 0.4706,
+    "no_topic_samples": [
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.5026199139388948,
+        "relevance_score": 6,
+        "sector": "대부",
+        "title": "외식 프랜차이즈, 본사 매출 4.6% 늘 때 가맹점 2.6% 줄어...명륜진사갈...",
+        "url": "https://www.livebiz.today/news/articleView.html?idxno=205352"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4361857914166628,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"은행장 인사서 손 떼라니\"…금융지주 인사권은 누구의 것? [김보형의 뷰...",
+        "url": "https://n.news.naver.com/mnews/article/050/0000111660?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7203034184346507,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "개미 지갑 800만 개 돌파… XRP 소액 투자자 급증에 '부자 기준' 흔들",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=492778"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7715206954017719,
+        "relevance_score": 17,
+        "sector": "은행",
+        "title": "김승유가 그리고, 함영주가 완성 '글로벌 하나' 청라 시대",
+        "url": "https://n.news.naver.com/mnews/article/050/0000111659?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.780607710553545,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "민감한 금융정보까지 유출…\"내 정보로 피싱?\" 불안감",
+        "url": "https://n.news.naver.com/mnews/article/437/0000514202?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5929307365658076,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "'조희대 출석'부터 '금융권 AI 해킹·대미투자'까지…막 오른 국감, 첫날...",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=148330"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6762854658764927,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코인거래 18.3% 늘었는데…리플XRP 1620억 거래 1위",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16238887"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5141683421219461,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "\"미국 주식·RWA, 클릭 한 번으로 접근\"…BNB체인이 꿈꾸는 금융 대통합...",
+        "url": "https://n.news.naver.com/mnews/article/421/0009210500?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7228533994038082,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "5대 은행 뚫렸다...금융권서 현실화한 AI 해킹 [스타트 경제]",
+        "url": "https://n.news.naver.com/mnews/article/052/0002415052?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5141082321805754,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "하나증권 \"은행권, 3분기 순익 7.4조원 전망..비경상 요인 빼면 전분기비...",
+        "url": "https://kpenews.com/View.aspx?No=4252490"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 16,
+      "기타": 86,
+      "대부": 7,
+      "디지털자산": 26,
+      "보험": 1,
+      "상호금융": 6,
+      "여전": 4,
+      "은행": 36,
+      "입법·정책": 13,
+      "자산운용·연기금": 2,
+      "저축은행": 2,
+      "증권(브로커리지/리테일)": 2,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 10,
+      "감독·제재": 8,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 13,
+      "기업금융·익스포저": 4,
+      "디지털자산": 33,
+      "물가·경기지표": 1,
+      "불법사금융·불법추심·보이스피싱": 12,
+      "사고·사기·횡령": 5,
+      "상품·영업·예금금리": 6,
+      "서민금융·대환·채무조정": 3,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 7,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 1,
+      "증시·시장시황": 7,
+      "칼럼·오피니언": 11,
+      "해외·글로벌": 16,
+      "환율·외환": 1
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7491548160859838,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "[더벨][thebell interview | KBW 2026] \"디지털자산기본법, 적용 대상·최...",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202610011133536880108377"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8990360491932593,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "금융위 등록 대부업체 중 총자산 한도 위반한 26곳 적발",
+        "url": "https://n.news.naver.com/mnews/article/366/0001196105?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7218138658224433,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "[금융권 해킹, 갈린 방어·남은 위험] 연쇄 해킹, 국감 쟁점으로…은행...",
+        "url": "https://www.ajunews.com/view/20261005144529702"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.883840602312213,
+        "relevance_score": 23,
+        "sector": "감독·제재",
+        "title": "금융당국, 대부업체 총자산 한도 위반 등 적발..영업정지·등록취소 제...",
+        "url": "https://kpenews.com/View.aspx?No=4251949"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8418737103399888,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "시드문구·인증번호 요구하면 멈춰라…가상자산 2차 사기 당했다면 증거...",
+        "url": "https://www.wikitree.co.kr/articles/1164061"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6610707850967141,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "2천조 가계부채·코스닥 침체…정무위 국감서 벼른다 [한눈에 보는 2026...",
+        "url": "https://www.fntimes.com/html/view.php?ud=202610022215548407dd55077bc2_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7515357353911535,
+        "relevance_score": 21,
+        "sector": "입법·정책",
+        "title": "AI 해킹 확산에 'AI 방패' 꺼낸 금융당국…'망분리 완화' 해법 될 수 있...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014234000?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7847023777234569,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "금감원, 취준생 위한 '청년 금융특강' 실시… 자산관리부터 사기예방까...",
+        "url": "https://www.insnews.co.kr/news/articleView.html?idxno=93151"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.872972575231283,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "금융권 사이버 공격 폭주…금융위·금감원 '비상 대응'",
+        "url": "https://www.gnnews.co.kr/news/articleView.html?idxno=646855"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.815138930622138,
+        "relevance_score": 17,
+        "sector": "대부",
+        "title": "\"금융위 등록 대부업체 위반 무더기 적발\"... 박성훈, 관리·감독 강화해...",
+        "url": "https://www.tournews21.com/news/articleView.html?idxno=144990"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 1,
+      "대부": 2,
+      "디지털자산": 2,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 3,
+      "규제·가계부채": 1,
+      "디지털자산": 2,
+      "사고·사기·횡령": 1,
+      "증시·시장시황": 1
+    }
+  }
+}
