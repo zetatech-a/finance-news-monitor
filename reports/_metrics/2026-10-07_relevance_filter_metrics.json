@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 5,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 103,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+  "candidate_hybrid_gray_keep_domain": 74,
+  "candidate_hybrid_gray_rule_drop": 101,
+  "candidate_hybrid_gray_rule_keep": 74,
+  "candidate_hybrid_keep_overseas_global_reference": 31,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 8,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 390,
+  "candidate_hybrid_model_drop": 29,
+  "candidate_hybrid_model_keep": 386,
+  "candidate_hybrid_model_keep_with_domain_anchor": 386,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 390,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-07",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 5,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 103,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 13,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 101,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 74,
+    "candidate_hybrid_keep_overseas_global_reference": 31,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 8,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 390,
+    "candidate_hybrid_model_drop_prob_le_threshold": 29,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 386
+  },
+  "dropped_count": 270,
+  "input_count": 1159,
+  "kept_count": 889,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1159,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 32,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "‘포용금융’ 외친 우리은행…대기업대출 20% 늘릴 때 소상공인 2.6조 줄...",
+      "url": "https://www.peoplewatch.co.kr/article/view/ppw202610060018"
+    },
+    {
+      "title": "[업앤다운]보험주 혼조…미래에셋생명↑·롯데손보↓",
+      "url": "https://www.nspna.com/news/?mode=view&newsid=830723"
+    },
+    {
+      "title": "보험 주담대 52조원 '빚폭탄'···연체율보다 무서운 장기연체",
+      "url": "https://www.smartbizn.com/news/articleView.html?idxno=155610"
+    },
+    {
+      "title": "[문인찬의 新戰略論] New Strategy Paradigm #55",
+      "url": "https://www.kmaeil.com/news/articleView.html?idxno=653535"
+    },
+    {
+      "title": "완주군산림조합, 제14회 완주와일드&로컬푸드축제 산림조합 홍보관 운영",
+      "url": "https://sjbnews.com/news/news.php?number=889270"
+    },
+    {
+      "title": "[완주·정읍·장수 24시] 완주군, 전국 지속가능도시 평가 '군 단위 지자...",
+      "url": "https://www.sisajournal.com/news/articleView.html?idxno=389268"
+    },
+    {
+      "title": "산림노동조합연합회 공식 출범, 노동자 권익 향상 나선다",
+      "url": "http://www.newsfarm.co.kr/news/articleView.html?idxno=102543"
+    },
+    {
+      "title": "오늘 금시세(금값) 폭락... 금가격이 2거래일 연속 추락한 결정적 이유",
+      "url": "https://www.wikitree.co.kr/articles/1164261"
+    },
+    {
+      "title": "애큐온캐피탈 인수가 낮춘 한화생명···실적 기대↑",
+      "url": "https://www.sisajournal-e.com/news/articleView.html?idxno=424140"
+    },
+    {
+      "title": "실손24 EMR 업체 지원금 72억…연계율 3%에도 연계비 4억 지급",
+      "url": "https://www.imaeil.com/page/view/2026100706412138710"
+    }
+  ]
+}
