@@ -1,0 +1,253 @@
+{
+  "clusters": {
+    "cluster_count": 347,
+    "cluster_size_max": 43,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 832,
+    "displayed_articles": 227,
+    "final_tagged_representatives": 347,
+    "normalized_articles": 1046,
+    "raw_items": 1046,
+    "relevance_filtered_articles": 530,
+    "rule_filtered_articles": 814,
+    "tagged_before_cluster": 530
+  },
+  "date": "2026-10-08",
+  "generated_at": "2026-10-08T09:10:04.391773+09:00",
+  "publishers": {
+    "missing_publisher_count": 347,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 173,
+    "no_topic_ratio": 0.4986,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.45524938206532517,
+        "relevance_score": 16,
+        "sector": "기타",
+        "title": "금융지주, 상반기 순이익 17.6조원 ‘역대급’…은행 비중 12%p↓·증권 ...",
+        "url": "https://www.nspna.com/news/?mode=view&newsid=830876"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7419186694372,
+        "relevance_score": 9,
+        "sector": "감독·제재",
+        "title": "금융당국 검사권 무력화하는 로펌 로비…금감원 출신 '프리패스'",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=366850"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.726758164888326,
+        "relevance_score": 20,
+        "sector": "은행",
+        "title": "[단독] 성비위로 중징계받아도 월급…기업은행·금감원 '유급 정직' 여전",
+        "url": "https://n.news.naver.com/mnews/article/057/0001972484?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.73012316360922,
+        "relevance_score": 9,
+        "sector": "감독·제재",
+        "title": "금감원 퇴직자 대형로펌 직행…재취업 심사 43건 모두 통과",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1727104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7066883299331181,
+        "relevance_score": 16,
+        "sector": "입법·정책",
+        "title": "“루센트블록 재도전 기회 줘야”…오늘 금융위 국감 주목",
+        "url": "https://n.news.naver.com/mnews/article/018/0006383314?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6148624083941748,
+        "relevance_score": 14,
+        "sector": "기타",
+        "title": "[전국 주요 신문 톱뉴스](8일 조간)",
+        "url": "https://n.news.naver.com/mnews/article/001/0016364609?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6825355875185969,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "소름 돋는 매집 혹은 대량 투매?…XRP 차트 뒤편에서 움직이는 거대 손...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=493533"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5169341972383215,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "[Who Is ?] 이은미 토스뱅크 대표이사 행장",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=448160"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7321996285639898,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "고금리도 못 꺾은 서울 집값…‘공급 부족’에 쏠린 눈",
+        "url": "https://n.news.naver.com/mnews/article/119/0003140647?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5941234711593971,
+        "relevance_score": 21,
+        "sector": "기타",
+        "title": "[Who is ?] 최광진 IBK투자증권 대표이사 사장",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=448629"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 13,
+      "거시·시장": 29,
+      "기타": 130,
+      "대부": 11,
+      "디지털자산": 53,
+      "보험": 7,
+      "상호금융": 9,
+      "여전": 9,
+      "은행": 50,
+      "입법·정책": 15,
+      "자산운용·연기금": 6,
+      "저축은행": 7,
+      "증권(브로커리지/리테일)": 3,
+      "핀테크·플랫폼": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 14,
+      "감독·제재": 4,
+      "건전성·자본규제": 9,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 19,
+      "기업금융·익스포저": 3,
+      "디지털자산": 51,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 30,
+      "사고·사기·횡령": 5,
+      "상품·영업·예금금리": 11,
+      "서민금융·대환·채무조정": 6,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 15,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 3,
+      "증시·시장시황": 5,
+      "칼럼·오피니언": 4,
+      "해외·글로벌": 20,
+      "환율·외환": 11
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8285817763878736,
+        "relevance_score": 41,
+        "sector": "감독·제재",
+        "title": "국경 넘는 가상자산 거래 들여다본다…한은에 이전내역 통보해야",
+        "url": "https://n.news.naver.com/mnews/article/421/0009213373?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8561826249411422,
+        "relevance_score": 32,
+        "sector": "감독·제재",
+        "title": "새마을금고, 부당대출･내부통제 위반 이사장 조치",
+        "url": "https://www.dailyt.co.kr/newsView/dlt202610070020"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8403255038714523,
+        "relevance_score": 30,
+        "sector": "상호금융",
+        "title": "지역 새마을금고 이사장 92명 조치…28명 해임",
+        "url": "https://www.gukjenews.com/news/articleView.html?idxno=3715100"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8753277101524575,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "성창훈 조폐공사 사장 “코인, 만드는 것만큼 중요한 건 흐르는 통로”",
+        "url": "https://n.news.naver.com/mnews/article/028/0002826411?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8638712430542752,
+        "relevance_score": 26,
+        "sector": "디지털자산",
+        "title": "환전업, 불법 무역대금·가상자산 환치기 적발되면 '원스트라이크 아웃...",
+        "url": "https://www.taxtimes.co.kr/news/article.html?no=277177"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7906327663193434,
+        "relevance_score": 28,
+        "sector": "상호금융",
+        "title": "신협, 부실채권 정리 전담사 띄운다…건전성 관리 강화",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=279029"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7695897884230907,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "국경 넘는 가상자산, 한은 외환망에 보고… 환치기 감시 강화",
+        "url": "https://n.news.naver.com/mnews/article/029/0003051841?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8619915653452094,
+        "relevance_score": 27,
+        "sector": "핀테크·플랫폼",
+        "title": "국경 간 가상자산 이전 모니터링 강화…핀테크 외환업무 개편",
+        "url": "https://n.news.naver.com/mnews/article/011/0004668862?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9086073140069747,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "[긴급진단] 금융권 겨눈 해킹 IP 28개…시중은행 피해 뒤 인터넷은행 접...",
+        "url": "https://www.newswhoplus.com/news/articleView.html?idxno=71154"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6941466001522353,
+        "relevance_score": 29,
+        "sector": "대부",
+        "title": "“7000만원 필요한데 은행선 1500만원만 대출” 카드사·캐피탈로 밀려...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002706630?sid=101"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 2,
+      "은행": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "건전성·자본규제": 1,
+      "디지털자산": 5,
+      "연체·부실": 1
+    }
+  }
+}
