@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 49,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 6,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 14,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 100,
+  "candidate_hybrid_gray_rule_drop": 112,
+  "candidate_hybrid_gray_rule_keep": 100,
+  "candidate_hybrid_keep_overseas_global_reference": 37,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 394,
+  "candidate_hybrid_model_drop": 127,
+  "candidate_hybrid_model_keep": 137,
+  "candidate_hybrid_model_keep_with_domain_anchor": 137,
+  "candidate_hybrid_negative_drop": 11,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 394,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-09",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 49,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 6,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 4,
+    "candidate_hybrid_drop_negative_signal": 11,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 14,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 112,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 100,
+    "candidate_hybrid_keep_overseas_global_reference": 37,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 394,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 2,
+    "candidate_hybrid_model_drop_prob_le_threshold": 127,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 137
+  },
+  "dropped_count": 331,
+  "input_count": 1005,
+  "kept_count": 674,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1005,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 20,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "국민은행 꺾고 '상반기 1위' 신한은행…분위기 탄 정상혁 '진옥동표 재...",
+      "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=302323"
+    },
+    {
+      "title": "현대커머셜, 기업·투자금융 5.6조…한투그룹과 '딜'",
+      "url": "https://www.newsway.co.kr/news/view?ud=2026100810260242064"
+    },
+    {
+      "title": "[금융 이모저모] 신한금융, 민단 창단 80주년 맞아 재일동포와 교류 확...",
+      "url": "https://www.goodkyung.com/news/articleView.html?idxno=292170"
+    },
+    {
+      "title": "이국섭 곡성군산림조합장, ‘2026 자랑스러운 한국인대상’ 수상",
+      "url": "https://www.sentv.co.kr/article/view/sentv202610080180"
+    },
+    {
+      "title": "금융권 해킹, 신용도는 버텼지만 신뢰는 시험대···후폭풍 어디까지",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=713002"
+    },
+    {
+      "title": "[2026국감] ETF·해킹에 여야 맹공…고개 숙인 이억원, '청와대 지시'엔...",
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=214357"
+    },
+    {
+      "title": "신한파이낸스, 베트남서 가짜 대출 덫 걷어낼 '디지털 식별패' 던졌다",
+      "url": "https://www.g-enews.com/view.php?ud=20261008130236857fbbec65dfb_1"
+    },
+    {
+      "title": "[기자수첩] 양면시장 이론에서 바라본 금융권 정보유출 이슈",
+      "url": "https://www.straightnews.co.kr/news/articleView.html?idxno=312754"
+    },
+    {
+      "title": "[N2 포커스] 가계대출 상향조치 국감서 지적…\"잦은 규제 변경, 혼란 부...",
+      "url": "https://www.news2day.co.kr/article/20261008500314"
+    },
+    {
+      "title": "이억원 \"주담대 자본규제 강화 검토…서민금융은 실수요자에\"",
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1727235"
+    }
+  ]
+}

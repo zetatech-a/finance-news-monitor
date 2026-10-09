@@ -1,0 +1,255 @@
+{
+  "clusters": {
+    "cluster_count": 380,
+    "cluster_size_max": 41,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1017,
+    "displayed_articles": 263,
+    "final_tagged_representatives": 380,
+    "normalized_articles": 1335,
+    "raw_items": 1335,
+    "relevance_filtered_articles": 674,
+    "rule_filtered_articles": 1005,
+    "tagged_before_cluster": 674
+  },
+  "date": "2026-10-09",
+  "generated_at": "2026-10-09T09:10:55.782972+09:00",
+  "publishers": {
+    "missing_publisher_count": 380,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 164,
+    "no_topic_ratio": 0.4316,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4931675068802252,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "AI 투자 대규모 차입에…기술주 휘청 '오라클·스페이스X' 부도 위험 급...",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1727258"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8056279857467439,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "[1mm 금융톡]1금융권까지 번진 해킹 위협…감독당국, 인력·조직 갖추고...",
+        "url": "https://n.news.naver.com/mnews/article/277/0005826515?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8704411154391852,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "\"내 연봉까지 아는데?\"…금융권 정보유출, 2차 피해 막으려면",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092171665"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7856054012558871,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "\"XRP 다 팔고 도망쳤다\" 고래 지배력 급감… 소매 광풍 뒤에 숨은 피바람",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=493931"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6512208071985957,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "리플XRP 거래 3000억 돌파…코인거래 증가에도 니어 14% 급락",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16242214"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7056885292771479,
+        "relevance_score": 12,
+        "sector": "입법·정책",
+        "title": "연준과 재무부가 키운 불확실성 속 채권 투자 생존법",
+        "url": "https://n.news.naver.com/mnews/article/262/0000019747?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6958769523250278,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "금융권 해킹범 지목된 中 26세 \"난 편의점 직원, 누명 썼다\" 반박",
+        "url": "https://n.news.naver.com/mnews/article/008/0005424181?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8433898895941132,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "NH농협은행 경북본부·경주시지부, 어르신 대상 금융사기 예방교육 실시",
+        "url": "https://www.straightnews.co.kr/news/articleView.html?idxno=312851"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5476336429319257,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "\"제2의 공매도 금지 사태 될라\"…HFT 추가 규율에 신중론",
+        "url": "https://news.mtn.co.kr/news-detail/2026100815010299562"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5548613929952946,
+        "relevance_score": 31,
+        "sector": "기타",
+        "title": "\"5000만원 이하, 빚의 무한 굴레 중단\"…정부, 장기 연체채권 시효 연장...",
+        "url": "https://n.news.naver.com/mnews/article/014/0005587044?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 8,
+      "거시·시장": 30,
+      "기타": 127,
+      "대부": 27,
+      "디지털자산": 48,
+      "보험": 8,
+      "상호금융": 16,
+      "여전": 6,
+      "은행": 59,
+      "입법·정책": 28,
+      "자산운용·연기금": 15,
+      "저축은행": 3,
+      "증권(브로커리지/리테일)": 2,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 23,
+      "감독·제재": 5,
+      "건전성·자본규제": 10,
+      "규제·가계부채": 9,
+      "금리·수수료·최고금리": 29,
+      "기업금융·익스포저": 5,
+      "디지털자산": 57,
+      "부동산·PF": 3,
+      "불법사금융·불법추심·보이스피싱": 31,
+      "사고·사기·횡령": 9,
+      "상품·영업·예금금리": 4,
+      "서민금융·대환·채무조정": 17,
+      "소비자보호·민원·불완전판매": 5,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 24,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 4,
+      "정책·제도개선": 4,
+      "증시·시장시황": 10,
+      "칼럼·오피니언": 2,
+      "해외·글로벌": 22,
+      "환율·외환": 8
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 25,
+        "relevance_prob": 0.9301769489666605,
+        "relevance_score": 33,
+        "sector": "디지털자산",
+        "title": "이억원 금융위원장 \"디지털자산법 막바지 협의…서민금융도 금리 인하\"",
+        "url": "https://www.m-i.kr/news/articleView.html?idxno=2004024"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7460521939994975,
+        "relevance_score": 34,
+        "sector": "상호금융",
+        "title": "[정무위 국감] 이억원 “새마을금고·신협, 부동산PF 과도하게 투자” ...",
+        "url": "https://www.g-enews.com/view.php?ud=202610081524157636a6e8311f64_1"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7530017057943198,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "이억원 \"국민성장펀드 200조원으로 확대\"…서민금융 금리 인하 추진",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=279415"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.7278388739412557,
+        "relevance_score": 34,
+        "sector": "입법·정책",
+        "title": "[2026 금융대상] 제16회 아시아투데이 금융대상 성료…금융위원장상 KB국...",
+        "url": "https://www.asiatoday.co.kr/kn/view.php?key=20261008010002527"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6743263716021667,
+        "relevance_score": 32,
+        "sector": "은행",
+        "title": "[국감 이슈] 민주 김용만 \"산은·기은, 서민 채권 추심사 배당 챙겼다\"",
+        "url": "https://www.insightkorea.co.kr/news/articleView.html?idxno=256161"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.801508214009861,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "불법 대부 광고 신고하면 포상금… 별도 예산 편성도 검토",
+        "url": "https://n.news.naver.com/mnews/article/366/0001196915?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5555283043494408,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "리드코프, 금융 취약계층 대출 공급 유지...상반기 여신 잔액 8,270억원",
+        "url": "https://www.lawissue.co.kr/view.php?ud=2026100818182417369aeda69934_12"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.5829117425795699,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "[2026 국감] 상록수 배당 논란에 기업은행 \"1300억 부실채권 중 일부 회...",
+        "url": "http://www.popcornnews.net/news/articleView.html?idxno=135441"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7011182135994848,
+        "relevance_score": 26,
+        "sector": "상호금융",
+        "title": "신협·새마을금고 절반이 적자… 상호금융 체질 개선 도마 [국감2026]",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092171686"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8304536984258292,
+        "relevance_score": 26,
+        "sector": "입법·정책",
+        "title": "이억원 금융위원장, 스테이블코인 입법 속도 낸다...거래소 지분 규제는...",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026100821481030074"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "대부": 3,
+      "디지털자산": 1,
+      "상호금융": 2,
+      "은행": 2,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 3,
+      "디지털자산": 2,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 3,
+      "연체·부실": 1
+    }
+  }
+}
