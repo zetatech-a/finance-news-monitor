@@ -1,0 +1,250 @@
+{
+  "clusters": {
+    "cluster_count": 88,
+    "cluster_size_max": 15,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 201,
+    "displayed_articles": 70,
+    "final_tagged_representatives": 88,
+    "normalized_articles": 245,
+    "raw_items": 245,
+    "relevance_filtered_articles": 115,
+    "rule_filtered_articles": 197,
+    "tagged_before_cluster": 115
+  },
+  "date": "2026-10-10",
+  "generated_at": "2026-10-10T09:05:59.548210+09:00",
+  "publishers": {
+    "missing_publisher_count": 88,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 38,
+    "no_topic_ratio": 0.4318,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7991593361985448,
+        "relevance_score": 10,
+        "sector": "저축은행",
+        "title": "[이슈국감] 예가람저축은행 5만건 유출···주민번호·계좌번호 고지 누...",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=871477"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7969237247906633,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "케이뱅크, 18일 0~10시 금융거래 중단…카드·ATM·업비트도 멈춘다",
+        "url": "https://n.news.naver.com/mnews/article/119/0003141260?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7739472651355299,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "당근·채찍 썼지만 무용지물…금융당국 'AI 해킹' 감독망 구멍[K금융의 ...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014244046?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7469536867095059,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "카이아 2501억 거래 1위…리플XRP 1411억, 코인시장 22.5% 위축",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16242863"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6867101313029073,
+        "relevance_score": 10,
+        "sector": "여전",
+        "title": "[N2 포커스] 한화생명, 애큐온 PE 지분 취득 관건…재무 부담 변수",
+        "url": "https://www.news2day.co.kr/article/20261006500244"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6218078008841907,
+        "relevance_score": 10,
+        "sector": "입법·정책",
+        "title": "'2026 캐피탈 미래비전 포럼' 19일 개최⋯생산적·포용 금융 역할 모색",
+        "url": "https://n.news.naver.com/mnews/article/031/0001064748?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5999139566071688,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "지역 상품권, 신용·체크카드와 ‘연계 결제’ 가능해진다",
+        "url": "https://n.news.naver.com/mnews/article/366/0001197090?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6740122762393496,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "리플(XRP)  공방…롱 비중 71% 넘어, 선물시장 방향성 주목",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=613978"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7349515493726899,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "레저 지갑 피해, CZ “공급망 공격 가능성”…테더는 USDT 9,000만 달러 동...",
+        "url": "https://www.wikitree.co.kr/articles/1165081"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7863012785136149,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "리플, 메리츠증권·팍소스·캔톤 제휴 3건 냈지만…XRP는 1.40달러로 밀렸...",
+        "url": "https://www.wikitree.co.kr/articles/1165074"
+      }
+    ],
+    "sector_counts": {
+      "거시·시장": 10,
+      "기타": 28,
+      "대부": 6,
+      "디지털자산": 12,
+      "보험": 1,
+      "상호금융": 4,
+      "여전": 4,
+      "은행": 10,
+      "입법·정책": 8,
+      "자산운용·연기금": 2,
+      "저축은행": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 2,
+      "감독·제재": 1,
+      "건전성·자본규제": 2,
+      "금리·수수료·최고금리": 10,
+      "기업금융·익스포저": 1,
+      "디지털자산": 13,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 10,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 1,
+      "서민금융·대환·채무조정": 3,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 3,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 1,
+      "증시·시장시황": 2,
+      "해외·글로벌": 10,
+      "환율·외환": 6
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5890759260563354,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "리드코프, 금융 취약계층 대출 공급 유지...상반기 여신 잔액 8,270억원",
+        "url": "https://www.lawissue.co.kr/view.php?ud=2026100818182417369aeda69934_12"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8533783766698263,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "불법사금융 피해 6095건 접수, 초동조치와 채무구제 잇는다",
+        "url": "https://www.dailyt.co.kr/newsView/dlt202610090004"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8432663121680278,
+        "relevance_score": 28,
+        "sector": "기타",
+        "title": "“○○은행 대출 1억, 저금리로 갈아타세요”…내 대출 다 아는 그 전화...",
+        "url": "https://n.news.naver.com/mnews/article/032/0003475345?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6313177580787808,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "새도약기금 채권 소각 18만명 1.6조원…내 빚 지워졌는지 확인하는 법",
+        "url": "https://n.news.naver.com/mnews/article/088/0001033315?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6645868122607002,
+        "relevance_score": 20,
+        "sector": "입법·정책",
+        "title": "유동수 위원장, 지역 금융 자본건전성·금융사고 재발방지 대책 촉구",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=871431"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6791875883986477,
+        "relevance_score": 22,
+        "sector": "상호금융",
+        "title": "신협 부동산·건설업 대출 … 연체율 다시 두 자릿수로",
+        "url": "https://n.news.naver.com/mnews/article/009/0005746459?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7732864973585828,
+        "relevance_score": 21,
+        "sector": "상호금융",
+        "title": "신협, 11월 부실채권 전담회사 가동…건전성 관리 승부수",
+        "url": "https://n.news.naver.com/mnews/article/119/0003141253?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7459361269374839,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "[단독] 민주 전현희 \"잠자는 가상자산 13조6000억.... 상속장벽 없애고 ...",
+        "url": "https://www.getnews.co.kr/news/articleView.html?idxno=883105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6850146566386952,
+        "relevance_score": 24,
+        "sector": "은행",
+        "title": "산업은행 18조 국민성장펀드 전량 통과 '논쟁'…심사 적정성 검증대로",
+        "url": "https://n.news.naver.com/mnews/article/293/0000091400?sid=101"
+      },
+      {
+        "cluster_size": 15,
+        "relevance_prob": 0.8308286335233195,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "금리 두 번 올린 신현송…첫 국감서 쟁점은[한은 미리보기]",
+        "url": "https://n.news.naver.com/mnews/article/018/0006384995?sid=101"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 3,
+      "디지털자산": 1,
+      "상호금융": 2,
+      "은행": 1,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 3,
+      "디지털자산": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 2,
+      "정책·제도개선": 1
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 26,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 5,
+  "candidate_hybrid_gray_rule_drop": 33,
+  "candidate_hybrid_gray_rule_keep": 5,
+  "candidate_hybrid_keep_overseas_global_reference": 12,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 63,
+  "candidate_hybrid_model_drop": 9,
+  "candidate_hybrid_model_keep": 34,
+  "candidate_hybrid_model_keep_with_domain_anchor": 34,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 63,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-10",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 26,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 3,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 33,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 5,
+    "candidate_hybrid_keep_overseas_global_reference": 12,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 63,
+    "candidate_hybrid_model_drop_prob_le_threshold": 9,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 34
+  },
+  "dropped_count": 82,
+  "input_count": 197,
+  "kept_count": 115,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 197,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 4,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "\"빚 적은 사장님이 더 못 갚았다\"…대출 13%인데 연체액은 22%",
+      "url": "https://www.thepublic.kr/news/articleView.html?idxno=321663"
+    },
+    {
+      "title": "[뉴공 아카이브]퍼니포: 조국혁신당, “조희대 탄핵 문 열어야”… 민주...",
+      "url": "http://www.ddanzi.com/896602807"
+    },
+    {
+      "title": "[지방은행 기관영업 위기 上] 30·50년 단골 거래 병원·대학도 내줬다",
+      "url": "https://www.seoulfn.com/news/articleView.html?idxno=639308"
+    },
+    {
+      "title": "新리딩뱅크 경쟁, 신한·국민 쟁탈전…하나은행도 있다",
+      "url": "https://www.sisaon.co.kr/news/articleView.html?idxno=205018"
+    }
+  ]
+}
