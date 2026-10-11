@@ -1,0 +1,81 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 13,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 4,
+  "candidate_hybrid_gray_rule_drop": 29,
+  "candidate_hybrid_gray_rule_keep": 4,
+  "candidate_hybrid_keep_overseas_global_reference": 2,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 0,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 51,
+  "candidate_hybrid_model_drop": 6,
+  "candidate_hybrid_model_keep": 24,
+  "candidate_hybrid_model_keep_with_domain_anchor": 24,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 51,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-11",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 13,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 2,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 29,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 4,
+    "candidate_hybrid_keep_overseas_global_reference": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 51,
+    "candidate_hybrid_model_drop_prob_le_threshold": 6,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 24
+  },
+  "dropped_count": 58,
+  "input_count": 139,
+  "kept_count": 81,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 139,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 7,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[10월 둘째 주 세계경제동향 브리핑] 코스피 5%대 하락…美 증시는 동반...",
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3037067"
+    },
+    {
+      "title": "[주간 경제 전망대]韓 성장률 또 올리나…IMF 전망치·취업자 성적표 나...",
+      "url": "https://www.cbci.co.kr/news/articleView.html?idxno=614042"
+    },
+    {
+      "title": "다음 주 취업자·가계대출 지표 공개… IMF, 한국 성장률 전망 수정",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3439150"
+    },
+    {
+      "title": "다음 주 9월 고용동향·가계대출 공개…IMF 전망·노벨경제학상 발표",
+      "url": "http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005935711"
+    },
+    {
+      "title": "[다음주 경제] 취업자 얼마나 늘었나…IMF, 韓성장률 전망 수정치 발표",
+      "url": "https://www.yna.co.kr/view/AKR20261010018000002?input=1195m"
+    },
+    {
+      "title": "5대 은행장, 4년 만에 국감장 선다…연임 심사 앞두고 책임론 부상",
+      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1413256"
+    },
+    {
+      "title": "신규 농지담보대출 26.9% 감소…담보평가액도 23.6% 줄어",
+      "url": "https://www.youngnong.co.kr/news/articleView.html?idxno=70876"
+    }
+  ]
+}

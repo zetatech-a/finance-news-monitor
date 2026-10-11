@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>금융권 일일 언론동향 2026-10-11</title>
+  <style>
+/* 금융권 일일 언론동향 — 리포트 UI
+   레이아웃: 전체 폭 shell + 상단 가로 컨트롤 바 + 반응형 카드 그리드(5·4·3·2·1열).
+   색상: 아래 :root의 의미 기반 토큰이 유일한 정의 지점이고, 나머지 selector는
+   토큰(또는 레거시 별칭)만 참조한다 — 같은 색상 값을 여러 곳에 적지 않는다. */
+
+:root{
+  color-scheme: light;
+
+  /* 표면 / 텍스트 / 경계 */
+  --page-bg:#eff3f9;
+  --surface:#ffffff;
+  --surface-subtle:#f6f9fd;
+  --text-primary:#16233b;
+  --text-secondary:#596880;
+  /* 날짜·건수·푸터 등 11~12px 보조 텍스트에도 쓰이므로 흰 배경에서 4.5:1을 넘긴다. */
+  --text-muted:#67768c;
+  --border:#dbe3ef;
+  --border-strong:#c2cfe1;
+
+  /* accent (코발트) */
+  --accent:#2457d6;
+  --accent-hover:#1a45b4;
+  --accent-soft:#e9f0ff;
+  --accent-strong-text:#1b3f9e;
+  --accent-contrast:#ffffff;
+
+  --shadow-sm:0 1px 2px rgba(18,32,58,0.06);
+  --shadow-card:0 1px 3px rgba(18,32,58,0.07);
+  --shadow-card-hover:0 6px 18px rgba(18,32,58,0.10);
+
+  --radius-card:14px;
+  --radius-control:10px;
+
+  /* 레거시 별칭 — 기존 selector/템플릿이 그대로 동작한다. */
+  --bg:var(--page-bg);
+  --paper:var(--surface);
+  --text:var(--text-primary);
+  --muted:var(--text-secondary);
+  --link:var(--accent);
+  --link_hover:var(--accent-hover);
+  --chip:var(--accent-soft);
+  --chip_text:var(--accent-strong-text);
+  --shadow:var(--shadow-card);
+  --shadow2:var(--shadow-sm);
+  --ring:0 0 0 3px rgba(36,87,214,0.20);
+  --focus-ring:var(--accent);
+
+  /* 요약 패널(PR #82 의미 체계) — 세 상태의 대비를 토큰으로만 유지한다. */
+  --summary-accent: var(--accent);
+  --summary-ai-bg: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  --summary-ai-border: color-mix(in srgb, var(--accent) 26%, var(--border));
+  --summary-preview-bg: var(--surface-subtle);
+  --summary-preview-border: var(--border);
+}
+
+html[data-theme="dark"]{
+  color-scheme: dark;
+
+  --page-bg:#0a1020;
+  --surface:#121d31;
+  --surface-subtle:#17243b;
+  --text-primary:#e7edf7;
+  --text-secondary:#a2b2c9;
+  --text-muted:#8695ab;
+  --border:#27354e;
+  --border-strong:#3a4c6b;
+
+  --accent:#6f9bff;
+  --accent-hover:#a1c0ff;
+  --accent-soft:#1b2b4b;
+  --accent-strong-text:#cfe0ff;
+  --accent-contrast:#0a1020;
+
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.45);
+  --shadow-card:0 2px 6px rgba(0,0,0,0.45);
+  --shadow-card-hover:0 10px 24px rgba(0,0,0,0.50);
+
+  --ring:0 0 0 3px rgba(111,155,255,0.28);
+
+  /* 다크에서는 accent를 텍스트 쪽으로 살짝 섞어 형광처럼 튀지 않게 한다. */
+  --summary-accent: color-mix(in srgb, var(--accent) 82%, var(--text-primary));
+  --summary-ai-bg: color-mix(in srgb, var(--accent) 13%, var(--surface));
+  --summary-ai-border: color-mix(in srgb, var(--accent) 34%, var(--border));
+  --summary-preview-bg: color-mix(in srgb, var(--page-bg) 55%, var(--surface));
+  --summary-preview-border: var(--border);
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:var(--page-bg); color:var(--text-primary);
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans KR",Arial,sans-serif;
+  line-height:1.5;
+  /* 어떤 자식도 body 가로 스크롤을 만들지 않게 한다. */
+  overflow-x:hidden;
+}
+
+/* 키보드 포커스는 hover와 별개로 항상 보인다(라이트/다크 공통). */
+:focus-visible{
+  outline:2px solid var(--focus-ring);
+  outline-offset:2px;
+  border-radius:6px;
+}
+
+/* --- 전체 폭 shell ---------------------------------------------------------- */
+.report-shell{
+  width:min(calc(100% - 32px), 1880px);
+  margin-inline:auto;
+  padding:18px 0 48px;
+  display:flex; flex-direction:column; gap:14px;
+}
+
+/* --- 헤더 행 ---------------------------------------------------------------- */
+.report-header{
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:12px; flex-wrap:wrap;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-card); box-shadow:var(--shadow-card);
+  padding:14px 16px;
+}
+.report-header__identity{ min-width:0; }
+.report-header__actions{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+h1{ margin:0; font-size:20px; font-weight:800; letter-spacing:-0.3px; }
+.report-header__date{ color:var(--text-secondary); font-weight:600; font-size:16px; }
+.meta{ color:var(--text-secondary); font-size:13px; margin-top:4px; }
+
+/* --- 컨트롤(검색·정렬·토글 / 필터) ------------------------------------------ */
+.report-controls{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-card); box-shadow:var(--shadow-card);
+  padding:12px 16px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.report-controls__primary{
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+}
+.report-controls__filters{
+  display:flex; flex-direction:column; gap:8px;
+  padding-top:10px; border-top:1px solid var(--border);
+}
+
+.input{
+  display:flex; align-items:center; gap:8px;
+  background:var(--surface-subtle);
+  border:1px solid var(--border); border-radius:var(--radius-control);
+  padding:9px 12px;
+  /* 데스크톱에서 남는 폭을 검색이 가져간다. */
+  flex:1 1 280px; min-width:220px;
+}
+.input__icon{ color:var(--text-secondary); font-size:12px; line-height:1; }
+.input input{ border:none; outline:none; background:transparent; color:var(--text-primary); font-size:13.5px; width:100%; min-width:0; }
+.input:focus-within{ box-shadow:var(--ring); border-color:var(--accent); }
+
+.btn, .select, .toggle{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  border:1px solid var(--border); background:var(--surface); color:var(--text-primary);
+  padding:9px 12px; border-radius:var(--radius-control); font-size:13px;
+  /* 컨트롤은 찌그러지지 않는다. */
+  flex:0 0 auto; white-space:nowrap;
+}
+.btn{ cursor:pointer; }
+.btn:hover, .select:hover, .toggle:hover{ border-color:var(--border-strong); }
+.btn.primary{ background:var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 32%, var(--border)); color:var(--accent-strong-text); }
+.btn.primary:hover{ border-color:var(--accent); }
+.btn.active{ background:var(--accent-soft); border-color:var(--accent); }
+.btn.small{ padding:7px 10px; border-radius:8px; font-size:12px; }
+.select{ cursor:default; gap:6px; }
+.select__label{ color:var(--text-muted); font-size:12px; }
+.select select{ border:none; outline:none; background:transparent; color:var(--text-primary); font-size:13px; }
+.toggle{ cursor:pointer; }
+.toggle input{ accent-color:var(--accent); transform:translateY(1px); }
+
+.status-chip{
+  display:inline-flex; align-items:center;
+  padding:7px 11px; border-radius:999px;
+  border:1px solid var(--border); background:var(--surface-subtle);
+  color:var(--text-secondary); font-size:12px; white-space:nowrap;
+}
+
+.filter-group{
+  display:flex; align-items:center; gap:10px; min-width:0;
+}
+.filter-group__label{
+  flex:0 0 auto; width:64px;
+  color:var(--text-muted); font-size:11.5px; font-weight:700;
+  letter-spacing:-0.2px; text-transform:none;
+}
+.filter-group + .filter-group{ padding-top:8px; border-top:1px dashed var(--border); }
+
+.nav{
+  display:flex; gap:8px; min-width:0;
+  flex-wrap:nowrap; overflow-x:auto; overflow-y:hidden;
+  padding:2px 2px 4px;
+  /* 키보드로 이동한 chip이 잘린 채 포커스되지 않게 한다. */
+  scroll-padding-inline:12px;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--text-muted) 45%, transparent) transparent;
+}
+.nav::-webkit-scrollbar{ height:6px; }
+.nav::-webkit-scrollbar-thumb{
+  border-radius:999px;
+  background: color-mix(in srgb, var(--text-muted) 45%, transparent);
+}
+.nav-wrap{ position:relative; flex:1 1 auto; min-width:0; }
+.nav-wrap .nav-hint{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:20px; height:20px; border-radius:999px;
+  display:none; align-items:center; justify-content:center;
+  color:var(--text-muted); font-size:12px; font-weight:700;
+  border:1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  pointer-events:none;
+}
+.nav-wrap .nav-hint.left{ left:0; }
+.nav-wrap .nav-hint.right{ right:0; }
+.nav-wrap.can-scroll-left .nav-hint.left,
+.nav-wrap.can-scroll-right .nav-hint.right{ display:inline-flex; }
+.pill, .kchip{ white-space:nowrap; }
+
+.pill{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 12px; border-radius:999px;
+  border:1px solid var(--border); background:var(--surface-subtle);
+  color:var(--text-secondary); font-size:12px; cursor:pointer;
+}
+.pill:hover{ border-color:var(--border-strong); }
+.pill strong{ color:var(--text-primary); font-weight:700; }
+/* 선택 상태는 색 + 체크 표시 + aria-pressed로 함께 알린다(색상만으로 표현하지 않는다). */
+.pill.active{
+  background:var(--accent-soft);
+  border-color:var(--accent);
+  color:var(--accent-strong-text);
+}
+.pill.active strong{ color:var(--accent-strong-text); }
+.pill.active::before{ content:"✓"; font-size:11px; font-weight:800; line-height:1; }
+
+/* --- 본문 ------------------------------------------------------------------- */
+.report-content{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-card); padding:16px; box-shadow:var(--shadow-card);
+}
+.empty-state{ margin-bottom:12px; }
+
+.section-head{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  margin:0 0 12px; padding-top:22px; border-top:1px solid var(--border);
+}
+.section-head:first-child{ border-top:none; padding-top:0; }
+h2{ margin:0; font-size:16px; font-weight:800; letter-spacing:-0.2px; }
+/* Top 섹션만 accent bar로 위계를 한 단계 높인다(카드 컴포넌트는 동일). */
+.section-head--top h2{
+  font-size:18px; padding-left:11px; position:relative;
+}
+.section-head--top h2::before{
+  content:""; position:absolute; left:0; top:2px; bottom:2px;
+  width:4px; border-radius:999px; background:var(--accent);
+}
+/* chip 안쪽(연회색 배경)에도 얹히므로 muted가 아니라 secondary를 쓴다(대비 4.5:1 확보). */
+.count{ color:var(--text-secondary); font-size:12px; margin-left:6px; font-weight:600; }
+.note{ color:var(--text-secondary); font-size:12px; }
+section[data-group] + section[data-group]{ margin-top:26px; }
+
+/* --- 카드 그리드 (5·4·3·2·1열) ---------------------------------------------- */
+.grid{ display:grid; grid-template-columns:minmax(0, 1fr); gap:12px; align-items:stretch; }
+
+.card{
+  display:flex; flex-direction:column;
+  border:1px solid var(--border); border-radius:12px;
+  padding:14px; background:var(--surface);
+  box-shadow:var(--shadow-sm);
+  transition: border-color .12s ease, box-shadow .12s ease, transform .12s ease;
+  min-width:0;
+}
+.card:hover{
+  transform:translateY(-1px);
+  border-color:var(--border-strong);
+  box-shadow:var(--shadow-card-hover);
+}
+.card:focus-within{ border-color:var(--accent); }
+/* Top 카드는 같은 컴포넌트에 상단 accent 라인만 더한다. */
+.card[data-top="1"]{ border-top:2px solid color-mix(in srgb, var(--accent) 55%, var(--border)); }
+
+.card-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+.clip{
+  flex:0 0 auto;
+  border:1px solid var(--border); background:var(--surface); color:var(--text-muted);
+  border-radius:10px; padding:6px 9px; cursor:pointer; line-height:1; font-size:14px;
+}
+.clip:hover{ border-color:var(--border-strong); color:var(--text-secondary); }
+.clip.on{ color:var(--accent-strong-text); background:var(--accent-soft); border-color:var(--accent); }
+
+.title{ margin:0 0 8px; font-size:15px; font-weight:800; line-height:1.38; letter-spacing:-0.2px; min-width:0; }
+.title a{
+  color:var(--text-primary); text-decoration:none;
+  display:block; overflow-wrap:anywhere; word-break:break-word;
+}
+/* 제목 clamp는 잘린 부분을 `title` 툴팁으로 확인할 수 있는 환경에서만 건다.
+   터치 기기는 hover 툴팁이 뜨지 않으므로 제목을 자르지 않는다 — 자르면 기사를
+   열어보지 않고는 나머지 제목을 볼 방법이 없다. */
+@media (hover: hover){
+  .title a{
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+  }
+}
+.title a:hover{ color:var(--accent-hover); text-decoration:underline; }
+
+.meta-row{ display:flex; flex-wrap:wrap; gap:6px; align-items:center; color:var(--text-muted); font-size:12px; margin-bottom:8px; }
+.meta-row--topics{ gap:5px; }
+.meta-row__time{ font-variant-numeric:tabular-nums; }
+.meta-row__press{ color:var(--text-secondary); }
+.meta-row__sep{ color:var(--border-strong); }
+
+.badge{
+  display:inline-flex; align-items:center; padding:3px 8px; border-radius:999px;
+  border:1px solid var(--border); background:var(--surface-subtle);
+  color:var(--text-secondary); font-size:11px; line-height:1.5;
+  max-width:100%; overflow-wrap:anywhere;
+}
+/* 업권은 카드에서 가장 강한 메타 정보다. */
+.badge--sector{ background:var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 26%, var(--border)); color:var(--accent-strong-text); font-weight:700; }
+.badge--top{ background:var(--accent); border-color:var(--accent); color:var(--accent-contrast); font-weight:800; letter-spacing:0.4px; }
+/* 11px 텍스트라 muted(연회색 배경 위 4.4:1)로는 부족해 secondary를 쓴다. */
+.badge--soft{ color:var(--text-secondary); }
+.badge--topic{ background:transparent; border-style:dashed; color:var(--text-secondary); }
+/* 관련도 단계는 opacity가 아니라 굵기로 구분한다 — opacity는 배지 전체(텍스트·테두리)를
+   흐리게 만들어 11px 텍스트의 대비를 기준 아래로 떨어뜨린다. 단계 자체는 라벨
+   (Rel High/Med/Low) 텍스트로 이미 읽을 수 있다. */
+.badge.r-high{ font-weight:700; }
+.badge.r-med{ font-weight:600; }
+.badge.r-low{ font-weight:500; }
+
+.summary{
+  margin:0; color: color-mix(in srgb, var(--text-primary) 82%, var(--text-secondary)); font-size:12.5px;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+}
+
+/* 스크린리더 전용 보조 텍스트(상태 도움말) — 화면에는 보이지 않는다. */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* --- 요약 패널 --------------------------------------------------------------
+   세 상태(ai / content_rejected / preview)를 색상만이 아니라 제목 텍스트와
+   구조(<ul><li> vs 문단)로 구분한다. */
+.summary-panel{
+  margin:0; padding:10px 12px; border-radius:10px;
+  border:1px solid var(--summary-preview-border);
+  background: var(--summary-preview-bg);
+}
+.summary-panel__header{
+  display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:6px;
+}
+.summary-panel__title{
+  font-size:11.5px; font-weight:700; letter-spacing:-0.1px;
+  color: color-mix(in srgb, var(--text-primary) 76%, var(--text-secondary));
+}
+.summary-panel__icon{ color: var(--summary-accent); font-size:11px; line-height:1; }
+.summary-panel__status{
+  margin-left:auto; display:inline-flex; align-items:center;
+  padding:2px 7px; border-radius:999px; font-size:10.5px; white-space:nowrap;
+  border:1px solid var(--summary-preview-border);
+  background: color-mix(in srgb, var(--text-muted) 14%, transparent);
+  color: var(--text-secondary);
+}
+.summary-panel--ai{
+  background: var(--summary-ai-bg);
+  border-color: var(--summary-ai-border);
+  border-left:3px solid var(--summary-accent);
+}
+.summary-panel--ai .summary-panel__title{
+  color: color-mix(in srgb, var(--summary-accent) 62%, var(--text-primary));
+}
+/* AI 3줄은 줄 수가 계약으로 고정(3문장 × 최대 90자)이라 clamp하지 않는다.
+   clamp를 걸면 세 번째 문장이 잘려 요약의 '영향/후속' 항목이 사라진다. */
+.summary-panel__list{
+  margin:0; padding-left:16px; list-style:disc;
+  color: color-mix(in srgb, var(--text-primary) 86%, var(--text-secondary));
+  font-size:12.5px; line-height:1.62;
+}
+.summary-panel__list li{ margin:0 0 5px; }
+.summary-panel__list li:last-child{ margin-bottom:0; }
+.summary-panel__list li::marker{ color: var(--summary-accent); }
+/* 긴 한국어 문장이 카드 밖으로 넘치지 않게 한다. */
+.summary-panel__list li, .summary-panel__text{ overflow-wrap:anywhere; word-break:break-word; }
+
+.related{
+  margin:10px 0 0; padding:8px 10px 8px 26px;
+  border-left:2px solid var(--border);
+  color:var(--text-muted); font-size:11.5px; line-height:1.55;
+}
+.related li{ margin:3px 0; overflow-wrap:anywhere; }
+.related a{ color:var(--text-secondary); text-decoration:none; }
+.related a:hover{ color:var(--accent-hover); text-decoration:underline; }
+
+/* 카드 높이가 서로 달라도 링크 줄은 하단에 정렬된다. */
+.card__actions{ margin-top:auto; }
+.actions{ display:flex; gap:8px; flex-wrap:wrap; padding-top:12px; }
+.load-more-wrap{ margin:12px 0 2px; }
+mark{ background: color-mix(in srgb, var(--accent) 18%, transparent); color: inherit; border-radius: 6px; padding: 0 3px; }
+.footer{ margin-top:18px; padding-top:14px; border-top:1px solid var(--border); color:var(--text-muted); font-size:12px; text-align:center; }
+.kchips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+.kchip{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--surface-subtle); color:var(--text-primary); font-size:12px; }
+/* chip 배경(--surface-subtle) 위에 얹히므로 muted가 아니라 secondary를 쓴다.
+   (흰 배경 기준 4.6:1인 muted도 연회색 배경에서는 4.4:1로 떨어진다) */
+.kchip .n{ color:var(--text-secondary); font-size:12px; }
+
+/* --- 반응형 열 수: 640/960/1280/1600 기준으로 1→2→3→4→5열 ------------------- */
+@media (min-width:640px){
+  .grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width:960px){
+  .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+  /* 데스크톱에서는 chip이 자연스럽게 줄바꿈한다 — 가로 스크롤은 좁은 화면 전용이다.
+     (두 축 중 하나가 visible이 아니면 visible이 auto로 계산되므로 둘 다 함께 되돌린다) */
+  .nav{ flex-wrap:wrap; overflow:visible; }
+}
+@media (min-width:1280px){
+  .grid{ grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px; }
+  .filter-group__label{ width:70px; }
+}
+@media (min-width:1600px){
+  /* 카드 10개 × 5열 = Top 10이 정확히 2행이 된다. */
+  .grid{ grid-template-columns:repeat(5, minmax(0, 1fr)); }
+  .report-shell{ padding:22px 0 56px; }
+  .report-header{ padding:16px 20px; }
+  .report-controls{ padding:14px 20px; }
+  .report-content{ padding:20px; }
+}
+
+/* 필터 라벨과 chip이 좁은 화면에서 겹치지 않도록 세로로 쌓는다. */
+@media (max-width:959px){
+  .filter-group{ flex-direction:column; align-items:stretch; gap:6px; }
+  .filter-group__label{ width:auto; }
+  .input{ flex-basis:100%; }
+}
+
+@media (max-width:639px){
+  .report-shell{
+    width:min(calc(100% - 24px), 1880px);
+    padding:12px 0 32px; gap:10px;
+  }
+  .report-header{ padding:12px 14px; }
+  h1{ font-size:17px; }
+  .report-header__date{ font-size:14px; }
+  .report-controls{ padding:12px 14px; }
+  .report-content{ padding:12px; }
+  /* 모바일 터치 타깃 최소 40px 확보 */
+  .btn, .select, .toggle{ min-height:40px; padding:9px 12px; }
+  .input{ min-height:40px; }
+  .pill{ min-height:36px; }
+  .clip{ min-width:40px; min-height:40px; justify-content:center; }
+  .status-chip{ min-height:36px; }
+  .card{ padding:12px; }
+  .title{ font-size:14.5px; }
+  .summary{ -webkit-line-clamp:2; font-size:12px; }
+  /* 모바일에서는 패널 padding과 목록 들여쓰기를 줄인다.
+     AI 목록에는 clamp가 없으므로 세 번째 문장이 그대로 남는다. */
+  .summary-panel{ padding:9px 10px; border-radius:9px; }
+  .summary-panel__header{ margin-bottom:5px; }
+  .summary-panel__list{ padding-left:14px; font-size:12px; }
+  .meta-row{ margin-bottom:6px; gap:5px; }
+  .actions{ padding-top:10px; gap:6px; }
+  .section-head{ padding-top:18px; margin-bottom:10px; }
+  .section-head--top h2{ font-size:16px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  .card:hover{ transform:none; }
+}
+</style>
+</head>
+<body>
+  <div class="report-shell">
+    <header class="report-header">
+      <div class="report-header__identity">
+        <h1>금융권 일일 언론동향 <span class="report-header__date">(2026-10-11)</span></h1>
+        <div class="meta">대부업권 우선 · 전 금융업권 주요 기사 요약</div>
+      </div>
+      <div class="report-header__actions">
+        <span id="savedCount" class="status-chip" role="status" aria-live="polite">저장 0건</span>
+        <button id="themeBtn" class="btn" type="button" aria-label="다크 모드로 전환">다크</button>
+      </div>
+    </header>
+
+    <section class="report-controls" aria-label="검색 및 필터">
+      <div class="report-controls__primary">
+        <div class="input" title="제목/요약/업권/주제에서 검색">
+          <span class="input__icon" aria-hidden="true">🔎</span>
+          <input id="searchInput" type="text" aria-label="기사 검색" placeholder="키워드로 검색 (예: 연체, PF, 국민연금)"/>
+        </div>
+        <span class="select"><label class="select__label" for="sortSel">정렬</label><select id="sortSel"><option value="new" selected>최신순</option><option value="rel">관련도순</option></select></span>
+        <label class="toggle"><input id="topOnly" type="checkbox"/> Top만</label>
+        <label class="toggle"><input id="favOnly" type="checkbox"/> 저장만</label>
+        <span id="resultCount" class="status-chip" role="status" aria-live="polite">전체 39건</span>
+      </div>
+      <div class="report-controls__filters">
+        <div class="filter-group" role="group" aria-labelledby="sectorFilterLabel">
+          <span class="filter-group__label" id="sectorFilterLabel">업권 필터</span>
+          <div class="nav-wrap" data-scroll-hint><div class="nav"><button class='pill active' type='button' aria-pressed='true' data-sector-pill data-sector='ALL'><strong>전체</strong><span class='count'>39</span></button><button class='pill' type='button' aria-pressed='false' data-sector-pill data-sector='은행'><strong>은행</strong><span class='count'>4</span></button><button class='pill' type='button' aria-pressed='false' data-sector-pill data-sector='저축은행'><strong>저축은행</strong><span class='count'>1</span></button><button class='pill' type='button' aria-pressed='false' data-sector-pill data-sector='여전'><strong>여전</strong><span class='count'>2</span></button><button class='pill' type='button' aria-pressed='false' data-sector-pill data-sector='디지털자산'><strong>디지털자산</strong><span class='count'>13</span></button><button class='pill' type='button' aria-pressed='false' data-sector-pill data-sector='거시·시장'><strong>거시·시장</strong><span class='count'>6</span></button><button class='pill' type='button' aria-pressed='false' data-sector-pill data-sector='입법·정책'><strong>입법·정책</strong><span class='count'>9</span></button><button class='pill' type='button' aria-pressed='false' data-sector-pill data-sector='기타'><strong>기타</strong><span class='count'>4</span></button></div><span class="nav-hint left" aria-hidden="true">‹</span><span class="nav-hint right" aria-hidden="true">›</span></div>
+        </div>
+        <div class="filter-group" role="group" aria-labelledby="topicFilterLabel">
+          <span class="filter-group__label" id="topicFilterLabel">주제 필터</span>
+          <div class="nav-wrap" data-scroll-hint><div class="nav"><button class='pill active' type='button' aria-pressed='true' data-topic-pill data-topic='ALL'><strong>전체 주제</strong></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='디지털자산'><strong>디지털자산</strong><span class='count'>9</span></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='정책·제도개선'><strong>정책·제도개선</strong><span class='count'>2</span></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='증시·시장시황'><strong>증시·시장시황</strong><span class='count'>2</span></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='환율·외환'><strong>환율·외환</strong><span class='count'>2</span></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='가계대출·부채'><strong>가계대출·부채</strong><span class='count'>1</span></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='감독·제재'><strong>감독·제재</strong><span class='count'>1</span></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='물가·경기지표'><strong>물가·경기지표</strong><span class='count'>1</span></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='불법사금융·불법추심·보이스피싱'><strong>불법사금융·불법추심·보이스피싱</strong><span class='count'>1</span></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='상품·영업·예금금리'><strong>상품·영업·예금금리</strong><span class='count'>1</span></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='해외·글로벌'><strong>해외·글로벌</strong><span class='count'>1</span></button><button class='pill' type='button' aria-pressed='false' data-topic-pill data-topic='__NO_TOPIC__'><strong>주제 없음</strong><span class='count'>20</span></button></div><span class="nav-hint left" aria-hidden="true">‹</span><span class="nav-hint right" aria-hidden="true">›</span></div>
+        </div>
+      </div>
+    </section>
+
+    <main class="report-content">
+      <div id="emptyState" class="note empty-state" style="display:none;">필터 조건에 맞는 기사가 없습니다. 검색어/필터를 조정해 보세요.</div>
+      <section data-group id="sec-TOP"><div class="section-head section-head--top"><h2>오늘의 Top 이슈 10<span class="count">10</span></h2><div class="note">전 금융권 주요 기사 중 대부·시장 영향도가 큰 이슈 우선</div></div><div class="grid"><article class='card' data-card data-sector='입법·정책' data-top=1 data-hay='[2026 국감] 서민 출자금 빠지는 지역 신협…금융위, 정상화 대책 검토 이억원 금융위원장은 부동산 PF에 대한 과도한 투자 영향을 언급하며 상호금융협의체를 통해 관계 기관과 대응 방안을 논의하고 있다고 답했다. 당장의 건전성 관리와 함께 조합의 정체성과 사업모델도 검토하겠다고. 이억원 금융위원장은 부동산 PF에 대한 과도한 투자 영향을 언급하며 상호금융협의체를 통해 관계 기관과 대응 방안을 논의하고 있다고 답했다. 당장의 건전성 관리와 함께 조합의 정체성과 사업모델도 검토하겠다고. 국회 정무위원회 국정감사에서 지역 신용협동조합의 적자 심화와 출자금 유출에 대한 중장기 정상화 대책 마련이 요구되었다. 올해 상반기 당기순손실을 낸 신협 조합은 전체의 52%이며 순자본비율이 2% 미만인 조합은 지난 6월 말 84곳으로 늘었다. 금융위원회는 신협의 부동산 PF 대출 한도를 총대출의 20% 이내로 제한하고 최소 순자본비율 기준을 단계적으로 올릴 예정이다. 입법·정책  정책·제도개선' data-topics='정책·제도개선' data-ts='1791638040.0' data-rel='20.0' data-cluster='issue-9936ba1b7878' data-cluster-size='1' data-url='http://www.rightknow.co.kr/news/articleView.html?idxno=34980'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.rightknow.co.kr/news/articleView.html?idxno=34980' target='_blank' rel='noopener noreferrer' title='[2026 국감] 서민 출자금 빠지는 지역 신협…금융위, 정상화 대책 검토' data-title>[2026 국감] 서민 출자금 빠지는 지역 신협…금융위, 정상화 대책 검토</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 22:14</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--top'>TOP</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>정책·제도개선</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>국회 정무위원회 국정감사에서 지역 신용협동조합의 적자 심화와 출자금 유출에 대한 중장기 정상화 대책 마련이 요구되었다.</li><li>올해 상반기 당기순손실을 낸 신협 조합은 전체의 52%이며 순자본비율이 2% 미만인 조합은 지난 6월 말 84곳으로 늘었다.</li><li>금융위원회는 신협의 부동산 PF 대출 한도를 총대출의 20% 이내로 제한하고 최소 순자본비율 기준을 단계적으로 올릴 예정이다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='http://www.rightknow.co.kr/news/articleView.html?idxno=34980' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=1 data-hay='금감원 대국민 서비스 54시간 중단…긴급 금융피해 대응은 어떻게 하나 예를 들어 보이스피싱으로 계좌이체 피해가 발생했거나 명의도용이 의심되는 상황에서는 금융감독원의 일반 민원 접수보다 거래 금융회사와 경찰 등을 통한 신속한 신고가 우선될 수 있다. 예를 들어 보이스피싱으로 계좌이체 피해가 발생했거나 명의도용이 의심되는 상황에서는 금융감독원의 일반 민원 접수보다 거래 금융회사와 경찰 등을 통한 신속한 신고가 우선될 수 있다. 금융감독원이 전기설비 안전점검으로 정전이 발생해 8일 오후 6시부터 10일 밤 12시까지 54시간 동안 대국민 서비스를 중단했다. 중단 대상에는 금감원 홈페이지와 금융소비자정보포털 파인, 1332 콜센터, 개인정보노출자 사고예방시스템 등이 포함됐다. 금감원은 중단 기간 민원신청은 국민신문고를 이용하도록 안내하고 긴급 상황 시 거래 금융회사 및 경찰 신고를 당부했다. 입법·정책' data-topics='' data-ts='1791602940.0' data-rel='18.0' data-cluster='issue-5ff68e82308b' data-cluster-size='1' data-url='https://www.ppss.kr/news/articleView.html?idxno=314792'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.ppss.kr/news/articleView.html?idxno=314792' target='_blank' rel='noopener noreferrer' title='금감원 대국민 서비스 54시간 중단…긴급 금융피해 대응은 어떻게 하나' data-title>금감원 대국민 서비스 54시간 중단…긴급 금융피해 대응은 어떻게 하나</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 12:29</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--top'>TOP</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>금융감독원이 전기설비 안전점검으로 정전이 발생해 8일 오후 6시부터 10일 밤 12시까지 54시간 동안 대국민 서비스를 중단했다.</li><li>중단 대상에는 금감원 홈페이지와 금융소비자정보포털 파인, 1332 콜센터, 개인정보노출자 사고예방시스템 등이 포함됐다.</li><li>금감원은 중단 기간 민원신청은 국민신문고를 이용하도록 안내하고 긴급 상황 시 거래 금융회사 및 경찰 신고를 당부했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.ppss.kr/news/articleView.html?idxno=314792' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=1 data-hay='은행도 해킹 못 피했다…원화 스테이블코인 발행 ‘보안 숙제’ 앞서 지난 2월 국내 가상자산거래소 빗썸에서 대규모 비트코인 오지급 사고가 발생하고 네이버페이에서도 결제 장애가 발생하는 등 운영 안전성에 대한 문제가 부각되자, 은행이 스테이블코인 발행을 주도해야 한다는. 앞서 지난 2월 국내 가상자산거래소 빗썸에서 대규모 비트코인 오지급 사고가 발생하고 네이버페이에서도 결제 장애가 발생하는 등 운영 안전성에 대한 문제가 부각되자, 은행이 스테이블코인 발행을 주도해야 한다는. 시중은행에서 잇따라 해킹 사고가 발생하면서 원화 스테이블코인 도입을 앞두고 은행권의 보안 역량을 검증해야 한다는 지적에 힘이 실리고 있다. 공격자들은 은행의 외부 연계 시스템 빈틈을 파고들어 고객 정보를 빼갔으며, 원화 스테이블코인 도입 시 보안 범위가 더 확대될 전망이다. 전문가들은 은행이 발행에 참여하더라도 시스템 안전성과 암호키 관리, 사고 발생 시 책임 소재를 인가 요건에 명확히 반영해야 한다고 강조한다. 기타  디지털자산' data-topics='디지털자산' data-ts='1791630600.0' data-rel='21.0' data-cluster='issue-fd8b49373249' data-cluster-size='1' data-url='https://www.ekn.kr/web/view.php?key=20261010022334394'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.ekn.kr/web/view.php?key=20261010022334394' target='_blank' rel='noopener noreferrer' title='은행도 해킹 못 피했다…원화 스테이블코인 발행 ‘보안 숙제’' data-title>은행도 해킹 못 피했다…원화 스테이블코인 발행 ‘보안 숙제’</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 20:10</span>        <span class='badge badge--sector'>기타</span><span class='badge badge--top'>TOP</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>시중은행에서 잇따라 해킹 사고가 발생하면서 원화 스테이블코인 도입을 앞두고 은행권의 보안 역량을 검증해야 한다는 지적에 힘이 실리고 있다.</li><li>공격자들은 은행의 외부 연계 시스템 빈틈을 파고들어 고객 정보를 빼갔으며, 원화 스테이블코인 도입 시 보안 범위가 더 확대될 전망이다.</li><li>전문가들은 은행이 발행에 참여하더라도 시스템 안전성과 암호키 관리, 사고 발생 시 책임 소재를 인가 요건에 명확히 반영해야 한다고 강조한다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.ekn.kr/web/view.php?key=20261010022334394' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=1 data-hay='신한은행 고객정보 2만5천여건 유출… 김현정 &quot;은행장 성과급 환수해야... &quot;성과급 환수 입법 추진&quot; 국회 정무위원회 소속 더불어민주당 김현정 의원 은 8일 금융위원회 국정감사에서 고객 정보 2만5,727건이 유출된 신한은행 사태와 관련해, 내부통제의 최종 책임자인 정상혁 신한은행장의 법적 책임을 묻고 미지급 성과급 환수와 손해배상으로. c 김현정 의원실 국회 정무위원회 소속 더불어민주당 김현정 의원 은 8일 금융위원회 국정감사에서 고객 정보 2만5727건이. &quot;성과급 환수 입법 추진&quot; 국회 정무위원회 소속 더불어민주당 김현정 의원 은 8일 금융위원회 국정감사에서 고객 정보 2만5,727건이 유출된 신한은행 사태와 관련해, 내부통제의 최종 책임자인 정상혁 신한은행장의 법적 책임을 묻고 미지급 성과급 환수와 손해배상으로. c 김현정 의원실 국회 정무위원회 소속 더불어민주당 김현정 의원 은 8일 금융위원회 국정감사에서 고객 정보 2만5727건이. 김현정 더불어민주당 의원은 국정감사에서 고객 정보 2만5727건이 유출된 신한은행 사태에 대해 정상혁 신한은행장의 법적 책임을 촉구했다. 김 의원은 내부통제 실패에도 성과급이 지급된 구조를 비판하며 미지급 성과급 환수와 회사 손해에 대한 배상을 요구했다. 김 의원은 금융위원회에 신한은행의 보수위원회 운영 점검 및 대표이사 조치를 요구하고 성과급 환수를 위한 클로백 입법 협조를 요청했다. 은행' data-topics='' data-ts='1791624360.0' data-rel='18.0' data-cluster='issue-41e81d639096' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/047/0002531737?sid=100'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/047/0002531737?sid=100' target='_blank' rel='noopener noreferrer' title='신한은행 고객정보 2만5천여건 유출… 김현정 &quot;은행장 성과급 환수해야...' data-title>신한은행 고객정보 2만5천여건 유출… 김현정 &quot;은행장 성과급 환수해야...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 18:26</span>        <span class='badge badge--sector'>은행</span><span class='badge badge--top'>TOP</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>김현정 더불어민주당 의원은 국정감사에서 고객 정보 2만5727건이 유출된 신한은행 사태에 대해 정상혁 신한은행장의 법적 책임을 촉구했다.</li><li>김 의원은 내부통제 실패에도 성과급이 지급된 구조를 비판하며 미지급 성과급 환수와 회사 손해에 대한 배상을 요구했다.</li><li>김 의원은 금융위원회에 신한은행의 보수위원회 운영 점검 및 대표이사 조치를 요구하고 성과급 환수를 위한 클로백 입법 협조를 요청했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/047/0002531737?sid=100' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003274203&amp;CMPT_CD=P0010&amp;utm_source=naver&amp;utm_medium=newsearch&amp;utm_campaign=naver_news' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=1 data-hay='온투업 대출 급증했지만 자본 취약… 투자자 보호 사각지대 우려 10일 금융권과 금융계에 따르면 지난 6월 말 기준 온투업계 전체 대출잔액은 2조3027억원으로 전년 동기 대비. 금융위원회가 지난달 발표한 온투업 제도개선 자료에서는 일부 사업자의 내부통제와 경영지표 검증이. 10일 금융권과 금융계에 따르면 지난 6월 말 기준 온투업계 전체 대출잔액은 2조3027억원으로 전년 동기 대비. 금융위원회가 지난달 발표한 온투업 제도개선 자료에서는 일부 사업자의 내부통제와 경영지표 검증이. 온라인투자연계금융업의 대출잔액이 급증했으나 주요 업체들의 적자와 자본 약화로 투자자 보호에 대한 우려가 커지고 있다. 지난 6월 말 온투업 대출잔액은 2조3027억원에 달했으나 주요 6개사의 지난해 순손실 합계는 자본총계의 약 두 배인 304억원을 기록했다. 금융위원회는 부실 사업자의 등록 직권말소 근거를 마련하고 폐업 시 이용자 보호조치를 강화하는 방안을 추진하고 있다. 입법·정책' data-topics='' data-ts='1791603720.0' data-rel='16.0' data-cluster='issue-5025c47552f4' data-cluster-size='1' data-url='https://www.g-enews.com/view.php?ud=202610100954408025cd0bfacc1c_1'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.g-enews.com/view.php?ud=202610100954408025cd0bfacc1c_1' target='_blank' rel='noopener noreferrer' title='온투업 대출 급증했지만 자본 취약… 투자자 보호 사각지대 우려' data-title>온투업 대출 급증했지만 자본 취약… 투자자 보호 사각지대 우려</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 12:42</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--top'>TOP</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>온라인투자연계금융업의 대출잔액이 급증했으나 주요 업체들의 적자와 자본 약화로 투자자 보호에 대한 우려가 커지고 있다.</li><li>지난 6월 말 온투업 대출잔액은 2조3027억원에 달했으나 주요 6개사의 지난해 순손실 합계는 자본총계의 약 두 배인 304억원을 기록했다.</li><li>금융위원회는 부실 사업자의 등록 직권말소 근거를 마련하고 폐업 시 이용자 보호조치를 강화하는 방안을 추진하고 있다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.g-enews.com/view.php?ud=202610100954408025cd0bfacc1c_1' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=1 data-hay='&quot;현행 코인 과세, 2030 범법자 만든다&quot; 반발에…유예론 확산 웹3 리서치·컨설팅 기업 타이거리서치가 지난달 국내 가상자산 투자자 2423명을 대상으로 설문조사한 결과 응답자의 73%가 현행 가상자산 과세 시행에 반대했다. 가상자산 과세 주요 쟁점/그래픽=이지혜 이형일 경제부총리 겸 재정경제부 장관이 내년 시행 예정인 가상자산 과세에 대해 유보적인 입장을 내비치면서 과세 유예 기대감이 높아지고 있다. 웹3 리서치·컨설팅 기업 타이거리서치가 지난달 국내 가상자산 투자자 2423명을 대상으로 설문조사한 결과 응답자의 73%가 현행 가상자산 과세 시행에 반대했다. 가상자산 과세 주요 쟁점/그래픽=이지혜 이형일 경제부총리 겸 재정경제부 장관이 내년 시행 예정인 가상자산 과세에 대해 유보적인 입장을 내비치면서 과세 유예 기대감이 높아지고 있다. 이형일 경제부총리가 내년 시행 예정인 가상자산 과세에 대해 유보적인 입장을 내비치면서 과세 유예 기대감이 높아지고 있다. 투자자 상당수가 과세에 반대하는 가운데 해외 거래소 거래 내역 수집의 어려움과 손실 이월공제 부재 등 과세체계의 문제점이 지적된다. 업계와 투자자들은 과세 분류와 기준, 시스템 인프라를 정비한 후 제대로 된 과세 제도를 시행해야 한다고 주장한다. 디지털자산' data-topics='' data-ts='1791667800.0' data-rel='19.0' data-cluster='issue-36b4d177aa21' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/008/0005424396?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/008/0005424396?sid=101' target='_blank' rel='noopener noreferrer' title='&quot;현행 코인 과세, 2030 범법자 만든다&quot; 반발에…유예론 확산' data-title>&quot;현행 코인 과세, 2030 범법자 만든다&quot; 반발에…유예론 확산</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 06:30</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--top'>TOP</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>이형일 경제부총리가 내년 시행 예정인 가상자산 과세에 대해 유보적인 입장을 내비치면서 과세 유예 기대감이 높아지고 있다.</li><li>투자자 상당수가 과세에 반대하는 가운데 해외 거래소 거래 내역 수집의 어려움과 손실 이월공제 부재 등 과세체계의 문제점이 지적된다.</li><li>업계와 투자자들은 과세 분류와 기준, 시스템 인프라를 정비한 후 제대로 된 과세 제도를 시행해야 한다고 주장한다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/008/0005424396?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mt.co.kr/stock/2026/10/11/2026100815082481309' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=1 data-hay='실소유주 &#x27;그림자 경영&#x27;에 갇힌 빗썸…IPO &#x27;첩첩산중&#x27; 겉으론 회계·내부통제 쇄신, 안으론 &#x27;20년 측근&#x27; 중심 친정체제 강화 복잡한 지배구조에 금융동맹 제자리…잇단 제재·실적 악화까지 부담 국내 2위 가상자산 거래소 빗썸이 2028년 기업공개 를 목표로 대대적인. 겉으론 회계·내부통제 쇄신, 안으론 &#x27;20년 측근&#x27; 중심 친정체제 강화 복잡한 지배구조에 금융동맹 제자리…잇단 제재·실적 악화까지 부담 국내 2위 가상자산 거래소 빗썸이 2028년 기업공개 를 목표로 대대적인. 가상자산 거래소 빗썸이 2028년 기업공개를 목표로 쇄신을 추진하나 실소유주의 그림자 경영과 지배구조 불확실성이 장애물로 지적된다. 빗썸홀딩스는 이정훈 전 의원의 측근인 김기범 대표를 선임했으나 오너지분 및 복잡한 지배구조 탓에 외부 전략적 투자자 유치에 어려움을 겪고 있다. 빗썸은 지난 2월 대규모 비트코인 오지급 사태를 일으켜 금융감독원의 최종 제재를 앞두고 있으며 이는 상가지심사에도 영향을 줄 전망이다. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1791597600.0' data-rel='17.0' data-cluster='issue-46dda29dc5a2' data-cluster-size='3' data-url='https://n.news.naver.com/mnews/article/586/0000139691?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/586/0000139691?sid=101' target='_blank' rel='noopener noreferrer' title='실소유주 &#x27;그림자 경영&#x27;에 갇힌 빗썸…IPO &#x27;첩첩산중&#x27;' data-title>실소유주 &#x27;그림자 경영&#x27;에 갇힌 빗썸…IPO &#x27;첩첩산중&#x27;</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 11:00</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--top'>TOP</span><span class='badge badge--soft r-high'>Rel High</span><span class='badge badge--soft'>관련 기사 3건</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>가상자산 거래소 빗썸이 2028년 기업공개를 목표로 쇄신을 추진하나 실소유주의 그림자 경영과 지배구조 불확실성이 장애물로 지적된다.</li><li>빗썸홀딩스는 이정훈 전 의원의 측근인 김기범 대표를 선임했으나 오너지분 및 복잡한 지배구조 탓에 외부 전략적 투자자 유치에 어려움을 겪고 있다.</li><li>빗썸은 지난 2월 대규모 비트코인 오지급 사태를 일으켜 금융감독원의 최종 제재를 앞두고 있으며 이는 상가지심사에도 영향을 줄 전망이다.</li></ul></div>  <ul class='related' aria-label='관련 기사'><li><a href='https://www.wikitree.co.kr/articles/1165187' target='_blank' rel='noopener noreferrer'>美 법무부, 바이낸스 43억 달러 합의 이행 조사…위반 땐 수십억 달러 추...</a> <span class='count'>wikitree.co.kr</span></li><li><a href='https://www.tokenpost.kr/news/briefing/420769' target='_blank' rel='noopener noreferrer'>[오후 뉴스브리핑] 왕춘, 이틀간 3200만달러 ETH 교체 매수 外</a> <span class='count'>tokenpost.kr</span></li></ul>  <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/586/0000139691?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.sisajournal.com/news/articleView.html?idxno=389470' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=1 data-hay='작년 한은 외화자산 운용수익 17조원 육박…역대 최대 보고서&#x27;에서 &quot;원/달러 환율 상승, 유가증권 가격 상승 등의 영향으로 외화자산 관련 순이익이 전년 대비 크게 증가했다&quot;고 언급했다. 그러면서 &quot;국제 금융시장 변동성을 고려해 유동성과 안전성에 중점을 뒀다&quot;며. 보고서&#x27;에서 &quot;원/달러 환율 상승, 유가증권 가격 상승 등의 영향으로 외화자산 관련 순이익이 전년 대비 크게 증가했다&quot;고 언급했다. 그러면서 &quot;국제 금융시장 변동성을 고려해 유동성과 안전성에 중점을 뒀다&quot;며. 한국은행이 지난해 외화자산을 운용해 거둔 순 운용수익이 전년 대비 32% 증가한 16조9천억원으로 역대 최대를 기록했다. 한은은 원/달러 환율 상승과 유가증권 가격 상승이 수익 확대에 영향을 미쳤으며 유동성 확보를 위해 현금성 자산 비중을 늘렸다고 설명했다. 이종욱 의원은 환율 상승 효과와 실제 투자 성과를 구분해 살펴볼 필요가 있다며 국회에 검증용 자료를 충분히 제공해야 한다고 요구했다. 거시·시장  환율·외환' data-topics='환율·외환' data-ts='1791665460.0' data-rel='13.0' data-cluster='issue-b2c49b1d0ebe' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/001/0016368603?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/001/0016368603?sid=101' target='_blank' rel='noopener noreferrer' title='작년 한은 외화자산 운용수익 17조원 육박…역대 최대' data-title>작년 한은 외화자산 운용수익 17조원 육박…역대 최대</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 05:51</span>        <span class='badge badge--sector'>거시·시장</span><span class='badge badge--top'>TOP</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>환율·외환</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>한국은행이 지난해 외화자산을 운용해 거둔 순 운용수익이 전년 대비 32% 증가한 16조9천억원으로 역대 최대를 기록했다.</li><li>한은은 원/달러 환율 상승과 유가증권 가격 상승이 수익 확대에 영향을 미쳤으며 유동성 확보를 위해 현금성 자산 비중을 늘렸다고 설명했다.</li><li>이종욱 의원은 환율 상승 효과와 실제 투자 성과를 구분해 살펴볼 필요가 있다며 국회에 검증용 자료를 충분히 제공해야 한다고 요구했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/001/0016368603?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.yna.co.kr/view/AKR20261009035500002?input=1195m' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=1 data-hay='美금리 뛰고 물가도 3% 위협…한은, &#x27;3연속 인상 vs 10월 동결&#x27; 기로 지난 7·8월 연속 인상 이후 미국도 금리를 높인 데다, 국내 물가 상승률은 3%에 육박해 추가 긴축 압력이 남아 있다. c 뉴스1 김초희 디자이너 반도체 내수 확산 아직...10월 쉬어가도 최종금리 상승 경계 다만 추가 인상 필요성이 곧장 10월 인상을 뜻하는 것은 아니다. 지난 7·8월 연속 인상 이후 미국도 금리를 높인 데다, 국내 물가 상승률은 3%에 육박해 추가 긴축 압력이 남아 있다. c 뉴스1 김초희 디자이너 반도체 내수 확산 아직...10월 쉬어가도 최종금리 상승 경계 다만 추가 인상 필요성이 곧장 10월 인상을 뜻하는 것은 아니다. 한국은행이 오는 22일 금융통화위원회에서 기준금리의 3회 연속 인상 여부를 결정할 예정이라 관심이 집중되고 있다. 미국의 금리 인상으로 한미 금리 차가 1%p로 벌어지고 국내 9월 소비자물가가 2.9% 오르는 등 긴축 압력이 지속되고 있다. 증권가에서는 누적된 고금리 부담과 내수 영향을 고려해 10월에는 금리를 동결하고 11월에 추가 인상을 단행할 수 있다는 전망이 나온다. 거시·시장' data-topics='' data-ts='1791668700.0' data-rel='14.0' data-cluster='issue-f2f83c5364eb' data-cluster-size='10' data-url='https://n.news.naver.com/mnews/article/421/0009220088?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/421/0009220088?sid=101' target='_blank' rel='noopener noreferrer' title='美금리 뛰고 물가도 3% 위협…한은, &#x27;3연속 인상 vs 10월 동결&#x27; 기로' data-title>美금리 뛰고 물가도 3% 위협…한은, &#x27;3연속 인상 vs 10월 동결&#x27; 기로</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 06:45</span>        <span class='badge badge--sector'>거시·시장</span><span class='badge badge--top'>TOP</span><span class='badge badge--soft r-high'>Rel High</span><span class='badge badge--soft'>관련 기사 10건</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>한국은행이 오는 22일 금융통화위원회에서 기준금리의 3회 연속 인상 여부를 결정할 예정이라 관심이 집중되고 있다.</li><li>미국의 금리 인상으로 한미 금리 차가 1%p로 벌어지고 국내 9월 소비자물가가 2.9% 오르는 등 긴축 압력이 지속되고 있다.</li><li>증권가에서는 누적된 고금리 부담과 내수 영향을 고려해 10월에는 금리를 동결하고 11월에 추가 인상을 단행할 수 있다는 전망이 나온다.</li></ul></div>  <ul class='related' aria-label='관련 기사'><li><a href='https://n.news.naver.com/mnews/article/088/0001033413?sid=101' target='_blank' rel='noopener noreferrer'>리츠 ETF 개인 순매수 298억…국채금리 급등에도 44% 늘었다</a> <span class='count'>imaeil.com</span></li><li><a href='https://www.pinpointnews.co.kr/news/articleView.html?idxno=494115' target='_blank' rel='noopener noreferrer'>채권금리 고공행진에도 리츠 ETF 매수 늘었다…저점 매수 노렸나</a> <span class='count'>pinpointnews.co.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/001/0016368660?sid=101' target='_blank' rel='noopener noreferrer'>국채금리 급등에 줄어든 매력에도…개인, 리츠 ETF 순매수액↑</a> <span class='count'>yna.co.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/024/0000108831?sid=101' target='_blank' rel='noopener noreferrer'>‘닥공 재정’·AI ‘빚투’가 바꾼 금리 공식</a> <span class='count'>mk.co.kr</span></li><li><a href='https://www.etoday.co.kr/news/view/2634235' target='_blank' rel='noopener noreferrer'>이창용 전 총재 &quot;반도체발 착시 경계⋯양극화·수퍼사이클 중단 대비해...</a> <span class='count'>etoday.co.kr</span></li></ul>  <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/421/0009220088?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.news1.kr/economy/trend/6315050' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=1 data-hay='&#x27;100조 시대&#x27; 삼성전자 최대 실적...주가는 하락 지금 한국은행은 두 번 금리 올렸잖아요. 5대 시중은행의 고정형 주택담보대출 하달이 연 4.77%. 지금 한국은행은 두 번 금리 올렸잖아요. 5대 시중은행의 고정형 주택담보대출 하달이 연 4.77%. 삼성전자가 3분기 분기 영업이익 107조4000억 원을 기록하며 국내 기업 최초로 분기 영업이익 100조 원을 돌파했다. 고대역폭메모리 출하 본격화와 D램 공급 부족에 힘입어 메모리 사업 부문 영업이익률이 80%에 달할 것으로 추정된다. 사상 최대 실적에도 불구하고 매출 기대치 미달, 미 국채금리 상승, 외국인 매도세 등으로 주가는 2% 넘게 하락했다. 은행' data-topics='' data-ts='1791623700.0' data-rel='11.0' data-cluster='issue-6f56f46db162' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/052/0002417023?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/052/0002417023?sid=101' target='_blank' rel='noopener noreferrer' title='&#x27;100조 시대&#x27; 삼성전자 최대 실적...주가는 하락' data-title>&#x27;100조 시대&#x27; 삼성전자 최대 실적...주가는 하락</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 18:15</span>        <span class='badge badge--sector'>은행</span><span class='badge badge--top'>TOP</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>삼성전자가 3분기 분기 영업이익 107조4000억 원을 기록하며 국내 기업 최초로 분기 영업이익 100조 원을 돌파했다.</li><li>고대역폭메모리 출하 본격화와 D램 공급 부족에 힘입어 메모리 사업 부문 영업이익률이 80%에 달할 것으로 추정된다.</li><li>사상 최대 실적에도 불구하고 매출 기대치 미달, 미 국채금리 상승, 외국인 매도세 등으로 주가는 2% 넘게 하락했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/052/0002417023?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.ytn.co.kr/_ln/0102_202610101815005051' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div><div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
+      <section data-group id='sec-은행'>  <div class='section-head'>    <h2>은행<span class='count'>4</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='은행' data-top=0 data-hay='은행 주담대 하단 5% 시대 … 보금자리론도 &#x27;백기&#x27;, 서민 대출 퇴로 막혔... 지난 8월 예금은행 신규취급액 기준 주담대 금리는 연 4.66%로 전월보다 0.18%포인트 올라 2022년 11월 이후 3년 9개월 만에 가장 높았다. 한국은행의 공식 평균금리도 상승세다. 지난 8월 예금은행 신규취급액 기준 주담대 금리는 연 4.66%로 전월보다 0.18%포인트 올라 2022년 11월 이후 3년 9개월 만에 가장 높았다. 한국은행의 공식 평균금리도 상승세다. 시중은행의 주택담보대출 최저금리가 5%를 넘어선 가운데 정책모기지인 보금자리론 금리도 연 4.90~5.20% 수준으로 올라섰다. 주택저당증권 5년물 평균 발행금리가 지난해 2.92%에서 올해 8월 4.05%로 오르는 등 조달비용이 급증한 점이 원인으로 지목된다. 연기금 등 장기 투자자 이탈과 공적보증 부실 부담이 겹치면서 서민과 실수요자의 대출 이점 및 퇴로가 줄어들고 있다. 은행  상품·영업·예금금리 가계대출·부채' data-topics='상품·영업·예금금리|가계대출·부채' data-ts='1791673200.0' data-rel='9.0' data-cluster='issue-f761ed3e445b' data-cluster-size='1' data-url='https://biz.newdaily.co.kr/site/data/html/2026/10/08/2026100800277.html'>  <div class='card-head'>    <h3 class='title'>      <a href='https://biz.newdaily.co.kr/site/data/html/2026/10/08/2026100800277.html' target='_blank' rel='noopener noreferrer' title='은행 주담대 하단 5% 시대 … 보금자리론도 &#x27;백기&#x27;, 서민 대출 퇴로 막혔...' data-title>은행 주담대 하단 5% 시대 … 보금자리론도 &#x27;백기&#x27;, 서민 대출 퇴로 막혔...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 08:00</span>        <span class='badge badge--sector'>은행</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>상품·영업·예금금리</span><span class='badge badge--topic'>가계대출·부채</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>시중은행의 주택담보대출 최저금리가 5%를 넘어선 가운데 정책모기지인 보금자리론 금리도 연 4.90~5.20% 수준으로 올라섰다.</li><li>주택저당증권 5년물 평균 발행금리가 지난해 2.92%에서 올해 8월 4.05%로 오르는 등 조달비용이 급증한 점이 원인으로 지목된다.</li><li>연기금 등 장기 투자자 이탈과 공적보증 부실 부담이 겹치면서 서민과 실수요자의 대출 이점 및 퇴로가 줄어들고 있다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://biz.newdaily.co.kr/site/data/html/2026/10/08/2026100800277.html' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='NH농협금융, 치매 예방·금융사기 방지 지원…농촌 어린이 교육·나눔 확... NH농협은행이 3월부터 제공한 60세 이상 무료 보이스피싱 보상보험은 약 17만명이 가입했으며, 피해액의 70%를 최대 1,000만원까지 1년간 보장한다. 농촌 어린이 500여명에 사회적기업 제품 전달 NH농협금융지주와. NH농협은행이 3월부터 제공한 60세 이상 무료 보이스피싱 보상보험은 약 17만명이 가입했으며, 피해액의 70%를 최대 1,000만원까지 1년간 보장한다. 농촌 어린이 500여명에 사회적기업 제품 전달 NH농협금융지주와. NH농협금융이 고령층을 위한 치매 예방과 금융사기 방지 지원을 늘리고 농촌지역 사회공헌활동을 강화하고 있다. 7개 자회사가 안심돌봄 캠페인에 참여하고 농협은행은 60세 이상 고객에게 무료 보이스피싱 보상보험을 제공해 약 17만명이 가입했다. NH투자증권과 함께 순천 초등학생 500여명에게 물품을 전달했으며 NH저축은행은 초등학생 대상 금융교육 뮤지컬을 개최했다. 은행' data-topics='' data-ts='1791635760.0' data-rel='6.0' data-cluster='issue-699c3251b2a8' data-cluster-size='1' data-url='https://www.webeconomy.co.kr/news/articleView.html?idxno=2329819'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.webeconomy.co.kr/news/articleView.html?idxno=2329819' target='_blank' rel='noopener noreferrer' title='NH농협금융, 치매 예방·금융사기 방지 지원…농촌 어린이 교육·나눔 확...' data-title>NH농협금융, 치매 예방·금융사기 방지 지원…농촌 어린이 교육·나눔 확...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 21:36</span>        <span class='badge badge--sector'>은행</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>NH농협금융이 고령층을 위한 치매 예방과 금융사기 방지 지원을 늘리고 농촌지역 사회공헌활동을 강화하고 있다.</li><li>7개 자회사가 안심돌봄 캠페인에 참여하고 농협은행은 60세 이상 고객에게 무료 보이스피싱 보상보험을 제공해 약 17만명이 가입했다.</li><li>NH투자증권과 함께 순천 초등학생 500여명에게 물품을 전달했으며 NH저축은행은 초등학생 대상 금융교육 뮤지컬을 개최했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.webeconomy.co.kr/news/articleView.html?idxno=2329819' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='신한은행 고객정보 2만5천여건 유출… 김현정 &quot;은행장 성과급 환수해야... &quot;성과급 환수 입법 추진&quot; 국회 정무위원회 소속 더불어민주당 김현정 의원 은 8일 금융위원회 국정감사에서 고객 정보 2만5,727건이 유출된 신한은행 사태와 관련해, 내부통제의 최종 책임자인 정상혁 신한은행장의 법적 책임을 묻고 미지급 성과급 환수와 손해배상으로. c 김현정 의원실 국회 정무위원회 소속 더불어민주당 김현정 의원 은 8일 금융위원회 국정감사에서 고객 정보 2만5727건이. &quot;성과급 환수 입법 추진&quot; 국회 정무위원회 소속 더불어민주당 김현정 의원 은 8일 금융위원회 국정감사에서 고객 정보 2만5,727건이 유출된 신한은행 사태와 관련해, 내부통제의 최종 책임자인 정상혁 신한은행장의 법적 책임을 묻고 미지급 성과급 환수와 손해배상으로. c 김현정 의원실 국회 정무위원회 소속 더불어민주당 김현정 의원 은 8일 금융위원회 국정감사에서 고객 정보 2만5727건이. 김현정 더불어민주당 의원은 국정감사에서 고객 정보 2만5727건이 유출된 신한은행 사태에 대해 정상혁 신한은행장의 법적 책임을 촉구했다. 김 의원은 내부통제 실패에도 성과급이 지급된 구조를 비판하며 미지급 성과급 환수와 회사 손해에 대한 배상을 요구했다. 김 의원은 금융위원회에 신한은행의 보수위원회 운영 점검 및 대표이사 조치를 요구하고 성과급 환수를 위한 클로백 입법 협조를 요청했다. 은행' data-topics='' data-ts='1791624360.0' data-rel='18.0' data-cluster='issue-41e81d639096' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/047/0002531737?sid=100'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/047/0002531737?sid=100' target='_blank' rel='noopener noreferrer' title='신한은행 고객정보 2만5천여건 유출… 김현정 &quot;은행장 성과급 환수해야...' data-title>신한은행 고객정보 2만5천여건 유출… 김현정 &quot;은행장 성과급 환수해야...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 18:26</span>        <span class='badge badge--sector'>은행</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>김현정 더불어민주당 의원은 국정감사에서 고객 정보 2만5727건이 유출된 신한은행 사태에 대해 정상혁 신한은행장의 법적 책임을 촉구했다.</li><li>김 의원은 내부통제 실패에도 성과급이 지급된 구조를 비판하며 미지급 성과급 환수와 회사 손해에 대한 배상을 요구했다.</li><li>김 의원은 금융위원회에 신한은행의 보수위원회 운영 점검 및 대표이사 조치를 요구하고 성과급 환수를 위한 클로백 입법 협조를 요청했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/047/0002531737?sid=100' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003274203&amp;CMPT_CD=P0010&amp;utm_source=naver&amp;utm_medium=newsearch&amp;utm_campaign=naver_news' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='은행' data-top=0 data-hay='&#x27;100조 시대&#x27; 삼성전자 최대 실적...주가는 하락 지금 한국은행은 두 번 금리 올렸잖아요. 5대 시중은행의 고정형 주택담보대출 하달이 연 4.77%. 지금 한국은행은 두 번 금리 올렸잖아요. 5대 시중은행의 고정형 주택담보대출 하달이 연 4.77%. 삼성전자가 3분기 분기 영업이익 107조4000억 원을 기록하며 국내 기업 최초로 분기 영업이익 100조 원을 돌파했다. 고대역폭메모리 출하 본격화와 D램 공급 부족에 힘입어 메모리 사업 부문 영업이익률이 80%에 달할 것으로 추정된다. 사상 최대 실적에도 불구하고 매출 기대치 미달, 미 국채금리 상승, 외국인 매도세 등으로 주가는 2% 넘게 하락했다. 은행' data-topics='' data-ts='1791623700.0' data-rel='11.0' data-cluster='issue-6f56f46db162' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/052/0002417023?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/052/0002417023?sid=101' target='_blank' rel='noopener noreferrer' title='&#x27;100조 시대&#x27; 삼성전자 최대 실적...주가는 하락' data-title>&#x27;100조 시대&#x27; 삼성전자 최대 실적...주가는 하락</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 18:15</span>        <span class='badge badge--sector'>은행</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>삼성전자가 3분기 분기 영업이익 107조4000억 원을 기록하며 국내 기업 최초로 분기 영업이익 100조 원을 돌파했다.</li><li>고대역폭메모리 출하 본격화와 D램 공급 부족에 힘입어 메모리 사업 부문 영업이익률이 80%에 달할 것으로 추정된다.</li><li>사상 최대 실적에도 불구하고 매출 기대치 미달, 미 국채금리 상승, 외국인 매도세 등으로 주가는 2% 넘게 하락했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/052/0002417023?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.ytn.co.kr/_ln/0102_202610101815005051' target='_blank' rel='noopener noreferrer'>원문</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-저축은행'>  <div class='section-head'>    <h2>저축은행<span class='count'>1</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='저축은행' data-top=0 data-hay='[2026 국감] 금융권 해킹 잇따르는데…보안예산 집행률 고작 69.6% 롯데손해보험 과 상호저축은행중앙회 , 우리카드 , 롯데카드 등도 상대적으로 높은 집행률을 나타냈다. 올해 정보보호 예산을 지난해보다 줄인 금융회사도 적지 않았다. 롯데손해보험 과 상호저축은행중앙회 , 우리카드 , 롯데카드 등도 상대적으로 높은 집행률을 나타냈다. 올해 정보보호 예산을 지난해보다 줄인 금융회사도 적지 않았다. 전산장애 상위 20개 금융회사의 지난해 정보보호 예산 집행률이 69.6%에 불과한 것으로 드러났다. 우리은행은 예산 집행률이 53.8%에 그쳤고 국민은행도 58.1%를 기록했으며 7개 금융사는 올해 보안예산을 줄였다. 박성훈 의원과 김형연 의원은 금융사들의 소극적인 보안투자와 금융당국의 허술한 해킹 점검 기준을 함께 지적했다. 저축은행' data-topics='' data-ts='1791614400.0' data-rel='7.0' data-cluster='issue-93ce3b4959d1' data-cluster-size='1' data-url='https://www.ekn.kr/web/view.php?key=20261010027204409'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.ekn.kr/web/view.php?key=20261010027204409' target='_blank' rel='noopener noreferrer' title='[2026 국감] 금융권 해킹 잇따르는데…보안예산 집행률 고작 69.6%' data-title>[2026 국감] 금융권 해킹 잇따르는데…보안예산 집행률 고작 69.6%</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 15:40</span>        <span class='badge badge--sector'>저축은행</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>전산장애 상위 20개 금융회사의 지난해 정보보호 예산 집행률이 69.6%에 불과한 것으로 드러났다.</li><li>우리은행은 예산 집행률이 53.8%에 그쳤고 국민은행도 58.1%를 기록했으며 7개 금융사는 올해 보안예산을 줄였다.</li><li>박성훈 의원과 김형연 의원은 금융사들의 소극적인 보안투자와 금융당국의 허술한 해킹 점검 기준을 함께 지적했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.ekn.kr/web/view.php?key=20261010027204409' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-여전'>  <div class='section-head'>    <h2>여전<span class='count'>2</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='여전' data-top=0 data-hay='[인터뷰] 상명대 서지용 &quot;캐피탈사 보험판매 허용해 소비자 선택권 넓혀... 한편, 사단법인 한국신용카드학회는 이달 19일 오후 1시 30분부터 서울 명동 은행회관에서. 현재, 한국신용카드학회장, 여신금융협회 자율규제위원이며 금융감독원 옴부즈만 및 금융감독자문위원을 역임했다. 한편, 사단법인 한국신용카드학회는 이달 19일 오후 1시 30분부터 서울 명동 은행회관에서. 현재, 한국신용카드학회장, 여신금융협회 자율규제위원이며 금융감독원 옴부즈만 및 금융감독자문위원을 역임했다. 서지용 상명대 교수는 캐피탈사의 자동차보험 판매 허용 및 통신판매 진출 등 규제 개선 필요성을 제안했다. 서 교수는 자금조달 비용 상승과 자동차 금융 성장세 둔화에 대응해 소비자의 상품 비교 선택권을 넓혀야 한다고 설명했다. 다만 영업 확대 시 보험 강요 방지, 개인정보 보호, 불완전판매 예방을 위한 안전장치가 함께 강화되어야 한다고 강조했다. 여전' data-topics='' data-ts='1791603480.0' data-rel='12.0' data-cluster='issue-9a6e46cea54c' data-cluster-size='1' data-url='https://www.straightnews.co.kr/news/articleView.html?idxno=312866'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.straightnews.co.kr/news/articleView.html?idxno=312866' target='_blank' rel='noopener noreferrer' title='[인터뷰] 상명대 서지용 &quot;캐피탈사 보험판매 허용해 소비자 선택권 넓혀...' data-title>[인터뷰] 상명대 서지용 &quot;캐피탈사 보험판매 허용해 소비자 선택권 넓혀...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 12:38</span>        <span class='badge badge--sector'>여전</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>서지용 상명대 교수는 캐피탈사의 자동차보험 판매 허용 및 통신판매 진출 등 규제 개선 필요성을 제안했다.</li><li>서 교수는 자금조달 비용 상승과 자동차 금융 성장세 둔화에 대응해 소비자의 상품 비교 선택권을 넓혀야 한다고 설명했다.</li><li>다만 영업 확대 시 보험 강요 방지, 개인정보 보호, 불완전판매 예방을 위한 안전장치가 함께 강화되어야 한다고 강조했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.straightnews.co.kr/news/articleView.html?idxno=312866' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='여전' data-top=0 data-hay='[금쪽상식] &quot;이번 달 카드값 부담되는데···&quot; 리볼빙, 한 번 쓰면 뭐가... 이용자는 카드사 앱이나 홈페이지에서 자신에게 적용되는 수수료율을 확인할 수 있으며, 여신금융협회 공시를 통해 카드사별 수수료율도 비교할 수 있다. 리볼빙은 카드론이나 현금서비스와도 다르다. 이용자는 카드사 앱이나 홈페이지에서 자신에게 적용되는 수수료율을 확인할 수 있으며, 여신금융협회 공시를 통해 카드사별 수수료율도 비교할 수 있다. 리볼빙은 카드론이나 현금서비스와도 다르다. 신용카드 대금의 일부만 결제하고 잔액을 이월하는 리볼빙 서비스는 연체를 피할 수 있으나 높은 수수료가 부과된다. 리볼빙은 이용이 반복되면 이월잔액과 수수료가 계속 쌓여 상환 부담이 증가하고 신용평가에 부정적 영향을 줄 수 있다. 금융권 관계자는 리볼빙 이용 전 약정결제비율과 수수료율을 확인하고 자금이 생기면 조기상환할 것을 권고했다. 여전' data-topics='' data-ts='1791594000.0' data-rel='9.0' data-cluster='issue-751006d438ab' data-cluster-size='1' data-url='http://www.enewstoday.co.kr/news/articleView.html?idxno=2478483'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.enewstoday.co.kr/news/articleView.html?idxno=2478483' target='_blank' rel='noopener noreferrer' title='[금쪽상식] &quot;이번 달 카드값 부담되는데···&quot; 리볼빙, 한 번 쓰면 뭐가...' data-title>[금쪽상식] &quot;이번 달 카드값 부담되는데···&quot; 리볼빙, 한 번 쓰면 뭐가...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 10:00</span>        <span class='badge badge--sector'>여전</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>신용카드 대금의 일부만 결제하고 잔액을 이월하는 리볼빙 서비스는 연체를 피할 수 있으나 높은 수수료가 부과된다.</li><li>리볼빙은 이용이 반복되면 이월잔액과 수수료가 계속 쌓여 상환 부담이 증가하고 신용평가에 부정적 영향을 줄 수 있다.</li><li>금융권 관계자는 리볼빙 이용 전 약정결제비율과 수수료율을 확인하고 자금이 생기면 조기상환할 것을 권고했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='http://www.enewstoday.co.kr/news/articleView.html?idxno=2478483' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-디지털자산'>  <div class='section-head'>    <h2>디지털자산<span class='count'>13</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='카이아 상장에 서상민 의장 감회…&quot;8년 기다림, 더 오래 보답하겠다&quot; 카이아(KAIA)가 국내 가상자산 거래소 업비트 원화마켓에 상장된 가운데 서상민 카이아 의장이 지난 8년의 시간을 돌아보며 한국 투자자들에게 감사와 미안함을 전했다. 서상민 의장은 자신의 X(옛 트위터)를 통해 2018년...   디지털자산  디지털자산' data-topics='디지털자산' data-ts='1791675600.0' data-rel='9.0' data-cluster='issue-c82bd8b5b215' data-cluster-size='1' data-url='https://www.cbci.co.kr/news/articleView.html?idxno=614151'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.cbci.co.kr/news/articleView.html?idxno=614151' target='_blank' rel='noopener noreferrer' title='카이아 상장에 서상민 의장 감회…&quot;8년 기다림, 더 오래 보답하겠다&quot;' data-title>카이아 상장에 서상민 의장 감회…&quot;8년 기다림, 더 오래 보답하겠다&quot;</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 08:40</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--preview'><div class='summary-panel__header'><span class='summary-panel__title'>기사 미리보기</span><span class='summary-panel__status' title='기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다.'>AI 요약 제외<span class='sr-only'> — 기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다.</span></span></div><p class='summary summary-panel__text' data-summary>카이아(KAIA)가 국내 가상자산 거래소 업비트 원화마켓에 상장된 가운데 서상민 카이아 의장이 지난 8년의 시간을 돌아보며 한국 투자자들에게 감사와 미안함을 전했다. 서상민 의장은 자신의 X(옛 트위터)를 통해 2018년...</p></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.cbci.co.kr/news/articleView.html?idxno=614151' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='비트코인(BTC), 10억 달러 강제 청산...또다시 8만 달러 붕괴 위기 비인크립토는 가상자산 트레이더들이 이른바 10·10 대폭락 1주년을 앞두고 위험을 축소하기는커녕 차입. 온체인 분석 플랫폼 크립토퀀트 에 따르면 거래소 내 비트코인 보유량 대비 미체결 베팅을. 비인크립토는 가상자산 트레이더들이 이른바 10·10 대폭락 1주년을 앞두고 위험을 축소하기는커녕 차입. 온체인 분석 플랫폼 크립토퀀트 에 따르면 거래소 내 비트코인 보유량 대비 미체결 베팅을. 비트코인 가격이 8만 달러 선으로 떨어지면서 24시간 동안 10억 달러가 넘는 강제 청산이 발생했다. 트레이더들의 레버리지 비율이 0.256까지 높아진 상황에서 급락세가 나와 롱 포지션에서만 9억3000만 달러가 청산됐다. 시장 저변의 낙관 편향은 일부 남아있으나 다음 대규모 청산 물량이 7만5000달러 부근에 집중돼 추가 변동성이 우려된다. 디지털자산' data-topics='' data-ts='1791669720.0' data-rel='5.0' data-cluster='issue-9c44a5b25c9d' data-cluster-size='1' data-url='http://coinreaders.com/262535'>  <div class='card-head'>    <h3 class='title'>      <a href='http://coinreaders.com/262535' target='_blank' rel='noopener noreferrer' title='비트코인(BTC), 10억 달러 강제 청산...또다시 8만 달러 붕괴 위기' data-title>비트코인(BTC), 10억 달러 강제 청산...또다시 8만 달러 붕괴 위기</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 07:02</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>비트코인 가격이 8만 달러 선으로 떨어지면서 24시간 동안 10억 달러가 넘는 강제 청산이 발생했다.</li><li>트레이더들의 레버리지 비율이 0.256까지 높아진 상황에서 급락세가 나와 롱 포지션에서만 9억3000만 달러가 청산됐다.</li><li>시장 저변의 낙관 편향은 일부 남아있으나 다음 대규모 청산 물량이 7만5000달러 부근에 집중돼 추가 변동성이 우려된다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='http://coinreaders.com/262535' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='&quot;현행 코인 과세, 2030 범법자 만든다&quot; 반발에…유예론 확산 웹3 리서치·컨설팅 기업 타이거리서치가 지난달 국내 가상자산 투자자 2423명을 대상으로 설문조사한 결과 응답자의 73%가 현행 가상자산 과세 시행에 반대했다. 가상자산 과세 주요 쟁점/그래픽=이지혜 이형일 경제부총리 겸 재정경제부 장관이 내년 시행 예정인 가상자산 과세에 대해 유보적인 입장을 내비치면서 과세 유예 기대감이 높아지고 있다. 웹3 리서치·컨설팅 기업 타이거리서치가 지난달 국내 가상자산 투자자 2423명을 대상으로 설문조사한 결과 응답자의 73%가 현행 가상자산 과세 시행에 반대했다. 가상자산 과세 주요 쟁점/그래픽=이지혜 이형일 경제부총리 겸 재정경제부 장관이 내년 시행 예정인 가상자산 과세에 대해 유보적인 입장을 내비치면서 과세 유예 기대감이 높아지고 있다. 이형일 경제부총리가 내년 시행 예정인 가상자산 과세에 대해 유보적인 입장을 내비치면서 과세 유예 기대감이 높아지고 있다. 투자자 상당수가 과세에 반대하는 가운데 해외 거래소 거래 내역 수집의 어려움과 손실 이월공제 부재 등 과세체계의 문제점이 지적된다. 업계와 투자자들은 과세 분류와 기준, 시스템 인프라를 정비한 후 제대로 된 과세 제도를 시행해야 한다고 주장한다. 디지털자산' data-topics='' data-ts='1791667800.0' data-rel='19.0' data-cluster='issue-36b4d177aa21' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/008/0005424396?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/008/0005424396?sid=101' target='_blank' rel='noopener noreferrer' title='&quot;현행 코인 과세, 2030 범법자 만든다&quot; 반발에…유예론 확산' data-title>&quot;현행 코인 과세, 2030 범법자 만든다&quot; 반발에…유예론 확산</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 06:30</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>이형일 경제부총리가 내년 시행 예정인 가상자산 과세에 대해 유보적인 입장을 내비치면서 과세 유예 기대감이 높아지고 있다.</li><li>투자자 상당수가 과세에 반대하는 가운데 해외 거래소 거래 내역 수집의 어려움과 손실 이월공제 부재 등 과세체계의 문제점이 지적된다.</li><li>업계와 투자자들은 과세 분류와 기준, 시스템 인프라를 정비한 후 제대로 된 과세 제도를 시행해야 한다고 주장한다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/008/0005424396?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mt.co.kr/stock/2026/10/11/2026100815082481309' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='가상자산 상속세 2027년 거래소까지 조회…숨기면 가산세 40% 정부 세제개편안, 상증세 금융재산 일괄조회에 거래소 편입 홈택스 일평균가로 평가...급락장 땐 처분가보다 높게 잡힐 수도 기사의 이해를 돕기 위한 AI 생성 이미지 내년 1월부터 국세청은 가상자산 상속세를 비롯한 상속·증여세를 조사할 때 가상자산거래소 계정까지. 국세청이 지난달 정태호 의원실에 낸 자료를 보면 지난해 가상자산 상속·증여 신고는 423건이었고, 이 가운데 상속은 63건에. 정부 세제개편안, 상증세 금융재산 일괄조회에 거래소 편입 홈택스 일평균가로 평가...급락장 땐 처분가보다 높게 잡힐 수도 기사의 이해를 돕기 위한 AI 생성 이미지 내년 1월부터 국세청은 가상자산 상속세를 비롯한 상속·증여세를 조사할 때 가상자산거래소 계정까지. 국세청이 지난달 정태호 의원실에 낸 자료를 보면 지난해 가상자산 상속·증여 신고는 423건이었고, 이 가운데 상속은 63건에. 정부의 세제개편안에 따라 2027년부터 국세청이 상속·증여세 조사 시 가상자산거래소 계정을 일괄 조회할 수 있게 된다. 상속세 신고 시 고시 거래소 코인은 사망 전후 1개월간의 일평균가액으로 평가하며 누락 시 최대 40%의 가산세가 부과된다. 다만 시세 급락 시 과세표준이 실제 처분가보다 높게 잡히는 문제와 유족용 안심상속 서비스 미연계 등 개선 과제가 남아있다. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1791667380.0' data-rel='9.0' data-cluster='issue-abf95c354fb5' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/088/0001033384?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/088/0001033384?sid=101' target='_blank' rel='noopener noreferrer' title='가상자산 상속세 2027년 거래소까지 조회…숨기면 가산세 40%' data-title>가상자산 상속세 2027년 거래소까지 조회…숨기면 가산세 40%</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 06:23</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>정부의 세제개편안에 따라 2027년부터 국세청이 상속·증여세 조사 시 가상자산거래소 계정을 일괄 조회할 수 있게 된다.</li><li>상속세 신고 시 고시 거래소 코인은 사망 전후 1개월간의 일평균가액으로 평가하며 누락 시 최대 40%의 가산세가 부과된다.</li><li>다만 시세 급락 시 과세표준이 실제 처분가보다 높게 잡히는 문제와 유족용 안심상속 서비스 미연계 등 개선 과제가 남아있다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/088/0001033384?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.imaeil.com/page/view/2026101106155831716' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='석 달 앞둔 가상자산 과세…&#x27;강행→신중&#x27;, 정부의 기류도 달라졌다 가상자산 과세 쟁점/그래픽=윤선정 내년 시행을 앞둔 가상자산 과세가 다시 갈림길에 섰다. 금융투자로 얻은 이익에 과세하는 금융투자소득세가 폐지된 상황에서 발생할 수 있는 형평성 문제, 탈중앙화거래소를 활용할 때 생길 과세 회피 문제, 국가별로 시행 시기가 다른 가상자산 자동정보교환체계 에 따른 엇박자 문제 등이 제기된다. 가상자산 과세 쟁점/그래픽=윤선정 내년 시행을 앞둔 가상자산 과세가 다시 갈림길에 섰다. 금융투자로 얻은 이익에 과세하는 금융투자소득세가 폐지된 상황에서 발생할 수 있는 형평성 문제, 탈중앙화거래소를 활용할 때 생길 과세 회피 문제, 국가별로 시행 시기가 다른 가상자산 자동정보교환체계 에 따른 엇박자 문제 등이 제기된다. 내년 시행을 앞둔 가상자산 과세에 대해 정부가 의견 수렴을 강조하며 제도 보완 가능성을 내비쳤다. 이형일 부총리는 국정감사에서 다양한 이해관계의 의견을 수렴하겠다고 밝혔으며 금투세 폐지 후 형평성 문제 등이 제기되고 있다. 여권 관계자는 제도 영향을 면밀히 검토해 문제가 발견되면 법 개정을 포함한 보완 조치를 진행할 수 있다고 전했다. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1791666000.0' data-rel='4.0' data-cluster='issue-f1224461968d' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/008/0005424389?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/008/0005424389?sid=101' target='_blank' rel='noopener noreferrer' title='석 달 앞둔 가상자산 과세…&#x27;강행→신중&#x27;, 정부의 기류도 달라졌다' data-title>석 달 앞둔 가상자산 과세…&#x27;강행→신중&#x27;, 정부의 기류도 달라졌다</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 06:00</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>내년 시행을 앞둔 가상자산 과세에 대해 정부가 의견 수렴을 강조하며 제도 보완 가능성을 내비쳤다.</li><li>이형일 부총리는 국정감사에서 다양한 이해관계의 의견을 수렴하겠다고 밝혔으며 금투세 폐지 후 형평성 문제 등이 제기되고 있다.</li><li>여권 관계자는 제도 영향을 면밀히 검토해 문제가 발견되면 법 개정을 포함한 보완 조치를 진행할 수 있다고 전했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/008/0005424389?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mt.co.kr/economy/2026/10/11/2026100808274295769' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='&#x27;예정대로 과세&#x27;에서 &#x27;의견수렴&#x27;으로…&#x27;가상자산 과세&#x27; 미묘한 기류 변... 배제대 김현동 경영학과 교수는 &quot;가상자산 과세는 소득이 있으면 과세한다는 조세 원칙에 부합하고, 과거 유예 당시 제기됐던 과세 인프라와 입법상 미비도 상당 부분 보완되고 있다&quot;며 &quot;해외 거래소를 통한 거래는. 배제대 김현동 경영학과 교수는 &quot;가상자산 과세는 소득이 있으면 과세한다는 조세 원칙에 부합하고, 과거 유예 당시 제기됐던 과세 인프라와 입법상 미비도 상당 부분 보완되고 있다&quot;며 &quot;해외 거래소를 통한 거래는. 이형일 부총리 겸 재정경제부 장관이 가상자산 과세 시행에 대해 의견 수렴을 언급하며 미묘한 입장 변화를 보였다. 국회 국정감사에서 과세 인프라 미흡과 세수 추계의 어려움이 지적되자 이 부총리는 폭넓은 의견 수렴을 약속했다. 과세 시행이 석 달 남은 상황에서 연말 세법 논의와 국회 검토를 통해 추가 유예 여부가 다시 쟁점화될 전망이다. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1791662520.0' data-rel='4.0' data-cluster='issue-c3db195d96c9' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/079/0004197367?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/079/0004197367?sid=101' target='_blank' rel='noopener noreferrer' title='&#x27;예정대로 과세&#x27;에서 &#x27;의견수렴&#x27;으로…&#x27;가상자산 과세&#x27; 미묘한 기류 변...' data-title>&#x27;예정대로 과세&#x27;에서 &#x27;의견수렴&#x27;으로…&#x27;가상자산 과세&#x27; 미묘한 기류 변...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 05:02</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>이형일 부총리 겸 재정경제부 장관이 가상자산 과세 시행에 대해 의견 수렴을 언급하며 미묘한 입장 변화를 보였다.</li><li>국회 국정감사에서 과세 인프라 미흡과 세수 추계의 어려움이 지적되자 이 부총리는 폭넓은 의견 수렴을 약속했다.</li><li>과세 시행이 석 달 남은 상황에서 연말 세법 논의와 국회 검토를 통해 추가 유예 여부가 다시 쟁점화될 전망이다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/079/0004197367?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.nocutnews.co.kr/news/6589158?utm_source=naver&amp;utm_medium=article&amp;utm_campaign=20261011050108' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='금융위 “가상자산 거래소 지분 제한, 특정 기업 겨냥 아니다” 금융위원회가 가상자산 거래소 대주주 지분 제한은 특정 기업을 겨냥한 조치가 아니며 감독 책임을 강화하겠다고 밝혔다. 오데일리(Odaily)는 금융위원회가 이 같은 입장을 밝혔다고 보도했다.   디지털자산  디지털자산' data-topics='디지털자산' data-ts='1791632280.0' data-rel='16.0' data-cluster='issue-2cf40f1e0376' data-cluster-size='1' data-url='https://www.tokenpost.kr/news/breaking/420878'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tokenpost.kr/news/breaking/420878' target='_blank' rel='noopener noreferrer' title='금융위 “가상자산 거래소 지분 제한, 특정 기업 겨냥 아니다”' data-title>금융위 “가상자산 거래소 지분 제한, 특정 기업 겨냥 아니다”</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 20:38</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--preview'><div class='summary-panel__header'><span class='summary-panel__title'>기사 미리보기</span><span class='summary-panel__status' title='기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다.'>AI 요약 제외<span class='sr-only'> — 기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다.</span></span></div><p class='summary summary-panel__text' data-summary>금융위원회가 가상자산 거래소 대주주 지분 제한은 특정 기업을 겨냥한 조치가 아니며 감독 책임을 강화하겠다고 밝혔다. 오데일리(Odaily)는 금융위원회가 이 같은 입장을 밝혔다고 보도했다.</p></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.tokenpost.kr/news/breaking/420878' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='브라질, 해커 지갑서 가상자산 170만달러 압수 경찰은 지난달 10일 범죄 조직을 상대로 진행한 압수수색에서 관련 지갑의 복구. ▲ 거래소 밖 보관한 가상자산···복구 문구 4개 확보 압수된 자산은 △비트코인 △이더리움 △트론 △테더 등 4종이다. 경찰은 지난달 10일 범죄 조직을 상대로 진행한 압수수색에서 관련 지갑의 복구. ▲ 거래소 밖 보관한 가상자산···복구 문구 4개 확보 압수된 자산은 △비트코인 △이더리움 △트론 △테더 등 4종이다. 브라질 민사경찰이 피싱 범죄 조직의 자체 보관형 지갑에서 170만 달러가 넘는 가상자산을 압수했다. 경찰은 현장 압수수색으로 복구 문구 4개를 확보해 비트코인과 이더리움 등 4종의 자산을 지주 당국 관리 계정으로 이전했다. 해당 범죄 조직은 가짜 오류 메시지로 악성코드를 유포한 혐의를 받고 있으며 압수 자산의 처분은 사법 절차를 거쳐 결정된다. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1791629400.0' data-rel='4.0' data-cluster='issue-2e8b59a9affe' data-cluster-size='1' data-url='http://www.hansbiz.co.kr/news/articleView.html?idxno=871535'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.hansbiz.co.kr/news/articleView.html?idxno=871535' target='_blank' rel='noopener noreferrer' title='브라질, 해커 지갑서 가상자산 170만달러 압수' data-title>브라질, 해커 지갑서 가상자산 170만달러 압수</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 19:50</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>브라질 민사경찰이 피싱 범죄 조직의 자체 보관형 지갑에서 170만 달러가 넘는 가상자산을 압수했다.</li><li>경찰은 현장 압수수색으로 복구 문구 4개를 확보해 비트코인과 이더리움 등 4종의 자산을 지주 당국 관리 계정으로 이전했다.</li><li>해당 범죄 조직은 가짜 오류 메시지로 악성코드를 유포한 혐의를 받고 있으며 압수 자산의 처분은 사법 절차를 거쳐 결정된다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='http://www.hansbiz.co.kr/news/articleView.html?idxno=871535' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='카이아(KAIA) 55% 급등…거래량·가격 동반 급변 카이아의 이번 급등은 국내 거래소 상장이 가상자산 시장의 단기 수급에 얼마나 큰 영향을 미칠 수 있는지를 보여주는 사례로 주목된다. 다만 상승세의 지속 여부는 상장 효과 자체보다 이후 형성되는 거래량과 매수...   디지털자산' data-topics='' data-ts='1791615960.0' data-rel='4.0' data-cluster='issue-527f24c9b3c2' data-cluster-size='1' data-url='https://www.cbci.co.kr/news/articleView.html?idxno=614104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.cbci.co.kr/news/articleView.html?idxno=614104' target='_blank' rel='noopener noreferrer' title='카이아(KAIA) 55% 급등…거래량·가격 동반 급변' data-title>카이아(KAIA) 55% 급등…거래량·가격 동반 급변</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 16:06</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--preview'><div class='summary-panel__header'><span class='summary-panel__title'>기사 미리보기</span><span class='summary-panel__status' title='기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다.'>AI 요약 제외<span class='sr-only'> — 기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다.</span></span></div><p class='summary summary-panel__text' data-summary>카이아의 이번 급등은 국내 거래소 상장이 가상자산 시장의 단기 수급에 얼마나 큰 영향을 미칠 수 있는지를 보여주는 사례로 주목된다. 다만 상승세의 지속 여부는 상장 효과 자체보다 이후 형성되는 거래량과 매수...</p></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.cbci.co.kr/news/articleView.html?idxno=614104' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='거래소 파생상품 거래량 3조8400억달러…전월보다 9.4% 증가 우블록체인 팀은 10일 공개한 12개 거래소 집계에서 9월 파생상품 거래량을 약 3조8400억달러 로 산출했다. 토포AI에게 이어서 질문 유리 외벽으로 된 금융 거래소 건물 전경 / TokenPost.ai 9월 주요 가상자산 거래소의 파생상품 거래량은 전월보다 9.4% 늘었다. 우블록체인 팀은 10일 공개한 12개 거래소 집계에서 9월 파생상품 거래량을 약 3조8400억달러 로 산출했다. 토포AI에게 이어서 질문 유리 외벽으로 된 금융 거래소 건물 전경 / TokenPost.ai 9월 주요 가상자산 거래소의 파생상품 거래량은 전월보다 9.4% 늘었다. 9월 주요 가상자산 거래소의 파생상품 거래량이 전월 대비 9.4% 늘어난 약 3조8400억 달러를 기록했다. 바이낸스가 1조7800억 달러로 1위를 차지했으며 OKX와 바이비트를 포함한 상위 3개사의 비중은 75.3%에 달했다. 파생과 현물 거래량 비율은 5.51배로 낮아졌으나 우블록체인 팀은 거래량에 이상 거래가 포함됐을 가능성을 경고했다. 디지털자산' data-topics='' data-ts='1791613080.0' data-rel='4.0' data-cluster='issue-245118cd1515' data-cluster-size='1' data-url='https://www.tokenpost.kr/news/cryptocurrency/420812'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.tokenpost.kr/news/cryptocurrency/420812' target='_blank' rel='noopener noreferrer' title='거래소 파생상품 거래량 3조8400억달러…전월보다 9.4% 증가' data-title>거래소 파생상품 거래량 3조8400억달러…전월보다 9.4% 증가</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 15:18</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>9월 주요 가상자산 거래소의 파생상품 거래량이 전월 대비 9.4% 늘어난 약 3조8400억 달러를 기록했다.</li><li>바이낸스가 1조7800억 달러로 1위를 차지했으며 OKX와 바이비트를 포함한 상위 3개사의 비중은 75.3%에 달했다.</li><li>파생과 현물 거래량 비율은 5.51배로 낮아졌으나 우블록체인 팀은 거래량에 이상 거래가 포함됐을 가능성을 경고했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.tokenpost.kr/news/cryptocurrency/420812' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='“내 코인 해킹됐는데 누가 책임지나요”…명문화 검토 나선 금융위 [AI... 해외 가상자산 거래소에서도 대규모 해킹 사고가 발생했다. 해킹·전산사고 발생 시 사업자의 손해배상책임 범위와 입증책임을 보다 명확하게 규정하는 방안도 논의 대상이다. 해외 가상자산 거래소에서도 대규모 해킹 사고가 발생했다. 해킹·전산사고 발생 시 사업자의 손해배상책임 범위와 입증책임을 보다 명확하게 규정하는 방안도 논의 대상이다. 금융위원회가 가상자산 거래소 해킹 사고 발생 시 사업자의 손해배상책임 및 입증책임을 법에 명확히 규정하는 방안을 검토 중이다. 현행법은 사고 이후의 구체적인 책임 범위나 입증책임 규정이 부족해 이용자가 거래소 과실을 직접 입증하기 어려운 한계가 있다. 금융위는 디지털자산기본법 정부안 마련 과정에서 이용자 보호체계 보완 방안을 지속적으로 논의할 계획이다. 디지털자산' data-topics='' data-ts='1791606120.0' data-rel='10.0' data-cluster='issue-c7b254023ee1' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/009/0005746539?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/009/0005746539?sid=101' target='_blank' rel='noopener noreferrer' title='“내 코인 해킹됐는데 누가 책임지나요”…명문화 검토 나선 금융위 [AI...' data-title>“내 코인 해킹됐는데 누가 책임지나요”…명문화 검토 나선 금융위 [AI...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 13:22</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>금융위원회가 가상자산 거래소 해킹 사고 발생 시 사업자의 손해배상책임 및 입증책임을 법에 명확히 규정하는 방안을 검토 중이다.</li><li>현행법은 사고 이후의 구체적인 책임 범위나 입증책임 규정이 부족해 이용자가 거래소 과실을 직접 입증하기 어려운 한계가 있다.</li><li>금융위는 디지털자산기본법 정부안 마련 과정에서 이용자 보호체계 보완 방안을 지속적으로 논의할 계획이다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/009/0005746539?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mk.co.kr/article/12172690' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='실소유주 &#x27;그림자 경영&#x27;에 갇힌 빗썸…IPO &#x27;첩첩산중&#x27; 겉으론 회계·내부통제 쇄신, 안으론 &#x27;20년 측근&#x27; 중심 친정체제 강화 복잡한 지배구조에 금융동맹 제자리…잇단 제재·실적 악화까지 부담 국내 2위 가상자산 거래소 빗썸이 2028년 기업공개 를 목표로 대대적인. 겉으론 회계·내부통제 쇄신, 안으론 &#x27;20년 측근&#x27; 중심 친정체제 강화 복잡한 지배구조에 금융동맹 제자리…잇단 제재·실적 악화까지 부담 국내 2위 가상자산 거래소 빗썸이 2028년 기업공개 를 목표로 대대적인. 가상자산 거래소 빗썸이 2028년 기업공개를 목표로 쇄신을 추진하나 실소유주의 그림자 경영과 지배구조 불확실성이 장애물로 지적된다. 빗썸홀딩스는 이정훈 전 의원의 측근인 김기범 대표를 선임했으나 오너지분 및 복잡한 지배구조 탓에 외부 전략적 투자자 유치에 어려움을 겪고 있다. 빗썸은 지난 2월 대규모 비트코인 오지급 사태를 일으켜 금융감독원의 최종 제재를 앞두고 있으며 이는 상가지심사에도 영향을 줄 전망이다. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1791597600.0' data-rel='17.0' data-cluster='issue-46dda29dc5a2' data-cluster-size='3' data-url='https://n.news.naver.com/mnews/article/586/0000139691?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/586/0000139691?sid=101' target='_blank' rel='noopener noreferrer' title='실소유주 &#x27;그림자 경영&#x27;에 갇힌 빗썸…IPO &#x27;첩첩산중&#x27;' data-title>실소유주 &#x27;그림자 경영&#x27;에 갇힌 빗썸…IPO &#x27;첩첩산중&#x27;</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 11:00</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-high'>Rel High</span><span class='badge badge--soft'>관련 기사 3건</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>가상자산 거래소 빗썸이 2028년 기업공개를 목표로 쇄신을 추진하나 실소유주의 그림자 경영과 지배구조 불확실성이 장애물로 지적된다.</li><li>빗썸홀딩스는 이정훈 전 의원의 측근인 김기범 대표를 선임했으나 오너지분 및 복잡한 지배구조 탓에 외부 전략적 투자자 유치에 어려움을 겪고 있다.</li><li>빗썸은 지난 2월 대규모 비트코인 오지급 사태를 일으켜 금융감독원의 최종 제재를 앞두고 있으며 이는 상가지심사에도 영향을 줄 전망이다.</li></ul></div>  <ul class='related' aria-label='관련 기사'><li><a href='https://www.wikitree.co.kr/articles/1165187' target='_blank' rel='noopener noreferrer'>美 법무부, 바이낸스 43억 달러 합의 이행 조사…위반 땐 수십억 달러 추...</a> <span class='count'>wikitree.co.kr</span></li><li><a href='https://www.tokenpost.kr/news/briefing/420769' target='_blank' rel='noopener noreferrer'>[오후 뉴스브리핑] 왕춘, 이틀간 3200만달러 ETH 교체 매수 外</a> <span class='count'>tokenpost.kr</span></li></ul>  <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/586/0000139691?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.sisajournal.com/news/articleView.html?idxno=389470' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='디지털자산' data-top=0 data-hay='코인베이스, 중남미 은행 뚫는다···달러 코인 결제 확대 /코인베이스 | 서울=한스경제 | 미국 최대 가상자산 거래소 코인베이스가 중남미 은행을 통한 달러 스테이블코인 결제시장 진출에 나섰다. 은행 예금을 디지털 달러로 전환해 24시간 송금과 카드 결제에. /코인베이스 | 서울=한스경제 | 미국 최대 가상자산 거래소 코인베이스가 중남미 은행을 통한 달러 스테이블코인 결제시장 진출에 나섰다. 은행 예금을 디지털 달러로 전환해 24시간 송금과 카드 결제에. 코인베이스가 핀테크 기업 제니어스와 손잡고 중남미 은행을 통한 달러 연동 스테이블코인 사업에 진출했다. 해당 사업은 USDC를 1대1 담보로 삼아 ONED USD를 발행하며 비자 카드망 및 베이스 블록체인을 활용한다. 아르헨티나의 첫 금융기관에서 서비스가 시작되었으며 향후 중남미 85개 금융기관으로 연계 확대를 추진한다. 디지털자산  디지털자산' data-topics='디지털자산' data-ts='1791595920.0' data-rel='13.0' data-cluster='issue-c5c24891e76c' data-cluster-size='1' data-url='http://www.hansbiz.co.kr/news/articleView.html?idxno=871491'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.hansbiz.co.kr/news/articleView.html?idxno=871491' target='_blank' rel='noopener noreferrer' title='코인베이스, 중남미 은행 뚫는다···달러 코인 결제 확대' data-title>코인베이스, 중남미 은행 뚫는다···달러 코인 결제 확대</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 10:32</span>        <span class='badge badge--sector'>디지털자산</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>코인베이스가 핀테크 기업 제니어스와 손잡고 중남미 은행을 통한 달러 연동 스테이블코인 사업에 진출했다.</li><li>해당 사업은 USDC를 1대1 담보로 삼아 ONED USD를 발행하며 비자 카드망 및 베이스 블록체인을 활용한다.</li><li>아르헨티나의 첫 금융기관에서 서비스가 시작되었으며 향후 중남미 85개 금융기관으로 연계 확대를 추진한다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='http://www.hansbiz.co.kr/news/articleView.html?idxno=871491' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-거시·시장'>  <div class='section-head'>    <h2>거시·시장<span class='count'>6</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='[주간금융이슈] 신현송 한은 총재 첫 국감…연속 금리인상 효과·금융안... 올해 2분기 금융권 전체 가계대출 연체율은 0.98%로 전분기보다 0.02%p 낮아졌지만 취약차주 비중은 6.7%에서 6.8%로 높아졌다. 취약 자영업자 연체율은 12.71%였으며 신규 연체 진입률도 지난해 말 3.17%에서 올해 2분기 3.60%로. 올해 2분기 금융권 전체 가계대출 연체율은 0.98%로 전분기보다 0.02%p 낮아졌지만 취약차주 비중은 6.7%에서 6.8%로 높아졌다. 취약 자영업자 연체율은 12.71%였으며 신규 연체 진입률도 지난해 말 3.17%에서 올해 2분기 3.60%로. 신현송 한국은행 총재가 오는 10월 12일 취임 후 첫 국정감사에 출석한다. 국회 재정경제기획위원회 국감에서는 연속 기준금리 인상 효과와 가계부채 관리 및 외환시장 안정이 점검될 예정이다. 국감 열흘 뒤 금융통화위원회가 예정되어 있어 이번 발언이 향후 통화정책 방향의 단서가 될 것으로 전망된다. 거시·시장' data-topics='' data-ts='1791669600.0' data-rel='7.0' data-cluster='issue-589b5eb62063' data-cluster-size='1' data-url='https://www.newspim.com/news/view/20261008000505'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.newspim.com/news/view/20261008000505' target='_blank' rel='noopener noreferrer' title='[주간금융이슈] 신현송 한은 총재 첫 국감…연속 금리인상 효과·금융안...' data-title>[주간금융이슈] 신현송 한은 총재 첫 국감…연속 금리인상 효과·금융안...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 07:00</span>        <span class='badge badge--sector'>거시·시장</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>신현송 한국은행 총재가 오는 10월 12일 취임 후 첫 국정감사에 출석한다.</li><li>국회 재정경제기획위원회 국감에서는 연속 기준금리 인상 효과와 가계부채 관리 및 외환시장 안정이 점검될 예정이다.</li><li>국감 열흘 뒤 금융통화위원회가 예정되어 있어 이번 발언이 향후 통화정책 방향의 단서가 될 것으로 전망된다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.newspim.com/news/view/20261008000505' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='美금리 뛰고 물가도 3% 위협…한은, &#x27;3연속 인상 vs 10월 동결&#x27; 기로 지난 7·8월 연속 인상 이후 미국도 금리를 높인 데다, 국내 물가 상승률은 3%에 육박해 추가 긴축 압력이 남아 있다. c 뉴스1 김초희 디자이너 반도체 내수 확산 아직...10월 쉬어가도 최종금리 상승 경계 다만 추가 인상 필요성이 곧장 10월 인상을 뜻하는 것은 아니다. 지난 7·8월 연속 인상 이후 미국도 금리를 높인 데다, 국내 물가 상승률은 3%에 육박해 추가 긴축 압력이 남아 있다. c 뉴스1 김초희 디자이너 반도체 내수 확산 아직...10월 쉬어가도 최종금리 상승 경계 다만 추가 인상 필요성이 곧장 10월 인상을 뜻하는 것은 아니다. 한국은행이 오는 22일 금융통화위원회에서 기준금리의 3회 연속 인상 여부를 결정할 예정이라 관심이 집중되고 있다. 미국의 금리 인상으로 한미 금리 차가 1%p로 벌어지고 국내 9월 소비자물가가 2.9% 오르는 등 긴축 압력이 지속되고 있다. 증권가에서는 누적된 고금리 부담과 내수 영향을 고려해 10월에는 금리를 동결하고 11월에 추가 인상을 단행할 수 있다는 전망이 나온다. 거시·시장' data-topics='' data-ts='1791668700.0' data-rel='14.0' data-cluster='issue-f2f83c5364eb' data-cluster-size='10' data-url='https://n.news.naver.com/mnews/article/421/0009220088?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/421/0009220088?sid=101' target='_blank' rel='noopener noreferrer' title='美금리 뛰고 물가도 3% 위협…한은, &#x27;3연속 인상 vs 10월 동결&#x27; 기로' data-title>美금리 뛰고 물가도 3% 위협…한은, &#x27;3연속 인상 vs 10월 동결&#x27; 기로</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 06:45</span>        <span class='badge badge--sector'>거시·시장</span><span class='badge badge--soft r-high'>Rel High</span><span class='badge badge--soft'>관련 기사 10건</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>한국은행이 오는 22일 금융통화위원회에서 기준금리의 3회 연속 인상 여부를 결정할 예정이라 관심이 집중되고 있다.</li><li>미국의 금리 인상으로 한미 금리 차가 1%p로 벌어지고 국내 9월 소비자물가가 2.9% 오르는 등 긴축 압력이 지속되고 있다.</li><li>증권가에서는 누적된 고금리 부담과 내수 영향을 고려해 10월에는 금리를 동결하고 11월에 추가 인상을 단행할 수 있다는 전망이 나온다.</li></ul></div>  <ul class='related' aria-label='관련 기사'><li><a href='https://n.news.naver.com/mnews/article/088/0001033413?sid=101' target='_blank' rel='noopener noreferrer'>리츠 ETF 개인 순매수 298억…국채금리 급등에도 44% 늘었다</a> <span class='count'>imaeil.com</span></li><li><a href='https://www.pinpointnews.co.kr/news/articleView.html?idxno=494115' target='_blank' rel='noopener noreferrer'>채권금리 고공행진에도 리츠 ETF 매수 늘었다…저점 매수 노렸나</a> <span class='count'>pinpointnews.co.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/001/0016368660?sid=101' target='_blank' rel='noopener noreferrer'>국채금리 급등에 줄어든 매력에도…개인, 리츠 ETF 순매수액↑</a> <span class='count'>yna.co.kr</span></li><li><a href='https://n.news.naver.com/mnews/article/024/0000108831?sid=101' target='_blank' rel='noopener noreferrer'>‘닥공 재정’·AI ‘빚투’가 바꾼 금리 공식</a> <span class='count'>mk.co.kr</span></li><li><a href='https://www.etoday.co.kr/news/view/2634235' target='_blank' rel='noopener noreferrer'>이창용 전 총재 &quot;반도체발 착시 경계⋯양극화·수퍼사이클 중단 대비해...</a> <span class='count'>etoday.co.kr</span></li></ul>  <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/421/0009220088?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.news1.kr/economy/trend/6315050' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='작년 한은 외화자산 운용수익 17조원 육박…역대 최대 보고서&#x27;에서 &quot;원/달러 환율 상승, 유가증권 가격 상승 등의 영향으로 외화자산 관련 순이익이 전년 대비 크게 증가했다&quot;고 언급했다. 그러면서 &quot;국제 금융시장 변동성을 고려해 유동성과 안전성에 중점을 뒀다&quot;며. 보고서&#x27;에서 &quot;원/달러 환율 상승, 유가증권 가격 상승 등의 영향으로 외화자산 관련 순이익이 전년 대비 크게 증가했다&quot;고 언급했다. 그러면서 &quot;국제 금융시장 변동성을 고려해 유동성과 안전성에 중점을 뒀다&quot;며. 한국은행이 지난해 외화자산을 운용해 거둔 순 운용수익이 전년 대비 32% 증가한 16조9천억원으로 역대 최대를 기록했다. 한은은 원/달러 환율 상승과 유가증권 가격 상승이 수익 확대에 영향을 미쳤으며 유동성 확보를 위해 현금성 자산 비중을 늘렸다고 설명했다. 이종욱 의원은 환율 상승 효과와 실제 투자 성과를 구분해 살펴볼 필요가 있다며 국회에 검증용 자료를 충분히 제공해야 한다고 요구했다. 거시·시장  환율·외환' data-topics='환율·외환' data-ts='1791665460.0' data-rel='13.0' data-cluster='issue-b2c49b1d0ebe' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/001/0016368603?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/001/0016368603?sid=101' target='_blank' rel='noopener noreferrer' title='작년 한은 외화자산 운용수익 17조원 육박…역대 최대' data-title>작년 한은 외화자산 운용수익 17조원 육박…역대 최대</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 05:51</span>        <span class='badge badge--sector'>거시·시장</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>환율·외환</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>한국은행이 지난해 외화자산을 운용해 거둔 순 운용수익이 전년 대비 32% 증가한 16조9천억원으로 역대 최대를 기록했다.</li><li>한은은 원/달러 환율 상승과 유가증권 가격 상승이 수익 확대에 영향을 미쳤으며 유동성 확보를 위해 현금성 자산 비중을 늘렸다고 설명했다.</li><li>이종욱 의원은 환율 상승 효과와 실제 투자 성과를 구분해 살펴볼 필요가 있다며 국회에 검증용 자료를 충분히 제공해야 한다고 요구했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/001/0016368603?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.yna.co.kr/view/AKR20261009035500002?input=1195m' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='코스피 7000인데···증권사 실적은 마냥 웃을 수 없는 이유 단순 주식 중개에 의존하기보다 발행어음과 종합자산관리계좌 등 자금 운용 사업을 확대하고 해외주식, 디지털 자산, 토큰증권 , 대체투자 등으로 사업 영역을 넓히는 방식이다. 시장 거래가 둔화하더라도 다른. 단순 주식 중개에 의존하기보다 발행어음과 종합자산관리계좌 등 자금 운용 사업을 확대하고 해외주식, 디지털 자산, 토큰증권 , 대체투자 등으로 사업 영역을 넓히는 방식이다. 시장 거래가 둔화하더라도 다른. 코스피 상선 유지에도 불구하고 증권사들의 3분기 실적 전망치는 상반기 대비 크게 하락했다. 거래대금 감소와 고객예탁금 줄어듦 및 금리 상승에 따른 채권 평가손익 부담이 주요 요인으로 분석된다. 증권사들은 실적 안정을 위해 WM, IB, 발행어음 등 사업 포트폴리오 다변화에 적극적으로 나서고 있다. 거시·시장  증시·시장시황' data-topics='증시·시장시황' data-ts='1791645360.0' data-rel='16.0' data-cluster='issue-4f6b0bda4890' data-cluster-size='1' data-url='https://www.smartbizn.com/news/articleView.html?idxno=155926'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.smartbizn.com/news/articleView.html?idxno=155926' target='_blank' rel='noopener noreferrer' title='코스피 7000인데···증권사 실적은 마냥 웃을 수 없는 이유' data-title>코스피 7000인데···증권사 실적은 마냥 웃을 수 없는 이유</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 00:16</span>        <span class='badge badge--sector'>거시·시장</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>증시·시장시황</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>코스피 상선 유지에도 불구하고 증권사들의 3분기 실적 전망치는 상반기 대비 크게 하락했다.</li><li>거래대금 감소와 고객예탁금 줄어듦 및 금리 상승에 따른 채권 평가손익 부담이 주요 요인으로 분석된다.</li><li>증권사들은 실적 안정을 위해 WM, IB, 발행어음 등 사업 포트폴리오 다변화에 적극적으로 나서고 있다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.smartbizn.com/news/articleView.html?idxno=155926' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='리플(XRP) 나스닥 관철 에버노스 아쉬쉬 비를라…&quot;한국 XRP 거래서 중요... 기존에는 투자자가 가상자산 거래소에서 XRP를 직접 매수하는 방식이 대표적이었다. 반면 에버노스는 미국 증시에 상장된 기업의 주식을 통해 XRP 중심 사업과 자산 운용 전략에 투자할 수 있는 구조를 제공한다. 다만...   거시·시장  해외·글로벌 증시·시장시황' data-topics='해외·글로벌|증시·시장시황' data-ts='1791644400.0' data-rel='4.0' data-cluster='issue-38408971e7a3' data-cluster-size='1' data-url='https://www.cbci.co.kr/news/articleView.html?idxno=614111'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.cbci.co.kr/news/articleView.html?idxno=614111' target='_blank' rel='noopener noreferrer' title='리플(XRP) 나스닥 관철 에버노스 아쉬쉬 비를라…&quot;한국 XRP 거래서 중요...' data-title>리플(XRP) 나스닥 관철 에버노스 아쉬쉬 비를라…&quot;한국 XRP 거래서 중요...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 00:00</span>        <span class='badge badge--sector'>거시·시장</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>해외·글로벌</span><span class='badge badge--topic'>증시·시장시황</span></div>  <div class='summary-panel summary-panel--preview'><div class='summary-panel__header'><span class='summary-panel__title'>기사 미리보기</span><span class='summary-panel__status' title='기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다.'>AI 요약 제외<span class='sr-only'> — 기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다.</span></span></div><p class='summary summary-panel__text' data-summary>기존에는 투자자가 가상자산 거래소에서 XRP를 직접 매수하는 방식이 대표적이었다. 반면 에버노스는 미국 증시에 상장된 기업의 주식을 통해 XRP 중심 사업과 자산 운용 전략에 투자할 수 있는 구조를 제공한다. 다만...</p></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.cbci.co.kr/news/articleView.html?idxno=614111' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='거시·시장' data-top=0 data-hay='[김남현의 채권썰] 한은 국감·미 CPI, 소방수 역할 기대 대외금리 변동과 국고채 30년물 입찰에 연동한 흐름이었다. 실제 지난 한주(2일 대비 8일 기준)... 우선 12일 한국은행 국정감사가 진행된다. 3%를 넘나드는 물가에 경계감은 여전하겠지만 7·8월 선제적 금리인상에...   거시·시장  물가·경기지표' data-topics='물가·경기지표' data-ts='1791644280.0' data-rel='10.0' data-cluster='issue-59346fb777c4' data-cluster-size='1' data-url='https://www.etoday.co.kr/news/view/2634248'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.etoday.co.kr/news/view/2634248' target='_blank' rel='noopener noreferrer' title='[김남현의 채권썰] 한은 국감·미 CPI, 소방수 역할 기대' data-title>[김남현의 채권썰] 한은 국감·미 CPI, 소방수 역할 기대</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 23:58</span>        <span class='badge badge--sector'>거시·시장</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>물가·경기지표</span></div>  <div class='summary-panel summary-panel--preview'><div class='summary-panel__header'><span class='summary-panel__title'>기사 미리보기</span><span class='summary-panel__status' title='기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다.'>AI 요약 제외<span class='sr-only'> — 기사 구조나 본문 품질상 AI 요약이 적합하지 않아 기사 미리보기를 표시합니다.</span></span></div><p class='summary summary-panel__text' data-summary>대외금리 변동과 국고채 30년물 입찰에 연동한 흐름이었다. 실제 지난 한주(2일 대비 8일 기준)... 우선 12일 한국은행 국정감사가 진행된다. 3%를 넘나드는 물가에 경계감은 여전하겠지만 7·8월 선제적 금리인상에...</p></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.etoday.co.kr/news/view/2634248' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-입법·정책'>  <div class='section-head'>    <h2>입법·정책<span class='count'>9</span></h2>    <div class='note'>섹터 클릭/검색/정렬 가능</div>  </div>  <div class='grid'><article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='[단독]&quot;1000만원 뜯겼는데&quot; 못 돌려받는다?...&#x27;신종 피싱&#x27; 법 사각지대 특금법 개정으로 보완 추진 신종 보이스피싱 의심계좌 거래 정지/그래픽=윤선정 &#x27;노쇼&#x27; 등 신종 보이스피싱 수법의 피해자가 사실상 돈을 돌려받을 길이 없는 것으로 나타났다. 신종 보이스피싱, 환급법상 피해 구제 절차 불가능 금융사도 내부 지침으로 &quot;피해구제 언급 불필요해&quot; 신종 피싱은 67영업일만 거래정지 가능. 특금법 개정으로 보완 추진 신종 보이스피싱 의심계좌 거래 정지/그래픽=윤선정 &#x27;노쇼&#x27; 등 신종 보이스피싱 수법의 피해자가 사실상 돈을 돌려받을 길이 없는 것으로 나타났다. 신종 보이스피싱, 환급법상 피해 구제 절차 불가능 금융사도 내부 지침으로 &quot;피해구제 언급 불필요해&quot; 신종 피싱은 67영업일만 거래정지 가능. 노쇼 사기 등 신종 보이스피싱 수법 피해자가 피해금을 돌려받을 유효한 절차가 마련되어 있지 않은 상황이다. 신종 피싱은 환급법상 구제 대상이 아니며 사기 연루 계좌의 거래정지 기간도 최장 67영업일로 제한되어 있다. 금융위원회는 신종 피싱 의심 계좌의 거래정지를 명확히 하기 위해 특금법 개정을 추진하고 있다. 입법·정책' data-topics='' data-ts='1791666600.0' data-rel='6.0' data-cluster='issue-62d74ddc3c8e' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/008/0005424392?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/008/0005424392?sid=101' target='_blank' rel='noopener noreferrer' title='[단독]&quot;1000만원 뜯겼는데&quot; 못 돌려받는다?...&#x27;신종 피싱&#x27; 법 사각지대' data-title>[단독]&quot;1000만원 뜯겼는데&quot; 못 돌려받는다?...&#x27;신종 피싱&#x27; 법 사각지대</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 06:10</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>노쇼 사기 등 신종 보이스피싱 수법 피해자가 피해금을 돌려받을 유효한 절차가 마련되어 있지 않은 상황이다.</li><li>신종 피싱은 환급법상 구제 대상이 아니며 사기 연루 계좌의 거래정지 기간도 최장 67영업일로 제한되어 있다.</li><li>금융위원회는 신종 피싱 의심 계좌의 거래정지를 명확히 하기 위해 특금법 개정을 추진하고 있다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/008/0005424392?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mt.co.kr/finance/2026/10/11/2026100814251744984' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='[2026 국감] 서민 출자금 빠지는 지역 신협…금융위, 정상화 대책 검토 이억원 금융위원장은 부동산 PF에 대한 과도한 투자 영향을 언급하며 상호금융협의체를 통해 관계 기관과 대응 방안을 논의하고 있다고 답했다. 당장의 건전성 관리와 함께 조합의 정체성과 사업모델도 검토하겠다고. 이억원 금융위원장은 부동산 PF에 대한 과도한 투자 영향을 언급하며 상호금융협의체를 통해 관계 기관과 대응 방안을 논의하고 있다고 답했다. 당장의 건전성 관리와 함께 조합의 정체성과 사업모델도 검토하겠다고. 국회 정무위원회 국정감사에서 지역 신용협동조합의 적자 심화와 출자금 유출에 대한 중장기 정상화 대책 마련이 요구되었다. 올해 상반기 당기순손실을 낸 신협 조합은 전체의 52%이며 순자본비율이 2% 미만인 조합은 지난 6월 말 84곳으로 늘었다. 금융위원회는 신협의 부동산 PF 대출 한도를 총대출의 20% 이내로 제한하고 최소 순자본비율 기준을 단계적으로 올릴 예정이다. 입법·정책  정책·제도개선' data-topics='정책·제도개선' data-ts='1791638040.0' data-rel='20.0' data-cluster='issue-9936ba1b7878' data-cluster-size='1' data-url='http://www.rightknow.co.kr/news/articleView.html?idxno=34980'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.rightknow.co.kr/news/articleView.html?idxno=34980' target='_blank' rel='noopener noreferrer' title='[2026 국감] 서민 출자금 빠지는 지역 신협…금융위, 정상화 대책 검토' data-title>[2026 국감] 서민 출자금 빠지는 지역 신협…금융위, 정상화 대책 검토</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 22:14</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>정책·제도개선</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>국회 정무위원회 국정감사에서 지역 신용협동조합의 적자 심화와 출자금 유출에 대한 중장기 정상화 대책 마련이 요구되었다.</li><li>올해 상반기 당기순손실을 낸 신협 조합은 전체의 52%이며 순자본비율이 2% 미만인 조합은 지난 6월 말 84곳으로 늘었다.</li><li>금융위원회는 신협의 부동산 PF 대출 한도를 총대출의 20% 이내로 제한하고 최소 순자본비율 기준을 단계적으로 올릴 예정이다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='http://www.rightknow.co.kr/news/articleView.html?idxno=34980' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='[단독] 대포폰 적발, 전년 대비월평균 27% 늘었다 이재명 정부는 지난달 보이스피싱 근절 종합대책 발표 1년을 맞아 지난해 10월부터 올해 7월까지 발생 건수가 전년 같은기간보다 39.9%, 피해액은 43.2% 감소했다고 밝혔다. 안면인증과 법인폰 규제 등 개통 단계의. 이재명 정부는 지난달 보이스피싱 근절 종합대책 발표 1년을 맞아 지난해 10월부터 올해 7월까지 발생 건수가 전년 같은기간보다 39.9%, 피해액은 43.2% 감소했다고 밝혔다. 안면인증과 법인폰 규제 등 개통 단계의. 올해 1~8월 적발된 대포폰이 1만7228건에 달하며 월평균 적발 건수가 전년 대비 27% 증가했다. 전체 대포폰의 74.1%가 알뜰폰에서 발생했고 법인 명의 대포폰은 작년의 2.2배 수준인 6243건으로 급증했다. 정부는 사업자별 및 개통경로별 대포폰 현황 통계를 제대로 관리하지 않아 대책 정비 지적을 받고 있다. 입법·정책  감독·제재' data-topics='감독·제재' data-ts='1791621120.0' data-rel='6.0' data-cluster='issue-4f6fe59f793c' data-cluster-size='1' data-url='https://www.sisajournal-e.com/news/articleView.html?idxno=424231'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.sisajournal-e.com/news/articleView.html?idxno=424231' target='_blank' rel='noopener noreferrer' title='[단독] 대포폰 적발, 전년 대비월평균 27% 늘었다' data-title>[단독] 대포폰 적발, 전년 대비월평균 27% 늘었다</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 17:32</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>감독·제재</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>올해 1~8월 적발된 대포폰이 1만7228건에 달하며 월평균 적발 건수가 전년 대비 27% 증가했다.</li><li>전체 대포폰의 74.1%가 알뜰폰에서 발생했고 법인 명의 대포폰은 작년의 2.2배 수준인 6243건으로 급증했다.</li><li>정부는 사업자별 및 개통경로별 대포폰 현황 통계를 제대로 관리하지 않아 대책 정비 지적을 받고 있다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.sisajournal-e.com/news/articleView.html?idxno=424231' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='은행 해킹도, 피싱도 AI? 정부 차원서 &#x27;사이버 보안 대책&#x27; 강구해야 개인정보 유출이 보이스피싱 같은 범죄로 이어질 때, 그 수법도 AI로 인해 더 정교해질. 금융사들은 고객 피해가 발생하면 전액 배상하겠다지만, 당장 돈이 빠져나가지 않아도 피싱 등 2차 피해에 대해선 대책이 모호하다. 개인정보 유출이 보이스피싱 같은 범죄로 이어질 때, 그 수법도 AI로 인해 더 정교해질. 금융사들은 고객 피해가 발생하면 전액 배상하겠다지만, 당장 돈이 빠져나가지 않아도 피싱 등 2차 피해에 대해선 대책이 모호하다. 중국산 AI 도구를 악용한 사이버 공격으로 주요 시중은행의 부가 시스템에서 고객 정보가 유출됐다. 금융사들은 피해 전액 배상을 약속했으나 보이스피싱 등 2차 피해에 대한 배상과 인과관계 입증은 모호한 상태다. 전문가들은 국가 차원의 사이버 안보 전략을 재수립하고 관련 법과 제도를 조속히 정비해야 한다고 강조한다. 입법·정책  정책·제도개선' data-topics='정책·제도개선' data-ts='1791615240.0' data-rel='9.0' data-cluster='issue-8572076515ec' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/665/0000008330?sid=101'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/665/0000008330?sid=101' target='_blank' rel='noopener noreferrer' title='은행 해킹도, 피싱도 AI? 정부 차원서 &#x27;사이버 보안 대책&#x27; 강구해야' data-title>은행 해킹도, 피싱도 AI? 정부 차원서 &#x27;사이버 보안 대책&#x27; 강구해야</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 15:54</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>정책·제도개선</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>중국산 AI 도구를 악용한 사이버 공격으로 주요 시중은행의 부가 시스템에서 고객 정보가 유출됐다.</li><li>금융사들은 피해 전액 배상을 약속했으나 보이스피싱 등 2차 피해에 대한 배상과 인과관계 입증은 모호한 상태다.</li><li>전문가들은 국가 차원의 사이버 안보 전략을 재수립하고 관련 법과 제도를 조속히 정비해야 한다고 강조한다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/665/0000008330?sid=101' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.thescoop.co.kr/news/articleView.html?idxno=311860' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='&quot;AI교육 몇 시간 늘려선 안 돼…청년 첫 취업·경력 쌓을 기회 넓혀야&quot;[... 박수민 특별시의회 청년위원장 &quot;경력직 채용 확대에 신입 청년 진입 장벽 높아져&quot; &quot;교육·일자리·금융 지원 연결해야...청년 정책, 조례와 예산으로 뒷받침&quot; ▲8일 KBC 뉴스와이드에 출연한 박수민 전남광주통합특별시의회 청년특별위원장 인공지능 활용이 확산되고 기업들의. 8일 KBC &lt;뉴스와이드&gt;에 출연한 박수민 전남광주통합특별시의회 청년특별위원장은 청년들의 첫 일자리 진입과 경력 형성 문제에. 박수민 특별시의회 청년위원장 &quot;경력직 채용 확대에 신입 청년 진입 장벽 높아져&quot; &quot;교육·일자리·금융 지원 연결해야...청년 정책, 조례와 예산으로 뒷받침&quot; ▲8일 KBC 뉴스와이드에 출연한 박수민 전남광주통합특별시의회 청년특별위원장 인공지능 활용이 확산되고 기업들의. 8일 KBC &lt;뉴스와이드&gt;에 출연한 박수민 전남광주통합특별시의회 청년특별위원장은 청년들의 첫 일자리 진입과 경력 형성 문제에. 박수민 청년특별위원장이 방송에 출연해 청년 고용 정책의 체질 개선 필요성을 주장했다. AI 확산과 경력직 선호로 신입 청년의 노동시장 진입이 어려워짐에 따라 맞춤형 교육 및 금융 지원 연계를 강조했다. 향후 6개월간 청년특위 활동을 통해 제안된 정책들이 조례와 예산으로 실현될 수 있도록 추진할 계획이다. 입법·정책' data-topics='' data-ts='1791611160.0' data-rel='7.0' data-cluster='issue-9489911cf4ec' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/660/0000118785?sid=100'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/660/0000118785?sid=100' target='_blank' rel='noopener noreferrer' title='&quot;AI교육 몇 시간 늘려선 안 돼…청년 첫 취업·경력 쌓을 기회 넓혀야&quot;[...' data-title>&quot;AI교육 몇 시간 늘려선 안 돼…청년 첫 취업·경력 쌓을 기회 넓혀야&quot;[...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 14:46</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>박수민 청년특별위원장이 방송에 출연해 청년 고용 정책의 체질 개선 필요성을 주장했다.</li><li>AI 확산과 경력직 선호로 신입 청년의 노동시장 진입이 어려워짐에 따라 맞춤형 교육 및 금융 지원 연계를 강조했다.</li><li>향후 6개월간 청년특위 활동을 통해 제안된 정책들이 조례와 예산으로 실현될 수 있도록 추진할 계획이다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/660/0000118785?sid=100' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.ikbc.co.kr/article/view/kbc202610100020' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='[정책포커스] 금융위, 한국형 녹색대전환(K-GX)에 정부 1천조원·민간 시... 1% 달성 지난 달 금융위원회 는 금융정책국장 주재로 기후에너지환경부. 향후 정부는 K GX의 전폭적 지원을 위한 법적 근거 마련과 함께 민관합동 K GX. 1% 달성 지난 달 금융위원회 는 금융정책국장 주재로 기후에너지환경부. 향후 정부는 K GX의 전폭적 지원을 위한 법적 근거 마련과 함께 민관합동 K GX. 정부가 탄소중립과 경제성장을 도모하기 위해 &#x27;한국형 녹색대전환(K-GX)&#x27; 전략을 발표했다. 온실가스 다배출 5대 업종의 탈탄소 공정 전환과 2030년까지 재생에너지 100GW 달성 및 10대 녹색산업 육성을 추진한다. 정부는 기후테크 혁신기업 육성 세부 방안을 발표하고 기후리스크 대응 및 지역 GX 거점 구축을 추진할 계획이다. 입법·정책' data-topics='' data-ts='1791606000.0' data-rel='15.0' data-cluster='issue-657e66e38d50' data-cluster-size='1' data-url='http://www.sisacast.kr/news/articleView.html?idxno=100862'>  <div class='card-head'>    <h3 class='title'>      <a href='http://www.sisacast.kr/news/articleView.html?idxno=100862' target='_blank' rel='noopener noreferrer' title='[정책포커스] 금융위, 한국형 녹색대전환(K-GX)에 정부 1천조원·민간 시...' data-title>[정책포커스] 금융위, 한국형 녹색대전환(K-GX)에 정부 1천조원·민간 시...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 13:20</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>정부가 탄소중립과 경제성장을 도모하기 위해 &#x27;한국형 녹색대전환(K-GX)&#x27; 전략을 발표했다.</li><li>온실가스 다배출 5대 업종의 탈탄소 공정 전환과 2030년까지 재생에너지 100GW 달성 및 10대 녹색산업 육성을 추진한다.</li><li>정부는 기후테크 혁신기업 육성 세부 방안을 발표하고 기후리스크 대응 및 지역 GX 거점 구축을 추진할 계획이다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='http://www.sisacast.kr/news/articleView.html?idxno=100862' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='온투업 대출 급증했지만 자본 취약… 투자자 보호 사각지대 우려 10일 금융권과 금융계에 따르면 지난 6월 말 기준 온투업계 전체 대출잔액은 2조3027억원으로 전년 동기 대비. 금융위원회가 지난달 발표한 온투업 제도개선 자료에서는 일부 사업자의 내부통제와 경영지표 검증이. 10일 금융권과 금융계에 따르면 지난 6월 말 기준 온투업계 전체 대출잔액은 2조3027억원으로 전년 동기 대비. 금융위원회가 지난달 발표한 온투업 제도개선 자료에서는 일부 사업자의 내부통제와 경영지표 검증이. 온라인투자연계금융업의 대출잔액이 급증했으나 주요 업체들의 적자와 자본 약화로 투자자 보호에 대한 우려가 커지고 있다. 지난 6월 말 온투업 대출잔액은 2조3027억원에 달했으나 주요 6개사의 지난해 순손실 합계는 자본총계의 약 두 배인 304억원을 기록했다. 금융위원회는 부실 사업자의 등록 직권말소 근거를 마련하고 폐업 시 이용자 보호조치를 강화하는 방안을 추진하고 있다. 입법·정책' data-topics='' data-ts='1791603720.0' data-rel='16.0' data-cluster='issue-5025c47552f4' data-cluster-size='1' data-url='https://www.g-enews.com/view.php?ud=202610100954408025cd0bfacc1c_1'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.g-enews.com/view.php?ud=202610100954408025cd0bfacc1c_1' target='_blank' rel='noopener noreferrer' title='온투업 대출 급증했지만 자본 취약… 투자자 보호 사각지대 우려' data-title>온투업 대출 급증했지만 자본 취약… 투자자 보호 사각지대 우려</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 12:42</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>온라인투자연계금융업의 대출잔액이 급증했으나 주요 업체들의 적자와 자본 약화로 투자자 보호에 대한 우려가 커지고 있다.</li><li>지난 6월 말 온투업 대출잔액은 2조3027억원에 달했으나 주요 6개사의 지난해 순손실 합계는 자본총계의 약 두 배인 304억원을 기록했다.</li><li>금융위원회는 부실 사업자의 등록 직권말소 근거를 마련하고 폐업 시 이용자 보호조치를 강화하는 방안을 추진하고 있다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.g-enews.com/view.php?ud=202610100954408025cd0bfacc1c_1' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='금감원 대국민 서비스 54시간 중단…긴급 금융피해 대응은 어떻게 하나 예를 들어 보이스피싱으로 계좌이체 피해가 발생했거나 명의도용이 의심되는 상황에서는 금융감독원의 일반 민원 접수보다 거래 금융회사와 경찰 등을 통한 신속한 신고가 우선될 수 있다. 예를 들어 보이스피싱으로 계좌이체 피해가 발생했거나 명의도용이 의심되는 상황에서는 금융감독원의 일반 민원 접수보다 거래 금융회사와 경찰 등을 통한 신속한 신고가 우선될 수 있다. 금융감독원이 전기설비 안전점검으로 정전이 발생해 8일 오후 6시부터 10일 밤 12시까지 54시간 동안 대국민 서비스를 중단했다. 중단 대상에는 금감원 홈페이지와 금융소비자정보포털 파인, 1332 콜센터, 개인정보노출자 사고예방시스템 등이 포함됐다. 금감원은 중단 기간 민원신청은 국민신문고를 이용하도록 안내하고 긴급 상황 시 거래 금융회사 및 경찰 신고를 당부했다. 입법·정책' data-topics='' data-ts='1791602940.0' data-rel='18.0' data-cluster='issue-5ff68e82308b' data-cluster-size='1' data-url='https://www.ppss.kr/news/articleView.html?idxno=314792'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.ppss.kr/news/articleView.html?idxno=314792' target='_blank' rel='noopener noreferrer' title='금감원 대국민 서비스 54시간 중단…긴급 금융피해 대응은 어떻게 하나' data-title>금감원 대국민 서비스 54시간 중단…긴급 금융피해 대응은 어떻게 하나</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 12:29</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>금융감독원이 전기설비 안전점검으로 정전이 발생해 8일 오후 6시부터 10일 밤 12시까지 54시간 동안 대국민 서비스를 중단했다.</li><li>중단 대상에는 금감원 홈페이지와 금융소비자정보포털 파인, 1332 콜센터, 개인정보노출자 사고예방시스템 등이 포함됐다.</li><li>금감원은 중단 기간 민원신청은 국민신문고를 이용하도록 안내하고 긴급 상황 시 거래 금융회사 및 경찰 신고를 당부했다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.ppss.kr/news/articleView.html?idxno=314792' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='입법·정책' data-top=0 data-hay='[외환] 트럼프 유가 안정대책 발표 속 1,340원대 초반 거래 10일 외환시장에서 달러 원 환율은 오전 6시 기준 전 거래일 서울장 종가 대비 0.80원 하락한 1.342. 달러 원은 1,344.00원에 출발했다. 10일 외환시장에서 달러 원 환율은 오전 6시 기준 전 거래일 서울장 종가 대비 0.80원 하락한 1.342. 달러 원은 1,344.00원에 출발했다. 한글날 휴일 속에서 달러-원 환율이 전 거래일 서울장 종가 대비 0.80원 내린 1,342.00원에 거래를 마쳤다. 중동 정세 불안에도 도널드 트럼프 미국 대통령의 경유 공급 확대 발표로 국제유가와 달러화 강세가 완화됐다. 상단의 수출업체 네고물량과 하단의 결제 수요가 맞물리며 달러-원 환율은 팽팽한 수급 흐름을 지속하고 있다. 입법·정책  환율·외환' data-topics='환율·외환' data-ts='1791589440.0' data-rel='9.0' data-cluster='issue-1f9991b8e1d3' data-cluster-size='1' data-url='https://news.einfomax.co.kr/news/articleView.html?idxno=4438528'>  <div class='card-head'>    <h3 class='title'>      <a href='https://news.einfomax.co.kr/news/articleView.html?idxno=4438528' target='_blank' rel='noopener noreferrer' title='[외환] 트럼프 유가 안정대책 발표 속 1,340원대 초반 거래' data-title>[외환] 트럼프 유가 안정대책 발표 속 1,340원대 초반 거래</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 08:44</span>        <span class='badge badge--sector'>입법·정책</span><span class='badge badge--soft r-high'>Rel High</span><span class='badge badge--soft'>⚡ 캐시</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>환율·외환</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>한글날 휴일 속에서 달러-원 환율이 전 거래일 서울장 종가 대비 0.80원 내린 1,342.00원에 거래를 마쳤다.</li><li>중동 정세 불안에도 도널드 트럼프 미국 대통령의 경유 공급 확대 발표로 국제유가와 달러화 강세가 완화됐다.</li><li>상단의 수출업체 네고물량과 하단의 결제 수요가 맞물리며 달러-원 환율은 팽팽한 수급 흐름을 지속하고 있다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://news.einfomax.co.kr/news/articleView.html?idxno=4438528' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section><section data-group id='sec-기타'>  <div class='section-head'>    <h2>기타<span class='count'>4</span></h2>    <div class='note'>고신뢰 기타 기사만 최대 10건 표시</div>  </div>  <div class='grid'><article class='card' data-card data-sector='기타' data-top=0 data-hay='미국 부의 신기록, 쏠림의 지도…상위 0.1%·70세 이상·주식 보유자가 ... 올 2분기 상위 0.1%의 순자산 증가분 가운데 93% 가 주식·펀드 평가이익이었다. DFA의 연령별 통계에 따르면 70세 이상 가구 가 보유한 주식·펀드는 2분기 말 26조1900억달러로 미국 가계 전체의 40.5%를 차지했다. 올 2분기 상위 0.1%의 순자산 증가분 가운데 93% 가 주식·펀드 평가이익이었다. DFA의 연령별 통계에 따르면 70세 이상 가구 가 보유한 주식·펀드는 2분기 말 26조1900억달러로 미국 가계 전체의 40.5%를 차지했다. 미국 가계 순자산이 주가 상승에 힘입어 2분기 기준 사상 최대인 195조9000억달러를 기록했다. 순자산 증가분의 84%가 주식 평가이익으로 상위 0.1% 부유층과 70세 이상 고령층에 자산증가가 집중됐다. 주식 자산의 극단적 쏠림으로 인해 상위층과 하위 50% 간의 부의 격차는 더욱 확대되는 추세를 보인다. 기타' data-topics='' data-ts='1791644760.0' data-rel='14.0' data-cluster='issue-87d807c0a41b' data-cluster-size='1' data-url='https://n.news.naver.com/mnews/article/008/0005424379?sid=104'>  <div class='card-head'>    <h3 class='title'>      <a href='https://n.news.naver.com/mnews/article/008/0005424379?sid=104' target='_blank' rel='noopener noreferrer' title='미국 부의 신기록, 쏠림의 지도…상위 0.1%·70세 이상·주식 보유자가 ...' data-title>미국 부의 신기록, 쏠림의 지도…상위 0.1%·70세 이상·주식 보유자가 ...</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-11 00:06</span>        <span class='badge badge--sector'>기타</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>미국 가계 순자산이 주가 상승에 힘입어 2분기 기준 사상 최대인 195조9000억달러를 기록했다.</li><li>순자산 증가분의 84%가 주식 평가이익으로 상위 0.1% 부유층과 70세 이상 고령층에 자산증가가 집중됐다.</li><li>주식 자산의 극단적 쏠림으로 인해 상위층과 하위 50% 간의 부의 격차는 더욱 확대되는 추세를 보인다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://n.news.naver.com/mnews/article/008/0005424379?sid=104' target='_blank' rel='noopener noreferrer'>네이버</a><a class='btn small' href='https://www.mt.co.kr/world/2026/10/11/2026100812500126253' target='_blank' rel='noopener noreferrer'>원문</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='금융사 해킹에 쓰인 AI…내 계좌와 개인정보 지키려면? 로이터통신은 지난 9일 한국과 일본에서 발생한 사이버 공격. 최근 국내 은행을 겨냥한 사이버 공격이 잇따른 가운데, 금융당국은 개인정보 유출을 빌미로 한 보이스피싱과 스미싱 등 2차 피해에 각별한 주의를 당부했다. 로이터통신은 지난 9일 한국과 일본에서 발생한 사이버 공격. 최근 국내 은행을 겨냥한 사이버 공격이 잇따른 가운데, 금융당국은 개인정보 유출을 빌미로 한 보이스피싱과 스미싱 등 2차 피해에 각별한 주의를 당부했다. AI를 활용한 금융권 사이버 공격이 발생함에 따라 보이스피싱 등 2차 피해 예방 주의보가 발령됐다. 금융당국과 KISA는 출처가 불분명한 문자의 링크 클릭 금지 및 원격제어 앱 설치 요구 거부 등 수칙 준수를 당부했다. 의심 문자를 받을 경우 스미싱 확인서비스를 활용하고 피해 발생 시 금융회사에 즉시 신고해야 한다. 기타' data-topics='' data-ts='1791632880.0' data-rel='6.0' data-cluster='issue-3b6e8d961f06' data-cluster-size='1' data-url='https://www.ajunews.com/view/20261010195054158'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.ajunews.com/view/20261010195054158' target='_blank' rel='noopener noreferrer' title='금융사 해킹에 쓰인 AI…내 계좌와 개인정보 지키려면?' data-title>금융사 해킹에 쓰인 AI…내 계좌와 개인정보 지키려면?</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 20:48</span>        <span class='badge badge--sector'>기타</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>주제 없음</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>AI를 활용한 금융권 사이버 공격이 발생함에 따라 보이스피싱 등 2차 피해 예방 주의보가 발령됐다.</li><li>금융당국과 KISA는 출처가 불분명한 문자의 링크 클릭 금지 및 원격제어 앱 설치 요구 거부 등 수칙 준수를 당부했다.</li><li>의심 문자를 받을 경우 스미싱 확인서비스를 활용하고 피해 발생 시 금융회사에 즉시 신고해야 한다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.ajunews.com/view/20261010195054158' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='은행도 해킹 못 피했다…원화 스테이블코인 발행 ‘보안 숙제’ 앞서 지난 2월 국내 가상자산거래소 빗썸에서 대규모 비트코인 오지급 사고가 발생하고 네이버페이에서도 결제 장애가 발생하는 등 운영 안전성에 대한 문제가 부각되자, 은행이 스테이블코인 발행을 주도해야 한다는. 앞서 지난 2월 국내 가상자산거래소 빗썸에서 대규모 비트코인 오지급 사고가 발생하고 네이버페이에서도 결제 장애가 발생하는 등 운영 안전성에 대한 문제가 부각되자, 은행이 스테이블코인 발행을 주도해야 한다는. 시중은행에서 잇따라 해킹 사고가 발생하면서 원화 스테이블코인 도입을 앞두고 은행권의 보안 역량을 검증해야 한다는 지적에 힘이 실리고 있다. 공격자들은 은행의 외부 연계 시스템 빈틈을 파고들어 고객 정보를 빼갔으며, 원화 스테이블코인 도입 시 보안 범위가 더 확대될 전망이다. 전문가들은 은행이 발행에 참여하더라도 시스템 안전성과 암호키 관리, 사고 발생 시 책임 소재를 인가 요건에 명확히 반영해야 한다고 강조한다. 기타  디지털자산' data-topics='디지털자산' data-ts='1791630600.0' data-rel='21.0' data-cluster='issue-fd8b49373249' data-cluster-size='1' data-url='https://www.ekn.kr/web/view.php?key=20261010022334394'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.ekn.kr/web/view.php?key=20261010022334394' target='_blank' rel='noopener noreferrer' title='은행도 해킹 못 피했다…원화 스테이블코인 발행 ‘보안 숙제’' data-title>은행도 해킹 못 피했다…원화 스테이블코인 발행 ‘보안 숙제’</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 20:10</span>        <span class='badge badge--sector'>기타</span><span class='badge badge--soft r-high'>Rel High</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>디지털자산</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>시중은행에서 잇따라 해킹 사고가 발생하면서 원화 스테이블코인 도입을 앞두고 은행권의 보안 역량을 검증해야 한다는 지적에 힘이 실리고 있다.</li><li>공격자들은 은행의 외부 연계 시스템 빈틈을 파고들어 고객 정보를 빼갔으며, 원화 스테이블코인 도입 시 보안 범위가 더 확대될 전망이다.</li><li>전문가들은 은행이 발행에 참여하더라도 시스템 안전성과 암호키 관리, 사고 발생 시 책임 소재를 인가 요건에 명확히 반영해야 한다고 강조한다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.ekn.kr/web/view.php?key=20261010022334394' target='_blank' rel='noopener noreferrer'>네이버</a></div></article>
+<article class='card' data-card data-sector='기타' data-top=0 data-hay='대구 군위경찰서, 농산물 절도·보이스피싱 예방에 앞장 특히 수확기 농산물 절도 예방 수칙과 최근 빈번하게 발생하는 보이스피싱 피해 사례 및 대응 요령을 상세히 안내해 주민들의 범죄예방 의식을 높이고 큰 호응을 얻었다. 김강현 군위경찰서장은 “수확기를 맞아. 특히 수확기 농산물 절도 예방 수칙과 최근 빈번하게 발생하는 보이스피싱 피해 사례 및 대응 요령을 상세히 안내해 주민들의 범죄예방 의식을 높이고 큰 호응을 얻었다. 김강현 군위경찰서장은 “수확기를 맞아. 대구군위경찰서가 군위군민체육대회 현장에서 주민 8000여 명을 대상으로 치안 홍보활동을 실시했다. 수확기 농산물 절도 예방 반사 스티커와 팔토시, 홍보 전단지를 배부하며 피해 예방 수칙을 안내했다. 군위경찰서는 향후에도 지역 특성에 맞춘 현장 밀착형 범죄예방 활동을 지속해 나갈 계획이다. 기타  불법사금융·불법추심·보이스피싱' data-topics='불법사금융·불법추심·보이스피싱' data-ts='1791591120.0' data-rel='6.0' data-cluster='issue-e815f18089b2' data-cluster-size='1' data-url='https://www.viva100.com/article/20261010500009'>  <div class='card-head'>    <h3 class='title'>      <a href='https://www.viva100.com/article/20261010500009' target='_blank' rel='noopener noreferrer' title='대구 군위경찰서, 농산물 절도·보이스피싱 예방에 앞장' data-title>대구 군위경찰서, 농산물 절도·보이스피싱 예방에 앞장</a>    </h3>    <button class='clip' type='button' title='기사 저장' aria-label='기사 저장' aria-pressed='false' data-clip>☆</button>  </div>  <div class='meta-row meta-row--primary'>    <span class='meta-row__time'>10-10 09:12</span>        <span class='badge badge--sector'>기타</span><span class='badge badge--soft r-med'>Rel Med</span>  </div>  <div class='meta-row meta-row--topics'><span class='badge badge--topic'>불법사금융·불법추심·보이스피싱</span></div>  <div class='summary-panel summary-panel--ai'><div class='summary-panel__header'><span class='summary-panel__icon' aria-hidden='true'>✦</span><span class='summary-panel__title'>AI 핵심 요약</span></div><ul class='summary-panel__list' data-summary><li>대구군위경찰서가 군위군민체육대회 현장에서 주민 8000여 명을 대상으로 치안 홍보활동을 실시했다.</li><li>수확기 농산물 절도 예방 반사 스티커와 팔토시, 홍보 전단지를 배부하며 피해 예방 수칙을 안내했다.</li><li>군위경찰서는 향후에도 지역 특성에 맞춘 현장 밀착형 범죄예방 활동을 지속해 나갈 계획이다.</li></ul></div>    <div class='actions card__actions'><a class='btn small primary' href='https://www.viva100.com/article/20261010500009' target='_blank' rel='noopener noreferrer'>네이버</a></div></article></div>  <div class='load-more-wrap'><button class='btn' type='button' data-load-more data-offset='20'>더보기</button></div></section>
+      <section data-group id="sec-KW"><div class="section-head"><h2>키워드 트렌드</h2><div class="note">상위 20개</div></div><div class='kchips'><span class='kchip'>가상자산 <span class='n'>20</span></span><span class='kchip'>거래소 <span class='n'>9</span></span><span class='kchip'>한은 <span class='n'>4</span></span><span class='kchip'>은행 <span class='n'>4</span></span><span class='kchip'>금융위 <span class='n'>3</span></span><span class='kchip'>코인 <span class='n'>3</span></span><span class='kchip'>가상자산거래소 <span class='n'>3</span></span><span class='kchip'>스테이블코인 <span class='n'>3</span></span><span class='kchip'>보이스피싱 <span class='n'>2</span></span><span class='kchip'>발표 <span class='n'>2</span></span></div></section>
+      <div class="footer">본 리포트는 Naver News Search API 기반으로 자동 생성되었습니다.<br>AI가 기사 본문을 3줄로 정리한 경우 <strong>AI 핵심 요약</strong>으로 표시하며, AI 요약이 적용되지 않은 경우 <strong>기사 미리보기</strong>를 표시합니다.</div>
+    </main>
+  </div>
+  <script>
+(function(){
+  const NO_TOPIC_TOKEN = "__NO_TOPIC__";
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("themeBtn");
+  const search = document.getElementById("searchInput");
+  const topOnly = document.getElementById("topOnly");
+  const favOnly = document.getElementById("favOnly");
+  const sortSel = document.getElementById("sortSel");
+  const emptyState = document.getElementById("emptyState");
+  const resultCount = document.getElementById("resultCount");
+  const savedCount = document.getElementById("savedCount");
+  const navElements = Array.from(document.querySelectorAll(".nav-wrap[data-scroll-hint] .nav"));
+
+  const pills = Array.from(document.querySelectorAll("[data-sector-pill]"));
+  const topicPills = Array.from(document.querySelectorAll("[data-topic-pill]"));
+  const cards = Array.from(document.querySelectorAll("[data-card]"));
+  const groups = Array.from(document.querySelectorAll("[data-group]"));
+  const PAGE_SIZE = 20;
+  const SEARCH_DEBOUNCE_MS = 150;
+
+  const LS_THEME = "reportTheme";
+  const LS_FAVS = "reportFavs_v1";
+  let activeSector = "ALL";
+  let activeTopic = "ALL";
+
+  const groupMetaMap = new Map();
+  const groupMetas = groups.map(groupEl => {
+    const meta = {
+      el: groupEl,
+      grid: groupEl.querySelector(".grid"),
+      loadMoreBtn: groupEl.querySelector("[data-load-more]"),
+      cards: [],
+      orderedCards: [],
+      visibleLimit: PAGE_SIZE,
+      lastOrder: []
+    };
+    groupMetaMap.set(groupEl, meta);
+    return meta;
+  });
+
+  const cardMetas = cards.map((cardEl, idx) => {
+    const groupMeta = groupMetaMap.get(cardEl.closest("[data-group]"));
+    const meta = {
+      id: idx,
+      el: cardEl,
+      group: groupMeta,
+      hay: (cardEl.dataset.hay || "").toLowerCase(),
+      sector: cardEl.dataset.sector || "",
+      topics: (() => {
+        const values = (cardEl.dataset.topics || "").split("|").filter(Boolean);
+        if(values.length === 0) values.push(NO_TOPIC_TOKEN);
+        return values;
+      })(),
+      ts: parseFloat(cardEl.dataset.ts || "0"),
+      rel: parseFloat(cardEl.dataset.rel || "0"),
+      isTop: cardEl.dataset.top === "1",
+      url: cardEl.dataset.url || "",
+      isMatch: cardEl.dataset.match === "1",
+      isShown: cardEl.style.display !== "none"
+    };
+    if(groupMeta) groupMeta.cards.push(meta);
+    return meta;
+  });
+  groupMetas.forEach(g => { g.orderedCards = g.cards.slice(); g.lastOrder = g.cards.slice(); });
+
+  // 결과 개수 표시는 카드가 아니라 기사 단위 — Top 섹션 사본이 두 번 세지 않게 한다.
+  function cardKey(meta){ return meta.url || ("card-" + meta.id); }
+  const totalArticleCount = new Set(cardMetas.map(cardKey)).size;
+  // 이 리포트에 실제로 있는 기사 URL. 즐겨찾기는 날짜별 리포트가 같은 origin에서
+  // localStorage를 공유하므로, 저장 건수는 반드시 이 집합과 교집합으로 센다 —
+  // 어제 저장한 기사까지 세면 '저장 1건'인데 '저장만'은 0건인 상태가 된다.
+  const articleUrls = new Set(cardMetas.map(meta => meta.url).filter(Boolean));
+
+  let renderRafId = 0;
+  let pendingRender = { recomputeMatch: true, recomputeSort: true, resetPagination: true };
+
+  function applyThemeLabel(theme){
+    if(!themeBtn) return;
+    const dark = theme === "dark";
+    // 버튼의 보이는 라벨과 접근성 이름은 **다음 동작**을 가리킨다("다크" → 다크로 전환).
+    // 이런 버튼에 aria-pressed를 붙이면 다크 상태에서 "라이트 모드로 전환, pressed"로
+    // 읽혀 현재 상태를 거꾸로 알려준다 — 이름이 동작을 설명하므로 상태 속성을 두지 않는다.
+    themeBtn.textContent = dark ? "라이트" : "다크";
+    themeBtn.setAttribute("aria-label", dark ? "라이트 모드로 전환" : "다크 모드로 전환");
+  }
+  function loadTheme(){ const saved = localStorage.getItem(LS_THEME); root.dataset.theme = (saved === "dark" || saved === "light") ? saved : "light"; applyThemeLabel(root.dataset.theme); }
+  function toggleTheme(){ const next = (root.dataset.theme === "dark") ? "light" : "dark"; root.dataset.theme = next; localStorage.setItem(LS_THEME, next); applyThemeLabel(next); }
+  function getFavs(){ try{ const raw = localStorage.getItem(LS_FAVS); const arr = raw ? JSON.parse(raw) : []; return new Set(Array.isArray(arr) ? arr : []);}catch(e){ return new Set(); }}
+  function saveFavs(set){ localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(set))); }
+  function updateSavedCount(favs){
+    if(!savedCount) return;
+    let inReport = 0;
+    favs.forEach(url => { if(articleUrls.has(url)) inReport += 1; });
+    savedCount.textContent = "저장 " + inReport + "건";
+  }
+  function setActivePill(sector){
+    const resolvedSector = pills.some(p => p.dataset.sector === sector) ? sector : "ALL";
+    activeSector = resolvedSector;
+    pills.forEach(p => {
+      const on = p.dataset.sector === resolvedSector;
+      p.classList.toggle("active", on);
+      p.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+  function setActiveTopicPill(topic){
+    const resolvedTopic = topicPills.some(p => p.dataset.topic === topic) ? topic : "ALL";
+    activeTopic = resolvedTopic;
+    topicPills.forEach(p => {
+      const on = p.dataset.topic === resolvedTopic;
+      p.classList.toggle("active", on);
+      p.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+  function debounce(fn, waitMs){ let timer = 0; return (...args) => { clearTimeout(timer); timer = window.setTimeout(() => fn(...args), waitMs); }; }
+
+  function updateNavScrollHints(){
+    navElements.forEach(nav => {
+      const wrap = nav.closest(".nav-wrap");
+      if(!wrap) return;
+      const maxLeft = Math.max(0, nav.scrollWidth - nav.clientWidth);
+      const canScroll = maxLeft > 2;
+      wrap.classList.toggle("can-scroll-left", canScroll && nav.scrollLeft > 2);
+      wrap.classList.toggle("can-scroll-right", canScroll && nav.scrollLeft < maxLeft - 2);
+    });
+  }
+
+  function sortCards(mode, cardsToSort){
+    return cardsToSort.slice().sort((a,b) => {
+      if(mode === "rel"){
+        if(b.rel !== a.rel) return b.rel - a.rel;
+        return b.ts - a.ts;
+      }
+      return b.ts - a.ts;
+    });
+  }
+
+  function computeFilterState(){
+    const q = (search?.value || "").trim().toLowerCase();
+    const qTokens = q ? q.split(/\s+/).filter(Boolean) : [];
+    const onlyTop = !!(topOnly && topOnly.checked);
+    const onlyFav = !!(favOnly && favOnly.checked);
+    const favs = getFavs();
+    let totalMatched = 0;
+
+    cardMetas.forEach(meta => {
+      const isFav = favs.has(meta.url);
+      let ok = true;
+      if(activeSector !== "ALL" && meta.sector !== activeSector) ok = false;
+      if(activeTopic !== "ALL" && !meta.topics.includes(activeTopic)) ok = false;
+      if(onlyTop && !meta.isTop) ok = false;
+      if(onlyFav && !isFav) ok = false;
+      if(qTokens.length && !qTokens.some(tok => meta.hay.includes(tok))) ok = false;
+      meta.isMatch = ok;
+      if(ok) totalMatched += 1;
+    });
+    return totalMatched;
+  }
+
+  function applyDomState(totalMatched){
+    groupMetas.forEach(g => {
+      const matchedOrdered = g.orderedCards.filter(meta => meta.isMatch);
+      const matchedCount = matchedOrdered.length;
+      if(g.visibleLimit < PAGE_SIZE) g.visibleLimit = PAGE_SIZE;
+      const visibleLimit = Math.min(g.visibleLimit, matchedCount);
+
+      let shownMatched = 0;
+      g.orderedCards.forEach(meta => {
+        const shouldShow = meta.isMatch && shownMatched < visibleLimit;
+        if(meta.isMatch) shownMatched += 1;
+        if((meta.el.dataset.match === "1") !== meta.isMatch) meta.el.dataset.match = meta.isMatch ? "1" : "0";
+        if(meta.isShown !== shouldShow){
+          meta.el.style.display = shouldShow ? "" : "none";
+          meta.isShown = shouldShow;
+        }
+      });
+
+      if(g.loadMoreBtn){
+        const nextOffset = Math.min(visibleLimit, matchedCount);
+        if(g.loadMoreBtn.dataset.offset !== String(nextOffset)) g.loadMoreBtn.dataset.offset = String(nextOffset);
+        const showLoadMore = visibleLimit < matchedCount;
+        if((g.loadMoreBtn.style.display !== "none") !== showLoadMore) g.loadMoreBtn.style.display = showLoadMore ? "" : "none";
+      }
+      const showGroup = matchedCount > 0;
+      if((g.el.style.display !== "none") !== showGroup) g.el.style.display = showGroup ? "" : "none";
+    });
+    if (emptyState) emptyState.style.display = totalMatched > 0 ? "none" : "";
+    if (resultCount){
+      // 같은 기사가 Top 섹션과 업권 섹션에 각각 렌더되므로 기사 단위로 센다.
+      const matched = new Set();
+      cardMetas.forEach(meta => { if(meta.isMatch) matched.add(cardKey(meta)); });
+      const label = (matched.size === totalArticleCount) ? "전체 " : "검색 결과 ";
+      resultCount.textContent = label + matched.size + "건";
+    }
+  }
+
+  function runRender(){
+    renderRafId = 0;
+    const task = pendingRender;
+    pendingRender = { recomputeMatch: false, recomputeSort: false, resetPagination: false };
+    const mode = (sortSel?.value || "new");
+
+    groupMetas.forEach(g => {
+      if(task.recomputeSort){
+        const nextOrder = sortCards(mode, g.cards);
+        const sameOrder = nextOrder.length === g.lastOrder.length && nextOrder.every((meta, idx) => meta === g.lastOrder[idx]);
+        g.orderedCards = nextOrder;
+        if(!sameOrder && g.grid){
+          nextOrder.forEach(meta => g.grid.appendChild(meta.el));
+          g.lastOrder = nextOrder.slice();
+        }
+      }
+      if(task.resetPagination) g.visibleLimit = PAGE_SIZE;
+    });
+
+    let totalMatched = cardMetas.reduce((acc, meta) => acc + (meta.isMatch ? 1 : 0), 0);
+    if(task.recomputeMatch) totalMatched = computeFilterState();
+    applyDomState(totalMatched);
+  }
+
+  function scheduleRender(nextTask){
+    pendingRender = {
+      recomputeMatch: pendingRender.recomputeMatch || !!nextTask?.recomputeMatch,
+      recomputeSort: pendingRender.recomputeSort || !!nextTask?.recomputeSort,
+      resetPagination: pendingRender.resetPagination || !!nextTask?.resetPagination,
+    };
+    if(renderRafId) return;
+    renderRafId = window.requestAnimationFrame(runRender);
+  }
+
+  function applySort(){
+    scheduleRender({ recomputeSort: true, resetPagination: true });
+  }
+
+  function applyFilter(){
+    scheduleRender({ recomputeMatch: true, resetPagination: true });
+  }
+
+  function paintFavButton(btn, on){
+    btn.classList.toggle("on", on);
+    btn.textContent = on ? "★" : "☆";
+    // 토글 버튼이므로 **이름은 고정**("기사 저장")하고 상태는 aria-pressed로만 알린다.
+    // 이름까지 "저장 해제"로 바꾸면 "저장 해제, pressed"가 되어 상태가 뒤집혀 읽힌다.
+    // 시각적으로는 ☆/★ 모양이 상태를 알려주므로 색상 단독 표현도 아니다.
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+  }
+
+  function initFavButtons(){
+    const favs = getFavs();
+    // 같은 기사가 Top/업권 섹션에 두 번 렌더되므로 URL이 같은 버튼은 함께 갱신한다.
+    const buttonsByUrl = new Map();
+    cards.forEach(card => {
+      const btn = card.querySelector("[data-clip]"); const url = card.dataset.url || ""; if(!btn || !url) return;
+      if(!buttonsByUrl.has(url)) buttonsByUrl.set(url, []);
+      buttonsByUrl.get(url).push(btn);
+      paintFavButton(btn, favs.has(url));
+      btn.addEventListener("click", () => {
+        const set = getFavs();
+        const nowOn = set.has(url) ? (set.delete(url), false) : (set.add(url), true);
+        saveFavs(set);
+        (buttonsByUrl.get(url) || [btn]).forEach(other => paintFavButton(other, nowOn));
+        updateSavedCount(set);
+        if(favOnly && favOnly.checked) applyFilter();
+      });
+    });
+    updateSavedCount(getFavs());
+  }
+
+  function bindEvents(){
+    pills.forEach(p => p.addEventListener("click", () => { setActivePill(p.dataset.sector); applyFilter(); }));
+    topicPills.forEach(p => p.addEventListener("click", () => { setActiveTopicPill(p.dataset.topic); applyFilter(); }));
+    groupMetas.forEach(g => { const btn = g.loadMoreBtn; if(!btn) return; btn.addEventListener("click", ()=>{ g.visibleLimit += PAGE_SIZE; scheduleRender({ resetPagination: false }); }); });
+    const debouncedSearch = debounce(()=>{ applyFilter(); }, SEARCH_DEBOUNCE_MS);
+    search?.addEventListener("input", debouncedSearch);
+    if(topOnly) topOnly.addEventListener("change", applyFilter);
+    if(favOnly) favOnly.addEventListener("change", applyFilter);
+    sortSel?.addEventListener("change", ()=>{ applySort(); applyFilter(); });
+    themeBtn?.addEventListener("click", toggleTheme);
+
+    navElements.forEach(nav => nav.addEventListener("scroll", updateNavScrollHints, { passive: true }));
+    window.addEventListener("resize", updateNavScrollHints);
+  }
+
+  loadTheme();
+  setActivePill("ALL");
+  setActiveTopicPill("ALL");
+  applySort();
+  initFavButtons();
+  bindEvents();
+  applyFilter();
+  updateNavScrollHints();
+})();
+</script>
+</body>
+</html>

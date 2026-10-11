@@ -1,0 +1,236 @@
+{
+  "clusters": {
+    "cluster_count": 69,
+    "cluster_size_max": 10,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 1,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 140,
+    "displayed_articles": 39,
+    "final_tagged_representatives": 69,
+    "normalized_articles": 185,
+    "raw_items": 185,
+    "relevance_filtered_articles": 81,
+    "rule_filtered_articles": 139,
+    "tagged_before_cluster": 81
+  },
+  "date": "2026-10-11",
+  "generated_at": "2026-10-11T09:03:21.889669+09:00",
+  "publishers": {
+    "missing_publisher_count": 69,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 41,
+    "no_topic_ratio": 0.5942,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5689752462907035,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[소비자민원백서] \"쓰지도 않았는데 500만 원 결제\"...신용카드 부정사...",
+        "url": "http://www.consumernews.co.kr/news/articleView.html?idxno=765542"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7788915429232658,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코인거래 13.5% 감소…카이아 조정 속 리플XRP 604억 거래",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16243584"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6242247610831184,
+        "relevance_score": 16,
+        "sector": "기타",
+        "title": "[단독]'1조원' 넘은 캄코시티…12억 회수 그친 예보, 다시 속도내나",
+        "url": "https://n.news.naver.com/mnews/article/008/0005424416?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7417578991563365,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "줄줄이 털렸는데 책임은 누가?…금융사 배상책임 커지나[K금융의 보안 ...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014244662?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7806783087088841,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"AI가 은행을 뚫었다?\"⋯금융권 연쇄 해킹이 남긴 경고",
+        "url": "https://n.news.naver.com/mnews/article/031/0001064803?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.662157436853576,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "비트코인(BTC), 10억 달러 강제 청산...또다시 8만 달러 붕괴 위기",
+        "url": "http://coinreaders.com/262535"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7151204526893237,
+        "relevance_score": 17,
+        "sector": "기타",
+        "title": "\"블록체인 넘어 금융·AI로\"…앱토스가 그리는 미래 인프라[인터뷰]",
+        "url": "https://n.news.naver.com/mnews/article/421/0009220103?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4890014599732937,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[서울전역 토허제 1년]\"가수요 잡겠다\"던 정책목표, 임대차 시장 불안만...",
+        "url": "https://n.news.naver.com/mnews/article/277/0005826695?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6783767768266835,
+        "relevance_score": 7,
+        "sector": "거시·시장",
+        "title": "[주간금융이슈] 신현송 한은 총재 첫 국감…연속 금리인상 효과·금융안...",
+        "url": "https://www.newspim.com/news/view/20261008000505"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.8850608042290504,
+        "relevance_score": 14,
+        "sector": "거시·시장",
+        "title": "美금리 뛰고 물가도 3% 위협…한은, '3연속 인상 vs 10월 동결' 기로",
+        "url": "https://n.news.naver.com/mnews/article/421/0009220088?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "거시·시장": 6,
+      "기타": 34,
+      "디지털자산": 13,
+      "여전": 2,
+      "은행": 4,
+      "입법·정책": 9,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 5,
+      "감독·제재": 1,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 1,
+      "디지털자산": 11,
+      "물가·경기지표": 1,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "상품·영업·예금금리": 2,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 2,
+      "증시·시장시황": 2,
+      "해외·글로벌": 1,
+      "환율·외환": 2
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6811500937892235,
+        "relevance_score": 20,
+        "sector": "입법·정책",
+        "title": "[2026 국감] 서민 출자금 빠지는 지역 신협…금융위, 정상화 대책 검토",
+        "url": "http://www.rightknow.co.kr/news/articleView.html?idxno=34980"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7602260624153542,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "금감원 대국민 서비스 54시간 중단…긴급 금융피해 대응은 어떻게 하나",
+        "url": "https://www.ppss.kr/news/articleView.html?idxno=314792"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8980200094482234,
+        "relevance_score": 21,
+        "sector": "기타",
+        "title": "은행도 해킹 못 피했다…원화 스테이블코인 발행 ‘보안 숙제’",
+        "url": "https://www.ekn.kr/web/view.php?key=20261010022334394"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.721243713063418,
+        "relevance_score": 18,
+        "sector": "은행",
+        "title": "신한은행 고객정보 2만5천여건 유출… 김현정 \"은행장 성과급 환수해야...",
+        "url": "https://n.news.naver.com/mnews/article/047/0002531737?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6147717649716908,
+        "relevance_score": 16,
+        "sector": "입법·정책",
+        "title": "온투업 대출 급증했지만 자본 취약… 투자자 보호 사각지대 우려",
+        "url": "https://www.g-enews.com/view.php?ud=202610100954408025cd0bfacc1c_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7801519814890682,
+        "relevance_score": 19,
+        "sector": "디지털자산",
+        "title": "\"현행 코인 과세, 2030 범법자 만든다\" 반발에…유예론 확산",
+        "url": "https://n.news.naver.com/mnews/article/008/0005424396?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.7081610139350774,
+        "relevance_score": 17,
+        "sector": "디지털자산",
+        "title": "실소유주 '그림자 경영'에 갇힌 빗썸…IPO '첩첩산중'",
+        "url": "https://n.news.naver.com/mnews/article/586/0000139691?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7247376628335742,
+        "relevance_score": 13,
+        "sector": "거시·시장",
+        "title": "작년 한은 외화자산 운용수익 17조원 육박…역대 최대",
+        "url": "https://n.news.naver.com/mnews/article/001/0016368603?sid=101"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.8850608042290504,
+        "relevance_score": 14,
+        "sector": "거시·시장",
+        "title": "美금리 뛰고 물가도 3% 위협…한은, '3연속 인상 vs 10월 동결' 기로",
+        "url": "https://n.news.naver.com/mnews/article/421/0009220088?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6358796196855035,
+        "relevance_score": 11,
+        "sector": "은행",
+        "title": "'100조 시대' 삼성전자 최대 실적...주가는 하락",
+        "url": "https://n.news.naver.com/mnews/article/052/0002417023?sid=101"
+      }
+    ],
+    "no_topic_count": 6,
+    "sector_counts": {
+      "거시·시장": 2,
+      "기타": 1,
+      "디지털자산": 2,
+      "은행": 2,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "디지털자산": 2,
+      "정책·제도개선": 1,
+      "환율·외환": 1
+    }
+  }
+}
