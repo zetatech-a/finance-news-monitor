@@ -1,0 +1,91 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 22,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 22,
+  "candidate_hybrid_gray_rule_drop": 43,
+  "candidate_hybrid_gray_rule_keep": 22,
+  "candidate_hybrid_keep_overseas_global_reference": 16,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 188,
+  "candidate_hybrid_model_drop": 9,
+  "candidate_hybrid_model_keep": 61,
+  "candidate_hybrid_model_keep_with_domain_anchor": 61,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 188,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-12",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 22,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 5,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 43,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 22,
+    "candidate_hybrid_keep_overseas_global_reference": 16,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 188,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 9,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 61
+  },
+  "dropped_count": 89,
+  "input_count": 381,
+  "kept_count": 292,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 381,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 9,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[단독] 불난 데 기름 부은 '농지 전수조사'... 농축협 부실 대출액 4배 ...",
+      "url": "https://www.hankookilbo.com/news/article/A2026101021140003613?did=NA"
+    },
+    {
+      "title": "제주도, 제주신협 '자원순환 우수업소'로 선정",
+      "url": "http://www.samdailbo.com/news/articleView.html?idxno=271138"
+    },
+    {
+      "title": "\"조합 10곳 중 6곳 적자\"…산림조합 부실 눈덩이인데 임원 보수는 매년...",
+      "url": "https://www.thepublic.kr/news/articleView.html?idxno=321684"
+    },
+    {
+      "title": "[MMM]주식 투자할 때도 '금리'를 살펴봐야 하는 이유",
+      "url": "https://www.mt.co.kr/finance/2026/10/12/2026101114410588829"
+    },
+    {
+      "title": "해킹 사고에 5대 은행장 국감 증인 줄소환",
+      "url": "https://www.globalepic.co.kr/view.php?ud=2026101208382760897cc35ccc5c_29"
+    },
+    {
+      "title": "[기업기상도] 가을 하늘 높은 기업 vs 가을 서리 내린 기업",
+      "url": "http://www.yonhapnewstv.co.kr/news/MYH20261009165625QF0"
+    },
+    {
+      "title": "저항선에서 멈춘 비트코인·이더리움 향방은",
+      "url": "https://www.khgames.co.kr/news/articleView.html?idxno=309181"
+    },
+    {
+      "title": "5% 주담대의 급증, 금리 충격을 '개별 차주'에게만 떠넘길 것인가 [서지...",
+      "url": "https://www.dailian.co.kr/news/view/1699256/?sc=Naver"
+    },
+    {
+      "title": "가계대출 늘고 환차익까지 … 4대금융 3분기 실적 신기록",
+      "url": "https://www.mk.co.kr/article/12173094"
+    }
+  ]
+}

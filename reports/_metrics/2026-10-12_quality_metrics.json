@@ -1,0 +1,257 @@
+{
+  "clusters": {
+    "cluster_count": 178,
+    "cluster_size_max": 36,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 397,
+    "displayed_articles": 116,
+    "final_tagged_representatives": 178,
+    "normalized_articles": 646,
+    "raw_items": 646,
+    "relevance_filtered_articles": 292,
+    "rule_filtered_articles": 381,
+    "tagged_before_cluster": 292
+  },
+  "date": "2026-10-12",
+  "generated_at": "2026-10-12T09:05:00.774038+09:00",
+  "publishers": {
+    "missing_publisher_count": 178,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 93,
+    "no_topic_ratio": 0.5225,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7696516320826438,
+        "relevance_score": 13,
+        "sector": "은행",
+        "title": "[국감 2026] 장민영 IBK기업은행장, \"금융사고 무겁게 받아들여\"",
+        "url": "https://news.dealsitetv.com/articles/176814"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.4097037897642098,
+        "relevance_score": 19,
+        "sector": "기타",
+        "title": "5000만원 이하 소액 장기연체 소멸시효 완성시 금융회사 대손인정 가능",
+        "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202610120833105490090"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7388662698522304,
+        "relevance_score": 8,
+        "sector": "디지털자산",
+        "title": "[원자재 시황] 중동 긴장 완화에 금·코인 상승",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1727353"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5435666183479221,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "금감원 사전점검·예방 강조에도 애프터마켓 SOR 장애",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=351765"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.759611174700992,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "삼성생명, 2조 규모 해외 신종자본증권 발행 결정",
+        "url": "https://news.dealsitetv.com/articles/176831"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.5592775414866237,
+        "relevance_score": 9,
+        "sector": "대부",
+        "title": "'금융사 좀비 추심' 제동...李 \"죽을 때까지 10배, 20배 빚 늘어\" 직격",
+        "url": "https://n.news.naver.com/mnews/article/014/0005587556?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7556332741332684,
+        "relevance_score": 4,
+        "sector": "자산운용·연기금",
+        "title": "'업토버' 무색해진 ETF 시장…비트코인·이더리움·솔라나 모두 마이너...",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=706253"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6690689315403144,
+        "relevance_score": 9,
+        "sector": "감독·제재",
+        "title": "금융보안원 5월 미토스 대응 논의…9월 3일 AI 보안시험 평가 근거는?",
+        "url": "http://www.breaknews.com/1242121"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6762742339742027,
+        "relevance_score": 4,
+        "sector": "자산운용·연기금",
+        "title": "비트와이즈, 도지코인(DOGE) ETF 10월 14일 폐쇄...\"비극적인 일\"",
+        "url": "http://coinreaders.com/262590"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6796724508627623,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "[숫자로 읽는 금융 ⑤] 리볼빙 270만원, 갚는 방식 따라 이자 21만원 vs ...",
+        "url": "https://www.raonnews.com/news/article.html?no=61769"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 2,
+      "거시·시장": 17,
+      "기타": 72,
+      "대부": 10,
+      "디지털자산": 24,
+      "보험": 4,
+      "상호금융": 6,
+      "여전": 6,
+      "은행": 18,
+      "입법·정책": 10,
+      "자산운용·연기금": 6,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 10,
+      "감독·제재": 1,
+      "건전성·자본규제": 4,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 18,
+      "기업금융·익스포저": 5,
+      "디지털자산": 24,
+      "물가·경기지표": 5,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 4,
+      "상품·영업·예금금리": 3,
+      "서민금융·대환·채무조정": 2,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 8,
+      "일정·브리핑": 4,
+      "자금시장·유동성": 2,
+      "정책·제도개선": 1,
+      "증시·시장시황": 3,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 13,
+      "환율·외환": 6
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8577733760231046,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "[공동기획] 거래소 공지서 사라진 DAXA 각자도생 전말 〈내외경제TV〉",
+        "url": "https://www.globale.co.kr/news/articleView.html?idxno=40895"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7741258876930731,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "불법사금융, 32% 느는 동안 검거는 19% 증가 그쳐",
+        "url": "https://www.datasom.co.kr/news/articleView.html?idxno=210240"
+      },
+      {
+        "cluster_size": 7,
+        "relevance_prob": 0.6974174186271342,
+        "relevance_score": 22,
+        "sector": "여전",
+        "title": "금융권 '빚 독촉' 무한 반복 막는다…소멸시효 연장 제한",
+        "url": "https://www.ajunews.com/view/20261012080150235"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8814148613663435,
+        "relevance_score": 27,
+        "sector": "기타",
+        "title": "보안 AI 활용 제약·외부접점 관리 허점 도마…이억원, 망분리 규제 개...",
+        "url": "https://www.fntimes.com/html/view.php?ud=202610120155201821b5a221379_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7617140258908648,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "\"내수 살리자니 집값 들썩\"…피벗 개시 속 한은의 '가계부채 2차 딜레마...",
+        "url": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065589558199112"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7599483698358617,
+        "relevance_score": 22,
+        "sector": "상호금융",
+        "title": "부실채권 5.8조 털어내도…상호금융 10곳 중 1곳 연체율 두 자릿수",
+        "url": "https://www.kbmaeil.com/article/20261012500007"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7955316499713365,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "금리 더 올릴까…신현송 첫 국감·미국 물가에 쏠린 눈",
+        "url": "https://n.news.naver.com/mnews/article/648/0000051470?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.779417701507921,
+        "relevance_score": 20,
+        "sector": "상호금융",
+        "title": "상호금융 339곳 연체율 두 자릿수…반년 새 66% 급증",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=723521"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7188823237990428,
+        "relevance_score": 20,
+        "sector": "상호금융",
+        "title": "[2026 국감] 상호금융 부실 '빨간불'…조합·금고 339곳 연체율 두 자릿...",
+        "url": "https://n.news.naver.com/mnews/article/119/0003141515?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7869160094511396,
+        "relevance_score": 22,
+        "sector": "자산운용·연기금",
+        "title": "막오른 금융권 국정감사… ETF·가계대출·보안 쟁점 부상",
+        "url": "https://www.insnews.co.kr/news/articleView.html?idxno=93251"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 1,
+      "상호금융": 3,
+      "여전": 1,
+      "은행": 1,
+      "자산운용·연기금": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 2,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "연체·부실": 3,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
