@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 6,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 52,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 8,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 10,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 51,
+  "candidate_hybrid_gray_rule_drop": 107,
+  "candidate_hybrid_gray_rule_keep": 51,
+  "candidate_hybrid_keep_overseas_global_reference": 19,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 563,
+  "candidate_hybrid_model_drop": 16,
+  "candidate_hybrid_model_keep": 249,
+  "candidate_hybrid_model_keep_with_domain_anchor": 249,
+  "candidate_hybrid_negative_drop": 10,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 563,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-13",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 6,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 52,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 8,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 17,
+    "candidate_hybrid_drop_negative_signal": 10,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 10,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 107,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 51,
+    "candidate_hybrid_keep_overseas_global_reference": 19,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 563,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 2,
+    "candidate_hybrid_model_drop_prob_le_threshold": 16,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 249
+  },
+  "dropped_count": 229,
+  "input_count": 1123,
+  "kept_count": 894,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1123,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 19,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "신규 발급만 막은 영업정지…롯데카드 카드론은 그 사이 늘었다",
+      "url": "https://www.greened.kr/news/articleView.html?idxno=351829"
+    },
+    {
+      "title": "손보사들, 3Q 본업 선방에도 실적 주춤 예고",
+      "url": "https://www.tleaves.co.kr/news/articleView.html?idxno=9956"
+    },
+    {
+      "title": "[CEO 레이더] 토스뱅크_이은미 대표, 금리 오류 등 사고 7건 고객 1만348...",
+      "url": "https://www.newsworker.co.kr/news/articleView.html?idxno=508142"
+    },
+    {
+      "title": "해킹 사고에 5대 은행장 국감 증인 줄소환",
+      "url": "https://www.globalepic.co.kr/view.php?ud=2026101208382760897cc35ccc5c_29"
+    },
+    {
+      "title": "[2026국감] 책무구조도 도입 후 금융사고 203건…책임규명·제재는 '0건'",
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=214428"
+    },
+    {
+      "title": "메타의 뮤즈 vs 오픈AI의 닷 [이승현의 AI 네이티브]",
+      "url": "https://it.chosun.com/news/articleView.html?idxno=2023092171854"
+    },
+    {
+      "title": "신한카드 박창훈, 조직·AI 혁신… 하반기 성과로 연임 잇나",
+      "url": "http://www.lkp.news/news/articleView.html?idxno=84820"
+    },
+    {
+      "title": "'실속'·'고정비 절감형' 체크카드가 뜬다",
+      "url": "https://www.goodkyung.com/news/articleView.html?idxno=292240"
+    },
+    {
+      "title": "권병효 365데일리뱅킹 대표 \"POS 바꾸지 않고 홀·배달 매출 익일 정산\"",
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5070179"
+    },
+    {
+      "title": "[투데이 Pick] 저PBR 명단 발표 앞두고 은행주 재조명…가치 제고 과제 ...",
+      "url": "https://www.news2day.co.kr/article/20261012500338"
+    }
+  ]
+}
