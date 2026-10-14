@@ -1,0 +1,286 @@
+{
+  "clusters": {
+    "cluster_count": 359,
+    "cluster_size_max": 77,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 6,
+    "mega_cluster_count": 3,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 77,
+        "relevance_prob": 0.8432052166110298,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "개미, 주식 7조 던지고 채권 10조 담았다",
+        "url": "https://n.news.naver.com/mnews/article/009/0005747988?sid=101"
+      },
+      {
+        "cluster_size": 53,
+        "relevance_prob": 0.8281410199283691,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "미신고 가상자산업체 웹사이트 27곳 국내 접속 차단...쿠코인·MEXC 포함",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=322098"
+      },
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.8670926907195686,
+        "relevance_score": 20,
+        "sector": "감독·제재",
+        "title": "새마을금고도 정보유출, 금융위 해킹 대응 재점검",
+        "url": "http://www.press9.kr/news/articleView.html?idxno=84160"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1032,
+    "displayed_articles": 240,
+    "final_tagged_representatives": 359,
+    "normalized_articles": 1489,
+    "raw_items": 1489,
+    "relevance_filtered_articles": 771,
+    "rule_filtered_articles": 991,
+    "tagged_before_cluster": 771
+  },
+  "date": "2026-10-14",
+  "generated_at": "2026-10-14T09:08:23.605791+09:00",
+  "publishers": {
+    "missing_publisher_count": 359,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 131,
+    "no_topic_ratio": 0.3649,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8131927830498991,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "신현송 한은 총재가 제2금융 영향력 확대 주력하는 이유는?",
+        "url": "https://n.news.naver.com/mnews/article/016/0002708968?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8427977616064106,
+        "relevance_score": 14,
+        "sector": "기타",
+        "title": "금융위, 오늘 해킹사고 점검회의…새마을금고 유출도 살핀다",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=872563"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7335487529195697,
+        "relevance_score": 4,
+        "sector": "은행",
+        "title": "금융당국, 잇단 해킹 사고에 보안점검 결과 점검…추가 대응책 논의",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=280254"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6658155058080623,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "국민의힘 장동혁·정점식, “국정 난맥과 반기업 기조 질타”",
+        "url": "http://www.breaknews.com/1242804"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.920087384070157,
+        "relevance_score": 14,
+        "sector": "저축은행",
+        "title": "금융위, 오늘 해킹 대응 점검회의…새마을금고·OK저축은행 사고도 논의",
+        "url": "https://n.news.naver.com/mnews/article/421/0009226065?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6740799732591792,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "이더리움 디레버리징의 양날의 검… 폭락 위험 줄였지만 랠리 동력 약화",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=495057"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6742358056690634,
+        "relevance_score": 20,
+        "sector": "기타",
+        "title": "[오늘의 신문] 한화·HD현대·4대그룹 임원 인사 앞당겨·IMF 한국 성장률...",
+        "url": "http://kor.theasian.asia/archives/418455"
+      },
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.8670926907195686,
+        "relevance_score": 20,
+        "sector": "감독·제재",
+        "title": "새마을금고도 정보유출, 금융위 해킹 대응 재점검",
+        "url": "http://www.press9.kr/news/articleView.html?idxno=84160"
+      },
+      {
+        "cluster_size": 7,
+        "relevance_prob": 0.8326559079826509,
+        "relevance_score": 13,
+        "sector": "은행",
+        "title": "5대 은행, 간편송금 피싱 지급정지 3.5배 급증",
+        "url": "http://www.press9.kr/news/articleView.html?idxno=84151"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5944526653042186,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "국세청 국감, 여·야가 따로 없었다…'세무조사 남용·사각지대 방치' 질...",
+        "url": "https://www.sejungilbo.com/news/articleView.html?idxno=60613"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 4,
+      "감독·제재": 11,
+      "거시·시장": 32,
+      "기타": 129,
+      "대부": 7,
+      "디지털자산": 47,
+      "보험": 21,
+      "상호금융": 13,
+      "여전": 14,
+      "은행": 41,
+      "입법·정책": 21,
+      "자산운용·연기금": 6,
+      "저축은행": 8,
+      "증권(브로커리지/리테일)": 3,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 13,
+      "감독·제재": 3,
+      "건전성·자본규제": 21,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 27,
+      "기업금융·익스포저": 5,
+      "디지털자산": 50,
+      "물가·경기지표": 1,
+      "부동산·PF": 27,
+      "불법사금융·불법추심·보이스피싱": 33,
+      "사고·사기·횡령": 8,
+      "상품·영업·예금금리": 11,
+      "서민금융·대환·채무조정": 8,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 9,
+      "연체·부실": 20,
+      "자금시장·유동성": 12,
+      "정책·제도개선": 4,
+      "증시·시장시황": 13,
+      "칼럼·오피니언": 10,
+      "해외·글로벌": 21,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8716230740987788,
+        "relevance_score": 35,
+        "sector": "감독·제재",
+        "title": "FIU, 미신고 가상자산사업자 사이트 27곳 차단...불법 영업 대응 강화",
+        "url": "https://www.redian.org/news/articleView.html?idxno=257453"
+      },
+      {
+        "cluster_size": 53,
+        "relevance_prob": 0.8281410199283691,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "미신고 가상자산업체 웹사이트 27곳 국내 접속 차단...쿠코인·MEXC 포함",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=322098"
+      },
+      {
+        "cluster_size": 11,
+        "relevance_prob": 0.8597629823981926,
+        "relevance_score": 29,
+        "sector": "디지털자산",
+        "title": "람다256, KPEX 2026서 가상자산 수사 솔루션 '클레어 인베스티게이션' 선...",
+        "url": "https://kr.aving.net/news/articleView.html?idxno=1815380"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8310718961141462,
+        "relevance_score": 22,
+        "sector": "상호금융",
+        "title": "[2026 국감] 신협·새마을금고 절반 이상 상반기 손실…이억원 \"건전성 ...",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=322035"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8170570348334918,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "[더벨][thebell interview] \"스테이블코인·토큰화 확산, 투자·조달 변화...",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202610052115511760109615"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8721123431914214,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "(단독)NPL 우회 매각에 김포 PF 구조조정 5년째 지연",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1316485&inflow=N"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8269435328623719,
+        "relevance_score": 23,
+        "sector": "IB·자본시장",
+        "title": "CP 금리 2년만 최고…기업 자금조달 부담 커지나",
+        "url": "https://www.etoday.co.kr/news/view/2635181"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8385950621721011,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "금융정책 사령탑 세종으로…엇갈린 금융위·금감원 운명",
+        "url": "https://n.news.naver.com/mnews/article/079/0004198430?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8828809832184666,
+        "relevance_score": 23,
+        "sector": "저축은행",
+        "title": "[기획] PF 연체율 반년 새 두자릿 '급등', 저축은행·상호금융 부실 '뇌...",
+        "url": "https://www.m-i.kr/news/articleView.html?idxno=2005267"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7571768614433008,
+        "relevance_score": 25,
+        "sector": "여전",
+        "title": "한국신용카드학회, 19일 캐피탈 미래비전 포럼 개최",
+        "url": "https://n.news.naver.com/mnews/article/119/0003142040?sid=101"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "여전": 1,
+      "입법·정책": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 1,
+      "기업금융·익스포저": 1,
+      "디지털자산": 4,
+      "부동산·PF": 2,
+      "연체·부실": 2,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 1
+    }
+  }
+}

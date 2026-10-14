@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 6,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 46,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 53,
+  "candidate_hybrid_gray_rule_drop": 121,
+  "candidate_hybrid_gray_rule_keep": 53,
+  "candidate_hybrid_keep_overseas_global_reference": 36,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 468,
+  "candidate_hybrid_model_drop": 19,
+  "candidate_hybrid_model_keep": 206,
+  "candidate_hybrid_model_keep_with_domain_anchor": 206,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 468,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-14",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 6,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 46,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 9,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 121,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 53,
+    "candidate_hybrid_keep_overseas_global_reference": 36,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 468,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 19,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 206
+  },
+  "dropped_count": 220,
+  "input_count": 991,
+  "kept_count": 771,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 991,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 18,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "빚에서 은퇴 못한 고령층… 고금리 빚, 60대 이상이 가장 많다",
+      "url": "https://www.chosun.com/economy/economy_general/2026/10/14/GNE7OC7WCRCZZO5WJNXJJ3BSEA/?utm_source=naver&utm_medium=referral&utm_campaign=naver-news"
+    },
+    {
+      "title": "[포커스] 순이익·건전성 잡은 김재관 KB카드 대표, 카드수익이 연임 변...",
+      "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=815728"
+    },
+    {
+      "title": "케이뱅크, 3분기 순익 늘린다···사업자대출 급증 효과",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=713625"
+    },
+    {
+      "title": "[금융권 이모저모]신한자산운용, 미국 가치주 펀드 순자산 1000억원 돌파...",
+      "url": "https://www.businessplus.kr/news/articleView.html?idxno=118070"
+    },
+    {
+      "title": "[패트롤]경북도의회-경북농협-남부지방산림청",
+      "url": "https://www.ekn.kr/web/view.php?key=20261013026095670"
+    },
+    {
+      "title": "김포시산림조합, 도시개발사업 산림·조경 분야 참여 초석 마련",
+      "url": "https://www.jasm.co.kr/news/view/321222/?sc=Naver"
+    },
+    {
+      "title": "SGI서울보증, 본업 회복·주주환원 강화…ROE 10% 정조준",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=872278"
+    },
+    {
+      "title": "5대 은행장 국감 줄소환…AI 해킹·금융사고가 연임 가르나",
+      "url": "https://www.newsis.com/view/NISX20261013_0003823487"
+    },
+    {
+      "title": "신한은행, 해운산업 금융지원 확대…친환경 선박 전환 돕는다",
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=214625"
+    },
+    {
+      "title": "신한은행, 해운협과 중견·중소 해운기업 맞춤형 금융지원 협약",
+      "url": "http://www.efnews.co.kr/news/articleView.html?idxno=133074"
+    }
+  ]
+}
