@@ -55,7 +55,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # kill switch: daily와 같은 repository variable을 따른다(0이면 호출하지 않는다).
           GEMINI_ENABLED: ${{ vars.GEMINI_ENABLED }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          GEMINI_MODEL: gemini-3.5-flash-lite
           # 처리량 4종은 dispatch input이 항상 값을 가지므로 repository variable보다 우선한다.
           GEMINI_MAX_SUMMARIES: ${{ inputs.gemini_max_summaries }}
           GEMINI_BATCH_MAX_ARTICLES: ${{ inputs.gemini_batch_max_articles }}
