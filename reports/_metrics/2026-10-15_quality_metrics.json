@@ -1,0 +1,265 @@
+{
+  "clusters": {
+    "cluster_count": 387,
+    "cluster_size_max": 64,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 64,
+        "relevance_prob": 0.7194244191833664,
+        "relevance_score": 20,
+        "sector": "기타",
+        "title": "첨단전략기금채권, 현재까지 2조원 발행…산은, 금리 역마진 부담 '가중...",
+        "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202610141421276500556"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 991,
+    "displayed_articles": 283,
+    "final_tagged_representatives": 387,
+    "normalized_articles": 1648,
+    "raw_items": 1648,
+    "relevance_filtered_articles": 735,
+    "rule_filtered_articles": 981,
+    "tagged_before_cluster": 735
+  },
+  "date": "2026-10-15",
+  "generated_at": "2026-10-15T09:20:16.150859+09:00",
+  "publishers": {
+    "missing_publisher_count": 387,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 172,
+    "no_topic_ratio": 0.4444,
+    "no_topic_samples": [
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.4365821820190056,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "기업銀 중기대출 1년 이상 장기연체 5700억…3년 반 만에 6배 급증",
+        "url": "https://www.sentv.co.kr/article/view/sentv202610150022"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5877089682719783,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "대한노인회 경기 고양시 일산동구지회, 경로당 찾아가 어르신에게 경제...",
+        "url": "https://www.100ssd.co.kr/news/articleView.html?idxno=213041"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7000163426834642,
+        "relevance_score": 5,
+        "sector": "저축은행",
+        "title": "'원 애큐온'의 힘…애큐온캐피탈·저축은행, 협업 금융 2조 넘겼다",
+        "url": "https://www.m-i.kr/news/articleView.html?idxno=2006102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7686908138741692,
+        "relevance_score": 5,
+        "sector": "대부",
+        "title": "해킹 피해 16곳 중 12곳 비은행…전금법 밖 GA·대부업 보안 대책도 검토",
+        "url": "https://www.raonnews.com/news/article.html?no=61891"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7103579827320426,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "美 물가 예상 웃돌자 비트코인 주춤…1억1000만원선 '제자리걸음'",
+        "url": "https://n.news.naver.com/mnews/article/003/0014254491?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6673464837713936,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "단순히 사 모으던 시대는 끝났다… XRP 주당 수익률 극대화 작전",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=495401"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6555274890506538,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[코인브리핑] 비트코인 박스권 갇혀…트럼프 후티 보복 가능성 시사",
+        "url": "https://www.asiatime.co.kr/article/20261014500443"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7141618591790977,
+        "relevance_score": 6,
+        "sector": "대부",
+        "title": "강남권 고교 동창이 모여 벌인 일…‘568억 원짜리 도박판’",
+        "url": "https://n.news.naver.com/mnews/article/056/0012274089?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6559223757663191,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "\"한국에서 만든 폰인데 정작 한국은 제외?\"…갤럭시 새 기능에 무슨 일...",
+        "url": "https://n.news.naver.com/mnews/article/277/0005828655?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7565284757963093,
+        "relevance_score": 18,
+        "sector": "상호금융",
+        "title": "[중소금융 내부고발] 보복하면 회사가 입증해야…'최대 10억' 중소금융 ...",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=615449"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 12,
+      "거시·시장": 19,
+      "기타": 114,
+      "대부": 43,
+      "디지털자산": 51,
+      "보험": 19,
+      "상호금융": 20,
+      "여전": 16,
+      "은행": 39,
+      "입법·정책": 28,
+      "자산운용·연기금": 5,
+      "저축은행": 16,
+      "증권(브로커리지/리테일)": 4
+    },
+    "topic_counts": {
+      "가계대출·부채": 7,
+      "감독·제재": 3,
+      "건전성·자본규제": 18,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 22,
+      "기업금융·익스포저": 7,
+      "디지털자산": 53,
+      "물가·경기지표": 5,
+      "부동산·PF": 14,
+      "불법사금융·불법추심·보이스피싱": 37,
+      "사고·사기·횡령": 9,
+      "상품·영업·예금금리": 3,
+      "서민금융·대환·채무조정": 9,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 6,
+      "연체·부실": 31,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 7,
+      "정책·제도개선": 4,
+      "증시·시장시황": 5,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 18,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8986710765433663,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "가상자산거래소 유동성 격차 뚜렷…“시장조성만으론 한계”",
+        "url": "https://n.news.naver.com/mnews/article/018/0006387753?sid=101"
+      },
+      {
+        "cluster_size": 18,
+        "relevance_prob": 0.8177060448641094,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "인터넷은행 부실채권 매각 8800억 넘어…73% 민간으로",
+        "url": "https://www.news2day.co.kr/article/20261014500170"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8952766064036345,
+        "relevance_score": 28,
+        "sector": "상호금융",
+        "title": "금융권 연쇄 해킹, 제2금융권까지…보안 허점 노출",
+        "url": "https://www.ggilbo.com/news/articleView.html?idxno=1186917"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8651256792324011,
+        "relevance_score": 30,
+        "sector": "입법·정책",
+        "title": "금융사 비리 제보 '최대 10억원'…금감원, 내부통제 감시망 확대",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=280442"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.88032676641865,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "한국은행 비은행 감시권 어디까지…정보 공유 넘어 검사권 넓히나",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026101411520707220"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7596545308154585,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "네이버·두나무 결합에 커지는 논란 … 독과점·특혜 의혹에 총리실 해...",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/10/14/2026101400120.html"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.879188354099266,
+        "relevance_score": 25,
+        "sector": "입법·정책",
+        "title": "산은캐피탈·고팍스도 침해사고…금융사 130곳 보안관리 미흡",
+        "url": "https://sateconomy.co.kr/news/view/1065565336962999"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8876507393839363,
+        "relevance_score": 27,
+        "sector": "기타",
+        "title": "‘금융권 해킹’ 16개사서 10만여건 고객정보 유출 확인",
+        "url": "https://n.news.naver.com/mnews/article/032/0003476356?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7446492670915809,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "OK저축銀, NPL 매수업체에 60억 대출…PF 위험 정말 사라졌나(1부)",
+        "url": "https://www.the-today.com/news/articleView.html?idxno=91681"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7898613327942825,
+        "relevance_score": 22,
+        "sector": "대부",
+        "title": "불법사금융을 줄이기 위해 등록대부업의 제도권 역할을 다시 세울 때 [서...",
+        "url": "https://n.news.naver.com/mnews/article/119/0003142907?sid=101"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 2,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "은행": 1,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "디지털자산": 3,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "연체·부실": 2,
+      "자금시장·유동성": 1
+    }
+  }
+}
