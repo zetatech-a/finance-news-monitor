@@ -1,0 +1,260 @@
+{
+  "clusters": {
+    "cluster_count": 327,
+    "cluster_size_max": 85,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 85,
+        "relevance_prob": 0.7267693734517339,
+        "relevance_score": 19,
+        "sector": "거시·시장",
+        "title": "물가 잡으려면 금리 올려야 하는데…고민 커진 한은·연준",
+        "url": "https://n.news.naver.com/mnews/article/025/0003558318?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1003,
+    "displayed_articles": 222,
+    "final_tagged_representatives": 327,
+    "normalized_articles": 1424,
+    "raw_items": 1424,
+    "relevance_filtered_articles": 675,
+    "rule_filtered_articles": 994,
+    "tagged_before_cluster": 675
+  },
+  "date": "2026-10-16",
+  "generated_at": "2026-10-16T09:16:30.480131+09:00",
+  "publishers": {
+    "missing_publisher_count": 327,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 122,
+    "no_topic_ratio": 0.3731,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8326226994148745,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "챗GPT에 둥둥 뜨는 '임상시험 문건'…식약처 \"사과\"",
+        "url": "https://n.news.naver.com/mnews/article/003/0014257398?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7310117587484948,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "“한우 20% 싸지면 사줘” 한마디에…쇼핑·결제까지 끝내는 AI",
+        "url": "https://n.news.naver.com/mnews/article/018/0006389111?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.807525962777714,
+        "relevance_score": 6,
+        "sector": "상호금융",
+        "title": "대구 새마을금고 적자 지속…올해 상반기 4곳 합병",
+        "url": "https://n.news.naver.com/mnews/article/088/0001034727?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6002496862945366,
+        "relevance_score": 6,
+        "sector": "디지털자산",
+        "title": "토스인사이트 \"토큰화 자산 391억달러 시장, 금융 앱이 개인투자자 접점...",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=753805"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.5743575210462827,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[단독] '반기문 여동생' 사칭으로 투자 유도…수천만 원 뜯어낸 사기꾼...",
+        "url": "https://n.news.naver.com/mnews/article/057/0001973739?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5309906439134462,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[오늘의 브릿지경제 1면] 거대자본 업은 C조선, K조선 주력 노린다",
+        "url": "https://www.viva100.com/article/20261015501221"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6739467976215977,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "개미들 묶이고 세력만 방긋.. 러시아, 스베르방크 등 허가받은 거래소만...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=495782"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8389603351609819,
+        "relevance_score": 14,
+        "sector": "감독·제재",
+        "title": "금융위 '세종行'에 달라진 인사 셈법…부위원장 '내부 승진론' 급부상",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4439530"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5727244902105886,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "해킹 막고 순익은 최대…이은미 토스뱅크 행장 [인물 포커스]",
+        "url": "https://www.ngetnews.com/news/articleView.html?idxno=554605"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6730922652693189,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "개인 넘어 기업 대출도 함께…인뱅-지방은행 협업 확장",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=707513"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 4,
+      "감독·제재": 5,
+      "거시·시장": 29,
+      "기타": 115,
+      "대부": 26,
+      "디지털자산": 44,
+      "보험": 8,
+      "상호금융": 13,
+      "여전": 13,
+      "은행": 38,
+      "입법·정책": 14,
+      "자산운용·연기금": 5,
+      "저축은행": 11,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 47,
+      "감독·제재": 4,
+      "건전성·자본규제": 7,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 29,
+      "기업금융·익스포저": 10,
+      "디지털자산": 40,
+      "물가·경기지표": 1,
+      "부동산·PF": 10,
+      "불법사금융·불법추심·보이스피싱": 30,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 18,
+      "서민금융·대환·채무조정": 5,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 27,
+      "자금시장·유동성": 11,
+      "정책·제도개선": 6,
+      "증시·시장시황": 12,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 14,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.6543474460816154,
+        "relevance_score": 28,
+        "sector": "은행",
+        "title": "9월 금융권 가계대출 2.2조↓... 올해 첫 감소",
+        "url": "https://n.news.naver.com/mnews/article/310/0000140847?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7315546301527768,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "탈탈 털리는 은행들...업비트ㆍ빗썸ㆍ코인원 3대장 보안 \"누가 누가 잘하...",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=753803"
+      },
+      {
+        "cluster_size": 11,
+        "relevance_prob": 0.8843676826742645,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "'연 2만％ 초고금리 대출' 불법사금융 조직 16명 검거",
+        "url": "https://www.gnnews.co.kr/news/articleView.html?idxno=647531"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.9113933403252605,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "美·EU는 룰 세팅 끝냈는데…표류하는 '디지털자산 2단계법'",
+        "url": "https://n.news.naver.com/mnews/article/586/0000139996?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8523489190353841,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "경남경찰청, 연 이자 2만% 불법사금융 조직 16명 검거",
+        "url": "http://www.breaknews.com/1243291"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8496047624187101,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "연 2만% 이자에 가족까지 협박한 불법사금융 조직 16명 검거",
+        "url": "http://www.newstown.co.kr/news/articleView.html?idxno=718657"
+      },
+      {
+        "cluster_size": 16,
+        "relevance_prob": 0.6415292239128431,
+        "relevance_score": 28,
+        "sector": "은행",
+        "title": "은행권 9월 가계대출 증가폭 축소…'빚투' 꺾였다",
+        "url": "https://www.wikileaks-kr.org/news/articleView.html?idxno=193305"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.749318268620867,
+        "relevance_score": 23,
+        "sector": "저축은행",
+        "title": "'먹튀' PEF 떠난 저축은행업계, 장기 자산운용으로 체질 전환하나",
+        "url": "https://www.goodkyung.com/news/articleView.html?idxno=292391"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7895070344696322,
+        "relevance_score": 20,
+        "sector": "은행",
+        "title": "인터넷은행 3사 부실채권 3년여간 8,808억원 매각, 73% 민간업체로",
+        "url": "http://www.breaknews.com/1243164"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.8291452749425173,
+        "relevance_score": 21,
+        "sector": "저축은행",
+        "title": "OK저축은행 고객 250명 정보유출…현재 은행·저축은행·캐피탈 등 총 1...",
+        "url": "https://www.dailysecu.com/news/articleView.html?idxno=208898"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "대부": 3,
+      "디지털자산": 2,
+      "은행": 3,
+      "저축은행": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 2,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "연체·부실": 2
+    }
+  }
+}
