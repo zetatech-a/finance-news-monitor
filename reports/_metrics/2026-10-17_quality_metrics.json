@@ -1,0 +1,268 @@
+{
+  "clusters": {
+    "cluster_count": 299,
+    "cluster_size_max": 58,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 58,
+        "relevance_prob": 0.7520813142366948,
+        "relevance_score": 34,
+        "sector": "거시·시장",
+        "title": "\"우리 경제 기초여건 견조\"…정부, 금융시장 위험요인 긴급 점검",
+        "url": "https://news.bbsi.co.kr/news/articleView.html?idxno=4112691"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 736,
+    "displayed_articles": 230,
+    "final_tagged_representatives": 299,
+    "normalized_articles": 1001,
+    "raw_items": 1001,
+    "relevance_filtered_articles": 530,
+    "rule_filtered_articles": 733,
+    "tagged_before_cluster": 530
+  },
+  "date": "2026-10-17",
+  "generated_at": "2026-10-17T09:13:25.583654+09:00",
+  "publishers": {
+    "missing_publisher_count": 299,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 105,
+    "no_topic_ratio": 0.3512,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.39220773525581365,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "김기문 \"대기업만 호황 누려선 안 돼\"…中企 양극화 해소 촉구",
+        "url": "http://www.kbiznews.co.kr/news/articleView.html?idxno=114976"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.726563407679105,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "XRP 1.30달러선 지지대 깨지면 전멸… 파생상품 매수 과열에 닥쳐올 피바...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=496073"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6699730250377033,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "개미들 속 타는데 큰손들은 '줍줍'…반등에 돈 몰렸다",
+        "url": "https://n.news.naver.com/mnews/article/215/0001269466?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6915945853286254,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "“아마존 주소인데 가짜?”…알파벳 한 글자 바꾼 피싱의 진실",
+        "url": "https://n.news.naver.com/mnews/article/033/0000052776?sid=103"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6276280650991625,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "李 대통령 \"장기간 고금리 시대…정부가 연체채권 매입\" [많이 본 경제기...",
+        "url": "https://n.news.naver.com/mnews/article/374/0000538304?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6865036521783685,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "아이티센그룹, 금·교육·스포츠로 보폭 확대…신사업 다각화",
+        "url": "https://daily.hankooki.com/news/articleView.html?idxno=1415564"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7518629417445756,
+        "relevance_score": 22,
+        "sector": "기타",
+        "title": "다음 주 금융당국 일정",
+        "url": "https://n.news.naver.com/mnews/article/018/0006389904?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8447742779261452,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "금융위 세종행에 금융권 '비상'…금감원·국책은행도 '초긴장'",
+        "url": "https://n.news.naver.com/mnews/article/123/0002392042?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6298894597158216,
+        "relevance_score": 7,
+        "sector": "은행",
+        "title": "[금융 게시판] 18일 금융거래 일시 중단…카카오뱅크·케이뱅크·경남은...",
+        "url": "https://www.lcnews.co.kr/news/articleView.html?idxno=209775"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8482913172053749,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[Lawyter] 휴대폰 송금 피해 고객 탓?… 러시아는 은행 책임 묻는다",
+        "url": "https://www.lawtimes.co.kr/news/articleView.html?idxno=227838"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 8,
+      "거시·시장": 26,
+      "기타": 79,
+      "대부": 16,
+      "디지털자산": 47,
+      "보험": 8,
+      "상호금융": 23,
+      "여전": 3,
+      "은행": 50,
+      "입법·정책": 26,
+      "자산운용·연기금": 2,
+      "저축은행": 8,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 19,
+      "감독·제재": 4,
+      "건전성·자본규제": 8,
+      "규제·가계부채": 4,
+      "금리·수수료·최고금리": 20,
+      "기업금융·익스포저": 8,
+      "디지털자산": 58,
+      "물가·경기지표": 2,
+      "부동산·PF": 9,
+      "불법사금융·불법추심·보이스피싱": 36,
+      "사고·사기·횡령": 12,
+      "상품·영업·예금금리": 5,
+      "서민금융·대환·채무조정": 5,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 26,
+      "연체·부실": 21,
+      "일정·브리핑": 4,
+      "자금시장·유동성": 5,
+      "정책·제도개선": 3,
+      "증시·시장시황": 12,
+      "해외·글로벌": 21,
+      "환율·외환": 6
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 58,
+        "relevance_prob": 0.7520813142366948,
+        "relevance_score": 34,
+        "sector": "거시·시장",
+        "title": "\"우리 경제 기초여건 견조\"…정부, 금융시장 위험요인 긴급 점검",
+        "url": "https://news.bbsi.co.kr/news/articleView.html?idxno=4112691"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8323856539175147,
+        "relevance_score": 30,
+        "sector": "감독·제재",
+        "title": "새마을금고 , 부당대출 ･ 내부통제 위반 이사장 조치 92 건",
+        "url": "https://www.jasm.co.kr/news/view/321744/?sc=Naver"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8943308310571461,
+        "relevance_score": 33,
+        "sector": "기타",
+        "title": "[위클리크립토] 국감서 윤곽 드러난 원화 스테이블코인, 과세는 유예 공...",
+        "url": "https://it.donga.com/109714/"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8829928784561939,
+        "relevance_score": 30,
+        "sector": "저축은행",
+        "title": "‘또 뚫렸다’ OK저축은행 해킹 사고…고객 268명 정보 더 샜다",
+        "url": "https://n.news.naver.com/mnews/article/016/0002710481?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7984754716684629,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "미 국채금리, 한 달새 0.53%p ↑⋯한은 \"중동·AI투자 회사채 영향\"",
+        "url": "https://www.etoday.co.kr/news/view/2636695"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7510206709177155,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "XRP, 업비트 거래대금 두 차례 비트코인·이더리움 앞서",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/423346"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9291310818679235,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "교보증권, 불법사금융 피해 예방 앞장…'사람 살리는 금융' 실천",
+        "url": "http://www.choicenews.co.kr/news/articleView.html?idxno=172290"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.710519758014113,
+        "relevance_score": 21,
+        "sector": "입법·정책",
+        "title": "[Q&A] 금융지원은 늘리고 부채는 조인다…PF사업장, 금감원 직접 관리",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1728154"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7740635773587307,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "1년 만에 금융위 2인자 오른 신진창 … 가계빚·세종 이전 '이중 시험대...",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/10/16/2026101600237.html"
+      },
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.7931821010616944,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "금융위 \"한국 주식 200배 레버리지, 보호 못 받는 초고위험 상품\"…투자...",
+        "url": "https://n.news.naver.com/mnews/article/055/0001396020?sid=101"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 2,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 1,
+      "입법·정책": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 3,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "사고·사기·횡령": 1,
+      "서민금융·대환·채무조정": 1,
+      "자금시장·유동성": 1,
+      "해외·글로벌": 2,
+      "환율·외환": 2
+    }
+  }
+}
