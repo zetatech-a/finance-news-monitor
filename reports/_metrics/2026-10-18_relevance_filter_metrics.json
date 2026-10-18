@@ -1,0 +1,69 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 8,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 13,
+  "candidate_hybrid_gray_rule_drop": 25,
+  "candidate_hybrid_gray_rule_keep": 13,
+  "candidate_hybrid_keep_overseas_global_reference": 5,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 84,
+  "candidate_hybrid_model_drop": 6,
+  "candidate_hybrid_model_keep": 37,
+  "candidate_hybrid_model_keep_with_domain_anchor": 37,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 84,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-18",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 8,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 25,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 13,
+    "candidate_hybrid_keep_overseas_global_reference": 5,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 84,
+    "candidate_hybrid_model_drop_prob_le_threshold": 6,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 37
+  },
+  "dropped_count": 49,
+  "input_count": 190,
+  "kept_count": 141,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 190,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 4,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[이슈] '2위 경쟁' 케이뱅크, 개인사업자 대출 영역 확장...내년 중소법...",
+      "url": "http://www.paxetv.com/news/articleView.html?idxno=284405"
+    },
+    {
+      "title": "“보험 어디서 들까?” 물어보니…AI가 꼽은 ‘1등 금융사’는 어디",
+      "url": "https://www.mk.co.kr/article/12178581"
+    },
+    {
+      "title": "5대 은행장, 4년 만에 국감 증인 동시 출석…해킹 사고·보안 투자 도마",
+      "url": "http://www.inews24.com/view/2015917"
+    },
+    {
+      "title": "[Biz&Law] 신한은행, 인니서 담보 경매 분쟁 승소…法 \"절차 적법\"",
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=729430"
+    }
+  ]
+}

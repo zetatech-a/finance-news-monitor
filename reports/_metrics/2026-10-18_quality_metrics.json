@@ -1,0 +1,250 @@
+{
+  "clusters": {
+    "cluster_count": 96,
+    "cluster_size_max": 33,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 2,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 194,
+    "displayed_articles": 73,
+    "final_tagged_representatives": 96,
+    "normalized_articles": 261,
+    "raw_items": 261,
+    "relevance_filtered_articles": 141,
+    "rule_filtered_articles": 190,
+    "tagged_before_cluster": 141
+  },
+  "date": "2026-10-18",
+  "generated_at": "2026-10-18T09:05:13.065741+09:00",
+  "publishers": {
+    "missing_publisher_count": 96,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 36,
+    "no_topic_ratio": 0.375,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7070372232878639,
+        "relevance_score": 7,
+        "sector": "디지털자산",
+        "title": "\"거래량 24% 급감에 더블 탑 출현\"… XRP 1.29달러 하락 속 '0.80달러 폭락...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=496171"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6873657749441812,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "\"개미들 저가 매수 들어오자마자 숏 폭격\"... XRP 지지선 무너지면 예고...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=496168"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6831687843922566,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "XRP 1.30달러 방어선 파쇄 시 전멸… 상단 저항벽에 그어진 '사형선고'",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=496167"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6599584724160054,
+        "relevance_score": 7,
+        "sector": "디지털자산",
+        "title": "BTC·ETH 솟구칠 때 XRP 롱 친 개미들 무덤 열렸다.. 예고된 연쇄 강제 청...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=496165"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6408365799724248,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "'지능형 범죄'로 진화한 조직폭력... '범죄단체가입죄' 성립 기준과 구...",
+        "url": "https://www.lawissue.co.kr/view.php?ud=20261016105907301437600e7ec7_12"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.46598503524129903,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "사회연대금융, 교훈과 교정이 필요할 때",
+        "url": "https://n.news.naver.com/mnews/article/008/0005427817?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6816614780005976,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "하이퍼리퀴드·TIA·라이터 롱 포지션 무덤 개방... 예고된 연쇄 강제 청...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=496162"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5388881667705547,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "법인시장 눈 돌리는 카드사들… 결제 인프라 부족한 중기 집중 타깃",
+        "url": "https://www.g-enews.com/view.php?ud=202610161500031041a6e8311f64_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7237952444853663,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "코인 거래대금 1조2449억원…리플XRP 1위, 깃코인 18% 급등",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16250359"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7500295575349609,
+        "relevance_score": 10,
+        "sector": "상호금융",
+        "title": "[2026 국감] 상호금융 '약골 조합' 10% 넘었다…3년 반 새 36% 급증",
+        "url": "http://www.newsian.co.kr/news/articleView.html?idxno=97259"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 5,
+      "거시·시장": 17,
+      "기타": 29,
+      "디지털자산": 21,
+      "보험": 3,
+      "상호금융": 1,
+      "여전": 5,
+      "은행": 7,
+      "입법·정책": 3,
+      "자산운용·연기금": 1,
+      "저축은행": 1,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 2,
+      "금리·수수료·최고금리": 11,
+      "기업금융·익스포저": 1,
+      "디지털자산": 22,
+      "물가·경기지표": 1,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 3,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 1,
+      "일정·브리핑": 8,
+      "자금시장·유동성": 3,
+      "증시·시장시황": 9,
+      "칼럼·오피니언": 2,
+      "해외·글로벌": 7,
+      "환율·외환": 3
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9237580979042812,
+        "relevance_score": 21,
+        "sector": "디지털자산",
+        "title": "가상자산거래소도 보이스피싱 방지 의무, 10월 시행 예정…피해구제 대...",
+        "url": "https://www.wikitree.co.kr/articles/1167041"
+      },
+      {
+        "cluster_size": 33,
+        "relevance_prob": 0.8267556187228561,
+        "relevance_score": 28,
+        "sector": "거시·시장",
+        "title": "[주간금융이슈] 5대 은행장 '해킹 국감' 시험대…한은 금리 결정도 주목",
+        "url": "https://www.newspim.com/news/view/20261016000873"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7766661130761117,
+        "relevance_score": 20,
+        "sector": "입법·정책",
+        "title": "\"드러누워서라도 막았어야\" 이찬진 입에 쏠린 금감원 국감",
+        "url": "https://n.news.naver.com/mnews/article/079/0004199794?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8545328728868024,
+        "relevance_score": 21,
+        "sector": "디지털자산",
+        "title": "가상자산 과세 유예론 힘받나…정부, 5대 거래소 20일 의견 청취",
+        "url": "https://n.news.naver.com/mnews/article/001/0016383189?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9229187380192726,
+        "relevance_score": 17,
+        "sector": "저축은행",
+        "title": "[저축은행] 저축은행중앙회 환경정화 / IBK저축은행, 최대 연 3.5% 'e-파킹...",
+        "url": "https://www.webeconomy.co.kr/news/articleView.html?idxno=2336901"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8748868729752851,
+        "relevance_score": 23,
+        "sector": "여전",
+        "title": "이번주 국내 주요 금융일정(10.19~10.23)",
+        "url": "https://www.newspim.com/news/view/20261016001256"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7545485821855563,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "코스피 다음주 5100~6100선 전망…금통위·금감원 국감에 시선",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=753961"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.49631951051803824,
+        "relevance_score": 14,
+        "sector": "여전",
+        "title": "[DQN] JB우리캐피탈 지주계 캐피탈사 수익성 '톱'·iM캐피탈 약진…농협...",
+        "url": "https://www.fntimes.com/html/view.php?ud=2026101801371850548a55064dd1_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7069725250227249,
+        "relevance_score": 15,
+        "sector": "여전",
+        "title": "카드론 금리 계속 올라 15% 육박… 고신용자도 부담 가중",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092172167"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7723286127456209,
+        "relevance_score": 12,
+        "sector": "감독·제재",
+        "title": "[증권가H] 금융위 부위원장 신진창/200배 레버리지 선물 당국 경고 등",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=873836"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 2,
+      "디지털자산": 2,
+      "여전": 3,
+      "입법·정책": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 2,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "일정·브리핑": 3,
+      "증시·시장시황": 1
+    }
+  }
+}
