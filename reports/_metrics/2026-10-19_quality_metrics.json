@@ -1,0 +1,265 @@
+{
+  "clusters": {
+    "cluster_count": 161,
+    "cluster_size_max": 73,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 73,
+        "relevance_prob": 0.8224588154511698,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "환율 폭락 달러예금 급증… 개인, 4년10개월 새 최대 [경제 레이더]",
+        "url": "https://n.news.naver.com/mnews/article/022/0004167657?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 458,
+    "displayed_articles": 126,
+    "final_tagged_representatives": 161,
+    "normalized_articles": 654,
+    "raw_items": 654,
+    "relevance_filtered_articles": 319,
+    "rule_filtered_articles": 432,
+    "tagged_before_cluster": 319
+  },
+  "date": "2026-10-19",
+  "generated_at": "2026-10-19T09:09:02.971596+09:00",
+  "publishers": {
+    "missing_publisher_count": 161,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 54,
+    "no_topic_ratio": 0.3354,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8361802522939408,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "내 통장에 돈 보내고 허위 신고…상반기 ‘통장묶기’ 피해 추정 6500건...",
+        "url": "https://n.news.naver.com/mnews/article/023/0004004598?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8797784229753676,
+        "relevance_score": 16,
+        "sector": "저축은행",
+        "title": "OK저축은행, 2차 해킹에 518명 정보유출",
+        "url": "https://news.dealsitetv.com/articles/177125"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6790394916038276,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[오늘의 비트코인] 기술주 폭락에 출렁…한때 8만달러 붕괴",
+        "url": "https://news.dealsitetv.com/articles/177123"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.49943301458302763,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"대구청 세수 8.9% 증가한 배경은?\"-\"세무조사에 따른 증가는 미미\"",
+        "url": "https://www.taxtimes.co.kr/news/article.html?no=277347"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.42509652849447854,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "[리더십 X-Ray] [KB국민은행] '리딩뱅크 유지+신뢰 경영' 회복 분수령",
+        "url": "https://news.dealsitetv.com/articles/176987"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5422314882944981,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "[이슈진단] 정무위 국감 5대 은행장 출석⋯AI 해킹·금융사고 책임론 정...",
+        "url": "https://www.public25.com/news/articleView.html?idxno=56695"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6971758717032371,
+        "relevance_score": 14,
+        "sector": "기타",
+        "title": "[숫자로 읽는 금융 ⑥] 은행 금리인하 요구 5건 중 1건 수용…건당 이자...",
+        "url": "https://www.raonnews.com/news/article.html?no=61978"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.27741254425613215,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "토스뱅크·광주은행, 기업금융 맞손…수익성은 과제",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=724270"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7700226352855883,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "할리스, 멤버십 해킹···계정·비밀번호 등 전부 유출 파장",
+        "url": "https://www.globale.co.kr/news/articleView.html?idxno=41083"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.682416221101414,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "이더가스 거래 1500억 돌파…리플XRP 하락, 코인 거래대금 16.4%↓",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16250861"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 3,
+      "거시·시장": 25,
+      "기타": 45,
+      "대부": 9,
+      "디지털자산": 23,
+      "보험": 4,
+      "상호금융": 8,
+      "여전": 2,
+      "은행": 22,
+      "입법·정책": 10,
+      "자산운용·연기금": 3,
+      "저축은행": 4,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 3,
+      "감독·제재": 9,
+      "건전성·자본규제": 6,
+      "금리·수수료·최고금리": 21,
+      "기업금융·익스포저": 1,
+      "디지털자산": 23,
+      "물가·경기지표": 1,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 16,
+      "사고·사기·횡령": 7,
+      "상품·영업·예금금리": 3,
+      "서민금융·대환·채무조정": 6,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 7,
+      "일정·브리핑": 11,
+      "자금시장·유동성": 6,
+      "정책·제도개선": 1,
+      "증시·시장시황": 11,
+      "칼럼·오피니언": 1,
+      "해외·글로벌": 17,
+      "환율·외환": 8
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9266121567834844,
+        "relevance_score": 44,
+        "sector": "디지털자산",
+        "title": "오늘 금감원 국감…디지털자산 법·과세, KOK 주목",
+        "url": "https://n.news.naver.com/mnews/article/018/0006391115?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8554782090586919,
+        "relevance_score": 38,
+        "sector": "디지털자산",
+        "title": "[코인이담] 코인거래소, '종합금융' 될 수 있을까…국감이 던진 숙제",
+        "url": "https://n.news.naver.com/mnews/article/293/0000091736?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9128074787732446,
+        "relevance_score": 20,
+        "sector": "대부",
+        "title": "[2026 국감] [단독] 청소년 불법사금융 판치는데…금감원 불법광고 수사...",
+        "url": "http://www.segyebiz.com/newsView/20261018509134?OutUrl=naver"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8332724576911623,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "[금융zip] 신한EZ손해보험, '이마트 신한SOL 암보험' 출시 外",
+        "url": "https://www.getnews.co.kr/news/articleView.html?idxno=883908"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6065408767875878,
+        "relevance_score": 20,
+        "sector": "보험",
+        "title": "사모대출 위험 경고에…보험사 투자자산 관리 '시험대'",
+        "url": "http://www.fins.co.kr/news/articleView.html?idxno=110244"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8135779536155842,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "[2026 국감] [단독] 불법사금융 고금리 신고 2.4배 폭증…피해 구제 신청...",
+        "url": "http://www.segyebiz.com/newsView/20261018509143?OutUrl=naver"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8731649879831578,
+        "relevance_score": 29,
+        "sector": "거시·시장",
+        "title": "[이번주 한국은행 및 금융위·금감원 일정]",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4439800"
+      },
+      {
+        "cluster_size": 23,
+        "relevance_prob": 0.753841108266229,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "금감원, 금융사 검사 처리에 올해 평균 237일 소요",
+        "url": "https://n.news.naver.com/mnews/article/052/0002420239?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8327365671375532,
+        "relevance_score": 19,
+        "sector": "상호금융",
+        "title": "[2026국감] 상호금융 368곳 순자본비율 4% 미만…신협·새마을금고에 집...",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=215057"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8193739791693967,
+        "relevance_score": 21,
+        "sector": "핀테크·플랫폼",
+        "title": "핀다, 핀테크 최초 저축은행 인수 눈앞…23일 금융위 정례회의 상정",
+        "url": "https://n.news.naver.com/mnews/article/374/0000538432?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 1,
+      "대부": 3,
+      "디지털자산": 2,
+      "보험": 1,
+      "상호금융": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "건전성·자본규제": 2,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "업계동정·사회공헌": 1,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 1
+    }
+  }
+}

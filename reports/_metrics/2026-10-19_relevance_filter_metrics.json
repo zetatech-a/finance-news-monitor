@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 20,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 18,
+  "candidate_hybrid_gray_rule_drop": 70,
+  "candidate_hybrid_gray_rule_keep": 18,
+  "candidate_hybrid_keep_overseas_global_reference": 12,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 222,
+  "candidate_hybrid_model_drop": 15,
+  "candidate_hybrid_model_keep": 57,
+  "candidate_hybrid_model_keep_with_domain_anchor": 57,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 222,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-19",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 20,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 70,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 18,
+    "candidate_hybrid_keep_overseas_global_reference": 12,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 222,
+    "candidate_hybrid_model_drop_prob_le_threshold": 15,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 57
+  },
+  "dropped_count": 113,
+  "input_count": 432,
+  "kept_count": 319,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 432,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 16,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "iM금융, '체질개선' 가시화…황병우 회장 연임 '청신호'",
+      "url": "http://www.metroseoul.co.kr/article/20261018500199"
+    },
+    {
+      "title": "8개월새 0.66%p…앞으로 더 오른다 '변동금리의 역습'",
+      "url": "https://www.asiatime.co.kr/article/20261016500227"
+    },
+    {
+      "title": "[조원경 칼럼] AI는 뜨겁고 돈은 비싸다… 금리가 흔드는 투자 공식",
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=729452"
+    },
+    {
+      "title": "박용갑 의원 \"본인부담상한제·실손보험 사후정산 도입해야\"",
+      "url": "https://www.ccdn.co.kr/news/articleView.html?idxno=1105341"
+    },
+    {
+      "title": "[국감2026] 연임 앞둔 5대 은행장, 오늘 '해킹대응 국감'",
+      "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7189125"
+    },
+    {
+      "title": "\"해킹은 못 막고\" 신한은행장 '성과급 53억' 도마 위...국감 소환",
+      "url": "https://www.mt.co.kr/finance/2026/10/19/2026101809573547793"
+    },
+    {
+      "title": "하나은행, 최대 1000만원 신용대출…1년간 연체 10일 이하면 이자10% 캐시...",
+      "url": "https://www.mk.co.kr/article/12178889"
+    },
+    {
+      "title": "[2026 국감] 국세 카드납부 수수료 절반…삼성·신한카드에 집중",
+      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=856795"
+    },
+    {
+      "title": "[국감 26] 보안 구멍에 예산까지 미집행…주요 은행장, 국감서 책임론 ...",
+      "url": "https://www.techm.kr/news/articleView.html?idxno=156215"
+    },
+    {
+      "title": "우리은행, 경영·세무·상권 흐름까지 두루 살피며 단계별 1대1 맞춤상담",
+      "url": "https://www.mk.co.kr/article/12178890"
+    }
+  ]
+}
