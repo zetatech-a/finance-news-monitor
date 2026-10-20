@@ -1,0 +1,265 @@
+{
+  "clusters": {
+    "cluster_count": 500,
+    "cluster_size_max": 58,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 2,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 58,
+        "relevance_prob": 0.6881603395257984,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "‘반도체 훈풍’에 1330원대로 주저앉은 환율…“펀더멘털 찾아가는 과...",
+        "url": "http://www.segyebiz.com/newsView/20261020503356?OutUrl=naver"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1155,
+    "displayed_articles": 360,
+    "final_tagged_representatives": 500,
+    "normalized_articles": 1742,
+    "raw_items": 1742,
+    "relevance_filtered_articles": 749,
+    "rule_filtered_articles": 1131,
+    "tagged_before_cluster": 749
+  },
+  "date": "2026-10-20",
+  "generated_at": "2026-10-20T09:15:36.748196+09:00",
+  "publishers": {
+    "missing_publisher_count": 500,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 237,
+    "no_topic_ratio": 0.474,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4354394001376989,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "롯데카드, 자동차 할부금융 유동화로 조달 다변화 나선다",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=215233"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.596821800234225,
+        "relevance_score": 6,
+        "sector": "자산운용·연기금",
+        "title": "\"ETF 상장 일정 맞추려 심사 서둘렀다\"···이찬진, 졸속 심사·책임론...",
+        "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=259954"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.641626843716027,
+        "relevance_score": 20,
+        "sector": "여전",
+        "title": "신한카드, 카드사 최초 ‘중금리 생활안정대출’ 출시…연 9.9~12.26%·최...",
+        "url": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065569874324519"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7663506043970897,
+        "relevance_score": 12,
+        "sector": "대부",
+        "title": "군 장병, 대부업체 대출 잔액 440억원 넘어…금감원, 대출 금지 검토",
+        "url": "https://www.abcn.kr/news/articleView.html?idxno=93316"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7958565447843389,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "이찬진 \"해킹, CEO 책임 다룰 것\"…단일종목 레버리지 감독 책임엔 \"송구...",
+        "url": "https://www.raonnews.com/news/article.html?no=62015"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6525463553356468,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "“일반인은 6억에 막혔는데” 은행원 235명은 6억 넘게 대출…7억 이상...",
+        "url": "https://n.news.naver.com/mnews/article/011/0004672987?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8371170909365869,
+        "relevance_score": 9,
+        "sector": "거시·시장",
+        "title": "[정선미의 돈터치] 한은이 번 시간",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440040"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6790277990657749,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "[금융그룹/다우키움④] 위험은 되풀이...공시 곳곳 오류 투성이",
+        "url": "https://www.dailybrief.co.kr/news/articleView.html?idxno=7031"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6334299410464885,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "4대 은행 대출 담보·보증 비중 80% 육박 '생산적 금융 역설'",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=714815"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8316431591701751,
+        "relevance_score": 17,
+        "sector": "대부",
+        "title": "‘병장 월급 150만원’ 도박·코인 빠져 빚쟁이…금감원장“병사 대부업...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002711559?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 19,
+      "거시·시장": 33,
+      "기타": 150,
+      "대부": 32,
+      "디지털자산": 61,
+      "보험": 17,
+      "상호금융": 18,
+      "여전": 35,
+      "은행": 75,
+      "입법·정책": 26,
+      "자산운용·연기금": 15,
+      "저축은행": 11,
+      "증권(브로커리지/리테일)": 3,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 22,
+      "감독·제재": 15,
+      "건전성·자본규제": 15,
+      "규제·가계부채": 11,
+      "금리·수수료·최고금리": 34,
+      "기업금융·익스포저": 15,
+      "디지털자산": 64,
+      "물가·경기지표": 1,
+      "부동산·PF": 16,
+      "불법사금융·불법추심·보이스피싱": 39,
+      "사고·사기·횡령": 10,
+      "상품·영업·예금금리": 17,
+      "서민금융·대환·채무조정": 8,
+      "소비자보호·민원·불완전판매": 5,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 12,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 12,
+      "정책·제도개선": 10,
+      "증시·시장시황": 15,
+      "칼럼·오피니언": 8,
+      "해외·글로벌": 21,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8983478530986466,
+        "relevance_score": 46,
+        "sector": "감독·제재",
+        "title": "이찬진 \"디지털자산 통합 감독체계 정부안에 반영…FIU 공조 강화\"",
+        "url": "https://n.news.naver.com/mnews/article/018/0006391540?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.815412676371947,
+        "relevance_score": 43,
+        "sector": "입법·정책",
+        "title": "[2026 국감] 이찬진 “FIU와 새 감독체계 논의…정부안 반영”",
+        "url": "https://n.news.naver.com/mnews/article/119/0003144395?sid=101"
+      },
+      {
+        "cluster_size": 17,
+        "relevance_prob": 0.8714032306703475,
+        "relevance_score": 43,
+        "sector": "디지털자산",
+        "title": "금감원장 “디지털자산 감독 일원화, 2단계 입법에 반영” [크립토360]",
+        "url": "https://n.news.naver.com/mnews/article/016/0002711317?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8131855014311442,
+        "relevance_score": 37,
+        "sector": "기타",
+        "title": "[2026국감]\"2.5조 KOK코인 사기일당, 버젓이 블록체인 업체서 활동\" 지적...",
+        "url": "https://n.news.naver.com/mnews/article/277/0005830594?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8494053652687237,
+        "relevance_score": 30,
+        "sector": "대부",
+        "title": "이찬진 “복무 중 병사 대부업 대출 금지 검토”… ETF 심사도 도마",
+        "url": "https://n.news.naver.com/mnews/article/022/0004167994?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7429719994898084,
+        "relevance_score": 30,
+        "sector": "거시·시장",
+        "title": "[구민정의 크립토포커스] 미 증시 불안에도 비트코인 '선방'…연말 10만...",
+        "url": "http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005942253"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.887796123302735,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "가상자산 과세 유예론 힘 실릴까, '4번째 연기' 거론에도 제도 불확실성...",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=449696"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8353080327878459,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "법정 최고금리 초과·불법 추심… '불법사금융' 수사 강화 기조에 처벌...",
+        "url": "http://www.ikoreanspirit.com/news/articleView.html?idxno=87775"
+      },
+      {
+        "cluster_size": 11,
+        "relevance_prob": 0.7173108703703313,
+        "relevance_score": 25,
+        "sector": "감독·제재",
+        "title": "[2026국감]이찬진 \"금융권 해킹, CEO 책임 따질 것\"…금감원 혁신안 11월...",
+        "url": "https://n.news.naver.com/mnews/article/277/0005830614?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8394729422183477,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "이찬진 \"불법사금융 뿌리 뽑으려 민생특사경 출범 추진\"",
+        "url": "https://n.news.naver.com/mnews/article/421/0009235730?sid=101"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 3,
+      "디지털자산": 2,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 6,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "증시·시장시황": 1
+    }
+  }
+}

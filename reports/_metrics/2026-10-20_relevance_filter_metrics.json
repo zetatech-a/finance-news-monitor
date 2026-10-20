@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 61,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 9,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 89,
+  "candidate_hybrid_gray_rule_drop": 232,
+  "candidate_hybrid_gray_rule_keep": 89,
+  "candidate_hybrid_keep_overseas_global_reference": 24,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 464,
+  "candidate_hybrid_model_drop": 32,
+  "candidate_hybrid_model_keep": 170,
+  "candidate_hybrid_model_keep_with_domain_anchor": 170,
+  "candidate_hybrid_negative_drop": 9,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 464,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-20",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 61,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 9,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 24,
+    "candidate_hybrid_drop_negative_signal": 9,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 232,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 89,
+    "candidate_hybrid_keep_overseas_global_reference": 24,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 464,
+    "candidate_hybrid_model_drop_prob_le_threshold": 32,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 170
+  },
+  "dropped_count": 382,
+  "input_count": 1131,
+  "kept_count": 749,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1131,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 67,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "OK홀딩스, '일본계 최대주주 가능성' 지적에…'사진 찍어간' 이찬진",
+      "url": "https://www.news1.kr/finance/general-finance/6325142"
+    },
+    {
+      "title": "폐업 비용·생활비·대출 상환 3중고에 … 아예 경제활동 포기하기도",
+      "url": "https://www.mk.co.kr/article/12179917"
+    },
+    {
+      "title": "새희망홀씨 대출 6.8% 늘 때 연체액 17.4% 증가 … 연체차주도 7.1%↑",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/10/19/2026101900345.html"
+    },
+    {
+      "title": "'종합금융' 노리는 수협, 어민자금 외면·조합 부실 전가",
+      "url": "http://www.newstomato.com/ReadNews.aspx?no=1317199&inflow=N"
+    },
+    {
+      "title": "새희망홀씨 대출 2년 새 17% 늘었지만…차주 증가율은 5% 그쳐",
+      "url": "https://www.news2day.co.kr/article/20261019500176"
+    },
+    {
+      "title": "\"금리 7%여도 투자에 올인\"…증시 급락에 마통 더 뚫는 '빚투족'",
+      "url": "https://www.asiatime.co.kr/article/20261019500256"
+    },
+    {
+      "title": "이찬진 \"단일종목 ETF, 상장일정 맞추기 위해 심사 통상보다 빨리 진행...",
+      "url": "http://www.whitepaper.co.kr/news/articleView.html?idxno=267902"
+    },
+    {
+      "title": "[2026 국감] 이찬진 금감원장 \"AI 공격엔 AI 방어\"…금융사 보안역량 강...",
+      "url": "https://www.newspim.com/news/view/20261019000038"
+    },
+    {
+      "title": "[국감 서는 행장] 이호성 하나은행장, 보안 인력 충원 과제",
+      "url": "https://www.tleaves.co.kr/news/articleView.html?idxno=9989"
+    },
+    {
+      "title": "청주시, NH농협은행·신한은행과 시금고 운영 약정 체결",
+      "url": "https://www.ggilbo.com/news/articleView.html?idxno=1187671"
+    }
+  ]
+}
