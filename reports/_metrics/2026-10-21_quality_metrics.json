@@ -1,0 +1,263 @@
+{
+  "clusters": {
+    "cluster_count": 432,
+    "cluster_size_max": 92,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 92,
+        "relevance_prob": 0.7821447670572523,
+        "relevance_score": 19,
+        "sector": "거시·시장",
+        "title": "[셀럽의 한 수] 코스피 바닥 4800까지도 전망? \"분할 매수 대응?…연말엔...",
+        "url": "https://n.news.naver.com/mnews/article/374/0000538810?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1097,
+    "displayed_articles": 307,
+    "final_tagged_representatives": 432,
+    "normalized_articles": 1518,
+    "raw_items": 1518,
+    "relevance_filtered_articles": 766,
+    "rule_filtered_articles": 1088,
+    "tagged_before_cluster": 766
+  },
+  "date": "2026-10-21",
+  "generated_at": "2026-10-21T09:14:55.794943+09:00",
+  "publishers": {
+    "missing_publisher_count": 432,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 182,
+    "no_topic_ratio": 0.4213,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6411455312324027,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "李대통령 '증시 정상화 조치' 예고…시장안정·주주보호 후속책 주목",
+        "url": "https://n.news.naver.com/mnews/article/014/0005592151?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7528999555851248,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코퀴즈, '생활 법률' 카테고리 신설…퀴즈 풀이 280만건 돌파",
+        "url": "https://www.slist.kr/news/articleView.html?idxno=775088"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.530579509692484,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "[은행장 달라지나⑪] BNK금융, 승계개편 속도...경남은행 '시험대'",
+        "url": "https://www.dailybrief.co.kr/news/articleView.html?idxno=7051"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.778379937339606,
+        "relevance_score": 11,
+        "sector": "대부",
+        "title": "군 장병까지 파고든 대부업…20대 금융 '경고등'",
+        "url": "http://www.metroseoul.co.kr/article/20261021500045"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.48980367427668275,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "하나카드 트래블로그, 고객 금융비용 절감액 5000억↑…누적 환전액 8조...",
+        "url": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065569522406893"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.710013728147808,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "오늘 울산경찰청 국감…“2조5천억 피해 KOK코인 집중 질의”",
+        "url": "https://n.news.naver.com/mnews/article/018/0006392613?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5845087178158082,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "잠자는 신용카드 1700만장…통합해지는 2만건대 그쳐",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=281570"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6607900062855437,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "'010 번호 조작' 중계기로 15억대 피싱…배수구 막은 유심칩에 덜미",
+        "url": "https://n.news.naver.com/mnews/article/448/0000646038?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6114058287109732,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[키워드 NOW] 몸짱 경찰관",
+        "url": "https://n.news.naver.com/mnews/article/448/0000646028?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.717424304641709,
+        "relevance_score": 10,
+        "sector": "보험",
+        "title": "소상공인 이어 어르신까지…보험업계 '포용 금융' 영역 넓힌다",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=724627"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 9,
+      "감독·제재": 17,
+      "거시·시장": 32,
+      "기타": 135,
+      "대부": 31,
+      "디지털자산": 80,
+      "보험": 7,
+      "상호금융": 13,
+      "여전": 29,
+      "은행": 46,
+      "입법·정책": 16,
+      "자산운용·연기금": 1,
+      "저축은행": 14,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 14,
+      "감독·제재": 9,
+      "건전성·자본규제": 10,
+      "규제·가계부채": 6,
+      "금리·수수료·최고금리": 24,
+      "기업금융·익스포저": 8,
+      "디지털자산": 74,
+      "부동산·PF": 6,
+      "불법사금융·불법추심·보이스피싱": 41,
+      "사고·사기·횡령": 5,
+      "상품·영업·예금금리": 19,
+      "서민금융·대환·채무조정": 12,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 7,
+      "연체·부실": 15,
+      "자금시장·유동성": 17,
+      "정책·제도개선": 4,
+      "증시·시장시황": 15,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 21,
+      "환율·외환": 11
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8773097489112358,
+        "relevance_score": 40,
+        "sector": "디지털자산",
+        "title": "시행 3개월 앞둔 ‘코인 과세’ 또 미뤄지나",
+        "url": "https://n.news.naver.com/mnews/article/032/0003477546?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.731993731913403,
+        "relevance_score": 34,
+        "sector": "감독·제재",
+        "title": "검사 지연·감독 독립성 지적…이찬진 원장, 11월 혁신안으로 신뢰 되찾...",
+        "url": "https://www.fntimes.com/html/view.php?ud=2026102010380184565e6e69892f_18"
+      },
+      {
+        "cluster_size": 25,
+        "relevance_prob": 0.9311706075889866,
+        "relevance_score": 36,
+        "sector": "디지털자산",
+        "title": "가상자산 과세, 현장 의견 듣는 정부…'유예·수정' 가닥 잡나",
+        "url": "https://n.news.naver.com/mnews/article/018/0006392262?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6503578185503732,
+        "relevance_score": 28,
+        "sector": "대부",
+        "title": "불법사채 막으려 빌려준 나랏돈…20대 이하 대출잔액 절반 ‘연체’",
+        "url": "https://n.news.naver.com/mnews/article/024/0000109049?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7864252179723628,
+        "relevance_score": 30,
+        "sector": "대부",
+        "title": "'충성론·병장론' 높아진 軍월급에 대출 폭증...대부업 막는다",
+        "url": "https://n.news.naver.com/mnews/article/018/0006392056?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7062940266738106,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "[금융家] 이찬진 금융감독원장 ⑥ㅣ 레버리지 ETF 논란부터 금융보안·조...",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=617307"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9321400594554654,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "\"체험형 부스부터 AI 필터링까지\"…SKT·금감원, 보이스피싱 차단 총력전",
+        "url": "https://www.thefairnews.co.kr/news/articleView.html?idxno=91367"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.901968958048954,
+        "relevance_score": 19,
+        "sector": "기타",
+        "title": "SKT, '금융의 날' 앞두고 금감원과 보이스피싱 피해 예방 나서",
+        "url": "https://www.ajunews.com/view/20261021082259997"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7394233542043034,
+        "relevance_score": 20,
+        "sector": "저축은행",
+        "title": "예대율 100% 턱밑인데 예금금리는 제자리 … 저축은행, 수신 확대 '신중...",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/10/20/2026102000228.html"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6358360049127325,
+        "relevance_score": 21,
+        "sector": "입법·정책",
+        "title": "SK가 낸드 상장하면 HBM도 할인될까?···'코리아 디스카운트' 만드는 ...",
+        "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=259989"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 1,
+      "기타": 1,
+      "대부": 3,
+      "디지털자산": 2,
+      "입법·정책": 2,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "디지털자산": 3,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "상품·영업·예금금리": 1,
+      "연체·부실": 1
+    }
+  }
+}
