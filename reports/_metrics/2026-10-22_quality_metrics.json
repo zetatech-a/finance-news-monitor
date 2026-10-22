@@ -1,0 +1,262 @@
+{
+  "clusters": {
+    "cluster_count": 360,
+    "cluster_size_max": 92,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 92,
+        "relevance_prob": 0.662414694760696,
+        "relevance_score": 20,
+        "sector": "거시·시장",
+        "title": "[채권/외환] 美 장기 국채 금리 하락·달러 약세…AI 투자 우려 속 연준...",
+        "url": "https://www.newspim.com/news/view/20261022000034"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1191,
+    "displayed_articles": 224,
+    "final_tagged_representatives": 360,
+    "normalized_articles": 1572,
+    "raw_items": 1572,
+    "relevance_filtered_articles": 729,
+    "rule_filtered_articles": 1168,
+    "tagged_before_cluster": 729
+  },
+  "date": "2026-10-22",
+  "generated_at": "2026-10-22T09:11:44.157806+09:00",
+  "publishers": {
+    "missing_publisher_count": 360,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 158,
+    "no_topic_ratio": 0.4389,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4191988983344131,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "[2026 머니엑스포] 신한금융, 문턱 낮추고 자립 돕는다…포용금융 15조 ...",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=748074"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.76491123385785,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[오늘의 비트코인] 美 기술주 훈풍…8만4000달러 돌파",
+        "url": "https://news.dealsitetv.com/articles/177308"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4224915761402166,
+        "relevance_score": 7,
+        "sector": "은행",
+        "title": "장민영 기업은행장, 포용금융 강화 속도…'채무 감면·채권 소각' 투트...",
+        "url": "https://www.fetv.co.kr/news/articleView.html?idxno=312214"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.6303938103457685,
+        "relevance_score": 17,
+        "sector": "상호금융",
+        "title": "[국감 2026] 신협, 한도 초과 대출 5조6710억원…부실 대비 여력도 빠듯",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=281832"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7838083274215415,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "[통장잔GO] “갈아타기 수월하게”…고금리 시대, 단기 예·적금 인기 ‘...",
+        "url": "https://n.news.naver.com/mnews/article/119/0003145422?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7059372006044453,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "웨불, 11월 미국 고객에 비트코인 무기한 선물 연다…칼시 거래소서 체...",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/425613"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8260189224182396,
+        "relevance_score": 6,
+        "sector": "저축은행",
+        "title": "핀다, 대원저축은행 인수…핀테크 첫 저축은행 진출",
+        "url": "https://www.sentv.co.kr/article/view/sentv202610220001"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6803202011898148,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "[기자의 눈] 주식엔 관대하고 코인엔 엄격한 정부…과세 '형평성' 어디로",
+        "url": "http://www.thevaluenews.co.kr/news/view.php?idx=202516"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.621113252229145,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[이승환의 어드바이스] AI시대와 사기의 글로벌화",
+        "url": "http://www.metroseoul.co.kr/article/20261022500018"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.628346912809766,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[오늘의 신문] 트럼프 중간선거 개입 우려·중동 원유 수출 회복·비정규...",
+        "url": "http://kor.theasian.asia/archives/419365"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 6,
+      "거시·시장": 14,
+      "기타": 146,
+      "대부": 18,
+      "디지털자산": 66,
+      "보험": 7,
+      "상호금융": 11,
+      "여전": 10,
+      "은행": 38,
+      "입법·정책": 23,
+      "자산운용·연기금": 4,
+      "저축은행": 9,
+      "증권(브로커리지/리테일)": 2,
+      "핀테크·플랫폼": 4
+    },
+    "topic_counts": {
+      "가계대출·부채": 11,
+      "감독·제재": 8,
+      "건전성·자본규제": 6,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 15,
+      "기업금융·익스포저": 13,
+      "디지털자산": 68,
+      "부동산·PF": 3,
+      "불법사금융·불법추심·보이스피싱": 44,
+      "사고·사기·횡령": 7,
+      "상품·영업·예금금리": 7,
+      "서민금융·대환·채무조정": 11,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 11,
+      "연체·부실": 8,
+      "자금시장·유동성": 8,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 13,
+      "환율·외환": 6
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8757673592505636,
+        "relevance_score": 32,
+        "sector": "대부",
+        "title": "연 4,700% 벼랑 끝 대출···금감원, 불법 사금융 무효확인 인력 증원",
+        "url": "https://www.smartbizn.com/news/articleView.html?idxno=157174"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9269427708789416,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "가상자산 과세 또 유예?…정부 “내년 시행 원칙, 국회의견 존중”",
+        "url": "https://www.naeil.com/news/read/605798?ref=naver"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8428773296129082,
+        "relevance_score": 32,
+        "sector": "입법·정책",
+        "title": "금융위·국방부, 군 장병 금융역량 높인다…10개 금융기관·협회 참여",
+        "url": "https://www.kpinews.kr/newsView/1065588352738257"
+      },
+      {
+        "cluster_size": 14,
+        "relevance_prob": 0.8117031576515623,
+        "relevance_score": 26,
+        "sector": "디지털자산",
+        "title": "[2026 금융포럼] 정유신 넥스체인지 대표 “토큰화 시대, 산업 활성화와...",
+        "url": "https://www.ceoscoredaily.com/page/view/2026102116184666111"
+      },
+      {
+        "cluster_size": 46,
+        "relevance_prob": 0.8408139712018157,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "\"스테이블코인으로 적금 들고 대출까지\"…아톤-Sh수협은행 검증 완료",
+        "url": "https://n.news.naver.com/mnews/article/138/0002245394?sid=105"
+      },
+      {
+        "cluster_size": 17,
+        "relevance_prob": 0.9464329944314617,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "SKT·금감원, AI·통신 기술로 보이스피싱 막는다 … 예방교육부터 탐지...",
+        "url": "http://www.worktoday.co.kr/news/articleView.html?idxno=90722"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6715852123164964,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "SK하닉, 솔리다임 상장 논란에 美공장 신설까지?…주주가치 시험대",
+        "url": "https://n.news.naver.com/mnews/article/119/0003145410?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7319557351044623,
+        "relevance_score": 20,
+        "sector": "대부",
+        "title": "이찬진 \"군장병 대부업권 대출 금지 검토\"에 업계 \"불법사금융 찾을 것...",
+        "url": "https://n.news.naver.com/mnews/article/014/0005592599?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.5525436013294349,
+        "relevance_score": 19,
+        "sector": "상호금융",
+        "title": "전북 신협 26곳, 재무건전성 '경고등'",
+        "url": "http://www.jeollailbo.com/news/articleView.html?idxno=814382"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8067013355576036,
+        "relevance_score": 21,
+        "sector": "여전",
+        "title": "900점 넘는 고신용자 카드론 평균금리, 카드사 따라 4%p 가까이 차이",
+        "url": "https://www.raonnews.com/news/article.html?no=62065"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "대부": 2,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "여전": 1,
+      "은행": 1,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "기업금융·익스포저": 1,
+      "디지털자산": 3,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "서민금융·대환·채무조정": 1
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 41,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 6,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 34,
+  "candidate_hybrid_gray_rule_drop": 243,
+  "candidate_hybrid_gray_rule_keep": 34,
+  "candidate_hybrid_keep_overseas_global_reference": 16,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 440,
+  "candidate_hybrid_model_drop": 129,
+  "candidate_hybrid_model_keep": 236,
+  "candidate_hybrid_model_keep_with_domain_anchor": 236,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 440,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-22",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 41,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 6,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 8,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 243,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 34,
+    "candidate_hybrid_keep_overseas_global_reference": 16,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 440,
+    "candidate_hybrid_model_drop_prob_le_threshold": 129,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 236
+  },
+  "dropped_count": 439,
+  "input_count": 1168,
+  "kept_count": 729,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1168,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 136,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "울산시 국감 파행‥김상욱 시장 태도 논란",
+      "url": "https://www.usmbc.co.kr/NewsArticle/868775"
+    },
+    {
+      "title": "[2026국감] 503만 건 알선했는데 대출은 25만 건…서민금융 '잇다' 실행률...",
+      "url": "https://www.straightnews.co.kr/news/articleView.html?idxno=313657"
+    },
+    {
+      "title": "대출 비교해주던 토스, 이젠 상품 설계까지?…온투업 진출 노리는 이유",
+      "url": "https://www.mk.co.kr/article/12182005"
+    },
+    {
+      "title": "[은행장 인선 레이스①]이환주 국민은행장, 실적 성장 속 내부통제 과제",
+      "url": "http://www.finomy.com/news/articleView.html?idxno=264211"
+    },
+    {
+      "title": "재학습 없이 AI로 금융 리스크 예측…PFCT \"업계 첫 TFM 개발\"",
+      "url": "https://www.mt.co.kr/future/2026/10/21/2026102117502631562"
+    },
+    {
+      "title": "PFCT, 금융용 정형 데이터 파운데이션 모델 '라이즈-티' 개발",
+      "url": "https://www.epnc.co.kr/news/articleView.html?idxno=408501"
+    },
+    {
+      "title": "[국감] 윤준병 의원 \"농협·수협·산림조합 정보보호 예산 운용 전면 쇄...",
+      "url": "http://www.4th.kr/news/articleView.html?idxno=2120124"
+    },
+    {
+      "title": "［2026년 국감］ 윤준병 의원, 금융권 해킹 비상인데…농·수·산림조합...",
+      "url": "https://www.eroun.net/news/articleView.html?idxno=93002"
+    },
+    {
+      "title": "초장기 강세 '노이즈' 속 금통위 앞두고 국고채 강보합",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440372"
+    },
+    {
+      "title": "DB생명, 순익 개선에도 본업은 과제…박제광號 시험대",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=874713"
+    }
+  ]
+}
