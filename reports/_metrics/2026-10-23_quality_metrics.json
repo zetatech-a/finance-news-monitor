@@ -1,0 +1,263 @@
+{
+  "clusters": {
+    "cluster_count": 412,
+    "cluster_size_max": 569,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 569,
+        "relevance_prob": 0.8983441778761041,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "신현송 한은 총재 \"금리 동결, 호미질의 결실…긴축 기조 계속 이어갈 ...",
+        "url": "https://www.ajunews.com/view/20261022113010845"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1552,
+    "displayed_articles": 291,
+    "final_tagged_representatives": 412,
+    "normalized_articles": 2230,
+    "raw_items": 2230,
+    "relevance_filtered_articles": 1256,
+    "rule_filtered_articles": 1509,
+    "tagged_before_cluster": 1256
+  },
+  "date": "2026-10-23",
+  "generated_at": "2026-10-23T09:14:06.190596+09:00",
+  "publishers": {
+    "missing_publisher_count": 412,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 150,
+    "no_topic_ratio": 0.3641,
+    "no_topic_samples": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.571441212051083,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "‘싹다잡아’ 개발사 필상-KISA 대전정보보호지원센터 맞손...대전형 취...",
+        "url": "https://www.thebigdata.co.kr/view.php?ud=2026102215581450669aeda69934_23"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7135826211909768,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "바이비트, 두바이 VARA 현물 거래소 서비스 승인 획득 보도",
+        "url": "https://www.tokenpost.kr/news/breaking/426093"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6281415338666426,
+        "relevance_score": 9,
+        "sector": "감독·제재",
+        "title": "금감원, KB금융·국민은행 정기검사 2주 연장",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440754"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8273219479426601,
+        "relevance_score": 12,
+        "sector": "여전",
+        "title": "캐피탈사 렌터카 사업 확대 길 열려…금융위, 한도 규제 손질",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=282108"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.40151949278441706,
+        "relevance_score": 1,
+        "sector": "기타",
+        "title": "NDF, 1,324.40/ 1,324.80원…1.60원↑",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440751"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8032732080763504,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "신협, 자산관리회사 설립 금융위 출자 승인",
+        "url": "https://n.news.naver.com/mnews/article/003/0014273257?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.80272069235048,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "서산경찰서성연파출소, 주민 체감형 선제적 예방치안 활동 대폭 강화",
+        "url": "http://www.chungnamilbo.co.kr/news/articleView.html?idxno=916417"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8797889017369408,
+        "relevance_score": 24,
+        "sector": "입법·정책",
+        "title": "금융위, 여신금융업자 '숙원' 렌털한도 완화",
+        "url": "https://n.news.naver.com/mnews/article/277/0005832406?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7240638093765343,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "[더 가까운 시니어 금융] \"디지털 실습부터 TV 상담까지\"…'신한 학이재...",
+        "url": "https://www.businessplus.kr/news/articleView.html?idxno=118518"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.788965898790402,
+        "relevance_score": 19,
+        "sector": "여전",
+        "title": "여전사 부동산 대출 쏠림 막는다…총한도 50% 이내로",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440738"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 6,
+      "거시·시장": 39,
+      "기타": 131,
+      "대부": 6,
+      "디지털자산": 97,
+      "보험": 10,
+      "상호금융": 16,
+      "여전": 14,
+      "은행": 25,
+      "입법·정책": 31,
+      "자산운용·연기금": 12,
+      "저축은행": 17,
+      "증권(브로커리지/리테일)": 4,
+      "핀테크·플랫폼": 4
+    },
+    "topic_counts": {
+      "가계대출·부채": 21,
+      "감독·제재": 6,
+      "건전성·자본규제": 10,
+      "규제·가계부채": 9,
+      "금리·수수료·최고금리": 35,
+      "기업금융·익스포저": 6,
+      "디지털자산": 107,
+      "부동산·PF": 13,
+      "불법사금융·불법추심·보이스피싱": 15,
+      "사고·사기·횡령": 12,
+      "상품·영업·예금금리": 5,
+      "서민금융·대환·채무조정": 3,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 3,
+      "연체·부실": 19,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 6,
+      "정책·제도개선": 9,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 13,
+      "해외·글로벌": 16,
+      "환율·외환": 13
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 30,
+        "relevance_prob": 0.946612507244164,
+        "relevance_score": 41,
+        "sector": "디지털자산",
+        "title": "금융위원장 \"스테이블코인 송금·결제, 디지털자산 입법 단계서 고민\"",
+        "url": "https://n.news.naver.com/mnews/article/008/0005430414?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.868200707349928,
+        "relevance_score": 34,
+        "sector": "감독·제재",
+        "title": "빗썸-FIU, 영업정지 취소 소송 첫 재판서 규제 기준 공방",
+        "url": "https://n.news.naver.com/mnews/article/003/0014272949?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9025231457880154,
+        "relevance_score": 35,
+        "sector": "은행",
+        "title": "시중은행 쏠림 심화…2금융권과 총자산 격차 4.3배",
+        "url": "https://n.news.naver.com/mnews/article/018/0006393739?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9331114110615669,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "\"인프라 0곳인데 세금부터?\"…표심과 원칙 사이 길 잃은 가상자산 과세",
+        "url": "https://n.news.naver.com/mnews/article/586/0000140602?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8635414112994221,
+        "relevance_score": 25,
+        "sector": "입법·정책",
+        "title": "[2026 국정감사] 은행 가산금리·사내대출 특혜 논란…금융위·금감원 종...",
+        "url": "https://www.ajunews.com/view/20261022144459367"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7760988298765178,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "\"현금 부자만 집 사나\"…금융위·금감원 종합국감서 대출 규제 집중포화...",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026102217173377110"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6938289479589242,
+        "relevance_score": 26,
+        "sector": "입법·정책",
+        "title": "금감원 “내년 특사경 도입 가능성 커…보험사기로 확대 기대”",
+        "url": "https://n.news.naver.com/mnews/article/009/0005752264?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7454982995381536,
+        "relevance_score": 25,
+        "sector": "저축은행",
+        "title": "\"이대로면 2금융 존재 어려워\"…은행-저축은행 양극화에 경고음",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1728810"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8309315132866816,
+        "relevance_score": 24,
+        "sector": "핀테크·플랫폼",
+        "title": "금융위, 여전사 부동산 대출 규제 강화…PG사 점검 의무·렌탈 한도 완화",
+        "url": "https://n.news.naver.com/mnews/article/421/0009245467?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8032732080763504,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "신협, 자산관리회사 설립 금융위 출자 승인",
+        "url": "https://n.news.naver.com/mnews/article/003/0014273257?sid=101"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "은행": 1,
+      "입법·정책": 3,
+      "저축은행": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 3,
+      "부동산·PF": 3
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 43,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 8,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 8,
+  "candidate_hybrid_gray_keep_domain": 33,
+  "candidate_hybrid_gray_rule_drop": 147,
+  "candidate_hybrid_gray_rule_keep": 33,
+  "candidate_hybrid_keep_overseas_global_reference": 19,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 11,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 975,
+  "candidate_hybrid_model_drop": 33,
+  "candidate_hybrid_model_keep": 217,
+  "candidate_hybrid_model_keep_with_domain_anchor": 217,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 975,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-23",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 43,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 8,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 8,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 147,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 33,
+    "candidate_hybrid_keep_overseas_global_reference": 19,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 11,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 975,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 33,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 217
+  },
+  "dropped_count": 253,
+  "input_count": 1509,
+  "kept_count": 1256,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1509,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 36,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[사설] 금리 동결에도 지역 중소기업은 힘들다",
+      "url": "https://www.joongdo.co.kr/web/view.php?key=20261022010006487"
+    },
+    {
+      "title": "11월 추가 금리인상 불씨 여전…대출금리 7% 눈앞에 영끌족 속탄다",
+      "url": "https://www.newsis.com/view/NISX20261022_0003836505"
+    },
+    {
+      "title": "'금융권 혁신 아이콘' 정태영 부회장, 20년 뚝심이 현대카드 전성기 열...",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=2008911"
+    },
+    {
+      "title": "농협·수협·산림조합 정보보호 예산 집행 부진",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=208984"
+    },
+    {
+      "title": "'매파' 신현송, 긴축 속도조절..한은은 무엇을 고민하나",
+      "url": "https://www.peoplewatch.co.kr/article/view/ppw202610220005"
+    },
+    {
+      "title": "비바·토스페이먼츠 RSU 바이백 갈등… 합병 지연도 변수로",
+      "url": "https://biz.chosun.com/stock/market_trend/2026/10/23/VEHH3YMQQZA63DI2GLR3OSJJP4/?utm_source=naver&utm_medium=original&utm_campaign=biz"
+    },
+    {
+      "title": "[금융 한 입] 레버리지 손실부터 해킹까지…국감서 드러난 금융의 빈틈",
+      "url": "https://news.bbsi.co.kr/news/articleView.html?idxno=4113948"
+    },
+    {
+      "title": "삼성 등 사내대출 1조원 돌파…당국 \"규제 필요성 지적에 공감\"",
+      "url": "https://www.sidae.com/article/2026102211480649026"
+    },
+    {
+      "title": "비트코인 1억1201만 원대 상승, 미국 기술주 강세에 위험자산 투자심리...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=449988"
+    },
+    {
+      "title": "자동차 렌탈에 캐피탈사 진입 문턱을 더 낮춘다고?…업계가 우려하는 이...",
+      "url": "http://www.segyebiz.com/newsView/20261022519553?OutUrl=naver"
+    }
+  ]
+}

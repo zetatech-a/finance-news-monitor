@@ -107376,6 +107376,3066 @@
         "SK텔레콤은 AI 필터링 시스템과 기술 고도화를 통해 고객의 금융 피해 예방 활동을 지속할 계획이다."
       ],
       "created_at": "2026-10-22T09:11:44.050534+09:00"
+    },
+    "89e1a8b8498b18b0d0fa417ec9ef47b7": {
+      "url": "https://n.news.naver.com/mnews/article/008/0005430414?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이억원 금융위원장은 디지털자산 입법 단계에서 스테이블코인 송금과 결제 활용안을 함께 고민하겠다고 밝혔다.",
+        "가상자산거래소를 통한 토큰증권 거래 허용 방안에 대해서는 시장 상황과 투자자 보호를 고려해 검토하겠다는 입장을 보였다.",
+        "기금형 퇴직연금 도입 논의와 관련해서는 고용노동부와 함께 제도의 구체적 형태를 살펴보고 있다고 설명했다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836688+09:00"
+    },
+    "0f9de3f6a837750cf2eb73735870bcbd": {
+      "url": "https://n.news.naver.com/mnews/article/003/0014272949?sid=102",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 거래소 빗썸이 금융위원회 금융정보분석원을 상대로 제기한 영업 일부정지 처분 취소 소송의 첫 변론기일이 열렸다.",
+        "빗썸 측은 명확한 규제 기준이 없어 고의나 중과실을 인정할 수 없다고 주장하며 법정 공방이 본격화됐다.",
+        "재판부는 내년 1월 28일에 다음 변론기일을 열고 양측의 입장을 추가로 심리하기로 했다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836705+09:00"
+    },
+    "e6b60af61473abda84831f16dd431bab": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006393739?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "시중은행과 저축은행 및 상호금융 등 2금융권 간의 총자산 격차가 올해 6월 말 기준 4.3배로 확대됐다.",
+        "예금자보호 한도를 상향했음에도 자금이 2금융권에서 빠져나가 은행권으로 몰리는 역머니무브 현상이 심화됐다.",
+        "신협과 새마을금고에서 자본잠식 상태에 빠진 조합이 급증하면서 금융권 양극화에 대한 우려가 커지고 있다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836708+09:00"
+    },
+    "bda2c569939d1aec902932e9614eda9a": {
+      "url": "https://n.news.naver.com/mnews/article/586/0000140602?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 과세 제도의 시행을 앞두고 과세 인프라 부족과 형평성 논란이 겹치며 2029년까지 재유예하는 방안이 급물살을 타고 있다.",
+        "정부와 여야 정치권은 현장의 준비 미비를 감안해 연말 세법 심사에서 과세 유예 여부를 최종 결론 내릴 방침이다.",
+        "반면 조국혁신당 등은 조세 대원칙을 훼손해서는 안 된다며 과세 강행을 주장하며 거세게 맞서고 있다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836712+09:00"
+    },
+    "378469b9f8258316e3424667673f5ffb": {
+      "url": "https://www.ajunews.com/view/20261022144459367",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 정무위원회의 금융위원회와 금융감독원 종합국정감사에서 은행권 대출금리 산정 방식과 가계대출 규제 형평성 문제가 도마에 올랐다.",
+        "일부 기업과 공공기관 임직원의 사내대출이 총부채원리금상환비율 규제의 사각지대에 놓여 있다는 지적이 제기됐다.",
+        "금융당국은 사내대출에 총부채원리금상환비율 규제를 연계하는 방안을 논의 중이라고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836716+09:00"
+    },
+    "1b57b606e225dc757c1ca5445e8cf02d": {
+      "url": "https://www.newsway.co.kr/news/view?ud=2026102217173377110",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 정무위원회의 금융위원회 및 금융감독원 종합국정감사에서 주택담보대출 규제의 실효성과 법적 근거를 둘러싼 질의가 집중됐다.",
+        "의원들은 6억원인 주택담보대출 한도가 실수요자의 내 집 마련을 어렵게 하고 현금 부자에게만 유리하다고 지적했다.",
+        "이억원 금융위원장은 한국 경제의 잠재 리스크인 가계부채를 관리하기 위해 대출 규제가 불가피하다고 강조했다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836720+09:00"
+    },
+    "bb7582ccf34584cf41d8adf3c08c9a82": {
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1728810",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국정감사에서 시중은행과 저축은행 및 상호금융 간 자산과 수익, 여수신 격차가 갈수록 심화되고 있다는 우려가 제기됐다.",
+        "예금자보호 한도 상향 이후 고금리 2금융권으로의 자금 이동 대신 은행으로 돈이 몰리는 역머니무브 현상이 나타났다.",
+        "일부 2금융권에서 자본잠식이 늘어나면서 단순한 실적 격차를 넘어 존립 기반이 흔들릴 수 있다는 지적이 나왔다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836723+09:00"
+    },
+    "370e1e87a95361d7a3e53025efd7cbfd": {
+      "url": "https://n.news.naver.com/mnews/article/421/0009245467?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융당국이 여신전문금융회사의 부동산 및 건설업 대출 각각에 대해 여신성 자산의 30% 이내 한도를 신설하는 규정 개정을 예고했다.",
+        "카드사에는 결제대행업체에 대한 분기별 결제리스크 평가 의무를 부과하고 관리 강화를 추진한다.",
+        "여전사의 렌탈업 전체 취급 한도는 리스와 할부금융자산 합산 이내로 완화하고 물건별 규제는 폐지하기로 했다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836730+09:00"
+    },
+    "2a6fcb0ff8d948f67bb5af1a53065133": {
+      "url": "https://n.news.naver.com/mnews/article/003/0014273257?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "신협중앙회는 금융위원회로부터 신협자산관리회사 설립을 위한 출자 승인을 받았다고 23일 밝혔다.",
+        "신협은 10월 중 법인 설립 등기를 마무리하고 인력 채용과 업무 체계 구축을 진행할 예정이다.",
+        "연내 부실채권 매입을 시작으로 채무자에 대한 신용조사와 채권추심 등으로 업무영역을 확대할 방침이다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836735+09:00"
+    },
+    "5c7d84d40334504592da5972162ecac0": {
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=497757",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 정무위원회 종합국정감사에서 폐업한 자영업자의 저축은행 대출 연체율이 56%에 달한다는 지적이 나왔다.",
+        "의원들은 취약차주의 재기 지원을 강화하기 위해 새출발기금 지원 요건을 완화하고 신청 기한을 연장할 것을 요구했다.",
+        "금융당국은 폐업자의 상환능력 회복을 위한 복지 및 고용 지원 연계를 강화하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836738+09:00"
+    },
+    "e83666aec2ae36780431d7e4df7a2acb": {
+      "url": "https://www.tleaves.co.kr/news/articleView.html?idxno=10016",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "인카금융서비스 최병채 대표가 국정감사 지적에 따라 보험설계사에게 부과하던 120% 환수기준을 폐지하기로 했다.",
+        "인카금융은 내부통제 개선 계획을 마련하고 이행 결과를 연말까지 국회에 보고할 예정이다.",
+        "지점장과 설계사 간의 법적 소송 문제 등 관리 사각지대와 관련된 추가적인 쟁점도 남아 있는 상태다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836742+09:00"
+    },
+    "5fc4b49daafb6c9fcea8b763cbd867dc": {
+      "url": "https://www.idaegu.co.kr/news/articleView.html?idxno=563179",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "의무복무 중인 군 장병들의 불법도박과 고금리대출 문제가 국정감사 등을 통해 심각한 수준인 것으로 드러났다.",
+        "도박 빚을 갚기 위해 고금리 대출과 불법사금융에 손을 대는 현역병이 늘면서 연체 잔액도 급증했다.",
+        "군 장병의 금융 취약성과 도박 문제를 해결하기 위한 종합적인 대책 마련이 시급하다는 지적이다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836745+09:00"
+    },
+    "cc3821d74775fdb798bf255b1ee2b9e7": {
+      "url": "https://n.news.naver.com/mnews/article/009/0005752474?sid=110",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "등록 대부업체의 현역병 대출잔액이 3년 만에 크게 늘어나며 장병들의 가계부채 문제가 심각해지고 있다.",
+        "일부 대부업체가 병사를 겨냥해 손쉽게 돈을 빌려주는 고금리 상품을 판매한 점이 대출 급증의 원인으로 지적됐다.",
+        "금융당국이 현역병 대상 대부업 대출을 금지하고 올바른 경제 및 금융교육을 병행해야 한다는 목소리가 커지고 있다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836748+09:00"
+    },
+    "2f6f0a8425bcc26da179d2d17849c617": {
+      "url": "https://n.news.naver.com/mnews/article/293/0000092005?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "정부가 인증한 우수 대부금융사가 대부업이라는 이유로 서민금융 플랫폼 등에서 소외되며 형평성 논란이 제기됐다.",
+        "우수 대부금융사의 시중은행 차입 비중이 미미한 가운데 업계는 부정적 인식 개선을 위해 명칭 변경을 추진하고 있다.",
+        "금융당국은 서민금융 우수 대부금융사에 대한 제도 개선을 계속 추진하겠다는 입장을 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836750+09:00"
+    },
+    "c85378e44b11049eb6111addb47e3568": {
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3729555",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "NH농협은행 충북본부는 경영성과분석회의를 열고 생산적 금융과 포용적 금융, 금융소비자 보호를 주요 과제로 설정했다.",
+        "중소기업과 농식품기업을 대상으로 성장 단계에 맞춘 정책금융과 맞춤형 금융상품 지원을 확대하기로 했다.",
+        "지능화되는 보이스피싱에 대응하기 위해 예방 활동을 지속하고 보이스피싱보상보험 무료가입 지원을 강화할 방침이다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836754+09:00"
+    },
+    "d79d457a73f9ddbbb730310fc5a2c85c": {
+      "url": "https://n.news.naver.com/mnews/article/662/0000106734?sid=102",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "NH농협은행 경북본부와 구미시지부는 파크골프대회 현장에서 보이스피싱 보상보험 홍보활동을 펼쳤다.",
+        "고령농민의 재산을 보호하고 피해 발생 시 보상받을 수 있도록 보험 가입 절차를 안내했다.",
+        "직원들은 대회 참가자들에게 피해예방 수칙을 담은 안내장을 배포하고 가입을 독려했다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836757+09:00"
+    },
+    "2493eec02ffef5e17d3ed60d5dcdfa63": {
+      "url": "https://www.inews365.com/news/article.html?no=940448",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "NH농협은행 충북본부는 경영성과분석회의를 개최하고 생산적 금융과 포용적 금융 실천 방안을 논의했다.",
+        "기술력을 갖춘 중소기업과 농식품기업에 대한 금융지원을 확대해 지역기업의 경쟁력 강화를 뒷받침하기로 했다.",
+        "금융 취약계층의 금융 접근성을 높이고 보이스피싱보상보험 무료가입 지원 등 소비자 보호를 강화할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836760+09:00"
+    },
+    "fa971c0f041d8d74d329b420cdc9eda5": {
+      "url": "https://n.news.naver.com/mnews/article/003/0014272620?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "SC제일은행은 서울 삼양동종합복지센터에서 지역 어르신을 대상으로 찾아가는 금융교육을 실시했다.",
+        "임직원 봉사자들이 참여해 보이스피싱 등 금융사기 예방법과 대응 요령을 안내했다.",
+        "키오스크 등 디지털 기기 사용에 어려움을 겪는 어르신들을 위한 실습 지원도 함께 진행됐다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836763+09:00"
+    },
+    "99249f2ace202ede2d8089365d41c7b1": {
+      "url": "https://www.bzeronews.com/news/articleView.html?idxno=824216",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "NH농협은행 충북본부는 경영성과분석회의를 통해 지역기업 금융지원과 취약계층 지원 강화를 다짐했다.",
+        "중소기업과 농식품기업에 성장 단계별 맞춤형 금융상품과 정책금융을 연계해 자금 조달을 돕기로 했다.",
+        "소상공인 맞춤형 상담을 추진하고 보이스피싱보상보험 지원을 통해 금융사기 피해 부담을 줄일 방침이다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836765+09:00"
+    },
+    "8a0e0fc94e4ed05aee0d5ee6801dc43b": {
+      "url": "https://www.dynews.co.kr/news/articleView.html?idxno=870557",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "NH농협은행 충북본부는 지역 내 사무소장들이 참석한 가운데 3분기 경영성과분석회의를 개최했다.",
+        "중소기업과 농식품기업을 대상으로 한 정책금융 연계와 맞춤형 금융상품 지원을 확대하기로 했다.",
+        "소상공인 금융상담 지원과 보이스피싱보상보험 무료가입 지원을 통해 금융소비자 보호를 강화할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836768+09:00"
+    },
+    "6066127bfcde402c5b98ab32ea2581fe": {
+      "url": "https://www.job-post.co.kr/news/articleView.html?idxno=233971",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "22일 유가증권시장에서 KB금융의 종가는 전일보다 하락한 15만7700원으로 집계됐다.",
+        "KB금융은 은행과 카드 및 증권과 보험을 아우르는 종합 금융지주회사다.",
+        "향후 실적과 현금흐름을 바탕으로 발표한 주주환원 계획의 실제 이행 여부를 점검해야 한다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836771+09:00"
+    },
+    "6080a629217e11d7e03063191f511c0b": {
+      "url": "https://n.news.naver.com/mnews/article/015/0005345529?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "기준금리 인상 전망과 금융시장 불확실성 확대에 따라 자금 운용 주기를 짧게 가져가는 초단기 금융상품이 인기를 끌고 있다.",
+        "은행권의 초단기 적금 상품과 증권사의 발행어음 잔액이 크게 증가하며 뭉칫돈이 유입됐다.",
+        "머니마켓펀드 설정액도 증시 조정과 맞물려 큰 폭으로 증가하는 등 단기 상품 선호 현상이 이어지고 있다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836774+09:00"
+    },
+    "8e3bb665e95b95a8e275bfa84200dd96": {
+      "url": "http://www.lkp.news/news/articleView.html?idxno=85318",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "신한은행은 수출입 기업 실무자들을 대상으로 결제 방식과 환위험 관리를 다루는 수출입 아카데미를 개최했다.",
+        "환율 변동성 확대에 대응해 실제 거래 사례를 바탕으로 외환 규정과 환리스크 관리 방안을 교육했다.",
+        "인공지능 확산에 따른 무역서류 작성 등 업무환경 변화에 대응하는 효율화 과정도 함께 편성됐다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836778+09:00"
+    },
+    "63c577d34e74549b18665655f5209540": {
+      "url": "http://www.marketnews.co.kr/news/articleView.html?idxno=74316",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "대구은행의 성공적인 시중은행 전환을 이끈 황병우 iM금융지주 회장이 연임 가능성을 높이고 있다.",
+        "지주사명 변경과 수도권 거점 확장을 이뤄냈고 상반기 순이익이 급증하며 실적 정상화를 증명했다.",
+        "다만 금융당국의 정기검사를 앞둔 시점에서 철저한 내부통제와 소비자 보호 체계 확립이 주요 과제로 꼽힌다."
+      ],
+      "created_at": "2026-10-23T09:12:27.836783+09:00"
+    },
+    "8c450e199196d32623c04e1832146b84": {
+      "url": "https://www.techm.kr/news/articleView.html?idxno=156377",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원이 은행권에서 발생한 잇따른 해킹 사고와 관련해 내부통제 책임을 들여다보고 있다.",
+        "신한은행에서 대출 관련 보안 취약점으로 약 2만5000명의 개인정보가 유출되는 피해가 발생했다.",
+        "책무구조도 시행에 따라 보안사고에 대한 은행장의 관리 책임을 묻는 첫 사례가 될 수 있다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472742+09:00"
+    },
+    "109332f0a522b7692c0f61328a4425b4": {
+      "url": "http://www.metroseoul.co.kr/article/20261022500350",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융당국이 은행권의 편법적인 대출 금리 인상 행위를 규율하기 위한 관리 기준을 마련할 방침이다.",
+        "은행법 개정으로 법정금리 반영이 금지됐으나 가산금리를 올리는 등의 편법 행위가 지속되고 있다.",
+        "이찬진 금융감독원장은 관련 내용을 감독 시 우선도가 높은 항목으로 지정해 관리하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472761+09:00"
+    },
+    "38ed9e45627c0e06d629fc6d4b3ac56d": {
+      "url": "https://n.news.naver.com/mnews/article/030/0003477597?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "전자신문사가 주최하고 금융위원회가 후원하는 제22회 스마트금융 컨퍼런스가 개최된다.",
+        "행사는 인공지능과 데이터 및 디지털머니가 재편하는 금융산업의 새로운 질서를 조명한다.",
+        "국내외 금융과 빅테크 및 핀테크 기업 관계자들이 참여해 미래 전략을 제시할 예정이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472767+09:00"
+    },
+    "66bfe1a27f076f5d15127e63472d8f42": {
+      "url": "http://www.economytalk.kr/news/articleView.html?idxno=424801",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "케이뱅크가 스테이블코인 제도화에 대비해 블록체인 거래 분석 솔루션을 도입했다.",
+        "보난자팩토리의 트랜사이트 솔루션을 활용해 블록체인 거래 위험도를 분석할 예정이다.",
+        "디지털자산 거래에 따른 자금세탁 등 금융범죄에 선제적으로 대응할 방침이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472774+09:00"
+    },
+    "b4c8eedb2a9eedfa8064d841c90ae5f0": {
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1728858",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "8월 말 국내은행 원화대출 연체율이 0.69%를 기록하며 두 달 연속 상승했다.",
+        "중소기업과 개인사업자 대출 및 가계 신용대출을 중심으로 연체율이 올랐다.",
+        "금융감독원은 은행권의 손실흡수능력을 확충하고 건전성 관리를 강화할 방침이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472778+09:00"
+    },
+    "7d226e6a6f52dd1386b4bcded19f481e": {
+      "url": "https://www.asiatime.co.kr/article/20261022500371",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "8월 말 국내은행의 원화대출 연체율이 0.69%를 기록해 동월 기준 10년 만에 최고를 나타냈다.",
+        "중소기업대출 연체율이 1.00%를 기록하는 등 취약 부문을 중심으로 상승세가 지속됐다.",
+        "금융감독원은 부실채권 정리와 취약차주 채무조정을 유도해 건전성 관리를 강화할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472782+09:00"
+    },
+    "93c2c287881e485605e9a88b6ced3fa2": {
+      "url": "http://www.dailypop.kr/news/articleView.html?idxno=103629",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융권이 클라우드와 인공지능 및 스테이블코인을 활용한 디지털 혁신을 가속화하고 있다.",
+        "KB국민은행은 코어뱅킹 현대화 사업을 추진하며 비대면 가계대출 플랫폼을 새롭게 구축했다.",
+        "신한은행은 스테이블코인을 활용한 의료비 결제 및 정산 실증 작업을 완료했다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472787+09:00"
+    },
+    "abc1bce83cbc68018fc1f875f5334ae7": {
+      "url": "https://www.thepublic.kr/news/articleView.html?idxno=323307",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "은행권의 자영업자 대출 규모가 증가하는 가운데 신규 대출 취급액은 큰 폭으로 감소했다.",
+        "올해 6월 말 은행권 개인사업자대출 잔액은 460조9000억원을 기록했다.",
+        "자금 공급이 둔화되는 과정에서 개인사업자대출 연체율이 가파르게 상승했다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472791+09:00"
+    },
+    "5ed02fff95f93b005e9401c3734a45bc": {
+      "url": "http://www.segyebiz.com/newsView/20261022523066?OutUrl=naver",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "핀테크 기업 핀다가 대원저축은행을 인수하며 저축은행업계에 진출했다.",
+        "핀다는 금융위원회로부터 대원저축은행 인수를 위한 대주주 변경 승인을 받았다.",
+        "축적한 금융 데이터와 인공지능을 활용해 중금리대출 시장을 공략할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472795+09:00"
+    },
+    "9eb4faf7156d3dd57931655545d59840": {
+      "url": "https://it.chosun.com/news/articleView.html?idxno=2023092172587",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "저축은행업권의 개인사업자 대출 잔액이 연체율 상승 여파로 크게 감소했다.",
+        "저축은행 79곳의 개인사업자 대출 잔액은 6월 말 기준 12조6048억원을 기록했다.",
+        "연체율이 급등하면서 저축은행들이 경기에 민감한 개인사업자 대출을 줄였다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472799+09:00"
+    },
+    "a7e0fb182a438b4cf8a02a17a7bd3d6d": {
+      "url": "https://www.fntimes.com/html/view.php?ud=2026102218080914357c96e79780_18",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "IBK저축은행이 신임 부사장에 김학필 전 IBK기업은행 리스크관리그룹장을 선임했다.",
+        "김 부사장은 영업 현장과 리스크관리 부서를 두루 거친 건전성 전문가로 평가받는다.",
+        "흑자 전환의 흐름을 이어가며 부실 여신 정리와 건전성 관리 강화에 나설 예정이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472804+09:00"
+    },
+    "d8444ebe35fd1209476dbd01f19d5295": {
+      "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=666700",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "교보생명이 SBI저축은행의 최대주주로 올라서며 새로운 경영 체제로 전환했다.",
+        "SBI저축은행은 오는 11월 1일 사명을 교보SBI저축은행으로 변경하고 새롭게 출범한다.",
+        "교보생명 계열사와의 협업을 통해 수익 기반을 넓히고 건전성 개선을 추진할 예정이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472807+09:00"
+    },
+    "11d096e9db43a3acf41c2a660c117977": {
+      "url": "https://www.smartbizn.com/news/articleView.html?idxno=157287",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "대출 중개 플랫폼 핀다가 대원저축은행을 인수하며 금융상품 직접 공급에 나선다.",
+        "핀다는 지분 60%를 확보하고 전북은행이 나머지 40%를 보유하는 구조로 인수를 승인받았다.",
+        "인공지능을 활용한 비대면 대출 영업을 추진하며 새로운 수익원을 확보할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472810+09:00"
+    },
+    "14ffbb4532e18cd9516329e4352aa173": {
+      "url": "https://n.news.naver.com/mnews/article/117/0004117470?sid=103",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "핀다가 대원저축은행 인수를 승인받으며 국내 핀테크 기업 최초로 저축은행업에 진출했다.",
+        "총인수금액은 120억원이며 핀다가 지분 60%, 전북은행이 40%를 확보했다.",
+        "인공지능과 금융 데이터를 활용해 비대면 금융서비스와 차별화된 사업모델을 구축할 구상이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472813+09:00"
+    },
+    "94933e4899e620f5e07bf77abdb58fd9": {
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=2008918",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "저축은행 업계가 올해 상반기 최대 흑자를 기록하며 실적 반전에 성공했다.",
+        "보험사와 금융지주에 이어 핀테크 기업 핀다까지 저축은행 인수에 가세했다.",
+        "부실채권 매각과 상각을 통해 부동산 프로젝트파이낸싱 부담을 덜어낸 결과다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472817+09:00"
+    },
+    "1a2f5f283a14423fbf71112f009e7c32": {
+      "url": "https://www.fetv.co.kr/news/articleView.html?idxno=312272",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "IBK저축은행이 공석이었던 부사장 자리에 리스크관리 전문가를 발탁했다.",
+        "김학필 신임 부사장은 기업은행에서 리스크관리그룹장을 지낸 인물이다.",
+        "자산건전성 관리와 부실여신 감축에 무게를 두고 업무를 총괄할 예정이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472820+09:00"
+    },
+    "2f3e6131dec9eec0a3e7005016f76f32": {
+      "url": "https://www.ekn.kr/web/view.php?key=20261022027579453",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "핀테크 기업 핀다가 대원저축은행 인수 승인을 받으며 저축은행업에 진출한다.",
+        "핀다는 지분 60%를 확보해 최대주주가 되고 전북은행이 나머지 40%를 인수한다.",
+        "인공지능 기술과 전북은행의 리스크 관리 노하우를 결합해 경쟁력을 강화할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472824+09:00"
+    },
+    "c5b88815da6c51a009b0e04fdb038356": {
+      "url": "https://www.techm.kr/news/articleView.html?idxno=156376",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "핀다가 대원저축은행을 인수하며 국내 핀테크 기업 최초로 저축은행 사업에 진출했다.",
+        "인수 금액은 총 120억원이며 핀다가 지분 60%, 전북은행이 40%를 보유한다.",
+        "인공지능 중심의 운영 체계를 갖춘 새로운 금융 모델을 구축할 예정이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472828+09:00"
+    },
+    "50d0cc2483117dc8df99768e81b7d1a5": {
+      "url": "https://bizhankook.com/articles/finda-secures-savings-bank-license.html",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "핀다가 대원상호저축은행을 인수하며 국내 핀테크 기업 최초로 저축은행을 품었다.",
+        "JB금융그룹 전북은행과 손잡고 인공지능 중심의 뱅킹 서비스 구현에 나선다.",
+        "비대면 개인 신용대출을 중심으로 영업 구역 내에서 사업을 확대할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472834+09:00"
+    },
+    "7b01a67329610196e2c1052a49543ae0": {
+      "url": "https://n.news.naver.com/mnews/article/417/0001161817?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "저축은행 부실 사태 정리를 위해 도입된 예금보험기금 특별계정이 올해 연말 종료를 앞두고 있다.",
+        "국회 정무위원회에서 특별계정 운영기한 연장 안건의 심사가 보류된 상태다.",
+        "법안 연장이 무산될 경우 남은 부채가 저축은행 고유계정으로 넘어와 부담이 커질 수 있다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472837+09:00"
+    },
+    "c25681ae47d421eb94e3b8a4cd5eeef7": {
+      "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=260086",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "자산 상위 저축은행들의 집합투자증권 보유액이 크게 증가한 것으로 나타났다.",
+        "일부 저축은행은 관련 규정상 한도를 초과해 투자 자산 위험관리가 쟁점으로 떠올랐다.",
+        "금융당국은 부동산 프로젝트파이낸싱 정리 목적의 투자에 대해 연말까지 제재를 면제하고 있다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472840+09:00"
+    },
+    "26ee81a4e7edaee43e71ff91cc00f18c": {
+      "url": "https://www.techm.kr/news/articleView.html?idxno=156426",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "핀다가 핀다저축은행 초대 대표이사로 박연현 전 토스뱅크 기업제품부문장을 선임했다.",
+        "박 신임 대표는 토스뱅크 창립 멤버로 참여해 공동대출 상품 출시를 주도한 인물이다.",
+        "축적된 데이터와 인공지능 기술을 저축은행 여신 기능에 접목할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472843+09:00"
+    },
+    "dc8815ea17319be2388df95d2fc3f09a": {
+      "url": "https://www.niceeconomy.co.kr/news/articleView.html?idxno=91455",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "핀다가 대원저축은행 인수를 마무리하고 내년 1월 공식 영업을 위한 준비에 착수했다.",
+        "금융위원회는 정례회의에서 핀다의 대원저축은행 인수를 위한 대주주 변경 승인을 의결했다.",
+        "인수 금액은 총 120억원이며 핀다가 지분 60%, 전북은행이 40%를 확보했다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472846+09:00"
+    },
+    "9b555139acfa32568d598dfb35c5ecb7": {
+      "url": "http://www.intn.co.kr/news/articleView.html?idxno=2054261",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "농협 상호금융권의 비조합원 대출 비율이 높아져 대출 업무에 차질을 빚고 있다.",
+        "전국 지역농협 중 절반이 비조합원 대출 규정 상한선에 근접한 것으로 나타났다.",
+        "상호금융 부실을 해소하기 위해 비조합원 사업이용량 규제를 개선해야 한다는 지적이 나온다."
+      ],
+      "created_at": "2026-10-23T09:12:36.472848+09:00"
+    },
+    "a5d7df5c26b700bf6d7a092249ab57a9": {
+      "url": "http://www.jeollailbo.com/news/articleView.html?idxno=814461",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "전북지역 신협의 순자본비율 4% 미만 조합이 37%에 달해 서민금융 건전성 우려가 커지고 있다.",
+        "총자산순이익률 0.3% 미만 조합이 53곳으로 늘고 기업 대출 연체율도 상승세를 보이고 있다.",
+        "전북자치도와 신협중앙회는 취약 조합의 현황을 파악하고 선제적인 공동 대응에 나서야 한다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187264+09:00"
+    },
+    "796ff173dca484907c64bc91e8a8db1a": {
+      "url": "https://n.news.naver.com/mnews/article/119/0003145872?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "은행권으로 자금이 집중되면서 저축은행과 상호금융권과의 수신 및 건전성 격차가 확대되고 있다.",
+        "최근 1년간 은행권 총수신은 166조8000억원 증가한 반면 저축은행과 상호금융은 29조5000억원 감소했다.",
+        "금융당국은 제2금융권의 수신 위축과 건전성 악화를 해결하기 위해 관련 규제와 사업모델 개선을 검토하기로 했다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187281+09:00"
+    },
+    "f3c378932f990b0e8e117e2f1022a8e7": {
+      "url": "https://n.news.naver.com/mnews/article/008/0005430204?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "은행권과 저축은행 및 상호금융권 간 자산과 수익 격차가 확대되면서 금융권 양극화가 심화되고 있다.",
+        "자본잠식 상태인 신협 단위조합은 올해 6월 말 216개로 늘어나는 등 제2금융권의 건전성이 악화됐다.",
+        "이억원 금융위원장은 느슨한 건전성 규제를 강화하고 구조적 개선 방안을 검토하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187289+09:00"
+    },
+    "b7ff48c5019f48ac557d7be94b8b1fb8": {
+      "url": "https://n.news.naver.com/mnews/article/421/0009244364?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "예금 보호 한도 상향에도 불구하고 2금융권으로의 자금 이동 대신 은행으로 돈이 몰리는 역머니무브가 나타났다.",
+        "자본잠식 상태인 신협 조합과 새마을금고가 크게 증가하는 등 지역 중소금융의 부실이 심화되고 있다.",
+        "이찬진 금융감독원장은 해외 제도 개선 사례를 참고해 금융위원회와 함께 대응 방안을 모색하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187292+09:00"
+    },
+    "d8b1a718ce5add11bda7001963914a23": {
+      "url": "https://www.naeil.com/news/read/606013?ref=naver",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "새마을금고의 2년 반 누적적자가 3조6000억원에 달하고 기업대출 연체율이 10%를 넘어서며 재무 건전성이 악화됐다.",
+        "전체 금고 중 70.6%가 총자산순이익률 0.3% 미만에 머물렀고 적기시정조치 대상 금고도 292개에 이르렀다.",
+        "송옥주 의원은 밀실 구조조정을 중단하고 예금자 보호를 위한 강력한 감독 종합 대책을 마련하라고 촉구했다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187295+09:00"
+    },
+    "42942fbf53a277f7447cd0884b1b7635": {
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3730144",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "지역농협의 비조합원 사업이용량 규제로 인해 절반에 가까운 조합에서 대출업무 차질이 심화되고 있다.",
+        "농협 상호금융의 고정이하여신은 22조9718억원으로 불어나고 기업대출 연체율은 7.98%를 기록했다.",
+        "송옥주 의원은 상호금융 부실을 해소하기 위해 타 금융기관 대비 과도한 비조합원 대출 규제를 완화해야 한다고 주장했다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187302+09:00"
+    },
+    "85233d7a64929aecd51db998b14d6f73": {
+      "url": "https://www.kbanker.co.kr/news/articleView.html?idxno=226226",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "지역 농·축협의 농지담보대출 연체율이 4년 만에 5배 넘게 상승하며 부실 위험이 커지고 있다.",
+        "농지담보대출 연체율은 2022년 말 1.01%에서 올해 8월 말 5.72%로 높아졌다.",
+        "부실 확대에 대응해 담보가치 변동과 회수예상가액 산정 현황을 적절히 점검해야 한다는 지적이 나온다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187305+09:00"
+    },
+    "566cee4fea330d0f4b4729eec4994fc1": {
+      "url": "https://www.the-today.com/news/articleView.html?idxno=92207",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "신협의 동일인 여신한도 초과 대출이 5조7000억원에 육박하고 자본잠식 조합도 166곳에 달하는 것으로 나타났다.",
+        "기업대출 연체율이 10%를 넘어섰고 적기시정조치를 받은 조합도 128곳으로 크게 증가했다.",
+        "송옥주 의원은 동일인 여신한도 초과 대출에 대한 전수검사와 부실 조합 구조조정 대책 마련을 촉구했다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187308+09:00"
+    },
+    "ee743d4667e98331c8df078a14e43634": {
+      "url": "https://www.ulsanpress.net/news/articleView.html?idxno=585299",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "농협중앙회 울산본부는 울산지역 농축협 상호금융 관계자들이 참석한 가운데 마케팅협의회를 개최했다.",
+        "이번 협의회는 22일 롯데호텔에서 진행되었으며 울산농협에서 관련 내용을 제공했다.",
+        "행사는 변화하는 금융환경에 대응하고 상호금융사업의 경쟁력 강화와 성장 기반 마련을 위해 열렸다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187311+09:00"
+    },
+    "25c8f9b168531b97bc352084e3fb42b2": {
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440489",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "정부가 주거형 부동산 프로젝트파이낸싱 취급을 장려하는 가운데 새마을금고는 부실 정리로 고심하고 있다.",
+        "KB국민은행 등 시중은행은 내부한도를 확대하며 신규 자금 공급에 나섰으나 상호금융권은 규제를 앞두고 있다.",
+        "새마을금고는 내년 시행될 PF 대출한도 규제와 부실채권 정리 부담으로 신규 영업 여력이 제한될 전망이다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187315+09:00"
+    },
+    "46a16088b9916b6e7bae16266304e699": {
+      "url": "https://news.skbroadband.com/news/articleView.html?idxno=241013",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "전북지역 신협 가운데 순자본비율이 4% 미만인 조합이 26곳으로 집계되어 전국에서 두 번째로 많았다.",
+        "총자산순이익률이 0.3% 미만인 조합은 53곳으로 2022년보다 두 배 이상 증가했다.",
+        "올해 6월 기준 예금이 8% 이상 감소한 조합도 10곳에 달하는 것으로 나타났다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187318+09:00"
+    },
+    "42357482c61a1a04e7ee5533fd032bb0": {
+      "url": "http://www.beyondpost.co.kr/view.php?ud=20261023080711682446a9e4dd7f_30",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "신협중앙회가 금융위원회로부터 자산관리회사 설립을 위한 출자 승인을 받았다.",
+        "신협은 이달 중 법인 설립 등기를 마치고 인력 채용과 업무 체계 구축을 진행할 예정이다.",
+        "신설 자산관리회사를 통해 부실채권을 통합 관리하고 조합의 경영 정상화를 지원할 방침이다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187320+09:00"
+    },
+    "21d7670597694b8fdcf5e6aad80f22e7": {
+      "url": "https://www.sentv.co.kr/article/view/sentv202610230008",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "신협중앙회가 금융위원회로부터 자산관리회사 설립 출자 승인을 받아 부실자산 통합 관리에 나선다.",
+        "신협은 이달 중 법인 설립을 마치고 연내 부실채권 매입에 착수할 계획이다.",
+        "자산관리회사는 부실채권 매입과 매각을 시작으로 채권추심 등으로 업무 범위를 확대할 예정이다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187324+09:00"
+    },
+    "a62448172b6f3652b6135b1f61be3d58": {
+      "url": "https://n.news.naver.com/mnews/article/016/0002713259?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "신협중앙회가 금융위원회로부터 신협자산관리회사 설립을 위한 출자 승인을 획득했다.",
+        "신협은 이달 법인 설립을 완료하고 회원조합의 부실채권 매입을 연내 추진할 계획이다.",
+        "신설 법인은 부실채권을 통합 관리하여 개별 조합의 건전성 회복과 경영 정상화를 도울 예정이다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187326+09:00"
+    },
+    "d058d2402ead8f135136bd0ed487afa0": {
+      "url": "https://n.news.naver.com/mnews/article/016/0002713129?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융당국이 캐피탈사의 자동차 렌탈사업 규제 완화를 검토하는 가운데 기존 업계가 우려를 표명했다.",
+        "캐피탈사의 렌터카 등록대수는 15년 만에 20배 이상 증가해 대형 전업 렌터카사 점유율을 넘어섰다.",
+        "렌터카업계는 잔존가치 하락과 중고차 시장 침체에 따른 손실 위험을 먼저 점검해야 한다고 요구했다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187329+09:00"
+    },
+    "e47d864baaee85dbc5ca69cc9e615231": {
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=729725",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "9개 카드사의 지난 9월 말 카드론 잔액이 넉 달 연속 감소하며 42조3404억원을 기록했다.",
+        "금융당국의 가계대출 관리 기조와 분기 말 부실채권 매각 등이 카드론 잔액 감소에 영향을 미쳤다.",
+        "다만 연말 은행권 대출 문턱이 높아질 경우 카드론 수요가 다시 늘어날 가능성이 제기된다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187332+09:00"
+    },
+    "5600100e67faacf7825c3a8e90de5091": {
+      "url": "https://www.sentv.co.kr/article/view/sentv202610230015",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회가 여신전문금융회사의 부동산대출 규제를 강화하는 대신 렌탈사업 규제를 완화하기로 했다.",
+        "부동산업과 건설업 대출한도를 각각 여신성 자산의 30% 이내로 신설하고 PF 대출과 합산한 총한도를 제한한다.",
+        "여전사의 렌탈 취급한도는 리스자산과 할부금융자산 합산 범위로 확대하고 물건별 한도는 폐지한다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187335+09:00"
+    },
+    "6521e43f20195397657d208cebbfa904": {
+      "url": "https://n.news.naver.com/mnews/article/215/0001270071?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "SK하이닉스가 8월 채권 투자를 일시 중단한 이후 3조원 규모의 자금을 들고 채권시장에 복귀했다.",
+        "SK하이닉스는 6개 자산운용사에 각 5000억원씩 총 3조원을 위탁하여 채권 운용을 맡겼다.",
+        "시장에서는 상대적으로 금리가 높은 여신전문금융회사채를 중심으로 매수가 이뤄질 것으로 전망하고 있다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187338+09:00"
+    },
+    "9fd27656b4ec3994812d94acd65e1dd5": {
+      "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=260126",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "카드 매출액과 실제 정산된 금액의 차이를 가맹점이 쉽게 확인할 수 있도록 하는 법안이 발의됐다.",
+        "개정안은 카드사가 매출액과 정산금은 물론 공제 내역과 지급보류 사유까지 매월 통지하도록 규정했다.",
+        "정보 접근성이 부족한 영세 소상공인의 권익을 보호하고 카드 거래의 투명성을 높이기 위한 취지다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187341+09:00"
+    },
+    "bf1edb0455c729452bc0431d7bb8df73": {
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=497705",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 정무위원회 국정감사에서 원화 스테이블코인 발행을 은행 중심으로 설계하는 방안이 도마에 올랐다.",
+        "민병덕 의원은 은행 중심의 발행이 비은행의 혁신 기회를 제한할 수 있다고 지적했다.",
+        "이억원 금융위원장은 은행 중심 컨소시엄 방안 등과 관련해 현재 막바지 협의가 진행 중이라고 답했다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187343+09:00"
+    },
+    "10406614e61273ec6106ceaef3d1500a": {
+      "url": "https://www.ekn.kr/web/view.php?key=20261022022199509",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "롯데카드가 정보 유출 제재로 신규 회원 모집에 차질을 빚는 동안 우리카드가 점유율을 크게 확대했다.",
+        "우리카드는 카드의정석2 시리즈의 흥행에 힘입어 신판 점유율을 높이며 업계 5위 자리를 위협하고 있다.",
+        "롯데카드는 N잡 모집인 제도를 도입하는 등 하락한 신규 회원수 회복을 위해 영업력을 강화하고 있다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187346+09:00"
+    },
+    "aa3ce6bc1eabea039489719a227e5557": {
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=282108",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회가 캐피탈사의 렌털업 취급한도 규제를 완화하고 부동산 관련 대출 규제를 신설하기로 했다.",
+        "전체 렌털자산 취급한도를 리스자산과 할부금융자산 합계 이내로 확대하고 물건별 한도 규제는 폐지한다.",
+        "부동산업과 건설업 대출한도를 각각 여신성 자산의 30% 이내로 신설하고 PF 대출과 합산해 제한한다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187350+09:00"
+    },
+    "42196f77a4a7db8e5a1d7b2a21740f55": {
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440738",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회가 여신전문금융회사의 부동산 관련 대출 한도를 총 여신의 절반 이내로 제한하는 규정을 마련했다.",
+        "프로젝트파이낸싱 대출에 이어 부동산업과 건설업 대출도 각각 여신성 자산의 30% 이내로 제한된다.",
+        "증가하는 렌털 수요에 대응해 여전사의 렌털업 취급한도 범위를 리스 및 할부금융자산으로 확대했다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187353+09:00"
+    },
+    "4c3a395b14348d69728067839bc5f07e": {
+      "url": "http://www.popcornnews.net/news/articleView.html?idxno=137030",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "현대캐피탈이 10월 여신전문금융 브랜드 평판 조사에서 1위를 수성하며 선두 체제를 공고히 했다.",
+        "이번 조사는 한국기업평판연구소가 국내 17개 주요 캐피탈 브랜드를 대상으로 빅데이터를 분석해 산출했다.",
+        "NH농협캐피탈과 하나캐피탈이 각각 2위와 3위를 차지하며 상위권 대열에 이름을 올렸다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187355+09:00"
+    },
+    "e824f36fe9486e1eca875f85082a0600": {
+      "url": "http://www.newsdream.kr/news/articleView.html?idxno=120628",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국렌터카사업조합연합회가 캐피탈사의 렌탈 취급한도 완화 논의에 앞서 자산 건전성 점검을 촉구했다.",
+        "캐피탈사의 렌터카 등록대수가 급증한 가운데 만기 시 중고차 가격 하락에 따른 잔존가치 리스크가 지적됐다.",
+        "연합회는 렌터카 시장의 경쟁 확대보다 경쟁의 건전성을 살피기 위해 소관 부처의 참여가 필요하다고 주장했다."
+      ],
+      "created_at": "2026-10-23T09:12:47.187358+09:00"
+    },
+    "168e88f6adb66c459368ae26dac4a1f5": {
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=281919",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회는 캐피탈사 등 여전사의 렌터카 사업 한도 규제 완화 개정안을 23일 발표한다.",
+        "기존 업계의 우려를 반영해 단기렌터카 시장은 제외하고 장기렌터카 시장에만 한정한다.",
+        "이번 조치는 장기렌터카 시장의 경쟁을 촉진하고 소비자의 선택권을 확대하기 위한 것이다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073171+09:00"
+    },
+    "7ee8cf6edb55876e7f03bd8001b041f2": {
+      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1417307",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "JB금융그룹 계열사인 JB우리캐피탈이 키르기스스탄 금융회사 2곳의 지분 100%를 인수한다.",
+        "인수 대상은 코르키크레딧과 코르키리싱이며 연내에 거래를 마무리할 계획이다.",
+        "현지의 높은 경제 성장세를 바탕으로 자동차 금융시장을 중심으로 사업을 확장한다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073193+09:00"
+    },
+    "ed1b616f0251c4df02b9419232e8a844": {
+      "url": "https://www.raonnews.com/news/article.html?no=62092",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회는 신용평점이 없는 외국인도 보증금만 내면 신용카드를 발급받도록 허용했다.",
+        "신한카드와 우리카드가 보증금 기반 비대면 신용카드 발급 서비스의 혁신금융서비스로 지정됐다.",
+        "국내 거주 외국인의 예금과 금융서비스 이용이 증가하는 추세에 맞춰 규제가 완화됐다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073199+09:00"
+    },
+    "395487178885fd45a7ec1ac49c380c93": {
+      "url": "https://n.news.naver.com/mnews/article/117/0004117387?sid=103",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "보험연구원은 내년 국내 보험산업의 전체 보험료 증가율이 3.5%에 그칠 것으로 전망했다.",
+        "올해 상반기 순이익 증가에도 불구하고 본업인 보험손익은 부진하며 투자이익에 의존했다.",
+        "수수료 체계 개편과 건전성 규제 강화가 맞물려 보험사들의 자본확충 부담이 커지고 있다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073206+09:00"
+    },
+    "63ae93e880a16a950443963a3de1d4b1": {
+      "url": "https://n.news.naver.com/mnews/article/277/0005831854?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "보험연구원은 내년 보험산업 성장률이 올해 예상치의 절반 수준인 3.5%로 하락한다고 밝혔다.",
+        "상반기 순이익과 CSM 등 지표는 개선됐으나 본업 경쟁력인 위험률차는 음(-)으로 고착됐다.",
+        "내년부터 시행되는 영업 및 건전성 규제가 보험사들의 신계약 유인과 영업 여력을 제약한다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073211+09:00"
+    },
+    "2babe46bceb6c76b52a139763bb896af": {
+      "url": "https://www.asiatoday.co.kr/kn/view.php?key=20261022010007520",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "보험연구원은 내년 보험산업의 전체 보험료 증가율이 올해의 절반인 3.5%를 기록할 것이라 발표했다.",
+        "보험사 CEO들도 내년 경영 환경의 성장성과 수익성, 건전성 지표를 모두 부정적으로 평가했다.",
+        "연구원은 신규 성장 영역으로의 자원 재배분과 리스크관리 역량 강화를 주요 과제로 제시했다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073216+09:00"
+    },
+    "5ed26a16d0e32a0e669459e8177b82e4": {
+      "url": "https://www.topdaily.kr/articles/112457",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "OK금융그룹은 송윤상 전 흥국화재 대표를 예별손해보험 인수단장으로 선임해 정상화에 나선다.",
+        "예별손보는 올해 상반기 자본총계 마이너스 5702억원을 기록하며 완전자본잠식 상태에 빠져 있다.",
+        "OK금융은 1100억원 이상의 추가 증자와 함께 대규모 인력 확충을 추진할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073221+09:00"
+    },
+    "24587fdba3352a968ed6f55a1d1ff144": {
+      "url": "https://www.kbanker.co.kr/news/articleView.html?idxno=226227",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "롯데손해보험은 기본자본비율 개선을 위해 감자나 유상증자 방안을 검토해 온 바 있다.",
+        "신한금융이 3000억원을 유상증자하더라도 기본자본비율은 규제 기준에 미치지 못한다.",
+        "해약환급금준비금 제도로 인해 신한지주의 자금 회수 시점이 불투명하다는 우려가 제기된다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073225+09:00"
+    },
+    "384ad41ed168af170891aafe3376db6f": {
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/10/22/2026102200147.html",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "주요 손해보험사 4곳의 3분기 순이익은 증가할 전망이나 시장 기대치에는 못 미칠 것으로 보인다.",
+        "시장금리 상승에 따른 채권 가치 하락과 대체투자 평가손실이 투자손익에 부담을 주고 있다.",
+        "예보료율 인상 추진이 향후 보험사의 자본 여력과 비용 구조에 주요 변수로 작용하고 있다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073229+09:00"
+    },
+    "b8c2649e3002d5798f9fad0b09407070": {
+      "url": "https://n.news.naver.com/mnews/article/008/0005430035?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "보험사들의 실적 지표가 개선되었음에도 CEO들은 내년 경영환경에 대해 부정적으로 전망했다.",
+        "올해 순이익 증가는 본업 경쟁력이 아닌 일시적 투자손익과 채권평가이익에 의존한 결과다.",
+        "보험연구원은 상품과 판매채널의 차별화를 확대하고 자본의 질을 높여야 한다고 강조했다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073233+09:00"
+    },
+    "978d2ca640c72cdffc17fda6a3380dc5": {
+      "url": "https://n.news.naver.com/mnews/article/016/0002713194?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한화투자증권은 보고서를 통해 내년 코스피가 최대 9300선까지 상승할 수 있다고 전망했다.",
+        "국내 기업들의 자기자본이익률이 사상 최고 수준에 근접했으나 주가는 낮게 평가되어 있다.",
+        "내년 하반기부터 기업 실적 개선에 힘입어 증시가 상승 흐름을 재개할 것으로 내다봤다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073236+09:00"
+    },
+    "4c6a96119e819feb94d366741aa305da": {
+      "url": "http://www.newsian.co.kr/news/articleView.html?idxno=97494",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "최근 10년간 국내 증시에서 발생한 금융사고 금액이 총 2953억원에 달하는 것으로 집계됐다.",
+        "이 중 절반 이상인 1525억원의 사고가 신한투자증권 한 곳에 집중된 것으로 나타났다.",
+        "국회는 금융당국에 증권사의 거래 승인 절차와 내부통제 이행 여부에 대한 검증 강화를 요구했다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073240+09:00"
+    },
+    "f85ff5141c6cb8db94abbb48d0a5c432": {
+      "url": "https://www.tokenpost.kr/news/cryptocurrency/425892",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "바이비트의 저우 CEO는 미국 주별 인가 절차에 2~3년이 소요되어 서두르지 않겠다고 밝혔다.",
+        "미국 시장에서는 증권사 제휴나 연방 차원의 인가 제도를 기다리는 전략을 취하고 있다.",
+        "영국은 규제 체제를 준비 중인 꽤 괜찮은 시장으로 평가하며 내년 새 앱 출시를 계획 중이다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073253+09:00"
+    },
+    "c3447e0130522eb2252deaa868ae71f1": {
+      "url": "https://n.news.naver.com/mnews/article/008/0005430074?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국투자증권이 가상자산 거래소 코인원 앱을 통해 국내주식 거래 서비스를 시작했다.",
+        "정무위원회 국정감사에서 해당 서비스가 금가분리 원칙을 위반했는지 여부가 쟁점으로 다뤄졌다.",
+        "이억원 금융위원장은 증권사 시스템과의 연계 방식을 구체적으로 살펴보겠다고 답변했다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073256+09:00"
+    },
+    "e8f00ef0cfde032f6e7ad450c71dc5ce": {
+      "url": "https://n.news.naver.com/mnews/article/003/0014272898?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융당국 수장들은 단일종목 레버리지 ETF 투자자의 대규모 손실에 대해 거듭 사과했다.",
+        "SK하이닉스의 자회사 솔리다임의 나스닥 상장은 중복상장 가이드라인 적용 대상에 해당한다.",
+        "당국은 가계부채 관리와 함께 고문 재취업 관행 등 지배구조 개선안을 검토하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073260+09:00"
+    },
+    "cc40d59dfa36e555a035b0ff45f71f45": {
+      "url": "https://www.ngetnews.com/news/articleView.html?idxno=554985",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "정무위원회 종합 국정감사에서 단일종목 레버리지 ETF의 대규모 투자 손실 문제가 집중 제기되었다.",
+        "금융당국은 정책적 필요성에 따른 도입이었으나 투자자 보호를 더욱 세심하게 챙기겠다고 밝혔다.",
+        "가계대출 총량관리와 은행권 및 제2금융권의 자산 격차 확대 문제도 함께 도마에 올랐다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073264+09:00"
+    },
+    "e032ff18590de3062562cd65c7b18a80": {
+      "url": "https://n.news.naver.com/mnews/article/374/0000539281?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행의 금리 동결과 추가 인상 가능성 시사로 금융시장의 불확실성이 커지고 있다.",
+        "증시 변동성이 확대되면서 하락에 베팅하는 인버스 ETF와 머니마켓 상품에 관심이 쏠린다.",
+        "전문가는 시장 상황에 맞춰 방어형 상품이나 만기매칭형 채권 ETF를 활용할 것을 조언한다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073268+09:00"
+    },
+    "f58536bcb29fc0b0d980b451fc930dd2": {
+      "url": "https://www.asiatime.co.kr/article/20261022500355",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 정무위원회의 종합국정감사에서 단일종목 레버리지 ETF 책임론과 루센트블록 의혹이 다뤄졌다.",
+        "야당은 레버리지 ETF의 부실 심사와 6조원이 넘는 개인 투자자 손실 책임을 강하게 추궁했다.",
+        "금융당국 수장들은 투자자 보호 장치를 더욱 정교하게 보완하겠다고 거듭 고개를 숙였다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073272+09:00"
+    },
+    "5f8bfed698948553ab211bc88322c545": {
+      "url": "https://www.etoday.co.kr/news/view/2639004",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국민의힘은 단일종목 레버리지 ETF 사태와 관련해 국정조사와 특검 도입을 강력히 요구했다.",
+        "개인투자자가 전체 손실의 대부분을 떠안았으며 사모펀드만 수익을 거두었다는 지적이 나왔다.",
+        "금융당국은 정책적 필요성은 있었으나 결과에 대해 무거운 마음이라며 재발 방지를 약속했다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073276+09:00"
+    },
+    "90f2911ef2d26ae1a240c965e193b0e8": {
+      "url": "https://www.g-enews.com/view.php?ud=202610211409222194e30fcb1ba8_1",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 종합국감에서 은행권의 우대금리 축소와 가산금리 산정 내역이 주요 검증대로 올랐다.",
+        "단일종목 레버리지 ETP 상품으로 인해 개인투자자가 입은 손실 규모가 6조원을 넘어섰다.",
+        "금융회사들의 보안 미흡에 따른 해킹 사고와 관련해 초기 대응과 감독 책임도 재점검된다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073281+09:00"
+    },
+    "58bec13b289add665c9c8ddfe6ca2757": {
+      "url": "https://www.ekn.kr/web/view.php?key=20261022020119862",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국정감사에서 단일종목 레버리지 ETF의 상장 심사 기간을 단축한 배경을 두고 책임 공방이 벌어졌다.",
+        "금융당국은 규정된 심사 기간 내에 상품 구조와 위험을 엄정하게 검토했다고 해명했다.",
+        "인공지능 시대에 맞춘 금융 보안 체계의 전면 재검토와 경영진 책임 강화 방안도 논의됐다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073284+09:00"
+    },
+    "0ff5c5f15965f718f0acfc37f89855a2": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006394295?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "올해 3분기 토큰화주식과 ETF의 온체인 거래량이 49조원을 넘어설 정도로 급증했다.",
+        "미국 SEC가 미국 주식의 온체인 토큰화 거래를 허용하면서 월가 금융사들의 참여가 늘고 있다.",
+        "전문가들은 토큰화가 향후 가상자산 산업과 전통 금융시장의 거래 구조를 바꿀 것으로 전망했다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073288+09:00"
+    },
+    "cdccd40160b1352206fb93c630135a90": {
+      "url": "https://www.etoday.co.kr/news/view/2638879",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "JP모건자산운용이 장기 전망에 비트코인을 처음 포함하고 향후 수익률을 높게 평가했다.",
+        "블랙록은 비트코인 ETF의 하락 위험을 줄이는 신상품 등록 서류를 미국 SEC에 제출했다.",
+        "반면 국내는 시장 위축과 레버리지 상품 손실 여파로 가상자산 ETF 도입 논의가 주춤하다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073291+09:00"
+    },
+    "b0f26b03dc253cc2b2b75a91c8fc96ea": {
+      "url": "http://www.00news.co.kr/news/articleView.html?idxno=107400",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이형일 부총리는 가상자산 과세 시행 여부를 업계와 국회의 의견을 들어 최대한 숙고하겠다고 밝혔다.",
+        "수도권 부동산 시장은 공급 선행지표가 개선되고 있어 점차 안정을 찾을 것으로 내다봤다.",
+        "국민연금의 국내 주식 목표 비중 상향은 단기 증시 부양이 아닌 시장 상황을 고려한 결정이라고 설명했다."
+      ],
+      "created_at": "2026-10-23T09:12:57.073295+09:00"
+    },
+    "8b3006eb6a05a8f9dec680f6c1cdc428": {
+      "url": "https://www.tokenpost.kr/news/cryptocurrency/425832",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국 현물 비트코인 ETF에 19일부터 이틀간 5억4976만달러가 순유입됐다.",
+        "이번 유입으로 직전 주 순유출에서 순유입으로 전환되었으나 둘째 날 유입 규모는 첫날보다 크게 줄었다.",
+        "인베즈는 이번 이틀 연속 순유입을 개선 신호로 평가하면서도 주간 흐름의 변화를 단정하기는 이르다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867202+09:00"
+    },
+    "01074f49a1931810db8bc39c335b0947": {
+      "url": "https://www.lcnews.co.kr/news/articleView.html?idxno=210125",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회가 핀다의 대원저축은행 인수를 위한 대주주 변경을 최종 승인했다.",
+        "국내 핀테크 기업이 저축은행을 인수하는 첫 사례로 총인수금액은 120억원이다.",
+        "핀다는 내년부터 자체 금융상품 공급에 나서며 중저신용자 금융 접근성 확대를 추진할 예정이다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867218+09:00"
+    },
+    "4e68e9e8a7493eea0145a2f84e867042": {
+      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=709309",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 정무위원회의 금융 분야 종합 국정감사에서 은행과 제2금융권 간 자금 불균형 문제가 제기됐다.",
+        "은행권과 제2금융권의 여수신 격차가 확대되고 저축은행 수신이 감소한 것으로 나타났다.",
+        "금융당국은 금융업권 간 구조적 격차와 대출 총량관리 방식의 개선 방안을 검토하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867223+09:00"
+    },
+    "2c5a849bd93fd910b424139c3ac60679": {
+      "url": "https://n.news.naver.com/mnews/article/648/0000051835?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국이 스테이블코인 규제법안 통과와 규제 명확성 확보로 가상자산 시장 주도권을 강화하고 있다.",
+        "반면 한국은 디지털자산기본법 입법 지연과 제도 공백 속에서 주요 기업들이 사업 재편을 추진하고 있다.",
+        "전문가들은 글로벌 시장에서 경쟁력을 높이기 위해 이용자 보호와 산업 육성 사이의 균형 잡힌 제도 마련을 촉구했다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867227+09:00"
+    },
+    "8c2691ac9f49f5b748cd6494e07e3fd7": {
+      "url": "https://n.news.naver.com/mnews/article/030/0003477656?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국 SEC가 나스닥의 토큰화 주식 거래 시범사업안을 승인하며 주식과 블록체인 자산의 경계가 허물어지고 있다.",
+        "국내에서도 전자증권법 개정안 통과로 내년 2월 토큰증권 제도 시행을 앞두고 있다.",
+        "투자자들은 토큰화 금융시대에 발맞추어 기초자산의 본질을 파악하고 통합 자산관리 리스크에 대비해야 한다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867230+09:00"
+    },
+    "f9ad1108bae0dba1878e42c71139b65c": {
+      "url": "https://www.tokenpost.kr/news/breaking/426093",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 거래소 바이비트가 두바이 규제당국 VARA로부터 현물 거래소 서비스 승인을 받았다.",
+        "이번 승인은 바이비트의 글로벌 규제 준수 전략을 강화하고 시장 확장에 기여할 것으로 전해졌다.",
+        "매체들은 이번 조치가 투자자 신뢰를 높이는 계기가 될 것이라고 평가했다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867233+09:00"
+    },
+    "edc50ae38a8961f0e66a353968c56ce2": {
+      "url": "https://n.news.naver.com/mnews/article/056/0012279403?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국세청이 빗썸의 우수 고객 블랙카드 혜택 비용이 세법상 기업업무추진비에 해당한다는 입장을 밝혔다.",
+        "빗썸은 해당 비용을 한도가 없는 판매촉진비로 처리해 왔으나 과세 당국의 검증이 필요하다는 지적이 제기됐다.",
+        "국세청은 구체적인 탈루 혐의가 확인될 경우 엄정히 조사를 실시하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867236+09:00"
+    },
+    "e659a97aff2151c671325b95cb8e6ab8": {
+      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=709410",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "로빈후드가 두바이 금융서비스청으로부터 승인을 받아 중동 지역에서 암호화폐와 주식 서비스를 확보했다.",
+        "로빈후드는 2027년 두바이 국제금융센터에 거점을 마련하고 개인투자자 거래 및 수탁 서비스를 제공할 계획이다.",
+        "이번 진출은 비트코인 등 디지털 자산을 직접 보관하는 해외 사업 확장 전략의 일환이다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867239+09:00"
+    },
+    "7d1e5e57b67ef112883a6fa7e7445536": {
+      "url": "https://www.ppss.kr/news/articleView.html?idxno=316875",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 사기 범죄가 정상적인 IT 기업의 외관을 갖추고 조직화되면서 하위 직원들의 연루 위험이 커지고 있다.",
+        "시장의 복잡성으로 인해 일부 직원들은 자신이 수행하는 업무가 범죄와 연관되었음을 인식하지 못할 수 있다.",
+        "수사 과정에서는 담당 업무의 내용과 범행 구조에 대한 인식 정도가 형사책임을 판단하는 주요 쟁점이 된다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867242+09:00"
+    },
+    "c05572b288fef0a324504081ec1faeff": {
+      "url": "https://www.smartbizn.com/news/articleView.html?idxno=157301",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "JP모건 자산운용이 향후 10~15년간 비트코인의 연평균 복리수익률을 10%로 추정했다.",
+        "다만 높은 가격 변동성으로 인해 비트코인은 공식 자산배분 포트폴리오에서 제외되었다.",
+        "대형 채굴업체들의 인공지능 사업 전환에도 불구하고 비트코인 네트워크의 해시레이트는 최고 수준으로 회복됐다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867244+09:00"
+    },
+    "1e8564eb89cc436ba3a8ffec460849e5": {
+      "url": "https://n.news.naver.com/mnews/article/056/0012279380?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 거래소 빗썸이 일부 우수 고객에게 명품 매장과 해외여행 등에 사용 가능한 블랙카드를 제공했다.",
+        "빗썸은 관련 비용을 판촉비로 처리했으나 특정 소비자에게만 준 혜택은 세법상 접대비에 가깝다는 지적이 나왔다.",
+        "전문가들은 세금을 줄이기 위해 비용 처리를 잘못했다면 탈세에 해당하므로 철저한 조사가 필요하다고 지적했다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867247+09:00"
+    },
+    "0fd0f8d27d8c940d100cddf29b607656": {
+      "url": "http://www.segyebiz.com/newsView/20261022524643?OutUrl=naver",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 시행을 앞둔 가상자산 과세 제도가 네 번째 유예 기로에 놓였다.",
+        "정부와 정치권은 과세 인프라 미비와 과세 형평성 문제를 고려해 연내 최종 결론을 내릴 예정이다.",
+        "여야의 시각차가 뚜렷한 가운데 투자자와 청년층을 중심으로 추가 유예를 요구하는 목소리가 커지고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867250+09:00"
+    },
+    "7d1efd3797faf584737af96274f48f46": {
+      "url": "https://www.newsway.co.kr/news/view?ud=2026102214200623340",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "빗썸의 인적분할 이후 거래소 운영사와 신설법인 빗썸에셋의 실적이 엇갈린 것으로 나타났다.",
+        "거래소 운영사는 영업흑자에도 순손실을 기록한 반면 빗썸에셋은 금융상품 운용으로 흑자를 달성했다.",
+        "빗썸에셋은 베트남 리조트 개발과 국내 오피스 리츠 투자 등 부동산 사업 확장에 나서고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867253+09:00"
+    },
+    "109f5a022eaf83b3f0c6595ce096f9a1": {
+      "url": "https://n.news.naver.com/mnews/article/015/0005345506?sid=102",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "빗썸에 내려진 영업 일부정지 6개월 처분을 두고 법원에서 금융당국과 빗썸 간의 첫 공판이 열렸다.",
+        "양측은 100만원 미만 가상자산 출금에 대한 거래소의 확인 의무와 미신고 거래소 차단 조치를 놓고 공방을 벌였다.",
+        "재판부는 빗썸이 거래금지를 공지하고도 실제 출금을 차단하지 못한 경위를 집중적으로 심리했다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867256+09:00"
+    },
+    "50fd9028e4cc27f4ec6530cdb2445148": {
+      "url": "https://n.news.naver.com/mnews/article/081/0003691683?sid=100",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "더불어민주당이 내년 1월 시행 예정인 가상자산 과세를 한 차례 더 유예하는 방향으로 논의하고 있다.",
+        "해외 거래소와의 과세 역차별 우려와 인프라 미비 등이 유예 검토의 주요 배경으로 꼽힌다.",
+        "여당 내부에서는 반복되는 유예가 정책 신뢰를 훼손할 수 있다는 우려의 목소리도 함께 나오고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867260+09:00"
+    },
+    "47066bf70fc7c3b0790183c8c0d69b80": {
+      "url": "https://www.khgames.co.kr/news/articleView.html?idxno=309607",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "두나무에 따르면 최근 일주일간 업비트 종합 지수와 알트코인 지수가 모두 하락세를 기록했다.",
+        "조사 기간 업비트 거래 대금은 전주 대비 감소했으며 공포-탐욕 지수는 중립 단계를 나타냈다.",
+        "인공지능 기반 디파이 플랫폼 '헤이엘사'는 주간 상승률 1위를 기록했다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867264+09:00"
+    },
+    "c29d8238454bad23a2110e400db57412": {
+      "url": "https://n.news.naver.com/mnews/article/001/0016395563?sid=100",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 재정경제기획위원회 국정감사에서 여야는 가상자산 과세 유예 여부를 두고 시각 차이를 드러냈다.",
+        "민주당은 정책 일관성 훼손과 추가 유예 의견으로 나뉘었으며 국민의힘은 인프라 미비를 이유로 유예에 찬성했다.",
+        "이형일 부총리는 업계와 국회의 의견을 모아 최대한 숙고해 판단하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867268+09:00"
+    },
+    "2afa6c42ac49ba60604ec8ddc27bedeb": {
+      "url": "http://www.newsbrite.net/news/articleView.html?idxno=201070",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미래에셋그룹의 디지털자산 투자 플랫폼 디지털엑스가 임직원을 대상으로 하반기 법규준수 교육을 진행했다.",
+        "위험관리본부가 주관한 이번 교육은 요주의 거래 사고 방지의 중요성을 주제로 다뤘다.",
+        "오세진 대표는 내부통제 시스템을 고도화하여 고객들이 안심하고 이용할 수 있는 환경을 만들겠다고 강조했다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867272+09:00"
+    },
+    "4ec3aa91c652bb90ef3a207868c59412": {
+      "url": "https://www.fntimes.com/html/view.php?ud=2026102216423525450f4390e77d_18",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이형일 경제부총리가 국회 종합 국정감사에서 내년 가상자산 과세 시행 여부에 대해 신중하게 판단하겠다고 밝혔다.",
+        "임이자 의원은 해외 거래소에 대한 과세자료 제출 의무가 없어 형평성 문제가 발생한다고 지적했다.",
+        "국세청은 탈중앙화거래소나 해외 거래의 자료 확보 어려움을 인정하며 관련 시스템 구축을 추진하겠다고 설명했다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867275+09:00"
+    },
+    "993ec3c12f1a388bb212399962142286": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006393996?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융당국이 네이버파이낸셜과 두나무의 결합에 따른 시장 독점 우려와 관련해 안전장치를 검토 중이라고 밝혔다.",
+        "금융위는 디지털자산법안을 통해 거래소의 공공성과 중립성을 확보하는 방안을 마련할 계획이다.",
+        "또한 전자금융업자를 내부통제 및 위험관리 대상에 포함하는 등 결제와 대출 사업 확장에 대한 규율을 강조했다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867278+09:00"
+    },
+    "47cb7b5ef0661d8db1b17b43c011d39d": {
+      "url": "https://www.tokenpost.kr/news/cryptocurrency/425898",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "예측시장 플랫폼 칼시가 수탁업체 비트고와 협약을 맺고 가상자산 담보 레버리지 무기한 선물 거래를 추진한다.",
+        "무기한 선물은 만기가 없는 계약으로 가격 변동에 따른 강제청산 위험이 존재한다.",
+        "미국 규제 환경에서는 관련 파생상품 상장과 규제 기관 간의 소송 등 변화가 이어지고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867284+09:00"
+    },
+    "5aa2d92b72519af0e346fc26ef2e78e4": {
+      "url": "https://www.etoday.co.kr/news/view/2638671",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "디지털엑스가 전사 임직원을 대상으로 요주의 거래 통제 강화를 위한 법규준수 교육을 실시했다.",
+        "이번 교육은 DAXA의 위험관리 모범규준에 따라 수작업 오류가 발생하기 쉬운 거래 관리를 목적으로 마련됐다.",
+        "오세진 대표는 내부통제 시스템을 지속적으로 고도화하여 고객 자산 보호에 집중하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867287+09:00"
+    },
+    "9f669baea5c08d932c57bcbc9d44a481": {
+      "url": "https://n.news.naver.com/mnews/article/374/0000539318?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 재정경제기획위원회 국감에서 내년 가상자산 과세를 앞두고 인프라 미비와 과세 가능성에 대한 지적이 나왔다.",
+        "국세청은 고시안을 마련할 계획이지만 탈중앙화거래소나 해외 거래 자료를 100% 확보하기는 어렵다고 인정했다.",
+        "정부가 명확한 입장을 밝히지 못한 가운데 여당에서도 신중론이 확산하며 유예 논의가 이어지고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867290+09:00"
+    },
+    "64fb96b68dcd811319fae838328df209": {
+      "url": "http://sateconomy.co.kr/news/view/1065605617203441",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 가상자산 과세 시행을 앞두고 손실을 이월해 공제하지 않는 현행 세법에 대한 형평성 논란이 제기됐다.",
+        "미국과 영국 등 주요국은 가상자산 손실 이월공제를 허용하고 있으나 국내법은 이를 반영하지 않고 있다.",
+        "전문가들은 투자 손실의 시점에 따른 세금 부담을 줄이기 위해 이월공제 제도 도입을 검토해야 한다고 지적했다."
+      ],
+      "created_at": "2026-10-23T09:13:06.867294+09:00"
+    },
+    "5ab1248f8b4adcb961d9d2bd20a9d0a2": {
+      "url": "https://www.asiatime.co.kr/article/20261022500406",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "비트코인이 1억1000만원선을 밑돌며 약세를 보이고 FOMC 경계감에 주요 알트코인도 하락했다.",
+        "빗썸에서 비트코인은 2.82% 떨어진 1억933만원 안팎에 거래되며 상승분을 모두 반납했다.",
+        "미국 연방공개시장위원회 정례회의를 앞두고 12월 금리 인상 전망 등이 나오며 시장이 주목하고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775238+09:00"
+    },
+    "739787a927bef2b328b4f779c12b2619": {
+      "url": "https://www.wolyo.co.kr/news/articleView.html?idxno=319454",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국디지털자산사업자연합회가 2027년 시행 예정인 가상자산 소득 과세를 2029년으로 2년 유예해야 한다고 주장했다.",
+        "KDA는 투자자 보호 법률 정비와 과세 형평성 확보가 선행되어야 한다고 강조했다.",
+        "국회에서는 국민의힘 김상훈 의원과 더불어민주당 박민규 의원이 과세 유예 관련 개정안을 발의했다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775253+09:00"
+    },
+    "b985b7974ca8815e99e7cdf56cdd94ac": {
+      "url": "https://n.news.naver.com/mnews/article/022/0004168916?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 시행을 앞둔 가상자산 과세를 두고 국정감사에서 여야 간 이견과 과세 인프라 미비 지적이 이어졌다.",
+        "이형일 부총리 겸 재정경제부 장관은 가상자산 과세 시행 여부에 대해 최대한 숙고해서 판단하겠다고 밝혔다.",
+        "국세청은 탈중앙화거래소나 해외거래의 자료를 100% 확보하기 어렵지만 최대한 구축할 예정이라고 설명했다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775257+09:00"
+    },
+    "b8ea8385ece8708cb70ce1dd62a3c1a1": {
+      "url": "https://n.news.naver.com/mnews/article/277/0005831930?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원은 두나무의 블록체인 네트워크 기와를 사칭한 가짜 체인 사기 사건이 발생해 소비자경보를 발령했다.",
+        "사기조직은 공식 체인ID와 유사한 가짜 네트워크를 만들어 이용자들의 이더리움을 가로챘다.",
+        "금감원은 정식 출시 전 네트워크를 지원하는 브릿지와 스마트 컨트랙트는 100% 사기라고 강조했다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775261+09:00"
+    },
+    "8d4ab5f5850796218ca5a169bfe908a5": {
+      "url": "https://sports.hankooki.com/news/articleView.html?idxno=6942101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 정무위원회 국정감사에서 내년 1월 시행을 앞둔 가상자산 과세를 둘러싸고 유예 요구가 이어졌다.",
+        "이억원 금융위원장은 가상자산 과세 폐지 또는 유예 질문에 여러 상황을 충분히 고려해야 한다고 밝혔다.",
+        "정치권에서는 과세 유예와 폐지를 요구하는 법안이 잇따라 발의되며 시행 여부가 불투명해지고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775264+09:00"
+    },
+    "fd8e12136a68fe4323573fe18e77b2ee": {
+      "url": "http://www.srtimes.kr/news/articleView.html?idxno=215580",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 시행 예정인 가상자산 과세를 두고 국회 재정경제기획위원회 국감에서 여야 공방이 이어졌다.",
+        "더불어민주당 윤후덕 의원은 반복되는 연기로 정책 일관성이 훼손된다며 예정대로 시행해야 한다고 주장했다.",
+        "국민의힘 임이자 의원은 해외 거래소 자료 확보의 어려움과 인프라 부족을 이유로 신중한 입장을 보였다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775268+09:00"
+    },
+    "e91a78a705ed5b32799d62fb5b9b6dca": {
+      "url": "https://n.news.naver.com/mnews/article/003/0014272802?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이형일 경제부총리는 내년 1월 시행될 가상자산 소득 과세에 대해 전문가와 업계 의견을 수렴해 최대한 숙고하겠다고 밝혔다.",
+        "수도권 부동산 시장과 관련해서는 인허가 및 착공 등 선행지표가 올라가고 있어 점차 안정될 것이라고 전망했다.",
+        "국민연금의 국내 주식 비중 상향 조정을 두고 단기 주가 방어 목적이 아니며 장기 운용 원칙에 따른 것이라고 설명했다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775272+09:00"
+    },
+    "e40cb59e8a173604bffe3a93a55e1b2f": {
+      "url": "https://www.ajunews.com/view/20261022174356343",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원은 두나무가 개발 중인 블록체인 네트워크 기와를 사칭한 가상자산 탈취 사기에 소비자경보 주의를 발령했다.",
+        "사기조직은 공식 체인ID와 유사한 가짜 네트워크를 만들어 탈중앙화거래소를 오인하게 한 뒤 이더리움을 편취했다.",
+        "금감원은 정식 출시되지 않은 네트워크를 이용한 브릿지나 스마트 컨트랙트는 100% 사기라고 당부했다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775275+09:00"
+    },
+    "075305df13928ad706dc3e836207d27a": {
+      "url": "https://n.news.naver.com/mnews/article/421/0009245065?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 가상자산 과세 시행을 앞두고 국회 국정감사에서 과세 적정성을 둘러싼 여야 공방이 재점화됐다.",
+        "국민의힘은 기본법 부재와 과세 인프라 미비를 이유로 유예를 촉구했고 민주당은 예정대로 시행해야 한다고 주장했다.",
+        "이형일 부총리와 이억원 금융위원장은 업계와 국회 의견을 종합적으로 검토해 신중히 판단하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775279+09:00"
+    },
+    "78934f2453599967c8c30b8042594dd3": {
+      "url": "https://n.news.naver.com/mnews/article/421/0009245043?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이형일 부총리 겸 재정경제부 장관은 내년 1월로 예정된 가상자산 과세 시행과 관련해 업계와 국회 의견을 모아 숙고하겠다고 밝혔다.",
+        "국민의힘 김상훈 의원의 질의에 국민연금의 국내주식 목표비중 상향은 단기 주가 방어용이 아니라고 선을 그었다.",
+        "서울 아파트값 상승세와 관련해서는 인허가와 착공 등 공급 선행지표가 올라가고 있어 시장이 안정될 것으로 내다봤다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775282+09:00"
+    },
+    "01b52d7d316447630232ac5e9e5102f8": {
+      "url": "https://www.youthdaily.co.kr/news/article.html?no=228733",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 시행을 앞둔 가상자산 과세를 두고 국정감사에서 여야가 엇갈린 입장을 내놨다.",
+        "더불어민주당은 이미 세 차례 연기된 만큼 예정대로 과세해야 한다고 주장했고 국민의힘은 과세 기반 부족을 지적했다.",
+        "이형일 경제부총리는 업계와 국회의 의견을 충분히 수렴해 숙고한 뒤 판단하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775285+09:00"
+    },
+    "6a126d32c4fdcea167a5f1528ff8d372": {
+      "url": "https://www.e-science.co.kr/news/articleView.html?idxno=137905",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미래에셋 디지털엑스가 가상자산 오지급 사고를 예방하기 위해 이중 승인과 계정 분리 등 거래 통제 절차 교육을 강화했다.",
+        "이번 교육은 위험관리본부 주관으로 전 임직원을 대상으로 진행되었으며 에어드랍과 착오전송 등 요주의 거래 처리에 초점을 맞췄다.",
+        "디지털엑스는 입력 담당자와 승인 담당자를 분리하는 이중 승인 방식을 통해 내부통제 체계를 고도화할 방침이다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775291+09:00"
+    },
+    "654e01fb329f2b003b4aa8b0bc02af2e": {
+      "url": "https://www.huffingtonpost.kr/article/261464",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "여야 의원들이 2027년 시행을 앞둔 가상자산 과세의 네 번째 유예 여부를 두고 국감에서 맞섰다.",
+        "더불어민주당은 48개국이 과세하고 있다며 빠른 시행을 촉구했고 국민의힘은 인프라 미비를 지적했다.",
+        "이형일 부총리는 업계와 국회의 의견을 모아 최대한 숙고해서 판단하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775295+09:00"
+    },
+    "f00b81b0d585ff902d61f17f8da5807f": {
+      "url": "https://www.tokenpost.kr/news/cryptocurrency/425823",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "마스비트는 지난 24시간 가상자산 시장 전체의 청산 규모가 3억2700만달러로 집계됐다고 전했다.",
+        "이 가운데 롱 포지션 청산액은 7779만3500달러이며 숏 포지션 청산액은 2억5000만달러를 기록했다.",
+        "숏 청산액이 롱의 약 3.2배에 달해 가격이 오르는 방향으로 움직였을 때 나타나는 현상을 보였다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775301+09:00"
+    },
+    "8d1ce6d7945e23f68bc37e4cd2830ee0": {
+      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=900421",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "두나무가 개발 중인 블록체인 네트워크 기와를 사칭한 가짜 네트워크에 이더리움을 보냈다가 탈취당하는 사건이 발생했다.",
+        "금융감독원은 정식 출시 전인 블록체인 네트워크를 사칭한 사기와 관련해 소비자경보 주의를 발령했다.",
+        "탈중앙화거래소마저 가짜 네트워크를 진짜로 오인해 지원하면서 피해가 발생했다고 금감원은 설명했다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775304+09:00"
+    },
+    "2d17c53e16cad3a63438561308310ab4": {
+      "url": "https://www.insightkorea.co.kr/news/articleView.html?idxno=257053",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국내 최대 가상자산 거래소 업비트를 창업한 송치형 두나무 이사회 의장이 포브스 대한민국 50대 부자에 올랐다.",
+        "송 의장은 2014년 증권플러스를 시작으로 성공을 거두었으며 2017년 비트렉스와 손잡고 업비트를 출범시켰다.",
+        "업비트의 급성장에 힘입어 두나무의 기업가치가 크게 상승하면서 송 의장은 25.53%의 지분을 보유한 최대주주가 됐다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775306+09:00"
+    },
+    "89601e985f98e1cad96e26a740c15056": {
+      "url": "https://www.tokenpost.kr/news/breaking/425817",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 거래소 바이비트가 AXIS를 USDT로 거래하는 무기한 선물 계약을 상장했다.",
+        "이번에 상장된 계약은 AXIS를 USDT로 사고파는 거래쌍으로 운용되는 파생상품이다.",
+        "무기한 선물은 만기일이 없어 투자자가 원하는 시점까지 포지션을 유지할 수 있다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775309+09:00"
+    },
+    "6a58437cff2307452297519200bb11af": {
+      "url": "https://www.mdtoday.co.kr/news/articleView.html?idxno=620244",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "빗썸이 추진하던 부동산 중개 플랫폼 사업이 한국공인중개사협회 이사회에서 무산되며 제동이 걸렸다.",
+        "빗썸은 매도자가 직접 매물을 의뢰하되 당근마켓과 같은 직거래 방식을 차별화하는 전략을 제시했다.",
+        "협회 이사회에서 안조차 통과되지 못하면서 빗썸의 신규 부동산 사업 추진은 상당한 차질이 불가피해졌다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775312+09:00"
+    },
+    "3932cb3250bf395c37d08a729c16c3b1": {
+      "url": "https://www.newspim.com/news/view/20261022001258",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한동훈 무소속 의원은 정부를 향해 가상자산 과세유예를 조속히 결정해야 한다고 촉구했다.",
+        "현행 기타소득 규정으로는 복잡한 가상자산 생태계를 감당하기 어렵고 공평한 과세가 어렵다고 주장했다.",
+        "이형일 부총리는 국정감사에서 업계와 국회 의견을 모아 최대한 숙고해 판단하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775315+09:00"
+    },
+    "b2f3ce106f582aef2744540592db2964": {
+      "url": "https://www.kizmom.com/news/articleView.html?idxno=113481",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한동훈 의원이 가상자산 과세 유예를 조속히 결정하라고 촉구하며 제도 보완을 주장했다.",
+        "국회 국정감사에서는 예정대로 시행해야 한다는 주장과 과세 기반을 먼저 보완해야 한다는 의견이 맞섰다.",
+        "이형일 부총리는 업계와 국회의 의견을 수렴해 숙고한 뒤 판단하겠다는 기존 입장을 재확인했다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775318+09:00"
+    },
+    "80d724fa24f09a4dd4a230da184847bb": {
+      "url": "https://n.news.naver.com/mnews/article/008/0005430297?sid=100",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 시행을 앞둔 가상자산 과세와 관련해 정부와 여당이 신중론을 강조하면서 네 번째 유예 가능성이 커지고 있다.",
+        "김민석 더불어민주당 대표가 연내 과세 시행 여부를 재검토하자고 제안했고 이억원 금융위원장과 이형일 부총리도 의견 수렴이 필요하다고 밝혔다.",
+        "국세청은 이달 말 세부 과세기준을 담은 고시안을 마련할 계획이지만 정치권을 중심으로 유예 논의가 이어지고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775321+09:00"
+    },
+    "b4eea05b9dd66079689e3dfb57ec8c98": {
+      "url": "https://www.greened.kr/news/articleView.html?idxno=352693",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융당국이 가상자산거래소 대주주의 지분 보유를 제한하는 방안을 추진하면서 두나무 편입을 추진 중인 네이버파이낸셜에 변수가 생겼다.",
+        "금융위는 대주주 지분을 원칙적으로 20%, 요건 충족 시 최대 34%까지 허용하는 방안을 유력하게 검토하고 있다.",
+        "네이버파이낸셜과 두나무는 주식교환 예정일을 내년 3월 31일로 연기하며 관계 당국 심사와 절차를 고려하고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775325+09:00"
+    },
+    "5329afc82b897f36dbcbb4ec66e29f0c": {
+      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=709072",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "더불어민주당 김민석 대표는 디지털자산 과세와 관련해 연내 최종 결론을 내리겠다는 입장을 밝혔다.",
+        "김 대표는 전날 이형일 부총리에게 최종 점검과 결론을 제안하며 과세 강행과 제도 보완 여부를 집중 논의하겠다고 전했다.",
+        "정부는 업계 간담회를 열고 과세 인프라와 시장 규율체계 준비 상황을 종합적으로 살피고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775328+09:00"
+    },
+    "ece1c3680618abfac8b88c0082b2ae8f": {
+      "url": "https://sateconomy.co.kr/news/view/1065595743192494",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 과세가 세 차례 연기 끝에 시행을 앞두고 있으나 해외거래 추적과 손실 처리 등 핵심 쟁점은 여전히 해소되지 않았다.",
+        "국세청은 11월 과세 고시안을 마련하고 절차를 추진할 예정이지만 국회예산정책처는 세원 포착의 한계와 과세기준 불확실성을 지적했다.",
+        "여야는 추가 유예와 시행론을 두고 엇갈린 입장을 보이고 있으며 정부도 업계 의견을 수렴해 숙고하고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:17.775331+09:00"
+    },
+    "f877656c0670a4bf6eef617d33eb880d": {
+      "url": "https://it.donga.com/109753/",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "정부가 2027년 1월 시행을 앞둔 디지털자산 과세를 두고 예정대로 진행하려던 입장에서 숙고하기로 한발 물러섰다.",
+        "국회 정무위원회 국정감사에서는 원화거래소의 특금법 위반 사례가 약 1500만 건에 달한다는 지적이 제기됐다.",
+        "금융당국은 빠르게 진화하는 디지털자산 사기에 대응하기 위해 디지털자산기본법 제정이 시급하다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792104+09:00"
+    },
+    "d3b98f00843dafc6bcbf6a671106c53f": {
+      "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=246730",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 가상자산 과세 시행을 앞두고 국정감사에서 경제부총리와 금융위원장이 시행 여부에 대한 확답을 유보했다.",
+        "이형일 경제부총리는 업계와 국회의 의견을 모아 최대한 숙고해 판단하겠다고 밝혔다.",
+        "여야는 해외 거래소의 과세 인프라 미비와 조세 형평성 문제를 두고 엇갈린 입장을 보였다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792121+09:00"
+    },
+    "35f1a2a2ec99db72cb0b455fbdd81870": {
+      "url": "https://n.news.naver.com/mnews/article/469/0000961030?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원이 두나무의 블록체인 네트워크 기와를 사칭한 가짜 체인 사기와 관련해 소비자경보를 발령했다.",
+        "사기 조직은 기와의 체인 ID와 유사한 가짜 네트워크를 만들어 투자자들의 이더리움을 탈취했다.",
+        "금감원은 정식 출시되지 않은 네트워크를 지원하는 브리지는 100% 사기라고 강조했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792125+09:00"
+    },
+    "31160f0b96cbb2526515e65d973c768a": {
+      "url": "https://news.mtn.co.kr/article/2026102214480737471",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "정부가 내년 1월 가상자산 양도 및 대여소득 과세 추진을 위해 이달 말까지 과세 고시안을 마련할 계획이다.",
+        "국회 재정경제기획위원회 국감에서 이형일 부총리는 가상자산 과세에 대해 최대한 숙고해 판단하겠다고 밝혔다.",
+        "야당과 업계는 과세 인프라 부족과 디지털자산기본법 미비를 이유로 과세 시행에 우려를 제기했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792128+09:00"
+    },
+    "30e31a014b5ce2df831de90ef35a1cd7": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006393660?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이억원 금융위원장이 스테이블코인 관련 디지털자산기본법 정부안 마련을 위한 협의를 서두르겠다고 밝혔다.",
+        "이 위원장은 정무위원회 국감에서 내년 1월 예정된 가상자산 과세 유예 주장에 대해 여러 상황을 고려하겠다고 답했다.",
+        "디지털자산기본법은 거래소 규제와 원화 스테이블코인 발행 주체에 대한 이견으로 연내 입법이 지연되고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792132+09:00"
+    },
+    "b191fd0a18e34aa8116f34823cb52f9e": {
+      "url": "https://www.techm.kr/news/articleView.html?idxno=156406",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "네이버파이낸셜과 두나무의 합병 추진 과정에서 금융위원회가 규제 완화에 네 차례 반대 의견을 냈다는 주장이 제기됐다.",
+        "신동욱 의원은 정무위원회 국감에서 관련 서류를 바탕으로 금융위의 반대 배경에 대해 질의했다.",
+        "네이버는 네이버파이낸셜과 두나무의 포괄적 주식교환을 위한 거래 종결 일정을 내년 3월로 연장했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792138+09:00"
+    },
+    "9b0bbc817d4fea7745b6771748edb345": {
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=497646",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "글로벌 암호화폐 시장의 변동성과 규제 변수가 부각되면서 가상화폐 관련주가 종목별로 엇갈린 흐름을 보였다.",
+        "SGA솔루션즈와 제이씨현시스템 등 보안 및 하드웨어 관련 일부 종목은 상승세를 나타냈다.",
+        "TS인베스트먼트와 우리기술투자 등 투자회사 관련 종목에서는 하락세가 두드러졌다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792142+09:00"
+    },
+    "8b04428b47042d635727c9285904b3a0": {
+      "url": "https://sateconomy.co.kr/news/view/1065576889158329",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융당국이 가상자산 거래소의 공공성과 중립성을 확보하기 위해 디지털자산기본법에 안전장치를 검토하고 있다.",
+        "네이버파이낸셜의 두나무 인수 추진 속에서 거래소 지배구조 규제가 새로운 변수로 떠올랐다.",
+        "두나무는 주식교환 예정일을 올해 말에서 내년 3월 31일로 변경했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792146+09:00"
+    },
+    "eae245335a39d33d0ae2c252941a789d": {
+      "url": "https://www.lawissue.co.kr/view.php?ud=202610221453214862f4ab64559d_12",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국디지털자산사업자연합회가 2027년 1월 시행 예정인 가상자산 소득 과세를 2029년으로 2년 유예할 것을 촉구했다.",
+        "연합회는 투자자 보호 법률 정비와 주식과의 과세 기준 차이 조정을 우선 과제로 제시했다.",
+        "해외 거래소의 거래정보를 충분히 확보하지 못한 상태에서 과세하면 형평성 문제가 발생할 수 있다고 지적했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792150+09:00"
+    },
+    "ee550d2f7bbd27d8be9415a3b1ce806f": {
+      "url": "https://www.etoday.co.kr/news/view/2638983",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 재정경제기획위원회의 재정경제부 국감에서 여야가 가상자산 과세와 미래대응기금을 두고 공방을 벌였다.",
+        "여당은 성장의 민생 확산을 주문한 반면 야당은 미래대응기금의 재정 부담과 가상자산 과세 준비 부족을 지적했다.",
+        "이형일 부총리는 가상자산 과세와 관련해 국회와 업계의 의견을 모아 숙고해 판단하겠다고 답했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792154+09:00"
+    },
+    "42992bad1c4521ccfea2d940b0c7419e": {
+      "url": "http://www.metroseoul.co.kr/article/20261022500160",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원이 두나무가 개발 중인 블록체인 네트워크 기와를 사칭한 가짜 체인 사기에 대해 소비자경보 주의를 발령했다.",
+        "사기 조직은 공식 네트워크와 유사한 접속 정보와 체인 ID를 이용해 투자자들의 자산을 가로챘다.",
+        "금감원은 신규 블록체인 이용 시 공식 홈페이지와 공지사항을 통해 실제 출시 여부를 확인할 것을 당부했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792157+09:00"
+    },
+    "08dc0f23fcb8180ff0a5ad9462f0bf7d": {
+      "url": "https://www.cnbizm.com/news/articleView.html?idxno=318878",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미래에셋의 디지털자산 투자 플랫폼 디지털엑스가 전 임직원을 대상으로 하반기 법규준수 교육을 실시했다.",
+        "이번 교육은 에어드랍과 상속 등 수작업 과정에서 발생하는 요주의 거래 사고 방지를 주제로 진행됐다.",
+        "디지털엑스는 지급 계정 분리와 승인 단계 세분화 등 내부통제 장치를 점검했다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792160+09:00"
+    },
+    "23cf4f87a624abf1847a97887f7d163a": {
+      "url": "https://www.tokenpost.kr/news/policy/425804",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국 통화감독청의 스테이블코인 보유에 대한 이자 지급 직접 금지 연방 최종 규칙이 2027년 1월 18일부터 시행된다.",
+        "코인베이스와 페이팔 등이 운영하는 기존 이자형 프로그램은 규제 기관의 건별 심사 체제로 이동하게 된다.",
+        "솔라나 네트워크는 최종성 확정 시간을 단축하는 합의 업그레이드 알펜글로우를 거론했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792164+09:00"
+    },
+    "e28bc9e16962740d4429f95063020cf1": {
+      "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3038515",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 재정경제기획위원회의 재정경제부 국감에서 여야가 내년 1월 시행을 앞둔 가상자산 소득 과세 재유예를 두고 공방을 벌였다.",
+        "더불어민주당은 해외 주요국의 과세 시행을 근거로 예정대로 추진해야 한다고 주장했다.",
+        "국민의힘은 과세 인프라 미비와 해외 거래소와의 조세 형평성 문제를 들어 추가 유예를 요구했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792167+09:00"
+    },
+    "d2b81d6874baca26576d520cfcf335a3": {
+      "url": "https://n.news.naver.com/mnews/article/123/0002392388?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국세청이 국정감사에서 탈중앙화거래소와 해외 거래소의 경우 가상자산 거래자료를 100% 확보하기 어렵다고 인정했다.",
+        "임이자 의원은 국내 성실 납세자만 피해를 볼 수 있다며 과세 인프라와 기준 정비의 필요성을 지적했다.",
+        "국세청은 가상자산 정보교환체계와 해외금융계좌 수집을 통해 과세 누락 방지를 위한 시스템을 구축할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792170+09:00"
+    },
+    "98859160667828e274eb3390b9e46d76": {
+      "url": "https://www.tokenpost.kr/news/cryptocurrency/425785",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "컴파운드가 하루 사이 22.46% 오르며 25.95달러까지 반등한 가운데 현물과 선물 거래량이 크게 증가했다.",
+        "선물 미결제약정은 103.58% 늘어난 3785만달러를 기록하며 신규 레버리지 유입 신호를 보였다.",
+        "전문가들은 컴파운드가 주간 기준으로 30달러 저항선을 확실히 돌파하는지가 추가 상승의 핵심 변수라고 분석했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792173+09:00"
+    },
+    "8a3bed3e7be8f45ab8fa2ee9a9fe95f8": {
+      "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5074696",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원이 정식 출시되지 않은 두나무의 블록체인 네트워크 기와를 사칭한 가짜 체인 사기에 대해 소비자경보를 발령했다.",
+        "사기 조직이 만든 가짜 네트워크를 탈중앙화거래소가 정상 네트워크로 오인하면서 투자자들의 이더리움 766개가 탈취됐다.",
+        "금감원은 탈중앙화거래소 특성상 자산 전송 후 피해 회복이 매우 어렵다며 사전 확인을 강조했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792177+09:00"
+    },
+    "595b6763dd7588bf7fcd4b7b1afa50a9": {
+      "url": "https://www.kbanker.co.kr/news/articleView.html?idxno=226225",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 가상자산 소득 과세를 앞두고 해외 거래정보 확보와 투자자 보호체계 정비가 주요 쟁점으로 떠올랐다.",
+        "정부는 과세 실효성을 높이기 위해 암호자산 자동정보교환체계 도입과 준비 상황을 점검하고 있다.",
+        "업계는 과세 형평성 문제와 보호 입법 미비를 이유로 과세 시점을 2029년으로 2년 유예할 것을 요구하고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792179+09:00"
+    },
+    "0012b8d106f7acf6a64f6757000584da": {
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3079716",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "비트코인을 비롯한 주요 알트코인이 일제히 약세를 보이며 하락 흐름을 나타냈다.",
+        "업비트 원화마켓에서 비트코인은 1억1000만원 선 아래로 내려앉았으며 이더리움과 솔라나 등도 내림세를 기록했다.",
+        "반면 뉴욕증시의 주요 3대 지수는 일제히 상승 마감했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792183+09:00"
+    },
+    "bf941d5858fd7e0bc72b2312671f31bd": {
+      "url": "https://www.tfmedia.co.kr/news/article.html?no=208258",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회 국정감사에서 디지털자산기본법 제정이 지연되는 가운데 내년 1월 가상자산 과세를 강행하는 것이 적절한지 논란이 일었다.",
+        "이억원 금융위원장은 과세 폐지나 유예 필요성에 대해 여러 상황을 충분히 고려해야 한다고 밝혔다.",
+        "의원들은 기본법 마련 전 과세 시행이 조세 형평성과 실무 준비 부족 문제를 야기할 수 있다고 지적했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792186+09:00"
+    },
+    "3479bcc1b73dcd7f66cee995ac3dc265": {
+      "url": "https://www.sejungilbo.com/news/articleView.html?idxno=60751",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 재정경제위원회 국감에서 내년 가상자산 과세를 앞두고 사전 준비가 미흡하다는 지적이 제기됐다.",
+        "박해영 국세청 차장은 해외 가상자산거래소에서 이뤄지는 거래에 대해 100% 자료를 확보하기 어렵다고 밝혔다.",
+        "국세청은 해외 정보교환체계와 계좌 수집을 통해 2026년 말까지 관련 시스템을 구축할 예정이라고 설명했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792190+09:00"
+    },
+    "8144e1e4ac6b323b64df90db167983b8": {
+      "url": "https://www.tokenpost.kr/news/briefing/425732",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이더리움 레이어2 스크롤이 시가총액의 43%에 달하는 물량을 대거 해제해 유통한다.",
+        "리플의 최근 30일 거래소 유입량이 7개월 만의 최대치를 기록했으나 가격은 오히려 상승했다.",
+        "미국 통화감독청은 지니어스 법 이행을 위한 스테이블코인 최종 규정을 공개하고 내년 1월 18일 발효한다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792193+09:00"
+    },
+    "f36c386f9556cb5a4c1d44c0a41aac4f": {
+      "url": "https://www.etoday.co.kr/news/view/2638870",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 정무위원회 국정감사에서 디지털자산기본법 마련이 늦어지는 상황에서 가상자산 과세를 시행하는 것은 부적절하다는 지적이 나왔다.",
+        "이억원 금융위원장은 기본법 정부안을 최대한 서두르고 과세와 관련된 여러 상황을 충분히 고려하겠다고 밝혔다.",
+        "또한 네이버파이낸셜과 두나무의 결합 과정에서 금융위의 대주주 규제 완화 반대 입장이 쟁점으로 다뤄졌다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792196+09:00"
+    },
+    "30ea9ba2f880768f5d07f190d8f50088": {
+      "url": "https://www.businessplus.kr/news/articleView.html?idxno=118570",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "두나무가 서울 강남구 업비트 라운지를 고객 상담과 시장정보 제공 및 휴식 기능을 갖춘 복합 공간으로 재단장했다.",
+        "디지털자산거래소 공동협의체는 해병대 장병들을 대상으로 가상자산 연계 금융투자사기 예방교육을 실시했다.",
+        "가상자산 투자 플랫폼들은 임직원의 수작업 거래에서 발생할 수 있는 오지급 사고를 막기 위한 내부통제 교육을 진행했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792199+09:00"
+    },
+    "74d6faae1d5eb4544da8a1b45ede61be": {
+      "url": "http://www.press9.kr/news/articleView.html?idxno=84704",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국내 주요 가상자산 거래소들이 과세 시스템 구축을 마치지 못하면서 가상자산 소득 과세 유예론이 확산되고 있다.",
+        "국회 자료에 따르면 국내 5대 거래소 중 과세 시스템 구축을 완료한 곳은 없는 것으로 나타났다.",
+        "정치권과 청년 투자자들은 과세 인프라 구축과 세부 기준 정립이 선행되어야 한다고 촉구했다."
+      ],
+      "created_at": "2026-10-23T09:13:28.792203+09:00"
+    },
+    "962f52bc5e87b5d600d75ec927ec8a4d": {
+      "url": "https://www.kizmom.com/news/articleView.html?idxno=113472",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "두나무의 개발 중인 블록체인 네트워크 기와를 사칭한 가상자산 사기가 발생해 금융감독원이 소비자경보를 발령했다.",
+        "사기조직은 공식 체인ID와 유사한 번호를 사용하고 가짜 브릿지를 통해 이더리움을 입금받는 방식으로 약 28억원을 탈취했다.",
+        "금감원은 신생 네트워크의 기습 출시나 에어드랍 등을 경계하고 반드시 공식 홈페이지를 통해 공지를 확인하라고 당부했다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493175+09:00"
+    },
+    "ca952786c9eab946f1de6e315baf74cb": {
+      "url": "https://www.tokenpost.kr/news/cryptocurrency/425708",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "카자흐스탄 중앙은행 제1부총재는 7억달러 규모의 국가 암호화폐 준비금을 설립하고 2억달러 가까이 투자했다고 밝혔다.",
+        "해당 연설문에는 준비금의 구체적인 투자 대상과 방식은 명시되지 않은 것으로 전해졌다.",
+        "중앙은행은 물가 안정을 위해 기준금리를 16.25%로 인하하고 유통 및 사기 대응 인프라를 확충하고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493191+09:00"
+    },
+    "2182eccea739224c57da73f6f7715e12": {
+      "url": "https://n.news.naver.com/mnews/article/003/0014270841?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산거래소 디지털엑스는 전사 임직원을 대상으로 2026 하반기 법규준수 교육을 실시했다.",
+        "이번 교육은 에어드랍과 이벤트 리워드 등 수작업 개입으로 오류 가능성이 높은 요주의 거래 사고 방지에 초점을 맞췄다.",
+        "디지털엑스는 내부통제 시스템을 지속적으로 고도화하여 이용자가 안심할 수 있는 거래 환경을 조성하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493194+09:00"
+    },
+    "0d202b96e9b2abd1a51d9b2b3177eeb6": {
+      "url": "https://n.news.naver.com/mnews/article/421/0009243488?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "디지털자산거래소 공동협의체는 군 장병들의 금융투자 접근성 확대에 따라 가상자산 연계 금융투자사기 예방교육에 나섰다.",
+        "협의체는 해병대사령부 장병 약 100명을 대상으로 불법 리딩방과 유명인 사칭 등의 피해 예방 교육을 진행했다.",
+        "앞으로 고령층 등으로 교육 대상을 확대해 건전한 가상자산 이용 환경 조성과 이용자 보호에 주력할 방침이다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493197+09:00"
+    },
+    "9f82250c3815293efcb0312f8283684a": {
+      "url": "https://n.news.naver.com/mnews/article/215/0001270060?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "두나무의 개발 중인 블록체인 네트워크 기와를 사칭하여 가상자산을 탈취하는 가짜 체인 사기가 발생했다.",
+        "금융감독원은 관련 소비자경보 주의를 발령하고 공식 출시 여부를 확인한 뒤 거래할 것을 당부했다.",
+        "사기 조직은 공식 체인 ID와 유사한 번호를 사용하고 가짜 브릿지로 이더리움을 가로채 피해 구제가 어렵다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493200+09:00"
+    },
+    "35a5d26d70c6c1ee3d182ee723383b79": {
+      "url": "http://www.dailypop.kr/news/articleView.html?idxno=103575",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "정부는 2027년 1월 시행을 앞둔 가상자산 과세 제도를 점검하기 위해 업계와 전문가 현장 간담회를 개최했다.",
+        "업계는 과세 기준의 불확실성과 시스템 구축 기간 필요성을 제기하며 납세자가 받아들일 수 있는 공정한 기준을 요구했다.",
+        "정부는 과세 인프라와 시장 규율 체계를 함께 갖추기 위해 국가 간 정보교환 여건과 과세 기준을 종합적으로 점검할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493205+09:00"
+    },
+    "425da56bb5495010f7babc5a133d9f27": {
+      "url": "https://n.news.naver.com/mnews/article/082/0001403577?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "두나무는 서울 강남구 테헤란로에 위치한 업비트 라운지를 쉼터와 브랜드 전시관을 갖춘 공간으로 재개장했다.",
+        "새롭게 단장한 라운지 1층은 ESG 정원으로 꾸며졌고 2층에는 주요 가상자산 시세와 사업 이력이 전시되었다.",
+        "두나무는 재개장을 기념해 23일까지 비트코인 쿠폰을 지급하는 현장 고객 참여 행사를 진행한다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493207+09:00"
+    },
+    "fd765f22e02182e94d58db53751496dd": {
+      "url": "https://www.techm.kr/news/articleView.html?idxno=156383",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 거래소 업계는 고객 자산 보호와 투명한 거래 환경 조성을 위해 다양한 사고 예방 교육을 확대하고 있다.",
+        "디지털엑스는 임직원을 대상으로 요주의 거래 사고 방지를 위한 내부통제 법규준수 교육을 실시했다.",
+        "디지털자산거래소 공동협의체는 군 장병을 대상으로 가상자산 연계 금융투자사기 예방 교육을 진행했다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493210+09:00"
+    },
+    "5e09926cbd1b5da0a12ff552d1903c1d": {
+      "url": "https://www.khgames.co.kr/news/articleView.html?idxno=309566",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "디지털자산거래소 공동협의체는 해병대사령부 장병 약 100명을 대상으로 가상화폐 투자사기 예방교육을 실시했다.",
+        "최근 장병들의 금융투자 접근성이 높아짐에 따라 불법 리딩방과 로맨스 스캠 등의 주요 사기 유형을 안내했다.",
+        "협의체는 향후 고령층을 대상으로 한 예방 교육과 마당극 공연 등 맞춤형 금융교육을 지속해서 확대할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493213+09:00"
+    },
+    "579a5a9c8eb8a99427dde9c09450ee91": {
+      "url": "http://www.4th.kr/news/articleView.html?idxno=2120195",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "두나무는 서울 강남의 업비트 라운지를 시장정보 확인과 브랜드 체험이 가능한 복합 공간으로 개편해 재개장했다.",
+        "새롭게 단장한 공간에는 주요 가상자산 시세와 공포탐욕지수를 보여주는 빅차트 존과 ESG 체험 정원이 마련됐다.",
+        "기존의 오프라인 대면 고객 상담 기능이 유지되는 가운데 재개장 기념 비트코인 쿠폰 지급 행사도 함께 진행된다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493216+09:00"
+    },
+    "93b543f17e851d6fe51ac4c421202d50": {
+      "url": "https://n.news.naver.com/mnews/article/092/0002441952?sid=105",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국 통화감독청은 가상자산 거래소의 스테이블코인 리워드 제공을 전면 금지하는 최종 규칙을 발표했다.",
+        "이번 조치에 따라 거래소들이 스테이블코인 관련 보상을 제공하기 위해서는 감독당국의 사전 승인을 받아야 한다.",
+        "해당 최종 규칙은 지니어스법의 입법 취지에 따른 것으로 공식 시행일은 2027년 1월 18일이다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493219+09:00"
+    },
+    "91ca4aab9eed7de576230d69afe0e337": {
+      "url": "https://www.polinews.co.kr/news/articleView.html?idxno=746499",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회에서 내년 1월 시행 예정인 가상자산 과세를 두고 과세 기준과 거래소 시스템 구축이 미흡하다는 지적이 제기됐다.",
+        "국민의힘 박수영 의원과 청년 투자자들은 기자회견을 열어 과세 제도의 개선과 2년간의 시행 유예를 촉구했다.",
+        "국내 주요 거래소들의 과세 시스템 구축이 완료되지 않은 가운데 오는 11월 세법개정안 심사에서 유예 여부가 쟁점이 될 전망이다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493223+09:00"
+    },
+    "9a266c96b4f03d8d25fb2f60ca7eadcd": {
+      "url": "https://www.tokenpost.kr/news/cryptocurrency/425683",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "리플의 최근 30일간 거래소 유입량이 60억5000만개로 집계되며 7개월 만에 가장 많은 물량이 몰렸다.",
+        "거래소 유입 증가에도 불구하고 리플 가격은 시가총액 상위 가상자산 가운데 높은 수준의 상승률을 기록했다.",
+        "고래의 바이낸스 자산 인출은 5년 만에 최저 수준을 기록했고 리플 ETF 순유입은 정체된 모습을 보였다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493226+09:00"
+    },
+    "459774458923959fe482f0f7cd28f59e": {
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=2008898",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "디지털엑스는 전 임직원을 대상으로 요주의 거래 사고 예방을 위한 2026 하반기 법규준수 교육을 실시했다.",
+        "이번 교육은 에어드랍과 이벤트 리워드 등 임직원의 수작업 개입으로 오류 가능성이 높은 거래 통제에 초점을 맞췄다.",
+        "오세진 디지털엑스 대표는 규정된 절차를 철저히 준수하도록 내부통제 시스템을 지속적으로 고도화하겠다고 강조했다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493231+09:00"
+    },
+    "564ed5d8ff953071cc07c85df9dbe33f": {
+      "url": "https://www.tokenpost.kr/news/policy/425659",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "프랑스 재무부와 금융 당국은 가상자산 플랫폼이 탈중앙화금융 접속을 먼저 제공한 경우 일부 사건에 책임을 지우는 수정안을 제안했다.",
+        "제안에 따라 플랫폼은 탈중앙화금융 프로토콜을 심사하고 지속적으로 취약점과 의심 활동을 감시해야 한다.",
+        "유럽연합 집행위원회는 의견수렴 결과를 바탕으로 오는 2027년 6월 30일까지 보고서를 제출할 예정이다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493234+09:00"
+    },
+    "8c865d7e0ee0369aede4f585d78c7437": {
+      "url": "https://www.bizwork.co.kr/news/articleView.html?idxno=420108",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 시행을 앞둔 가상자산 과세를 두고 정치권과 업계에서 제도 재검토와 추가 유예 논의가 확산하고 있다.",
+        "국내 주요 가상자산 거래소들은 세부 과세 기준 미확정 등으로 과세 시스템을 아직 구축하지 못한 것으로 나타났다.",
+        "여야 의원들이 과세 유예 및 폐지 법안을 발의한 가운데 오는 11월 국회 세법개정안 심사가 주요 분수령이 될 전망이다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493236+09:00"
+    },
+    "fea85295a919fcc7b8433b7529ae1d0b": {
+      "url": "https://sports.hankooki.com/news/articleView.html?idxno=6942071",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "디지털엑스는 임직원 수작업으로 발생할 수 있는 자산 오지급과 과지급 사고를 막기 위해 내부통제 교육을 실시했다.",
+        "위험관리본부가 주관한 이번 교육은 에어드랍과 상속 등 오류 가능성이 높은 요주의 거래 예방에 초점을 맞췄다.",
+        "오세진 대표는 임직원이 규정된 절차를 준수하도록 내부통제 시스템을 지속적으로 고도화하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493239+09:00"
+    },
+    "4f2133a092c408261d34e9a7fd018f3e": {
+      "url": "https://www.news2day.co.kr/article/20261022500033",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "하나증권은 실물연계자산 토큰화 시장이 급성장함에 따라 미래에셋증권과 네이버 등을 수혜 기업으로 주목했다.",
+        "글로벌 실물연계자산 시장이 대폭 확대된 가운데 내년 국내 토큰증권 제도 시행을 앞두고 플랫폼의 중요성이 커지고 있다.",
+        "미래에셋증권은 증권과 자산운용 및 가상자산거래소를 연결하는 사업구조를 바탕으로 밸류체인 전반에서 경쟁력을 확보할 전망이다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493242+09:00"
+    },
+    "ef356d1f448f86ceaa45c060261d125c": {
+      "url": "https://www.techm.kr/news/articleView.html?idxno=156361",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "블록체인 프로젝트 카이아가 가상자산 거래소 상장과 해외 금융 및 결제 사업을 통해 아시아 시장에서 영향력을 확대하고 있다.",
+        "카이아는 업비트 원화마켓에 상장된 데 이어 일본 결제 기업과 스테이블코인 상용화를 추진하고 있다.",
+        "국내 금융기관과의 협력을 통해 실물자산 토큰화 사업을 추진하며 결제와 송금을 넘어선 인프라 구축에 나서고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493244+09:00"
+    },
+    "7f7a73b6d459da34c1de435add205d59": {
+      "url": "https://www.ajunews.com/view/20261022113010845",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행은 금융통화위원회 본회의를 열고 기준금리를 연 3.00%로 동결했다고 밝혔다.",
+        "신현송 한은 총재는 이번 동결이 연속 인상에 따른 정책 여력 확보의 결과라며 긴축적인 통화정책 기조를 유지할 필요가 있다고 강조했다.",
+        "한은은 성장세와 물가 오름세가 당초 예상보다 강할 것으로 보고 오는 11월 회의에서 수정 경제전망치를 발표할 예정이다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493247+09:00"
+    },
+    "21bd7720fc9c1eb478ec9ffcabf6f409": {
+      "url": "https://n.news.naver.com/mnews/article/008/0005430291?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이억원 금융위원장은 가계대출 총량관리가 법적 근거가 없는 그림자 규제라는 지적에 대해 건전성 규제와 경영지도가 필요하다고 반박했다.",
+        "금융당국은 각 은행의 사정에 맞춰 자율 형식으로 총량 규제를 운영하고 있으며 제도 보완 방안을 검토하겠다고 밝혔다.",
+        "금융당국 수장들은 가계부채를 안정적으로 관리하기 위해 담보인정비율과 총부채원리금상환비율 제도의 엄격한 적용 필요성을 언급했다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493251+09:00"
+    },
+    "579df9efa223146fce85f1db3be64063": {
+      "url": "http://www.newskr.kr/news/articleView.html?idxno=107398",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국내 금융시장에서 코스피가 급락 마감한 반면 원·달러 환율은 하락하며 연저점을 경신했다.",
+        "한국은행이 기준금리를 동결하고 긴축 기조 유지 입장을 밝힌 가운데 서울 아파트값은 상승세를 이어갔다.",
+        "뉴욕증시 기술주 급락과 중동 정세 불안에 따른 국제유가 상승 등이 투자 심리에 부담으로 작용했다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493254+09:00"
+    },
+    "c62a5a0258a34eda7a45309c867757e3": {
+      "url": "https://n.news.naver.com/mnews/article/001/0016395091?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "코스피는 주요 인공지능 관련 기업의 호실적에도 투자 수익성 우려와 수급 공백이 겹치며 큰 폭으로 하락했다.",
+        "삼성전자와 SK하이닉스 등 반도체 대형주가 차익 실현 매물 출화로 급락하며 지수를 끌어내렸다.",
+        "한국은행의 매파적 기준금리 동결과 중동 지역의 지정학적 불확실성도 투자 심리를 위축시키는 요인으로 작용했다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493258+09:00"
+    },
+    "c16205a8903a9062e86b1ce9ac49be0e": {
+      "url": "https://n.news.naver.com/mnews/article/079/0004201898?sid=110",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행은 금융통화위원회 회의를 열고 기준금리를 연 3.00%로 동결해 속도조절에 나섰다.",
+        "신현송 한은 총재는 이전의 연속 금리인상으로 정책적 여력을 확보했으며 이번 동결은 그 호미질의 결과라고 자평했다.",
+        "다만 성장세와 물가 오름세가 강한 측면이 있다며 향후 긴축적 통화정책 기조를 계속 이어갈 뜻을 내비쳤다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493261+09:00"
+    },
+    "5035f679473e215c864a5fd0f16d8649": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006394269?sid=110",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행 금융통화위원회가 기준금리를 연 3.00%로 동결하며 지난 두 차례 인상 이후 속도 조절에 나섰다.",
+        "이번 금리 동결은 긴축의 종료가 아니라 선제 인상 효과를 확인하는 중간 점검의 성격을 지닌다.",
+        "물가 안정을 위해 중앙은행의 통화정책뿐만 아니라 정부의 재정 운용과 구조개혁 노력이 함께 뒷받침되어야 한다."
+      ],
+      "created_at": "2026-10-23T09:13:39.493265+09:00"
+    },
+    "887ba9247818c1d896aa5db561054ce8": {
+      "url": "https://n.news.naver.com/mnews/article/088/0001036119?sid=110",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "신현송 한국은행 총재는 정부의 확장적 재정지출과 석유 최고가격제가 가격 왜곡과 재정 부담을 키운다고 경고했다.",
+        "정부의 내년도 예산안은 820조9천억원으로 역대 최대 규모이며 이전지출의 재정승수는 0.2 수준에 불과하다고 밝혔다.",
+        "무분별한 재정 확대가 미래 세대에게 부담으로 돌아올 수 있어 지출 효과에 대한 검증이 필요하다고 지적했다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486926+09:00"
+    },
+    "bf32a796e8483771d40e515e65b3d6c1": {
+      "url": "https://n.news.naver.com/mnews/article/011/0004674272?sid=110",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "신현송 한국은행 총재가 22일 금융통화위원회 기자간담회에서 정부의 확장 재정 기조와 현금성 지원을 강하게 비판했다.",
+        "반도체 초과세수로 조성된 162조원의 미래대응기금이 나눠먹기식 복지 재원으로 남용될 우려가 있다고 지적했다.",
+        "정부와 국호는 국가부채 증가와 재정 건전성 악화를 막기 위해 한은 총재의 고언을 정책에 반영해야 한다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486942+09:00"
+    },
+    "74c25872090aa0f66ec76fd17de39479": {
+      "url": "https://www.asiatoday.co.kr/kn/view.php?key=20261022010007779",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행 금융통화위원회는 22일 기준금리를 연 3.0%로 동결하며 지난 두 달간의 연속 인상 이후 속도 조절에 나섰다.",
+        "신현송 총재는 물가 오름세와 높은 집값을 이유로 이르면 11월 추가 금리 인상을 강하게 시사했다.",
+        "원화가치 급등과 소상공인 등 취약층의 고통을 고려할 때 과속 금리 인상은 위험하다는 우려가 제기된다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486946+09:00"
+    },
+    "e1fff9acc76d7e350444ef048601e408": {
+      "url": "https://www.dnews.co.kr/uhtml/view.jsp?idxno=202610221828279160820",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행은 22일 금융통화위원회를 열어 기준금리를 연 3.00%로 유지하고 향후 추가 인상 가능성을 열어두었다.",
+        "고공행진 중인 소비자물가와 서울 집값 상승세, 가계대출 증가 등이 통화 긴축 기조를 지속하는 배경으로 작용했다.",
+        "정부 역시 820조9000억원에 달하는 확장재정 기조에서 벗어나 재정의 지속가능성을 고려해야 한다는 지적이 나온다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486950+09:00"
+    },
+    "9954a1d0232af5ad80481dfb61f889bc": {
+      "url": "https://n.news.naver.com/mnews/article/028/0002828735?sid=110",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행 금융통화위원회는 22일 위원 전원 만장일치로 기준금리를 연 3.0%로 동결했다.",
+        "신현송 총재는 성장세와 물가 오름세가 8월 전망치보다 강할 것으로 예상해 긴축 기조를 이어갈 뜻을 밝혔다.",
+        "전문가들은 오는 11월과 내년 1분기 추가 인상을 통해 기준금리가 3.5%에 이를 것으로 전망하고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486953+09:00"
+    },
+    "cfe62acc71e9b883756592951699400b": {
+      "url": "http://www.dailypop.kr/news/articleView.html?idxno=103675",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "10월 22일 오후 기준 국내 시장금리와 원화 환율은 뚜렷한 방향성 없이 관망세를 나타냈다.",
+        "국고채 3년물은 3.840%, 국고채 5년물은 3.983%, 원·미국달러 환율은 1324.20원을 기록했다.",
+        "시장금리와 환율의 변동성이 제한되면서 당분간 대출과 예금 금리도 현 수준을 유지할 전망이다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486957+09:00"
+    },
+    "bb8abcf26322316aeaea0d66eb6d2240": {
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440654",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "서울 외환시장 전문가들은 10월 한국은행 금융통화위원회의 기준금리 동결 결정을 예상에 부합한 결과로 평가했다.",
+        "한은은 올해와 내년 성장률이 지난 8월 전망치를 상회할 것으로 예고하며 물가 안정을 강조했다.",
+        "신현송 총재는 원화가치가 예년 평균보다 저평가되어 있다고 언급해 달러-원 환율의 하락 여지를 열어뒀다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486960+09:00"
+    },
+    "99257a67f842e0355ad85d6f6001d488": {
+      "url": "https://www.viva100.com/article/20261022500829",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행 금통위가 기준금리를 연 3.00%로 동결한 것은 선제적 긴축 조치의 파급 효과를 점검하기 위한 속도 조절이다.",
+        "견조한 성장세와 수요 측 물가 상승 압력이 지속되고 있어 11월 추가 인상 가능성이 여전히 남아 있다.",
+        "통화정책의 한계를 보완하기 위해 재정과 금융 감독 측면의 정교한 정책 조합이 요구된다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486963+09:00"
+    },
+    "0d9db1ec45e878fb5a0b49b36071ccd6": {
+      "url": "https://www.asiatime.co.kr/article/20261022500224",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행은 금융통화위원회에서 기준금리를 연 3.00%로 동결하고 인상 속도 조절에 나섰다.",
+        "높은 경제지표와 물가상승압력에도 불구하고 미국의 금리 동결 유력 및 미 대선 결과를 지켜보겠다는 판단이 작용했다.",
+        "소비자물가가 2.9%를 기록하고 환율이 안정세를 보이는 가운데 한은은 향후 미 연준의 행보를 주시할 전망이다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486967+09:00"
+    },
+    "c2588d403f9f18a6a3eed98f0e59ade5": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006394258?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국 국채 10년물 금리가 22일 인공지능 투자 불안에 따른 기술주 급락과 유럽 재정 불안으로 약 한 달 만에 연 5% 아래로 떨어졌다.",
+        "이날 미국 국채 10년물 금리는 장중 4.945%까지 하락했고 2년물 금리도 20bp 내린 4.629%를 기록했다.",
+        "국제유가 상승과 인플레이션 우려에도 불구하고 글로벌 금융시장의 위험 회피 심리로 인해 국채 매수세가 유입됐다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486970+09:00"
+    },
+    "28eeead2793895594a4e1c7a6c00e474": {
+      "url": "https://www.rcast.co.kr/news/articleView.html?idxno=31873",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "NH투자증권은 한국산업기술진흥협회와 공동으로 성장성이 높은 우수 비상장 기술기업을 발굴하기 위한 데모데이를 개최했다.",
+        "첨단산업 분야에서 연구개발 성과를 사업화하고 있는 10개 기업이 최종 선정되어 투자자들과 만났다.",
+        "NH투자증권은 유망 기술기업이 투자 유치부터 상장까지 성장할 수 있도록 지원할 방침이다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486973+09:00"
+    },
+    "c1bd78fd85a0fa6c92e86161b4c17e7f": {
+      "url": "https://n.news.naver.com/mnews/article/374/0000539206?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행 금융통화위원회가 기준금리를 연 3%로 유지하기로 결정하며 금리 인상 이후의 영향을 지켜보기로 했다.",
+        "소비자물가 상승률이 둔화되고 달러-원 환율이 하락한 점이 동결 배경으로 꼽힌다.",
+        "시장에서는 물가 압력과 집값 상승세가 지속됨에 따라 이르면 다음 달 추가 인상에 나설 가능성을 주시하고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486977+09:00"
+    },
+    "60d833b584e1d48b8c2d198acb05d52f": {
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440749",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "달러-원 환율은 안전 자산 선호 심리가 확산한 가운데 1,320원 중반대에서 거래를 마쳤다.",
+        "인공지능 과잉 투자 우려로 뉴욕증시의 기술주가 급락하고 미국 국채 가격이 급등했다.",
+        "중동 정세 불안과 국제유가 상승도 안전 통화 선호 현상을 부추기며 환율 하락 압력으로 작용했다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486981+09:00"
+    },
+    "39d5eeff63f216e6d0d5d6ac23503213": {
+      "url": "http://coinreaders.com/264789",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이더리움은 위험회피 심리가 확산하며 하루 만에 4% 가까이 급락해 2,400달러 선 아래로 밀려났다.",
+        "파생상품 거래소에서 상위 트레이더들의 숏 포지션 비중이 94%에 달해 추가 하락 우려가 커지고 있다.",
+        "2,300달러 지지선 방어 여부와 오는 27일부터 열릴 미국 FOMC 회의 결과가 향후 가격 흐름을 가를 전망이다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486985+09:00"
+    },
+    "0b468be33ec2659193ae3fa3ef5bae33": {
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1728864",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "빅테크 기업들의 인공지능 투자 확대가 자금 조달 부담으로 이어질 것이라는 우려로 뉴욕증시 기술주가 급락했다.",
+        "메타가 새로운 주식 발행을 통해 자금을 조달할 계획을 밝힌 가운데 나스닥 종합지수는 2.6% 하락했다.",
+        "기술주에서 빠져나온 자금이 미국 국채시장으로 이동하면서 10년물 국채금리가 큰 폭으로 하락했다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486988+09:00"
+    },
+    "c235e4de978657cdf46e5c37a9eec620": {
+      "url": "https://www.g-enews.com/view.php?ud=2026102220053396919a1f309431_1",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "모하메드 엘-에리언 알리안츠 수석 경제고문은 미국의 높은 국채금리가 유럽 경제에 큰 부담을 주고 있다고 경고했다.",
+        "미국의 기술산업 성장과 대규모 재정적자가 10년 만기 국채금리를 급등시킨 주요 원인으로 지목됐다.",
+        "유럽 각국은 미국 금리가 떨어지기를 기다릴 것이 아니라 자체적인 성장 및 재정개혁에 나서야 한다고 주장했다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486990+09:00"
+    },
+    "8de40aa020a75111961c8977d620d060": {
+      "url": "https://n.news.naver.com/mnews/article/374/0000539182?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "현대경제연구원은 이번 한국은행의 기준금리 동결이 금리 인상 사이클의 종료를 의미하지 않는다고 진단했다.",
+        "물가와 환율, 가계부채 상황이 향후 추가 인상 여부를 결정할 주요 변수로 꼽혔다.",
+        "과도한 긴축이 민간소비와 기업투자를 위축시켜 경기를 조기에 침체시킬 수 있다는 경고가 제기됐다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486993+09:00"
+    },
+    "ff4604d2b3b2b3424d0bba15bf247c83": {
+      "url": "https://n.news.naver.com/mnews/article/055/0001397353?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "프랑스에서 열악한 교육 환경과 정부 정책에 반발하는 학생들의 시위가 격렬하게 확산하고 있다.",
+        "프랑스는 높은 조세 부담률과 함께 연금 및 헬스케어 분야의 재정 지출이 급증해 재정 적자가 심각한 상태다.",
+        "이탈리아 등 다른 국가들과 비교해 재정 건전성 악화와 만성적 구조 문제가 프랑스 경제의 부담으로 작용하고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486996+09:00"
+    },
+    "c799bbd93ac6dc2bc2aee50f791ef41e": {
+      "url": "https://www.ppss.kr/news/articleView.html?idxno=316796",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "SK하이닉스는 총 3조 원 규모의 자금을 위탁운용사에 맡기며 채권시장에 전격 재진입했다.",
+        "국내 6개 자산운용사를 통해 여신전문금융회사채와 은행채 등 신용채권 투자를 본격적으로 재개했다.",
+        "상대적으로 높은 금리 메리트를 제공하는 여전채 중심의 매수세가 당분간 이어질 것으로 전망된다."
+      ],
+      "created_at": "2026-10-23T09:13:50.486999+09:00"
+    },
+    "7d557494e45d2f5595033d809b1f10b9": {
+      "url": "https://www.news2day.co.kr/article/20261022500043",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "해외 가상자산 거래소들을 중심으로 SK하이닉스 주가 연계 토큰 등 실물연계자산 거래가 확대되고 있다.",
+        "달러 스테이블코인을 이용해 거래시간의 제약 없이 소액으로 다양한 자산에 투자하는 방식이 도입되고 있다.",
+        "실물연계자산 시장의 성장에 따라 글로벌 금융시장의 투자 방식과 금융회사들의 사업 영역이 변화하고 있다."
+      ],
+      "created_at": "2026-10-23T09:13:50.487002+09:00"
+    },
+    "a87d8162a40d228b27de987608d74a52": {
+      "url": "https://www.m-economynews.com/news/article.html?no=72002",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 시행 예정인 가상자산 과세를 두고 국정감사에서 여야 간의 공방이 벌어졌다.",
+        "여당은 반복적인 유예가 정책 신뢰성을 훼손한다고 주장한 반면 야당은 과세 인프라 미비와 형평성 문제를 지적했다.",
+        "정부는 업계와 국회 의견을 종합해 가상자산 과세 시행 여부를 신중하게 판단하겠다는 입장을 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:13:50.487006+09:00"
+    },
+    "22229d4ca387e670e8814e684bb39f62": {
+      "url": "https://n.news.naver.com/mnews/article/022/0004169043?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "내년 1월 시행을 앞둔 가상자산 과세를 두고 인프라 미비와 형평성 우려로 추가 유예 가능성이 제기되고 있다.",
+        "코스닥 시장에서는 주가 1000원 미만 요건을 충족하지 못한 5개 상장사가 상장폐지 절차를 밟게 될 예정이다.",
+        "국가데이터처의 분석에 따르면 지방에서 수도권으로 이주한 청년의 소득 증가율이 비수도권 잔류 청년보다 높았다."
+      ],
+      "created_at": "2026-10-23T09:13:50.487009+09:00"
+    },
+    "578a38e69b245fa9c84013f8d02ad544": {
+      "url": "http://www.metroseoul.co.kr/article/20261022500410",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행은 반도체와 자동차 등 주요 기업의 내년 성과급이 60조~70조원에 이를 것으로 추정했다.",
+        "성과급과 배당 확대는 고소득층을 중심으로 소비 회복세를 이끌 것으로 전망됐다.",
+        "정부의 재정지원과 환율 하락은 중저소득층의 실질구매력을 높여 민간소비 회복을 뒷받침할 것으로 분석됐다."
+      ],
+      "created_at": "2026-10-23T09:13:50.487012+09:00"
+    },
+    "ac3cf14994af60101e19c7a155f45253": {
+      "url": "https://n.news.naver.com/mnews/article/031/0001068416?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이억원 금융위원장은 금융시장 안정을 위해 가계대출 총량규제가 필요하다는 입장을 밝혔다.",
+        "국정감사에서 대출 총량규제의 법적 근거가 부족하다는 지적에 대해 금융산업의 시스템 리스크를 방지하기 위한 조치라고 설명했다.",
+        "금융당국은 건전성 규제와 영업행위 규제를 통해 금융시장을 안정적으로 관리해야 한다고 강조했다."
+      ],
+      "created_at": "2026-10-23T09:13:50.487016+09:00"
+    },
+    "b38e76b4044fc15c5fd6dae2c50be9cd": {
+      "url": "https://n.news.naver.com/mnews/article/117/0004117388?sid=103",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행 금융통화위원회는 물가와 주택가격 상승 압력에도 불구하고 기준금리를 연 3.00%로 동결했다.",
+        "지난 두 달간의 연속 인상 이후 파급 효과를 점검하며 속도 조절에 나선 것으로 풀이된다.",
+        "반도체 수출 호조와 가계대출 증가세가 지속됨에 따라 오는 11월 통화정책방향 회의에서 추가 인상 가능성이 열려 있다."
+      ],
+      "created_at": "2026-10-23T09:13:50.487019+09:00"
+    },
+    "34211889a69ce454e76129e1826dde14": {
+      "url": "https://www.koreareport.co.kr/news/articleView.html?idxno=53900",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "올해 상반기 코스닥 상장기업의 영업이익이 전년 동기 대비 60% 이상 증가했다.",
+        "분석 대상 1581개사의 상반기 매출액은 182조 8549억원으로 14.5% 늘어났다.",
+        "반면 이자비용 분석 대상 기업의 41.7%는 영업이익으로 이자비용을 충당하지 못했다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250447+09:00"
+    },
+    "343fe475553e9c8134a6df07e14cf524": {
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440754",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원이 KB금융지주와 KB국민은행에 대한 정기검사를 약 2주 연장하기로 했다.",
+        "금감원은 검사 과정에서 일부 사안에 대해 추가 확인이 필요하다고 판단했다.",
+        "금융권에서는 최근 발생한 국민은행의 해킹 사고도 검사 연장에 영향을 미친 것으로 보고 있다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250485+09:00"
+    },
+    "1806f8ec35d36cfb6893b1c276bddc1f": {
+      "url": "https://dealsite.co.kr/articles/171011",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융당국이 해킹 및 정보유출 사고에 대한 제재 강화를 예고했다.",
+        "롯데카드의 업무 일부정지 1.5개월 및 과징금 50억원 처분이 향후 제재의 바로미터가 될 전망이다.",
+        "금융당국은 경영진의 내부통제 책임을 강화하는 제도 개선을 추진하고 있다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250491+09:00"
+    },
+    "108b84b4f1a7f396b98aff514c788856": {
+      "url": "https://www.tfmedia.co.kr/news/article.html?no=208265",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "최근 5년간 금융지주회사에 재취업한 금융당국 출신 인사 중 금감원 출신이 절반을 넘었다.",
+        "이찬진 금감원장은 전관예우 방지를 위해 공정위 수준 이상의 내부 규제를 마련하겠다고 밝혔다.",
+        "다만 재취업 심사 대상이 되는 4급 직급 기준은 완화할 필요가 있다는 입장을 유지했다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250496+09:00"
+    },
+    "f64f610a5c22eeabf9ac6dea7bd9e33b": {
+      "url": "https://www.etoday.co.kr/news/view/2638995",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "최근 5년간 금융지주에 재취업한 금융당국 출신 인사 중 금감원 출신이 51.3%를 차지했다.",
+        "이찬진 금감원장은 전관예우와 이해충돌 방지를 위한 내부 규제를 강화하겠다고 밝혔다.",
+        "반면 퇴직자 재취업 심사 대상인 4급 기준은 상대적으로 낮다며 완화가 필요하다고 주장했다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250501+09:00"
+    },
+    "7fac39813d0c5fe66620c07f14e59b09": {
+      "url": "https://sateconomy.co.kr/news/view/1065573877347430",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원이 보험계약을 부당하게 갈아태우는 승환 계약을 한 보험설계사들을 잇따라 제재하고 있다.",
+        "금감원은 관련 검사자료에서 기존 계약의 해지환급금 등 소비자의 불이익 정보를 관리하지 않고 있다.",
+        "국회에서는 제재를 넘어 실질적인 소비자 피해구제로 이어지도록 감독체계를 개선해야 한다는 지적이 나왔다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250506+09:00"
+    },
+    "c499718d58b20a5c51f99d2c3ff42e98": {
+      "url": "https://www.etoday.co.kr/news/view/2639074",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "해양수산부 종합국정감사에서 전국 4개 항만공사 통합의 실효성과 수산업 보호 대책이 주요 쟁점으로 다뤄졌다.",
+        "여야 의원들은 항만별 특수성 훼손과 지역별 예산편성 권한 약화에 대한 우려를 제기했다.",
+        "해수부 장관은 항만공사 설립 취지와 지역사회 의견을 반영해 세부안을 마련하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250511+09:00"
+    },
+    "26f815a86abd1ec9c86f171942315433": {
+      "url": "https://www.wikitree.co.kr/articles/1168437",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "개정 통신사기피해환급법이 10월 1일부터 시행되면서 보이스피싱 피해구제 대상에 가상자산이 포함된다.",
+        "가상자산거래소에도 은행과 같은 수준의 의심 거래 감시 및 지급정지 의무가 부과된다.",
+        "피해자는 지급정지 시점에 남은 자산 형태로 돌려받거나 거래소를 통해 현금으로 매도해 지급받을 수 있다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250515+09:00"
+    },
+    "e4d99912b1a07e1be675bf4c76acd1fa": {
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/10/22/2026102200259.html",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이찬진 금감원장이 퇴직 임직원의 전관예우를 막기 위해 내부 규제를 공정위 수준 이상으로 강화하겠다고 밝혔다.",
+        "최근 5년간 금융지주사 재취업 공직자 152명 중 금감원 출신이 51.3%로 가장 많았다.",
+        "또한 보이스피싱 자율배상제도의 배상 기준을 법원 판례 수준으로 높이도록 지도하겠다고 덧붙였다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250519+09:00"
+    },
+    "abdadb4f0a2199e1e8fa1cd6c1cfaf7e": {
+      "url": "https://news.mtn.co.kr/article/2026102215444040199",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "예금자보호한도가 1억원으로 상향된 이후 2금융권 수신은 줄고 은행 수신은 오히려 크게 늘어났다.",
+        "금융당국은 양극화 해소를 위해 저축은행과 상호금융 등 2금융권의 건전성 규제를 강화하기로 했다.",
+        "최근 부실 확산으로 자본잠식 상태에 빠진 단위조합이 급증한 것으로 나타났다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250524+09:00"
+    },
+    "127baf1ed250e3566f674b13e26e378d": {
+      "url": "https://n.news.naver.com/mnews/article/629/0000544648?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이억원 금융위원장이 은행과 저축은행·상호금융권 간 양극화 심화에 따른 구조 개선을 시사했다.",
+        "예금보호한도 상향에도 지난 1년간 2금융권 수신은 감소하고 은행권 수신은 대폭 증가했다.",
+        "금융당국은 건전성 규제가 느슨한 부분에 대해 규제를 강화하고 업권별 영업 모델을 재정립할 방침이다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250530+09:00"
+    },
+    "1c7640fe9b73b5c38559898136c21043": {
+      "url": "https://www.hidomin.com/news/articleView.html?idxno=726167",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "대구 다사농협이 NH농협손해보험의 올해 3분기 ‘탑 클래스’ 최우수 사무소로 선정됐다.",
+        "탑 클래스는 손해보험사업 추진 실적과 비이자수익 증대 기여도를 종합 평가하는 포상 제도다.",
+        "다사농협은 지역의 녹록지 않은 경영 여건 속에서도 보험사업을 적극 추진해 높은 평가를 받았다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250538+09:00"
+    },
+    "df3e34a19b05c7c7067f2a8d84607209": {
+      "url": "https://www.fntoday.co.kr/news/articleView.html?idxno=396016",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이억원 금융위원장이 가계부채 관리를 위해 대출 총량 규제 기조를 유지하겠다고 밝혔다.",
+        "다만 구두 지도로 이루어진 은행권 자율 규제 방식의 법적 근거 부족과 부작용은 보완하겠다고 설명했다.",
+        "금융당국은 규제 사각지대에 있던 기업 사내대출을 가계대출 규제 틀에 편입하는 방안을 추진한다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250542+09:00"
+    },
+    "69f6320912f87a8b7b62ad71415093c6": {
+      "url": "https://www.raonnews.com/news/article.html?no=62105",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회가 내년 1월부터 고위험 주택담보대출의 위험가중치를 높이는 자본규제 강화를 추진한다.",
+        "4대 금융지주의 자본비율이 주주환원 기준인 13%를 웃도는 폭이 좁아 영향이 주목된다.",
+        "증권사들도 내년 1월 시행되는 새로운 조정유동성비율 규제에 대비해 조달 만기를 늘리고 있다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250551+09:00"
+    },
+    "daab5bdcfd5d71941bdc5fc88a5ba910": {
+      "url": "https://n.news.naver.com/mnews/article/277/0005832136?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "신현송 한국은행 총재가 기준금리 동결에 대해 선제적 금리 인상의 결실이라고 평가했다.",
+        "다만 물가 오름세가 목표 수준으로 수렴한다는 확신이 들 때까지 긴축 기조를 이어갈 필요가 있다고 강조했다.",
+        "기준금리 인상과 환율 안정이 수입물가를 제어하고 취약계층의 구매력 개선에 기여했다고 설명했다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250555+09:00"
+    },
+    "066bc683cec7da87f0515cb8efb6323b": {
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1728793",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행은 원·달러 환율 하락에 따른 수입물가 안정으로 저소득층의 구매력 개선 효과가 크다고 분석했다.",
+        "원·달러 환율이 10% 하락할 때 소득 하위 20%의 구매력 개선 폭은 상위 20%의 2.3배에 달했다.",
+        "한은 총재는 선제적 금리 인상으로 환율이 안정되면서 양극화 해소에도 도움이 되고 있다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250559+09:00"
+    },
+    "90c6779ab0f86bfcc502c8140853e542": {
+      "url": "https://n.news.naver.com/mnews/article/277/0005832406?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회가 여전사의 렌털업 취급 한도를 완화하는 감독규정 개정안을 발표했다.",
+        "여전사의 렌털 전체 취급한도를 리스 및 할부금융자산 이내로 확대하고 물건별 취급한도 규제는 폐지한다.",
+        "또한 부동산 관련 대출 한도를 강화하고 카드사에 전자지급결제대행업체 평가 의무를 부과하기로 했다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250563+09:00"
+    },
+    "122dc2ffeed68f69c352b8a551e0d0cd": {
+      "url": "https://www.etoday.co.kr/news/view/2638736",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "DB증권이 2029년 주가순자산비율 1배 달성을 목표로 한 기업가치 제고 계획을 발표했다.",
+        "회사는 수익성 개선과 주주환원 강화를 통해 시장의 저평가 요인을 해소할 방침이다.",
+        "이를 위해 자기자본이익률을 높이고 잠재 리스크를 줄이며 책임경영을 강화하기로 했다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250568+09:00"
+    },
+    "4e70776e89493a76a7ab88280475a1ff": {
+      "url": "https://www.ilyoseoul.co.kr/news/articleView.html?idxno=524034",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "정부가 행정안전부의 계획에 따라 내년 하반기 금융위원회의 세종 이전을 추진하기로 했다.",
+        "금융노조는 금융위 이전이 시장 접근성과 위기 대응력을 약화시킬 수 있다며 반발하고 있다.",
+        "이전 과정에서 전문 인력 이탈과 관련 기관 간 공조 차질에 대한 우려가 제기되고 있다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250573+09:00"
+    },
+    "a7e463ed7a87de61e6d788b3a0d19de5": {
+      "url": "https://www.ntoday.co.kr/news/articleView.html?idxno=130257",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융당국이 은행권 해킹 사고와 관련해 최고경영자의 내부통제 관리 책임을 묻겠다고 예고했다.",
+        "신한은행은 정보 유출 피해 규모가 가장 커 정상혁 행장의 연임에 주요 변수로 작용할 전망이다.",
+        "역대 최대 이자이익에도 불구하고 보안 관리 소홀과 대출금리 논란이 겹치며 연임 심사에 부담이 커졌다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250578+09:00"
+    },
+    "2e76480d02f3d6d1edee5f5e9156825f": {
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/10/22/2026102200358.html",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 국정감사에서 은행권의 대출금리 우회 인상과 1조원이 넘는 사내대출 특혜 논란이 제기됐다.",
+        "금융당국은 대출금리 결정 과정의 공시를 강화하고 사내대출 규제 방안을 검토하겠다고 약속했다.",
+        "또한 금감원 출신 퇴직자의 금융지주 재취업에 대해 공정위 수준 이상의 전관예우 규제를 마련하기로 했다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250582+09:00"
+    },
+    "16703348d01e016100f3f756e066e7fa": {
+      "url": "https://www.m-economynews.com/news/article.html?no=71993",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "정무위원회 국정감사에서 단일종목 레버리지 상장지수상품 투자로 발생한 대규모 손실이 도마에 올랐다.",
+        "금융당국 수장들은 투자 손실에 유감을 표명하고 투자자 보호와 시장 안정에 만전을 기하겠다고 밝혔다.",
+        "또한 금융지주 퇴임 임원의 고액 자문료와 사내대출 및 해외사모대출의 위험관리 체계도 점검 대상이 됐다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250587+09:00"
+    },
+    "bb72e493d980cad7883b2ff82a6d103d": {
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1728751",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융지주 퇴직 임원들이 계열사나 연구소의 고문 및 자문역으로 재취업해 고액 보수를 받는 관행이 지적됐다.",
+        "공식 임원이 아닌 이른바 그림자 임원은 책무구조도에 따른 책임 관리에서 벗어난다는 비판이 제기됐다.",
+        "금융당국은 지배구조 개선안에 고문 제도의 운영 방안을 포함해 제도 개선을 검토하기로 했다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250590+09:00"
+    },
+    "b935b204986812a5be71dd6d94d0176b": {
+      "url": "https://www.tokenpost.kr/news/blockchain/425727",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "디지털융합산업협회와 블록체인융합기술포럼이 코리아 핀테크 위크 연계 세미나 개최를 앞두고 있다.",
+        "이번 세미나에서는 원화 스테이블코인과 토큰증권 법제화를 통한 디지털 금융 경쟁력 강화를 논의한다.",
+        "글로벌 규제 동향에 맞춘 한국형 디지털자산 제도 설계와 인프라 구축 방향이 다뤄질 예정이다."
+      ],
+      "created_at": "2026-10-23T09:14:00.250595+09:00"
+    },
+    "c02bbf8a3f4ee3185be9876410d47267": {
+      "url": "https://n.news.naver.com/mnews/article/002/0002462283?sid=100",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국회 정무위원회 국정감사에서 단일종목 레버리지 ETF 도입 이후의 증권시장 변동성 사태가 도마에 올랐다.",
+        "금융당국 수장들은 투자자 보호와 시장 안정성 측면에서 책임을 통감하며 무거운 마음을 전했다.",
+        "금융위는 가상자산 과세 문제와 관련해 현재 막바지 협의를 진행하고 있다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085910+09:00"
+    },
+    "47ec5793766ebd9e0df86d681ac665b8": {
+      "url": "https://www.seoulfn.com/news/articleView.html?idxno=640709",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원이 유명 가상자산 거래소의 블록체인 네트워크를 사칭하는 가짜 체인 사기에 주의를 당부했다.",
+        "사기 조직은 기와의 공식 네트워크 체인 ID를 조작해 투자자들의 이더리움을 편취했다.",
+        "금감원은 정식 출시되지 않은 네트워크를 지원하는 브릿지는 사기일 가능성이 높다고 경고했다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085927+09:00"
+    },
+    "aef838011856bbd204e3cfad7a3e6550": {
+      "url": "https://www.khgames.co.kr/news/articleView.html?idxno=309589",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국디지털자산사업자연합회가 2027년 1월 시행 예정인 가상자산 과세를 2년 유예할 것을 촉구했다.",
+        "KDA는 투자자 보호를 위한 법적 장치와 과세 기준이 아직 충분히 마련되지 않았다고 지적했다.",
+        "해외 거래정보 확보가 어려운 상태에서 과세를 강행하면 과세 형평성이 훼손될 수 있다고 주장했다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085932+09:00"
+    },
+    "e0c024ddf6b014041aafd141875c873d": {
+      "url": "https://n.news.naver.com/mnews/article/052/0002422142?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원이 가상자산거래소의 블록체인 네트워크를 사칭한 가짜 체인 사기에 대해 소비자경보를 발령했다.",
+        "사기 조직은 두나무가 개발 중인 기와 네트워크를 사칭해 허위 홍보로 투자자들의 자산을 탈취했다.",
+        "금감원은 공식 발표가 없는 마케팅 활동은 사기 수법일 수 있다며 각별한 주의를 당부했다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085936+09:00"
+    },
+    "8800ce283bb380b4617d0b466dd75db8": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006393482?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회가 여신전문금융회사의 렌탈업 취급 한도를 완화하는 관련 법령 개정안을 발표할 예정이다.",
+        "현행 시행령은 여신전문금융회사의 렌탈업 채권액을 총자산의 30% 이내로 제한하고 있다.",
+        "금융위는 중소형 렌터카업계의 우려를 반영해 단기 렌탈은 제외하고 장기 렌탈을 중심으로 규제를 완화한다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085939+09:00"
+    },
+    "d0f282929c6e252a0b723daa6cf65539": {
+      "url": "https://n.news.naver.com/mnews/article/629/0000544658?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국내 카드사가 애플에 지급하는 애플페이 수수료가 과도하게 높아 간편결제 시장 확대를 가로막는다는 지적이 나왔다.",
+        "국내 애플페이 수수료율은 결제액의 약 0.15%로 중국보다 5배 높은 수준인 것으로 나타났다.",
+        "금융당국은 수수료 문제가 사업자 간 자율합의 사항이라면서도 결제수단 다양화 방안을 검토하겠다고 밝혔다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085944+09:00"
+    },
+    "9c4bc4001efd162f0880f90aa85cf457": {
+      "url": "https://n.news.naver.com/mnews/article/001/0016395622?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "올해 8월 국내은행의 원화대출 연체율이 9년 10개월 만에 가장 높은 수준을 기록했다.",
+        "고금리 장기화에 따른 차주들의 상환 부담 누적으로 기업대출과 가계대출 연체율이 모두 올랐다.",
+        "금감원은 연체율이 과거 장기 평균치를 밑돌아 중장기적으로 관리 가능한 수준이라고 설명했다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085953+09:00"
+    },
+    "4f19b9ddef3d59c56e6e6af92c8141e5": {
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3079763",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융권이 딥페이크 피싱과 노쇼 사기 등 신종 금융사기에 대응해 예방 캠페인과 피해 지원을 강화하고 있다.",
+        "KB금융그룹은 경찰청 등과 함께 보이스피싱 예방 행동 요령을 알리는 의심전심 캠페인을 전개하고 있다.",
+        "신한EZ손해보험은 노쇼 사기 피해지원 보상보험을 출시하고 배달앱 가맹점에 무상 제공할 계획이다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085957+09:00"
+    },
+    "0bda8df20c3d63541af73030eb5a1748": {
+      "url": "https://n.news.naver.com/mnews/article/662/0000106714?sid=102",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "대경사과원예농협 포항지점 직원이 70대 고객의 거액 보이스피싱 피해를 예방해 경찰서장 감사장을 받았다.",
+        "고객이 정기예금 1억원을 인출해 금을 구매하려 하자 직원이 인출을 지연시키고 경찰에 신고했다.",
+        "조사 결과 해당 고객은 경찰을 사칭한 보이스피싱 범죄에 연루된 상태였던 것으로 확인됐다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085965+09:00"
+    },
+    "76acac62e84da98cf0b4835c162975c8": {
+      "url": "https://www.thedailypost.kr/news/articleView.html?idxno=116368",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "KB금융그룹이 경찰청 및 안전생활실천시민연합과 함께 금융사기 예방을 위한 대국민 캠페인을 추진한다.",
+        "이번 캠페인은 투자리딩방과 딥페이크 피싱 등 신종 금융사기 수법과 네가지 행동수칙을 안내한다.",
+        "KB금융은 국제치안산업라이언에 체험 부스를 운영하고 피해자 상담 및 신용 회복 지원을 지속하고 있다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085968+09:00"
+    },
+    "e5da1a73dbf3e7eccc9270de278f479f": {
+      "url": "https://www.kyongbuk.co.kr/news/articleView.html?idxno=4088170",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "청도경찰서가 금융기관을 사칭한 보이스피싱 의심 신고에 신속히 출동해 총 1억 2,200만원의 피해를 예방했다.",
+        "경찰은 이날 하루 동안 접수된 6건의 고액 현금 인출 신고를 즉시 차단하는 데 성공했다.",
+        "경찰과 지자체는 마을방송과 문자메시지를 통해 주민들에게 현금 인출 요구 전화에 대한 주의를 당부했다."
+      ],
+      "created_at": "2026-10-23T09:14:06.085972+09:00"
     }
   }
 }
