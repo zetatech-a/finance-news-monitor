@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 9,
+  "candidate_hybrid_gray_keep_domain": 26,
+  "candidate_hybrid_gray_rule_drop": 127,
+  "candidate_hybrid_gray_rule_keep": 26,
+  "candidate_hybrid_keep_overseas_global_reference": 30,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 0,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 454,
+  "candidate_hybrid_model_drop": 23,
+  "candidate_hybrid_model_keep": 88,
+  "candidate_hybrid_model_keep_with_domain_anchor": 88,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 454,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-24",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 5,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 9,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 127,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 26,
+    "candidate_hybrid_keep_overseas_global_reference": 30,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 454,
+    "candidate_hybrid_model_drop_prob_le_threshold": 23,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 88
+  },
+  "dropped_count": 210,
+  "input_count": 808,
+  "kept_count": 598,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 808,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 43,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "하나금융, CET1비율 13.45%…자사주 소각 9490억 역대 최대",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=676602"
+    },
+    {
+      "title": "토스뱅크, 폐업 소상공인 상환 부담 완화…연체 위험 낮출까",
+      "url": "https://www.wikileaks-kr.org/news/articleView.html?idxno=193664"
+    },
+    {
+      "title": "[은행장 인선 레이스②]정상혁 신한은행장, 실적 개선·내부통제 부담 ...",
+      "url": "http://www.finomy.com/news/articleView.html?idxno=264527"
+    },
+    {
+      "title": "우리금융, 3분기 순익 1조492억원 달성",
+      "url": "https://www.smartbizn.com/news/articleView.html?idxno=157400"
+    },
+    {
+      "title": "\"2개 분기 연속 1조원\" 우리금융, 3Q 누적 순익 2.66조",
+      "url": "https://www.fnnews.com/news/202610231538578055"
+    },
+    {
+      "title": "하나금융 3분기 1.2조 순익 달성",
+      "url": "https://www.smartbizn.com/news/articleView.html?idxno=157386"
+    },
+    {
+      "title": "하나카드, 3분기 순이익 494억원… 조달비용 늘어 17% 감소",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=2009719"
+    },
+    {
+      "title": "우리카드, 3분기 누적 순이익 1337억원… 1년 새 26% 늘어",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=2009735"
+    },
+    {
+      "title": "우리카드, 3Q 누적 순익 1340억 전년比 26.4% 늘어",
+      "url": "https://it.chosun.com/news/articleView.html?idxno=2023092172679"
+    },
+    {
+      "title": "당진시의회 산건위, 산림조합과 간담회 열고 재선충 파쇄장비 등 현안 ...",
+      "url": "https://www.newsworker.co.kr/news/articleView.html?idxno=510305"
+    }
+  ]
+}
