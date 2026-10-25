@@ -1,0 +1,249 @@
+{
+  "clusters": {
+    "cluster_count": 66,
+    "cluster_size_max": 22,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 156,
+    "displayed_articles": 51,
+    "final_tagged_representatives": 66,
+    "normalized_articles": 234,
+    "raw_items": 234,
+    "relevance_filtered_articles": 100,
+    "rule_filtered_articles": 156,
+    "tagged_before_cluster": 100
+  },
+  "date": "2026-10-25",
+  "generated_at": "2026-10-25T09:04:03.992180+09:00",
+  "publishers": {
+    "missing_publisher_count": 66,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 20,
+    "no_topic_ratio": 0.303,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5587818817286848,
+        "relevance_score": 14,
+        "sector": "은행",
+        "title": "인터넷은행, 경력직 충원 봇물…비대면 기업금융 출격 채비",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4440970"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5020249403851386,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[인사이트 뉴스] 국가 위상 커진 한국, 그늘도 짙어졌다…반도체 호황을...",
+        "url": "https://www.moneystorm.kr/news/articleView.html?idxno=7624"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8059809078341894,
+        "relevance_score": 18,
+        "sector": "여전",
+        "title": "“내 렌트카 가격 얼마나 싸질까” 금융위, 캐피탈사 렌탈 한도 2배 확대",
+        "url": "https://n.news.naver.com/mnews/article/022/0004169386?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6445418744196743,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "\"친구는 엄마가 집사줬대\"...오죽하면 '낳음 당했다' 원망까지",
+        "url": "https://n.news.naver.com/mnews/article/008/0005431125?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5695623989374519,
+        "relevance_score": 9,
+        "sector": "은행",
+        "title": "은행연합회장 인선 내달 초 시동…'KB 견제론·관료 출신' 변수",
+        "url": "https://n.news.naver.com/mnews/article/421/0009247819?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7798722439016122,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "마이크로소프트·웰스파고 등 22곳 주식 토큰화 반대…한국도 권리관리...",
+        "url": "https://sateconomy.co.kr/news/view/1065619621267003"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6869267257227909,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "크라켄, 모네로 출금 고객 개인정보 요구 이메일 철회…자금 출처 확인...",
+        "url": "https://www.wikitree.co.kr/articles/1168833"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7218723295134967,
+        "relevance_score": 8,
+        "sector": "보험",
+        "title": "‘저평가’ 벗으려는 한화손해보험...순자산 4조·ROE 13% 정조준",
+        "url": "https://www.ekn.kr/web/view.php?key=20261024026330720"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7588602045831487,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "“AI로 잡고 경찰과 막는다”…4대 은행, 금융사기 방어망 강화",
+        "url": "https://www.ekn.kr/web/view.php?key=20261024024000512"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5326036890198195,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "'월매출 4억' 횟집사장 정준하도 적자 걱정…“자영업자, 남는게 없다”...",
+        "url": "https://n.news.naver.com/mnews/article/030/0003478248?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 1,
+      "거시·시장": 9,
+      "기타": 20,
+      "대부": 2,
+      "디지털자산": 14,
+      "보험": 2,
+      "상호금융": 6,
+      "여전": 1,
+      "은행": 5,
+      "입법·정책": 3,
+      "저축은행": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 2,
+      "감독·제재": 3,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 12,
+      "기업금융·익스포저": 2,
+      "디지털자산": 8,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 2,
+      "연체·부실": 9,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 6,
+      "증시·시장시황": 3,
+      "칼럼·오피니언": 3,
+      "해외·글로벌": 6,
+      "환율·외환": 1
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8346727835664554,
+        "relevance_score": 35,
+        "sector": "입법·정책",
+        "title": "하루 한 번 대사하던 거래소 3곳, 5월까지 5분 단위로…오지급 땐 출금...",
+        "url": "https://www.wikitree.co.kr/articles/1168862"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8829082549972844,
+        "relevance_score": 29,
+        "sector": "기타",
+        "title": "카드·캐피탈 부동산 대출 옥죈다…PF 포함 합산한도 50% 제한",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=368004"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8824739671144668,
+        "relevance_score": 20,
+        "sector": "상호금융",
+        "title": "신협, 부실채권 전담 자산관리회사 설립 추진…금융위 출자 승인",
+        "url": "https://www.lcnews.co.kr/news/articleView.html?idxno=210200"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.674370803257766,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "7조 부실 옮겨 담는 신협… 조합 열 곳 중 한 곳 '빨간불'",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=2023092172666"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9044774543664628,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "[주목 e-금융] '스테이블코인' 상용화 전쟁中…\"디지털자산기본법 제정...",
+        "url": "http://www.economytalk.kr/news/articleView.html?idxno=424863"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7801901241912899,
+        "relevance_score": 18,
+        "sector": "상호금융",
+        "title": "[2026 국감] 새마을금고 '누적 순손실 3조6000억'…292곳 적기시정조치 ...",
+        "url": "https://www.bzeronews.com/news/articleView.html?idxno=824303"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8460681141937697,
+        "relevance_score": 17,
+        "sector": "상호금융",
+        "title": "신협, 7조 부실채권에 AMC 띄운다…새마을금고 효과 재현할까",
+        "url": "https://n.news.naver.com/mnews/article/293/0000092073?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8059809078341894,
+        "relevance_score": 18,
+        "sector": "여전",
+        "title": "“내 렌트카 가격 얼마나 싸질까” 금융위, 캐피탈사 렌탈 한도 2배 확대",
+        "url": "https://n.news.naver.com/mnews/article/022/0004169386?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6790010441769309,
+        "relevance_score": 22,
+        "sector": "거시·시장",
+        "title": "미·이란 확정 우려에 무너진 금값… 뉴욕증시 끌어내려",
+        "url": "https://n.news.naver.com/mnews/article/057/0001974934?sid=101"
+      },
+      {
+        "cluster_size": 22,
+        "relevance_prob": 0.8373003133726342,
+        "relevance_score": 18,
+        "sector": "거시·시장",
+        "title": "AI發 美 국채금리 급락·佛 재정불안까지 … 한은 연내 추가 인상 '안갯...",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/10/23/2026102300222.html"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "거시·시장": 2,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 1,
+      "상호금융": 3,
+      "여전": 1,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 2,
+      "부동산·PF": 1,
+      "연체·부실": 4,
+      "증시·시장시황": 1,
+      "해외·글로벌": 2
+    }
+  }
+}
