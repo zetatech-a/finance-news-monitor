@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 14,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 25,
+  "candidate_hybrid_gray_rule_drop": 75,
+  "candidate_hybrid_gray_rule_keep": 25,
+  "candidate_hybrid_keep_overseas_global_reference": 16,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 232,
+  "candidate_hybrid_model_drop": 19,
+  "candidate_hybrid_model_keep": 131,
+  "candidate_hybrid_model_keep_with_domain_anchor": 131,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 232,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-26",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 14,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 1,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 75,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 25,
+    "candidate_hybrid_keep_overseas_global_reference": 16,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 232,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 2,
+    "candidate_hybrid_model_drop_prob_le_threshold": 19,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 131
+  },
+  "dropped_count": 120,
+  "input_count": 530,
+  "kept_count": 410,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 530,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 26,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "법인카드 점유율 높인 성영수 하나카드 사장, 개인 신판·건전성 개선 숙...",
+      "url": "https://www.asiatoday.co.kr/kn/view.php?key=20261025010008460"
+    },
+    {
+      "title": "[금리 재산정] 연말까지 이자 뛰는 주담대 165조…2억 대출 월 95만→130...",
+      "url": "https://www.g-enews.com/view.php?ud=202610251210258071e30fcb1ba8_1"
+    },
+    {
+      "title": "충남 당진시의회, 산업건설위원회, 당진시산림조합과 현장 간담회 개최",
+      "url": "https://www.ccdn.co.kr/news/articleView.html?idxno=1106696"
+    },
+    {
+      "title": "당진시의회, 산업건설위원회, 당진시산림조합과 현장 간담회 개최",
+      "url": "https://www.ggilbo.com/news/articleView.html?idxno=1188725"
+    },
+    {
+      "title": "영동군산림조합 여·수신 2000억원 돌파",
+      "url": "http://www.cctimes.kr/news/articleView.html?idxno=933525"
+    },
+    {
+      "title": "실손보험금 과소·과다 지급 막는다…사후정산법 도입 추진",
+      "url": "https://www.mdtoday.co.kr/news/articleView.html?idxno=620740"
+    },
+    {
+      "title": "박용갑 의원, 실손보험금 과소·과다 지급 막는다…사후정산법 발의",
+      "url": "https://www.ccdn.co.kr/news/articleView.html?idxno=1106780"
+    },
+    {
+      "title": "실손보험-환자 본인부담상한제 '사후정산법' 추진",
+      "url": "https://www.dailymedi.com/news/news_view.php?wr_id=941839"
+    },
+    {
+      "title": "5세대 실손 전환?···11월 추가 할인 분수령",
+      "url": "http://www.enewstoday.co.kr/news/articleView.html?idxno=2484012"
+    },
+    {
+      "title": "10대그룹 시총 1100조 증발...흔들리는 증시에 정부 손 쓸까 外 [한강로...",
+      "url": "https://www.segye.com/newsView/20261025509614?OutUrl=naver"
+    }
+  ]
+}
