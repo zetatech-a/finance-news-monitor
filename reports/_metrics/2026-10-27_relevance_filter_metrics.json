@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 57,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+  "candidate_hybrid_gray_keep_domain": 75,
+  "candidate_hybrid_gray_rule_drop": 231,
+  "candidate_hybrid_gray_rule_keep": 75,
+  "candidate_hybrid_keep_overseas_global_reference": 34,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 9,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 529,
+  "candidate_hybrid_model_drop": 36,
+  "candidate_hybrid_model_keep": 198,
+  "candidate_hybrid_model_keep_with_domain_anchor": 198,
+  "candidate_hybrid_negative_drop": 5,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 529,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-27",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 57,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 4,
+    "candidate_hybrid_drop_negative_signal": 5,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 4,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 231,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 75,
+    "candidate_hybrid_keep_overseas_global_reference": 34,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 9,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 529,
+    "candidate_hybrid_model_drop_prob_le_threshold": 36,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 198
+  },
+  "dropped_count": 351,
+  "input_count": 1196,
+  "kept_count": 845,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1196,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 63,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[단독] 원금 이자에 \"건당\" 추가로…배달대행업체 '외국인 고금리 장사...",
+      "url": "https://news.jtbc.co.kr/article/NB12324880?influxDiv=NAVER"
+    },
+    {
+      "title": "\"빌려준 돈 대신 갚아라\"…채무자 지인 납치한 30대 2명 체포",
+      "url": "https://www.ikbc.co.kr/article/view/kbc202610260046"
+    },
+    {
+      "title": "\"빚 대신 갚아라\"…오피스텔 침입해 지인 납치·감금 30대 2명 체포",
+      "url": "https://www.news1.kr/local/gwangju-jeonnam/6331740"
+    },
+    {
+      "title": "[단독] 서민 보루 '햇살론' 개편했더니… 최저신용자 대출 거절률 3배 급...",
+      "url": "https://www.newdaily.co.kr/site/data/html/2026/10/26/2026102600064.html"
+    },
+    {
+      "title": "[투데이 Pick] 연말에 대출 조인다는데…개인사업자 자금확보 ‘산 넘어...",
+      "url": "https://www.news2day.co.kr/article/20261026500309"
+    },
+    {
+      "title": "[출근길 브리핑-10월 27일] 보수 대권 '3파전' 재편·10년만에 부활한 특...",
+      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=900809"
+    },
+    {
+      "title": "[금융권 소식] BNK금융ㆍBNK경남은행(10.26)",
+      "url": "http://www.weeklytoday.com/news/articleView.html?idxno=799609"
+    },
+    {
+      "title": "'과반' 후보 두고 세 번 불발…차기 수협은행장 인선 '첩첩산중'",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=676764"
+    },
+    {
+      "title": "BNK금융 3분기 누적 순이익 6223억원…전년동기대비 19% 감소",
+      "url": "https://www.asiatime.co.kr/article/20261026500435"
+    },
+    {
+      "title": "BNK금융 3분기 누적 순익 6223억원… 전년 대비 19.2% 감소",
+      "url": "https://view.asiae.co.kr/article/2026102617175097040"
+    }
+  ]
+}
