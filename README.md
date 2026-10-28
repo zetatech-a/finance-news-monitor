@@ -345,6 +345,14 @@ AI 요약은 **표시 전용**입니다. 관련성 판정·업권/주제 태깅�
 > 무료 티어는 입력이 Google의 제품 개선에 사용될 수 있습니다. 이 파이프라인이 보내는
 > 것은 공개된 뉴스 기사 본문과 제목뿐이며, URL은 전송하지 않습니다.
 
+## 개발용 명령어
+```bash
+pip install -r requirements.txt pytest
+python -m pytest tests/ -q
+python -m src.run_daily --dry_run
+```
+자세한 규칙은 `AGENTS.md`를 참고하세요.
+
 ## 테스트
 ```bash
 pip install pytest   # requirements.txt에 포함되지 않음
