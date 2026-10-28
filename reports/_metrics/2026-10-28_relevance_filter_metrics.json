@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 66,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 15,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 7,
+  "candidate_hybrid_gray_keep_domain": 74,
+  "candidate_hybrid_gray_rule_drop": 234,
+  "candidate_hybrid_gray_rule_keep": 74,
+  "candidate_hybrid_keep_overseas_global_reference": 24,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 454,
+  "candidate_hybrid_model_drop": 73,
+  "candidate_hybrid_model_keep": 240,
+  "candidate_hybrid_model_keep_with_domain_anchor": 240,
+  "candidate_hybrid_negative_drop": 7,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 454,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-28",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 66,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 7,
+    "candidate_hybrid_drop_negative_signal": 7,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 15,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 7,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 234,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 74,
+    "candidate_hybrid_keep_overseas_global_reference": 24,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 7,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 454,
+    "candidate_hybrid_model_drop_prob_le_threshold": 73,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 240
+  },
+  "dropped_count": 417,
+  "input_count": 1216,
+  "kept_count": 799,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1216,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 118,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[BNK금융 인사 전망] 빈대인 연임 첫 연말 인사… 7개 계열사 CEO 인선",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3080169"
+    },
+    {
+      "title": "BNK금융 3분기 순익 28% 급감…지방금융 3사 중 홀로 '휘청'",
+      "url": "https://www.pennmike.com/news/articleView.html?idxno=130423"
+    },
+    {
+      "title": "지방금융 3사, 누적 순익 8.2% 감소…JB만 성장세 유지",
+      "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=710390"
+    },
+    {
+      "title": "[BS모닝] JB금융 3분기 누적 ‘최대 실적’…BNK·iM, 뒷걸음에도 3분기...",
+      "url": "http://www.segyebiz.com/newsView/20261027518704?OutUrl=naver"
+    },
+    {
+      "title": "[단독] 신용사면 123만명 ‘반복 수혜’⋯20여 년 전에도 되풀이된 연체...",
+      "url": "https://www.etoday.co.kr/news/view/2640650"
+    },
+    {
+      "title": "'사옥 판 돈' 얹은 신한카드... 2년만에 순이익 1위 탈환",
+      "url": "https://www.mt.co.kr/finance/2026/10/28/2026102719542324926"
+    },
+    {
+      "title": "지방금융 3사, 순익 1조6343억원…BNK·iM '뒷걸음', JB만 '역대 최대'",
+      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1418991"
+    },
+    {
+      "title": "BNK는 뒷걸음, iM은 주춤, JB는 최대 실적…엇갈린 지방금융 3사",
+      "url": "https://www.mk.co.kr/article/12187271"
+    },
+    {
+      "title": "[은행장 인선 레이스③] 이호성 하나은행장, 최대 실적 호재 속 첫 연임...",
+      "url": "http://www.finomy.com/news/articleView.html?idxno=264770"
+    },
+    {
+      "title": "신한금융, 3분기 누적 순익 5조 돌파…이자이익·비은행 성장에 '역대급...",
+      "url": "https://www.goodkyung.com/news/articleView.html?idxno=292808"
+    }
+  ]
+}
