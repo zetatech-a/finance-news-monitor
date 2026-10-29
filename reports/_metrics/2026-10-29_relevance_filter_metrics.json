@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 5,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 70,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+  "candidate_hybrid_gray_keep_domain": 71,
+  "candidate_hybrid_gray_rule_drop": 254,
+  "candidate_hybrid_gray_rule_keep": 71,
+  "candidate_hybrid_keep_overseas_global_reference": 49,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 32,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 559,
+  "candidate_hybrid_model_drop": 84,
+  "candidate_hybrid_model_keep": 308,
+  "candidate_hybrid_model_keep_with_domain_anchor": 308,
+  "candidate_hybrid_negative_drop": 1,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 559,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-29",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 5,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 70,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 7,
+    "candidate_hybrid_drop_negative_signal": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 254,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 71,
+    "candidate_hybrid_keep_overseas_global_reference": 49,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 32,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 559,
+    "candidate_hybrid_model_drop_prob_le_threshold": 84,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 308
+  },
+  "dropped_count": 439,
+  "input_count": 1458,
+  "kept_count": 1019,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1458,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 65,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[부산은행 인사 전망] 빈대인 발탁 김성주 첫해, 순익 감소·금양 부실 ...",
+      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3080265"
+    },
+    {
+      "title": "금리 묶였지만 긴축은 계속…가계·기업 '이자 압박' 커진다",
+      "url": "https://www.pointdaily.co.kr/news/articleView.html?idxno=323986"
+    },
+    {
+      "title": "신한금융 '5조 클럽' 견인한 신한은행…정상혁號 실적 성장세 지속",
+      "url": "http://www.marketnews.co.kr/news/articleView.html?idxno=74333"
+    },
+    {
+      "title": "농협은행, 3Q 여신 초점은 대기업…NIM 하락에 조달구조 개선 불가피",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=676984"
+    },
+    {
+      "title": "2분기 이어 3분기도 JB만 웃었다...희비 엇갈린 지방금융권",
+      "url": "https://www.mediapen.com/news/view/1133137"
+    },
+    {
+      "title": "민간소비 뒷걸음에도 가계빚 다시 증가세 … 165조 주담대 '시한폭탄' [...",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/10/28/2026102800152.html"
+    },
+    {
+      "title": "신한카드, 삼성 제치고 순익 1위 탈환…사옥 매각 효과에 연말까지 ‘안...",
+      "url": "https://economist.co.kr/article/view/ecn202610280033"
+    },
+    {
+      "title": "\"투자펀드·헤지펀드…비은행 금융중개기관, 금융시장 충격 증폭\"",
+      "url": "https://www.junggi.co.kr/news/articleView.html?idxno=38259"
+    },
+    {
+      "title": "\"직원 모두가 성장의 주역…지역밀착 금융 강화할 것\"",
+      "url": "https://www.daejonilbo.com/news/articleView.html?idxno=2310038"
+    },
+    {
+      "title": "[T나는 보안] 금융권 해킹서 北 IP 440만건 접근 포착…증권·코인사까지...",
+      "url": "https://www.tjb.co.kr/news05/bodo/view/id/105416"
+    }
+  ]
+}
