@@ -1,0 +1,272 @@
+{
+  "clusters": {
+    "cluster_count": 420,
+    "cluster_size_max": 224,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 6,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 224,
+        "relevance_prob": 0.8684243191762765,
+        "relevance_score": 41,
+        "sector": "디지털자산",
+        "title": "FIU·두나무, '영업정지 처분' 항소심…'중과실 여부' 공방",
+        "url": "https://n.news.naver.com/mnews/article/648/0000052093?sid=101"
+      },
+      {
+        "cluster_size": 199,
+        "relevance_prob": 0.9034575094153474,
+        "relevance_score": 36,
+        "sector": "거시·시장",
+        "title": "[채권마감] 불스팁, 비둘기 연준+이형일 국발계 발언+외인 선물 매수",
+        "url": "https://www.etoday.co.kr/news/view/2641920"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1542,
+    "displayed_articles": 280,
+    "final_tagged_representatives": 420,
+    "normalized_articles": 2086,
+    "raw_items": 2086,
+    "relevance_filtered_articles": 1134,
+    "rule_filtered_articles": 1528,
+    "tagged_before_cluster": 1134
+  },
+  "date": "2026-10-30",
+  "generated_at": "2026-10-30T09:18:24.121199+09:00",
+  "publishers": {
+    "missing_publisher_count": 420,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 175,
+    "no_topic_ratio": 0.4167,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6507404555124331,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "바이낸스, 보안 문제로 '알파' 거래 일시 중단…\"고객 자산 안전\"",
+        "url": "https://www.slist.kr/news/articleView.html?idxno=777674"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7966467367158885,
+        "relevance_score": 15,
+        "sector": "기타",
+        "title": "한·중 피싱조직 '대동단결', 사회초년생 상대 80억대 뜯어",
+        "url": "https://n.news.naver.com/mnews/article/448/0000647922?sid=004"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5748778853456701,
+        "relevance_score": 12,
+        "sector": "자산운용·연기금",
+        "title": "연임 두고 대표·사외이사간 \"공생공존(?)\"…KB자산운용, 이사회 견제 기...",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=229065"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7815484626221874,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "30억원 입금하자 10분 만에 사라졌다…이틀 새 54억원 금융사기 의혹",
+        "url": "https://www.geconomy.co.kr/news/article.html?no=325063"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7327517116997657,
+        "relevance_score": 15,
+        "sector": "감독·제재",
+        "title": "[국제 공조수사] 베트남 거점 피싱조직 '대동단결' 일망타진…81억 가로...",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=620772"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8958988363408303,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "몸집 키우는 금감원 특사경…금융위는 수사권 확대에 '난색'",
+        "url": "https://n.news.naver.com/mnews/article/119/0003149157?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5494136726728883,
+        "relevance_score": 9,
+        "sector": "저축은행",
+        "title": "김기홍 회장은 왜 저축은행을 인수하는가 [JB금융 리로드①]",
+        "url": "https://www.fntimes.com/html/view.php?ud=202610291656321449b4a7c6999c_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5264357787992319,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "17개 은행 포용금융 성적표 도입…서민대출 경쟁구도 달라지나",
+        "url": "https://www.lcnews.co.kr/news/articleView.html?idxno=210541"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.568408921183723,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "1.30달러에 갇힌 리플…공매도 세력 집단 도살 '스퀴즈' 임박했나",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=499856"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7245617225036352,
+        "relevance_score": 12,
+        "sector": "기타",
+        "title": "법원·검찰·금감원 '대동단결'‥정장 입은 '피싱 조직'",
+        "url": "https://n.news.naver.com/mnews/article/214/0001532393?sid=102"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 11,
+      "거시·시장": 33,
+      "기타": 150,
+      "대부": 16,
+      "디지털자산": 76,
+      "보험": 9,
+      "상호금융": 11,
+      "여전": 11,
+      "은행": 65,
+      "입법·정책": 18,
+      "자산운용·연기금": 8,
+      "저축은행": 4,
+      "증권(브로커리지/리테일)": 5,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 30,
+      "감독·제재": 8,
+      "건전성·자본규제": 7,
+      "금리·수수료·최고금리": 44,
+      "기업금융·익스포저": 1,
+      "디지털자산": 103,
+      "물가·경기지표": 1,
+      "부동산·PF": 6,
+      "불법사금융·불법추심·보이스피싱": 31,
+      "사고·사기·횡령": 8,
+      "상품·영업·예금금리": 36,
+      "서민금융·대환·채무조정": 9,
+      "업계동정·사회공헌": 3,
+      "연체·부실": 11,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 6,
+      "증시·시장시황": 5,
+      "칼럼·오피니언": 13,
+      "해외·글로벌": 18,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 224,
+        "relevance_prob": 0.8684243191762765,
+        "relevance_score": 41,
+        "sector": "디지털자산",
+        "title": "FIU·두나무, '영업정지 처분' 항소심…'중과실 여부' 공방",
+        "url": "https://n.news.naver.com/mnews/article/648/0000052093?sid=101"
+      },
+      {
+        "cluster_size": 199,
+        "relevance_prob": 0.9034575094153474,
+        "relevance_score": 36,
+        "sector": "거시·시장",
+        "title": "[채권마감] 불스팁, 비둘기 연준+이형일 국발계 발언+외인 선물 매수",
+        "url": "https://www.etoday.co.kr/news/view/2641920"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.9399295453513091,
+        "relevance_score": 31,
+        "sector": "입법·정책",
+        "title": "이형일 \"금리 상승에 취약차주 부담 커져…추가 대책 마련\"",
+        "url": "https://n.news.naver.com/mnews/article/088/0001037146?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8958988363408303,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "몸집 키우는 금감원 특사경…금융위는 수사권 확대에 '난색'",
+        "url": "https://n.news.naver.com/mnews/article/119/0003149157?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9227295984316435,
+        "relevance_score": 33,
+        "sector": "거시·시장",
+        "title": "\"은행 지분 50%+1\" 한은 선언…원화 스테이블코인 '격돌'",
+        "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=368474"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8447301682040687,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "금감원, ‘1억 유출’ 프라뱅 ‘현장 검사’ 착수",
+        "url": "https://n.news.naver.com/mnews/article/056/0012283486?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.573130186877649,
+        "relevance_score": 23,
+        "sector": "은행",
+        "title": "금융위 출신 이형주 FIU 원장, 수협은행장 도전…첫 '모피아 행장' 나오...",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1729600"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8016547191466024,
+        "relevance_score": 25,
+        "sector": "은행",
+        "title": "\"해킹 안전 영역 없다\" 금융당국, 보안 전수점검 '속도'",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4441770"
+      },
+      {
+        "cluster_size": 18,
+        "relevance_prob": 0.8267352480650361,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "FIU·두나무, 영업정지 취소소송 2심서 공방…'중과실 여부' 쟁점",
+        "url": "https://www.ajunews.com/view/20261029194753176"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.6535124139854983,
+        "relevance_score": 21,
+        "sector": "감독·제재",
+        "title": "금감원, 보험사 계리가정 관리 강화 … 부적정 산출 엄정 제재",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/10/29/2026102900380.html"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 2,
+      "대부": 1,
+      "디지털자산": 2,
+      "은행": 2,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "감독·제재": 3,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 5,
+      "서민금융·대환·채무조정": 1,
+      "정책·제도개선": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 6,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 73,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+  "candidate_hybrid_gray_keep_domain": 54,
+  "candidate_hybrid_gray_rule_drop": 160,
+  "candidate_hybrid_gray_rule_keep": 54,
+  "candidate_hybrid_keep_overseas_global_reference": 37,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 101,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 661,
+  "candidate_hybrid_model_drop": 124,
+  "candidate_hybrid_model_keep": 280,
+  "candidate_hybrid_model_keep_with_domain_anchor": 280,
+  "candidate_hybrid_negative_drop": 10,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 661,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-10-30",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 6,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 73,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 10,
+    "candidate_hybrid_drop_negative_signal": 10,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 160,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 54,
+    "candidate_hybrid_keep_overseas_global_reference": 37,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 101,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 661,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 124,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 280
+  },
+  "dropped_count": 394,
+  "input_count": 1528,
+  "kept_count": 1134,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1528,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 56,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[은행장 인선 레이스④]'연임 도전' 정진완 우리은행장, IB성과 '뚜렷'·...",
+      "url": "http://www.finomy.com/news/articleView.html?idxno=265076"
+    },
+    {
+      "title": "\"은행엔 돈 쌓이는데 2금융권은 썰물\"…증시 조정에 엇갈린 예금 흐름",
+      "url": "https://www.ajunews.com/view/20261029143207714"
+    },
+    {
+      "title": "현대카드, 본업·테크 앞세워 수익성·건전성 잡았다..4년 연속 이익 성...",
+      "url": "https://kpenews.com/View.aspx?No=4289096"
+    },
+    {
+      "title": "신한카드, 순익 ‘깜짝 1위’…사옥 매각 빼면 삼성에 뒤져",
+      "url": "https://www.ddaily.co.kr/page/view/2026102915450368801"
+    },
+    {
+      "title": "대기업 대출로 체급 키운 신한은행…3분기 순익 12.5% ‘껑충’",
+      "url": "https://www.viva100.com/article/20261027500754"
+    },
+    {
+      "title": "[더벨][Risk Manager Awards | 2026년 우수사례] 광주은행, CRO 직할 체제...",
+      "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202610280614296140109120"
+    },
+    {
+      "title": "[톺아보기] 은행이 이끈 최대실적 하나금융···대손리스크 '고심'",
+      "url": "https://www.seoulfn.com/news/articleView.html?idxno=641264"
+    },
+    {
+      "title": "현대카드, 3분기 누적 순이익 2758억원···전년比 8.1%↑",
+      "url": "https://www.seoulfn.com/news/articleView.html?idxno=641386"
+    },
+    {
+      "title": "코스피 하락·부총리 발언에 국고채 강세…3년물 5bp↓",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4441917"
+    },
+    {
+      "title": "“생활비 아껴서 건보료 내는 데”…건강보험 갉아먹는 의료인은 누구?",
+      "url": "https://kormedi.com/?p=2894541"
+    }
+  ]
+}
