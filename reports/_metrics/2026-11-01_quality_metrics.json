@@ -1,0 +1,249 @@
+{
+  "clusters": {
+    "cluster_count": 143,
+    "cluster_size_max": 13,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 406,
+    "displayed_articles": 103,
+    "final_tagged_representatives": 143,
+    "normalized_articles": 473,
+    "raw_items": 473,
+    "relevance_filtered_articles": 215,
+    "rule_filtered_articles": 390,
+    "tagged_before_cluster": 215
+  },
+  "date": "2026-11-01",
+  "generated_at": "2026-11-01T09:06:38.807501+09:00",
+  "publishers": {
+    "missing_publisher_count": 143,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 53,
+    "no_topic_ratio": 0.3706,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.770625387400434,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "코인 거래소 해킹의 숨은 통로…출금 권한 하나 뚫리면 자산이 빠져나간...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=500275"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4758792020210736,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "\"8.7조 털리는데…바이낸스 임직원 20분간 공포에 질려 지켜보기만\"",
+        "url": "https://n.news.naver.com/mnews/article/008/0005434681?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.817481398121482,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "FBI \"바이낸스 8조원대 해킹 배후는 북한\"… 사건 발생 후 첫 공식 확인",
+        "url": "https://www.moneystorm.kr/news/articleView.html?idxno=7913"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7019834007858319,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "FBI \"8조원 털린 바이낸스 해킹 사건, 북한에 책임 있어\"",
+        "url": "https://n.news.naver.com/mnews/article/417/0001162795?sid=104"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6800561816775383,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "美 FBI “바이낸스 8.4조 해킹 배후는 북한”…자금세탁 경고",
+        "url": "https://www.kukinews.com/article/view/kuk202611010009"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7055975584121613,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "비트코인 7만7000달러대 회복…바이낸스 해킹 수사에 미국 당국 합류",
+        "url": "https://www.jemin.com/news/articleView.html?idxno=845824"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6157815240583359,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "‘몸값 2700조’ 앤트로픽 상장에 기대감 높은데…국내서 투자되나 보니",
+        "url": "https://n.news.naver.com/mnews/article/009/0005757022?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8574600489507433,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "블록체인은 안전하다는데…내 코인은 왜 털릴까",
+        "url": "https://n.news.naver.com/mnews/article/001/0016413632?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5317892507511233,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "“요즘 누가 환전해?”…하나금융 선두 속 금융사 ‘트래블카드’ 사업...",
+        "url": "https://www.ceoscoredaily.com/page/view/2026102614201731458"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7413573160627634,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[탐사경] 국민 정보가 줄줄 새는 디지털 강국…한국의 보안 시계는 거꾸...",
+        "url": "https://www.moneystorm.kr/news/articleView.html?idxno=7912"
+      }
+    ],
+    "sector_counts": {
+      "거시·시장": 5,
+      "기타": 48,
+      "디지털자산": 65,
+      "보험": 3,
+      "상호금융": 2,
+      "여전": 3,
+      "은행": 6,
+      "입법·정책": 7,
+      "자산운용·연기금": 2,
+      "저축은행": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 3,
+      "감독·제재": 9,
+      "건전성·자본규제": 3,
+      "금리·수수료·최고금리": 7,
+      "디지털자산": 56,
+      "물가·경기지표": 1,
+      "불법사금융·불법추심·보이스피싱": 4,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 3,
+      "연체·부실": 8,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 2,
+      "정책·제도개선": 3,
+      "증시·시장시황": 2,
+      "해외·글로벌": 6,
+      "환율·외환": 1
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.8886128384507285,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "FIU, 테더맥스·슈퍼트러스트 접속차단 요청…불법 영업 대응 강화 [크립...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002716972?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7502992452758108,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "금융권 덮친 보안사고…'매출 3% 과징금' 법안 탄력받나",
+        "url": "https://theviewers.co.kr/View.aspx?No=4291061"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7110418253235365,
+        "relevance_score": 16,
+        "sector": "입법·정책",
+        "title": "[N위크] 홍콩 ELS 제재안 확정...소비자물가·국제수지도 발표",
+        "url": "https://www.tfmedia.co.kr/news/article.html?no=208533"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9408879919232228,
+        "relevance_score": 16,
+        "sector": "입법·정책",
+        "title": "가상자산 보이스피싱 환급 자동 아니다…통신사기피해환급법 개정안 10...",
+        "url": "https://www.wikitree.co.kr/articles/1170762"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8693158153097508,
+        "relevance_score": 20,
+        "sector": "은행",
+        "title": "시중은행 예대금리차 줄었는데 인터넷은행은 확대…엇갈린 '이자마진'",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=500259"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8228870189414589,
+        "relevance_score": 16,
+        "sector": "기타",
+        "title": "은행 부실채권 1년만에 1조3000억 늘었다…8년6개월만에 최대",
+        "url": "https://n.news.naver.com/mnews/article/658/0000160000?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8660648248698584,
+        "relevance_score": 18,
+        "sector": "디지털자산",
+        "title": "[심층분석]디파이 우회로 뚫린 지니어스법… '디지털자산 수탁 창고' 전...",
+        "url": "https://www.goodkyung.com/news/articleView.html?idxno=292970"
+      },
+      {
+        "cluster_size": 13,
+        "relevance_prob": 0.6782819117619211,
+        "relevance_score": 15,
+        "sector": "거시·시장",
+        "title": "국고채 넘어선 CP 금리…“경색 아닌 키맞추기”",
+        "url": "https://n.news.naver.com/mnews/article/018/0006400682?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5540652011649477,
+        "relevance_score": 12,
+        "sector": "보험",
+        "title": "[3분기 실적분석] 금리 상승에 투자 손익 '뚝'…보험사 순이익 하락",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4442349"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7915364422129717,
+        "relevance_score": 14,
+        "sector": "은행",
+        "title": "고금리에 가계도 中企도 '빚폭탄 경고음'…5대 은행 연체율 10년來 최고",
+        "url": "https://n.news.naver.com/mnews/article/003/0014292384?sid=101"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "거시·시장": 1,
+      "기타": 1,
+      "디지털자산": 2,
+      "보험": 1,
+      "은행": 2,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 3,
+      "디지털자산": 4,
+      "물가·경기지표": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "상품·영업·예금금리": 2,
+      "연체·부실": 2,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 2
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 5,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 29,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 5,
+  "candidate_hybrid_gray_rule_drop": 119,
+  "candidate_hybrid_gray_rule_keep": 5,
+  "candidate_hybrid_keep_overseas_global_reference": 12,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 0,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 90,
+  "candidate_hybrid_model_drop": 18,
+  "candidate_hybrid_model_keep": 108,
+  "candidate_hybrid_model_keep_with_domain_anchor": 108,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 90,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-01",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 5,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 29,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 119,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 5,
+    "candidate_hybrid_keep_overseas_global_reference": 12,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 90,
+    "candidate_hybrid_model_drop_prob_le_threshold": 18,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 108
+  },
+  "dropped_count": 175,
+  "input_count": 390,
+  "kept_count": 215,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 390,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 10,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "이자마진은 하락했지만 대손비용 안정…신한금융지주 실적 방어력 주목",
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=500272"
+    },
+    {
+      "title": "시총 1조2500억원 증발, 주가 37% 추락…최우형 연임시킨 이사회도 도마...",
+      "url": "https://www.the-today.com/news/articleView.html?idxno=92792"
+    },
+    {
+      "title": "KB국민카드, 3분기 순익 1128억…전년比 13.6%↑",
+      "url": "https://www.thepublic.kr/news/articleView.html?idxno=324491"
+    },
+    {
+      "title": "WGBI 편입 막바지 9월 7.6조 순회수한 외국인…10월엔 선물 17조 매수 '대...",
+      "url": "http://www.joseilbo.com/news/news_read.php?uid=578600&class=53&grp="
+    },
+    {
+      "title": "박병희 농협생명 대표, 신계약 CSM 1조원 순항…손실계약비용 증가에 순...",
+      "url": "https://www.fntimes.com/html/view.php?ud=2026102815590736048a55064dd1_18"
+    },
+    {
+      "title": "\"중저신용자엔 단비라지만\"…카드사엔 부담스러운 '사잇돌 대출'",
+      "url": "https://www.fnnews.com/news/202610300933386317"
+    },
+    {
+      "title": "[돈MORE]머니 전쟁 붙은 간편결제…어떤 '페이' 쓸까",
+      "url": "https://news.bizwatch.co.kr/article/finance/2026/10/30/0042"
+    },
+    {
+      "title": "대출금리가 가파른 오름세에도...주담대·신용대출 나란히 1조원↑",
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=283830"
+    },
+    {
+      "title": "증시 꺾이자 증권 계열사 '급제동'…금융지주 순익 증가세 '주춤'",
+      "url": "https://www.ntoday.co.kr/news/articleView.html?idxno=130492"
+    },
+    {
+      "title": "“급하게 목돈 필요했는데”…소득 없어도 가능, ‘저리대출’ 더 나온...",
+      "url": "https://www.mk.co.kr/article/12192462"
+    }
+  ]
+}
