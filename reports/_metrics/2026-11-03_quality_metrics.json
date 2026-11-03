@@ -1,0 +1,258 @@
+{
+  "clusters": {
+    "cluster_count": 423,
+    "cluster_size_max": 53,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 53,
+        "relevance_prob": 0.9384179684675601,
+        "relevance_score": 36,
+        "sector": "디지털자산",
+        "title": "금융위 가상자산거래소 긴급 소집…\"해킹 대비해 준비금 추가 적립\"",
+        "url": "http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005953052"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1133,
+    "displayed_articles": 293,
+    "final_tagged_representatives": 423,
+    "normalized_articles": 1520,
+    "raw_items": 1520,
+    "relevance_filtered_articles": 715,
+    "rule_filtered_articles": 1125,
+    "tagged_before_cluster": 715
+  },
+  "date": "2026-11-03",
+  "generated_at": "2026-11-03T09:13:29.337872+09:00",
+  "publishers": {
+    "missing_publisher_count": 423,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 167,
+    "no_topic_ratio": 0.3948,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.734137085351753,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"나, 한국인입니다\"...日 범죄조직 2인자 체포되자 위조 운전면허증 제...",
+        "url": "https://n.news.naver.com/mnews/article/031/0001071601?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7873785869608875,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "\"국가 핵심부터 금융망까지 뚫렸다\"…잇단 해킹·정보유출에 시민 불안...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014296597?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5726732608830127,
+        "relevance_score": 11,
+        "sector": "디지털자산",
+        "title": "[김구철의 쾌도난마] 중수청장, 국정철학 공유의 위험성",
+        "url": "https://www.pennmike.com/news/articleView.html?idxno=130856"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8438611076648314,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "한양증권도 해킹 피해…그룹웨어 통해 고객정보 유출",
+        "url": "https://news.dealsitetv.com/articles/177931"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.817695386925679,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "한양증권 외부 그룹웨어 침해로 개인정보 유출…주민번호도 3건 포함",
+        "url": "https://www.ajunews.com/view/20261103081440898"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6925373811077894,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "솔라나 거쳐 비트코인으로⋯북한 해커, 자금세탁 추적망 교란",
+        "url": "https://www.etoday.co.kr/news/view/2643258"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5072005692859712,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "순익 두 배 늘었지만 본업 뒷걸음…하나캐피탈 '빛바랜 반등'",
+        "url": "https://dealsite.co.kr/articles/171801"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5912731232380966,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "사외이사 아들·사위 근무까지 따지는 미국…국내 금융지주는?",
+        "url": "https://n.news.naver.com/mnews/article/648/0000052214?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8003318931015255,
+        "relevance_score": 25,
+        "sector": "자산운용·연기금",
+        "title": "[핀테크핫이슈] 전 금융권 보안 '빨간불'...어닝시즌 승자는",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=711937"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.497331939947452,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "우리은행, 중기 외면한 생산적 금융?…건전성도 놓쳤다",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=878781"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 6,
+      "거시·시장": 23,
+      "기타": 140,
+      "대부": 25,
+      "디지털자산": 103,
+      "보험": 4,
+      "상호금융": 6,
+      "여전": 11,
+      "은행": 57,
+      "입법·정책": 22,
+      "자산운용·연기금": 9,
+      "저축은행": 11,
+      "핀테크·플랫폼": 3
+    },
+    "topic_counts": {
+      "가계대출·부채": 22,
+      "감독·제재": 8,
+      "건전성·자본규제": 6,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 30,
+      "기업금융·익스포저": 16,
+      "디지털자산": 107,
+      "부동산·PF": 6,
+      "불법사금융·불법추심·보이스피싱": 26,
+      "사고·사기·횡령": 8,
+      "상품·영업·예금금리": 17,
+      "서민금융·대환·채무조정": 5,
+      "소비자보호·민원·불완전판매": 8,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 26,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 7,
+      "정책·제도개선": 3,
+      "증시·시장시황": 8,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 19,
+      "환율·외환": 6
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8628451364679485,
+        "relevance_score": 36,
+        "sector": "입법·정책",
+        "title": "바이낸스 무단 출고 사태에… 금융위, 국내 거래소에 준비금 추가 적립...",
+        "url": "https://n.news.naver.com/mnews/article/366/0001202042?sid=101"
+      },
+      {
+        "cluster_size": 53,
+        "relevance_prob": 0.9384179684675601,
+        "relevance_score": 36,
+        "sector": "디지털자산",
+        "title": "금융위 가상자산거래소 긴급 소집…\"해킹 대비해 준비금 추가 적립\"",
+        "url": "http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005953052"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8799295530892053,
+        "relevance_score": 32,
+        "sector": "감독·제재",
+        "title": "금융위, 국내 거래소 긴급 소집… “코인 오프라인 보관 확대해야”",
+        "url": "https://n.news.naver.com/mnews/article/020/0003759619?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.936917491865397,
+        "relevance_score": 31,
+        "sector": "입법·정책",
+        "title": "금융당국, 全 금융사 해킹 점검… ‘출금 신속 제한’ 규제 완화 검토",
+        "url": "https://n.news.naver.com/mnews/article/022/0004171792?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8749645820347289,
+        "relevance_score": 31,
+        "sector": "입법·정책",
+        "title": "금융위, 거래소 출고권한 점검…콜드월렛 확대 주문",
+        "url": "https://n.news.naver.com/mnews/article/119/0003150287?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.659200699739436,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "새마을금고, 신용정보 검사 10년간 안 받아",
+        "url": "https://n.news.naver.com/mnews/article/032/0003480178?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8243731241052813,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "[현장] 정성웅 대부협회장 \"불법사금융과 분리한 독립 업권법 필요\"",
+        "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1730106"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7938832143693505,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "“대부업 합법 금융인데 부정 낙인…규제할수록 불법사채만 키워”",
+        "url": "https://n.news.naver.com/mnews/article/016/0002717779?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8571352659994542,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "[출근길 브리핑-11월 3일] 與 '신천지' 의총 보고·美 중간선거 본투표 ...",
+        "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=901678"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7374945982918965,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "매입채권추심업 허가제 안착하려면…“직접추심 없는 곳은 등록제 병행...",
+        "url": "https://www.fntimes.com/html/view.php?ud=2026110216414799927c96e79780_18"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 2,
+      "대부": 3,
+      "디지털자산": 2,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "디지털자산": 6,
+      "불법사금융·불법추심·보이스피싱": 3
+    }
+  }
+}

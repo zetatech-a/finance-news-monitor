@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 50,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 11,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 9,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 67,
+  "candidate_hybrid_gray_rule_drop": 238,
+  "candidate_hybrid_gray_rule_keep": 67,
+  "candidate_hybrid_keep_overseas_global_reference": 28,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 445,
+  "candidate_hybrid_model_drop": 85,
+  "candidate_hybrid_model_keep": 171,
+  "candidate_hybrid_model_keep_with_domain_anchor": 171,
+  "candidate_hybrid_negative_drop": 7,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 445,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-03",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 50,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 11,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 3,
+    "candidate_hybrid_drop_negative_signal": 7,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 9,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 238,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 67,
+    "candidate_hybrid_keep_overseas_global_reference": 28,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 445,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 85,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 171
+  },
+  "dropped_count": 410,
+  "input_count": 1125,
+  "kept_count": 715,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1125,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 35,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "왕좌 뒤집혔다…신한·삼성카드 '1위 경쟁' 치열",
+      "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7191063"
+    },
+    {
+      "title": "금융지주, 증시 불황·고금리에 ‘이자장사’ 의존 높아져",
+      "url": "https://www.segye.com/newsView/20261102515965?OutUrl=naver"
+    },
+    {
+      "title": "우리은행장 정진완 연임 심사 직전 '실적' 기사회생? 3분기 '순이익 1조...",
+      "url": "https://www.huffingtonpost.kr/article/261729"
+    },
+    {
+      "title": "이억원 \"264조 공급에도 체감 부족…자금 흐름 병목 해소\"",
+      "url": "https://www.etoday.co.kr/news/view/2643067"
+    },
+    {
+      "title": "[KB금융 인사 기상도] 이재근號 첫 인사…계열사 CEO 10명 ‘물갈이’ 촉...",
+      "url": "https://www.ddaily.co.kr/page/view/2026110213512779060"
+    },
+    {
+      "title": "KB금융 새판 짜기… 주목받는 CFO 출신들",
+      "url": "https://it.chosun.com/news/articleView.html?idxno=3000000000027"
+    },
+    {
+      "title": "'5극3특' 중소기업에 4.5조 대출 공급…외담대 제도 개선",
+      "url": "https://www.asiatime.co.kr/article/20261101500072"
+    },
+    {
+      "title": "사옥이 끌어올린 순익 1위…신한카드, 본업 회복은 숙제",
+      "url": "https://sports.hankooki.com/news/articleView.html?idxno=6942679"
+    },
+    {
+      "title": "[더벨][thebell desk] AI와 '리스크 관리'",
+      "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202610281506563000108616"
+    },
+    {
+      "title": "초기 실손보험료 최대 40% 할인…이달부터 시행",
+      "url": "https://www.etoday.co.kr/news/view/2640145"
+    }
+  ]
+}
