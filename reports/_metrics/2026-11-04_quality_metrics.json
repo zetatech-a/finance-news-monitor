@@ -1,0 +1,272 @@
+{
+  "clusters": {
+    "cluster_count": 383,
+    "cluster_size_max": 53,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 53,
+        "relevance_prob": 0.8527787763655345,
+        "relevance_score": 27,
+        "sector": "거시·시장",
+        "title": "'긴축 여지' 열어둔 연준…한은 다시 '호미' 꺼내들까",
+        "url": "https://n.news.naver.com/mnews/article/119/0003150936?sid=101"
+      },
+      {
+        "cluster_size": 51,
+        "relevance_prob": 0.7394046028547508,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "이찬진 금감원장 \"금융권 해킹 사고, CEO 책임 엄중히 묻겠다\"",
+        "url": "https://www.news2day.co.kr/article/20261103500263"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1124,
+    "displayed_articles": 271,
+    "final_tagged_representatives": 383,
+    "normalized_articles": 1732,
+    "raw_items": 1732,
+    "relevance_filtered_articles": 701,
+    "rule_filtered_articles": 1061,
+    "tagged_before_cluster": 701
+  },
+  "date": "2026-11-04",
+  "generated_at": "2026-11-04T09:12:53.603848+09:00",
+  "publishers": {
+    "missing_publisher_count": 383,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 152,
+    "no_topic_ratio": 0.3969,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7588141521652075,
+        "relevance_score": 9,
+        "sector": "대부",
+        "title": "1억 빌리면 1000만원 떼갔다…대출 막힌 서민 노려 49억 챙긴 불법 대출...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002718488?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5310365842426722,
+        "relevance_score": 12,
+        "sector": "보험",
+        "title": "임기 만료 보험사 CEO '수두룩'…연임·세대교체 '갈림길'",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4442882"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5158108468169844,
+        "relevance_score": 8,
+        "sector": "디지털자산",
+        "title": "채용하려는 것처럼 접근…바이낸스 해킹의 전말 [소셜픽]",
+        "url": "https://n.news.naver.com/mnews/article/437/0000519007?sid=104"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6981191596932359,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "비트코인, 1억400만원대…美 중간선거 결과에 촉각",
+        "url": "https://n.news.naver.com/mnews/article/003/0014299707?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8561077627968753,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "\"판사가 직접 수사해야 할 판\"…꼬이고 꼬인 사법체계",
+        "url": "https://n.news.naver.com/mnews/article/448/0000648839?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7467218176049633,
+        "relevance_score": 20,
+        "sector": "감독·제재",
+        "title": "[금융이슈] 55조 통합 생보사 출범 앞둔 동양생명...과거 부실 털어낼 수...",
+        "url": "https://www.thepublic.kr/news/articleView.html?idxno=324535"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7185981425809073,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "‘나의 유죄인간’ 임시완, 설인아에 질투",
+        "url": "https://www.bntnews.co.kr/article/view/bnt202611040059"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7126795383733846,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "李 대통령 걱정한 부동산 통계, 어떤 것 있나 살펴보니",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4442856"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.5615347432287137,
+        "relevance_score": 7,
+        "sector": "은행",
+        "title": "카카오페이, 개인사업자 대출 중개 강화… 인터넷은행 3사 상품 비교",
+        "url": "http://www.economytalk.kr/news/articleView.html?idxno=425064"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7389640261160564,
+        "relevance_score": 4,
+        "sector": "입법·정책",
+        "title": "국내 코인거래액 7.2% 감소…리플XRP 거래 1위, 버블맵스 25% 급등",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16267661"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 20,
+      "거시·시장": 24,
+      "기타": 122,
+      "대부": 34,
+      "디지털자산": 79,
+      "보험": 5,
+      "상호금융": 6,
+      "여전": 10,
+      "은행": 43,
+      "입법·정책": 15,
+      "자산운용·연기금": 9,
+      "저축은행": 11,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 8,
+      "감독·제재": 17,
+      "건전성·자본규제": 5,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 32,
+      "기업금융·익스포저": 8,
+      "디지털자산": 86,
+      "물가·경기지표": 2,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 25,
+      "사고·사기·횡령": 10,
+      "상품·영업·예금금리": 10,
+      "서민금융·대환·채무조정": 3,
+      "소비자보호·민원·불완전판매": 11,
+      "업계동정·사회공헌": 11,
+      "연체·부실": 8,
+      "자금시장·유동성": 11,
+      "정책·제도개선": 2,
+      "증시·시장시황": 13,
+      "칼럼·오피니언": 10,
+      "해외·글로벌": 13,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7174209898620292,
+        "relevance_score": 28,
+        "sector": "감독·제재",
+        "title": "[단독]홍콩 ELS 과징금 6000억→3700억 가닥..과태료 중복부과 안할듯",
+        "url": "https://n.news.naver.com/mnews/article/008/0005435957?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.798917623872122,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "금융위 홍콩 ELS 과징금 결론 임박, 대폭 감경에 은행권 연말 실적 방어...",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=451036"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8491527422584205,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "불법 대부업체, 3400명에 대출 중개수수료 49억원 뜯었다",
+        "url": "https://n.news.naver.com/mnews/article/028/0002830581?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7788734230221578,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "불법사금융 피해, 청년 중심 눈덩이로 불어났다",
+        "url": "https://www.jasm.co.kr/news/view/323908/?sc=Naver"
+      },
+      {
+        "cluster_size": 53,
+        "relevance_prob": 0.8527787763655345,
+        "relevance_score": 27,
+        "sector": "거시·시장",
+        "title": "'긴축 여지' 열어둔 연준…한은 다시 '호미' 꺼내들까",
+        "url": "https://n.news.naver.com/mnews/article/119/0003150936?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7878666644755827,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "이찬진 원장 \"해킹 사고, CEO에 책임…매출 3% 과징금 부과\"",
+        "url": "https://www.ajunews.com/view/20261103144215212"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9128141471553476,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "금감원, 코인거래소까지 해킹 전수점검",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=879356"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8848413512538976,
+        "relevance_score": 22,
+        "sector": "대부",
+        "title": "수백억원대 고금리로 서민 울리는 불법사금융⋯경찰 6개월간 특별단속",
+        "url": "https://n.news.naver.com/mnews/article/087/0001228436?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5109211232366148,
+        "relevance_score": 22,
+        "sector": "은행",
+        "title": "수협은행장 인선 '3대 2' 교착…누구를 위한 버티기인가",
+        "url": "https://www.mdtoday.co.kr/news/articleView.html?idxno=622685"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.85607939223847,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "콜드월렛 99% 상향 논의…출금용 핫월렛 감소 가능성",
+        "url": "https://www.tokenpost.kr/news/policy/431949"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 1,
+      "대부": 3,
+      "디지털자산": 2,
+      "은행": 1
+    },
+    "topic_counts": {
+      "감독·제재": 3,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 3,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "사고·사기·횡령": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 0,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 38,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 30,
+  "candidate_hybrid_gray_rule_drop": 218,
+  "candidate_hybrid_gray_rule_keep": 30,
+  "candidate_hybrid_keep_overseas_global_reference": 15,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 453,
+  "candidate_hybrid_model_drop": 78,
+  "candidate_hybrid_model_keep": 200,
+  "candidate_hybrid_model_keep_with_domain_anchor": 200,
+  "candidate_hybrid_negative_drop": 6,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 453,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-04",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 38,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 7,
+    "candidate_hybrid_drop_negative_signal": 6,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 11,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 218,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 30,
+    "candidate_hybrid_keep_overseas_global_reference": 15,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 3,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 453,
+    "candidate_hybrid_model_drop_prob_le_threshold": 78,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 200
+  },
+  "dropped_count": 360,
+  "input_count": 1061,
+  "kept_count": 701,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1061,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 50,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "'윤종규·윤종원' 은행연합회장 하마평 '2윤', 경영과 정책 시험대",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=717536"
+    },
+    {
+      "title": "5대 금융지주 3분기 누적 순이익 20조원 육박…4분기 실적과 종합적 평...",
+      "url": "https://www.lcnews.co.kr/news/articleView.html?idxno=210797"
+    },
+    {
+      "title": "박충권 국힘 수석대변인 “이재명 정부 경제·주거·안보 파탄”",
+      "url": "http://www.breaknews.com/1248115"
+    },
+    {
+      "title": "‘포용금융’ 경쟁 초읽기…서민금융 쏠림 해소는 ‘과제’",
+      "url": "https://www.dailian.co.kr/news/view/1710212/?sc=Naver"
+    },
+    {
+      "title": "김제산림조합 현장 밀착형 금융서비스 인정",
+      "url": "http://www.jjn.co.kr/news/articleView.html?idxno=1056232"
+    },
+    {
+      "title": "국고채 금리 일제히 하락…10년물 4.001%·30년물 4.089%",
+      "url": "http://www.kjdaily.com/article.php?aid=1793719499691103276"
+    },
+    {
+      "title": "'외국인 선물 매수' 국고채 금리, 일제히 하락 마감...30년물 4.2bp↓",
+      "url": "https://www.betanews.net/article/view/beta202611030155"
+    },
+    {
+      "title": "국고채 금리 일제히 하락…위험회피·외국인 장기선물 매수 영향",
+      "url": "https://www.youthdaily.co.kr/news/article.html?no=229306"
+    },
+    {
+      "title": "국고채 금리, 초장기 위주로 하락…30년물 수요 속 코스피 약세 주시",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4442756"
+    },
+    {
+      "title": "연말 임기 끝날 보험협회장…차기 수장 '대관 역량' 주목",
+      "url": "https://www.dailian.co.kr/news/view/1710249/?sc=Naver"
+    }
+  ]
+}
