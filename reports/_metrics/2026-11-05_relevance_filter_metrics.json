@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 5,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 57,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 58,
+  "candidate_hybrid_gray_rule_drop": 241,
+  "candidate_hybrid_gray_rule_keep": 58,
+  "candidate_hybrid_keep_overseas_global_reference": 30,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 495,
+  "candidate_hybrid_model_drop": 155,
+  "candidate_hybrid_model_keep": 153,
+  "candidate_hybrid_model_keep_with_domain_anchor": 153,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 495,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-05",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 5,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 57,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 8,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 241,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 58,
+    "candidate_hybrid_keep_overseas_global_reference": 30,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 495,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 2,
+    "candidate_hybrid_model_drop_prob_le_threshold": 155,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 153
+  },
+  "dropped_count": 479,
+  "input_count": 1221,
+  "kept_count": 742,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1221,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 103,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "카카오뱅크 3분기 누적 순익 4698억, 25% '쑥'…수신잔액 70조 돌파",
+      "url": "http://www.consumernews.co.kr/news/articleView.html?idxno=767545"
+    },
+    {
+      "title": "카뱅·케뱅 나란히 실적 개선…개인사업자 대출 확대에 건전성은 희비",
+      "url": "http://www.opinionnews.co.kr/news/articleView.html?idxno=146653"
+    },
+    {
+      "title": "카카오뱅크 3분기 순익 1417억 '기대 이상'…핵심은 수신·운용이익",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=677668"
+    },
+    {
+      "title": "'기술로 금융 문턱 낮췄다'…윤호영의 카카오뱅크, 포용금융 빛나는 '착...",
+      "url": "https://www.techm.kr/news/articleView.html?idxno=156906"
+    },
+    {
+      "title": "성장 프리미엄 끝났나 … 인뱅 3사, 신용등급 가른 건 '이익 체력'",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/11/04/2026110400131.html"
+    },
+    {
+      "title": "금융권, 실적 공개 및 해외·시스템 투자 병행",
+      "url": "https://www.pressman.kr/news/articleView.html?idxno=104324"
+    },
+    {
+      "title": "[기업실적]카카오뱅크, 3분기 누적 순익 4698억원…전년比 25.2%↑",
+      "url": "https://www.nspna.com/news/?mode=view&newsid=834527"
+    },
+    {
+      "title": "김원국 하이브미디어코프, 83억 회계오류에 특수관계자 대여 17.7억…202...",
+      "url": "https://www.livesnews.com/news/article.html?no=65655"
+    },
+    {
+      "title": "배성완 하나손보 대표 재연임 심판대…장기보험 전환에도 3분기적자 846...",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=879734"
+    },
+    {
+      "title": "대학 단체보험 입찰에 '자산 10조' 문턱",
+      "url": "http://www.fins.co.kr/news/articleView.html?idxno=110419"
+    }
+  ]
+}

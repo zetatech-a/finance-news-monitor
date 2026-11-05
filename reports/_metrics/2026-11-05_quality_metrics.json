@@ -1,0 +1,269 @@
+{
+  "clusters": {
+    "cluster_count": 401,
+    "cluster_size_max": 53,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 53,
+        "relevance_prob": 0.46624087773245676,
+        "relevance_score": 17,
+        "sector": "대부",
+        "title": "[은행권 풍향계] KB국민은행, 대부업체 성실상환자 1만명 금융부담 완화...",
+        "url": "https://www.ekn.kr/web/view.php?key=20261104027205455"
+      },
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.44671823171453856,
+        "relevance_score": 14,
+        "sector": "대부",
+        "title": "KB국민은행, 대부업 이용 취약차주에 100억원 이자 지원…신용회복 돕는...",
+        "url": "https://n.news.naver.com/mnews/article/030/0003482177?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1237,
+    "displayed_articles": 292,
+    "final_tagged_representatives": 401,
+    "normalized_articles": 1678,
+    "raw_items": 1678,
+    "relevance_filtered_articles": 742,
+    "rule_filtered_articles": 1221,
+    "tagged_before_cluster": 742
+  },
+  "date": "2026-11-05",
+  "generated_at": "2026-11-05T09:14:20.038071+09:00",
+  "publishers": {
+    "missing_publisher_count": 401,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 150,
+    "no_topic_ratio": 0.3741,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.859971614333781,
+        "relevance_score": 15,
+        "sector": "대부",
+        "title": "금감원, 금융권 보안 전수점검 내주 착수…체크리스트 배포",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4443129"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.798585198804133,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "신한투자증권, ‘휴대폰 개통이력 점검’ 1년 금융사기 예방 성과",
+        "url": "https://www.g-enews.com/view.php?ud=202611050847076886923c501012_1"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4873665797765843,
+        "relevance_score": 7,
+        "sector": "입법·정책",
+        "title": "[보험업감독규정 개정] 매년 '계리가정보고서' 금감원 제출 의무화…금...",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=623312"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7382331709301648,
+        "relevance_score": 17,
+        "sector": "기타",
+        "title": "보험사들, 배당 늘리려 준비금 완화 요구하지만 법인세 부담에 셈법 엇...",
+        "url": "https://www.globalepic.co.kr/view.php?ud=2026110508310245857cc35ccc5c_29"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5636811833569237,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "\"중저신용 대출 목표 늘려도 부담은 그대로\" 인터넷은행 포용금융 성과...",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=756078"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.37357274811365193,
+        "relevance_score": 1,
+        "sector": "기타",
+        "title": "8만 달러 회복한 비트코인…美 중간선거 안도랠리 [디센터 시황]",
+        "url": "https://www.decenter.kr/article/20110441?ref=naverdc"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7802965623399875,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "서산 성연파출소, 방준호 소장 부임 후 '범죄예방 활동 1000회 '달성",
+        "url": "http://www.chungnamilbo.co.kr/news/articleView.html?idxno=918876"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7176398374762228,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"대체 누굴 믿어야 하나\"…직장 앞까지 찾아가 1억 지킨 제주경찰",
+        "url": "https://www.jejusori.net/news/articleView.html?idxno=508058"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6638622165109302,
+        "relevance_score": 3,
+        "sector": "은행",
+        "title": "고객 모르게 4.7만건 '손질'…농협은행, 2년 연속 검사자료 조작",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=726631"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5935453706594495,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "[은행연합회 새 리더십] 3연임 문턱 높인다는데…은행연합회장 하마평 ...",
+        "url": "https://dealsite.co.kr/articles/171984"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 22,
+      "거시·시장": 25,
+      "기타": 119,
+      "대부": 64,
+      "디지털자산": 84,
+      "보험": 9,
+      "상호금융": 3,
+      "여전": 7,
+      "은행": 37,
+      "입법·정책": 20,
+      "자산운용·연기금": 1,
+      "저축은행": 5,
+      "증권(브로커리지/리테일)": 4,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 8,
+      "감독·제재": 31,
+      "건전성·자본규제": 11,
+      "금리·수수료·최고금리": 24,
+      "기업금융·익스포저": 6,
+      "디지털자산": 95,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 35,
+      "사고·사기·횡령": 9,
+      "상품·영업·예금금리": 7,
+      "서민금융·대환·채무조정": 8,
+      "소비자보호·민원·불완전판매": 11,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 10,
+      "자금시장·유동성": 7,
+      "정책·제도개선": 3,
+      "증시·시장시황": 5,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 25,
+      "환율·외환": 14
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 41,
+        "relevance_prob": 0.8325515549972632,
+        "relevance_score": 37,
+        "sector": "감독·제재",
+        "title": "홍콩 ELS 불완전판매 제재 확정…은행·증권사 13곳에 과징금 3700억",
+        "url": "https://n.news.naver.com/mnews/article/020/0003760074?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7556866885396745,
+        "relevance_score": 29,
+        "sector": "감독·제재",
+        "title": "금융위, 홍콩ELS 불완전판매 과징금 3712억 확정…당초 산정액의 10분의...",
+        "url": "https://www.ntoday.co.kr/news/articleView.html?idxno=130614"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7720716566757663,
+        "relevance_score": 27,
+        "sector": "감독·제재",
+        "title": "금융사 해킹사고 과징금 '매출 3%' 입법 드라이브, 국회 11월 심사 가능...",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=451154"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.6927822478517266,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "정부지원 대출 도와준다더니…저신용자 3481명에 수수료 50억 챙긴 일당",
+        "url": "https://n.news.naver.com/mnews/article/437/0000519015?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8423204453320161,
+        "relevance_score": 21,
+        "sector": "입법·정책",
+        "title": "금감원, '해킹 통로' 다우오피스 사용 금융사 보안조치 당부",
+        "url": "https://www.mediapen.com/news/view/1135234"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8722452425689172,
+        "relevance_score": 21,
+        "sector": "대부",
+        "title": "서민 울리는 불법 사금융, 경찰 대대적 단속",
+        "url": "https://www.ccdn.co.kr/news/articleView.html?idxno=1109057"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8849447221608536,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "[법안돋보기] 가상자산 발행부터 파산까지···규제 공백 메운다",
+        "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=260654"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7725907045917942,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "[금융 HOT 뉴스] 금융권 해킹에 CEO 책임 강화…매출액 3% 과징금 추진",
+        "url": "http://www.bizwnews.com/news/articleView.html?idxno=150898"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.3637851195026297,
+        "relevance_score": 20,
+        "sector": "여전",
+        "title": "카드사 3분기 누적 순익 9.7% 늘었지만…조달·대손비용에 희비",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=756032"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.785337477890034,
+        "relevance_score": 22,
+        "sector": "은행",
+        "title": "은행권 AI 해킹 사태 '책임론' 부상… 첫 책무구조도 적용될까",
+        "url": "https://www.newstopkorea.com/news/articleView.html?idxno=48762"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 3,
+      "대부": 3,
+      "디지털자산": 1,
+      "여전": 1,
+      "은행": 1,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "감독·제재": 5,
+      "금리·수수료·최고금리": 3,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "소비자보호·민원·불완전판매": 2
+    }
+  }
+}
