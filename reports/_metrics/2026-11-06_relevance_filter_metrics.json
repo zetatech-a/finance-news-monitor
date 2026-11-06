@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 46,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 58,
+  "candidate_hybrid_gray_rule_drop": 202,
+  "candidate_hybrid_gray_rule_keep": 58,
+  "candidate_hybrid_keep_overseas_global_reference": 30,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 423,
+  "candidate_hybrid_model_drop": 27,
+  "candidate_hybrid_model_keep": 396,
+  "candidate_hybrid_model_keep_with_domain_anchor": 396,
+  "candidate_hybrid_negative_drop": 3,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 423,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-06",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 46,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 7,
+    "candidate_hybrid_drop_negative_signal": 3,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 202,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 58,
+    "candidate_hybrid_keep_overseas_global_reference": 30,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 423,
+    "candidate_hybrid_model_drop_prob_le_threshold": 27,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 396
+  },
+  "dropped_count": 294,
+  "input_count": 1203,
+  "kept_count": 909,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1203,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 36,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "빚더미 회사에…돈 더 빌려줘 체불 해결하려는 능인선원",
+      "url": "http://www.kookje.co.kr/news2011/asp/newsbody.asp?code=0100&key=20261106.22003001703"
+    },
+    {
+      "title": "카카오뱅크·케이뱅크, 개인사업자대출로 여신 성장…내년 '법인대출 시...",
+      "url": "https://www.industrynews.co.kr/news/articleView.html?idxno=88987"
+    },
+    {
+      "title": "우리은행, 대기업대출 공격적 확대에도 퇴직연금 격차 커졌다",
+      "url": "https://www.insightkorea.co.kr/news/articleView.html?idxno=258211"
+    },
+    {
+      "title": "\"대출금리 6% 육박하는데 연체까지\"… 지방은행 중기대출 빨간불 ‘번쩍...",
+      "url": "https://www.dt.co.kr/article/12093460?ref=naver"
+    },
+    {
+      "title": "KB국민은행, 신한 턱밑 추격…ELS 환입에 '리딩뱅크' 판도 흔들",
+      "url": "https://www.newspim.com/news/view/20261105001037"
+    },
+    {
+      "title": "\"지방은행 격차 더 벌린다\"...질주하는 카카오뱅크",
+      "url": "https://www.mediapen.com/news/view/1135424"
+    },
+    {
+      "title": "신한카드, 순익 28% 증가에도 복잡한 셈법…'박창훈 2기' 열릴까",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=677790"
+    },
+    {
+      "title": "소상공인 자금 버팀목 된 카카오뱅크",
+      "url": "http://www.smedaily.co.kr/news/articleView.html?idxno=365719"
+    },
+    {
+      "title": "4대 금융 17조 역대 최대…지방금융은 실적 온도차",
+      "url": "http://www.issuenbiz.com/news/articleView.html?idxno=81249"
+    },
+    {
+      "title": "하나카드, 트래블로그 절감액 5000억... 후발 추격 방어 '과제'",
+      "url": "https://www.pressman.kr/news/articleView.html?idxno=104329"
+    }
+  ]
+}
