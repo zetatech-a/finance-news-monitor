@@ -1,0 +1,255 @@
+{
+  "clusters": {
+    "cluster_count": 228,
+    "cluster_size_max": 48,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 621,
+    "displayed_articles": 169,
+    "final_tagged_representatives": 228,
+    "normalized_articles": 817,
+    "raw_items": 817,
+    "relevance_filtered_articles": 416,
+    "rule_filtered_articles": 590,
+    "tagged_before_cluster": 416
+  },
+  "date": "2026-11-07",
+  "generated_at": "2026-11-07T09:06:46.538198+09:00",
+  "publishers": {
+    "missing_publisher_count": 228,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 88,
+    "no_topic_ratio": 0.386,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7345757543930479,
+        "relevance_score": 9,
+        "sector": "보험",
+        "title": "보험권 정보보호 '사후 대응'까지 확대…보험사·GA 보안체계 시험대",
+        "url": "http://www.fins.co.kr/news/articleView.html?idxno=110451"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8507950553161772,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[속보] 미래에셋증권 해킹…고객·임직원 3만9000여 명 정보 유출",
+        "url": "https://n.news.naver.com/mnews/article/021/0002831008?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6997021956847563,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[이슈&한반도] 북한, 스텔스·자폭 드론 총출동…대대적 과시 의도는? 외",
+        "url": "https://n.news.naver.com/mnews/article/056/0012289268?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7706440117283252,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "전기통신사기현금수거책, 범죄인 줄 몰랐다는 주장은 어떻게 판단할까",
+        "url": "http://www.beyondpost.co.kr/view.php?ud=20261106134729462137600e7ec7_30"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7292239223458173,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "전북 콘텐츠융합진흥원, 개인정보 유출 정황…더존비즈온 해킹 영향",
+        "url": "https://www.dailysecu.com/news/articleView.html?idxno=209353"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7423704618254686,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "마그마파이낸스 거래대금 3318억원, 리플XRP 제쳤다…코인시장 거래액 ...",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16270439"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6342222950146446,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "“과거 5명이 하던 해킹 1명으로도 가능… AI 활용으로 해킹 ROI 높아져...",
+        "url": "https://n.news.naver.com/mnews/article/037/0000039106?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7103065814205166,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "美 선거에 변동성 커진 비트코인… 1억원선 줄다리기 [주간코인시황]",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=3000000000354"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7428879071206366,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "유료 앱 없이 스팸 전화 차단하는 법",
+        "url": "https://www.radiokorea.com/news/article.php?uid=509003"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6850288512715066,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "칼시 주식 무기한 선물 출시…자체 집계 거래액 4044억원",
+        "url": "https://www.tokenpost.kr/news/market/434199"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 7,
+      "거시·시장": 19,
+      "기타": 69,
+      "대부": 24,
+      "디지털자산": 52,
+      "보험": 2,
+      "상호금융": 3,
+      "여전": 6,
+      "은행": 23,
+      "입법·정책": 10,
+      "자산운용·연기금": 1,
+      "저축은행": 4,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 4
+    },
+    "topic_counts": {
+      "가계대출·부채": 2,
+      "감독·제재": 8,
+      "건전성·자본규제": 3,
+      "금리·수수료·최고금리": 9,
+      "기업금융·익스포저": 10,
+      "디지털자산": 50,
+      "부동산·PF": 5,
+      "불법사금융·불법추심·보이스피싱": 26,
+      "사고·사기·횡령": 7,
+      "상품·영업·예금금리": 1,
+      "서민금융·대환·채무조정": 3,
+      "소비자보호·민원·불완전판매": 7,
+      "업계동정·사회공헌": 9,
+      "연체·부실": 11,
+      "일정·브리핑": 3,
+      "자금시장·유동성": 4,
+      "증시·시장시황": 11,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 15,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8887265812359031,
+        "relevance_score": 42,
+        "sector": "디지털자산",
+        "title": "정부 '가상자산 과세' 네 번째 유예, 디지털자산법 입법 지연에 정책 신...",
+        "url": "https://www.businesspost.co.kr/BP?command=article_view&num=451394"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8943592344086214,
+        "relevance_score": 35,
+        "sector": "은행",
+        "title": "8.5조원 바이낸스 해킹에 美 금융당국, 은행권 시스템 점검 나서 [크립토...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002720058?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9281788441107812,
+        "relevance_score": 32,
+        "sector": "거시·시장",
+        "title": "[다음주 한국은행 및 금융위·금감원 일정]",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4443590"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8638948247640463,
+        "relevance_score": 26,
+        "sector": "감독·제재",
+        "title": "[이슈+] ELS 과징금 2조→3천억대···은행권, 충당금 환입·소송 실익 ...",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=642170"
+      },
+      {
+        "cluster_size": 39,
+        "relevance_prob": 0.8117596102935689,
+        "relevance_score": 24,
+        "sector": "기타",
+        "title": "금융권 정보유출 2차 피해 대응, 연말까지 연장...소비자경보 '주의' 유...",
+        "url": "https://www.techm.kr/news/articleView.html?idxno=157019"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.884193353281364,
+        "relevance_score": 24,
+        "sector": "디지털자산",
+        "title": "두나무·빗썸, 국회서 나란히 입법 제안…가상자산 이용자 보호 ‘한목...",
+        "url": "https://www.news2day.co.kr/article/20261106500307"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9150674403342977,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "\"대부업 등록명의 불법사금융에 대여\"…대부금융協, 명의대여자 손해배...",
+        "url": "https://n.news.naver.com/mnews/article/277/0005839078?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8117796774953384,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "금융위원회, 개인정보 유출에 '특별대응' 연장...예방조치 강화 나섰다",
+        "url": "https://www.cwn.kr/news/articleView.html?idxno=61189"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7259487129120602,
+        "relevance_score": 21,
+        "sector": "여전",
+        "title": "[이슈] 캐피탈 리스·렌털 규제 완화 반대…'보이지 않는 손'은 외국계 ...",
+        "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=818331"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8418875576259404,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "금융위 \"해킹 2차 피해 보고 없어…연말까지 특별대응기간 연장\"",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4443452"
+      }
+    ],
+    "no_topic_count": 4,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 2,
+      "여전": 1,
+      "은행": 1,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "디지털자산": 3,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "연체·부실": 1,
+      "일정·브리핑": 1
+    }
+  }
+}

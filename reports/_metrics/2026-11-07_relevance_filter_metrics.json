@@ -1,0 +1,92 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 40,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 0,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 22,
+  "candidate_hybrid_gray_rule_drop": 96,
+  "candidate_hybrid_gray_rule_keep": 22,
+  "candidate_hybrid_keep_overseas_global_reference": 17,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 0,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 255,
+  "candidate_hybrid_model_drop": 21,
+  "candidate_hybrid_model_keep": 122,
+  "candidate_hybrid_model_keep_with_domain_anchor": 122,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 255,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-07",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 40,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 8,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 96,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 22,
+    "candidate_hybrid_keep_overseas_global_reference": 17,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 255,
+    "candidate_hybrid_model_drop_prob_le_threshold": 21,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 122
+  },
+  "dropped_count": 174,
+  "input_count": 590,
+  "kept_count": 416,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 590,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 31,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "양평군 A농협, 법적 의무는 실수로...아 몰라 '가압류'",
+      "url": "https://www.ypsori.com/news/articleView.html?idxno=40134"
+    },
+    {
+      "title": "프린스그룹 4명·법인 41곳 제재…미국, 해외 자산망 겨눴다",
+      "url": "https://www.tokenpost.kr/news/policy/433791"
+    },
+    {
+      "title": "카뱅·케뱅, 사장님 담보대출 확대 경쟁",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=718076"
+    },
+    {
+      "title": "3대 지방금융지주, 순익 감소…JB금융 나홀로 '방긋'",
+      "url": "https://www.sisaon.co.kr/news/articleView.html?idxno=205848"
+    },
+    {
+      "title": "\"저금리 믿고 집 샀는데\"…5년 만에 돌아온 고금리 청구서에 차주들 비...",
+      "url": "https://www.ajunews.com/view/20261106133200528"
+    },
+    {
+      "title": "[MD포커스] ‘사장님’ 대출로 덩치 키운 카뱅·케뱅…새 성장동력 확보...",
+      "url": "https://www.mydaily.co.kr/page/view/2026110515291806873"
+    },
+    {
+      "title": "신용대출 109조 육박…5대 銀, 가계대출 건전성 관리 부담↑",
+      "url": "https://www.megaeconomy.co.kr/news/newsview.php?ncode=1065578565461307"
+    },
+    {
+      "title": "'인뱅' 윤호영·최우형 3분기 선방… 연임 가도엔 엇갈린 변수",
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=730834"
+    },
+    {
+      "title": "[뉴스락 특별기획｜금융권 연말 인사 진단 ⑦ 우리금융그룹] 비은행 키...",
+      "url": "http://www.newslock.co.kr/news/articleView.html?idxno=139395"
+    },
+    {
+      "title": "[증시 폭락] AI 투자 둔화 우려에 국고채 금리 하락…코스피 6% 급락",
+      "url": "https://www.cbci.co.kr/news/articleView.html?idxno=624255"
+    }
+  ]
+}
