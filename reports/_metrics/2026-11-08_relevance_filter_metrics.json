@@ -1,0 +1,93 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 8,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 7,
+  "candidate_hybrid_gray_rule_drop": 38,
+  "candidate_hybrid_gray_rule_keep": 7,
+  "candidate_hybrid_keep_overseas_global_reference": 5,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 61,
+  "candidate_hybrid_model_drop": 7,
+  "candidate_hybrid_model_keep": 47,
+  "candidate_hybrid_model_keep_with_domain_anchor": 47,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 61,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-08",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 8,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 38,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 7,
+    "candidate_hybrid_keep_overseas_global_reference": 5,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 1,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 61,
+    "candidate_hybrid_model_drop_prob_le_threshold": 7,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 47
+  },
+  "dropped_count": 62,
+  "input_count": 183,
+  "kept_count": 121,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 183,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 13,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[N2 포커스] 카카오뱅크, 부산은행 순익 재역전…수익성 지형 달라졌다",
+      "url": "https://www.news2day.co.kr/article/20261104500435"
+    },
+    {
+      "title": "국고채 금리 일제히 하락…3년물 연 3.613% 마감",
+      "url": "http://www.kjdaily.com/article.php?aid=1794031020691500276"
+    },
+    {
+      "title": "미래에셋증권도 뚫렸다…고객 3800명 계좌·임직원 3.5만명 정보 유출",
+      "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=304475"
+    },
+    {
+      "title": "미래에셋증권도 뚫렸다…고객·임직원 3만 9000명 정보 유출, 금융권 해...",
+      "url": "https://www.busan.com/view/busan/view.php?code=2026110713334468436"
+    },
+    {
+      "title": "美 재무부, 캐나다 금융업체 8곳 제재…이란 제재 회피 지원 혐의",
+      "url": "https://biz.sbs.co.kr/article_hub/20000344918?division=NAVER"
+    },
+    {
+      "title": "미 재무부, 캐나다 금융업체 8곳 제재",
+      "url": "http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005957267"
+    },
+    {
+      "title": "미국 재무부, 캐나다 금융업체 8곳 제재…이란 금융거래 지원 혐의",
+      "url": "https://www.lawissue.co.kr/view.php?ud=202611071041464399204ead0791_12"
+    },
+    {
+      "title": "미국 재무부, 캐나다 금융업체 제재…이란과의 숨겨진 거래 폭로",
+      "url": "https://www.gokorea.kr/news/articleView.html?idxno=884557"
+    },
+    {
+      "title": "연말 '대출 셧다운' 걱정 덜었지만… 은행별 한도·조건은 제각각",
+      "url": "https://it.chosun.com/news/articleView.html?idxno=3000000000425"
+    },
+    {
+      "title": "인뱅 3사, 새 먹거리 찾기 분주…대출 영역 넓히고 신규 고객 공략",
+      "url": "https://www.kukinews.com/article/view/kuk202611060165"
+    }
+  ]
+}
