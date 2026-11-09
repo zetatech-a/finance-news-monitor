@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 12,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 15,
+  "candidate_hybrid_gray_rule_drop": 83,
+  "candidate_hybrid_gray_rule_keep": 15,
+  "candidate_hybrid_keep_overseas_global_reference": 10,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 174,
+  "candidate_hybrid_model_drop": 10,
+  "candidate_hybrid_model_keep": 88,
+  "candidate_hybrid_model_keep_with_domain_anchor": 88,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 174,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-09",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 12,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 4,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 83,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 15,
+    "candidate_hybrid_keep_overseas_global_reference": 10,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 2,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 174,
+    "candidate_hybrid_model_drop_prob_le_threshold": 10,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 88
+  },
+  "dropped_count": 121,
+  "input_count": 410,
+  "kept_count": 289,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 410,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 14,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "성장·건전성 '이중과제' 떠안은 인뱅",
+      "url": "https://www.fnnews.com/news/202611081801439039"
+    },
+    {
+      "title": "[벼랑 끝 사장님] 中企대출 증가액 절반 몰린 서울…연체율도 1.61%",
+      "url": "https://www.ajunews.com/view/20261105135458843"
+    },
+    {
+      "title": "[2027 대한민국 대전망①] 다중전쟁기, 전략적 자율성으로 연민과 공영...",
+      "url": "https://www.g-enews.com/view.php?ud=2026110908294045220ae620e86_1"
+    },
+    {
+      "title": "'반도체 깐부' 젠슨 황, 불륜 인정...시장 영향은? [뉴스UP]",
+      "url": "https://www.ytn.co.kr/_ln/0102_202611090821303361"
+    },
+    {
+      "title": "KB라이프, 체질 개선 나섰지만…이익·자본 방어 '이중고'",
+      "url": "https://dealsite.co.kr/articles/172107"
+    },
+    {
+      "title": "'232억 불완전 판매' 삼성증권 전 임원 감봉 취소…법원 \"징계 과해\"",
+      "url": "https://www.mt.co.kr/society/2026/11/08/2026110617170212626"
+    },
+    {
+      "title": "비트코인 상속권 있어도 개인키 없으면 무용지물",
+      "url": "https://www.khgames.co.kr/news/articleView.html?idxno=310131"
+    },
+    {
+      "title": "비트코인 1억341만 원대 하락, 미국 연방준비제도 금리 인상 가능성 영...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=451451"
+    },
+    {
+      "title": "[THE CEO] 빈대인 BNK금융지주 회장",
+      "url": "http://www.the-biz.co.kr/news/articleView.html?idxno=730083"
+    },
+    {
+      "title": "아이폰 쓰는 사람들 반길 소식… 현대카드 없어도 된다, 애플페이 도입...",
+      "url": "https://www.wikitree.co.kr/articles/1172867"
+    }
+  ]
+}

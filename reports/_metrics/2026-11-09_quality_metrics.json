@@ -1,0 +1,257 @@
+{
+  "clusters": {
+    "cluster_count": 180,
+    "cluster_size_max": 22,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 430,
+    "displayed_articles": 125,
+    "final_tagged_representatives": 180,
+    "normalized_articles": 593,
+    "raw_items": 593,
+    "relevance_filtered_articles": 289,
+    "rule_filtered_articles": 410,
+    "tagged_before_cluster": 289
+  },
+  "date": "2026-11-09",
+  "generated_at": "2026-11-09T09:08:35.249394+09:00",
+  "publishers": {
+    "missing_publisher_count": 180,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 74,
+    "no_topic_ratio": 0.4111,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5531259816566391,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "삼천포수협, 100년 바다 지켜온 남해안 수산물 거점 수협",
+        "url": "https://www.hdhy.co.kr/news/articleView.html?idxno=35616"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6759709024991172,
+        "relevance_score": 4,
+        "sector": "자산운용·연기금",
+        "title": "[오늘의 비트코인] ETF 자금 유출에 약세…7만5000달러선",
+        "url": "https://news.dealsitetv.com/articles/178244"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8238117166150346,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "단양군, 찾아가는 '이동소비생활센터' 운영",
+        "url": "https://www.gukjenews.com/news/articleView.html?idxno=3745552"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5706964267169016,
+        "relevance_score": 11,
+        "sector": "보험",
+        "title": "새 수장 맞는 AIA생명… 리오 응 차기 대표, 수익성·자본관리·GA 안정화...",
+        "url": "https://www.ilyoseoul.co.kr/news/articleView.html?idxno=524733"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7513085526004812,
+        "relevance_score": 16,
+        "sector": "저축은행",
+        "title": "저축은행 대기업 대출 5조원 돌파…중소기업 대출 급감",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=727093"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7080027780663516,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "국내 거래는 잡고 해외 거래는 놓치나…코인 과세 사각지대 논란",
+        "url": "https://n.news.naver.com/mnews/article/243/0000105380?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8359829284350316,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "SM엔터, 개인정보 유출에 공식 사과... 소속 연예인 정보도 털렸나",
+        "url": "https://www.insight.co.kr/news/581136"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.789507080502314,
+        "relevance_score": 16,
+        "sector": "저축은행",
+        "title": "저축은행 대기업·중견기업 대출 5조원 첫 돌파…1년 새 51% 늘어",
+        "url": "https://n.news.naver.com/mnews/article/023/0004008525?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8205038689374312,
+        "relevance_score": 17,
+        "sector": "대부",
+        "title": "IT인력에 민생 특사경까지…내년 금감원 더 힘 실리나",
+        "url": "https://n.news.naver.com/mnews/article/648/0000052411?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.43816285059251064,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "ROC 10%p↑…진옥동의 자본 재배치, '밸류업 가속' 숫자로 나온다",
+        "url": "https://www.apnews.kr/news/articleView.html?idxno=3052945"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 6,
+      "거시·시장": 18,
+      "기타": 65,
+      "대부": 13,
+      "디지털자산": 37,
+      "보험": 5,
+      "상호금융": 3,
+      "여전": 5,
+      "은행": 13,
+      "입법·정책": 6,
+      "자산운용·연기금": 3,
+      "저축은행": 4,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 2,
+      "감독·제재": 9,
+      "건전성·자본규제": 5,
+      "금리·수수료·최고금리": 18,
+      "기업금융·익스포저": 1,
+      "디지털자산": 33,
+      "물가·경기지표": 4,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 12,
+      "사고·사기·횡령": 2,
+      "상품·영업·예금금리": 4,
+      "서민금융·대환·채무조정": 8,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 5,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 8,
+      "정책·제도개선": 3,
+      "증시·시장시황": 10,
+      "칼럼·오피니언": 6,
+      "해외·글로벌": 13,
+      "환율·외환": 3
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.9115492052046452,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "디지털자산법 이달 발의 목표…거래소 대주주 지분 제한엔 유예기간 검...",
+        "url": "https://n.news.naver.com/mnews/article/029/0003057659?sid=105"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9125319135471069,
+        "relevance_score": 32,
+        "sector": "거시·시장",
+        "title": "[이번주 한국은행 및 금융위·금감원 일정]",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4443656"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9141482309100494,
+        "relevance_score": 33,
+        "sector": "거시·시장",
+        "title": "금감원·한국은행까지…세종, 금융정책 거점 구축 나선다",
+        "url": "https://n.news.naver.com/mnews/article/656/0000191804?sid=102"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.816823023667824,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "[단독] 금감원 검사, 개선권고부터…불이행 땐 사후제재 강화한다",
+        "url": "https://n.news.naver.com/mnews/article/009/0005760622?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8290809167971065,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "거래소 대주주 지분 15~20% 제한 논의…기존 업체 1~2년 유예 검토",
+        "url": "https://www.tokenpost.kr/news/breaking/434724"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9057827312619894,
+        "relevance_score": 19,
+        "sector": "대부",
+        "title": "대부금융협회, 불법사금융에 '민사 철퇴'...명의대여에 소송",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=285429"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.7081018316601418,
+        "relevance_score": 16,
+        "sector": "입법·정책",
+        "title": "금융위, 햇살론 예산 2455억원 증액 추진…취약계층 이자 부담 낮춘다",
+        "url": "https://n.news.naver.com/mnews/article/023/0004008372?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.6839384225495843,
+        "relevance_score": 16,
+        "sector": "감독·제재",
+        "title": "'펀드 232억 불완전판매' 감독책임 삼성증권 前임원…法 \"감봉 취소\"",
+        "url": "https://n.news.naver.com/mnews/article/003/0014308337?sid=102"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8440253584982392,
+        "relevance_score": 20,
+        "sector": "은행",
+        "title": "하나은행, 상반기 금리인하요구권 건당 이자감면액 1위",
+        "url": "http://www.press9.kr/news/articleView.html?idxno=85773"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7635559184417426,
+        "relevance_score": 17,
+        "sector": "대부",
+        "title": "적은 수요·건전성 개선에…저축銀 연내 7차 공동펀드 조성 보류",
+        "url": "https://n.news.naver.com/mnews/article/421/0009276559?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 2,
+      "대부": 2,
+      "디지털자산": 2,
+      "은행": 1,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "서민금융·대환·채무조정": 1,
+      "소비자보호·민원·불완전판매": 1,
+      "일정·브리핑": 1,
+      "정책·제도개선": 1
+    }
+  }
+}
