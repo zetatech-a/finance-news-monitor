@@ -1,0 +1,259 @@
+{
+  "clusters": {
+    "cluster_count": 380,
+    "cluster_size_max": 36,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 951,
+    "displayed_articles": 270,
+    "final_tagged_representatives": 380,
+    "normalized_articles": 1313,
+    "raw_items": 1313,
+    "relevance_filtered_articles": 670,
+    "rule_filtered_articles": 918,
+    "tagged_before_cluster": 670
+  },
+  "date": "2026-11-10",
+  "generated_at": "2026-11-10T09:22:37.961518+09:00",
+  "publishers": {
+    "missing_publisher_count": 380,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 163,
+    "no_topic_ratio": 0.4289,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7303789112802029,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[뉴스분석] 미 중간선거 결과 침묵하는 北...김정은 고심 깊어지나",
+        "url": "https://www.newspim.com/news/view/20261110000170"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6718332769870095,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "비트코인, 1억100만원선…美 물가지표에 촉각",
+        "url": "https://n.news.naver.com/mnews/article/003/0014311976?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6116396854942652,
+        "relevance_score": 6,
+        "sector": "은행",
+        "title": "[포용금융의 역설③] 저신용자 대출 6.6%인데 연체차주 잔액 28.9%…인터...",
+        "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=902294"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8058842456592533,
+        "relevance_score": 15,
+        "sector": "은행",
+        "title": "[김성의 관풍]  무감각 상태에 빠진 '해킹 피해', 이대로 놔둘 것인가",
+        "url": "https://www.dailysportshankook.co.kr/news/articleView.html?idxno=435344"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7131195102323588,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 비트코인 7만5000달러선 회복…美 규제 우...",
+        "url": "https://www.ajunews.com/view/20261110074828909"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6902674128489181,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "코인시장 거래대금 2배 급증에도 리플XRP 하락…파이버스 39% 급등",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16272546"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5423553803169547,
+        "relevance_score": 6,
+        "sector": "대부",
+        "title": "[핀테크핫이슈] 증시 급락·해킹 확산...금융당국 '전전긍긍'",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=713899"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6837024266485704,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "8조 털린 바이낸스…개인키 아닌 '이것' 뚫렸다, 韓금융권 경고",
+        "url": "https://n.news.naver.com/mnews/article/018/0006406974?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6639585638048822,
+        "relevance_score": 9,
+        "sector": "여전",
+        "title": "은행연합회 회추위 개막…차주 롱리스트 확정될 듯 [은행연합회장 레이...",
+        "url": "https://www.fntimes.com/html/view.php?ud=2026110913454623791b5a221379_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.46932481824283045,
+        "relevance_score": 7,
+        "sector": "여전",
+        "title": "포용금융 주문받은 카드사…중금리 신상품 출시 '신중'",
+        "url": "https://n.news.naver.com/mnews/article/119/0003153165?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 8,
+      "거시·시장": 26,
+      "기타": 120,
+      "대부": 26,
+      "디지털자산": 79,
+      "보험": 7,
+      "상호금융": 10,
+      "여전": 21,
+      "은행": 38,
+      "입법·정책": 26,
+      "자산운용·연기금": 6,
+      "저축은행": 6,
+      "증권(브로커리지/리테일)": 5
+    },
+    "topic_counts": {
+      "가계대출·부채": 8,
+      "감독·제재": 10,
+      "건전성·자본규제": 9,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 36,
+      "기업금융·익스포저": 2,
+      "디지털자산": 81,
+      "물가·경기지표": 3,
+      "부동산·PF": 7,
+      "불법사금융·불법추심·보이스피싱": 33,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 8,
+      "서민금융·대환·채무조정": 5,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 16,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 11,
+      "정책·제도개선": 7,
+      "증시·시장시황": 8,
+      "칼럼·오피니언": 11,
+      "해외·글로벌": 20,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9455078333977892,
+        "relevance_score": 43,
+        "sector": "은행",
+        "title": "디지털자산법 이달 윤곽···은행권, 원화 스테이블코인 사업 시동",
+        "url": "https://www.seoulfn.com/news/articleView.html?idxno=642319"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8082632106781988,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "\"죽음 내몬 불법추심 단죄\"…대법, 불법사채 최대 징역 7.5년으로↑",
+        "url": "https://n.news.naver.com/mnews/article/660/0000120934?sid=102"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.9633572733149651,
+        "relevance_score": 28,
+        "sector": "입법·정책",
+        "title": "보이스피싱 심리적 피해도 심각…금감원, 금융권과 피해자 지원",
+        "url": "http://mbnmoney.mbn.co.kr/news/view?news_no=MM1005958508"
+      },
+      {
+        "cluster_size": 12,
+        "relevance_prob": 0.9273998681655041,
+        "relevance_score": 28,
+        "sector": "입법·정책",
+        "title": "\"자책과 불안 딛고 일상으로\"…금감원, 보이스피싱 피해자에 생계비·심...",
+        "url": "https://www.widedaily.com/news/articleView.html?idxno=303160"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8486175700865605,
+        "relevance_score": 29,
+        "sector": "대부",
+        "title": "'불법대부광고 발견하면 신고하세요'…서민금융진흥원 캠페인",
+        "url": "https://n.news.naver.com/mnews/article/001/0016431285?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8134041758904147,
+        "relevance_score": 27,
+        "sector": "저축은행",
+        "title": "저축은행 대·중견기업 대출 급증···자영업자 대출은 감소",
+        "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=718336"
+      },
+      {
+        "cluster_size": 17,
+        "relevance_prob": 0.8461786953441097,
+        "relevance_score": 26,
+        "sector": "저축은행",
+        "title": "저축은행 대·중견기업 대출 첫 5조 돌파…1년 새 51% 급증",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=756513"
+      },
+      {
+        "cluster_size": 16,
+        "relevance_prob": 0.7962195588025291,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "가족 신변 위협하고 흉기 소지… ‘악성 불법추심’ 가중 처벌한다",
+        "url": "https://n.news.naver.com/mnews/article/022/0004173750?sid=102"
+      },
+      {
+        "cluster_size": 15,
+        "relevance_prob": 0.8801116038682992,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "두나무, 2026 국회 입법박람회 참가… 가상자산 상속 보호 제도개선 제...",
+        "url": "http://www.consumernews.co.kr/news/articleView.html?idxno=767779"
+      },
+      {
+        "cluster_size": 35,
+        "relevance_prob": 0.5747765817004777,
+        "relevance_score": 25,
+        "sector": "거시·시장",
+        "title": "[KFT 모닝 브리프] 2026.11.10 — 오늘 꼭 알아야 할 국내외 경제뉴스",
+        "url": "https://www.fntimes.com/html/view.php?ud=202611100710183972141825007d_18"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "거시·시장": 1,
+      "대부": 3,
+      "디지털자산": 1,
+      "은행": 1,
+      "입법·정책": 2,
+      "저축은행": 2
+    },
+    "topic_counts": {
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 2,
+      "물가·경기지표": 1,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 4,
+      "서민금융·대환·채무조정": 1,
+      "업계동정·사회공헌": 1,
+      "정책·제도개선": 1,
+      "해외·글로벌": 1
+    }
+  }
+}

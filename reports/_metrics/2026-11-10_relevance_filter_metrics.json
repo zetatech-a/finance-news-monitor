@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 4,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 41,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 43,
+  "candidate_hybrid_gray_rule_drop": 152,
+  "candidate_hybrid_gray_rule_keep": 43,
+  "candidate_hybrid_keep_overseas_global_reference": 20,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 372,
+  "candidate_hybrid_model_drop": 32,
+  "candidate_hybrid_model_keep": 231,
+  "candidate_hybrid_model_keep_with_domain_anchor": 231,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 372,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-10",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 4,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 41,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 2,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 152,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 43,
+    "candidate_hybrid_keep_overseas_global_reference": 20,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 372,
+    "candidate_hybrid_model_drop_prob_le_threshold": 32,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 231
+  },
+  "dropped_count": 248,
+  "input_count": 918,
+  "kept_count": 670,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 918,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 31,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "분기 최대 실적에도 웃지 못하는 우리은행…정진완 행장 연임 심사, '사...",
+      "url": "https://www.todayeconomic.com/news/article.html?no=32774"
+    },
+    {
+      "title": "'시급 50배' 요즘 애들 몰린 까닭은…'한 방에 인생역전' 꿀알바에 혹했...",
+      "url": "https://economist.co.kr/article/view/ecn202611090034"
+    },
+    {
+      "title": "토스뱅크, 중저신용자 대출 확대 넘어…차주 상환 성과 입증 과제",
+      "url": "https://www.wikileaks-kr.org/news/articleView.html?idxno=194387"
+    },
+    {
+      "title": "중소기업 부실 커지는데 은행은 회수만···구조조정 막는 '출자전환 규...",
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=718425"
+    },
+    {
+      "title": "[정진완號 우리은행의 두 얼굴①]자본은 늘렸지만 수익성은 '꼴찌'…경...",
+      "url": "http://www.smarttimes.co.kr/news/articleView.html?idxno=50436"
+    },
+    {
+      "title": "중기대출 13조 늘 때 변동형 89조↑…생산적금융 금리리스크 커진다",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4443696"
+    },
+    {
+      "title": "[2027 대한민국 대전망①] 다중전쟁기, 전략적 자율성으로 연민과 공영...",
+      "url": "https://www.g-enews.com/view.php?ud=2026110908294045220ae620e86_1"
+    },
+    {
+      "title": "다대포해상풍력, 기후대응·지역경제 '두 마리 토끼' 잡는다",
+      "url": "http://www.epj.co.kr/news/articleView.html?idxno=39733"
+    },
+    {
+      "title": "'금융사고' 옹진부천산림조합, 연체 70억원···조합원 출자금 떼일까...",
+      "url": "https://www.incheontoday.com/news/articleView.html?idxno=326081"
+    },
+    {
+      "title": "뉴욕증시 2%대 급반등·국제유가 5% 급락…글로벌 금융시장 '안도 랠리'",
+      "url": "https://www.geconomy.co.kr/news/article.html?no=325440"
+    }
+  ]
+}
