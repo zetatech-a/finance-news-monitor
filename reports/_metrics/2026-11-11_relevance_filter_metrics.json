@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 48,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 28,
+  "candidate_hybrid_gray_rule_drop": 179,
+  "candidate_hybrid_gray_rule_keep": 28,
+  "candidate_hybrid_keep_overseas_global_reference": 37,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 19,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 612,
+  "candidate_hybrid_model_drop": 44,
+  "candidate_hybrid_model_keep": 198,
+  "candidate_hybrid_model_keep_with_domain_anchor": 198,
+  "candidate_hybrid_negative_drop": 5,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 612,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-11",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 48,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 3,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 14,
+    "candidate_hybrid_drop_negative_signal": 5,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 179,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 28,
+    "candidate_hybrid_keep_overseas_global_reference": 37,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 19,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 612,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 44,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 198
+  },
+  "dropped_count": 302,
+  "input_count": 1197,
+  "kept_count": 895,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1197,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 63,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[단독] 집행액 0원 서울시 '유령 위원회' 수두룩",
+      "url": "https://www.hankyung.com/article/2026111083381"
+    },
+    {
+      "title": "중저신용자 대출 창구 된 온투업‥신용대출 95%가 '중금리'",
+      "url": "https://imnews.imbc.com/news/2026/econo/article/6864552_36932.html"
+    },
+    {
+      "title": "평균 신용점수 686점…온투업, 중금리대출 비중 94.8% 달해",
+      "url": "https://economist.co.kr/article/view/ecn202611100024"
+    },
+    {
+      "title": "카카오뱅크, 기업금융 확장 앞두고 대손비용 관리 '비상'",
+      "url": "https://www.asiatoday.co.kr/kn/view.php?key=20261110010003872"
+    },
+    {
+      "title": "[2027 경제·금융 전망] 금리 올라도...금융연구원 실장 \"순이자마진 상...",
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=285952"
+    },
+    {
+      "title": "금리 동결한 금통위원들 \"연속 금리인상 효과 점검\"",
+      "url": "https://www.yna.co.kr/view/AKR20261110148100002?input=1195m"
+    },
+    {
+      "title": "JB금융, 외국인·車담보대출 확대…특화 여신으로 성장 돌파구",
+      "url": "https://www.wikileaks-kr.org/news/articleView.html?idxno=194449"
+    },
+    {
+      "title": "중저신용자 대출 95% 육박···온투업, 금융권 '금리단층' 메운다",
+      "url": "https://www.fnnews.com/news/202611101357261765"
+    },
+    {
+      "title": "[정진완號 우리은행의 두 얼굴②]자본비율 방어에 가려진 수익성 과제…...",
+      "url": "http://www.smarttimes.co.kr/news/articleView.html?idxno=50472"
+    },
+    {
+      "title": "NH농협은행, 대안정보로 신용평가 고도화…금융 사각지대 공략",
+      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1423648"
+    }
+  ]
+}
