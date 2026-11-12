@@ -1,0 +1,272 @@
+{
+  "clusters": {
+    "cluster_count": 363,
+    "cluster_size_max": 76,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 6,
+    "mega_cluster_count": 2,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 76,
+        "relevance_prob": 0.9001856244398461,
+        "relevance_score": 25,
+        "sector": "은행",
+        "title": "기업은행 \"기존 차주 금리 감면·기간 연장 계속\"… 연체율은 \"현 수준 ...",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=354376"
+      },
+      {
+        "cluster_size": 62,
+        "relevance_prob": 0.9169512675846058,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "3.25%가 금리 정점일까 … 美 '빅스텝' 부상에 한은 긴축 향방 촉각 [N-경...",
+        "url": "https://biz.newdaily.co.kr/site/data/html/2026/11/11/2026111100111.html"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1122,
+    "displayed_articles": 251,
+    "final_tagged_representatives": 363,
+    "normalized_articles": 1451,
+    "raw_items": 1451,
+    "relevance_filtered_articles": 758,
+    "rule_filtered_articles": 1107,
+    "tagged_before_cluster": 758
+  },
+  "date": "2026-11-12",
+  "generated_at": "2026-11-12T09:12:19.935264+09:00",
+  "publishers": {
+    "missing_publisher_count": 363,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 134,
+    "no_topic_ratio": 0.3691,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7314579039521427,
+        "relevance_score": 12,
+        "sector": "입법·정책",
+        "title": "당정, 은행지주 CEO ‘셀프 연임’ 제동…\"임추위 전원 독립이사로\"",
+        "url": "https://www.etoday.co.kr/news/view/2647156"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8852037837314142,
+        "relevance_score": 21,
+        "sector": "저축은행",
+        "title": "교보SBI저축은행, 11월 저축은행 평판 224만 점 '1위'…웰컴·OK 순 '톱3'",
+        "url": "http://www.popcornnews.net/news/articleView.html?idxno=139692"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7852292128490214,
+        "relevance_score": 17,
+        "sector": "은행",
+        "title": "\"단 5초 만에 짬짜미\"… 매뉴얼까지 만들어 채권 주무른 여의도 금융사...",
+        "url": "https://www.gukjenews.com/news/articleView.html?idxno=3749544"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.7439631921727703,
+        "relevance_score": 14,
+        "sector": "기타",
+        "title": "상반기 금융복합기업집단 자본적정성 비율 186%…전년말 대비 8.4%p 상승",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=300282"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7179273159148843,
+        "relevance_score": 18,
+        "sector": "기타",
+        "title": "[금융지주 지배구조 대전환] 회장 연임기 광고비 급증…부당 집행 근거...",
+        "url": "https://dealsite.co.kr/articles/172561"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8149084527169336,
+        "relevance_score": 12,
+        "sector": "입법·정책",
+        "title": "금융위, 금융회사 CEO '셀프 연임' 차단…지배구조 전면 손질",
+        "url": "http://www.metroseoul.co.kr/article/20261111500262"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6524225998336393,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "은행지주 ‘셀프 연임’ 막는다…회장 3연임엔 주총 75% 찬성",
+        "url": "https://www.kukinews.com/article/view/kuk202611110197"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6352812002816827,
+        "relevance_score": 18,
+        "sector": "기타",
+        "title": "질질 끈 지배구조 개선안…정작 은행장 인선은 '논의 無'",
+        "url": "https://www.newsway.co.kr/news/view?ud=2026111117272502084"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6337135207352064,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "금융지주 회장 연임 문턱 높인다…2회 이상 연임 땐 '75%룰'",
+        "url": "https://n.news.naver.com/mnews/article/015/0005353025?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.701554538856068,
+        "relevance_score": 15,
+        "sector": "기타",
+        "title": "금융지주 회장 연임 문턱 높인다…3연임 땐 주주 75% 동의받아야",
+        "url": "https://n.news.naver.com/mnews/article/215/0001272489?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 9,
+      "거시·시장": 45,
+      "기타": 122,
+      "대부": 16,
+      "디지털자산": 63,
+      "보험": 9,
+      "상호금융": 11,
+      "여전": 4,
+      "은행": 43,
+      "입법·정책": 27,
+      "자산운용·연기금": 3,
+      "저축은행": 9,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 26,
+      "감독·제재": 17,
+      "건전성·자본규제": 7,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 27,
+      "기업금융·익스포저": 4,
+      "디지털자산": 79,
+      "물가·경기지표": 3,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 26,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 6,
+      "서민금융·대환·채무조정": 8,
+      "소비자보호·민원·불완전판매": 1,
+      "업계동정·사회공헌": 5,
+      "연체·부실": 10,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 6,
+      "정책·제도개선": 5,
+      "증시·시장시황": 11,
+      "칼럼·오피니언": 13,
+      "해외·글로벌": 20,
+      "환율·외환": 13
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 23,
+        "relevance_prob": 0.8979048667847124,
+        "relevance_score": 30,
+        "sector": "대부",
+        "title": "경찰, 연 3만6천500% 달하는 불법사채 일당 검거",
+        "url": "https://www.kihoilbo.co.kr/news/articleView.html?idxno=3040585"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.92345422239136,
+        "relevance_score": 29,
+        "sector": "입법·정책",
+        "title": "금감원 \"스테이블코인 결제에 전자금융거래법 적용 불가피\"…발행 주체...",
+        "url": "https://www.polinews.co.kr/news/articleView.html?idxno=748210"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9103183920912085,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "한국 TI인권 시민연대, 대부업 규제 세분화·불법사금융 단속 강화 요구",
+        "url": "https://www.rcast.co.kr/news/articleView.html?idxno=32035"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8593738861044963,
+        "relevance_score": 25,
+        "sector": "대부",
+        "title": "\"6억 빌리고 이자만 8억 냈다\"...최고 연 3만 6,500% 불법사채",
+        "url": "https://n.news.naver.com/mnews/article/660/0000121074?sid=102"
+      },
+      {
+        "cluster_size": 19,
+        "relevance_prob": 0.9418282802980811,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "두나무, 'D-CON 2026' 성료… 디지털자산기본법·원화 스테이블코인 해법...",
+        "url": "http://www.biztribune.co.kr/news/articleView.html?idxno=362351"
+      },
+      {
+        "cluster_size": 76,
+        "relevance_prob": 0.9001856244398461,
+        "relevance_score": 25,
+        "sector": "은행",
+        "title": "기업은행 \"기존 차주 금리 감면·기간 연장 계속\"… 연체율은 \"현 수준 ...",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=354376"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8851291469318162,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "한국블록체인산업진흥협회, 금융위에 토큰증권 하위법령 추가 의견서 제...",
+        "url": "https://www.tokenpost.kr/news/blockchain/436227"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9471992576568227,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "스테이블코인 규제 윤곽…금감원 '전금법'·한은 '은행 발행'",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=727449"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5320589610617655,
+        "relevance_score": 26,
+        "sector": "은행",
+        "title": "“대출 조이기 효과 꺾였나”...은행 가계빚 사상 첫 1200兆",
+        "url": "https://www.ekn.kr/web/view.php?key=20261111024418246"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7276155015738373,
+        "relevance_score": 25,
+        "sector": "거시·시장",
+        "title": "\"코스피 대폭락, 지금이 기회\"…개미들 또 비명 터지나",
+        "url": "https://n.news.naver.com/mnews/article/018/0006408146?sid=101"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "거시·시장": 2,
+      "대부": 3,
+      "디지털자산": 1,
+      "은행": 2,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 4,
+      "불법사금융·불법추심·보이스피싱": 3,
+      "정책·제도개선": 1,
+      "증시·시장시황": 1
+    }
+  }
+}

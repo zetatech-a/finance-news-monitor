@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 47,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 52,
+  "candidate_hybrid_gray_rule_drop": 174,
+  "candidate_hybrid_gray_rule_keep": 52,
+  "candidate_hybrid_keep_overseas_global_reference": 34,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 19,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 487,
+  "candidate_hybrid_model_drop": 109,
+  "candidate_hybrid_model_keep": 166,
+  "candidate_hybrid_model_keep_with_domain_anchor": 166,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 487,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-12",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 47,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 2,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 10,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 174,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 52,
+    "candidate_hybrid_keep_overseas_global_reference": 34,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 19,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 487,
+    "candidate_hybrid_model_drop_prob_le_threshold": 109,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 166
+  },
+  "dropped_count": 349,
+  "input_count": 1107,
+  "kept_count": 758,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1107,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 47,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "우리은행장 인선 이르면 13일 결론…정진완 연임 가능성 무게",
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=300288"
+    },
+    {
+      "title": "하나은행 숏리스트 확정…'이호성 연임' vs '최초 여성 행장'[금융권 인...",
+      "url": "https://www.newsway.co.kr/news/view?ud=2026110514131664494"
+    },
+    {
+      "title": "[인물포커스] '33년 카드맨' 박창훈 신한카드 회장, 본업 키우고 '미래 ...",
+      "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=818732"
+    },
+    {
+      "title": "[사설]빚에 짓눌린 산업단지, 제조업 속병 방치 안 된다",
+      "url": "https://www.edaily.co.kr/News/Read?newsId=01623606645645064&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article"
+    },
+    {
+      "title": "“금융 AI가 대출전략 짜고 리스크까지 관리”…PFCT, ‘에이전트 빌더...",
+      "url": "https://www.mk.co.kr/article/12205455"
+    },
+    {
+      "title": "집단대출 풀리자 10월 가계대출 6.4조원 급증",
+      "url": "https://biz.sbs.co.kr/article_hub/20000345713?division=NAVER"
+    },
+    {
+      "title": "사옥 매각 효과 빠지자 세전이익 뒷걸음…박창훈 신한카드 사장 연임 '...",
+      "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=67541"
+    },
+    {
+      "title": "은행경영 한계 보인 케이뱅크 최우형…토스뱅크에 '2위' 내줄 위기에 주...",
+      "url": "http://www.nongaek.com/news/articleView.html?idxno=97441"
+    },
+    {
+      "title": "수협은행장 선임 세 번 헛바퀴, 노조까지 사분오열 … '195일 인선 파행...",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/11/11/2026111100098.html"
+    },
+    {
+      "title": "임업용 면세유도 '종이 구입권' 없앤다…내년 3월 카드화 추진",
+      "url": "http://www.e-platform.net/news/articleView.html?idxno=106870"
+    }
+  ]
+}
