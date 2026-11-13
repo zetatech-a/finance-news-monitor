@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 14,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 62,
+  "candidate_hybrid_gray_rule_drop": 162,
+  "candidate_hybrid_gray_rule_keep": 62,
+  "candidate_hybrid_keep_overseas_global_reference": 27,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 9,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 422,
+  "candidate_hybrid_model_drop": 33,
+  "candidate_hybrid_model_keep": 178,
+  "candidate_hybrid_model_keep_with_domain_anchor": 178,
+  "candidate_hybrid_negative_drop": 6,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 422,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-13",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 14,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 4,
+    "candidate_hybrid_drop_negative_signal": 6,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 1,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 162,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 62,
+    "candidate_hybrid_keep_overseas_global_reference": 27,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 9,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 422,
+    "candidate_hybrid_model_drop_prob_le_threshold": 33,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 178
+  },
+  "dropped_count": 258,
+  "input_count": 956,
+  "kept_count": 698,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 956,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 40,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[단독]‘하이에나 떼’ 떨떠름한 사과 최민희, 동료의원까지 비난",
+      "url": "https://www.munhwa.com/article/11630866?ref=naver"
+    },
+    {
+      "title": "정진완 우리은행장 1년 연임 가능성…이르면 오늘 결정",
+      "url": "http://www.popcornnews.net/news/articleView.html?idxno=139926"
+    },
+    {
+      "title": "[금융지주 임원 인사 전망] [JB금융] '4년차 CFO' 송종근, 재신임 기로…...",
+      "url": "https://dealsite.co.kr/articles/172669"
+    },
+    {
+      "title": "가계대출 막히자 기업금융으로…인뱅, 소호대출 확대 속도",
+      "url": "https://www.dailian.co.kr/news/view/1714268/?sc=Naver"
+    },
+    {
+      "title": "농협은행, 강태영 재신임할까[금융권 인사 쓰나미⑤]",
+      "url": "https://www.newsway.co.kr/news/view?ud=2026110614591621437"
+    },
+    {
+      "title": "신용대출 열흘만에 벌써 전달만큼 나갔다... 금리도 비상",
+      "url": "https://www.edaily.co.kr/News/Read?newsId=04126246645645064&mediaCodeNo=257&utm_source=naver&utm_medium=referral&utm_campaign=news_syndication&utm_content=original_article"
+    },
+    {
+      "title": "몸값 1조원 낮춰도 살 곳 없다 … 롯데카드 세 번째 매각도 '안갯속'",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/11/12/2026111200125.html"
+    },
+    {
+      "title": "정진완 연임 결정 앞둔 우리금융…임종룡 의중 얼마나 반영될까?",
+      "url": "https://www.peoplewatch.co.kr/article/view/ppw202611120006"
+    },
+    {
+      "title": "우리은행장 인선 이르면 13일 결론…정진완 연임 가능성 무게",
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=300288"
+    },
+    {
+      "title": "나라에 돈 빌려줬더니 '54조 카르텔'…공정위의 1.6조 독주",
+      "url": "https://www.hankyung.com/article/202611123087i"
+    }
+  ]
+}
