@@ -1,0 +1,250 @@
+{
+  "clusters": {
+    "cluster_count": 232,
+    "cluster_size_max": 38,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 620,
+    "displayed_articles": 146,
+    "final_tagged_representatives": 232,
+    "normalized_articles": 770,
+    "raw_items": 770,
+    "relevance_filtered_articles": 403,
+    "rule_filtered_articles": 613,
+    "tagged_before_cluster": 403
+  },
+  "date": "2026-11-14",
+  "generated_at": "2026-11-14T09:09:09.651376+09:00",
+  "publishers": {
+    "missing_publisher_count": 232,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 90,
+    "no_topic_ratio": 0.3879,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8272749797211759,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "TSMC 직원 개인정보 4만 6,000건 유출! 해커들 \"비트코인 3개 안 주면 공...",
+        "url": "http://coinreaders.com/270162"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.71873495368748,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "하츠투하츠 티켓 판다더니 '먹튀'…1991만원 송금책도 유죄 [사기꾼들]",
+        "url": "https://n.news.naver.com/mnews/article/014/0005604176?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6483020325779052,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[단독] “오빠, 나 임신시키면 9000만원 줄게” 대형로펌 변호사까지 사...",
+        "url": "https://n.news.naver.com/mnews/article/016/0002723340?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.679554672902157,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "젠슨 황 사임에 금리공포 겹쳐… 비트코인, 1억→9천만 '뚝' [주간코인시...",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=3000000000935"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6538137113244541,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "168일 구금된 성유리 남편 안성현 '무죄'…보상금 6935만원 청구하나",
+        "url": "https://n.news.naver.com/mnews/article/421/0009288684?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6988938760013609,
+        "relevance_score": 10,
+        "sector": "핀테크·플랫폼",
+        "title": "메이플 CEO “경영진 이탈, 대출 장부와 무관”",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/438074"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7725483081306838,
+        "relevance_score": 6,
+        "sector": "핀테크·플랫폼",
+        "title": "[법조광장] 위법수집증거 덫에 걸린 핀테크 가상계좌",
+        "url": "https://www.lawtimes.co.kr/news/articleView.html?idxno=228911"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7963462856438985,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "피해자보호기금 3년 뒤 고갈",
+        "url": "https://www.lawtimes.co.kr/news/articleView.html?idxno=229153"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8131994634799936,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "털린 다음의 세상 [EDITOR's LETTER]",
+        "url": "https://n.news.naver.com/mnews/article/050/0000113230?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7090111830998266,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "비트고, 우노코인 이체 관련 시스템 침해·개인키 사용 부인",
+        "url": "https://www.tokenpost.kr/news/breaking/437966"
+      }
+    ],
+    "sector_counts": {
+      "거시·시장": 15,
+      "기타": 96,
+      "대부": 9,
+      "디지털자산": 43,
+      "보험": 9,
+      "상호금융": 6,
+      "여전": 10,
+      "은행": 19,
+      "입법·정책": 11,
+      "자산운용·연기금": 2,
+      "저축은행": 9,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 11,
+      "감독·제재": 6,
+      "건전성·자본규제": 11,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 11,
+      "기업금융·익스포저": 6,
+      "디지털자산": 46,
+      "불법사금융·불법추심·보이스피싱": 22,
+      "사고·사기·횡령": 5,
+      "상품·영업·예금금리": 6,
+      "서민금융·대환·채무조정": 3,
+      "소비자보호·민원·불완전판매": 2,
+      "연체·부실": 12,
+      "일정·브리핑": 4,
+      "자금시장·유동성": 3,
+      "정책·제도개선": 1,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 8,
+      "해외·글로벌": 9,
+      "환율·외환": 4
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 15,
+        "relevance_prob": 0.8990235404249829,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "디지털자산법 정부안 앞두고…금융권, 원화 스테이블코인 사업화 '분주...",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=757241"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9028103526038633,
+        "relevance_score": 32,
+        "sector": "거시·시장",
+        "title": "[다음주 한국은행 및 금융위·금감원 일정]",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4444759"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9450341569670745,
+        "relevance_score": 23,
+        "sector": "입법·정책",
+        "title": "최은석 의원, 디지털자산 시장 제도 개선 논의",
+        "url": "https://n.news.naver.com/mnews/article/310/0000141687?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9296649892154646,
+        "relevance_score": 18,
+        "sector": "입법·정책",
+        "title": "[분석] 금융보안원 뚫어 금감원 사칭하는 해커에 보이스피싱 경보만 울...",
+        "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=261087"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.7809303460909204,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "[증권가H] 이 대통령 \"국내 자본시장 여전히 저평가\" 등",
+        "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=882938"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8716133604008847,
+        "relevance_score": 21,
+        "sector": "디지털자산",
+        "title": "해킹 의심만으로 가상자산 입출금 '차단'",
+        "url": "https://www.safetimes.co.kr/news/articleView.html?idxno=247466"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9251402626934614,
+        "relevance_score": 19,
+        "sector": "입법·정책",
+        "title": "[위클리크립토] 금융위, 디지털자산 거래소에 '금융사 수준' 보안 요구...",
+        "url": "https://it.donga.com/109920/"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.6949837192087671,
+        "relevance_score": 21,
+        "sector": "은행",
+        "title": "은행연합회 차기 회장 후보 6명 확정…'은행권 대변인' 누가 맡나",
+        "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=67670"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8517042519652379,
+        "relevance_score": 23,
+        "sector": "대부",
+        "title": "다음주 금융당국 일정",
+        "url": "https://n.news.naver.com/mnews/article/018/0006409732?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.589431302130926,
+        "relevance_score": 14,
+        "sector": "대부",
+        "title": "\"언론, 불법 사금융에 빠지는 구조적 문제 질문해야\"",
+        "url": "https://n.news.naver.com/mnews/article/127/0000040059?sid=102"
+      }
+    ],
+    "no_topic_count": 1,
+    "sector_counts": {
+      "거시·시장": 2,
+      "대부": 2,
+      "디지털자산": 2,
+      "은행": 1,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "디지털자산": 4,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "일정·브리핑": 2,
+      "정책·제도개선": 1,
+      "환율·외환": 1
+    }
+  }
+}
