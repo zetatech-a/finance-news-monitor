@@ -1,0 +1,77 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 16,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 1,
+  "candidate_hybrid_gray_rule_drop": 34,
+  "candidate_hybrid_gray_rule_keep": 1,
+  "candidate_hybrid_keep_overseas_global_reference": 5,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 40,
+  "candidate_hybrid_model_drop": 1,
+  "candidate_hybrid_model_keep": 67,
+  "candidate_hybrid_model_keep_with_domain_anchor": 67,
+  "candidate_hybrid_negative_drop": 0,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 40,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-15",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 16,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 1,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 34,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 1,
+    "candidate_hybrid_keep_overseas_global_reference": 5,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 40,
+    "candidate_hybrid_model_drop_prob_le_threshold": 1,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 67
+  },
+  "dropped_count": 57,
+  "input_count": 174,
+  "kept_count": 117,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 174,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 6,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "미래에셋 해킹점검서 일부 위반 확인…내주 全업권 보안 간담회",
+      "url": "https://www.yna.co.kr/view/AKR20261114037900002?input=1195m"
+    },
+    {
+      "title": "[AI 라이프] 챗GPT 월렛, 카드 번호 없이 AI 결제… 실패율 42.8%는 변수",
+      "url": "http://coinreaders.com/270346"
+    },
+    {
+      "title": "[AI 소비생활] 오픈AI '챗GPT 월렛' 출시… 카드 번호 없이 AI가 결제",
+      "url": "http://coinreaders.com/270347"
+    },
+    {
+      "title": "中 1~10월 위안화 대출 2284조원 증가…가계는 감소",
+      "url": "https://www.the-today.com/news/articleView.html?idxno=93571"
+    },
+    {
+      "title": "주담대 5500만원 늘어나는 ‘마법’…“모기지보험, 알고 계시나요” [...",
+      "url": "https://www.mk.co.kr/article/12208844"
+    },
+    {
+      "title": "SC제일은행, 3분기 누적 순익 5062억원…전년比 67% 증가",
+      "url": "https://www.sentv.co.kr/article/view/sentv202611140010"
+    }
+  ]
+}

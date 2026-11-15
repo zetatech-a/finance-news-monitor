@@ -1,0 +1,246 @@
+{
+  "clusters": {
+    "cluster_count": 89,
+    "cluster_size_max": 7,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 175,
+    "displayed_articles": 60,
+    "final_tagged_representatives": 89,
+    "normalized_articles": 200,
+    "raw_items": 200,
+    "relevance_filtered_articles": 117,
+    "rule_filtered_articles": 174,
+    "tagged_before_cluster": 117
+  },
+  "date": "2026-11-15",
+  "generated_at": "2026-11-15T09:04:12.260008+09:00",
+  "publishers": {
+    "missing_publisher_count": 89,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 44,
+    "no_topic_ratio": 0.4944,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4876160927602832,
+        "relevance_score": 12,
+        "sector": "보험",
+        "title": "'빅5' 손보사 투자손익 급감에 3분기 실적 부진…메리츠 제친 DB손보",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4444795"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8215670759746959,
+        "relevance_score": 9,
+        "sector": "감독·제재",
+        "title": "미래에셋 해킹 사태, 법 위반 정황 확인…금감원 점검 확대",
+        "url": "https://www.sentv.co.kr/article/view/sentv202611150002"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7484225168340608,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "[크립토 오즈] 비트코인(BTC) 11월 중 6만 달러 터치 확률 61%…하루 새 ...",
+        "url": "http://coinreaders.com/270340"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6864494141814231,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "아발란체, 월스트리트 금융 인프라 진입…NYSE·블랙록까지 확장되는 생...",
+        "url": "https://www.cbci.co.kr/news/articleView.html?idxno=626972"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8146215606957631,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "노란우산 고객정보 무단 조회 의심…\"실제 피해 범위 신속 확인\"",
+        "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=67756"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7476614993870182,
+        "relevance_score": 11,
+        "sector": "보험",
+        "title": "삼성·한화생명, 보장성 신계약 건수 줄고 단가는 ↑…중소형사는 외형...",
+        "url": "https://www.ceoscoredaily.com/page/view/2026110914473479869"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8104767829319596,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "여수시, 어르신 스마트폰 활용 교육 내년에도 지속",
+        "url": "https://www.shinailbo.co.kr/news/articleView.html?idxno=5083184"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7077087084930155,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "[오전 브리핑] 비트코인 8,940만원…선물 청산 6억달러 확대",
+        "url": "http://coinreaders.com/270324"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.861284603669554,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "하이퍼리퀴드·생텀·콜렉터크립트·네오소울 [이주의 상장코인]",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=3000000000714"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6998732400120403,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "범죄자도 아닌데 계좌 묶여…\"직원 월급도 못줄 판\" 패닉 [사장님 고충...",
+        "url": "https://n.news.naver.com/mnews/article/015/0005353869?sid=102"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 10,
+      "기타": 39,
+      "대부": 1,
+      "디지털자산": 19,
+      "보험": 3,
+      "여전": 1,
+      "은행": 1,
+      "입법·정책": 6,
+      "자산운용·연기금": 2,
+      "저축은행": 3,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 3,
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "규제·가계부채": 3,
+      "금리·수수료·최고금리": 5,
+      "디지털자산": 20,
+      "불법사금융·불법추심·보이스피싱": 4,
+      "상품·영업·예금금리": 2,
+      "연체·부실": 1,
+      "일정·브리핑": 3,
+      "증시·시장시황": 3,
+      "칼럼·오피니언": 2,
+      "해외·글로벌": 9,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.890997473233343,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "'빅스텝'까지 거론되는 美 연준…한은, 내주 금리 올리나",
+        "url": "https://n.news.naver.com/mnews/article/003/0014322461?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9149615768364413,
+        "relevance_score": 19,
+        "sector": "디지털자산",
+        "title": "금융위, 해킹 의심 단계서 가상자산거래소 입출금 선제 차단 허용",
+        "url": "https://www.sentv.co.kr/article/view/sentv202611130074"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8567654912626039,
+        "relevance_score": 15,
+        "sector": "감독·제재",
+        "title": "금융위원회의 동양생명 과징금 '왕창 삭감' 논란..李대통령도 납득할까",
+        "url": "http://www.choicenews.co.kr/news/articleView.html?idxno=173186"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9279547243193168,
+        "relevance_score": 16,
+        "sector": "디지털자산",
+        "title": "거래소 해킹 잇따르자···금감원, 19일 가상자산업권 긴급회의 소집",
+        "url": "https://www.sisajournal-e.com/news/articleView.html?idxno=425042"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5874492831750068,
+        "relevance_score": 13,
+        "sector": "저축은행",
+        "title": "매출보다 덜 줄어든 지출...소상공인 이익 13.9%↓, 연체 16.4조원",
+        "url": "https://www.asiaa.co.kr/news/articleView.html?idxno=270940"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8961716724133328,
+        "relevance_score": 15,
+        "sector": "기타",
+        "title": "[주간금융이슈] 금융위, 금융보안원 특정감사 돌입…금융권 해킹 후속 ...",
+        "url": "https://www.newspim.com/news/view/20261113001347"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7769881027039166,
+        "relevance_score": 11,
+        "sector": "감독·제재",
+        "title": "[N위크] 韓 수출 사상 첫 ‘1조달러’ 달성 유력...차기 은행연합회장 ...",
+        "url": "https://www.tfmedia.co.kr/news/article.html?no=208876"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7916360573793194,
+        "relevance_score": 12,
+        "sector": "입법·정책",
+        "title": "태국 SEC, 스테이블코인 입출금 하루 500만 바트 한도 초안…26일까지 의...",
+        "url": "https://www.wikitree.co.kr/articles/1174635"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4876160927602832,
+        "relevance_score": 12,
+        "sector": "보험",
+        "title": "'빅5' 손보사 투자손익 급감에 3분기 실적 부진…메리츠 제친 DB손보",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4444795"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8215670759746959,
+        "relevance_score": 9,
+        "sector": "감독·제재",
+        "title": "미래에셋 해킹 사태, 법 위반 정황 확인…금감원 점검 확대",
+        "url": "https://www.sentv.co.kr/article/view/sentv202611150002"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 1,
+      "기타": 1,
+      "디지털자산": 2,
+      "보험": 1,
+      "입법·정책": 1,
+      "저축은행": 1
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 4,
+      "연체·부실": 1,
+      "일정·브리핑": 1,
+      "해외·글로벌": 1
+    }
+  }
+}
