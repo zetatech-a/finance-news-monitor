@@ -1,0 +1,254 @@
+{
+  "clusters": {
+    "cluster_count": 215,
+    "cluster_size_max": 38,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 502,
+    "displayed_articles": 142,
+    "final_tagged_representatives": 215,
+    "normalized_articles": 700,
+    "raw_items": 700,
+    "relevance_filtered_articles": 380,
+    "rule_filtered_articles": 497,
+    "tagged_before_cluster": 380
+  },
+  "date": "2026-11-16",
+  "generated_at": "2026-11-16T09:09:32.806987+09:00",
+  "publishers": {
+    "missing_publisher_count": 215,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 115,
+    "no_topic_ratio": 0.5349,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6985617702263908,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "보이스 피싱·투자 리딩방·로맨스 스캠 등 지능화되는 '다중피해사기범...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=504307"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7603316987900093,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "KT, ‘PASS’로 교통 과태료 안내…납부기한도 한눈에",
+        "url": "https://n.news.naver.com/mnews/article/016/0002723790?sid=105"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5193044768597123,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "케이뱅크, 자체 수신 비중 11%p↑…정기예금 성장세 두드러져",
+        "url": "http://www.datanews.co.kr/news/article.html?no=147563"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6678719737227717,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[오늘의 비트코인] 주말 급락 딛고 반등…6만5000달러선",
+        "url": "https://news.dealsitetv.com/articles/178616"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5242687813977931,
+        "relevance_score": 8,
+        "sector": "보험",
+        "title": "[보험사 이모저모] 주주환원이 먼저냐 성장투자가 먼저냐",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4444855"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6602782548654247,
+        "relevance_score": 5,
+        "sector": "입법·정책",
+        "title": "국민의힘 장동혁·정점식, 장외투쟁 “사법 흔들기·재정 팽창 저지”",
+        "url": "http://www.breaknews.com/1251124"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6530624984270148,
+        "relevance_score": 10,
+        "sector": "상호금융",
+        "title": "[상호금융 진단] [신협] ②이익잉여금 2년 만에 1조원 증발…'네카오' 진...",
+        "url": "https://www.topdaily.kr/articles/112906"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8345294292191617,
+        "relevance_score": 10,
+        "sector": "보험",
+        "title": "피싱 피해자 13만명인데 보험금 지급은 21건 뿐…실효성 논란",
+        "url": "https://n.news.naver.com/mnews/article/243/0000105706?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8188027734330681,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "DB손보 '균형 성장' 명암…과당경쟁 피했지만 신계약 가치 '뒷걸음'",
+        "url": "https://dealsite.co.kr/articles/172748"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9361011777020183,
+        "relevance_score": 19,
+        "sector": "저축은행",
+        "title": "“은행선 안 된다던데?”…저축은행 사칭 대출 피싱의 덫",
+        "url": "https://n.news.naver.com/mnews/article/243/0000105703?sid=101"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 13,
+      "기타": 83,
+      "대부": 38,
+      "디지털자산": 39,
+      "보험": 6,
+      "상호금융": 2,
+      "여전": 2,
+      "은행": 15,
+      "입법·정책": 7,
+      "자산운용·연기금": 1,
+      "저축은행": 5,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 16,
+      "감독·제재": 5,
+      "건전성·자본규제": 2,
+      "금리·수수료·최고금리": 12,
+      "기업금융·익스포저": 1,
+      "디지털자산": 25,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 19,
+      "사고·사기·횡령": 1,
+      "상품·영업·예금금리": 5,
+      "서민금융·대환·채무조정": 4,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 5,
+      "일정·브리핑": 3,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 1,
+      "증시·시장시황": 4,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 9,
+      "환율·외환": 3
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8684448374336772,
+        "relevance_score": 30,
+        "sector": "대부",
+        "title": "금감원, 탄력점포 운영 개선·대부업권 현역병 대출제한 추진",
+        "url": "https://n.news.naver.com/mnews/article/001/0016442364?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8618940161252037,
+        "relevance_score": 29,
+        "sector": "대부",
+        "title": "금감원, 현역병 대부업 신용대출 연내 제한 추진",
+        "url": "https://www.tokenpost.kr/news/breaking/438654"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.8651734264225809,
+        "relevance_score": 28,
+        "sector": "대부",
+        "title": "“군대까지 파고든 도박·빚투”…현역병 대부업 대출 69배 급증",
+        "url": "https://n.news.naver.com/mnews/article/138/0002248598?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9091671255141,
+        "relevance_score": 32,
+        "sector": "거시·시장",
+        "title": "[이번주 한국은행 및 금융위·금감원 일정]",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4444834"
+      },
+      {
+        "cluster_size": 10,
+        "relevance_prob": 0.6960339704436632,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "외국인 주식 26조 팔고 달러는 초강세…그래도 환율 버티는 이유",
+        "url": "https://n.news.naver.com/mnews/article/421/0009290221?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8183099098255022,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "국경없는 테더·서클 韓시장 선점…네이버·두나무 빅딜은 '국내 시장' ...",
+        "url": "https://n.news.naver.com/mnews/article/421/0009290210?sid=101"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8417787757104327,
+        "relevance_score": 22,
+        "sector": "디지털자산",
+        "title": "디지털자산기본법은 왜 필요할까요[금알못]",
+        "url": "https://n.news.naver.com/mnews/article/003/0014323454?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8129843365373286,
+        "relevance_score": 19,
+        "sector": "저축은행",
+        "title": "금리 올려도 매력은 글쎄⋯저축은행 ‘고금리 딜레마’",
+        "url": "https://www.etoday.co.kr/news/view/2648300"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7551378965425084,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "54조 낙찰계약이 매출액?...금융권 겨냥 과징금 산정 잣대 의문",
+        "url": "https://n.news.naver.com/mnews/article/008/0005441241?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9361011777020183,
+        "relevance_score": 19,
+        "sector": "저축은행",
+        "title": "“은행선 안 된다던데?”…저축은행 사칭 대출 피싱의 덫",
+        "url": "https://n.news.naver.com/mnews/article/243/0000105703?sid=101"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 1,
+      "거시·시장": 2,
+      "대부": 3,
+      "디지털자산": 2,
+      "저축은행": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 1,
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 2,
+      "부동산·PF": 1,
+      "일정·브리핑": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 1
+    }
+  }
+}
