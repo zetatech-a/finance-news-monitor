@@ -1,0 +1,263 @@
+{
+  "clusters": {
+    "cluster_count": 369,
+    "cluster_size_max": 94,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 94,
+        "relevance_prob": 0.9041503206333502,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "가상자산 거래 위축에…두나무, 3분기 186억 순손실",
+        "url": "http://www.newsprime.co.kr/news/article.html?no=755146"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 952,
+    "displayed_articles": 271,
+    "final_tagged_representatives": 369,
+    "normalized_articles": 1251,
+    "raw_items": 1251,
+    "relevance_filtered_articles": 630,
+    "rule_filtered_articles": 945,
+    "tagged_before_cluster": 630
+  },
+  "date": "2026-11-17",
+  "generated_at": "2026-11-17T09:14:12.455020+09:00",
+  "publishers": {
+    "missing_publisher_count": 369,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 161,
+    "no_topic_ratio": 0.4363,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7320451582211778,
+        "relevance_score": 4,
+        "sector": "상호금융",
+        "title": "비아이매트릭스, NH농협상호금융에 AI 분석 솔루션 '트리니티' 공급",
+        "url": "https://n.news.naver.com/mnews/article/008/0005442071?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.865141665764925,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "\"세차비 내놔\"…아이 울음소리 들려주며 \"손 자르겠다\" 협박",
+        "url": "https://n.news.naver.com/mnews/article/008/0005442069?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6867965664950034,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "비트코인 6만달러대 '뚝'…최고가 대비 '반토막'",
+        "url": "https://n.news.naver.com/mnews/article/018/0006410850?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7081936877366393,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[아주경제 코이너스 브리핑] 비트코인 6만5000달러대서 횡보…'극도의 ...",
+        "url": "https://www.ajunews.com/view/20261117081858879"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6858190367921702,
+        "relevance_score": 11,
+        "sector": "보험",
+        "title": "자본성증권 문 열어두는 보험사…KB손보 후순위채 1조원 설정",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4445063"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.813748825952257,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "여수시, 내년에도 찾아가는 스마트 활용 교육 지속",
+        "url": "http://news.lghellovision.net/news/articleView.html?idxno=562522"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6212130933874463,
+        "relevance_score": 10,
+        "sector": "기타",
+        "title": "[전국 주요 신문 톱뉴스](17일 조간)",
+        "url": "https://n.news.naver.com/mnews/article/001/0016445368?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8614660997535966,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[현장에서] 금융권 AI 해킹, 명확한 책임규명과 피해보상안이 우선",
+        "url": "https://www.newspim.com/news/view/20261116000476"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7537967443766315,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "수탁사 '비트고'도 못 막았다…유노코인, 백업 키 탈취로 2억8000만 원어...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=504799"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7475792261417578,
+        "relevance_score": 5,
+        "sector": "대부",
+        "title": "중수청 '가맹점에 이자 장사 의혹' 명륜당 본사 압수수색",
+        "url": "https://n.news.naver.com/mnews/article/057/0001978498?sid=102"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 3,
+      "감독·제재": 10,
+      "거시·시장": 23,
+      "기타": 108,
+      "대부": 34,
+      "디지털자산": 95,
+      "보험": 13,
+      "상호금융": 3,
+      "여전": 18,
+      "은행": 24,
+      "입법·정책": 19,
+      "자산운용·연기금": 4,
+      "저축은행": 11,
+      "증권(브로커리지/리테일)": 3,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 13,
+      "감독·제재": 6,
+      "건전성·자본규제": 12,
+      "규제·가계부채": 1,
+      "금리·수수료·최고금리": 25,
+      "기업금융·익스포저": 7,
+      "디지털자산": 78,
+      "부동산·PF": 5,
+      "불법사금융·불법추심·보이스피싱": 17,
+      "사고·사기·횡령": 7,
+      "상품·영업·예금금리": 12,
+      "서민금융·대환·채무조정": 6,
+      "업계동정·사회공헌": 2,
+      "연체·부실": 20,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 8,
+      "정책·제도개선": 9,
+      "증시·시장시황": 10,
+      "칼럼·오피니언": 4,
+      "해외·글로벌": 12,
+      "환율·외환": 6
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.898694584432565,
+        "relevance_score": 27,
+        "sector": "감독·제재",
+        "title": "금소연 \"동양생명 과징금 95% 축소…금융위, 납득할 근거 밝혀야\"",
+        "url": "http://www.choicenews.co.kr/news/articleView.html?idxno=173232"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8094584759213328,
+        "relevance_score": 27,
+        "sector": "대부",
+        "title": "금융사고 잇따르자 금감원 '기습검사'…은행 영업점 긴장",
+        "url": "https://www.mstoday.co.kr/news/articleView.html?idxno=200489"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8493633685560995,
+        "relevance_score": 27,
+        "sector": "대부",
+        "title": "금감원, 은행 탄력점포 확대 검토…현역병 대출 규제도 강화",
+        "url": "https://www.econovill.com/news/articleView.html?idxno=757348"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7610159495177609,
+        "relevance_score": 22,
+        "sector": "대부",
+        "title": "현역병 대출 막는다지만…\"금융교육·연체 관리 병행해야\"",
+        "url": "https://news.mtn.co.kr/article/2026111615520936717"
+      },
+      {
+        "cluster_size": 94,
+        "relevance_prob": 0.9041503206333502,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "가상자산 거래 위축에…두나무, 3분기 186억 순손실",
+        "url": "http://www.newsprime.co.kr/news/article.html?no=755146"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.834182603857264,
+        "relevance_score": 22,
+        "sector": "감독·제재",
+        "title": "금융위, 소송 가면 절반은 패소…제재 전 금감원 소통 강화 과제로",
+        "url": "https://n.news.naver.com/mnews/article/018/0006410653?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8450205014460799,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "두나무, 업비트 출시 이후 첫분기 적자…빗썸도 6분기만에 적자 전환",
+        "url": "https://news.mtn.co.kr/article/2026111618204688402"
+      },
+      {
+        "cluster_size": 46,
+        "relevance_prob": 0.8462233170636768,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "[금융 직썰] 미 '빅스텝' 불씨에 FOMC 개편까지…한은 고민 깊어진다",
+        "url": "https://www.ziksir.com/news/articleView.html?idxno=153434"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7654812160315249,
+        "relevance_score": 20,
+        "sector": "입법·정책",
+        "title": "금감원, 4개 은행 고위험 영업점 현장검사…내부통제 집중 점검",
+        "url": "http://www.iminju.net/news/articleView.html?idxno=172521"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6249599418767642,
+        "relevance_score": 16,
+        "sector": "입법·정책",
+        "title": "[심층분석] 금융사는 부실 털고, 채무자는 빚더미…‘상록수’가 드리운...",
+        "url": "https://www.tfmedia.co.kr/news/article.html?no=208921"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 2,
+      "거시·시장": 1,
+      "대부": 3,
+      "디지털자산": 2,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 2,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 1,
+      "해외·글로벌": 1
+    }
+  }
+}

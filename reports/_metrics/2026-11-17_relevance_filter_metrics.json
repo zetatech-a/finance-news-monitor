@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 28,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 16,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 38,
+  "candidate_hybrid_gray_rule_drop": 185,
+  "candidate_hybrid_gray_rule_keep": 38,
+  "candidate_hybrid_keep_overseas_global_reference": 13,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 403,
+  "candidate_hybrid_model_drop": 61,
+  "candidate_hybrid_model_keep": 170,
+  "candidate_hybrid_model_keep_with_domain_anchor": 170,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 403,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-17",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 28,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 16,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 13,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 185,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 38,
+    "candidate_hybrid_keep_overseas_global_reference": 13,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 403,
+    "candidate_hybrid_model_drop_prob_le_threshold": 61,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 170
+  },
+  "dropped_count": 315,
+  "input_count": 945,
+  "kept_count": 630,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 945,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 78,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "\"연 이자 292%\"...불법 전단 단속해 23만 장 압수",
+      "url": "https://www.ytn.co.kr/_ln/0103_202611161337348258"
+    },
+    {
+      "title": "캐피탈사 실적 희비…JB우리·하나 '웃고' 현대·IBK '울고'",
+      "url": "http://www.consumernews.co.kr/news/articleView.html?idxno=768382"
+    },
+    {
+      "title": "[CEO IN&OUT] 자본비율 끌어올린 정진완 2기…수익성 회복·격차 축소 과...",
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=504694"
+    },
+    {
+      "title": "체력 다진 우리은행 ‘정진완호’, 남은 1년은 ‘수익성’ 입증",
+      "url": "https://www.dailian.co.kr/news/view/1715646/?sc=Naver"
+    },
+    {
+      "title": "정진완 연임에 힘 실린 진성원···우리카드 '수익구조 전환' 연속성 주...",
+      "url": "https://www.sisajournal-e.com/news/articleView.html?idxno=425069"
+    },
+    {
+      "title": "자본비율·1조 순익 얻은 '+1년' 정진완 우리은행장, '비이자 실종·부실...",
+      "url": "https://www.newsquest.co.kr/news/articleView.html?idxno=305114"
+    },
+    {
+      "title": "\"비이자서 두 자릿수 성장\"…외국계은행, 3분기 나란히 호실적",
+      "url": "https://www.mediapen.com/news/view/1137665"
+    },
+    {
+      "title": "JB금융, 외국인 대출 10년…1조원보다 주목할 '데이터'",
+      "url": "https://www.smarttoday.co.kr/ko-kr/articles/113763"
+    },
+    {
+      "title": "강남 은마 6억·잠실 5억 뚝…서울 아파트 호가 하락에도 '거래 절벽'",
+      "url": "https://www.widedaily.com/news/articleView.html?idxno=303752"
+    },
+    {
+      "title": "[위클리오늘] 평창군, 200MW 풍력개발로 바람연금 추진",
+      "url": "http://www.weeklytoday.com/news/articleView.html?idxno=802211"
+    }
+  ]
+}
