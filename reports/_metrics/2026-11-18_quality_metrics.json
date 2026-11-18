@@ -1,0 +1,262 @@
+{
+  "clusters": {
+    "cluster_count": 370,
+    "cluster_size_max": 52,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 52,
+        "relevance_prob": 0.5920480066952994,
+        "relevance_score": 21,
+        "sector": "거시·시장",
+        "title": "강달러에도 환율 1330원대…美 기술주 급락에 원화 약세 압력",
+        "url": "https://n.news.naver.com/mnews/article/123/0002394178?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 933,
+    "displayed_articles": 258,
+    "final_tagged_representatives": 370,
+    "normalized_articles": 1337,
+    "raw_items": 1337,
+    "relevance_filtered_articles": 649,
+    "rule_filtered_articles": 921,
+    "tagged_before_cluster": 649
+  },
+  "date": "2026-11-18",
+  "generated_at": "2026-11-18T09:13:24.945009+09:00",
+  "publishers": {
+    "missing_publisher_count": 370,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 168,
+    "no_topic_ratio": 0.4541,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7909381951941403,
+        "relevance_score": 18,
+        "sector": "감독·제재",
+        "title": "금감원, 과당경쟁 경고 열흘 만에 DB손보 퇴직연금 들여다본다",
+        "url": "https://www.globalepic.co.kr/view.php?ud=2026111808433519687cc35ccc5c_29"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6242798960225959,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "한투 “KDB생명 인수 안 한다”…산은, 일곱번째 매각 시도 ‘무산’",
+        "url": "https://n.news.naver.com/mnews/article/009/0005765277?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6556015623778828,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "\"네번째 코인 과세 유예…2029년에도 준비 부족 논란 반복될 수도\"",
+        "url": "https://n.news.naver.com/mnews/article/018/0006411574?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6857481253389762,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "4대 은행 ‘깡통 대출’ 5조873억원…작년 말 대비 32% 증가",
+        "url": "https://www.sentv.co.kr/article/view/sentv202611180022"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8371462328932467,
+        "relevance_score": 13,
+        "sector": "저축은행",
+        "title": "웰컴저축은행, 예방교육·피해보상 연계해 어르신 금융사기 대응…취약...",
+        "url": "https://www.fntimes.com/html/view.php?ud=2026111715373747187c96e79780_18"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7898192824775851,
+        "relevance_score": 15,
+        "sector": "입법·정책",
+        "title": "[정책포커스] 금융위, 금융사 지배구조 개선...공정성·투명성 제고",
+        "url": "http://www.sisacast.kr/news/articleView.html?idxno=101909"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7092062459121065,
+        "relevance_score": 10,
+        "sector": "은행",
+        "title": "4대 은행 '깡통대출' 5조 돌파…기업 부실이 93%",
+        "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=67952"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8721435845307487,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "미래에셋생명 해킹 유출 1만명 넘어…스트리미 2천명으로 확대",
+        "url": "https://n.news.naver.com/mnews/article/422/0000927260?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.777926897048376,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "북한 해킹조직 라자루스, 비트코인 믹싱 '크루' 최대 고객이었다… 2000...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=505235"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4133643870872515,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "[브라질증시] 유가 상승·주요 종목 반등에 0.31%↑…재정 불확실성은 부...",
+        "url": "https://www.newspim.com/news/view/20261118000036"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 10,
+      "거시·시장": 20,
+      "기타": 122,
+      "대부": 34,
+      "디지털자산": 95,
+      "보험": 4,
+      "상호금융": 7,
+      "여전": 10,
+      "은행": 28,
+      "입법·정책": 19,
+      "자산운용·연기금": 5,
+      "저축은행": 10,
+      "증권(브로커리지/리테일)": 3,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 6,
+      "감독·제재": 12,
+      "건전성·자본규제": 9,
+      "금리·수수료·최고금리": 32,
+      "기업금융·익스포저": 5,
+      "디지털자산": 80,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 19,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 8,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 3,
+      "연체·부실": 14,
+      "일정·브리핑": 1,
+      "자금시장·유동성": 10,
+      "정책·제도개선": 5,
+      "증시·시장시황": 11,
+      "칼럼·오피니언": 7,
+      "해외·글로벌": 18,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 6,
+        "relevance_prob": 0.9007977851606156,
+        "relevance_score": 35,
+        "sector": "디지털자산",
+        "title": "코인업계에 부는 찬바람…두나무·빗썸, 매출 60% 급감에 동반 적자",
+        "url": "https://www.newsworker.co.kr/news/articleView.html?idxno=514487"
+      },
+      {
+        "cluster_size": 23,
+        "relevance_prob": 0.8964698795322081,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "금감원, 대부업권에 연말까지 보안점검 요구…정보유출 땐 엄정 제재",
+        "url": "http://www.newsfc.co.kr/news/articleView.html?idxno=82539"
+      },
+      {
+        "cluster_size": 7,
+        "relevance_prob": 0.9348307895086936,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "금감원, 대부업체 70곳 보안점검 주문…정보유출 땐 엄정 제재",
+        "url": "https://n.news.naver.com/mnews/article/018/0006411219?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9488699253957801,
+        "relevance_score": 34,
+        "sector": "디지털자산",
+        "title": "“디지털자산기본법 임박…가상자산·주식 형평과세 추진해야”",
+        "url": "https://n.news.naver.com/mnews/article/018/0006411462?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.761393905180471,
+        "relevance_score": 22,
+        "sector": "대부",
+        "title": "연말 금융입법 '밀린 숙제' 산적…해킹 과징금·일몰 법안 처리 주목",
+        "url": "https://n.news.naver.com/mnews/article/421/0009294128?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9225088741060521,
+        "relevance_score": 22,
+        "sector": "감독·제재",
+        "title": "금감원, 전금·온투업 해킹 대응 강화…“점검 부실 시 엄정 제재”",
+        "url": "https://n.news.naver.com/mnews/article/117/0004125787?sid=103"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8009388264594388,
+        "relevance_score": 22,
+        "sector": "감독·제재",
+        "title": "증권사 회사채 ‘캡티브 영업’ 금지…발행금리 왜곡 차단 나선다",
+        "url": "https://www.sentv.co.kr/article/view/sentv202611180023"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5464623722288569,
+        "relevance_score": 22,
+        "sector": "상호금융",
+        "title": "[상호금융 건전성 경고②] 수협, 3년 연속 적자에 취약 조합 급증…건전...",
+        "url": "https://news.ifm.kr/news/articleView.html?idxno=484641"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.783940306825976,
+        "relevance_score": 20,
+        "sector": "입법·정책",
+        "title": "금감원, 11년 만에 은행 영업점 불시검사…잇단 금융사고에 내부통제 '...",
+        "url": "https://www.geconomy.co.kr/news/article.html?no=325775"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7377434770175447,
+        "relevance_score": 20,
+        "sector": "입법·정책",
+        "title": "[법안돋보기] 성착취·협박 대출 계약서부터 막는다···최대 징역 10년...",
+        "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=261244"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "감독·제재": 2,
+      "대부": 3,
+      "디지털자산": 2,
+      "상호금융": 1,
+      "입법·정책": 2
+    },
+    "topic_counts": {
+      "감독·제재": 4,
+      "건전성·자본규제": 1,
+      "디지털자산": 2,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 1
+    }
+  }
+}

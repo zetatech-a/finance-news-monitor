@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 16,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 7,
+  "candidate_hybrid_gray_keep_domain": 22,
+  "candidate_hybrid_gray_rule_drop": 131,
+  "candidate_hybrid_gray_rule_keep": 22,
+  "candidate_hybrid_keep_overseas_global_reference": 16,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 440,
+  "candidate_hybrid_model_drop": 58,
+  "candidate_hybrid_model_keep": 164,
+  "candidate_hybrid_model_keep_with_domain_anchor": 164,
+  "candidate_hybrid_negative_drop": 9,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 440,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-18",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 16,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 9,
+    "candidate_hybrid_drop_negative_signal": 9,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 4,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 7,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 131,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 22,
+    "candidate_hybrid_keep_overseas_global_reference": 16,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 6,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 440,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 58,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 164
+  },
+  "dropped_count": 272,
+  "input_count": 921,
+  "kept_count": 649,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 921,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 54,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "순익 119% 뛰었지만 누적 실적은 감소...케이뱅크 앞에 놓인 수익성 과제",
+      "url": "https://www.insight.co.kr/news/582412"
+    },
+    {
+      "title": "은행연합회장 '민간 5파전'…경영 성적표·과거 인연 주목",
+      "url": "https://www.1conomynews.co.kr/news/articleView.html?idxno=51331"
+    },
+    {
+      "title": "정진완 재신임으로 막 오른 인사…은행장 평가대 오른 실적",
+      "url": "https://sports.hankooki.com/news/articleView.html?idxno=6943722"
+    },
+    {
+      "title": "NH농협금융, 대안신용평가로 '씬파일러 포용금융' 확대",
+      "url": "https://daily.hankooki.com/news/articleView.html?idxno=1425992"
+    },
+    {
+      "title": "'최대 실적' 이호성, 하나은행 단임 관행 깰까…경영 연속성 필요성 'UP...",
+      "url": "https://www.techm.kr/news/articleView.html?idxno=157447"
+    },
+    {
+      "title": "이호성 하나은행장 연임 여부 주목…역대 행장 단임 관행 깰까",
+      "url": "https://news.tf.co.kr/read/economy/2389695.htm"
+    },
+    {
+      "title": "“빚내서 버티다 폐업도 못 해”…中企·소상공인 자금난 경고등[중기+...",
+      "url": "https://biz.heraldcorp.com/article/10939483?ref=naver"
+    },
+    {
+      "title": "[테크M 이슈] '단명 행장' 징크스 깬 정진완…우리은행, 7년 만에 3년 경...",
+      "url": "https://www.techm.kr/news/articleView.html?idxno=157423"
+    },
+    {
+      "title": "[외국인 유치전①] 계좌·송금부터 공략…대출 확대 열쇠는 '거래 이력...",
+      "url": "https://www.insightkorea.co.kr/news/articleView.html?idxno=258996"
+    },
+    {
+      "title": "[정책브리핑] 한국, 국제 '탄소시장연합' 가입…14번째 회원국",
+      "url": "https://www.esgeconomy.com/news/articleView.html?idxno=17421"
+    }
+  ]
+}
