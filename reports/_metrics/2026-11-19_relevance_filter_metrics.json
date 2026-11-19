@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 6,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 38,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 16,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+  "candidate_hybrid_gray_keep_domain": 50,
+  "candidate_hybrid_gray_rule_drop": 168,
+  "candidate_hybrid_gray_rule_keep": 50,
+  "candidate_hybrid_keep_overseas_global_reference": 27,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 8,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 459,
+  "candidate_hybrid_model_drop": 48,
+  "candidate_hybrid_model_keep": 155,
+  "candidate_hybrid_model_keep_with_domain_anchor": 155,
+  "candidate_hybrid_negative_drop": 5,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 459,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-19",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 6,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 38,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 16,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 8,
+    "candidate_hybrid_drop_negative_signal": 5,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 3,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 5,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 168,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 50,
+    "candidate_hybrid_keep_overseas_global_reference": 27,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 8,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 459,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 48,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 155
+  },
+  "dropped_count": 297,
+  "input_count": 997,
+  "kept_count": 700,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 997,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 77,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "해외 부동산 투자 줄었지만 부실 위험은 확대…금융권 건전성 '경고등'",
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=505670"
+    },
+    {
+      "title": "금융권 해외 부동산 투자 원금 회수 위험 2.6조…반년 새 5600억 증가",
+      "url": "https://biz.heraldcorp.com/article/10941992?ref=naver"
+    },
+    {
+      "title": "BNK금융, 경남은행장 5파전·7개 계열사 CEO 인사 본격화…연간 순익 감...",
+      "url": "https://www.greened.kr/news/articleView.html?idxno=354964"
+    },
+    {
+      "title": "상장사 4곳 중 1곳 '한계기업'…삼정KPMG \"선제적 구조조정해야\"",
+      "url": "https://www.newsis.com/view/NISX20261118_0003873816"
+    },
+    {
+      "title": "김재관 KB국민카드 대표, 연임이냐 은행장이냐…이재근號 인사 향방 주...",
+      "url": "https://www.1conomynews.co.kr/news/articleView.html?idxno=51354"
+    },
+    {
+      "title": "[이사회실록]⑤ NH농협금융, 회장이 고른 이사가 회장·행장 후보 추천",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=884617"
+    },
+    {
+      "title": "상장사 한계기업 6년 새 2배 껑충…삼정KPMG “구조조정 골든타임 앞당...",
+      "url": "https://biz.heraldcorp.com/article/10940911?ref=naver"
+    },
+    {
+      "title": "“쓰러지기 전 수술대 올려야 살린다”...번돈으로 이자 못갚는 상장사...",
+      "url": "https://www.fntimes.com/html/view.php?ud=202611181026353499bdb80fab5_18"
+    },
+    {
+      "title": "삼정KPMG “신규자금·사업재편·민간자본 참여로 정상화 가능성 높여야...",
+      "url": "http://www.joseilbo.com/news/news_read.php?uid=579885&class=10&grp="
+    },
+    {
+      "title": "분당신협, 경영실태평가 최고등급 1등급 획득",
+      "url": "https://www.newstnt.com/news/articleView.html?idxno=729041"
+    }
+  ]
+}
