@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 46,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 46,
+  "candidate_hybrid_gray_rule_drop": 141,
+  "candidate_hybrid_gray_rule_keep": 46,
+  "candidate_hybrid_keep_overseas_global_reference": 16,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 319,
+  "candidate_hybrid_model_drop": 112,
+  "candidate_hybrid_model_keep": 125,
+  "candidate_hybrid_model_keep_with_domain_anchor": 125,
+  "candidate_hybrid_negative_drop": 5,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 319,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-20",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 46,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 5,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 7,
+    "candidate_hybrid_drop_negative_signal": 5,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 141,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 46,
+    "candidate_hybrid_keep_overseas_global_reference": 16,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 10,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 319,
+    "candidate_hybrid_model_drop_prob_le_threshold": 112,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 125
+  },
+  "dropped_count": 327,
+  "input_count": 843,
+  "kept_count": 516,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 843,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 58,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[KB-신한 용호상박]④ 신한카드, 순익 격차 벌려…KB국민카드는 법인카...",
+      "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=302030"
+    },
+    {
+      "title": "외국인 통장 경쟁 뛰어든 인뱅 3사⋯다음 과제는 대출",
+      "url": "https://www.etoday.co.kr/news/view/2650475"
+    },
+    {
+      "title": "우리은행장 연임 다음은 비은행 11곳, 임종룡 '안정' 기조 어디까지 이...",
+      "url": "https://www.businesspost.co.kr/BP?command=article_view&num=452418"
+    },
+    {
+      "title": "사라진 낙수 효과 … 1조달러 화려함 뒤 자영업 부실 치솟고 청년 실업...",
+      "url": "https://biz.newdaily.co.kr/site/data/html/2026/11/19/2026111950242.html"
+    },
+    {
+      "title": "경제계, '기업구조조정 촉진법' 상시화 촉구...\"워크아웃 멈추면 국민 피...",
+      "url": "https://www.banronbodo.com/news/articleView.html?idxno=33401"
+    },
+    {
+      "title": "금융권, 해외 부동산 투자 줄었는데 원금 위험 2.6조…반년새 5600억↑",
+      "url": "https://biz.heraldcorp.com/article/10942524?ref=naver"
+    },
+    {
+      "title": "국고채 금리, 일제히 하락…유가 급락·외국인 매수(종합)",
+      "url": "https://www.yna.co.kr/view/AKR20261119158751008?input=1195m"
+    },
+    {
+      "title": "外人 국채선물 순매수·코스피 하락에 강세…국고 3년 0.7bp↓",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4445536"
+    },
+    {
+      "title": "[디깅노트]5000억 증자에도 KDB생명 매각 실패…산은은 뭘 계산했나",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=679103"
+    },
+    {
+      "title": "매각 '칠전팔기' KDB생명, 경영정상화에 무게",
+      "url": "https://www.etnews.com/20261119000230"
+    }
+  ]
+}

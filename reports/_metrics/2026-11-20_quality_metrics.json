@@ -1,0 +1,253 @@
+{
+  "clusters": {
+    "cluster_count": 325,
+    "cluster_size_max": 44,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 4,
+    "mega_cluster_count": 0,
+    "mega_cluster_samples": [],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 844,
+    "displayed_articles": 235,
+    "final_tagged_representatives": 325,
+    "normalized_articles": 1052,
+    "raw_items": 1052,
+    "relevance_filtered_articles": 516,
+    "rule_filtered_articles": 843,
+    "tagged_before_cluster": 516
+  },
+  "date": "2026-11-20",
+  "generated_at": "2026-11-20T09:11:33.339825+09:00",
+  "publishers": {
+    "missing_publisher_count": 325,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 150,
+    "no_topic_ratio": 0.4615,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7558152633038191,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "8400만원대로 밀린 비트코인…\"시장이 흥미를 잃었다\"",
+        "url": "https://n.news.naver.com/mnews/article/003/0014334738?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6658313120838726,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "비트코인 변동성 43%…2011년 이후 50% 이상 하락 7차례",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/441170"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7414405550660172,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "“수능 끝! 이제 신나게 놀자”…게임축제에 과학관 무료, 일본 크루즈...",
+        "url": "https://n.news.naver.com/mnews/article/021/0002834186?sid=102"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7020998122590586,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "부산시, 수능 이후 '분야별 맞춤형 체험·진로 프로그램' 운영",
+        "url": "https://news.bbsi.co.kr/news/articleView.html?idxno=4119736"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5127574561062542,
+        "relevance_score": 12,
+        "sector": "감독·제재",
+        "title": "[은행장 인선 下] 최대 실적에도 물음표…이환주는 '새 회장', 이호성은...",
+        "url": "http://www.srtimes.kr/news/articleView.html?idxno=218113"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7959006327689307,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "수능 끝난 고3, 뭘 할까…부산시 진로·체험교육 운영",
+        "url": "https://www.mhns.co.kr/news/articleView.html?idxno=769968"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7721516482383719,
+        "relevance_score": 7,
+        "sector": "기타",
+        "title": "수능 끝난 학생들에 안전·직업·금융 체험…부산시, 학년말 프로그램",
+        "url": "https://n.news.naver.com/mnews/article/011/0004684252?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.763606832481957,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "미국 시스템 장애 잇따라…백악관 “조율된 공격 증거 없어”",
+        "url": "https://www.tokenpost.kr/news/tech/441137"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.579421335613279,
+        "relevance_score": 10,
+        "sector": "여전",
+        "title": "캐피탈 브랜드 경쟁 달아올랐다…NH농협캐피탈 2위·KB캐피탈 3위",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=506123"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.580802604507939,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "하나카드, 회원 10만명↓·취급액 9%↑…'적자 손님' 축소 주목",
+        "url": "http://www.press9.kr/news/articleView.html?idxno=86673"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 2,
+      "감독·제재": 11,
+      "거시·시장": 20,
+      "기타": 100,
+      "대부": 20,
+      "디지털자산": 57,
+      "보험": 26,
+      "상호금융": 3,
+      "여전": 11,
+      "은행": 34,
+      "입법·정책": 25,
+      "자산운용·연기금": 2,
+      "저축은행": 12,
+      "증권(브로커리지/리테일)": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 11,
+      "감독·제재": 6,
+      "건전성·자본규제": 21,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 30,
+      "기업금융·익스포저": 6,
+      "디지털자산": 48,
+      "부동산·PF": 6,
+      "불법사금융·불법추심·보이스피싱": 23,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 5,
+      "서민금융·대환·채무조정": 1,
+      "소비자보호·민원·불완전판매": 9,
+      "업계동정·사회공헌": 4,
+      "연체·부실": 17,
+      "일정·브리핑": 3,
+      "자금시장·유동성": 4,
+      "정책·제도개선": 2,
+      "증시·시장시황": 8,
+      "해외·글로벌": 13,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.9137103616425667,
+        "relevance_score": 36,
+        "sector": "입법·정책",
+        "title": "'보이스피싱 알바·로맨스 스캠' 주의보…금감원, 대학생 금융사기 예방...",
+        "url": "https://n.news.naver.com/mnews/article/003/0014332075?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8330494850315233,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "[청년층에 파고드는 불법사금융]사법절차까지 불법 추심에 악용",
+        "url": "https://www.naeil.com/news/read/609401?ref=naver"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8611825676782531,
+        "relevance_score": 30,
+        "sector": "입법·정책",
+        "title": "\"의심하고·끊고·확인해야\"…금감원 '대학생 금융교육' 진행",
+        "url": "https://www.asiatime.co.kr/article/20261118500345"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9050544626504167,
+        "relevance_score": 26,
+        "sector": "대부",
+        "title": "금감원 금소처장, 대학생에 금융사기 예방 특강…불법사금융 대응법도...",
+        "url": "https://n.news.naver.com/mnews/article/008/0005443381?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7683211395722969,
+        "relevance_score": 34,
+        "sector": "보험",
+        "title": "금융의 새로운 길을 열다…'2026 대한민국 금융혁신대상' 성료",
+        "url": "https://n.news.naver.com/mnews/article/008/0005443756?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9145600417766738,
+        "relevance_score": 27,
+        "sector": "입법·정책",
+        "title": "금감원 금소처장 \"의심하고, 끊고, 확인해야 금융사기 막는다\"",
+        "url": "https://n.news.naver.com/mnews/article/001/0016451192?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8915340700926476,
+        "relevance_score": 31,
+        "sector": "기타",
+        "title": "[단독] \"시총 377억인데 하루 9천억 거래 터졌다\"더니…금감원 결국 나섰...",
+        "url": "https://n.news.naver.com/mnews/article/215/0001273265?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8002335730452996,
+        "relevance_score": 24,
+        "sector": "감독·제재",
+        "title": "적립금·수익률 주춤 속 연말 출혈경쟁 과열… 금감원, 퇴직연금 불건전...",
+        "url": "https://www.globalepic.co.kr/view.php?ud=2026111915211567037cc35ccc5c_29"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8728381559285658,
+        "relevance_score": 20,
+        "sector": "대부",
+        "title": "“서류 전달 알바인 줄 알았는데”…금감원, 대학생에 금융사기 예방 교...",
+        "url": "http://www.metroseoul.co.kr/article/20261119500270"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8268501849272265,
+        "relevance_score": 22,
+        "sector": "감독·제재",
+        "title": "금감원 쇄신안 이르면 다음 주 발표…금융위 검사·제재 관여 확대에 내...",
+        "url": "https://n.news.naver.com/mnews/article/005/0001886224?sid=101"
+      }
+    ],
+    "no_topic_count": 3,
+    "sector_counts": {
+      "감독·제재": 2,
+      "기타": 1,
+      "대부": 3,
+      "보험": 1,
+      "입법·정책": 3
+    },
+    "topic_counts": {
+      "감독·제재": 1,
+      "금리·수수료·최고금리": 2,
+      "디지털자산": 1,
+      "불법사금융·불법추심·보이스피싱": 4,
+      "소비자보호·민원·불완전판매": 1,
+      "일정·브리핑": 1
+    }
+  }
+}
