@@ -1,0 +1,265 @@
+{
+  "clusters": {
+    "cluster_count": 281,
+    "cluster_size_max": 118,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 118,
+        "relevance_prob": 0.8106602600331073,
+        "relevance_score": 20,
+        "sector": "거시·시장",
+        "title": "\"대체 바닥이 어디야\"…코스피 4900선 붕괴, 반등 열쇠는?",
+        "url": "https://n.news.naver.com/mnews/article/008/0005444256?sid=101"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 796,
+    "displayed_articles": 203,
+    "final_tagged_representatives": 281,
+    "normalized_articles": 1053,
+    "raw_items": 1053,
+    "relevance_filtered_articles": 591,
+    "rule_filtered_articles": 792,
+    "tagged_before_cluster": 591
+  },
+  "date": "2026-11-21",
+  "generated_at": "2026-11-21T09:09:29.430688+09:00",
+  "publishers": {
+    "missing_publisher_count": 281,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 93,
+    "no_topic_ratio": 0.331,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.751258427616636,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "비트코인 6만달러 붕괴…우리기술투자·한화투자증권 갤럭시아머니트리...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=506543"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8471653115782629,
+        "relevance_score": 21,
+        "sector": "디지털자산",
+        "title": "코인 해킹에 ‘AI 카드’ 꺼낸 홍콩…코인 지갑·은행 계좌 함께 추적",
+        "url": "https://n.news.naver.com/mnews/article/421/0009302383?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6603500446151109,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "1000만원 맡기면 이자 차이 고작 2000원…2금융 예금 매력 '뚝'",
+        "url": "https://n.news.naver.com/mnews/article/008/0005444365?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.350002640104836,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "[기획] 애플페이 쥔 카뱅…현대카드는 ‘월급’, 카뱅은 ‘용돈’을 노...",
+        "url": "https://www.sentv.co.kr/article/view/sentv202611190166"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7863848687592431,
+        "relevance_score": 8,
+        "sector": "저축은행",
+        "title": "저축은행 부실, 타업권이 1년 더 부담 수순…남은 건 예보료율 인상 협...",
+        "url": "https://n.news.naver.com/mnews/article/008/0005444362?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6694972029073436,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "데리빗, 플랫폼 문제 조사 위해 거래 중단…미체결 주문 취소 가능",
+        "url": "https://www.tokenpost.kr/news/breaking/441702"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6390878577096563,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "중지쉬촹·즈푸 연계 계약 24시간 15.6%·12.0% 하락",
+        "url": "https://www.tokenpost.kr/news/cryptocurrency/441675"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6757732882255898,
+        "relevance_score": 5,
+        "sector": "디지털자산",
+        "title": "하이퍼리퀴드, 홍콩 SFC 경고 목록 올랐다…미결제약정 168억 달러 거래...",
+        "url": "https://www.wikitree.co.kr/articles/1176450"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6576701591386104,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[시세] 에테나(ENA) 8.37% 하락…0.0988달러 지지선 시험대",
+        "url": "http://coinreaders.com/272072"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6871844191068887,
+        "relevance_score": 8,
+        "sector": "기타",
+        "title": "싱쓰반도체, 중국 증감회 홍콩 IPO案 완료 보도",
+        "url": "https://www.tokenpost.kr/news/market/441539"
+      }
+    ],
+    "sector_counts": {
+      "감독·제재": 5,
+      "거시·시장": 26,
+      "기타": 88,
+      "대부": 37,
+      "디지털자산": 53,
+      "보험": 7,
+      "상호금융": 12,
+      "여전": 18,
+      "은행": 20,
+      "입법·정책": 9,
+      "자산운용·연기금": 2,
+      "저축은행": 3,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 24,
+      "감독·제재": 6,
+      "건전성·자본규제": 10,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 29,
+      "기업금융·익스포저": 1,
+      "디지털자산": 52,
+      "부동산·PF": 4,
+      "불법사금융·불법추심·보이스피싱": 32,
+      "사고·사기·횡령": 7,
+      "상품·영업·예금금리": 6,
+      "서민금융·대환·채무조정": 2,
+      "소비자보호·민원·불완전판매": 3,
+      "업계동정·사회공헌": 6,
+      "연체·부실": 14,
+      "일정·브리핑": 5,
+      "자금시장·유동성": 5,
+      "정책·제도개선": 2,
+      "증시·시장시황": 14,
+      "칼럼·오피니언": 4,
+      "해외·글로벌": 19,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8646672428153349,
+        "relevance_score": 29,
+        "sector": "대부",
+        "title": "신협, 부실채권 정리의 판 바꾼다…전담 자회사 설립한 이유",
+        "url": "https://sateconomy.co.kr/news/view/1065562130242157"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.7432139891561491,
+        "relevance_score": 30,
+        "sector": "상호금융",
+        "title": "신협자산관리회사 출범…부실채권 매입에 예금자보호기금 차입 길 열려",
+        "url": "http://www.dailypop.kr/news/articleView.html?idxno=104831"
+      },
+      {
+        "cluster_size": 11,
+        "relevance_prob": 0.9471405951465047,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "금감원, 가상자산사업자 보안점검 당부…부실 시 책임 엄정",
+        "url": "http://www.sisunnews.co.kr/news/articleView.html?idxno=250138"
+      },
+      {
+        "cluster_size": 11,
+        "relevance_prob": 0.9515927724261553,
+        "relevance_score": 27,
+        "sector": "디지털자산",
+        "title": "금감원, 가상자산사업자에 보안 강화 주문… \"취약점 방치 엄정 대응\"",
+        "url": "https://it.chosun.com/news/articleView.html?idxno=3000000001500"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.9174284211394655,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "울산경찰, 불법사금융 86건 적발…피해신고도 늘어",
+        "url": "https://n.news.naver.com/mnews/article/422/0000928116?sid=102"
+      },
+      {
+        "cluster_size": 16,
+        "relevance_prob": 0.5961338299310895,
+        "relevance_score": 21,
+        "sector": "여전",
+        "title": "카드소비 저성장에 조달금리까지…카드사 수익·건전성 동시 압박",
+        "url": "https://www.news2day.co.kr/article/20261120500252"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.736940828057715,
+        "relevance_score": 23,
+        "sector": "상호금융",
+        "title": "신협중앙회, 신협자산관리회사 창립식 개최… 관리약정 체결",
+        "url": "http://www.ttlnews.com/news/articleView.html?idxno=3164486"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9189253459660153,
+        "relevance_score": 22,
+        "sector": "감독·제재",
+        "title": "금감원 제재, 금융위 입김 커지나…내부서 독립성 훼손 우려",
+        "url": "https://n.news.naver.com/mnews/article/119/0003157864?sid=101"
+      },
+      {
+        "cluster_size": 4,
+        "relevance_prob": 0.91117225561925,
+        "relevance_score": 20,
+        "sector": "대부",
+        "title": "금감원, 가상자산사업자 28곳 보안점검 주문…\"취약점 방치 시 엄정 책...",
+        "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=903782"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8910804756029076,
+        "relevance_score": 20,
+        "sector": "입법·정책",
+        "title": "금감원, 디지털자산업계에 보안 경고...\"취약점 방치 사고 땐 엄정 대응...",
+        "url": "https://www.digitaltoday.co.kr/news/articleView.html?idxno=716947"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 1,
+      "대부": 3,
+      "디지털자산": 2,
+      "상호금융": 2,
+      "여전": 1,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "건전성·자본규제": 1,
+      "디지털자산": 4,
+      "부동산·PF": 1,
+      "불법사금융·불법추심·보이스피싱": 1,
+      "사고·사기·횡령": 1,
+      "연체·부실": 3,
+      "자금시장·유동성": 1
+    }
+  }
+}

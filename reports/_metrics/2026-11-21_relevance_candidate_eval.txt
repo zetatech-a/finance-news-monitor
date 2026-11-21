@@ -1,0 +1,9 @@
+Relevance candidate model evaluation
+Input files: reports/_candidates/2026-11-20_candidates.csv, reports/_candidates/2026-11-19_candidates.csv, reports/_candidates/2026-11-18_candidates.csv, reports/_candidates/2026-11-17_candidates.csv, reports/_candidates/2026-11-16_candidates.csv, reports/_candidates/2026-11-15_candidates.csv, reports/_candidates/2026-11-14_candidates.csv, reports/_candidates/2026-11-13_candidates.csv, reports/_candidates/2026-11-12_candidates.csv, reports/_candidates/2026-11-11_candidates.csv, reports/_candidates/2026-11-10_candidates.csv, reports/_candidates/2026-11-09_candidates.csv, reports/_candidates/2026-11-08_candidates.csv, reports/_candidates/2026-11-07_candidates.csv, reports/_candidates/2026-11-06_candidates.csv, reports/_candidates/2026-11-05_candidates.csv, reports/_candidates/2026-11-04_candidates.csv, reports/_candidates/2026-11-03_candidates.csv, reports/_candidates/2026-11-02_candidates.csv, reports/_candidates/2026-11-01_candidates.csv, reports/_candidates/2026-10-31_candidates.csv
+Total rows: 5000
+Used rows: 3516
+Labels: positive=2937 negative=579 review=1484
+Split: train=2637 test=879 stratified=True
+Evaluation skipped: False
+Metrics @ 0.65: accuracy=0.775 precision=0.994 recall=0.734 f1=0.845
+Model output: models/relevance_candidate.joblib

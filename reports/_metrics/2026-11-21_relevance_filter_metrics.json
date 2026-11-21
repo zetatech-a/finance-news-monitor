@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 31,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 22,
+  "candidate_hybrid_gray_rule_drop": 120,
+  "candidate_hybrid_gray_rule_keep": 22,
+  "candidate_hybrid_keep_overseas_global_reference": 19,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 449,
+  "candidate_hybrid_model_drop": 38,
+  "candidate_hybrid_model_keep": 96,
+  "candidate_hybrid_model_keep_with_domain_anchor": 96,
+  "candidate_hybrid_negative_drop": 4,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 449,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-21",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 31,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 4,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 1,
+    "candidate_hybrid_drop_negative_signal": 4,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 120,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 22,
+    "candidate_hybrid_keep_overseas_global_reference": 19,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 449,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 38,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 96
+  },
+  "dropped_count": 201,
+  "input_count": 792,
+  "kept_count": 591,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 792,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 35,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "영화 '스크루지: 크리스마스 캐럴', 돈밖에 모르는 구두쇠 노인… 성탄...",
+      "url": "https://www.100ssd.co.kr/news/articleView.html?idxno=214682"
+    },
+    {
+      "title": "부영 장남 이성훈 전 이사, 투자회사 ‘청명에셋’ 설립",
+      "url": "https://ilyo.co.kr/?ac=article_view&entry_id=513735"
+    },
+    {
+      "title": "[이슈] 금융회사 M&A 명암 ··· 새 주인 찾기 왜 어렵나",
+      "url": "https://www.datasom.co.kr/news/articleView.html?idxno=210897"
+    },
+    {
+      "title": "[청년의 빚과 빛②] 빚 갚으려 또 빚을 내기 전에…청년 금융의 고리를...",
+      "url": "https://www.ppss.kr/news/articleView.html?idxno=321799"
+    },
+    {
+      "title": "“산림 현장에 기관 와야”…안동시의회, 산림조합중앙회·국립산림과학...",
+      "url": "https://www.kukinews.com/article/view/kuk202611200180"
+    },
+    {
+      "title": "안동시의회, '산림조합중앙회·국립산림과학원 안동 이전 촉구 결의안'...",
+      "url": "https://www.imaeil.com/page/view/2026112015532450987"
+    },
+    {
+      "title": "국고채 금리 일제히 하락…코스피 5% 급락에 안전자산 선호",
+      "url": "http://www.kjdaily.com/article.php?aid=1795187249692996276"
+    },
+    {
+      "title": "[채권-마감] 주가 조정에 금리 급락…국고 3년·10년 3.7%·3.9% 하회",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4445812"
+    },
+    {
+      "title": "국채선물, 위험회피 반영해 상승 출발…코스피 급락",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4445732"
+    },
+    {
+      "title": "CSM 키운 박경원의 2년…iM라이프, 연임으로 힘 실을까",
+      "url": "http://www.ftoday.co.kr/news/articleView.html?idxno=370204"
+    }
+  ]
+}
