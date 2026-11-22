@@ -1,498 +1,6 @@
 {
   "version": 1,
   "entries": {
-    "a826b279a424263c39c175b8e0ded655": {
-      "url": "https://n.news.naver.com/mnews/article/018/0006364019?sid=101",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "서틱 룽후이 구 CEO는 최근 코인 해커들이 자산 관리의 약한 고리를 공격하므로 다층적 보안이 필요하다고 강조했다.",
-        "올해 상반기 지갑 탈취 사고 피해액은 4억 5000만 달러에 달하며 콜드월렛도 절대적으로 안전하지 않다고 지적했다.",
-        "그는 국내 디지털자산 시장이 장기 침투 방식을 쓰는 북한 해킹 조직 공격에 대비해 보안 체계를 바꿔야 한다고 당부했다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787155+09:00"
-    },
-    "d9e355a3d123c360507e382ef9263ec8": {
-      "url": "https://www.voakorea.com/a/fincen-fatf-reports-090426/8194303.html",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "미국 핀센과 FATF가 가상자산 및 지하금융을 활용한 자금세탁 위험과 수법에 대해 경고했다.",
-        "핀센은 돼지도살형 투자 사기로 가상자산 관련 서비스를 통해 범죄 수익을 세탁하는 사례를 분석했다.",
-        "FATF는 비공식 금융망이 가상자산 및 핀테크 기술과 결합해 디지털 하왈라로 확산되고 있다고 지적했다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787165+09:00"
-    },
-    "253c61675eabc43b61b934d606b72366": {
-      "url": "https://www.tokenpost.kr/news/policy/402677",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "미국 핀센은 동남아 사기단지와 연결된 가상자산 투자사기 의심 금융활동 규모를 127억 달러로 집계했다.",
-        "사기범들은 신뢰를 쌓은 뒤 가상자산 투자를 권유하고 테더 등 스테이블코인을 활용해 자금을 세탁했다.",
-        "핀센은 금융회사에 새로운 보고 키워드를 사용해 의심거래 감시 체계를 강화하라고 요청했다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787173+09:00"
-    },
-    "2994f683421b66447a6b45a91b868ae0": {
-      "url": "https://n.news.naver.com/mnews/article/014/0005571313?sid=102",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "가상자산 판매 사기 및 범죄수익은닉 혐의로 1심에서 징역 5년을 선고받았던 피고인이 항소심에서 무죄를 선고받았다.",
-        "법무법인 동인은 피고인이 사업의 허위성을 알거나 범행을 공모하지 않았음을 입증해 무죄를 끌어냈다.",
-        "항소심 재판부는 가상자산 사업이 사후에 실패했다는 결과만으로 사기 고의를 인정할 수 없다고 판단했다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787180+09:00"
-    },
-    "41d7e223fca5b4d70ea56e3590dac28b": {
-      "url": "https://www.tokenpost.kr/news/market/402558",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "미국 증시에 상장된 가상자산 관련 주요 종목 대부분이 24시간 기준 강세를 보였다.",
-        "사이퍼디지털은 16.36% 올라 가장 큰 상승률을 기록했으나 비트고는 1.16% 하락했다.",
-        "라이엇플랫폼스와 테라울프 등 거래소, 인프라, 채굴 관련 주요 기업들의 주가도 상승세를 나타냈다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787189+09:00"
-    },
-    "d88d3221776f532801db4fc3c9726387": {
-      "url": "https://www.tokenpost.kr/news/breaking/402530",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "가상자산 시장에서 가격 변동성이 확대되면서 15분 만에 2억 달러 규모의 롱 포지션이 청산됐다.",
-        "급격한 시세 변화로 레버리지 포지션이 증거금 요건을 맞추지 못해 주요 거래소에서 강제 정리가 발생했다.",
-        "이번 강제 청산 연쇄 반응이 가상자산 단기 변동성을 더욱 키운 것으로 분석됐다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787196+09:00"
-    },
-    "cbe5e7a95dfbabb9f8952d6a5734e937": {
-      "url": "https://www.tokenpost.kr/news/breaking/402451",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "미국 핀센이 동남아 사기센터와 연계된 가상자산 투자사기 의심 거래 규모를 약 127억 달러로 집계했다.",
-        "분석 대상 보고서 중 가상자산 업체가 포함된 송금서비스업체가 전체의 55%인 55억 달러를 차지했다.",
-        "사기 자금은 대부분 테더 등 스테이블코인으로 전환된 후 해외 거래소나 디파이를 통해 이동했다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787201+09:00"
-    },
-    "878062e4081b9f11f9a82cbe7e5980bb": {
-      "url": "https://www.joongangenews.com/news/articleView.html?idxno=545719",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "두나무는 준법경영 체계 안착을 위해 공정거래 자율준수 프로그램 강화 선포식을 개최했다.",
-        "임직원들은 부당 요구 금지, 공정거래법 준수, 이용자 보호 실현, 위반 지시 차단 등 4대 지침을 결의했다.",
-        "두나무는 정기 교육과 사내 소식지 발간 등을 통해 투명한 기업 문화를 지속 확립할 계획이다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787207+09:00"
-    },
-    "f81a566ca3d758e30d273d999f2c87a1": {
-      "url": "https://n.news.naver.com/mnews/article/014/0005571114?sid=105",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "가상자산 거래소 업비트 운영사인 두나무가 공정거래 자율준수 프로그램 강화 선포식을 진행했다.",
-        "행사에 참석한 임직원들은 부당 요구 금지와 공정거래법 준수 등 4대 핵심 실천 지침을 결의했다.",
-        "두나무는 지난해 CP 도입 이후 내부 통제 체계를 강화하기 위해 정기 교육 등을 이어갈 방침이다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787212+09:00"
-    },
-    "1888435432bc774868e26e294d557bbd": {
-      "url": "https://www.insightkorea.co.kr/news/articleView.html?idxno=253938",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "전북은행이 '크립토 뱅크' 구상을 밝힌 지 8개월이 지났으나 가상자산 담보대출은 아직 검토 단계에 머물러 있다.",
-        "담보권 설정과 가격 평가, 강제 청산, 법적 공시 절차 등 상품화를 위한 인프라와 구조가 부족한 상황이다.",
-        "실행 계획 없이 시장 선점 청사진만 앞세워 준비가 부족했다는 비판이 제기되고 있다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787217+09:00"
-    },
-    "43af2dcc6adc5cda2cf88d90b7305b88": {
-      "url": "http://www.lawissue.co.kr/view.php?ud=202609041625398208204ead0791_12",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "빗썸은 2026 청년 채용설명회에 참가하여 가상자산거래소의 주요 직무와 채용 정보를 청년들에게 소개했다.",
-        "이번 행사에는 17개 금융기관이 참여했으며 빗썸은 일대일 면담을 통해 직무 상담 및 산업 안내를 제공했다.",
-        "빗썸은 청년 구직자들이 전통 금융을 넘어 가상자산 분야의 직무 영역을 살펴볼 수 있도록 도왔다고 전했다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787223+09:00"
-    },
-    "59958e66e471f64b6041a78d108e7c76": {
-      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=484009",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "비트코인이 8만 달러를 돌파하자 국내 증시의 가상자산 관련 주가가 일제히 상승세를 나타냈다.",
-        "우리기술투자가 8.93% 오른 6220원에 장을 마쳤으며 갤럭시아머니트리와 한화투자증권도 급등했다.",
-        "미 연준의 금리 동결 기대감이 반영되며 위험자산 전반에 대한 투자 심리가 개선된 결과로 분석된다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787227+09:00"
-    },
-    "d2879c7dbc192d32d5aa833d053ff359": {
-      "url": "https://www.wikitree.co.kr/articles/1157264",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "가상자산 XRP 가격이 비트코인 강세와 호재에 힘입어 한때 10% 이상 급등한 1.48달러를 기록했다.",
-        "현물 ETF 자금 유입과 XRP 재무 관리 기업 에버노스의 SEC 등록 승인이 가격 상승을 끌어올렸다.",
-        "에버노스는 오는 30일 주주 투표를 거쳐 나스닥 시장에 공식 상장될 예정이다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787233+09:00"
-    },
-    "c678f0e230c11bc732bd058d019529e7": {
-      "url": "https://www.asiatoday.co.kr/kn/view.php?key=20260904010001798",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "비트코인이 8만 달러 선을 회복하면서 이더리움, XRP, 솔라나 등 주요 알트코인이 동반 상승했다.",
-        "이더리움은 하루 전보다 4.59% 오른 2506달러, XRP는 5.95% 오른 1.45달러에 거래됐다.",
-        "미 연준의 금리 동결 기대감으로 위험자산 선호 심리가 확산되며 알트코인으로 순환매가 나타났다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787238+09:00"
-    },
-    "f76c8723a91fcf01031d24c298e90846": {
-      "url": "https://n.news.naver.com/mnews/article/421/0009151542?sid=101",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "두나무가 인천 네스트 호텔에서 공정거래 자율준수 프로그램 강화 선포식을 개최했다.",
-        "임직원들은 부당 요구 금지와 정보 제공 등 4대 핵심 지침을 실천하며 준법 의식을 높이기로 했다.",
-        "두나무는 무역 범죄 단속 협력 공로로 개청 기념 관세청장 표창을 받기도 했다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787244+09:00"
-    },
-    "cfc3749312177fdd659b8960a7da68c6": {
-      "url": "https://www.job-post.co.kr/news/articleView.html?idxno=226214",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "솔라나가 국내 시장에서 14만원대를 회복하고 글로벌 시장에서도 100달러 저항선을 돌파했다.",
-        "미국 연준의 금리 동결 기대감이 상승하면서 투자 심리가 개선돼 가상자산 전반이 반등했다.",
-        "단기적으로 100달러 지지 여부에 따라 110달러 재시험 가능성과 미국 경제지표에 따른 변동성이 주시된다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787250+09:00"
-    },
-    "3b77d4d8bae3fbb9533b794d335c0120": {
-      "url": "https://www.job-post.co.kr/news/articleView.html?idxno=226213",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "가상자산 XRP가 급등 후 국내 거래소에서 1980원대에 진입하며 2000원선을 앞두고 있다.",
-        "미국 연준의 금리 인상 우려 완화와 리플 관련 기업 에버노스의 나스닥 상장 추진이 호재로 작용했다.",
-        "향후 국내 2000원 돌파 여부와 미국 고용·물가지표 발표가 단기 가격 흐름의 주요 변수가 될 전망이다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787255+09:00"
-    },
-    "e2900e5154cd3371a3f28667eda17e27": {
-      "url": "https://www.job-post.co.kr/news/articleView.html?idxno=226212",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "이더리움이 국내 시장에서 340만원대를 회복하고 글로벌 시세도 2500달러 선을 되찾았다.",
-        "미국 통화정책 부담 완화로 국채금리가 하락하면서 가상자산을 포함한 위험자산 투심이 개선됐다.",
-        "향후 미국 고용 및 소비자물가지수 결과와 기관 자금 수급이 추가 상승의 지속성을 결정할 전망이다."
-      ],
-      "created_at": "2026-09-05T09:07:22.787260+09:00"
-    },
-    "5ed8f3ae67bdc67fd982f97166aa8796": {
-      "url": "https://www.newsworks.co.kr/news/articleView.html?idxno=852679",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "비트코인 가격이 8만달러선을 돌파하면서 가상자산 관련주가 장중 강세를 보이고 있다.",
-        "한화투자증권은 전일 대비 9.40% 오른 5120원에 거래 중이며 갤럭시아머니트리와 우리기술투자 등도 나란히 상승했다.",
-        "비트코인 가격 상승은 크리스토퍼 월러 미국 연방준비제도 이사의 금리 동결 지지 발언 영향으로 풀이된다."
-      ],
-      "created_at": "2026-09-05T09:07:41.971992+09:00"
-    },
-    "8d231763a8d9300ac12c76a5627c4384": {
-      "url": "https://www.econovill.com/news/articleView.html?idxno=749844",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "두나무가 공정거래 자율준수 프로그램 강화 선포식을 열고 준법경영 체계 강화에 나섰다.",
-        "오경석 대표와 주요 임직원이 참석해 부당한 요구 금지와 공정거래법 준수 등 구체적 지침을 결의했다.",
-        "두나무는 정기 교육과 사내 소식지 발간을 통해 임직원의 준법 의식을 높여갈 방침이다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972017+09:00"
-    },
-    "f65ef68928440364ac3251856994beea": {
-      "url": "https://n.news.naver.com/mnews/article/092/0002436249?sid=105",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "가상자산 거래소들의 수수료 무료 경쟁에도 업비트와 빗썸의 양강 체제가 유지되고 있다.",
-        "국내 원화 거래소 점유율은 업비트 57.6%, 빗썸 36.9%로 두 거래소가 대부분을 차지했다.",
-        "코빗과 코인원의 수수료 무료 정책이 신규 이용자 유입과 유동성 확대로 이어질지 지켜봐야 한다는 평가다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972026+09:00"
-    },
-    "cfae5b14496995f060fec74fcfa8f303": {
-      "url": "https://n.news.naver.com/mnews/article/088/0001026797?sid=101",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "비트코인이 8만 달러선을 돌파하면서 국내 가상자산 관련 주가가 장 초반 일제히 강세를 보였다.",
-        "우리기술투자가 10.86%, 한화투자증권이 7.69% 상승했으며 갤럭시아머니트리와 위지트 등도 오름세를 나타냈다.",
-        "미국 연방준비제도의 기준금리 동결 가능성이 부각되며 위험자산 투자심리가 회복된 영향으로 풀이된다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972033+09:00"
-    },
-    "82eeff730a4ef72b84818385ffc5781d": {
-      "url": "https://www.news2day.co.kr/article/20260904500109",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "두나무가 공정거래 자율준수 프로그램을 현장 단위로 확대하고 리더 행동지침을 마련했다.",
-        "선포식에서는 부당한 영향력 행사 금지와 공정거래법 준수 등 4대 핵심 지침을 제시했다.",
-        "두나무는 정기 교육과 사내 소식지 발간을 이어가며 준법경영 체계를 조직 전반에 정착시킬 계획이다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972043+09:00"
-    },
-    "9f554e30d9841d9feba469bc6982a168": {
-      "url": "https://www.newspim.com/news/view/20260904000308",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "스테이블코인 관련주가 비트코인 급등과 서클인터넷 상승 영향으로 장 초반 일제히 강세를 보였다.",
-        "헥토파이낸셜이 17.98% 오른 2만6250원, 쿠콘이 17.76% 상승한 3만1500원에 거래됐다.",
-        "국내에서도 금융위원회를 중심으로 원화 스테이블코인 제도화를 위한 입법 논의가 진행 중이다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972049+09:00"
-    },
-    "316772ee3685c23bccda955a01e4adeb": {
-      "url": "https://www.ajunews.com/view/20260904094709739",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "비트코인 가격이 상승하고 미국 기준금리 인상 우려가 완화되면서 한화투자증권 주가가 강세를 보였다.",
-        "한화투자증권은 장 초반 전 거래일 대비 11.8% 오른 5230원에 거래됐다.",
-        "두나무 지분을 보유한 한화투자증권 외에도 우리기술투자와 다날 등 가상화폐 관련주가 일제히 상승했다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972056+09:00"
-    },
-    "19837e5d807a3957c479b4e21a1b23b6": {
-      "url": "https://n.news.naver.com/mnews/article/018/0006363625?sid=101",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "셀바스AI의 음성인식 솔루션 'SELVAS STT'가 빗썸 고객센터 상담서비스에 상용화됐다.",
-        "해당 솔루션 적용으로 상담원의 평균 상담 통화시간이 약 30% 단축되고 첫 상담 해결률이 높아졌다.",
-        "셀바스AI는 금융과 의료 등 전문 분야를 바탕으로 산업별 AI 음성인식 역량을 지속 고도화할 계획이다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972062+09:00"
-    },
-    "06a2cdcfcbf8ae7076bb6a27dd1cb68e": {
-      "url": "https://n.news.naver.com/mnews/article/008/0005409404?sid=101",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "미국 연방준비제도 이사의 발언으로 비트코인이 8만달러를 회복하자 국내 가상자산 관련주가 강세를 보였다.",
-        "우리기술투자가 14.71%, 한화투자증권이 12.39% 상승하는 등 관련 기업들의 주가가 오름세를 기록했다.",
-        "크리스토퍼 월러 연준 이사는 인플레이션 목표 달성이 지속되면 현 정책금리 유지를 지지하겠다고 밝혔다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972068+09:00"
-    },
-    "1fb1bf53e7839007e668e873f2a7d719": {
-      "url": "https://www.decenter.kr/article/20087117?ref=naverdc",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "2027년 시행 예정인 가상자산소득 과세제도를 거래 유형별로 재설계해야 한다는 주장이 제기됐다.",
-        "현행법은 양도와 대여만 기타소득으로 다루어 스테이킹과 디파이 등 다양한 거래를 설명하기에 한계가 있다.",
-        "전문가는 과세표준 확립을 위해 취득가액과 소득 구분, 손실 이월 규정을 법률로 명확히 정해야 한다고 강조했다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972076+09:00"
-    },
-    "32826a786831347a3cb6504857688af9": {
-      "url": "https://sports.hankooki.com/news/articleView.html?idxno=6939079",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "두나무가 공정거래 자율준수 프로그램 강화 선포식을 열고 내부 준법 기준을 구체화했다.",
-        "참석자들은 부당 영향력 행사 금지와 공정거래법 준수 등 핵심 실천 지침을 이행하기로 결의했다.",
-        "두나무는 향후 정기 교육과 사내 소식지 발간을 통해 임직원의 준법 의식을 강화할 계획이다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972081+09:00"
-    },
-    "ef91f1d6655c0d29be4204c72ecab3c8": {
-      "url": "https://www.newsclaim.co.kr/news/articleView.html?idxno=3074289",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "두나무가 인천 네스트 호텔에서 공정거래 자율준수 프로그램 강화 선포식을 개최했다.",
-        "오경석 대표와 임직원들은 부당 영향력 금지와 이용자 보호 등 4대 핵심 실천 지침을 결의했다.",
-        "두나무는 정기 교육과 사내 소식지 발간 등 다양한 활동을 통해 사내 준법 의식을 높일 예정이다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972086+09:00"
-    },
-    "a51516df6946be283f1bebea8f18cf57": {
-      "url": "https://bizhankook.com/articles/crypto-weekly-report-pon-surge.html",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "암호화폐 시장에서 Pons가 주간 상승률 433.34%를 기록하며 상승률 1위를 차지했다.",
-        "로빈후드 체인 생태계와 연결된 Pons는 신규 상장과 유동성 확대에 힘입어 가격이 급등했다.",
-        "아비트럼과 유니스왑도 각각 53.67%, 38.00% 상승하며 알트코인 순환매 흐름을 보였다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972092+09:00"
-    },
-    "e09cac988046501c0dd5b2f79e7fd57e": {
-      "url": "https://www.techm.kr/news/articleView.html?idxno=154926",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "미국 코인베이스가 단일 종목 주식을 기초자산으로 한 무기한 선물의 미국 출시를 추진한다.",
-        "코인베이스는 SEC에 관련 등록 서류를 제출하며 종합 투자 플랫폼으로의 진화를 도모하고 있다.",
-        "반면 한국 거래소들은 2단계 입법 지연으로 신사업 확대와 금융 결합에 제약을 받고 있다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972098+09:00"
-    },
-    "522dd7d35927f8ae04e854452c3cf68d": {
-      "url": "https://www.techm.kr/news/articleView.html?idxno=154922",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "두나무가 공정거래 자율준수 프로그램을 현장 조직까지 확대하며 내부통제 체계를 강화하고 있다.",
-        "두나무는 부당한 영향력 행사 금지 및 이용자 정확한 정보 제공 등 4대 실천지침을 명문화했다.",
-        "오경석 대표는 리더들의 솔선수범을 강조하며 시장의 신뢰를 받는 기업을 만들겠다고 밝혔다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972104+09:00"
-    },
-    "fe5c6e90ce277fd117781c7b790fdcf2": {
-      "url": "https://www.techm.kr/news/articleView.html?idxno=154921",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "비트코인이 미국 금리 인상 우려 완화와 달러 약세에 힘입어 8만1000달러선을 회복했다.",
-        "크리스토퍼 월러 연준 이사가 9월 기준금리 동결 가능성을 언급하면서 위험자산 심리가 개선됐다.",
-        "시장 전문가들은 향후 발표될 미국의 소비자물가지수를 금리 결정의 핵심 변수로 보고 있다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972110+09:00"
-    },
-    "1cc4d04203d6530fa6d3657b319a06d9": {
-      "url": "https://www.tokenpost.kr/news/economy/402811",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "한국은행과 금융당국이 9월 7일부터 국민소득, 산업별대출금, 가계대출 등 주요 지표를 공개한다.",
-        "한국은행은 2분기 예금취급기관 산업별대출금과 8월 금융시장 동향 등을 순차적으로 발표할 예정이다.",
-        "금융감독원은 해외 부동산펀드 점검과 전 금융권 CISO 간담회 등 금융시장 점검을 진행한다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972116+09:00"
-    },
-    "86875981ced98deba95a06af48dd47f2": {
-      "url": "http://www.intn.co.kr/news/articleView.html?idxno=2053078",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "정부가 상장폐지 시가총액 기준 강화 시행을 6개월 유예해 2027년 7월부터 적용하기로 했다.",
-        "시가총액 미달 기업이라도 재무 요건을 갖춘 흑자 기업은 정리매매 없이 코넥스로 이전상장할 수 있다.",
-        "구윤철 부총리는 기업들의 선의의 피해를 최소화하도록 제도를 운용하겠다고 밝혔다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972122+09:00"
-    },
-    "e4ea7a2dded99a4b952c9a0684bf8668": {
-      "url": "http://www.opinionnews.co.kr/news/articleView.html?idxno=143996",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "달러·원 환율이 두 달 만에 200원 급락하며 미국 주식 투자자들의 원화 환산 손실이 커졌다.",
-        "서학개미 순매수 1위인 SOXL 주가가 반토막 나면서 투자자들은 환차손과 주가 하락의 이중고를 겪고 있다.",
-        "증권가는 연준의 금리 동결과 국내 반도체 수출 호조로 원화 강세 흐름이 지속될 것으로 전망했다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972128+09:00"
-    },
-    "5c3d72009102f7c42e24ead4bcf5d91a": {
-      "url": "https://www.mdtoday.co.kr/news/articleView.html?idxno=610946",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "정부가 코스피와 코스닥의 상장폐지 시가총액 기준 상향 조정을 6개월 유예하기로 했다.",
-        "상장폐지 대상 기업 중 일정 재무 요건을 갖춘 경우 정리매매 없이 코넥스로 이전상장할 수 있다.",
-        "구윤철 부총리는 금리 상승에 따른 취약차주 지원방안을 차질 없이 추진하겠다고 밝혔다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972133+09:00"
-    },
-    "da6f5877d417ada614480f44fc1c55c8": {
-      "url": "https://n.news.naver.com/mnews/article/366/0001190444?sid=101",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "한국과 미국의 장기 국채 금리가 급등세를 보인 후 일시적으로 소폭 하락했다.",
-        "정부는 시장상황 점검회의를 열고 금리 상승 압력에 대응해 시장 안정 관리를 추진하기로 했다.",
-        "정부는 중동전쟁, 국채발행 확대, 기준금리, AI 투자를 금리 자극의 주요 리스크로 지목했다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972139+09:00"
-    },
-    "fe6f999518c3a227be83d72a8c05dfea": {
-      "url": "https://www.widedaily.com/news/articleView.html?idxno=300641",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "정부가 코스닥 상장폐지 시가총액 기준 300억원 상향 적용 시점을 내년 7월로 연기했다.",
-        "퇴출 위기에 놓인 기업 중 재무 요건을 충족한 곳은 정리매매 없이 코넥스로 이전 상장할 수 있다.",
-        "정부와 관계기관은 국내외 금융시장 현안을 점검하고 채권 시장 변동성 관리에 나서기로 했다."
-      ],
-      "created_at": "2026-09-05T09:07:41.972144+09:00"
-    },
-    "4ff08c768faa338ee857a1f06fce3a58": {
-      "url": "https://www.fntoday.co.kr/news/articleView.html?idxno=392156",
-      "model": "gemini-3.6-flash",
-      "prompt_version": 4,
-      "schema_version": 3,
-      "lines": [
-        "정부는 시가총액 요건 미달로 퇴출 위기에 처한 기업이 정리매매 없이 코넥스 시장으로 이전 상장할 수 있는 보완책을 발표했다.",
-        "올해 7월 1일 이후 관리종목 지정 기업 중 영업이익 흑자 등 재무요건을 갖춘 경우 적용되며 시총 기준 상향도 6개월 유예된다.",
-        "이번 조치로 퇴출 위기에 내몰렸던 코스닥 기업 수백 여 곳이 숨통을 트게 될 전망이다."
-      ],
-      "created_at": "2026-09-05T09:08:16.032641+09:00"
-    },
     "06c8cc3d50e181a8489bd06473402970": {
       "url": "https://www.pointe.co.kr/news/articleView.html?idxno=84304",
       "model": "gemini-3.6-flash",
@@ -120000,6 +119508,498 @@
         "전북지회는 고령층을 대상으로 찾아가는 소비자 상담과 보이스피싱 피해 예방 교육을 지속하고 있다."
       ],
       "created_at": "2026-11-21T09:09:29.323890+09:00"
+    },
+    "b4a6b3a380ddb3dc33521c4fe88b26e9": {
+      "url": "http://www.segyebiz.com/newsView/20261121503133?OutUrl=naver",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행 금융통화위원회가 오는 26일 올해 마지막 통화정책방향 회의를 연다.",
+        "금융위원회는 이보다 앞선 24일 디지털자산법 정부안을 공개할 예정이다.",
+        "금통위는 기준금리 결정과 함께 위원 7명이 예상하는 6개월 뒤 기준금리 수준을 점도표로 공개한다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626199+09:00"
+    },
+    "0f07e1075bb1dfcc8fd0b9252689bebc": {
+      "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=261442",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "최근 금융보안원과 다우오피스 등에서 발생한 침해사고는 권한 인가 체계와 연관되어 있다.",
+        "관리자 기능 인가 실패와 객체 수준 인가 실패는 주요 보안 점검 대상으로 꼽힌다.",
+        "가상자산거래소와 주요 금융사들은 내부 업무망과 관리자 권한에 대한 점검을 받고 있다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626216+09:00"
+    },
+    "05a5272a1fcbf9abca236209846c3d50": {
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209648",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융위원회가 대형 금융회사의 전자금융기반시설 취약점 점검 주기를 반기 1회로 단축한다.",
+        "총자산 2조원 이상이면서 상시 종업원이 300명 이상인 금융회사와 전자금융업자가 대상이다.",
+        "금융위는 관련 개정안에 대해 11월 30일까지 의견을 받고 2027년 1분기 시행을 추진한다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626224+09:00"
+    },
+    "9011d01066d1f3a209801ab85b47f485": {
+      "url": "http://www.bizwnews.com/news/articleView.html?idxno=152613",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "대신증권은 진승욱 대표이사가 서민금융진흥원 주관 사람 살리는 금융 릴레이 캠페인에 동참했다고 밝혔다.",
+        "이번 캠페인은 불법사금융 피해 예방과 금융취약계층 보호의 중요성을 알리는 데 목적을 뒀다.",
+        "진 대표는 다음 참여자로 엄주성 키움증권 대표와 김송규 대신자산신탁 대표를 지명했다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626230+09:00"
+    },
+    "9abdf4e3b9eb07e34d51c7c5fdc78be8": {
+      "url": "https://www.sentv.co.kr/article/view/sentv202611200134",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "금융감독원은 가상자산업권에 해킹과 침해사고에 대비한 외부 접점 점검을 당부했다.",
+        "금감원은 점검이 부실하거나 취약점을 방치해 침해사고가 발생하면 책임을 묻겠다고 밝혔다.",
+        "가상자산사업자는 24시간 거래 특성에 맞춰 상시 모니터링과 대응체계를 갖춰야 한다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626236+09:00"
+    },
+    "797d1eb908923bdd4d460bfd1b8842ac": {
+      "url": "https://www.ekn.kr/web/view.php?key=20261121020322813",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "올해말까지 만기가 도래하는 카드채는 5조2400억원에 달해 업계의 이자부담이 늘어날 전망이다.",
+        "서지용 한국신용카드학회장은 조달비용 증가로 카드사들의 수익성 개선이 어려워졌다고 밝혔다.",
+        "카드사들은 조달수단 다변화와 비용절감 등으로 어려움을 극복해야 한다는 공감대가 형성됐다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626242+09:00"
+    },
+    "bab848fb80d7447bf74df6e1e5693507": {
+      "url": "https://busanmbc.co.kr/01_new/new01_view.asp?idx=291246",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "사하구의 한 새마을금고에서 아들의 집을 사겠다며 1억 2천만 원을 인출하려던 70대 여성이 피해를 면했다.",
+        "신평동 신괴정새마을금고의 한 직원은 거액을 인출하려는 여성을 수상히 여겨 경찰에 신고했다.",
+        "사하경찰서는 보이스피싱 피해를 막은 은행 직원에게 감사장과 포상금을 전달했다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626249+09:00"
+    },
+    "84b5ba24bacf27c0a59b572c0c49e2b8": {
+      "url": "http://www.jeonmin.co.kr/news/articleView.html?idxno=450884",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "신협 조합의 부실채권을 전문적으로 사들이고 관리하는 신협자산관리회사가 공식 출범했다.",
+        "신협중앙회는 지난 19일 신협중앙연수원에서 신협자산관리회사 창립식을 개최했다.",
+        "신협자산관리회사는 부실채권 매입과 매각, 채권 관리 및 회수 업무를 맡는다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626259+09:00"
+    },
+    "7845296349fe1236e6c5bb5883a60b83": {
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4445850",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "뉴욕 금융시장은 인공지능 관련주를 중심으로 투매가 확산하면서 위험회피 심리가 고조됐다.",
+        "스탠더드앤드푸어스 500지수는 7거래일 내림세를 타며 7개월 만에 7,000선을 하회했다.",
+        "기술주 위주의 나스닥 종합지수는 5.28% 떨어지며 코로나 사태 이후 최악의 한 주를 보냈다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626266+09:00"
+    },
+    "ff1769966b803ded70646caee57464fe": {
+      "url": "https://n.news.naver.com/mnews/article/448/0000652529?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "10월 국내 카드사의 카드론 잔액이 넉 달 만에 증가세로 돌아섰다.",
+        "9개 카드사의 10월 말 카드론 잔액은 42조 6701억원으로 전월보다 약 3297억원 늘었다.",
+        "분기 말 부실채권 상매각 기저효과와 주식 변동성에 따른 증시 자금 수요가 원인으로 꼽힌다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626271+09:00"
+    },
+    "91764ae827ba9854bd886dec25fb3b1a": {
+      "url": "https://www.asiatime.co.kr/article/20261116500389",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "현역 복무중인 국군 장병들의 과도한 채무를 막기 위해 대부업권의 일반 신용대출이 제한된다.",
+        "금융감독원은 현역병에 대한 대부업체의 일반 신용대출을 금지하는 표준업무방법서를 제정할 계획이다.",
+        "가족 생계비나 의료비 등 급전 수요를 고려해 담보대출과 소액 비상금대출은 유지된다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626276+09:00"
+    },
+    "397e31c165498a40be956ccd72a5562d": {
+      "url": "http://www.jeollailbo.com/news/articleView.html?idxno=817400",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "NH농협은행 수송동지점 직원의 세심한 관찰과 신속한 신고로 2500만원의 보이스피싱 피해를 막았다.",
+        "고객이 현금을 인출하려는 과정에서 가족과의 통화 내용 중 이상한 정황이 포착됐다.",
+        "군산경찰서는 보이스피싱 예방에 기여한 은행 직원에게 감사장을 수여했다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626281+09:00"
+    },
+    "86f58742ad075a3b87e1a73d61ae6557": {
+      "url": "https://n.news.naver.com/mnews/article/001/0016455981?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "시중은행 우대금리 축소 실태와 관련해 금융당국이 이달 내로 자체 점검결과를 취합한다.",
+        "은행들이 가산금리 인하 폭을 상쇄하기 위해 우대금리를 축소했다는 지적이 제기됐다.",
+        "당국은 고금리 차주 부담 완화를 위해 10년 이상 장기 고정금리 주담대 상품 활성화도 논의한다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626286+09:00"
+    },
+    "1c7173f8d5cb5185ee13b415780c5769": {
+      "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=720556",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "우리은행의 부실채권이 3분기까지 늘어나는 동안 대손충당금 잔액은 감소했다.",
+        "이익잉여금에 적립하는 대손준비금은 11.4% 늘어 4대 은행 중 증가 폭이 가장 컸다.",
+        "부실채권이 실제 손실로 이어질 경우 향후 실적에 부담으로 작용할 수 있다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626290+09:00"
+    },
+    "a97f63d76bccaa5eb814fb10bf5d9d63": {
+      "url": "https://www.youngnong.co.kr/news/articleView.html?idxno=72091",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "농협상호금융이 블록체인 기반 디지털자산 거래 중 착오송금을 방지하는 기술을 개발했다.",
+        "농협상호금융은 파라메타와 공동으로 블록체인 금융기술 특허 2건을 출원했다.",
+        "이번 특허 출원은 향후 디지털자산 시장 확대에 대비한 스테이블코인 대응 전략의 일환이다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626294+09:00"
+    },
+    "e34cd5ff57c95300665419ce1ed98e3f": {
+      "url": "https://www.g-enews.com/view.php?ud=202611201535135455a6e8311f64_1",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "카드사들이 시장금리 상승 여파로 단기물 중심의 자금조달 전략을 강화하고 있다.",
+        "삼성전자와 신한카드 등 주요 카드사의 단기 조달 비중이 큰 폭으로 상승했다.",
+        "만기가 빠른 단기물 특성상 차환 과정에서 높은 금리를 부담해야 하는 위험이 존재한다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626304+09:00"
+    },
+    "469ad9ef24bf297169ead77ebdaa6073": {
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1732553",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국내 카드사의 카드론 잔액이 넉 달 만에 증가세로 돌아섰다.",
+        "9개 카드사의 10월 말 카드론 잔액은 전월보다 0.78% 늘어난 42조6천701억원을 기록했다.",
+        "리볼빙과 현금서비스 잔액도 함께 늘어나며 서민과 소상공인의 급전 수요가 이어졌다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626308+09:00"
+    },
+    "53faf8ee2061774c7a879681f5e46f36": {
+      "url": "https://www.koreareport.co.kr/news/articleView.html?idxno=54993",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국내 카드사 9곳의 카드론 잔액이 10월 말 기준으로 넉 달 만에 반등했다.",
+        "단기카드대출인 현금서비스 잔액도 큰 폭으로 늘어나며 카드론 증가액을 넘어섰다.",
+        "결제성 리볼빙 이월잔액과 대환대출 잔액도 함께 증가세를 기록했다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626312+09:00"
+    },
+    "91e712359ea5ced99bde8b7ccbcd7828": {
+      "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1732547",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 시장의 하락세가 심화하면서 비트코인이 4개월 만에 6만 달러선을 내줬다.",
+        "기관투자자 자금 이탈과 미국 통화긴축 우려가 겹치면서 7주 연속 약세를 이어갔다.",
+        "비트코인 현물 ETF에서 대규모 자금이 이탈하며 시장 불확실성이 커졌다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626316+09:00"
+    },
+    "a45891d7242a00695409fb2ecd93a5d3": {
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=506654",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "국내 가상자산 시장의 사업 구조와 지형을 바꿀 디지털자산기본법 정부안이 공개된다.",
+        "거래소 소유분산 규제와 원화 스테이블코인 발행 주체가 주요 쟁점으로 다뤄진다.",
+        "증권사와 블록체인 관련 기업들은 법안 도입에 따른 수혜와 변화에 주목하고 있다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626321+09:00"
+    },
+    "620bd7d3a50a759a5f32ae8e596560d9": {
+      "url": "https://n.news.naver.com/mnews/article/016/0002726613?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산을 1000만원 이상 보유한 거래소 계정의 약 45%가 50대 이상 명의인 것으로 나타났다.",
+        "고인이 가상자산을 보유하고 있어도 안심상속 원스톱 서비스 조회 대상에서 빠져 있어 확인이 어렵다.",
+        "가상자산을 상속재산 통합조회 대상에 포함하고 제도를 개선해야 한다는 지적이 나온다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626325+09:00"
+    },
+    "f9b5c3a347ecfb5e48085bfbef48a242": {
+      "url": "https://www.insight.co.kr/news/583023",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국 뉴욕증시에서 인공지능 관련주 매도세가 확산하면서 비트코인 가격이 8000만원 아래로 떨어졌다.",
+        "주요 가상자산도 일제히 하락세를 기록하며 시장 전반이 위축됐다.",
+        "레버리지 투자자들의 강제 청산이 겹치면서 낙폭이 커진 것으로 분석된다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626329+09:00"
+    },
+    "35f611eaba1770e54df6c276c985e09c": {
+      "url": "https://n.news.naver.com/mnews/article/001/0016455990?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "해킹 피해가 발생한 가상자산 지갑 디센트의 앱 지갑 서비스가 종료 수순에 들어갔다.",
+        "디센트 운영사는 이용자들에게 보유 자산을 다른 지갑으로 이전하도록 안내하고 있다.",
+        "해킹 발생 후 두 달이 넘도록 정확한 원인과 피해 규모는 파악되지 않은 상태다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626334+09:00"
+    },
+    "a6784fcd63a81c15b8eed5eb49406fa9": {
+      "url": "https://www.webeconomy.co.kr/news/articleView.html?idxno=2385381",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "두나무가 2026년 3분기 매출 감소와 함께 영업이익과 당기순이익이 적자로 전환했다.",
+        "업비트의 자동매수 서비스 코인모으기는 누적 투자액 1조원을 돌파했다.",
+        "두나무는 기업 대상 블록체인 금융 인프라 협력을 확대하며 관련 사업을 추진하고 있다."
+      ],
+      "created_at": "2026-11-22T09:04:41.626340+09:00"
+    },
+    "00e718b7545e580b467c6ae65240e3a9": {
+      "url": "https://www.etoday.co.kr/news/view/2650688",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 업계의 인수합병이 이어지고 있으나 기업 매각이 반드시 토큰 보유자에 대한 보상으로 이어지지는 않는다.",
+        "인수 대상과 거래 조건에 따라 기존 토큰의 처리 방식과 인수대금 귀속 주체는 제각각 다르게 나타난다.",
+        "토큰 보유자는 인수 소식에 앞서 보유한 토큰의 권리와 인수 조건, 거래소 지원 여부를 확인해야 한다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221489+09:00"
+    },
+    "ad2a12582c14f28a08d6bade29369d65": {
+      "url": "https://n.news.naver.com/mnews/article/016/0002726625?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행은 오는 26일 금융통화위원회를 열고 기준금리를 연 3.25%로 올릴 가능성에 시장의 무게가 실린다.",
+        "3분기 실질 국내총생산 성장률이 1%를 기록하고 10월 소비자물가 상승률도 2.8%로 목표치를 웃돌았다.",
+        "이번 회의에서 발표될 수정 경제전망과 6개월 뒤 금리 전망을 담은 점도표에 시장의 관심이 집중된다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221507+09:00"
+    },
+    "5feff8d553f26712494f12063fec9468": {
+      "url": "https://www.g-enews.com/view.php?ud=202611201430237271bb91c46fcd_1",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행은 오는 26일 열리는 금융통화위원회에서 기준금리를 현행 연 3.00%에서 3.25%로 인상할 것으로 전망된다.",
+        "한은의 물가안정목표를 웃도는 고물가와 4%에 근접하는 성장세가 이어지면서 추가 긴축 압력이 커지고 있다.",
+        "이번 금리 결정과 함께 공개되는 수정 K-점도표를 통해 향후 최종 금리 수준을 가늠할 수 있을 전망이다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221513+09:00"
+    },
+    "b5e41ac7062a950321f8e09f6ad4dfa3": {
+      "url": "https://www.econovill.com/news/articleView.html?idxno=758068",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "인공지능 투자 회의론과 미국의 추가 금리 인상 가능성이 겹치면서 국내 코스피 지수는 4900선을 내줬다.",
+        "이번 주 코스피는 전주 대비 7.95% 하락한 4869.96에 거래를 마치며 양 시장에 매도 사이드카가 발동됐다.",
+        "미국 10월 개인소비지출 물가지수 발표와 한국은행 금융통화위원회 등 주요 변수를 앞두고 불확실성이 지속된다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221518+09:00"
+    },
+    "3492a9134b7a0d69f8c7879cd500e239": {
+      "url": "https://n.news.naver.com/mnews/article/052/0002436049?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "이번 주 코스피는 인공지능 자금 조달 우려와 반도체 업종 투자심리 위축으로 4800선으로 후퇴했다.",
+        "지수는 한 주 동안 7.95% 하락했으며 지난 20일에는 코스피와 코스닥에 매도 사이드카가 발동됐다.",
+        "다음 주는 미국 10월 개인소비지출 물가지수 발표와 한국은행 금융통화위원회를 앞두고 변동성에 유의해야 한다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221523+09:00"
+    },
+    "7e2a4eae4640b25cd1fdc33a9e3fd4d5": {
+      "url": "https://n.news.naver.com/mnews/article/374/0000545054?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "한국은행은 오는 26일 금융통화위원회를 열고 올해 마지막 기준금리 결정과 함께 수정 경제전망을 발표한다.",
+        "금융위원회는 24일 가상자산위원회를 개최하여 스테이블코인 발행과 유통 등이 담긴 디지털자산법 정부안을 공개한다.",
+        "금융감독원은 오는 27일 공공기관 지정 유예에 따른 후속 조치로 금융사 검사 관행 개선을 담은 쇄신안을 내놓는다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221527+09:00"
+    },
+    "1ccdda8fc341829c7cf61aa926d29e10": {
+      "url": "https://n.news.naver.com/mnews/article/018/0006413565?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국 뉴욕증시는 인공지능 랠리에 기대를 모았던 앤스로픽의 상장이 오히려 매도의 방아쇠가 되며 폭락했다.",
+        "나스닥100지수는 한 주 동안 10% 하락해 코로나19 팬데믹 시작 시점 이후 가장 큰 주간 낙폭을 기록했다.",
+        "엔비디아에 대한 회계 조사 보도와 미 연방준비제도의 연속 금리 인상 전망이 시장을 짓눌렀다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221532+09:00"
+    },
+    "a4499998d93a63b5b95ffc027eaff692": {
+      "url": "https://n.news.naver.com/mnews/article/665/0000008618?sid=101",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "인공지능 거품 우려가 강타하면서 뉴욕증시의 나스닥지수가 하루 만에 5% 넘게 폭락해 올해 상승분을 모두 반납했다.",
+        "스탠더드앤드푸어스500지수와 다우존스30산업평균지수도 고점 대비 10% 이상 하락하며 조정장에 진입했다.",
+        "이런 와중에 미 연방준비제도 인사들은 현재 금리로 물가를 잡기 어렵다며 추가 금리 인상 필요성을 주장했다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221537+09:00"
+    },
+    "57e712a81b5c9e9eec8dc7b70dfff88d": {
+      "url": "https://www.m-economynews.com/news/article.html?no=73399",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국 뉴욕증시 3대 지수는 인공지능 과잉 투자와 기술기업 수익성 우려로 일제히 급락했다.",
+        "나스닥 종합지수는 하루 동안 5.28% 하락해 올해 상승분을 모두 반납했고 다우지수와 S&P500지수는 조정 국면에 진입했다.",
+        "엔비디아에 대한 미 증권거래위원회의 회계 조사 보도까지 겹치면서 반도체주를 중심으로 매도세가 쏟아졌다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221544+09:00"
+    },
+    "3a1c7df5e7b6b51e5c05a8541e2d6409": {
+      "url": "https://www.ntoday.co.kr/news/articleView.html?idxno=131030",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "앤스로픽의 역대 최대 규모 상장에 따른 유동성 쏠림과 미 연방준비제도의 통화긴축 경계감으로 비트코인이 6만달러선을 내줬다.",
+        "비트코인은 4.01% 하락한 5만9066달러를 기록하며 지난 7월 이후 약 4개월 만의 최저치로 내려앉았다.",
+        "전문가들은 단기 하방 압력이 불가피한 만큼 금리 인상 기대의 안정화 여부를 주시해야 한다고 조언한다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221547+09:00"
+    },
+    "9f4980faafc57cf9adcee96a4ec3086f": {
+      "url": "http://www.newskr.kr/news/articleView.html?idxno=108195",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국 뉴욕증시는 인공지능 투자 거품 논란과 엔비디아 회계 조사 보도 여파로 대폭락을 기록했다.",
+        "나스닥지수는 올해 상승분을 모두 반납했으며 주요 지수들이 조정 국면에 진입해 다음 주 국내 증시에도 비상이 걸렸다.",
+        "위험자산 회피 심리가 확산하면서 가상자산 시장도 함께 무너져 비트코인이 6만달러 아래로 밀렸다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221553+09:00"
+    },
+    "6650d8fa377334c5ea9264d7bf32fb2b": {
+      "url": "https://www.wikitree.co.kr/articles/1176598",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "미국 상품선물거래위원회 위원장은 블록체인 기반 거래소가 미국 개인 투자자에게 무기한 선물을 팔기 위한 조건을 밝혔다.",
+        "블록체인이라는 이유로 기존 금융기관이 지는 자금세탁방지나 고객 보호 등 규제 의무를 면제받을 수 없다는 설명이다.",
+        "규제 당국의 승인을 받기 위한 플랫폼들의 시도가 이어지는 가운데 법적 다툼과 시장 환경 변수가 남아 있다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221557+09:00"
+    },
+    "ae7ecf89eb35160a657f127079f984d3": {
+      "url": "https://it.chosun.com/news/articleView.html?idxno=3000000001470",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "11월 셋째 주 국내 가상자산 거래소에서는 블록체인과 인공지능 및 스테이킹 등 다양한 분야의 프로젝트가 거래를 시작했다.",
+        "업비트와 빗썸은 스타크넷, 아이겐클라우드, 탈루스, 리퀘스트, 키네틱 등 총 5개 종목을 신규 상장했다.",
+        "상장된 종목들은 이더리움 확장성 개선부터 온체인 인프라와 탈중앙화 결제 등 다양한 목적을 위해 활용된다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221561+09:00"
+    },
+    "a11e337f8cb5fde263f14591eae4011b": {
+      "url": "https://www.gokorea.kr/news/articleView.html?idxno=886722",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "가상자산 업계가 기다리는 디지털자산기본법 정부안이 21일 현재 국회에 제출되지 않아 정기국회 내 통과가 어려운 상황이다.",
+        "이번 법은 스테이블코인 발행과 유통 기준 및 가상자산사업자의 진입 규율을 다루는 게임의 규칙을 담고 있다.",
+        "금융위의 은행 중심 컨소시엄 발행 추진과 핀테크·거래소 업계의 반발이 맞서는 가운데 최종 지분 구조가 시장 주도권을 가른다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221566+09:00"
+    },
+    "8c5c1b80e86eb064e0e34cb52c4dc691": {
+      "url": "http://www.jeollailbo.com/news/articleView.html?idxno=817410",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "전북경찰청은 최근 대학과 교육청에서 잇따라 발생한 개인정보 유출 해킹 사건을 수사하고 있다.",
+        "이번 해킹으로 주민등록번호가 유출됨에 따라 사회 경험이 부족한 20대 청년층의 2차 피싱 피해가 우려된다.",
+        "경찰은 대학생과 취업준비생 등을 대상으로 피싱 예방 영상을 송출하고 홍보 활동을 강화할 계획이다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221570+09:00"
+    },
+    "97ceedfe6198eff11f82302523721129": {
+      "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=506607",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "스테이블코인 테마주는 최근 단기 반등에 따른 차익실현 매물이 출회되면서 전반적인 하락 흐름을 나타냈다.",
+        "제도권 편입 가능성과 중앙은행 디지털화폐 도입 논의가 중장기 성장 요인으로 꼽히지만 단기적으로는 차익실현 압력이 우세했다.",
+        "전문가는 테마 기대감보다는 실제 결제 인프라와 보안 등 실적 기반을 갖춘 기업을 중심으로 접근할 것을 조언한다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221575+09:00"
+    },
+    "f15885727ecc57907ef913e6453b51da": {
+      "url": "https://www.gukjenews.com/news/articleView.html?idxno=3758983",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_version": 4,
+      "schema_version": 3,
+      "lines": [
+        "용인특례시의회 문화복지위원회는 사회복지국 산하 부서들을 대상으로 노인과 아동 학대 예방 등을 점검하는 행정사무감사를 실시했다.",
+        "위원들은 용인평온의숲 운영업체의 회계 투명성에 우려를 표하며 계약 종료 후 운영권 회수 방안 마련을 주문했다.",
+        "또한 장기요양기관 부당 청구 관리와 돌봄 사각지대 해소 및 어린이집 관리 개선 등 다양한 현안을 집중적으로 살폈다."
+      ],
+      "created_at": "2026-11-22T09:04:49.221580+09:00"
     }
   }
 }
