@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 32,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 9,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+  "candidate_hybrid_gray_keep_domain": 37,
+  "candidate_hybrid_gray_rule_drop": 152,
+  "candidate_hybrid_gray_rule_keep": 37,
+  "candidate_hybrid_keep_overseas_global_reference": 25,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 541,
+  "candidate_hybrid_model_drop": 53,
+  "candidate_hybrid_model_keep": 241,
+  "candidate_hybrid_model_keep_with_domain_anchor": 241,
+  "candidate_hybrid_negative_drop": 5,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 541,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-24",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 32,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 9,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 5,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 7,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 3,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 152,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 37,
+    "candidate_hybrid_keep_overseas_global_reference": 25,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 4,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 541,
+    "candidate_hybrid_model_drop_prob_le_threshold": 53,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 241
+  },
+  "dropped_count": 269,
+  "input_count": 1117,
+  "kept_count": 848,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1117,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 33,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "\"주식도 떨어지고 이자도 못 내고\"…40대 마통 연체액 400억원 육박",
+      "url": "https://www.fnnews.com/news/202611231936456220"
+    },
+    {
+      "title": "'빚내서 버틴' 중소기업-소상공인 폐업도 못해",
+      "url": "http://www.jjn.co.kr/news/articleView.html?idxno=1058066"
+    },
+    {
+      "title": "나란히 연임 시험대 오른 '최우형·윤호영'···성과에도 리스크 여전",
+      "url": "https://www.sisajournal-e.com/news/articleView.html?idxno=425240"
+    },
+    {
+      "title": "[A 현장] 카카오페이, '초개인화 마이데이터'로 금융생태계 선순환 모델...",
+      "url": "https://www.asiaa.co.kr/news/articleView.html?idxno=272431"
+    },
+    {
+      "title": "벼랑 끝으로 몰리는 가계... 증시급락·추가 금리인상 가능성 부실↑",
+      "url": "https://www.g-enews.com/view.php?ud=202611231356038309bb91c46fcd_1"
+    },
+    {
+      "title": "카카오페이, 송금·결제 이력으로 신용평가 보완…포용금융 확대",
+      "url": "https://www.newspim.com/news/view/20261123000743"
+    },
+    {
+      "title": "[현장] “더치페이 속도도 신용평가에”…카카오페이가 찾은 새로운 신...",
+      "url": "https://www.mydaily.co.kr/page/view/2026112311364602105"
+    },
+    {
+      "title": "[카카오페이:D의 의지⑤] 카카오페이 \"남들은 클로드 잘만 쓰는데 우리...",
+      "url": "https://www.econovill.com/news/articleView.html?idxno=758170"
+    },
+    {
+      "title": "카카오페이, 2400만 마이데이터로 금융AI 키운다…신용평가도 확대",
+      "url": "https://www.news1.kr/it-science/internet-platform/6362691"
+    },
+    {
+      "title": "조합장선거 D-100… 벌써 불법행위 논란",
+      "url": "http://www.gnmaeil.com/news/articleView.html?idxno=599287"
+    }
+  ]
+}

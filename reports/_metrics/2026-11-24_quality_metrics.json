@@ -1,0 +1,282 @@
+{
+  "clusters": {
+    "cluster_count": 359,
+    "cluster_size_max": 100,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 3,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 100,
+        "relevance_prob": 0.8531376741418508,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "‘블랙먼데이 공포’… 코스피 ‘3% 낙폭’으로 버텼다",
+        "url": "https://n.news.naver.com/mnews/article/018/0006414310?sid=101"
+      },
+      {
+        "cluster_size": 83,
+        "relevance_prob": 0.9022176887808236,
+        "relevance_score": 18,
+        "sector": "기타",
+        "title": "삼성증권도 뚫렸다…고객 8241명 개인정보 유출, 금융권 보안 '비상'",
+        "url": "https://www.newsmap.co.kr/news/articleView.html?idxno=5642"
+      },
+      {
+        "cluster_size": 56,
+        "relevance_prob": 0.8019570425362157,
+        "relevance_score": 14,
+        "sector": "대부",
+        "title": "청와대 \"보이스피싱 피해액 58% 감소…흉악범, '가석방 없는 무기형' 검...",
+        "url": "https://www.newspim.com/news/view/20261123000484"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1124,
+    "displayed_articles": 225,
+    "final_tagged_representatives": 359,
+    "normalized_articles": 1434,
+    "raw_items": 1434,
+    "relevance_filtered_articles": 848,
+    "rule_filtered_articles": 1117,
+    "tagged_before_cluster": 848
+  },
+  "date": "2026-11-24",
+  "generated_at": "2026-11-24T09:12:12.386266+09:00",
+  "publishers": {
+    "missing_publisher_count": 359,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 166,
+    "no_topic_ratio": 0.4624,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6554399243318267,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "리플 XRP 거래대금 1위 복귀…코인 거래액 75%↑, USDS 205% 급등",
+        "url": "https://www.topstarnews.net/news/articleView.html?idxno=16284538"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.5413942161269655,
+        "relevance_score": 7,
+        "sector": "디지털자산",
+        "title": "XRP, 바이낸스서 1달러 돌파 후 급반락…공매도 청산 578% 폭증",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=507303"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6683711084579276,
+        "relevance_score": 13,
+        "sector": "기타",
+        "title": "곽봉석號 DB증권, 수익 다변화로 성장 가속",
+        "url": "https://www.kfenews.co.kr/news/articleView.html?idxno=668581"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4993323328398277,
+        "relevance_score": 7,
+        "sector": "은행",
+        "title": "WM·기업금융 집중한 ‘SC·씨티’ 외국계 은행도 실적 ‘껑충’",
+        "url": "https://n.news.naver.com/mnews/article/050/0000113657?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4685575544096113,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "\"얼굴로 결제한다\"...카드업계, 생체인식 결제 합류 '신호탄'",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=230187"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6161115761717962,
+        "relevance_score": 14,
+        "sector": "여전",
+        "title": "'빚 돌려막기 시작됐나' 카드론보다 현금서비스·리볼빙 큰폭 증가",
+        "url": "https://n.news.naver.com/mnews/article/648/0000052906?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8832431419722692,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "불법 대출 뿌리 뽑는다…부산시·금감원·경찰 손잡아",
+        "url": "https://www.mhns.co.kr/news/articleView.html?idxno=770389"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6868034606784481,
+        "relevance_score": 5,
+        "sector": "기타",
+        "title": "소비심리 두 달째 위축…집값 전망 8개월 만에 최대폭 하락",
+        "url": "https://n.news.naver.com/mnews/article/374/0000545443?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4808582929089047,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "미국 디지털 금융주 폭등랠리… 카카오페이·헥토파이낸셜 매수 노려라",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=507282"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6679516321640279,
+        "relevance_score": 11,
+        "sector": "보험",
+        "title": "대형 손보사 중 자본력 최하위…KB손보 4000억 조달",
+        "url": "https://dealsite.co.kr/articles/173227"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 2,
+      "거시·시장": 33,
+      "기타": 144,
+      "대부": 27,
+      "디지털자산": 56,
+      "보험": 9,
+      "상호금융": 8,
+      "여전": 15,
+      "은행": 36,
+      "입법·정책": 12,
+      "자산운용·연기금": 4,
+      "저축은행": 8,
+      "증권(브로커리지/리테일)": 3,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "가계대출·부채": 5,
+      "감독·제재": 9,
+      "건전성·자본규제": 13,
+      "금리·수수료·최고금리": 30,
+      "기업금융·익스포저": 1,
+      "디지털자산": 67,
+      "물가·경기지표": 1,
+      "부동산·PF": 2,
+      "불법사금융·불법추심·보이스피싱": 33,
+      "사고·사기·횡령": 4,
+      "상품·영업·예금금리": 8,
+      "서민금융·대환·채무조정": 1,
+      "업계동정·사회공헌": 1,
+      "연체·부실": 16,
+      "일정·브리핑": 2,
+      "자금시장·유동성": 5,
+      "정책·제도개선": 3,
+      "증시·시장시황": 27,
+      "칼럼·오피니언": 5,
+      "해외·글로벌": 21,
+      "환율·외환": 9
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9344168975000688,
+        "relevance_score": 31,
+        "sector": "대부",
+        "title": "부산시·금감원·경찰, 불법 사금융 근절 공동 대응 협력",
+        "url": "https://n.news.naver.com/mnews/article/001/0016459449?sid=101"
+      },
+      {
+        "cluster_size": 5,
+        "relevance_prob": 0.9044849855830724,
+        "relevance_score": 30,
+        "sector": "입법·정책",
+        "title": "금감원, 채권 소멸 14일 내 환급액 결정…먼저 신고해도 피해액 비율로...",
+        "url": "https://www.wikitree.co.kr/articles/1177123"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8746056333641236,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "네파·두나무, 공정위 이후엔…지분규제·대주주변경 '당국관문'",
+        "url": "https://www.cstimes.com/news/articleView.html?idxno=728923"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8790607167599273,
+        "relevance_score": 30,
+        "sector": "디지털자산",
+        "title": "네이버파이낸셜·두나무, 공정위 심의 이후 금융당국 관문 주목",
+        "url": "https://www.sentv.co.kr/article/view/sentv202611230015"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7667741500285027,
+        "relevance_score": 27,
+        "sector": "대부",
+        "title": "빚 갚으려 또 빚…청년 4명 중 1명은 3건 이상 '대출'[빚에서 빛으로]",
+        "url": "https://n.news.naver.com/mnews/article/277/0005846397?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.8832431419722692,
+        "relevance_score": 24,
+        "sector": "대부",
+        "title": "불법 대출 뿌리 뽑는다…부산시·금감원·경찰 손잡아",
+        "url": "https://www.mhns.co.kr/news/articleView.html?idxno=770389"
+      },
+      {
+        "cluster_size": 34,
+        "relevance_prob": 0.7464068003647014,
+        "relevance_score": 19,
+        "sector": "저축은행",
+        "title": "OK금융 예별손보 인수 앞두고 암초…최윤 회장 검찰 고발 변수",
+        "url": "https://www.joongangenews.com/news/articleView.html?idxno=565861"
+      },
+      {
+        "cluster_size": 100,
+        "relevance_prob": 0.8531376741418508,
+        "relevance_score": 24,
+        "sector": "거시·시장",
+        "title": "‘블랙먼데이 공포’… 코스피 ‘3% 낙폭’으로 버텼다",
+        "url": "https://n.news.naver.com/mnews/article/018/0006414310?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8940317299528918,
+        "relevance_score": 21,
+        "sector": "증권(브로커리지/리테일)",
+        "title": "증권사 해킹사고 도미노…삼성증권도 뚫렸다",
+        "url": "https://www.esgeconomy.com/news/articleView.html?idxno=17501"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8166799740205372,
+        "relevance_score": 17,
+        "sector": "입법·정책",
+        "title": "금융위, 민생범죄 의심계좌 정지 권한 FIU로 확대 추진…범죄자금 신속...",
+        "url": "https://sateconomy.co.kr/news/view/1065579295688000"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "거시·시장": 1,
+      "대부": 3,
+      "디지털자산": 2,
+      "입법·정책": 2,
+      "저축은행": 1,
+      "증권(브로커리지/리테일)": 1
+    },
+    "topic_counts": {
+      "감독·제재": 2,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 3,
+      "불법사금융·불법추심·보이스피싱": 2,
+      "연체·부실": 1,
+      "정책·제도개선": 1,
+      "증시·시장시황": 1,
+      "해외·글로벌": 1
+    }
+  }
+}
