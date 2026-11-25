@@ -1,0 +1,94 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 2,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 20,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 13,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 8,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 0,
+  "candidate_hybrid_gray_keep_domain": 39,
+  "candidate_hybrid_gray_rule_drop": 103,
+  "candidate_hybrid_gray_rule_keep": 39,
+  "candidate_hybrid_keep_overseas_global_reference": 21,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 11,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 720,
+  "candidate_hybrid_model_drop": 23,
+  "candidate_hybrid_model_keep": 144,
+  "candidate_hybrid_model_keep_with_domain_anchor": 144,
+  "candidate_hybrid_negative_drop": 2,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 720,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-25",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 2,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 20,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 13,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 6,
+    "candidate_hybrid_drop_negative_signal": 2,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 8,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 103,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 39,
+    "candidate_hybrid_keep_overseas_global_reference": 21,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 11,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 720,
+    "candidate_hybrid_model_drop_prob_le_threshold": 23,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 144
+  },
+  "dropped_count": 177,
+  "input_count": 1112,
+  "kept_count": 935,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1112,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 25,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "농민 목숨 앗아가는 농가부채, 이제는 굴레를 끊어야 할 때",
+      "url": "http://www.ikpnews.net/news/articleView.html?idxno=72116"
+    },
+    {
+      "title": "전북도민일보 2026년 제8차 독자위원회",
+      "url": "http://www.domin.co.kr/news/articleView.html?idxno=1576764"
+    },
+    {
+      "title": "하나카드 성영수 사장 내달 임기 만료…연임 여부 주목",
+      "url": "http://www.whitepaper.co.kr/news/articleView.html?idxno=269109"
+    },
+    {
+      "title": "[단독]신한은행, 비대면 사장님대출 한도 축소…왜?",
+      "url": "https://news.bizwatch.co.kr/article/finance/2026/11/24/0018"
+    },
+    {
+      "title": "금리인상 여파 시작도 전에 또 올리나…취약계층 공포 확산",
+      "url": "http://www.newstomato.com/ReadNews.aspx?no=1321633&inflow=N"
+    },
+    {
+      "title": "빚에 허덕이는 中企·소상공인…“폐업도 막막”",
+      "url": "https://biz.heraldcorp.com/article/10947323?ref=naver"
+    },
+    {
+      "title": "평창군산림조합, 신청사 신축공사 안전기원제 개최",
+      "url": "https://www.kwnews.co.kr/article/20261124501697"
+    },
+    {
+      "title": "포천시산림조합 봉사대, 한내천·포천 5일장 주변 환경정화",
+      "url": "https://www.kyeonggi.com/article/20261124580299"
+    },
+    {
+      "title": "KB국민은행, 퇴직연금 수수료 체계 개편…\"중소기업 부담 낮추고 포용금...",
+      "url": "http://www.queen.co.kr/news/articleView.html?idxno=466804"
+    },
+    {
+      "title": "코스피 급등에도 외국인 선물 1만계약 순매수…국고 10년 1.7bp↓",
+      "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4446259"
+    }
+  ]
+}
