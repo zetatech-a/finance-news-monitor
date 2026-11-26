@@ -1,0 +1,280 @@
+{
+  "clusters": {
+    "cluster_count": 425,
+    "cluster_size_max": 105,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 5,
+    "mega_cluster_count": 3,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 105,
+        "relevance_prob": 0.7426134497857563,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "[더페어 돋보기] 코스피 4700~5000선 급등락의 분수령…미국 PCE·한은 금...",
+        "url": "https://www.thefairnews.co.kr/news/articleView.html?idxno=95473"
+      },
+      {
+        "cluster_size": 104,
+        "relevance_prob": 0.7641603329551252,
+        "relevance_score": 20,
+        "sector": "기타",
+        "title": "은행 가계대출 금리 3년 만에 5% 돌파…주담대 14년 7개월 만에 최고",
+        "url": "https://www.hidomin.com/news/articleView.html?idxno=730960"
+      },
+      {
+        "cluster_size": 55,
+        "relevance_prob": 0.9234201340208475,
+        "relevance_score": 25,
+        "sector": "디지털자산",
+        "title": "빗썸, 보름간 해킹 몰랐다…한 달 만에 추가 피해 확인",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=508128"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1191,
+    "displayed_articles": 297,
+    "final_tagged_representatives": 425,
+    "normalized_articles": 1631,
+    "raw_items": 1631,
+    "relevance_filtered_articles": 955,
+    "rule_filtered_articles": 1182,
+    "tagged_before_cluster": 955
+  },
+  "date": "2026-11-26",
+  "generated_at": "2026-11-26T09:15:11.994965+09:00",
+  "publishers": {
+    "missing_publisher_count": 425,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 151,
+    "no_topic_ratio": 0.3553,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7034931933324781,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[단독]코인 리딩방·유튜버 법적 규제 추진…미인가 거래소 이용 권유도...",
+        "url": "https://n.news.naver.com/mnews/article/008/0005446590?sid=100"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6780642594995326,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "\"AI 안경으로 28억 벌었네\"…텔레그램 비밀방 지갑 추적해보니",
+        "url": "https://n.news.naver.com/mnews/article/015/0005358396?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6587494742643072,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "피터 브란트 \"이더리움, 1383달러 지지선 붕괴 시 500달러 미만 폭락 경...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=508220"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6612326846005978,
+        "relevance_score": 4,
+        "sector": "디지털자산",
+        "title": "[오늘의 비트코인] 美물가지표에 '출렁'…6만달러 턱걸이",
+        "url": "https://news.dealsitetv.com/articles/179186"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.4075094204414552,
+        "relevance_score": 6,
+        "sector": "여전",
+        "title": "전업카드 8사, 해외 결제망 수수료로부터 독립 시동",
+        "url": "http://www.datanews.co.kr/news/article.html?no=147825"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6914770505344063,
+        "relevance_score": 18,
+        "sector": "IB·자본시장",
+        "title": "[다올투자증권 M&A] 이병철의 금융 도전 8년…1500억 풋옵션 부메랑에 좌...",
+        "url": "https://dealsite.co.kr/articles/173441"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7246016913330401,
+        "relevance_score": 9,
+        "sector": "IB·자본시장",
+        "title": "삼성생명, '실적 한파' 속 성장세...홍원학 '내년 M&A·밸류업' 기대감",
+        "url": "https://www.financialpost.co.kr/news/articleView.html?idxno=286108"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7748188156925248,
+        "relevance_score": 20,
+        "sector": "기타",
+        "title": "다올투증 매물에 원매자 '두 갈래 셈법'…DB손보 지분 우위 속 금융지주...",
+        "url": "https://www.youthdaily.co.kr/news/article.html?no=230314"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.814445523675908,
+        "relevance_score": 17,
+        "sector": "기타",
+        "title": "[SFS 2.0]온체인 금융 성큼…국내 '반쪽 혁신' 넘어야",
+        "url": "https://n.news.naver.com/mnews/article/648/0000052993?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6609516789079158,
+        "relevance_score": 9,
+        "sector": "기타",
+        "title": "앤트로픽 935억 달러 IPO가 비트코인 발목 잡았다?…\"결국 다시 돌아올 ...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=508192"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 5,
+      "감독·제재": 8,
+      "거시·시장": 25,
+      "기타": 138,
+      "대부": 15,
+      "디지털자산": 113,
+      "보험": 7,
+      "상호금융": 6,
+      "여전": 11,
+      "은행": 42,
+      "입법·정책": 27,
+      "자산운용·연기금": 8,
+      "저축은행": 13,
+      "증권(브로커리지/리테일)": 3,
+      "핀테크·플랫폼": 4
+    },
+    "topic_counts": {
+      "가계대출·부채": 27,
+      "감독·제재": 11,
+      "건전성·자본규제": 14,
+      "금리·수수료·최고금리": 36,
+      "기업금융·익스포저": 3,
+      "디지털자산": 125,
+      "물가·경기지표": 2,
+      "부동산·PF": 19,
+      "불법사금융·불법추심·보이스피싱": 24,
+      "사고·사기·횡령": 5,
+      "상품·영업·예금금리": 31,
+      "서민금융·대환·채무조정": 5,
+      "업계동정·사회공헌": 3,
+      "연체·부실": 20,
+      "자금시장·유동성": 5,
+      "정책·제도개선": 7,
+      "증시·시장시황": 7,
+      "칼럼·오피니언": 10,
+      "해외·글로벌": 12,
+      "환율·외환": 5
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9135363961972929,
+        "relevance_score": 35,
+        "sector": "거시·시장",
+        "title": "원화 스테이블코인 은행 주도로…디지털 금융시장 주도권 경쟁 본격화",
+        "url": "https://www.ppss.kr/news/articleView.html?idxno=322800"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8443362410493698,
+        "relevance_score": 30,
+        "sector": "감독·제재",
+        "title": "코인원 영업정지 첫 재판…‘100만원 미만 출고’ 놓고 공방",
+        "url": "https://n.news.naver.com/mnews/article/018/0006415505?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9548502664405488,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "내달 3일 디지털자산기본법 공청회…이르면 2028년 시행",
+        "url": "https://n.news.naver.com/mnews/article/018/0006415577?sid=101"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9461176230440408,
+        "relevance_score": 31,
+        "sector": "디지털자산",
+        "title": "금융위, 디지털자산 2단계 입법 추진…원화 스테이블코인 도입·거래소...",
+        "url": "https://www.e-science.co.kr/news/articleView.html?idxno=140674"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7785765981978529,
+        "relevance_score": 26,
+        "sector": "감독·제재",
+        "title": "최윤 회장 고발 의견에 OK금융 예별손보 인수 '변수'…총수 지배회사 부...",
+        "url": "https://www.greened.kr/news/articleView.html?idxno=355558"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8894919154706206,
+        "relevance_score": 29,
+        "sector": "기타",
+        "title": "[토큰워치] '결국, 그래도 은행'…원화 스테이블코인 '은행 중심 발행' ...",
+        "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7195746"
+      },
+      {
+        "cluster_size": 8,
+        "relevance_prob": 0.8224297587197933,
+        "relevance_score": 25,
+        "sector": "감독·제재",
+        "title": "주식 사들인 뒤 호재성 기사 출고…증선위, 언론사 기자 고발·과징금 5...",
+        "url": "https://www.ajunews.com/view/20261125175944327"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.9362572380556492,
+        "relevance_score": 28,
+        "sector": "은행",
+        "title": "은행 주도 '원화 스테이블코인' 발행 길 열렸다…금융권 합종연횡 속도",
+        "url": "https://n.news.naver.com/mnews/article/003/0014344027?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8166045400604183,
+        "relevance_score": 22,
+        "sector": "입법·정책",
+        "title": "“금융위 눈 밖에 나면 사업 못해”...인허가권 무기로 혁신 가로막는 ...",
+        "url": "https://n.news.naver.com/mnews/article/023/0004011614?sid=105"
+      },
+      {
+        "cluster_size": 105,
+        "relevance_prob": 0.7426134497857563,
+        "relevance_score": 23,
+        "sector": "거시·시장",
+        "title": "[더페어 돋보기] 코스피 4700~5000선 급등락의 분수령…미국 PCE·한은 금...",
+        "url": "https://www.thefairnews.co.kr/news/articleView.html?idxno=95473"
+      }
+    ],
+    "no_topic_count": 0,
+    "sector_counts": {
+      "감독·제재": 3,
+      "거시·시장": 2,
+      "기타": 1,
+      "디지털자산": 2,
+      "은행": 1,
+      "입법·정책": 1
+    },
+    "topic_counts": {
+      "감독·제재": 3,
+      "금리·수수료·최고금리": 1,
+      "디지털자산": 7,
+      "물가·경기지표": 1,
+      "증시·시장시황": 1,
+      "해외·글로벌": 1,
+      "환율·외환": 2
+    }
+  }
+}

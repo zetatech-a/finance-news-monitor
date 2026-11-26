@@ -1,0 +1,96 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 3,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 8,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+  "candidate_hybrid_gray_keep_domain": 37,
+  "candidate_hybrid_gray_rule_drop": 127,
+  "candidate_hybrid_gray_rule_keep": 37,
+  "candidate_hybrid_keep_overseas_global_reference": 18,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 13,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 688,
+  "candidate_hybrid_model_drop": 28,
+  "candidate_hybrid_model_keep": 198,
+  "candidate_hybrid_model_keep_with_domain_anchor": 198,
+  "candidate_hybrid_negative_drop": 5,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 688,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-26",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 3,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 8,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 13,
+    "candidate_hybrid_drop_negative_signal": 5,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 6,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 2,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 127,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 37,
+    "candidate_hybrid_keep_overseas_global_reference": 18,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 13,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 688,
+    "candidate_hybrid_keep_strong_finance_anchor_neg_cap": 1,
+    "candidate_hybrid_model_drop_prob_le_threshold": 28,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 198
+  },
+  "dropped_count": 227,
+  "input_count": 1182,
+  "kept_count": 955,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1182,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 30,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "연이자 1567%…상품권 거래 가장 대부행위 20대 실형",
+      "url": "https://www.newsis.com/view/NISX20261125_0003883365"
+    },
+    {
+      "title": "중앙일보 인수한 CJ, JTBC에도 관심 보여 [시그널]",
+      "url": "https://www.sedaily.com/article/20118830?ref=naver"
+    },
+    {
+      "title": "주가 폭락에 빚투 개미 '비명'…마통 연체 1187억 돌파, 40대 81% 급증",
+      "url": "https://www.newsis.com/view/NISX20261125_0003882024"
+    },
+    {
+      "title": "지방금융 새 수익원…캐피털의 재발견",
+      "url": "https://www.mk.co.kr/article/12214633"
+    },
+    {
+      "title": "생명·증권은 순익, 화재는 빅 딜…삼성금융 수장 4인 유임에 무게",
+      "url": "https://www.womaneconomy.co.kr/news/articleView.html?idxno=261580"
+    },
+    {
+      "title": "케뱅•토뱅, 3Q 순익 29억 차…'2위 싸움' 수익성 검증대로",
+      "url": "https://www.viva100.com/article/20261124500896"
+    },
+    {
+      "title": "삼성생명·화재·카드 CEO 유임 전망…경영 안정 속 신사업 속도 낸다",
+      "url": "https://www.news1.kr/finance/insurance-card/6365476"
+    },
+    {
+      "title": "\"1차사 넘어 2·3차·지역상권까지\"…상생의 판 넓히는 동반성장",
+      "url": "https://www.asiatoday.co.kr/kn/view.php?key=20261124010009575"
+    },
+    {
+      "title": "상생협력기금 3.3조원 시대…2·3차 협력사·소상공인까지 확대해야",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=2023173"
+    },
+    {
+      "title": "[사설]가계대출 금리 5% 돌파, 취약층 안전판 마련 서둘러야",
+      "url": "https://www.khan.co.kr/article/202611251836001"
+    }
+  ]
+}
