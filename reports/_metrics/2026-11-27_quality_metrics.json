@@ -1,0 +1,265 @@
+{
+  "clusters": {
+    "cluster_count": 414,
+    "cluster_size_max": 550,
+    "cluster_size_p50": 1,
+    "cluster_size_p95": 3,
+    "mega_cluster_count": 1,
+    "mega_cluster_samples": [
+      {
+        "cluster_size": 550,
+        "relevance_prob": 0.88583829251648,
+        "relevance_score": 31,
+        "sector": "거시·시장",
+        "title": "한은, 기준금리 3.25%로 25bp 인상",
+        "url": "https://www.newstopkorea.com/ko-kr/articles/49320"
+      }
+    ],
+    "mega_cluster_threshold": 50
+  },
+  "counts": {
+    "deduped_articles": 1412,
+    "displayed_articles": 290,
+    "final_tagged_representatives": 414,
+    "normalized_articles": 1926,
+    "raw_items": 1926,
+    "relevance_filtered_articles": 1164,
+    "rule_filtered_articles": 1399,
+    "tagged_before_cluster": 1164
+  },
+  "date": "2026-11-27",
+  "generated_at": "2026-11-27T09:12:44.238733+09:00",
+  "publishers": {
+    "missing_publisher_count": 414,
+    "publisher_counts": {}
+  },
+  "taxonomy": {
+    "no_topic_count": 133,
+    "no_topic_ratio": 0.3213,
+    "no_topic_samples": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7528513011616011,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "'8.5조원 해킹 탈취 당한' 바이낸스, 4주 만에 출금 정상화",
+        "url": "https://n.news.naver.com/mnews/article/018/0006416391?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8133038393740126,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "에어프레미아 고객상담 위탁업체 해킹…고객 개인정보·통화 녹음 유출...",
+        "url": "https://www.dailysecu.com/news/articleView.html?idxno=209785"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.43571663080875456,
+        "relevance_score": 6,
+        "sector": "저축은행",
+        "title": "[더벨][thebell note] 저축은행이 설 자리",
+        "url": "https://www.thebell.co.kr/free/content/ArticleView.asp?key=202611241723298600108623"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6903338187852348,
+        "relevance_score": 6,
+        "sector": "입법·정책",
+        "title": "박현주 이어 김용범…李정부, 자본시장 '빅샷'에 키 맡긴 까닭",
+        "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4446864"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6600018277324697,
+        "relevance_score": 8,
+        "sector": "은행",
+        "title": "대출 확대 영향…은행 3분기까지 이자이익 48조원 넘었다",
+        "url": "https://n.news.naver.com/mnews/article/032/0003485459?sid=101"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6872559312965307,
+        "relevance_score": 4,
+        "sector": "기타",
+        "title": "바이낸스서 뭉칫돈 썰물…XRP 30일간 50억 토큰 대탈출에 시장은 '폭등 ...",
+        "url": "https://www.pinpointnews.co.kr/news/articleView.html?idxno=508667"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6195313834817552,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "[단독] 아파트 우편함 속 2천만 원?5천만 원 더 챙기려다 덜미",
+        "url": "https://n.news.naver.com/mnews/article/057/0001980092?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8183317315454807,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "11월 27일(금) 굿모닝 MBN 이 시각 주요뉴스",
+        "url": "https://n.news.naver.com/mnews/article/057/0001980090?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.7886794241899648,
+        "relevance_score": 6,
+        "sector": "기타",
+        "title": "휴가 중에도 본능 못 숨겼다…엘리베이터 앞 할머니 통화에 '촉' 온 경찰",
+        "url": "https://n.news.naver.com/mnews/article/277/0005848538?sid=102"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.6776698394616328,
+        "relevance_score": 17,
+        "sector": "보험",
+        "title": "금융을 체험 콘텐츠로… 제21회 금융공모전 수상작 선정",
+        "url": "https://www.insnews.co.kr/news/articleView.html?idxno=94102"
+      }
+    ],
+    "sector_counts": {
+      "IB·자본시장": 1,
+      "감독·제재": 2,
+      "거시·시장": 46,
+      "기타": 134,
+      "대부": 18,
+      "디지털자산": 80,
+      "보험": 10,
+      "상호금융": 5,
+      "여전": 9,
+      "은행": 49,
+      "입법·정책": 26,
+      "자산운용·연기금": 11,
+      "저축은행": 20,
+      "증권(브로커리지/리테일)": 1,
+      "핀테크·플랫폼": 2
+    },
+    "topic_counts": {
+      "가계대출·부채": 14,
+      "감독·제재": 4,
+      "건전성·자본규제": 20,
+      "규제·가계부채": 2,
+      "금리·수수료·최고금리": 57,
+      "기업금융·익스포저": 10,
+      "디지털자산": 99,
+      "부동산·PF": 7,
+      "불법사금융·불법추심·보이스피싱": 25,
+      "사고·사기·횡령": 3,
+      "상품·영업·예금금리": 13,
+      "서민금융·대환·채무조정": 20,
+      "소비자보호·민원·불완전판매": 2,
+      "업계동정·사회공헌": 12,
+      "연체·부실": 31,
+      "자금시장·유동성": 1,
+      "정책·제도개선": 1,
+      "증시·시장시황": 6,
+      "칼럼·오피니언": 26,
+      "해외·글로벌": 8,
+      "환율·외환": 7
+    }
+  },
+  "top10": {
+    "count": 10,
+    "items": [
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.824339603058395,
+        "relevance_score": 39,
+        "sector": "은행",
+        "title": "은행권 '포용 온렌딩 대출' 추진…중저신용자 금리 3~5%p 인하",
+        "url": "https://www.korea.kr/news/policyNewsView.do?newsId=148976589&call_from=naver_news"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.836841809486533,
+        "relevance_score": 35,
+        "sector": "기타",
+        "title": "FIU, 수사의뢰 3건 중 2건 접속차단 요청…이지스벤처스는 앱·사이트 없...",
+        "url": "https://www.wikitree.co.kr/articles/1178162"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.9001606679745767,
+        "relevance_score": 34,
+        "sector": "핀테크·플랫폼",
+        "title": "'은행 과반'에 핀테크 최대주주…원화 스테이블코인, 절충안으로 문 연...",
+        "url": "http://www.dailypop.kr/news/articleView.html?idxno=105078"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8221390848945558,
+        "relevance_score": 30,
+        "sector": "저축은행",
+        "title": "금융당국, 포용금융 건전성 규제 손질…은행-저축은행 '온렌딩 대출' 내...",
+        "url": "https://n.news.naver.com/mnews/article/030/0003490097?sid=101"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.9330931361122229,
+        "relevance_score": 32,
+        "sector": "디지털자산",
+        "title": "원화 스테이블코인 제도화 윤곽…금융권 쏠림 우려",
+        "url": "http://www.newstomato.com/ReadNews.aspx?no=1321986&inflow=N"
+      },
+      {
+        "cluster_size": 3,
+        "relevance_prob": 0.8597334387859464,
+        "relevance_score": 30,
+        "sector": "대부",
+        "title": "은행 자금 받아 저축은행이 중저신용 대출…금리 3~5%p 인하 기대",
+        "url": "https://www.raonnews.com/news/article.html?no=63097"
+      },
+      {
+        "cluster_size": 550,
+        "relevance_prob": 0.88583829251648,
+        "relevance_score": 31,
+        "sector": "거시·시장",
+        "title": "한은, 기준금리 3.25%로 25bp 인상",
+        "url": "https://www.newstopkorea.com/ko-kr/articles/49320"
+      },
+      {
+        "cluster_size": 2,
+        "relevance_prob": 0.6791170483427194,
+        "relevance_score": 29,
+        "sector": "입법·정책",
+        "title": "금융위, 5대 금융지주 회장 긴급 소집⋯증안펀드 가동 논의",
+        "url": "https://www.etoday.co.kr/news/view/2653521"
+      },
+      {
+        "cluster_size": 9,
+        "relevance_prob": 0.8255089058685026,
+        "relevance_score": 26,
+        "sector": "저축은행",
+        "title": "은행·저축은행 ‘금융 동맹’…중·저신용자에 연 10% 대출 추진",
+        "url": "https://n.news.naver.com/mnews/article/117/0004128257?sid=103"
+      },
+      {
+        "cluster_size": 1,
+        "relevance_prob": 0.8983492693117154,
+        "relevance_score": 27,
+        "sector": "은행",
+        "title": "[금융新세계] 스테이블코인 시대 앞둔 은행권…해킹 겪은 금융보안원도...",
+        "url": "https://weekly.hankooki.com/news/articleView.html?idxno=7195887"
+      }
+    ],
+    "no_topic_count": 2,
+    "sector_counts": {
+      "거시·시장": 1,
+      "기타": 1,
+      "대부": 1,
+      "디지털자산": 1,
+      "은행": 2,
+      "입법·정책": 1,
+      "저축은행": 2,
+      "핀테크·플랫폼": 1
+    },
+    "topic_counts": {
+      "건전성·자본규제": 1,
+      "금리·수수료·최고금리": 3,
+      "디지털자산": 4,
+      "서민금융·대환·채무조정": 1,
+      "연체·부실": 1
+    }
+  }
+}

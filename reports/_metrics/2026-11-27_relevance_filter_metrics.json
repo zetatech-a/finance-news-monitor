@@ -1,0 +1,95 @@
+{
+  "candidate_drop_prob": 0.35,
+  "candidate_gray_keep_min_score": 6,
+  "candidate_hybrid_drop_corporate_macro_noise": 1,
+  "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+  "candidate_hybrid_drop_low_value_overseas_market_noise": 12,
+  "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+  "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+  "candidate_hybrid_gray_keep_domain": 40,
+  "candidate_hybrid_gray_rule_drop": 142,
+  "candidate_hybrid_gray_rule_keep": 40,
+  "candidate_hybrid_keep_overseas_global_reference": 21,
+  "candidate_hybrid_keep_overseas_korean_market_impact": 15,
+  "candidate_hybrid_keep_strong_domain_rule_anchor": 950,
+  "candidate_hybrid_model_drop": 27,
+  "candidate_hybrid_model_keep": 138,
+  "candidate_hybrid_model_keep_with_domain_anchor": 138,
+  "candidate_hybrid_negative_drop": 5,
+  "candidate_hybrid_no_model_drop": 0,
+  "candidate_hybrid_no_model_keep_domain": 0,
+  "candidate_hybrid_strong_rule_keep": 950,
+  "candidate_keep_prob": 0.65,
+  "candidate_no_model_keep_min_score": 5,
+  "candidate_strong_rule_keep_score": 8,
+  "date": "2026-11-27",
+  "decision_reason_counts": {
+    "candidate_hybrid_drop_corporate_macro_noise": 1,
+    "candidate_hybrid_drop_generic_market_or_ipo_noise": 35,
+    "candidate_hybrid_drop_low_value_overseas_market_noise": 12,
+    "candidate_hybrid_drop_model_keep_without_domain_anchor": 7,
+    "candidate_hybrid_drop_negative_signal": 5,
+    "candidate_hybrid_gray_drop_generic_anchor_only": 5,
+    "candidate_hybrid_gray_drop_no_domain_anchor": 1,
+    "candidate_hybrid_gray_drop_score_lt_threshold": 142,
+    "candidate_hybrid_gray_keep_domain_score_ge_threshold": 40,
+    "candidate_hybrid_keep_overseas_global_reference": 21,
+    "candidate_hybrid_keep_overseas_korean_market_impact": 15,
+    "candidate_hybrid_keep_strong_domain_rule_anchor": 950,
+    "candidate_hybrid_model_drop_prob_le_threshold": 27,
+    "candidate_hybrid_model_keep_prob_ge_threshold_with_domain_anchor": 138
+  },
+  "dropped_count": 235,
+  "input_count": 1399,
+  "kept_count": 1164,
+  "min_prob": 0.55,
+  "min_score": 4,
+  "model_path": "/home/runner/work/finance-news-monitor/finance-news-monitor/models/relevance_candidate.joblib",
+  "model_policy": "candidate_hybrid",
+  "model_prob_available_count": 1399,
+  "model_prob_missing_count": 0,
+  "model_used": true,
+  "suspect_boundary_drop_count": 45,
+  "suspect_boundary_drop_samples": [
+    {
+      "title": "[포커스] 금리 오를 때 지방銀 긴장백배…대출 절반은 중소기업 몫",
+      "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=820225"
+    },
+    {
+      "title": "농협금융, 우량고객 직접 육성…신용도 개선 땐 은행으로 모시기",
+      "url": "https://www.bloter.net/news/articleView.html?idxno=679817"
+    },
+    {
+      "title": "'쇄신보단 안정' 삼성 금융계열사, CEO 전원 유임",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=2023854"
+    },
+    {
+      "title": "삼성 금융계열사 CEO 5인 전원 유임…'안정 속 쇄신' 택했다",
+      "url": "http://www.opinionnews.co.kr/news/articleView.html?idxno=147534"
+    },
+    {
+      "title": "[기획] \"벼랑 끝 다중채무자·2금융권\"…취약차주 부실 뇌관",
+      "url": "https://www.m-i.kr/news/articleView.html?idxno=2023882"
+    },
+    {
+      "title": "삼성 금융계열사 CEO 전원 유임 가닥…경영 안정 속 신사업 속도",
+      "url": "https://www.etnews.com/20261126000292"
+    },
+    {
+      "title": "고금리 시대 진입...가계·자영업자 이자부담 가중",
+      "url": "http://www.hansbiz.co.kr/news/articleView.html?idxno=887598"
+    },
+    {
+      "title": "반도체 호황에 강한 성장세…물가 더 뛰기 전 선제대응",
+      "url": "https://biz.heraldcorp.com/article/10950199?ref=naver"
+    },
+    {
+      "title": "기저효과 비웃는 ‘반도체 특수’…‘K자형 성장’ 우려는 여전",
+      "url": "https://biz.heraldcorp.com/article/10950083?ref=naver"
+    },
+    {
+      "title": "NH투자증권 “베트남 증시 관세 우려 과도…무역협상 진전 시 반등 기대...",
+      "url": "https://www.etoday.co.kr/news/view/2653688"
+    }
+  ]
+}
